@@ -7,7 +7,7 @@ var ShortcutTrader = (function () {
         PREFIX: 'FT',
         NAME: loca.GetText("QUL", "MiadTropicalSunQ2") + ', ' + loca.GetText("ACL", "SellGoods_1"),
         TRADE_TYPES: {MARKET: 'market', FRIEND: 'friend'},
-        TRADE_QUEUE_DELAY: 4000,
+        TRADE_QUEUE_DELAY: 6000,
         BUTTON_COOLDOWN: 3000,
         MESSAGE_TYPES: {
             SEND_TRADE: 1049, REFRESH_TRADES: 1062, REQUEST_TRADE_DATA: 1061
@@ -148,6 +148,7 @@ var ShortcutTrader = (function () {
 
             $('#' + UIMap.ids.modal).off('click', '.' + UIMap.classes.resetBtn).on('click', '.' + UIMap.classes.resetBtn, handleReset)
                 .off('click', '.' + UIMap.classes.sendAllBtn).on('click', '.' + UIMap.classes.sendAllBtn, handleSubmitAll)
+                .off('click', '.' + UIMap.classes.selectAllBtn).on('click', '.' + UIMap.classes.selectAllBtn, handleSubmitAllSelected)
                 .off('click', '.' + UIMap.classes.saveTemplateBtn).on('click', '.' + UIMap.classes.saveTemplateBtn, handleSaveTemplate)
                 .off('click', '.' + UIMap.classes.loadTemplateBtn).on('click', '.' + UIMap.classes.loadTemplateBtn, handleLoadTemplate);
 
@@ -288,6 +289,27 @@ var ShortcutTrader = (function () {
             TradeService.send(trades);
         }
 
+        function handleSubmitAllSelected() {
+            var $modal = $('#' + UIMap.ids.modal);
+            var currentTrades = SettingsService.getCurrentTrades();
+            var trades = []
+
+            $('.' + UIMap.classes.selectTrade + ':checked').each(function () {
+                var idx = $(this).data('index');
+                if (idx !== undefined) {
+                    var trade = currentTrades[parseInt(idx, 10)];
+                    trades.push(trade);
+                }
+            });
+
+            if (!trades.length) {
+                return;
+            }
+
+            $modal.modal('hide');
+            TradeService.send(trades);
+        }
+
         function handleSaveTemplate() {
             var state = SettingsService.getState();
             buildTemplates.save(state.tradesData);
@@ -362,6 +384,8 @@ var ShortcutTrader = (function () {
 
             resetBtn: SCRIPT_CONST.PREFIX + '_reset-btn',
             sendAllBtn: SCRIPT_CONST.PREFIX + '_send-all-btn',
+            selectTrade: SCRIPT_CONST.PREFIX + '_select-trade-chkbox',
+            selectAllBtn: SCRIPT_CONST.PREFIX + '_select-trade-btn',
             saveTemplateBtn: SCRIPT_CONST.PREFIX + '_save-temp-btn',
             loadTemplateBtn: SCRIPT_CONST.PREFIX + '_load-temp-btn'
         }
@@ -405,12 +429,16 @@ var ShortcutTrader = (function () {
             });
         }
 
-
         function renderFooter() {
             var $modal  = $('#' + UIMap.ids.modal);
             var $footer = $modal.find('.modal-footer');
 
-            var buttons = [createButton(UIMap.classes.resetBtn + ' btn-warning', getText('btn_reset')), createButton(UIMap.classes.sendAllBtn + ' btn-success', getText('btn_submit') + ' ' + loca.GetText("LAB", "All")), createButton(UIMap.classes.saveTemplateBtn + ' btn-primary pull-left', getText('save_template')), createButton(UIMap.classes.loadTemplateBtn + ' btn-primary pull-left', getText('load_template'))];
+            var buttons = [createButton(UIMap.classes.resetBtn + ' btn-warning', getText('btn_reset')),
+                createButton(UIMap.classes.sendAllBtn + ' btn-success', getText('btn_submit') + ' ' + loca.GetText("LAB", "All")),
+                createButton(UIMap.classes.selectAllBtn + ' btn-success', getText('btn_submit') + ' ' + loca.GetText("LAB", "SelectedResource")),
+                createButton(UIMap.classes.saveTemplateBtn + ' btn-primary pull-left', getText('save_template')),
+                createButton(UIMap.classes.loadTemplateBtn + ' btn-primary pull-left', getText('load_template'))
+            ];
 
             $footer.prepend(buttons);
         }
@@ -478,11 +506,27 @@ var ShortcutTrader = (function () {
             var sendBtn = $('<div>', {
                 'class': UIMap.classes.sendTrade,
                 'data-index': index,
-                css: {cursor: 'pointer', display: 'inline-block'},
+                css: {cursor: 'pointer', display: 'inline-block',margin: '0 10px'},
                 html: getImageTag('Trade', '24px')
             })
 
-            return createTableRow([[2, getImageTag(item.offerResName, '24px') + ' ' + item.offerResAmount], [2, getImageTag(item.costResName, '24px') + ' ' + item.costResAmount], [6, formatToFractionOrReturn(item.UserName)], [2, $('<div>').append(delBtn, sendBtn)]], false);
+            var checkBox = $('<input>', {
+                type: 'checkbox',
+                'class': UIMap.classes.selectTrade,
+                'data-index': index,
+                css: {
+                    cursor: 'pointer'
+                }
+            });
+
+            var actions = $('<div>').append(
+                sendBtn,
+                checkBox,
+                $('<span>').css('margin', '0 6px'),
+                delBtn
+            );
+
+            return createTableRow([[2, getImageTag(item.offerResName, '24px') + ' ' + item.offerResAmount], [2, getImageTag(item.costResName, '24px') + ' ' + item.costResAmount], [6, formatToFractionOrReturn(item.UserName)], [2, $('<div>').append(actions)]], false);
         }
 
         function createNumberInput(id, value) {
