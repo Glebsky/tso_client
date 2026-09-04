@@ -138,5 +138,12 @@
       "longDesc": "Analyzes the specialist's skills and profile, then automatically chooses the most suitable search source.",
       "author": "MadFx",
       "url": ""
+   },
+   "user_well_field.js": {
+      "name": "Wells & Fields Rebuild",
+      "shortDesc": "Automatic rebuilding of depleted wells and wheat fields.",
+      "longDesc": "Finds depleted wells and wheat fields and automatically rebuilds them. Supports choosing building tiers (Normal, Deep, Artesian / Silo, etc.), batch building, queue slot detection, and background auto-building.",
+      "author": "Glebsky",
+      "url": ""
    }
 }
