@@ -20,13 +20,13 @@
     var BUILDING_DEFINITIONS = {
         wells: [
             { id: 72, name: 'Well' },
-            { id: 175, name: 'Well_02' },
+            // { id: 175, name: 'Well_02' },
             { id: 176, name: 'Well_03' },
             { id: 246, name: 'Well_04' }
         ],
         fields: [
             { id: 43, name: 'Farmfield' },
-            { id: 177, name: 'Farmfield_02' },
+            // { id: 177, name: 'Farmfield_02' },
             { id: 247, name: 'Farmfield_03' },
             { id: 248, name: 'Farmfield_04' }
         ]
