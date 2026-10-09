@@ -147,7 +147,7 @@
     }
 
     function _DM_bld(grid) {
-        try { return game.zone.GetBuildingFromGridPosition(Number(grid)); } catch (e) { return null; }
+        try { return game.gi.mCurrentPlayerZone.GetBuildingFromGridPosition(Number(grid)); } catch (e) { return null; }
     }
 
     function _DM_depositOre(grid) {
@@ -266,9 +266,57 @@
         _DM_stopRun(DM_runs.upgrade, silent);
     }
 
+    // Choosing a target is separate from deciding whether it can start now.
+    function _DM_canChooseUpgrade(grid) {
+        var b = _DM_bld(grid);
+        var name = _DM_call(b, 'GetBuildingName_string', '');
+        return !!b && _DM_isUpgradableMine(name) && !_DM_isUpgradeBusy(b) &&
+            !_DM_call(b, 'IsWaitForCommand', true) &&
+            DM_runs.upgrade.pending[String(grid)] === undefined;
+    }
+
+    function _DM_selectionCheckboxes() {
+        var cls = DM_UpgradeSwitchStatus ? DM_lements.UPGR_CHECKBX : DM_lements.BUILD_CHECKBX;
+        return $('#DrunkenMinerModalData input[type="checkbox"].' + cls + ':enabled');
+    }
+
+    function _DM_canStartUpgrade(grid) {
+        var b = _DM_bld(grid);
+        var name = _DM_call(b, 'GetBuildingName_string', '');
+        var run = DM_runs.upgrade;
+        var allowed = false;
+        try { allowed = !!b && b.IsUpgradeAllowed(true); } catch (e) { debug(e); }
+        return !!b && _DM_isUpgradableMine(name) && !_DM_isUpgradeBusy(b) &&
+            !_DM_call(b, 'IsWaitForCommand', true) &&
+            _DM_call(b, 'GetUIUpgradeLevel', DM_MaxUpgradeLvl) < _DM_maxLvlFor(name) &&
+            _DM_call(b, 'IsProductionActive', false) &&
+            allowed && run.pending[String(grid)] === undefined;
+    }
+
     function _DM_startRun(isUpgrade, grids, oneShot) {
         var run = isUpgrade ? DM_runs.upgrade : DM_runs.build;
-        _DM_stopRun(run, true); // перезапуск только своей очереди
+        if (isUpgrade) {
+            var added = [];
+            grids.map(String).forEach(function (grid) {
+                if (added.indexOf(grid) !== -1 || (run.active && run.grids.indexOf(grid) !== -1)) return;
+                if (_DM_canStartUpgrade(grid)) added.push(grid);
+            });
+            if (added.length === 0) {
+                _DM_notify(_DM_runName(run) + ': нет новых доступных шахт для улучшения. Проверьте уровень, ресурсы и состояние шахты.');
+                return;
+            }
+            if (run.active) {
+                // Preserve existing commands and chains; append only new targets.
+                run.grids = run.grids.concat(added);
+                run.oneShot = run.oneShot && !!oneShot;
+                run.sentOnce = false;
+                var remaining = run.queue ? Math.max(0, run.queue.len() - run.queue.index) : 0;
+                _DM_schedule(run, run.id, Math.max(DM_MIN_DELAY, remaining * DM_SEND_INTERVAL + 2000));
+                return;
+            }
+            grids = added;
+        }
+        _DM_stopRun(run, true); // build keeps its existing restart policy
         run.active   = true;
         run.oneShot  = !!oneShot;
         run.sentOnce = false;
@@ -477,9 +525,9 @@
                         var b = _DM_bld(grid);
                         if (!b || !b.IsUpgradeAllowed(true)) { delete pending[grid]; return; }
                         var ok;
-                        if (typeof game.zone.UpgradeBuildingOnGridPosition === 'function') {
+                        if (typeof game.gi.mCurrentPlayerZone.UpgradeBuildingOnGridPosition === 'function') {
                             // как в родном клиенте (cBuildingInfoPanel.UpgradeBuildingHandler)
-                            ok = game.zone.UpgradeBuildingOnGridPosition(Number(grid));
+                            ok = game.gi.mCurrentPlayerZone.UpgradeBuildingOnGridPosition(Number(grid));
                             if (ok && typeof b.SetIsUpgradeInitiated === 'function') b.SetIsUpgradeInitiated(true);
                         } else {
                             game.gi.SendServerAction(CMD_UPGRADE, 0, Number(grid), 0, null);
@@ -650,6 +698,10 @@
             '</div>'],
             [9, maxUpgradeHtml]
         ], true);
+
+        maxUpgradeRow = $(maxUpgradeRow)
+            .attr('id', SCRIPT_PREFIX + 'maxUpgradeRow')
+            .prop('outerHTML');
 
         var selectAllRow = createTableRow([
             [3, '<div style="text-align:right">' +
@@ -870,7 +922,7 @@
 
             if (bld) {
                 if (bld.isSelectable) {
-                    checkbox = '<input type="checkbox" id="DM_UpgradeMines_' + bld.grid + '" name="' + deposit.depositName + '" class="' + DM_lements.UPGR_CHECKBX + '" />';
+                    checkbox = '<input type="checkbox" id="DM_UpgradeMines_' + bld.grid + '" name="' + deposit.depositName + '" class="' + DM_lements.UPGR_CHECKBX + '"' + (bld.isUpgradeBusy ? ' disabled="disabled" aria-disabled="true"' : '') + ' />';
                 }
                 bldLvl        = bld.level;
                 buffName      = bld.buff;
@@ -904,7 +956,7 @@
                 [1, '<div style="text-align: right;">' + buildingGoto + '</div>']
             ], false);
 
-            if ((bld && !bld.isUpgradeAllowed) || (deposit.buildMode >= 1 && deposit.buildMode <= 4)) {
+            if ((bld && (!bld.isUpgradeAllowed || bld.isUpgradeBusy)) || (deposit.buildMode >= 1 && deposit.buildMode <= 4)) {
                 $row = $($row).css({opacity: '0.5'}).prop('outerHTML');
             }
             $rowHtml += $row;
@@ -934,6 +986,7 @@
         });
 
         $('select[name^="DM_maxUpgLvlFilter_"]').off('change').change(function () {
+            if (this.disabled || !DM_UpgradeSwitchStatus) return;
             var ore = this.name.replace("DM_maxUpgLvlFilter_", "");
             DM_config.maxLvl[ore] = $(this).val();
             _DM_saveTmpSetting();
@@ -981,6 +1034,11 @@
 
         $('[id^="DM_UpgradeMines_"]').off('click').on('click', function () {
             var grid      = this.id.replace("DM_UpgradeMines_", "");
+            if (this.disabled || (this.checked && !_DM_canChooseUpgrade(grid))) {
+                $(this).prop('checked', false);
+                if (_DM_isUpgradeBusy(_DM_bld(grid))) $(this).prop('disabled', true);
+                return;
+            }
             var isChecked = $('#DM_UpgradeMines_' + grid).prop('checked');
             _DM_pushUpgradeGridToConfig(grid, isChecked);
             _DM_saveTmpSetting();
@@ -996,37 +1054,23 @@
         });
 
         $('[id^="DM_selectAll_"]').off('click').on('click', function (e) {
-            const el  = e.currentTarget;
-            const ore = el.id.replace('DM_selectAll_', '');
-            const $allCheckboxes = $('#DrunkenMinerModalData input[type="checkbox"]');
-
-            var isChecked;
-            if (ore === 'ALL') {
-                isChecked = $allCheckboxes.is(':checked');
-            } else {
-                const selector = '[name^="' + ore + '"]';
-                isChecked = $(selector).is(':checked');
-            }
-
-            $(el).css('opacity', isChecked ? '1' : '0.5');
-
-            const $targets = ore === 'ALL'
-                ? $allCheckboxes
-                : $('[name^="' + ore + '"]');
-
-            $targets.each(function () {
-                const checkbox = this;
-                checkbox.checked = !isChecked;
-
-                if (checkbox.id.indexOf('DM_UpgradeMines_') !== -1) {
-                    _DM_pushUpgradeGridToConfig(checkbox.id.replace('DM_UpgradeMines_', ''), checkbox.checked);
-                    return;
+            var ore = e.currentTarget.id.replace('DM_selectAll_', '');
+            var targets = _DM_selectionCheckboxes().filter(function () {
+                if (ore !== 'ALL' && this.name !== ore) return false;
+                if (DM_UpgradeSwitchStatus) {
+                    return _DM_canChooseUpgrade(this.id.replace('DM_UpgradeMines_', ''));
                 }
-                if (checkbox.id.indexOf('DM_RebuildMines_') !== -1) {
-                    _DM_pushBuildGridToConfig(checkbox.id.replace('DM_RebuildMines_', ''), checkbox.checked);
+                return true;
+            });
+            var checked = !targets.is(':checked');
+            targets.each(function () {
+                this.checked = checked;
+                if (DM_UpgradeSwitchStatus) {
+                    _DM_pushUpgradeGridToConfig(this.id.replace('DM_UpgradeMines_', ''), checked);
+                } else {
+                    _DM_pushBuildGridToConfig(this.id.replace('DM_RebuildMines_', ''), checked);
                 }
             });
-
             _DM_saveTmpSetting();
             _DM_updateSelectAllOpacity();
         });
@@ -1041,9 +1085,10 @@
             }
 
             if (DM_UpgradeSwitchStatus) {
-                $('#DrunkenMinerModalData input.' + DM_lements.UPGR_CHECKBX).each(function () {
+                $('#DrunkenMinerModalData input.' + DM_lements.UPGR_CHECKBX + ':enabled').each(function () {
                     var $cb   = $(this);
                     var grid  = $cb.attr('id').replace('DM_UpgradeMines_', '');
+                    if (DM_config.safeBuffing && !_DM_canChooseUpgrade(grid)) return;
                     var $timeCell = $cb.parent().parent().find('div:eq(3)');
                     var timeText  = $timeCell.text().trim();
 
@@ -1134,7 +1179,37 @@
         $('[data-toggle="tooltip"]').tooltip();
     }
 
+    // Keep the row visible, but only allow editing in upgrade mode.
+    function _DM_updateMaxUpgradeState() {
+        var disabled = !DM_UpgradeSwitchStatus;
+        var row = $('#DrunkenMinerModal #' + SCRIPT_PREFIX + 'maxUpgradeRow');
+        row.css('opacity', '1')
+            .attr('aria-disabled', disabled ? 'true' : 'false');
+        // Light parchment tones derived from the client's #B2A589 header palette.
+        // Empty values restore the client's normal CSS in upgrade mode.
+        row.children('div').css({
+            backgroundColor: disabled ? '#D8CEB8' : '',
+            color: disabled ? '#6F6555' : ''
+        });
+        row.find('img')
+            .attr('aria-disabled', disabled ? 'true' : 'false')
+            .css({
+                opacity: disabled ? '0.55' : '1',
+                cursor: disabled ? 'default' : 'pointer'
+            });
+        row.find('select[name^="DM_maxUpgLvlFilter_"]')
+            .prop('disabled', disabled)
+            .css({
+                backgroundColor: disabled ? '#EEE6D4' : '',
+                color: disabled ? '#6F6555' : '',
+                borderColor: disabled ? '#B2A589' : '',
+                opacity: '1',
+                cursor: disabled ? 'not-allowed' : ''
+            });
+    }
+
     function _DM_SetConfigValues() {
+        _DM_updateMaxUpgradeState();
         for (var ore in DM_config.maxLvl) {
             if (DM_config.maxLvl.hasOwnProperty(ore)) {
                 var value = DM_config.maxLvl[ore];
@@ -1147,7 +1222,8 @@
 
         if (DM_UpgradeSwitchStatus) {
             DM_config.upgrade = DM_config.upgrade.filter(function (grid) {
-                return $('#DM_UpgradeMines_' + grid).length > 0;
+                return (DM_runs.upgrade.active && DM_runs.upgrade.grids.indexOf(String(grid)) !== -1) ||
+                    $('#DM_UpgradeMines_' + grid + ':enabled').length > 0;
             });
         } else {
             DM_config.build = DM_config.build.filter(function (grid) {
@@ -1155,7 +1231,7 @@
             });
         }
 
-        DM_config.upgrade.forEach(function (grid) { $('#DM_UpgradeMines_' + grid).prop('checked', true); });
+        DM_config.upgrade.forEach(function (grid) { $('#DM_UpgradeMines_' + grid + ':enabled').prop('checked', true); });
         DM_config.build.forEach(function (grid)   { $('#DM_RebuildMines_'  + grid).prop('checked', true); });
 
         var isOn = !!DM_config.stopAfterBuild;
@@ -1190,7 +1266,7 @@
     }
 
     function _DM_getBuildingDataFromDeposit(deposit) {
-        var bld = game.zone.GetBuildingFromGridPosition(deposit.GetGrid());
+        var bld = _DM_bld(deposit.GetGrid());
         if (!bld || typeof bld.GetBuildingName_string !== 'function') return null;
 
         var name = bld.GetBuildingName_string();
@@ -1246,11 +1322,14 @@
             'level':              level,
             "resourcesLeft":      resLeft,
             'isWorking':          bld.IsProductionActive(),
-            'isUpgradeInProgress': bld.IsUpgradeInProgress(),
+            'isUpgradeInProgress': _DM_isUpgradeBusy(bld),
+            'isUpgradeBusy':      _DM_isUpgradeBusy(bld) || _DM_call(bld, 'IsWaitForCommand', false) ||
+                DM_runs.upgrade.pending[String(grid)] !== undefined,
             'isUpgradeAllowed':   isUpgradable && bld.IsUpgradeAllowed(true),
-            // Выбор сохраняется и во время улучшения, иначе при открытии окна шахта
-            // выпадала из списка и после повторного «Применить» цепочка обрывалась.
-            'isSelectable':       isUpgradable && level < DM_MaxUpgradeLvl && (bld.IsUpgradeAllowed(true) || bld.IsUpgradeInProgress()),
+            // Busy rows remain visible with a disabled checkbox.
+            // Existing automation chains are preserved in DM_runs.upgrade.
+            'isSelectable':       isUpgradable && level < DM_MaxUpgradeLvl && (bld.IsUpgradeAllowed(true) || _DM_isUpgradeBusy(bld) ||
+                DM_runs.upgrade.pending[String(grid)] !== undefined),
             'buff':               buffName,
             'buffIcon':           buffIcon,
             'BufEndTime':         timeStr,
@@ -1270,6 +1349,7 @@
     }
 
     function _DM_pushUpgradeGridToConfig(grid, isChecked) {
+        if (isChecked && !_DM_canChooseUpgrade(grid)) return;
         if (DM_config.upgrade.indexOf(grid) === -1 && isChecked) {
             DM_config.upgrade.push(grid);
         } else if (DM_config.upgrade.indexOf(grid) !== -1 && !isChecked) {
@@ -1289,9 +1369,8 @@
         var hasAnyOrangeChecked = false;
         RESOURCES.ores.forEach(function (oreName) {
             var hasChecked = false;
-            var relatedCheckboxes = $('input[type="checkbox"][name="' + oreName + '"]').filter(function () {
-                var id = this.id;
-                return id && (id.indexOf('DM_RebuildMines_') === 0 || id.indexOf('DM_UpgradeMines_') === 0);
+            var relatedCheckboxes = _DM_selectionCheckboxes().filter(function () {
+                return this.name === oreName;
             });
             relatedCheckboxes.each(function () {
                 var $cb = $(this);
@@ -1315,7 +1394,7 @@
             }
         });
 
-        var allCheckboxes = $('#DrunkenMinerModalData input[type="checkbox"]');
+        var allCheckboxes = _DM_selectionCheckboxes();
         var isAnyChecked  = allCheckboxes.is(':checked');
         $('#' + DM_lements.SELECT_ALL_BTN).css('opacity', isAnyChecked ? '1' : '.5');
         $('#' + DM_lements.SAFE_BUFF_BTN).css('opacity', hasAnyOrangeChecked ? '1' : '.5');
