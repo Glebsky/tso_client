@@ -192,6 +192,33 @@
     /* Persistent settings                                                 */
     /* ------------------------------------------------------------------ */
 
+    function normPath(p) {
+        return p ? String(p).replace(/\\/g, '/').toLowerCase() : '';
+    }
+
+    function normName(n) {
+        return n ? String(n).trim().toLowerCase() : '';
+    }
+
+    function dedupeRecent(list) {
+        if (!isArr(list)) return [];
+        var out = [], seen = {};
+        for (var i = 0; i < list.length; i++) {
+            var it = list[i];
+            if (!it) continue;
+            var nm = normName(it.name);
+            var np = normPath(it.path);
+            var key = np || nm;
+            if (!key) continue;
+            if (seen[key]) continue;
+            if (nm && seen['name:' + nm]) continue;
+            seen[key] = true;
+            if (nm) seen['name:' + nm] = true;
+            out.push(it);
+        }
+        return out.slice(0, 10);
+    }
+
     function loadCfg() {
         var c = {
             buffStopped: DEFAULTS.buffStopped,
@@ -202,7 +229,7 @@
         if (s && typeof s === 'object') {
             if (typeof s.buffStopped === 'boolean') c.buffStopped = s.buffStopped;
             if (typeof s.safeMines === 'boolean') c.safeMines = s.safeMines;
-            if (isArr(s.recent)) c.recent = s.recent.slice(0, 10);
+            if (isArr(s.recent)) c.recent = dedupeRecent(s.recent);
         }
         return c;
     }
@@ -214,7 +241,7 @@
             settings.store({
                 buffStopped: cfg.buffStopped,
                 safeMines: cfg.safeMines,
-                recent: isArr(cfg.recent) ? cfg.recent.slice(0, 10) : []
+                recent: dedupeRecent(cfg.recent)
             }, SETTINGS_KEY);
         } catch (e) {
             log(e);
@@ -223,23 +250,23 @@
 
     function addRecentTemplate(name, path) {
         if (!name && !path) return;
-        var cleanName = String(name || '').replace(/\.[^.]+$/, '');
+        var cleanName = String(name || '').replace(/\.[^.]+$/, '').trim();
+        var cleanPath = String(path || '').trim();
         var list = isArr(cfg.recent) ? cfg.recent : [];
         var next = [];
         for (var i = 0; i < list.length; i++) {
             var it = list[i];
             if (!it) continue;
-            if (path && it.path && it.path === path) continue;
-            if (cleanName && it.name && it.name === cleanName) continue;
+            if (cleanPath && it.path && normPath(it.path) === normPath(cleanPath)) continue;
+            if (cleanName && it.name && normName(it.name) === normName(cleanName)) continue;
             next.push(it);
         }
         next.unshift({
-            name: cleanName,
-            path: path || '',
+            name: cleanName || (cleanPath ? cleanPath.split(/[\/\\]/).pop().replace(/\.[^.]+$/, '') : ''),
+            path: cleanPath,
             time: now()
         });
-        if (next.length > 10) next = next.slice(0, 10);
-        cfg.recent = next;
+        cfg.recent = dedupeRecent(next);
         saveCfg();
     }
 
@@ -310,6 +337,7 @@
                 }
             }
             item.name = newName;
+            cfg.recent = dedupeRecent(cfg.recent);
             saveCfg();
             if (S.templateName === oldName) {
                 S.templateName = newName;
@@ -328,13 +356,14 @@
                 var tracker = lruTemplate[TEMPLATE_MODULE].tracker.slice().reverse();
                 var store = lruTemplate[TEMPLATE_MODULE].store || {};
                 var list = [];
-                for (var i = 0; i < tracker.length && list.length < 10; i++) {
+                for (var i = 0; i < tracker.length; i++) {
                     var p = store[tracker[i]];
                     if (p) {
                         var base = String(p).split(/[\/\\]/).pop().replace(/\.[^.]+$/, '');
                         list.push({ name: base, path: p, time: Number(tracker[i]) || now() });
                     }
                 }
+                list = dedupeRecent(list);
                 if (list.length) {
                     cfg.recent = list;
                     saveCfg();
@@ -1650,25 +1679,25 @@
             P + '.bm-recents-head{margin:0 0 8px 2px;font-size:12px;font-weight:bold;color:#E2C27A;text-transform:uppercase;letter-spacing:.5px}',
             P + '.bm-recents-head .bm-i{margin:-2px 6px 0 0}',
             P + '.bm-recents-grid{display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;flex-wrap:wrap;margin:0 -4px;max-height:220px;overflow-y:auto;padding-right:2px;box-sizing:border-box}',
-            P + '.bm-rec-item{position:relative;display:inline-block;vertical-align:top;-webkit-flex:0 0 calc(33.333% - 8px);flex:0 0 calc(33.333% - 8px);width:calc(33.333% - 8px);height:36px;line-height:34px;box-sizing:border-box;margin:4px;padding:0 50px 0 10px;cursor:pointer;' +
+            P + '.bm-rec-item{position:relative;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;vertical-align:top;-webkit-flex:0 0 calc(33.333% - 8px);flex:0 0 calc(33.333% - 8px);width:calc(33.333% - 8px);height:36px;box-sizing:border-box;margin:4px;padding:0 54px 0 10px;cursor:pointer;' +
                 'background-color:rgba(30,22,14,.65);border:1px solid #7D5F35;' + radius('4px') +
                 ';color:#F6E7C1;font-size:13px;font-weight:bold;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;' +
                 shadow('inset 0 1px 0 rgba(255,255,255,.05)') + '}',
             P + '.bm-rec-item:hover{background-color:rgba(255,220,150,.14);border-color:#D9A441;color:#FFF3D6;' +
                 shadow('inset 0 1px 0 rgba(255,255,255,.1), 0 2px 4px rgba(0,0,0,.35)') + '}',
             P + '.bm-rec-item.bm-rec-editing{background-color:rgba(30,22,14,.85);border-color:#D9A441;cursor:default}',
-            P + '.bm-rec-ico{margin:-3px 8px 0 0;vertical-align:middle}',
-            P + '.bm-rec-name{display:inline-block;vertical-align:middle;max-width:calc(100% - 28px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}',
-            P + '.bm-rec-input{display:inline-block;vertical-align:middle;width:calc(100% - 28px);height:24px;line-height:22px;margin:0;padding:0 5px;box-sizing:border-box;' +
+            P + '.bm-rec-ico{margin:0 8px 0 0;-webkit-flex-shrink:0;flex-shrink:0;vertical-align:middle}',
+            P + '.bm-rec-name{-webkit-flex:1 1 auto;flex:1 1 auto;width:0;min-width:0;display:inline-block;vertical-align:middle;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:34px}',
+            P + '.bm-rec-input{-webkit-flex:1 1 auto;flex:1 1 auto;width:0;min-width:0;display:inline-block;vertical-align:middle;height:24px;line-height:22px;margin:5px 0;padding:0 6px;box-sizing:border-box;' +
                 F + 'font-size:12px;font-weight:bold;color:#FFF3D6;background-color:#1A120B;border:1px solid #D9A441;' +
                 radius('3px') + shadow('inset 0 1px 2px rgba(0,0,0,.6)') + 'outline:none}',
-            P + '.bm-rec-edit{position:absolute;right:28px;top:8px;width:18px;height:18px;line-height:18px;text-align:center;cursor:pointer;opacity:.45}',
+            P + '.bm-rec-edit{position:absolute;right:28px;top:9px;width:18px;height:18px;line-height:18px;text-align:center;cursor:pointer;opacity:.45}',
             P + '.bm-rec-edit:hover{opacity:1}',
-            P + '.bm-rec-save{position:absolute;right:28px;top:8px;width:18px;height:18px;line-height:18px;text-align:center;cursor:pointer;opacity:.75}',
+            P + '.bm-rec-save{position:absolute;right:28px;top:9px;width:18px;height:18px;line-height:18px;text-align:center;cursor:pointer;opacity:.75}',
             P + '.bm-rec-save:hover{opacity:1}',
-            P + '.bm-rec-cancel{position:absolute;right:6px;top:7px;margin:0;opacity:.5}',
+            P + '.bm-rec-cancel{position:absolute;right:6px;top:9px;margin:0;opacity:.5}',
             P + '.bm-rec-cancel:hover{opacity:1}',
-            P + '.bm-rec-del{position:absolute;right:6px;top:7px;margin:0;opacity:.45}',
+            P + '.bm-rec-del{position:absolute;right:6px;top:9px;margin:0;opacity:.45}',
             P + '.bm-rec-del:hover{opacity:1}',
 
             /* recording */
@@ -2114,7 +2143,7 @@
                 '<span class="bm-tile" data-bm="record">' + ic('ProductivityBuffLvl3', 48, 48) + '<span>' + esc(recLbl) + '</span></span>' +
             '</div>';
 
-        var list = isArr(cfg.recent) ? cfg.recent : [];
+        var list = dedupeRecent(isArr(cfg.recent) ? cfg.recent : []);
         if (list.length > 0) {
             var itemsHtml = '';
             for (var i = 0; i < list.length && i < 10; i++) {
@@ -2130,7 +2159,7 @@
                         '<i class="bm-del bm-rec-cancel" data-bm="cancelRecent" data-idx="' + i + '"' + tipAttr(txt('cancel')) + '></i>' +
                     '</div>';
                 } else {
-                    itemsHtml += '<div class="bm-rec-item" data-bm="openRecent" data-idx="' + i + '"' + tipAttr(it.path || nm) + '>' +
+                    itemsHtml += '<div class="bm-rec-item" data-bm="openRecent" data-idx="' + i + '">' +
                         ic('ChangeLogIcon', 20, 20, 'bm-rec-ico') +
                         '<span class="bm-rec-name">' + esc(nm) + '</span>' +
                         '<span class="bm-rec-edit" data-bm="editRecent" data-idx="' + i + '"' + tipAttr(txt('rename')) + '>' +
