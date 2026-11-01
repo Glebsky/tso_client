@@ -97,6 +97,13 @@
       "author":"MadFx",
       "url": ""
    },
+   "user_buff_manager.js": {
+      "name": "Buff Manager",
+      "shortDesc": "Advanced buff template manager with safe mine buffing and stopped building controls.",
+      "longDesc": "Full-featured buff template manager. Supports buffing buildings by saved templates, toggles for stopped/sleeping buildings, safe mine buffing (prevents buffing mines that will deplete before buff expires), multi-stack star menu resolution, search, and individual checkboxes.",
+      "author": "MadFx",
+      "url": ""
+   },
    "user_buffenhancer.js":{
       "name":"Buff UI Enhancer",
       "shortDesc":"Improved visual perception.",
