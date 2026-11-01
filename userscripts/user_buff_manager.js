@@ -1,16 +1,16 @@
 /**
  * Buff Manager 2.0.0
  *
- * Менеджер шаблонов усилителей для клиента The Settlers Online.
- *  - окно в стиле классических окон клиента (текстуры window_*, btn_*), без конфликтов
- *    со стилями Bootstrap (собственные классы, всё ограничено #buffManagerModal);
- *  - все тексты берутся только из игровой локализации (loca), все картинки — только
- *    игровые ресурсы (gAssetManager / иконки зданий и усилителей);
- *  - запись шаблона, загрузка/сохранение (совместимо с SaveLoadTemplate('buff')),
- *    фильтры, поиск, выбор строк, контроль залежей и остановленных зданий;
- *  - пакетное применение: N команд APPLY_BUFF за такт с предварительной проверкой
- *    cBuff.IsApplyable, отслеживанием подтверждений сервера, паузой при потере пакетов,
- *    отменой и остановкой при смене острова.
+ * Buff template manager for The Settlers Online client.
+ *  - Window styled to match classic client windows (window_*, btn_* textures),
+ *    isolated from Bootstrap styles (custom classes, scoped to #buffManagerModal);
+ *  - All text labels sourced from the in-game localization (loca), all images
+ *    from game assets (gAssetManager / building and buff icons);
+ *  - Template recording, loading/saving (compatible with SaveLoadTemplate('buff')),
+ *    recent template history cards, filters, search, row selection, deposit & stopped building checks;
+ *  - Batched application: APPLY_BUFF commands sent via TimedQueue with pre-check
+ *    cBuff.IsApplyable, auto-minimize on run, server batch processing, cancellation,
+ *    and automatic stop on zone change.
  *
  * Author: MadFx
  */
