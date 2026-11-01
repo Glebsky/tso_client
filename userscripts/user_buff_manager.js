@@ -119,13 +119,14 @@
         ok: [['LAB', 'OK']],
         current: [['LAB', 'AvatarCurrentSelection']],
         history: [['LAB', 'History'], ['LAB', 'LatestChanges']],
+        rename: [['LAB', 'GuildEdit'], ['LAB', 'Name']],
         connection: [['LAB', 'PacketLossReconnect']],
         connLost: [['ALT', 'ConnectionLost']],
         loading: [['LAB', 'LoadingZone']],
         loadError: [['ALT', 'IOError']]
     };
     // Labels whose loca text ends with ':' or '.' that must be shown bare.
-    var STRIP = { time: 1, ready: 1, speed: 1, reset: 1, prodStopped: 1, player: 1, buildings: 1, amount: 1, deposit: 1, duration: 1, status: 1, requires: 1, history: 1 };
+    var STRIP = { time: 1, ready: 1, speed: 1, reset: 1, prodStopped: 1, player: 1, buildings: 1, amount: 1, deposit: 1, duration: 1, status: 1, requires: 1, history: 1, rename: 1 };
 
     function tr(group, key, args) {
         try {
@@ -246,9 +247,78 @@
         if (!isArr(cfg.recent)) return;
         if (idx >= 0 && idx < cfg.recent.length) {
             cfg.recent.splice(idx, 1);
+            if (S.editingRecent === idx) S.editingRecent = null;
+            else if (typeof S.editingRecent === 'number' && S.editingRecent > idx) S.editingRecent--;
             saveCfg();
             renderBody();
         }
+    }
+
+    function startEditRecent(idx) {
+        if (!isArr(cfg.recent) || idx < 0 || idx >= cfg.recent.length) return;
+        S.editingRecent = idx;
+        renderBody();
+        setTimeout(function () {
+            var $inp = $(SEL + ' .bm-rec-input');
+            if ($inp.length) $inp.focus().select();
+        }, 20);
+    }
+
+    function cancelEditRecent() {
+        if (S.editingRecent === null || S.editingRecent === undefined) return;
+        S.editingRecent = null;
+        renderBody();
+    }
+
+    function commitEditRecent(idx, newName) {
+        if (!isArr(cfg.recent) || idx < 0 || idx >= cfg.recent.length) {
+            S.editingRecent = null;
+            renderBody();
+            return;
+        }
+        if (newName === undefined) {
+            var $inp = $(SEL + ' .bm-rec-input');
+            newName = $inp.length ? $inp.val() : '';
+        }
+        newName = String(newName || '').trim().replace(/[\\/:*?"<>|]/g, '');
+        var item = cfg.recent[idx];
+        if (!item) {
+            S.editingRecent = null;
+            renderBody();
+            return;
+        }
+        var oldName = item.name;
+        if (newName && newName !== oldName) {
+            var p = item.path;
+            if (!p) {
+                var t = getTpl();
+                if (t && typeof t.getLastDir === 'function') {
+                    var sep = (typeof air !== 'undefined' && air.File && air.File.separator) || '\\';
+                    p = t.getLastDir() + sep + oldName + '.txt';
+                }
+            }
+            if (p && typeof air !== 'undefined' && air.File) {
+                try {
+                    var f = new air.File(p);
+                    if (f.exists && f.parent) {
+                        var newFile = f.parent.resolvePath(newName + '.txt');
+                        f.moveTo(newFile, true);
+                        item.path = newFile.nativePath;
+                    }
+                } catch (eFile) {
+                    log(eFile);
+                }
+            }
+            item.name = newName;
+            saveCfg();
+            if (S.templateName === oldName) {
+                S.templateName = newName;
+                if (item.path) S.templatePath = item.path;
+                updateTitle();
+            }
+        }
+        S.editingRecent = null;
+        renderBody();
     }
 
     function initRecentFromLRU() {
@@ -343,6 +413,7 @@
         rec: null,           // active recording { backup, backupName, count }
         filter: 'all',
         search: '',
+        editingRecent: null, // index of recent template being renamed, or null
         showSettings: false,
         rows: [],
         counts: {},
@@ -1331,6 +1402,7 @@
         S.lastRun = null;
         S.filter = 'all';
         S.search = '';
+        S.editingRecent = null;
         $(SEL).find('.bm-search input').val('');
         refresh(true);
     }
@@ -1578,14 +1650,24 @@
             P + '.bm-recents-head{margin:0 0 8px 2px;font-size:12px;font-weight:bold;color:#E2C27A;text-transform:uppercase;letter-spacing:.5px}',
             P + '.bm-recents-head .bm-i{margin:-2px 6px 0 0}',
             P + '.bm-recents-grid{display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;flex-wrap:wrap;margin:0 -4px;max-height:220px;overflow-y:auto;padding-right:2px;box-sizing:border-box}',
-            P + '.bm-rec-item{position:relative;display:inline-block;vertical-align:top;-webkit-flex:0 0 calc(33.333% - 8px);flex:0 0 calc(33.333% - 8px);width:calc(33.333% - 8px);height:36px;line-height:34px;box-sizing:border-box;margin:4px;padding:0 28px 0 10px;cursor:pointer;' +
+            P + '.bm-rec-item{position:relative;display:inline-block;vertical-align:top;-webkit-flex:0 0 calc(33.333% - 8px);flex:0 0 calc(33.333% - 8px);width:calc(33.333% - 8px);height:36px;line-height:34px;box-sizing:border-box;margin:4px;padding:0 50px 0 10px;cursor:pointer;' +
                 'background-color:rgba(30,22,14,.65);border:1px solid #7D5F35;' + radius('4px') +
                 ';color:#F6E7C1;font-size:13px;font-weight:bold;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;' +
                 shadow('inset 0 1px 0 rgba(255,255,255,.05)') + '}',
             P + '.bm-rec-item:hover{background-color:rgba(255,220,150,.14);border-color:#D9A441;color:#FFF3D6;' +
                 shadow('inset 0 1px 0 rgba(255,255,255,.1), 0 2px 4px rgba(0,0,0,.35)') + '}',
+            P + '.bm-rec-item.bm-rec-editing{background-color:rgba(30,22,14,.85);border-color:#D9A441;cursor:default}',
             P + '.bm-rec-ico{margin:-3px 8px 0 0;vertical-align:middle}',
-            P + '.bm-rec-name{display:inline-block;vertical-align:middle;max-width:calc(100% - 30px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}',
+            P + '.bm-rec-name{display:inline-block;vertical-align:middle;max-width:calc(100% - 28px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}',
+            P + '.bm-rec-input{display:inline-block;vertical-align:middle;width:calc(100% - 28px);height:24px;line-height:22px;margin:0;padding:0 5px;box-sizing:border-box;' +
+                F + 'font-size:12px;font-weight:bold;color:#FFF3D6;background-color:#1A120B;border:1px solid #D9A441;' +
+                radius('3px') + shadow('inset 0 1px 2px rgba(0,0,0,.6)') + 'outline:none}',
+            P + '.bm-rec-edit{position:absolute;right:28px;top:8px;width:18px;height:18px;line-height:18px;text-align:center;cursor:pointer;opacity:.45}',
+            P + '.bm-rec-edit:hover{opacity:1}',
+            P + '.bm-rec-save{position:absolute;right:28px;top:8px;width:18px;height:18px;line-height:18px;text-align:center;cursor:pointer;opacity:.75}',
+            P + '.bm-rec-save:hover{opacity:1}',
+            P + '.bm-rec-cancel{position:absolute;right:6px;top:7px;margin:0;opacity:.5}',
+            P + '.bm-rec-cancel:hover{opacity:1}',
             P + '.bm-rec-del{position:absolute;right:6px;top:7px;margin:0;opacity:.45}',
             P + '.bm-rec-del:hover{opacity:1}',
 
@@ -2038,11 +2120,25 @@
             for (var i = 0; i < list.length && i < 10; i++) {
                 var it = list[i];
                 var nm = it.name || (it.path ? it.path.split(/[\/\\]/).pop().replace(/\.[^.]+$/, '') : ('#' + (i + 1)));
-                itemsHtml += '<div class="bm-rec-item" data-bm="openRecent" data-idx="' + i + '"' + tipAttr(it.path || nm) + '>' +
-                    ic('ChangeLogIcon', 20, 20, 'bm-rec-ico') +
-                    '<span class="bm-rec-name">' + esc(nm) + '</span>' +
-                    '<i class="bm-del bm-rec-del" data-bm="delRecent" data-idx="' + i + '"' + tipAttr(txt('del')) + '></i>' +
-                '</div>';
+                if (S.editingRecent === i) {
+                    itemsHtml += '<div class="bm-rec-item bm-rec-editing" data-idx="' + i + '">' +
+                        ic('ChangeLogIcon', 20, 20, 'bm-rec-ico') +
+                        '<input type="text" class="bm-rec-input" value="' + esc(nm) + '" maxlength="40" data-idx="' + i + '">' +
+                        '<span class="bm-rec-save" data-bm="saveRecent" data-idx="' + i + '"' + tipAttr(txt('ok')) + '>' +
+                            ic('OKIcon', 18, 18) +
+                        '</span>' +
+                        '<i class="bm-del bm-rec-cancel" data-bm="cancelRecent" data-idx="' + i + '"' + tipAttr(txt('cancel')) + '></i>' +
+                    '</div>';
+                } else {
+                    itemsHtml += '<div class="bm-rec-item" data-bm="openRecent" data-idx="' + i + '"' + tipAttr(it.path || nm) + '>' +
+                        ic('ChangeLogIcon', 20, 20, 'bm-rec-ico') +
+                        '<span class="bm-rec-name">' + esc(nm) + '</span>' +
+                        '<span class="bm-rec-edit" data-bm="editRecent" data-idx="' + i + '"' + tipAttr(txt('rename')) + '>' +
+                            ic('IconMailWrite', 16, 16) +
+                        '</span>' +
+                        '<i class="bm-del bm-rec-del" data-bm="delRecent" data-idx="' + i + '"' + tipAttr(txt('del')) + '></i>' +
+                    '</div>';
+                }
             }
             h += '<div class="bm-recents">' +
                 '<div class="bm-recents-head">' +
@@ -2240,9 +2336,27 @@
             case 'goto': gotoGrid(rowGrid($el)); break;
             case 'del': deleteRow(rowGrid($el)); break;
             case 'openRecent':
-                if (e && $(e.target).closest('[data-bm="delRecent"]').length) break;
+                if (e && $(e.target).closest('[data-bm="delRecent"], [data-bm="editRecent"], [data-bm="saveRecent"], [data-bm="cancelRecent"], .bm-rec-input').length) break;
+                if (S.editingRecent !== null) {
+                    cancelEditRecent();
+                    break;
+                }
                 v = Number($el.attr('data-idx'));
                 openRecentTemplate(v);
+                break;
+            case 'editRecent':
+                if (e) { e.stopPropagation(); e.stopImmediatePropagation(); }
+                v = Number($el.attr('data-idx'));
+                startEditRecent(v);
+                break;
+            case 'saveRecent':
+                if (e) { e.stopPropagation(); e.stopImmediatePropagation(); }
+                v = Number($el.attr('data-idx'));
+                commitEditRecent(v);
+                break;
+            case 'cancelRecent':
+                if (e) { e.stopPropagation(); e.stopImmediatePropagation(); }
+                cancelEditRecent();
                 break;
             case 'delRecent':
                 if (e) { e.stopPropagation(); e.stopImmediatePropagation(); }
@@ -2288,6 +2402,26 @@
         $m.on('mouseup.bm2', 'button', function () {
             var b = this;
             setTimeout(function () { try { b.blur(); } catch (x) { } }, 0);
+        });
+        $m.on('dblclick.bm2', '.bm-rec-name', function (e) {
+            e.stopPropagation();
+            var $item = $(this).closest('.bm-rec-item');
+            var idx = Number($item.attr('data-idx'));
+            if (!isNaN(idx)) startEditRecent(idx);
+        });
+        $m.on('click.bm2', '.bm-rec-input', function (e) {
+            e.stopPropagation();
+        });
+        $m.on('keydown.bm2', '.bm-rec-input', function (e) {
+            e.stopPropagation();
+            var idx = Number($(this).attr('data-idx'));
+            if (e.keyCode === 13) {
+                e.preventDefault();
+                commitEditRecent(idx, this.value);
+            } else if (e.keyCode === 27) {
+                e.preventDefault();
+                cancelEditRecent();
+            }
         });
         $m.on('input.bm2 keyup.bm2', '.bm-search input', function () {
             var v = String(this.value || '');
