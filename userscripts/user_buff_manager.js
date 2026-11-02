@@ -384,7 +384,7 @@
     }
 
     function openRecentTemplate(idx) {
-        if (S.run || S.rec) return;
+        if (S.rec) return;
         var list = isArr(cfg.recent) ? cfg.recent : [];
         var item = list[idx];
         if (!item) return;
@@ -701,6 +701,15 @@
             e.list.push(b);
             e.total += stackAmount(b);
         }
+        if (S.run && S.run.jobs) {
+            var startIdx = S.run.curIdx || 0;
+            for (var j = startIdx; j < S.run.jobs.length; j++) {
+                var bn = S.run.jobs[j].buffName;
+                if (out[bn] && out[bn].total > 0) {
+                    out[bn].total--;
+                }
+            }
+        }
         return out;
     }
 
@@ -997,7 +1006,7 @@
     /* Queue & apply engine                                               */
     /* ------------------------------------------------------------------ */
 
-    function getBuffAvailableMap() {
+    function getBuffAvailableMap(excludeQueued) {
         var avail = {};
         var vec = buffVector();
         var n = vec ? Number(safe(function () { return vec.length; }, 0)) : 0;
@@ -1014,6 +1023,12 @@
             var idStr = String(uid.uniqueID1) + '_' + String(uid.uniqueID2);
             if (!avail[name]) avail[name] = [];
             avail[name].push({ count: amt, id: idStr });
+        }
+        if (excludeQueued && S.run && S.run.jobs) {
+            var startIdx = S.run.curIdx || 0;
+            for (var j = startIdx; j < S.run.jobs.length; j++) {
+                takeBuffId(avail, S.run.jobs[j].buffName);
+            }
         }
         return avail;
     }
@@ -1042,7 +1057,7 @@
     }
 
     function startRun() {
-        if (S.run || S.rec || !S.record) return;
+        if (S.rec || !S.record) return;
         analyzeAll();
         var sel = [], i;
         for (i = 0; i < S.rows.length; i++) {
@@ -1050,10 +1065,12 @@
         }
         if (!sel.length) { refresh(true); return; }
 
-        var avail = getBuffAvailableMap();
+        var isAppending = !!(S.run && !S.run.cancelled);
+        var avail = getBuffAvailableMap(isAppending);
         var jobs = [];
         for (i = 0; i < sel.length; i++) {
             var r = sel[i];
+            if (isAppending && S.res[r.grid]) continue;
             var buffId = takeBuffId(avail, r.buffName);
             if (buffId) {
                 var pkt = getBuffPacket(buffId, r.grid);
@@ -1061,6 +1078,44 @@
                     jobs.push({ grid: r.grid, buffName: r.buffName, buiName: r.buiName, packet: pkt });
                 }
             }
+        }
+
+        if (isAppending) {
+            if (!jobs.length) {
+                setMinimized(true);
+                try {
+                    alertMsg(txt('unavailable'));
+                } catch (eAl) {
+                    log(eAl);
+                }
+                refresh(true);
+                return;
+            }
+
+            for (i = 0; i < jobs.length; i++) {
+                S.res[jobs[i].grid] = 'pending';
+                S.run.jobs.push(jobs[i]);
+                S.run.queue.addTask(jobs[i].packet);
+            }
+            S.run.total += sel.length;
+            S.run.skip += (sel.length - jobs.length);
+
+            if (S.run.queue.tasksQueue.length === jobs.length) {
+                S.run.queue.nextTaskBatch();
+            }
+
+            setMinimized(true);
+            try {
+                if (typeof getText === 'function') {
+                    game.showAlert(getText('command_sent'));
+                } else {
+                    alertMsg(txt('apply'));
+                }
+            } catch (eAlert) {
+                log(eAlert);
+            }
+            refresh(true);
+            return;
         }
 
         S.res = {};
@@ -1112,6 +1167,7 @@
         S.run = {
             queue: q,
             jobs: jobs,
+            curIdx: 0,
             total: sel.length,
             sent: 0,
             ok: 0,
@@ -1120,7 +1176,6 @@
             cancelled: false
         };
 
-        var curJobIdx = 0;
         q.nextTaskBatch = function () {
             if (!S.run || S.run.cancelled) return;
             var batch = this.tasksQueue.splice(0, Math.max(1, this.batchSize));
@@ -1138,8 +1193,8 @@
             }
             if (S.run) {
                 for (var b = 0; b < batch.length; b++) {
-                    if (curJobIdx < S.run.jobs.length) {
-                        var jb = S.run.jobs[curJobIdx++];
+                    if (S.run.curIdx < S.run.jobs.length) {
+                        var jb = S.run.jobs[S.run.curIdx++];
                         S.res[jb.grid] = 'done';
                         S.run.ok++;
                         S.run.sent++;
@@ -1371,7 +1426,7 @@
         try {
             var rec = normalizeRecord(data);
             if (!rec) throw new Error('template');
-            if (S.run || S.rec) return;
+            if (S.rec) return;
             if (!fullPath && typeof lruTemplate !== 'undefined' && lruTemplate[TEMPLATE_MODULE] && lruTemplate[TEMPLATE_MODULE].tracker) {
                 var lastKey = lruTemplate[TEMPLATE_MODULE].tracker.slice(-1)[0];
                 if (lastKey) fullPath = lruTemplate[TEMPLATE_MODULE].store[lastKey];
@@ -1380,7 +1435,7 @@
             S.templateName = String(name || '').replace(/\.[^.]+$/, '');
             S.templatePath = fullPath || '';
             S.manual = {};
-            S.res = {};
+            if (!S.run) S.res = {};
             S.lastRun = null;
             S.filter = 'all';
             addRecentTemplate(S.templateName, S.templatePath);
@@ -1402,19 +1457,19 @@
     }
 
     function loadTemplate() {
-        if (S.run || S.rec) return;
+        if (S.rec) return;
         var t = getTpl();
         if (!t) return;
         try { t.load(); } catch (e) { log(e); alertMsg(txt('loadError')); }
     }
 
     function resetAll() {
-        if (S.run || S.rec) return;
+        if (S.rec) return;
         S.record = null;
         S.templateName = '';
         S.templatePath = '';
         S.manual = {};
-        S.res = {};
+        if (!S.run) S.res = {};
         S.lastRun = null;
         S.filter = 'all';
         S.search = '';
@@ -2018,8 +2073,9 @@
         var sTip = r.tip || (r.st === 'unsafe' ? r.timeTip : '') || (sText.length > 22 ? sText : '');
         var tTip = r.timeTip || (r.endAt ? txt('time') : '');
         var tVal = r.endAt ? fmtDur(r.endAt - clientTime()) : r.time;
+        var locked = S.rec || (S.run && !!S.res[r.grid]);
         return '<tr class="bm-row' + (odd ? ' bm-odd' : '') + (r.sel ? ' bm-sel' : '') + (r.ok ? '' : ' bm-na') + '" data-g="' + r.grid + '">' +
-            '<td class="bm-c0"><i class="bm-cb' + (r.sel ? ' bm-on' : '') + (r.ok && !running ? '' : ' bm-dis') + '"></i></td>' +
+            '<td class="bm-c0"><i class="bm-cb' + (r.sel ? ' bm-on' : '') + (r.ok && !locked ? '' : ' bm-dis') + '"></i></td>' +
             '<td class="bm-c1">' +
                 (zoneOk ? ic('accuracy.png', 18, 18, 'bm-goto', 'data-bm="goto"' + tipAttr(txt('goto'))) : '') +
                 '<span class="bm-bi">' + ic(r.buiName, 26, 26) +
@@ -2045,7 +2101,7 @@
         }
         $cb.toggleClass('bm-on', n > 0 && s === n)
             .toggleClass('bm-half', s > 0 && s < n)
-            .toggleClass('bm-dis', n === 0 || !!S.run || !!S.rec);
+            .toggleClass('bm-dis', n === 0 || !!S.rec);
     }
 
     function renderTable() {
@@ -2183,11 +2239,11 @@
     function updateFooter() {
         var $f = $(SEL + ' .modal-footer');
         if (!$f.length) return;
-        var rec = !!S.rec, run = !!S.run, has = !!S.record, sel = (S.counts && S.counts.sel) || 0;
+        var rec = !!S.rec, has = !!S.record, sel = (S.counts && S.counts.sel) || 0;
         $f.find('[data-bm="save"]').prop('disabled', !has || rec);
-        $f.find('[data-bm="load"]').prop('disabled', run || rec);
-        $f.find('[data-bm="reset"]').prop('disabled', !has || run || rec);
-        $f.find('[data-bm="apply"]').prop('disabled', !has || run || rec || !sel);
+        $f.find('[data-bm="load"]').prop('disabled', rec);
+        $f.find('[data-bm="reset"]').prop('disabled', !has || rec);
+        $f.find('[data-bm="apply"]').prop('disabled', !has || rec || !sel);
         $f.find('.bm-badge').text(String(sel)).toggleClass('bm-hide', !has || rec);
     }
 
@@ -2299,7 +2355,8 @@
     }
 
     function toggleRow(grid) {
-        if (S.run || S.rec) return;
+        if (S.rec) return;
+        if (S.run && S.res[grid]) return;
         var r = findRow(grid);
         if (!r || !r.ok) return;
         S.manual[grid] = !r.sel;
@@ -2308,10 +2365,11 @@
     }
 
     function toggleMaster() {
-        if (S.run || S.rec) return;
+        if (S.rec) return;
         var rows = visibleRows(), list = [], all = true, i;
         for (i = 0; i < rows.length; i++) {
             if (!rows[i].ok) continue;
+            if (S.run && S.res[rows[i].grid]) continue;
             list.push(rows[i]);
             if (!rows[i].sel) all = false;
         }
