@@ -202,18 +202,17 @@
 
     function dedupeRecent(list) {
         if (!isArr(list)) return [];
-        var out = [], seen = {};
+        var out = [], seenPath = {}, seenName = {};
         for (var i = 0; i < list.length; i++) {
             var it = list[i];
             if (!it) continue;
             var nm = normName(it.name);
             var np = normPath(it.path);
-            var key = np || nm;
-            if (!key) continue;
-            if (seen[key]) continue;
-            if (nm && seen['name:' + nm]) continue;
-            seen[key] = true;
-            if (nm) seen['name:' + nm] = true;
+            if (!nm && !np) continue;
+            if (np && seenPath[np]) continue;
+            if (nm && seenName[nm]) continue;
+            if (np) seenPath[np] = true;
+            if (nm) seenName[nm] = true;
             out.push(it);
         }
         return out.slice(0, 10);
@@ -253,16 +252,24 @@
         var cleanName = String(name || '').replace(/\.[^.]+$/, '').trim();
         var cleanPath = String(path || '').trim();
         var list = isArr(cfg.recent) ? cfg.recent : [];
-        var next = [];
+        var existingAlias = '';
         for (var i = 0; i < list.length; i++) {
-            var it = list[i];
+            if (cleanPath && list[i] && list[i].path && normPath(list[i].path) === normPath(cleanPath)) {
+                existingAlias = list[i].name;
+                break;
+            }
+        }
+        var next = [];
+        for (var j = 0; j < list.length; j++) {
+            var it = list[j];
             if (!it) continue;
             if (cleanPath && it.path && normPath(it.path) === normPath(cleanPath)) continue;
             if (cleanName && it.name && normName(it.name) === normName(cleanName)) continue;
             next.push(it);
         }
+        var finalName = existingAlias || cleanName || (cleanPath ? cleanPath.split(/[\/\\]/).pop().replace(/\.[^.]+$/, '') : '');
         next.unshift({
-            name: cleanName || (cleanPath ? cleanPath.split(/[\/\\]/).pop().replace(/\.[^.]+$/, '') : ''),
+            name: finalName,
             path: cleanPath,
             time: now()
         });
@@ -307,7 +314,7 @@
             var $inp = $(SEL + ' .bm-rec-input');
             newName = $inp.length ? $inp.val() : '';
         }
-        newName = String(newName || '').trim().replace(/[\\/:*?"<>|]/g, '');
+        newName = String(newName || '').trim();
         var item = cfg.recent[idx];
         if (!item) {
             S.editingRecent = null;
@@ -316,32 +323,12 @@
         }
         var oldName = item.name;
         if (newName && newName !== oldName) {
-            var p = item.path;
-            if (!p) {
-                var t = getTpl();
-                if (t && typeof t.getLastDir === 'function') {
-                    var sep = (typeof air !== 'undefined' && air.File && air.File.separator) || '\\';
-                    p = t.getLastDir() + sep + oldName + '.txt';
-                }
-            }
-            if (p && typeof air !== 'undefined' && air.File) {
-                try {
-                    var f = new air.File(p);
-                    if (f.exists && f.parent) {
-                        var newFile = f.parent.resolvePath(newName + '.txt');
-                        f.moveTo(newFile, true);
-                        item.path = newFile.nativePath;
-                    }
-                } catch (eFile) {
-                    log(eFile);
-                }
-            }
+            // Local visual display name only: the underlying template file on disk is never touched or renamed
             item.name = newName;
             cfg.recent = dedupeRecent(cfg.recent);
             saveCfg();
             if (S.templateName === oldName) {
                 S.templateName = newName;
-                if (item.path) S.templatePath = item.path;
                 updateTitle();
             }
         }
@@ -1678,26 +1665,27 @@
             P + '.bm-recents{width:820px;max-width:100%;margin:16px auto 0;padding:10px 14px 12px;text-align:left;box-sizing:border-box;' + PANEL + radius('6px') + '}',
             P + '.bm-recents-head{margin:0 0 8px 2px;font-size:12px;font-weight:bold;color:#E2C27A;text-transform:uppercase;letter-spacing:.5px}',
             P + '.bm-recents-head .bm-i{margin:-2px 6px 0 0}',
-            P + '.bm-recents-grid{display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;flex-wrap:wrap;margin:0 -4px;max-height:220px;overflow-y:auto;padding-right:2px;box-sizing:border-box}',
-            P + '.bm-rec-item{position:relative;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;vertical-align:top;-webkit-flex:0 0 calc(33.333% - 8px);flex:0 0 calc(33.333% - 8px);width:calc(33.333% - 8px);height:36px;box-sizing:border-box;margin:4px;padding:0 54px 0 10px;cursor:pointer;' +
+            P + '.bm-recents-grid{display:block;margin:0 -4px;max-height:220px;overflow-y:auto;padding-right:2px;box-sizing:border-box;font-size:0}',
+            P + '.bm-rec-item{position:relative;display:inline-block;vertical-align:top;width:256px;height:36px;line-height:34px;box-sizing:border-box;margin:4px;padding:0 54px 0 34px;cursor:pointer;' +
                 'background-color:rgba(30,22,14,.65);border:1px solid #7D5F35;' + radius('4px') +
-                ';color:#F6E7C1;font-size:13px;font-weight:bold;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;' +
+                ';color:#F6E7C1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;' +
                 shadow('inset 0 1px 0 rgba(255,255,255,.05)') + '}',
             P + '.bm-rec-item:hover{background-color:rgba(255,220,150,.14);border-color:#D9A441;color:#FFF3D6;' +
                 shadow('inset 0 1px 0 rgba(255,255,255,.1), 0 2px 4px rgba(0,0,0,.35)') + '}',
             P + '.bm-rec-item.bm-rec-editing{background-color:rgba(30,22,14,.85);border-color:#D9A441;cursor:default}',
-            P + '.bm-rec-ico{margin:0 8px 0 0;-webkit-flex-shrink:0;flex-shrink:0;vertical-align:middle}',
-            P + '.bm-rec-name{-webkit-flex:1 1 auto;flex:1 1 auto;width:0;min-width:0;display:inline-block;vertical-align:middle;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:34px}',
-            P + '.bm-rec-input{-webkit-flex:1 1 auto;flex:1 1 auto;width:0;min-width:0;display:inline-block;vertical-align:middle;height:24px;line-height:22px;margin:5px 0;padding:0 6px;box-sizing:border-box;' +
+            P + '.bm-rec-ico{position:absolute;left:8px;top:7px;margin:0;pointer-events:none}',
+            P + '.bm-rec-name{display:block;width:100%;height:34px;line-height:34px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;' +
+                F + 'font-size:13px;font-weight:bold;color:#F6E7C1}',
+            P + '.bm-rec-input{display:block;width:100%;height:24px;line-height:22px;margin:5px 0 0;padding:0 6px;box-sizing:border-box;' +
                 F + 'font-size:12px;font-weight:bold;color:#FFF3D6;background-color:#1A120B;border:1px solid #D9A441;' +
                 radius('3px') + shadow('inset 0 1px 2px rgba(0,0,0,.6)') + 'outline:none}',
-            P + '.bm-rec-edit{position:absolute;right:28px;top:9px;width:18px;height:18px;line-height:18px;text-align:center;cursor:pointer;opacity:.45}',
+            P + '.bm-rec-edit{position:absolute;right:28px;top:8px;width:18px;height:18px;line-height:18px;text-align:center;cursor:pointer;opacity:.45}',
             P + '.bm-rec-edit:hover{opacity:1}',
-            P + '.bm-rec-save{position:absolute;right:28px;top:9px;width:18px;height:18px;line-height:18px;text-align:center;cursor:pointer;opacity:.75}',
+            P + '.bm-rec-save{position:absolute;right:28px;top:8px;width:18px;height:18px;line-height:18px;text-align:center;cursor:pointer;opacity:.75}',
             P + '.bm-rec-save:hover{opacity:1}',
-            P + '.bm-rec-cancel{position:absolute;right:6px;top:9px;margin:0;opacity:.5}',
+            P + '.bm-rec-cancel{position:absolute;right:6px;top:7px;margin:0;opacity:.5}',
             P + '.bm-rec-cancel:hover{opacity:1}',
-            P + '.bm-rec-del{position:absolute;right:6px;top:9px;margin:0;opacity:.45}',
+            P + '.bm-rec-del{position:absolute;right:6px;top:7px;margin:0;opacity:.45}',
             P + '.bm-rec-del:hover{opacity:1}',
 
             /* recording */
