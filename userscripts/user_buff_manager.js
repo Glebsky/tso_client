@@ -1,5 +1,5 @@
 /**
- * Buff Manager 2.1.0
+ * Buff Manager 2.2.0
  *
  * Buff template manager for The Settlers Online client, built on the stock buff module (6-buffs.js).
  *  - Window styled to match classic client windows (window_*, btn_* textures),
@@ -12,15 +12,19 @@
  *  - Apply engine: a single paced sender (one command per batch, 1 s like the client TimedQueue or
  *    faster), a FIFO queue of templates (start one template and immediately the next one), star menu
  *    stacks reserved per command, cBuff.IsApplyable pre-check right before every command, server
- *    confirmation through the 'buffApplied' notification, re-check with one retry on timeout,
+ *    confirmation through the 'buffApplied' notification or the building itself (missed or foreign
+ *    notifications), re-check with one retry on timeout,
  *    pause while another island is open, cancellation per template or of the whole queue.
+ *  - Live window: every confirmed command, every buff placed on a listed building (star menu,
+ *    friends, other scripts) and every restore of the minimized window update the rows at once;
+ *    the game state is analysed again periodically and only changed parts are redrawn.
  *
  * Author: MadFx
  */
 (function () {
     'use strict';
 
-    var VERSION = '2.1.0';
+    var VERSION = '2.2.0';
     var MODAL_ID = 'buffManagerModal';
     var SEL = '#' + MODAL_ID;
     var SETTINGS_KEY = 'BUFF_MANAGER_SETTINGS';
@@ -29,13 +33,17 @@
     var CMD_APPLY_BUFF = 61;
     var SPEEDS = [1000, 700, 500];      // pause between two commands, ms (1000 = client TimedQueue)
     var CONFIRM_TIMEOUT = 12000;        // no 'buffApplied' within this time: the building is checked
+    var EARLY_CHECK = 1500;             // a sent command is also confirmed when the building already shows the buff
     var MAX_SENDS = 2;                  // a command is sent at most twice (one automatic retry)
     var BLOCKED_RETRY = 1500;           // building temporarily blocked: try again a bit later
     var BLOCKED_MAX = 8;
+    var ZONE_SETTLE = 1500;             // after another island was opened, commands wait until it is loaded
+    var MISSING_GRACE = 10000;          // a building not found so soon after an island change is checked again
     var PUMP_TICK = 250;
     var MAX_CHECKS = 60;                // rows checked per engine step (keeps every step short)
     var KEEP_DONE = 5;                  // finished templates kept for the summary
-    var AUTO_REFRESH = 15000;
+    var AUTO_REFRESH = 10000;           // full analysis of the open window (only changed parts are redrawn)
+    var SETTLE_REFRESH = 2000;          // one more full analysis after the queue is finished
     var UI_TICK = 1000;
     var REFRESH_DELAY = 120;
     var SEARCH_DELAY = 200;
@@ -519,6 +527,8 @@
         sub: false,
         uiT: null,
         refreshT: null,
+        settleT: null,
+        unseen: false,
         searchT: null,
         fitT: null,
         tip: null,
@@ -533,6 +543,9 @@
         reserved: {},        // star menu stack id -> commands sent and not confirmed yet
         res: {},             // 'zone:grid' -> { st: 'done' | 'failed', buff } result of the last command
         done: [],            // summaries of finished templates, newest first
+        touch: {},           // 'zone:grid' -> 1: rows to analyse again at the next window update
+        dirty: false,        // a command changed outside the engine step (confirmation, cancel)
+        zw: null,            // island watch { v: viewed zone id, n: buildings, at: last change }
         timer: null,
         lastSend: 0,
         seq: 0
@@ -895,10 +908,30 @@
         };
     }
 
-    function zoneSig() {
-        var z = curZone();
+    // Island watch: the viewed island and its buildings count, with the time of the last change
+    // (the first look counts as settled).
+    function zoneWatch() {
+        var z = curZone(), v = viewedZone(), w = E.zw;
         var n = z ? Number(safe(function () { return z.mStreetDataMap.GetBuildings_vector().length; }, 0)) : -1;
-        return viewedZone() + ':' + n;
+        if (!w) {
+            E.zw = w = { v: v, n: n, at: 0 };
+        } else if (w.v !== v || w.n !== n) {
+            w.v = v;
+            w.n = n;
+            w.at = now();
+        }
+        return w;
+    }
+
+    function zoneSig() {
+        var w = zoneWatch();
+        return w.v + ':' + w.n;
+    }
+
+    // Commands may go: the island of the template is open, loaded and did not change just now.
+    function zoneReady(zoneId) {
+        var w = zoneWatch();
+        return w.v === Number(zoneId) && w.n > 0 && now() - w.at >= ZONE_SETTLE;
     }
 
     function setActive(r, act, buffName) {
@@ -1027,6 +1060,7 @@
         S.rows = [];
         S.ctx = null;
         S.needFull = false;
+        E.touch = {};
         if (S.record) {
             var ctx = makeCtx(S.record.zoneId, false), data = S.record.data;
             for (var i = 0; i < data.length; i++) S.rows.push(analyzeRow(data[i], ctx));
@@ -1052,33 +1086,22 @@
         return out;
     }
 
-    // Cheap status update while commands are running (no game checks); false: a full analysis is needed.
-    function overlayRows() {
+    // Quick update: only the rows whose command or building changed (and the rows still waiting
+    // in the queue) are analysed again; false: a full analysis is needed.
+    function updateRows() {
         var rec = S.record;
-        if (!rec || !S.ctx) return true;
-        var rows = S.rows, changed = false;
+        if (!rec || !S.ctx) return false;
+        var ctx = makeCtx(rec.zoneId, false);
+        if (ctx.zoneOk !== S.ctx.zoneOk) return false;
+        var rows = S.rows, touched = E.touch;
+        E.touch = {};
         for (var i = 0; i < rows.length; i++) {
-            var r = rows[i], q = queuedState(rec.zoneId, r.grid, r.buffName), st = '', tip = '';
-            if (q && !q.after) {
-                st = q.st;
-                tip = q.tip;
-            } else {
-                var res = E.res[rec.zoneId + ':' + r.grid];
-                if (res && res.buff === r.buffName) st = res.st;
-                else if (r.st === 'queued' || r.st === 'pending') return false;
-            }
-            if (st && r.st !== st) {
-                r.st = st;
-                r.ok = false;
-                r.tip = tip;
-                r.time = '';
-                r.timeTip = '';
-                r.endAt = 0;
-                changed = true;
-            }
+            var r = rows[i];
+            if (!touched[rec.zoneId + ':' + r.grid] && r.st !== 'queued' && r.st !== 'pending') continue;
+            rows[i] = analyzeRow({ buiGrid: r.grid, buffName: r.buffName, buiName: r.buiName }, ctx);
         }
-        if (changed) applySelection();
-        S.ctx.stacks = collectStacks(true);
+        S.ctx = ctx;
+        applySelection();
         return true;
     }
 
@@ -1141,19 +1164,42 @@
     }
 
     function syncSub() {
-        if (busy() || S.rec) subscribe(); else unsubscribe();
+        // Also while the window is open: buffs placed by hand or by friends update their rows.
+        if (!S.disposed && (busy() || S.rec || S.uiT)) subscribe(); else unsubscribe();
     }
 
     // BuffAppliedNotification { buff, target, amount, buffOwnerID }: sent by the client when a game tick
-    // applies a buff, i.e. after the server accepted the command.
+    // applies a buff on the viewed island (whoever placed it), i.e. after the server accepted it.
     function onBuff(e) {
         if (S.disposed) return;
         var d = e ? e.data : null;
         if (!d) return;
-        if (Number(safe(function () { return d.buffOwnerID; }, -2)) !== myId()) return;
-        var used = false;
+        var mine = Number(safe(function () { return d.buffOwnerID; }, -2)) === myId(), used = false;
+        // Matched by building and buff whatever owner id it carries: the building has the buff now.
         try { used = confirmBuff(d); } catch (err) { log(err); }
-        if (S.rec && !used) recordBuff(d);
+        if (mine && S.rec && !used) recordBuff(d);
+        if (!used) {
+            try { noteBuff(d, mine); } catch (err2) { log(err2); }
+        }
+    }
+
+    // A buff the queue did not send (star menu, a friend, another script): the row of its building
+    // is analysed again; own buffs also change the star menu stocks shown in the window.
+    function noteBuff(d, mine) {
+        var rec = S.record;
+        if (!rec || S.rec || Number(rec.zoneId) !== viewedZone()) {
+            if (mine) requestRefresh(false);
+            return;
+        }
+        var grid = Number(safe(function () { return d.target.GetGrid(); }, NaN)), hit = false;
+        for (var i = 0; isFinite(grid) && i < rec.data.length; i++) {
+            if (Number(rec.data[i].buiGrid) === grid) {
+                E.touch[rec.zoneId + ':' + grid] = 1;
+                hit = true;
+                break;
+            }
+        }
+        if (hit || mine) requestRefresh(false);
     }
 
     /* ------------------------------------------------------------------ */
@@ -1199,6 +1245,12 @@
         job.stack = '';
     }
 
+    // The row of a command changed: it is analysed again at the next window update.
+    function touch(job) {
+        E.touch[job.key] = 1;
+        E.dirty = true;
+    }
+
     // st: 'done' | 'fail' | 'skip' (why: the row status that prevented the command).
     function finishJob(job, st, why) {
         if (job.st !== 'wait' && job.st !== 'sent') return;
@@ -1206,6 +1258,7 @@
         job.st = st;
         job.why = why || '';
         pendRemove(job);
+        touch(job);
         var run = job.run;
         if (st === 'done') run.ok++;
         else if (st === 'fail') run.fail++;
@@ -1237,6 +1290,7 @@
         E.seq = seq;
         for (i = 0; i < run.jobs.length; i++) {
             pendAdd(run.jobs[i]);
+            touch(run.jobs[i]);
             delete E.res[run.jobs[i].key];
         }
         run.total = run.jobs.length;
@@ -1286,6 +1340,10 @@
         } catch (e) {
             log(e);
         }
+        if (E.dirty) {
+            E.dirty = false;
+            changed = true;
+        }
         if (busy()) {
             schedule(PUMP_TICK);
         } else {
@@ -1294,13 +1352,24 @@
         }
         if (changed) {
             updateTitle();
-            requestRefresh(!busy());
+            if (busy()) requestRefresh(false); else queueDone();
         }
+    }
+
+    // The queue is empty: full analysis now and once more a bit later (the game finishes its own
+    // updates of the buffed buildings, stocks and production meanwhile).
+    function queueDone() {
+        requestRefresh(true);
+        if (S.settleT) clearTimeout(S.settleT);
+        S.settleT = setTimeout(function () {
+            S.settleT = null;
+            if (!S.disposed && !busy()) requestRefresh(true);
+        }, SETTLE_REFRESH);
     }
 
     // Sends the first command that can go now, in queue order. Rows that cannot be buffed any more
     // are skipped; a building waits until the earlier command for it is finished; a template of
-    // another island waits until that island is open.
+    // another island waits until that island is open and loaded.
     function sendNext(t) {
         var ctxs = {}, held = {}, checks = 0, changed = false;
         for (var i = 0; i < E.runs.length; i++) {
@@ -1315,9 +1384,13 @@
                     continue;
                 }
                 if (!ctx) {
+                    var ready = zoneReady(run.zoneId);
+                    if (!!run.waitZone === ready) {
+                        run.waitZone = !ready;
+                        changed = true;
+                    }
+                    if (!ready) break;
                     ctx = own(ctxs, run.zoneId) ? ctxs[run.zoneId] : (ctxs[run.zoneId] = makeCtx(run.zoneId, true));
-                    run.waitZone = !ctx.zoneOk;
-                    if (!ctx.zoneOk) break;
                 }
                 if (++checks > MAX_CHECKS) return changed;
                 var v = checkJob(job, ctx, t);
@@ -1353,7 +1426,9 @@
             job.top = top;
             return 'send';
         }
-        if (r.st === 'pending' && ++job.blocked <= BLOCKED_MAX) {
+        // Blocked for a moment, or not found right after an island change (still loading): later.
+        var soon = r.st === 'missing' && !!E.zw && now() - E.zw.at < MISSING_GRACE;
+        if ((r.st === 'pending' || soon) && ++job.blocked <= BLOCKED_MAX) {
             job.notBefore = t + BLOCKED_RETRY;
             return 'later';
         }
@@ -1372,6 +1447,7 @@
         job.st = 'sent';
         job.sends++;
         job.sentAt = t;
+        touch(job);
         top.n--;
         if (top.id) {
             job.stack = top.id;
@@ -1403,24 +1479,31 @@
         return isRemoveBuff(job.buffName) ? !act : !!(act && act.name === job.buffName);
     }
 
-    // Commands without a confirmation in time: the building decides (applied -> done, otherwise the
-    // command is queued again; the second one without a result fails).
+    // Sent commands: done as soon as the building shows the buff (also when the notification is
+    // missed); without a result in time the command is queued again, the second one fails.
     function checkSent(t) {
-        var changed = false, ctxs = {};
+        var changed = false, zs = {};
         for (var i = 0; i < E.runs.length; i++) {
             var run = E.runs[i];
             for (var j = 0; j < run.jobs.length; j++) {
-                var job = run.jobs[j];
-                if (job.st !== 'sent' || t - job.sentAt < CONFIRM_TIMEOUT) continue;
-                var ctx = own(ctxs, run.zoneId) ? ctxs[run.zoneId] : (ctxs[run.zoneId] = makeCtx(run.zoneId, true));
+                var job = run.jobs[j], age = t - job.sentAt;
+                if (job.st !== 'sent' || age < EARLY_CHECK) continue;
+                var zc = own(zs, run.zoneId) ? zs[run.zoneId] :
+                    (zs[run.zoneId] = { zone: curZone(), now: clientTime(), zoneOk: zoneReady(run.zoneId) });
+                if (zc.zoneOk && appliedNow(job, zc)) {
+                    finishJob(job, 'done');
+                    changed = true;
+                    continue;
+                }
+                if (age < CONFIRM_TIMEOUT) continue;
                 changed = true;
-                if (ctx.zoneOk && appliedNow(job, ctx)) finishJob(job, 'done');
-                else if (run.cancelled) finishJob(job, 'skip', 'cancel');
-                else if (ctx.zoneOk && job.sends >= MAX_SENDS) finishJob(job, 'fail');
+                if (run.cancelled) finishJob(job, 'skip', 'cancel');
+                else if (zc.zoneOk && job.sends >= MAX_SENDS) finishJob(job, 'fail');
                 else {
                     release(job);
                     job.st = 'wait';
                     job.notBefore = 0;
+                    touch(job);
                 }
             }
         }
@@ -1469,7 +1552,10 @@
             };
             E.done.unshift(sum);
             if (E.done.length > KEEP_DONE) E.done.length = KEEP_DONE;
-            if (!quiet) alertMsg(runSummary(sum));
+            if (!quiet) {
+                alertMsg(runSummary(sum));
+                S.unseen = true;
+            }
             changed = true;
         }
         return changed;
@@ -2501,9 +2587,12 @@
         for (var i = 0; i < rows.length; i++) out.push(rowHtml(rows[i], i % 2 === 1, zoneOk));
         var h = out.length ? out.join('') : '<tr class="bm-nomatch"><td colspan="6">' + ic('SearchBtnIcon', 26, 25) + '</td></tr>';
         flushIcons();
-        var tb = $m.find('.bm-tbody')[0], top = tb ? tb.scrollTop : 0;
-        $m.find('.bm-tbody tbody').html(h);
-        if (tb && top) tb.scrollTop = top;
+        // Redrawn only when something changed (keeps hover, clicks and tooltips during live updates).
+        var tb = $m.find('.bm-tbody')[0], top = tb ? tb.scrollTop : 0, $b = $m.find('.bm-tbody tbody');
+        if ($b.data('bmh') !== h) {
+            $b.data('bmh', h).html(h);
+            if (tb && top) tb.scrollTop = top;
+        }
         updateMaster(rows);
     }
 
@@ -2518,10 +2607,11 @@
             if (!r) return;
             $(this).toggleClass('bm-sel', r.sel).find('.bm-cb').toggleClass('bm-on', r.sel);
         });
+        $m.find('.bm-tbody tbody').removeData('bmh');
         updateMaster();
         var cards = renderCards();
         flushIcons();
-        $m.find('.bm-cards').html(cards);
+        setHtml($m.find('.bm-cards'), cards);
         updateFooter();
     }
 
@@ -2530,7 +2620,7 @@
         if (!$m.length) return;
         var h = renderSettings();
         flushIcons();
-        $m.find('.bm-setw').html(h);
+        setHtml($m.find('.bm-setw'), h);
         $m.find('[data-bm="settings"]').toggleClass('bm-act', !!S.showSettings);
     }
 
@@ -2539,7 +2629,7 @@
         if (!$m.length) return;
         var h = renderChips();
         flushIcons();
-        $m.find('.bm-chips').html(h);
+        setHtml($m.find('.bm-chips'), h);
         renderTable();
         fitTable();
     }
@@ -2551,7 +2641,7 @@
         var has = isArr(cfg.recent) && cfg.recent.length > 0, show = has && S.showRecents && !!S.record && !S.rec;
         var h = show ? recentsHtml() : '';
         flushIcons();
-        $m.find('.bm-recw').html(h);
+        setHtml($m.find('.bm-recw'), h);
         $m.find('.bm-tools [data-bm="tpls"]').toggleClass('bm-act', show).prop('disabled', !has);
     }
 
@@ -2560,9 +2650,9 @@
         if (!$m.length) return;
         var info = renderInfo(), cards = renderCards(), chips = renderChips();
         flushIcons();
-        $m.find('.bm-infol').html(info);
-        $m.find('.bm-cards').html(cards);
-        $m.find('.bm-chips').html(chips);
+        setHtml($m.find('.bm-infol'), info);
+        setHtml($m.find('.bm-cards'), cards);
+        setHtml($m.find('.bm-chips'), chips);
         renderSettingsPanel();
         renderRecentsPanel();
         $m.find('.bm-tools [data-bm="record"]').prop('disabled', busy() || !(S.ctx && S.ctx.zoneOk));
@@ -2655,12 +2745,12 @@
         if (mode === 'empty') {
             var h = emptyHtml();
             flushIcons();
-            $m.find('.bm-empty').html(h);
+            setHtml($m.find('.bm-empty'), h);
         } else {
             // Hidden views keep no stale inputs (rename field) behind.
-            $m.find('.bm-empty').html('');
+            setHtml($m.find('.bm-empty'), '');
             if (mode === 'rec') {
-                $m.find('.bm-recw').html('');
+                setHtml($m.find('.bm-recw'), '');
                 updateRecPanel();
             } else {
                 renderList();
@@ -2908,6 +2998,14 @@
         $m.on('mouseenter.bm2', '[data-tip]', function () { showTip(this); });
         $m.on('mouseleave.bm2', '[data-tip]', function () { hideTip(); });
         $m.on('mousedown.bm2', function () { hideTip(); });
+        // Restored with the title bar button: show the current state at once, not on the next tick.
+        $m.on('click.bm2', '.floating-modal-toggle', function () {
+            setTimeout(function () {
+                try {
+                    if (!S.disposed && isOpen() && !isMinimized() && S.needFull) refresh(false);
+                } catch (err) { log(err); }
+            }, 0);
+        });
         // Buttons must not keep focus/active look after a click (AIR keeps it otherwise).
         $m.on('mouseup.bm2', 'button', function () {
             var b = this;
@@ -2977,11 +3075,13 @@
         stopUi();
         S.lastAuto = now();
         S.uiT = setInterval(uiTick, UI_TICK);
+        syncSub();
     }
 
     function stopUi() {
         if (S.uiT) clearInterval(S.uiT);
         S.uiT = null;
+        syncSub();
     }
 
     function uiTick() {
@@ -2997,8 +3097,7 @@
         }
     }
 
-    // full: the rows must be analysed again; otherwise, while the queue works, only its statuses
-    // are laid over the rows.
+    // full: all rows are analysed again; otherwise only the rows whose command or building changed.
     function requestRefresh(full) {
         if (S.disposed) return;
         if (full) S.needFull = true;
@@ -3006,14 +3105,15 @@
         S.refreshT = setTimeout(function () {
             S.refreshT = null;
             try {
-                if (busy() && !S.needFull) refreshRun(); else refresh(false);
+                if (S.needFull) refresh(false); else refreshRun();
             } catch (e) {
                 log(e);
             }
         }, REFRESH_DELAY);
     }
 
-    // Light update while the queue works: progress, title and the queue statuses of the rows.
+    // Quick update: progress, title and the changed rows (a hidden or minimized window is analysed
+    // in full as soon as it is shown again).
     function refreshRun() {
         updateTitle();
         var $m = $(SEL);
@@ -3023,7 +3123,7 @@
             return;
         }
         if (S.rec) return;
-        if (S.record && !overlayRows()) {
+        if (S.record && !updateRows()) {
             refresh(false);
             return;
         }
@@ -3031,8 +3131,8 @@
         if (S.record) {
             var chips = renderChips(), cards = renderCards();
             flushIcons();
-            $m.find('.bm-chips').html(chips);
-            $m.find('.bm-cards').html(cards);
+            setHtml($m.find('.bm-chips'), chips);
+            setHtml($m.find('.bm-cards'), cards);
             renderTable();
         }
         updateFooter();
@@ -3110,7 +3210,8 @@
         if (S.refreshT) clearTimeout(S.refreshT);
         if (S.searchT) clearTimeout(S.searchT);
         if (S.fitT) clearTimeout(S.fitT);
-        S.refreshT = S.searchT = S.fitT = null;
+        if (S.settleT) clearTimeout(S.settleT);
+        S.refreshT = S.searchT = S.fitT = S.settleT = null;
         E.runs = [];
         E.pend = {};
         E.reserved = {};
@@ -3125,7 +3226,9 @@
     }
 
     function openFromMenu() {
-        if (!busy() && !S.rec) resetAll();
+        // A window closed during a run keeps its template and results until they are looked at.
+        if (!busy() && !S.rec && !S.unseen) resetAll();
+        S.unseen = false;
         openWindow();
     }
 
