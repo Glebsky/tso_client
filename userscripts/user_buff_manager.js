@@ -1,35 +1,47 @@
 /**
- * Buff Manager 2.0.0
+ * Buff Manager 2.1.0
  *
- * Buff template manager for The Settlers Online client.
+ * Buff template manager for The Settlers Online client, built on the stock buff module (6-buffs.js).
  *  - Window styled to match classic client windows (window_*, btn_* textures),
  *    isolated from Bootstrap styles (custom classes, scoped to #buffManagerModal);
- *  - All text labels sourced from the in-game localization (loca), all images
- *    from game assets (gAssetManager / building and buff icons);
- *  - Template recording, loading/saving (compatible with SaveLoadTemplate('buff')),
- *    recent template history cards, filters, search, row selection, deposit & stopped building checks;
- *  - Batched application: APPLY_BUFF commands sent via TimedQueue with pre-check
- *    cBuff.IsApplyable, auto-minimize on run, server batch processing, cancellation,
- *    and automatic stop on zone change.
+ *  - Texts from the in-game localization (loca) and the client translations, images from game assets;
+ *  - Template recording like the stock module: every own buff applied to a building of the recorded
+ *    island is captured (any buff type, already recorded buildings are kept), record more, discard;
+ *  - Templates compatible with SaveLoadTemplate('buff') files; saving remembers the chosen file;
+ *    recent template cards with rename, delete and quick start;
+ *  - Apply engine: a single paced sender (one command per batch, 1 s like the client TimedQueue or
+ *    faster), a FIFO queue of templates (start one template and immediately the next one), star menu
+ *    stacks reserved per command, cBuff.IsApplyable pre-check right before every command, server
+ *    confirmation through the 'buffApplied' notification, re-check with one retry on timeout,
+ *    pause while another island is open, cancellation per template or of the whole queue.
  *
  * Author: MadFx
  */
 (function () {
     'use strict';
 
-    var VERSION = '2.0.0';
+    var VERSION = '2.1.0';
     var MODAL_ID = 'buffManagerModal';
     var SEL = '#' + MODAL_ID;
     var SETTINGS_KEY = 'BUFF_MANAGER_SETTINGS';
     var TRACKER_NAME = 'buffManagerV2';
     var TEMPLATE_MODULE = 'buff';
-    var BUFF_TYPES = ['ProductivityBuff', 'RecruitingBuff', 'ProvisionerBuff', 'BookbinderBuff', 'AreaBuff', 'RemoveBuff'];
     var CMD_APPLY_BUFF = 61;
+    var SPEEDS = [1000, 700, 500];      // pause between two commands, ms (1000 = client TimedQueue)
+    var CONFIRM_TIMEOUT = 12000;        // no 'buffApplied' within this time: the building is checked
+    var MAX_SENDS = 2;                  // a command is sent at most twice (one automatic retry)
+    var BLOCKED_RETRY = 1500;           // building temporarily blocked: try again a bit later
+    var BLOCKED_MAX = 8;
+    var PUMP_TICK = 250;
+    var MAX_CHECKS = 60;                // rows checked per engine step (keeps every step short)
+    var KEEP_DONE = 5;                  // finished templates kept for the summary
     var AUTO_REFRESH = 15000;
     var UI_TICK = 1000;
     var REFRESH_DELAY = 120;
     var SEARCH_DELAY = 200;
-    var DEFAULTS = { buffStopped: false, safeMines: true };
+    // cBuff.IsApplyable() results (CURSOR_VALID codes) handled by the manager.
+    var AP_NO_DEPOSIT = 13, AP_MAX_BUFFS = 25, AP_BLOCKED = 28;
+    var DEFAULTS = { buffStopped: false, safeMines: true, delay: SPEEDS[0], autoMin: true };
     var TOKEN = { version: VERSION };
 
     // A previous instance (script reload) must release its timers, observers and DOM first.
@@ -115,6 +127,7 @@
         speed: [['LAB', 'DuplicatedBuildingsBonus']],
         cancel: [['LAB', 'Cancel']],
         cancelled: [['LAB', 'Cancled']],
+        clearQueue: [['LAB', 'ProductionCancelAllWaiting']],
         record: [['HIL', 'Help_window_use_buff_0']],
         ok: [['LAB', 'OK']],
         current: [['LAB', 'AvatarCurrentSelection']],
@@ -141,12 +154,55 @@
         }
     }
 
+    // Client translations (0-lang-*.js, the texts of the stock buff module).
+    var CTEXT = {
+        loadTpl: 'load_template', recStart: 'buff_start_record', recStop: 'buff_stop_record',
+        recProgress: 'buff_rec_progress', recMore: 'buff_record_more', recStarted: 'buff_rec_start',
+        recStopped: 'buff_rec_stop', sent: 'command_sent', badTpl: 'bad_template'
+    };
+
+    // Own texts for the queue features (no loca / client text exists for them).
+    var OWN = {
+        'en-uk': {
+            queued: 'Queued', enqueue: 'Add to queue', quick: 'Use now (the template is added to the queue)',
+            templates: 'Templates', inQueue: 'Queue', autoMin: 'Minimize the window on start',
+            waitZone: 'Waiting for the island', loadTpl: 'Load template', recStart: 'Start recording',
+            recStop: 'Stop recording', recProgress: 'Recording in progress!', recMore: 'Record more',
+            recStarted: 'Recording started', recStopped: 'Recording stopped', sent: 'Command sent',
+            badTpl: 'Bad template file'
+        },
+        'ru-ru': {
+            queued: 'В очереди', enqueue: 'В очередь', quick: 'Использовать сразу (шаблон встанет в очередь)',
+            templates: 'Шаблоны', inQueue: 'Очередь', autoMin: 'Сворачивать окно при запуске',
+            waitZone: 'Ожидание острова'
+        },
+        'de-de': {
+            queued: 'In Warteschlange', enqueue: 'Zur Warteschlange', quick: 'Sofort anwenden (Vorlage kommt in die Warteschlange)',
+            templates: 'Vorlagen', inQueue: 'Warteschlange', autoMin: 'Fenster beim Start minimieren',
+            waitZone: 'Warten auf die Insel'
+        }
+    };
+
+    function clientText(id) {
+        var s = String(safe(function () { return getText(id); }, '') || '');
+        return (!s || s.indexOf('RES not found') === 0) ? '' : s;
+    }
+
+    function ownText(id, args) {
+        var lang = String(safe(function () { return gameLang; }, '') || '');
+        var s = (OWN[lang] && OWN[lang][id]) || OWN['en-uk'][id] || '';
+        if (s && args) s = s.replace(/\{(\d+)\}/g, function (m, n) { return args[n] !== undefined ? String(args[n]) : m; });
+        return s;
+    }
+
     var _txt = {};
     function txt(id, args) {
         if (!args && own(_txt, id)) return _txt[id];
         var chain = LOCA[id] || [], s = '';
         for (var i = 0; i < chain.length && !s; i++) s = tr(chain[i][0], chain[i][1], args);
-        if (s && STRIP[id]) s = s.replace(/[\s:\uFF1A.\u3002]+$/, '');
+        if (!s && CTEXT[id]) s = clientText(CTEXT[id]);
+        if (!s) s = ownText(id, args);
+        if (s && STRIP[id]) s = s.replace(/[\s:\uFF1A.\u3002!]+$/, '');
         if (!args) _txt[id] = s;
         return s;
     }
@@ -222,12 +278,16 @@
         var c = {
             buffStopped: DEFAULTS.buffStopped,
             safeMines: DEFAULTS.safeMines,
+            delay: DEFAULTS.delay,
+            autoMin: DEFAULTS.autoMin,
             recent: []
         };
         var s = safe(function () { return settings.read(null, SETTINGS_KEY); }, null);
         if (s && typeof s === 'object') {
             if (typeof s.buffStopped === 'boolean') c.buffStopped = s.buffStopped;
             if (typeof s.safeMines === 'boolean') c.safeMines = s.safeMines;
+            if (typeof s.autoMin === 'boolean') c.autoMin = s.autoMin;
+            if (SPEEDS.indexOf(Number(s.delay)) >= 0) c.delay = Number(s.delay);
             if (isArr(s.recent)) c.recent = dedupeRecent(s.recent);
         }
         return c;
@@ -237,9 +297,14 @@
 
     function saveCfg() {
         try {
+            // settings.store() deep-merges: arrays would keep their old tail (deleted recent templates
+            // came back), so the stored entry is replaced as a whole.
+            if (settings.settings && typeof settings.settings === 'object') delete settings.settings[SETTINGS_KEY];
             settings.store({
                 buffStopped: cfg.buffStopped,
                 safeMines: cfg.safeMines,
+                delay: cfg.delay,
+                autoMin: cfg.autoMin,
                 recent: dedupeRecent(cfg.recent)
             }, SETTINGS_KEY);
         } catch (e) {
@@ -362,56 +427,72 @@
     }
     initRecentFromLRU();
 
+    // Reads a template file without the blocking alerts of loadFileWithRetry(); relative paths
+    // (shortcuts folder setting) are resolved against mainSettings.shortcutsDir.
     function readFileDirect(filePath) {
-        if (typeof loadFileWithRetry === 'function') {
+        var p = String(filePath || ''), list = [p];
+        var dir = String(safe(function () { return mainSettings.shortcutsDir; }, '') || '');
+        if (dir && p.indexOf(dir) !== 0) list.push(dir + p);
+        for (var i = 0; i < list.length; i++) {
             try {
-                var out = loadFileWithRetry(filePath, 0);
-                if (out && out.data) return out;
-            } catch (eRetry) { }
+                var f = new air.File(list[i]);
+                if (!f.exists || f.isDirectory) continue;
+                var fs = new air.FileStream();
+                fs.open(f, air.FileMode.READ);
+                var content = fs.readUTFBytes(f.size);
+                fs.close();
+                if (content) return { data: content, name: f.name, path: f.nativePath };
+            } catch (e) { }
         }
-        try {
-            var f = new air.File(filePath);
-            if (!f.exists) return null;
-            var fs = new air.FileStream();
-            fs.open(f, air.FileMode.READ);
-            var content = fs.readUTFBytes(f.size);
-            fs.close();
-            return { data: content, name: f.name };
-        } catch (e) {
-            log(e);
+        return null;
+    }
+
+    function baseName(n) {
+        return String(n || '').split(/[\/\\]/).pop().replace(/\.[^.]+$/, '');
+    }
+
+    function recentPath(item) {
+        if (!item) return '';
+        if (item.path) return item.path;
+        var t = getTpl(), sep = safe(function () { return air.File.separator; }, '\\');
+        return (t && item.name) ? t.getLastDir() + sep + item.name + '.txt' : '';
+    }
+
+    // Recent template -> { rec, name, path } (null and an alert when the file is gone or broken).
+    function loadRecent(idx) {
+        var item = (isArr(cfg.recent) ? cfg.recent : [])[idx];
+        if (!item) return null;
+        var path = recentPath(item), fo = path ? readFileDirect(path) : null, rec = null;
+        if (fo) {
+            try { rec = normalizeRecord(JSON.parse(fo.data)); } catch (e) { log(e); }
+        }
+        if (!rec) {
+            alertMsg((fo ? txt('badTpl') : txt('loadError')) + (item.name ? ': ' + item.name : ''));
             return null;
         }
+        return { rec: rec, name: item.name || baseName(fo.name), path: fo.path || path };
     }
 
     function openRecentTemplate(idx) {
         if (S.rec) return;
-        var list = isArr(cfg.recent) ? cfg.recent : [];
-        var item = list[idx];
-        if (!item) return;
-        var path = item.path;
-        if (!path) {
-            var t = getTpl();
-            if (t && typeof t.getLastDir === 'function') {
-                var sep = (typeof air !== 'undefined' && air.File && air.File.separator) || '\\';
-                path = t.getLastDir() + sep + item.name + '.txt';
-            }
-        }
-        if (!path) {
-            alertMsg(txt('loadError'));
+        var t = loadRecent(idx);
+        if (t) onTemplate(t.rec, t.name, t.path);
+    }
+
+    // Quick start from a recent card: the template goes straight into the queue.
+    function queueRecent(idx) {
+        if (S.rec) return;
+        var t = loadRecent(idx);
+        if (!t) return;
+        var items = defaultItems(t.rec);
+        if (!items.length) {
+            alertMsg(t.name + ': ' + txt('unavailable'));
+            refresh(true);
             return;
         }
-        var fileObj = readFileDirect(path);
-        if (!fileObj || !fileObj.data) {
-            alertMsg(txt('loadError'));
-            return;
-        }
-        try {
-            var data = JSON.parse(fileObj.data);
-            onTemplate(data, fileObj.name || item.name, path);
-        } catch (err) {
-            log(err);
-            alertMsg(txt('loadError'));
-        }
+        enqueueRecord(t.rec, t.name, items);
+        alertMsg(t.name + ': ' + txt('sent'));
+        refresh(true);
     }
 
     /* ------------------------------------------------------------------ */
@@ -423,28 +504,38 @@
         templateName: '',
         templatePath: '',
         manual: {},          // grid -> boolean, manual selection override
-        res: {},             // grid -> 'pending' | 'done' | 'failed' (current/last run)
-        lastRun: null,       // summary of the finished run
-        run: null,           // active run
-        rec: null,           // active recording { backup, backupName, count }
+        rec: null,           // active recording { backup, backupName, backupPath, count }
         filter: 'all',
         search: '',
         editingRecent: null, // index of recent template being renamed, or null
         showSettings: false,
+        showRecents: false,  // recent templates panel in the list view
         rows: [],
         counts: {},
         ctx: null,
         zoneSig: '',
         lastAuto: 0,
+        needFull: false,
         sub: false,
         uiT: null,
         refreshT: null,
         searchT: null,
         fitT: null,
-        tpl: null,
         tip: null,
         tipAnchor: null,
         disposed: false
+    };
+
+    // Apply engine (independent of the window: keeps working while it is minimized or closed).
+    var E = {
+        runs: [],            // templates in queue order: { id, name, zoneId, zoneUser, jobs, total, ok, fail, skip, cancelled }
+        pend: {},            // 'zone:grid' -> unfinished commands of all queued templates, in queue order
+        reserved: {},        // star menu stack id -> commands sent and not confirmed yet
+        res: {},             // 'zone:grid' -> { st: 'done' | 'failed', buff } result of the last command
+        done: [],            // summaries of finished templates, newest first
+        timer: null,
+        lastSend: 0,
+        seq: 0
     };
 
     /* ------------------------------------------------------------------ */
@@ -633,10 +724,10 @@
     }
 
     function myId() {
-        var p = safe(function () { return game.gi.mHomePlayer; }, null) || curPlayer();
-        if (!p) return -1;
-        var id = safe(function () { return p.GetPlayerId(); }, null);
-        if (id === null) id = safe(function () { return p.getPlayerID(); }, null);
+        // game.player.getPlayerID() is what the stock module compares buffOwnerID with.
+        var id = safe(function () { return game.player.getPlayerID(); }, null);
+        if (id === null) id = safe(function () { return game.gi.mHomePlayer.GetPlayerId(); }, null);
+        if (id === null) id = safe(function () { return curPlayer().getPlayerID(); }, null);
         return id === null ? -1 : Number(id);
     }
 
@@ -662,19 +753,11 @@
         return String(n || '');
     }
 
-    function checkBuffType(type) {
-        type = String(type || '');
-        if (!type) return false;
-        for (var i = 0; i < BUFF_TYPES.length; i++) {
-            if (type.indexOf(BUFF_TYPES[i]) >= 0) return true;
-        }
-        return false;
-    }
-
     function isRemoveBuff(name) { return String(name || '').indexOf('RemoveBuff') >= 0; }
 
     function buffVector() {
-        return safe(function () { return curPlayer().getAvailableBuffs_vector(); }, null);
+        return safe(function () { return curPlayer().getAvailableBuffs_vector(); }, null) ||
+            safe(function () { return game.getBuffs(); }, null);
     }
 
     function stackName(b) {
@@ -688,46 +771,43 @@
         return a > 0 ? a : 0;
     }
 
-    // Star menu stacks grouped by buff name (several stacks of one buff are pooled).
-    function collectStacks() {
-        var out = {}, vec = buffVector();
+
+    function stackId(b) {
+        var u = safe(function () { return b.GetUniqueId(); }, null);
+        return u ? String(u.uniqueID1) + '_' + String(u.uniqueID2) : '';
+    }
+
+    // Star menu stacks grouped by buff name, the fullest stack first. Commands sent and not confirmed
+    // yet are reserved on their stack; withQueue also subtracts the commands still waiting in the
+    // queue (what is left for another template).
+    function collectStacks(withQueue) {
+        var out = {}, vec = buffVector(), name, i;
         var n = vec ? Number(safe(function () { return vec.length; }, 0)) : 0;
-        for (var i = 0; i < n; i++) {
+        for (i = 0; i < n; i++) {
             var b = vec[i];
             if (!b) continue;
-            var name = stackName(b);
+            name = stackName(b);
             if (!name) continue;
+            var id = stackId(b), amt = Math.max(0, stackAmount(b) - (E.reserved[id] || 0));
             var e = out[name] || (out[name] = { list: [], total: 0 });
-            e.list.push(b);
-            e.total += stackAmount(b);
+            e.list.push({ b: b, id: id, n: amt });
+            e.total += amt;
         }
-        if (S.run && S.run.jobs) {
-            var startIdx = S.run.curIdx || 0;
-            for (var j = startIdx; j < S.run.jobs.length; j++) {
-                var bn = S.run.jobs[j].buffName;
-                if (out[bn] && out[bn].total > 0) {
-                    out[bn].total--;
-                }
+        for (name in out) {
+            if (own(out, name) && out[name].list.length > 1) out[name].list.sort(function (x, y) { return y.n - x.n; });
+        }
+        if (withQueue) {
+            var w = queuedDemand();
+            for (name in w) {
+                if (own(w, name) && own(out, name)) out[name].total = Math.max(0, out[name].total - w[name]);
             }
         }
         return out;
     }
 
-    function pickStack(name) {
-        var vec = buffVector(), best = null, bestAmt = 0;
-        var n = vec ? Number(safe(function () { return vec.length; }, 0)) : 0;
-        for (var i = 0; i < n; i++) {
-            var b = vec[i];
-            if (!b || stackName(b) !== name) continue;
-            var a = stackAmount(b);
-            if (a > bestAmt) { best = b; bestAmt = a; }
-        }
-        return best;
-    }
-
     function buffDef(name, ctx) {
         var st = ctx && ctx.stacks ? ctx.stacks[name] : null;
-        var d = (st && st.list.length) ? safe(function () { return st.list[0].GetBuffDefinition(); }, null) : null;
+        var d = (st && st.list.length) ? safe(function () { return st.list[0].b.GetBuffDefinition(); }, null) : null;
         if (!d) d = safe(function () { return game.def('global').map_BuffName_BuffDefinition[name]; }, null);
         return d;
     }
@@ -796,19 +876,22 @@
     /* ------------------------------------------------------------------ */
 
     var BAD = { zone: 1, missing: 1, unavail: 1, nostock: 1, failed: 1, depleted: 1 };
-    var BUFFED = { buffed: 1, done: 1, pending: 1 };
+    var BUFFED = { buffed: 1, done: 1, pending: 1, queued: 1 };
 
-    function makeCtx() {
-        var rec = S.record, zone = curZone(), viewed = viewedZone();
+    // forSend: check right before a command (raw stacks minus reservations, no queue overlay).
+    function makeCtx(zoneId, forSend) {
+        var zone = curZone(), viewed = viewedZone(), z = Number(zoneId);
         return {
             zone: zone,
             gi: gi(),
             player: curPlayer(),
             now: clientTime(),
             viewed: viewed,
-            zoneOk: !!zone && !!rec && Number(rec.zoneId) === viewed,
-            stacks: collectStacks(),
-            mode: rec ? durMode(rec.zoneId) : 0
+            zoneId: z,
+            zoneOk: !!zone && isFinite(z) && z === viewed,
+            stacks: collectStacks(!forSend),
+            mode: durMode(z),
+            send: !!forSend
         };
     }
 
@@ -823,31 +906,50 @@
         if (act.name && act.name !== buffName) r.tip = buffTitle(act.name);
     }
 
+    // Queue overlay of a row: an unfinished command for this building. A command after a queued
+    // RemoveBuff of another template does not wait for it here (it is ordered by the engine).
+    function queuedState(zoneId, grid, buffName) {
+        var pj = lastPending(zoneId + ':' + grid);
+        if (!pj) return null;
+        if (!isRemoveBuff(buffName) && isRemoveBuff(pj.buffName)) return { after: true };
+        return { st: pj.st === 'sent' ? 'pending' : 'queued', tip: pj.run.name };
+    }
+
     function analyzeRow(item, ctx) {
         var grid = Number(item.buiGrid),
             buffName = String(item.buffName || ''),
             buiName = String(item.buiName || '');
         var r = {
             grid: grid, buffName: buffName, buiName: buiName, level: 0, st: 'ready',
-            ok: false, sel: false, idle: false, mine: false,
+            ok: false, sel: false, idle: false, mine: false, act: null,
             time: '', timeCls: '', timeTip: '', endAt: 0, tip: ''
         };
-        if (!ctx.zoneOk) { r.st = 'zone'; return r; }
-        var bui = safe(function () { return ctx.zone.GetBuildingFromGridPosition(grid); }, null);
-        if (!bui || String(safe(function () { return bui.GetBuildingName_string(); }, '')) !== buiName) {
-            r.st = 'missing';
-            return r;
+        var remove = isRemoveBuff(buffName), after = false, q = null;
+        if (!ctx.send) {
+            q = queuedState(ctx.zoneId, grid, buffName);
+            if (q && q.after) { after = true; q = null; }
         }
-        var lv = safe(function () { return bui.GetUIUpgradeLevel(); }, null);
-        if (lv === null) lv = safe(function () { return bui.GetUpgradeLevel(); }, 0);
-        r.level = Number(lv) || 0;
+        var bui = ctx.zoneOk ? safe(function () { return ctx.zone.GetBuildingFromGridPosition(grid); }, null) : null;
+        if (bui && String(safe(function () { return bui.GetBuildingName_string(); }, '')) !== buiName) bui = null;
+        if (bui) {
+            var lv = safe(function () { return bui.GetUIUpgradeLevel(); }, null);
+            if (lv === null) lv = safe(function () { return bui.GetUpgradeLevel(); }, 0);
+            r.level = Number(lv) || 0;
+        }
+        if (q) { r.st = q.st; r.tip = q.tip; return r; }
+        if (!ctx.zoneOk) { r.st = 'zone'; return r; }
+        if (!bui) { r.st = 'missing'; return r; }
 
-        var remove = isRemoveBuff(buffName), act = activeBuff(bui, ctx.now), ov = S.res[grid];
-        if (ov === 'failed' && (remove ? !act : !!act)) ov = 'done';
-        if (ov === 'pending' || ov === 'done' || ov === 'failed') {
-            r.st = ov;
-            if (ov === 'done' && act && !remove) setActive(r, act, buffName);
-            return r;
+        var act = after ? null : activeBuff(bui, ctx.now);
+        r.act = act;
+        if (!ctx.send && !after) {
+            var res = E.res[ctx.zoneId + ':' + grid], ov = (res && res.buff === buffName) ? res.st : '';
+            if (ov === 'failed' && (remove ? !act : !!act)) ov = 'done';
+            if (ov === 'done' || ov === 'failed') {
+                r.st = ov;
+                if (ov === 'done' && act && !remove) setActive(r, act, buffName);
+                return r;
+            }
         }
         if (act && !remove) {
             r.st = 'buffed';
@@ -855,13 +957,13 @@
             return r;
         }
 
-        var stk = ctx.stacks[buffName], probe = (stk && stk.list.length) ? stk.list[0] : null;
-        if (probe) {
+        var stk = ctx.stacks[buffName], probe = (stk && stk.list.length) ? stk.list[0].b : null;
+        if (probe && !after) {
             var ap = safe(function () { return probe.IsApplyable(ctx.player, ctx.gi, grid); }, null);
             var code = (typeof ap === 'number') ? ap : (ap === false ? -1 : 0);
-            if (code === 25) { r.st = 'buffed'; return r; }
-            if (code === 13) { r.st = 'depleted'; r.mine = true; return r; }
-            if (code === 28) { r.st = 'pending'; return r; }
+            if (code === AP_MAX_BUFFS) { r.st = 'buffed'; return r; }
+            if (code === AP_NO_DEPOSIT) { r.st = 'depleted'; r.mine = true; return r; }
+            if (code === AP_BLOCKED) { r.st = 'pending'; return r; }
             if (code !== 0) { r.st = 'unavail'; return r; }
         }
         if (!stk || !(stk.total > 0)) {
@@ -924,13 +1026,60 @@
         S.zoneSig = zoneSig();
         S.rows = [];
         S.ctx = null;
+        S.needFull = false;
         if (S.record) {
-            var ctx = makeCtx(), data = S.record.data;
+            var ctx = makeCtx(S.record.zoneId, false), data = S.record.data;
             for (var i = 0; i < data.length; i++) S.rows.push(analyzeRow(data[i], ctx));
             S.ctx = ctx;
         }
         applySelection();
         return S.rows;
+    }
+
+    // Rows a template would buff with the default selection (quick start). On another island the
+    // rows cannot be checked yet: all of them go to the queue and are checked before each command.
+    function defaultItems(rec) {
+        var ctx = makeCtx(rec.zoneId, false), out = [];
+        for (var i = 0; i < rec.data.length; i++) {
+            var it = rec.data[i];
+            if (ctx.zoneOk) {
+                if (analyzeRow(it, ctx).ok) out.push(it);
+            } else {
+                var q = queuedState(ctx.zoneId, Number(it.buiGrid), String(it.buffName || ''));
+                if (!q || q.after) out.push(it);
+            }
+        }
+        return out;
+    }
+
+    // Cheap status update while commands are running (no game checks); false: a full analysis is needed.
+    function overlayRows() {
+        var rec = S.record;
+        if (!rec || !S.ctx) return true;
+        var rows = S.rows, changed = false;
+        for (var i = 0; i < rows.length; i++) {
+            var r = rows[i], q = queuedState(rec.zoneId, r.grid, r.buffName), st = '', tip = '';
+            if (q && !q.after) {
+                st = q.st;
+                tip = q.tip;
+            } else {
+                var res = E.res[rec.zoneId + ':' + r.grid];
+                if (res && res.buff === r.buffName) st = res.st;
+                else if (r.st === 'queued' || r.st === 'pending') return false;
+            }
+            if (st && r.st !== st) {
+                r.st = st;
+                r.ok = false;
+                r.tip = tip;
+                r.time = '';
+                r.timeTip = '';
+                r.endAt = 0;
+                changed = true;
+            }
+        }
+        if (changed) applySelection();
+        S.ctx.stacks = collectStacks(true);
+        return true;
     }
 
     function matchFilter(r, f) {
@@ -975,6 +1124,7 @@
         if (S.sub) return;
         var t = getTracker();
         if (!t) return;
+        try { game.gi.channels.BUFF.removePropertyObserver('buffApplied', t); } catch (e0) { }
         try {
             game.gi.channels.BUFF.addPropertyObserver('buffApplied', t);
             S.sub = true;
@@ -991,300 +1141,393 @@
     }
 
     function syncSub() {
-        if (S.run || S.rec) subscribe(); else unsubscribe();
+        if (busy() || S.rec) subscribe(); else unsubscribe();
     }
 
+    // BuffAppliedNotification { buff, target, amount, buffOwnerID }: sent by the client when a game tick
+    // applies a buff, i.e. after the server accepted the command.
     function onBuff(e) {
         if (S.disposed) return;
         var d = e ? e.data : null;
         if (!d) return;
         if (Number(safe(function () { return d.buffOwnerID; }, -2)) !== myId()) return;
-        if (S.rec) recordBuff(d);
+        var used = false;
+        try { used = confirmBuff(d); } catch (err) { log(err); }
+        if (S.rec && !used) recordBuff(d);
     }
 
     /* ------------------------------------------------------------------ */
-    /* Queue & apply engine                                               */
+    /* Apply engine: FIFO queue of templates, one paced sender              */
     /* ------------------------------------------------------------------ */
 
-    function getBuffAvailableMap(excludeQueued) {
-        var avail = {};
-        var vec = buffVector();
-        var n = vec ? Number(safe(function () { return vec.length; }, 0)) : 0;
-        for (var i = 0; i < n; i++) {
-            var item = vec[i];
-            if (!item) continue;
-            var def = safe(function () { return item.GetBuffDefinition(); }, null);
-            var name = def ? String(safe(function () { return def.GetName_string(); }, '') || '') : '';
-            if (!name) continue;
-            var amt = stackAmount(item);
-            if (amt <= 0) continue;
-            var uid = safe(function () { return item.GetUniqueId(); }, null);
-            if (!uid) continue;
-            var idStr = String(uid.uniqueID1) + '_' + String(uid.uniqueID2);
-            if (!avail[name]) avail[name] = [];
-            avail[name].push({ count: amt, id: idStr });
+    function busy() { return E.runs.length > 0; }
+
+    function pendAdd(job) {
+        (E.pend[job.key] || (E.pend[job.key] = [])).push(job);
+    }
+
+    function pendRemove(job) {
+        var l = E.pend[job.key];
+        if (!l) return;
+        for (var i = 0; i < l.length; i++) {
+            if (l[i] === job) { l.splice(i, 1); break; }
         }
-        if (excludeQueued && S.run && S.run.jobs) {
-            var startIdx = S.run.curIdx || 0;
-            for (var j = startIdx; j < S.run.jobs.length; j++) {
-                takeBuffId(avail, S.run.jobs[j].buffName);
+        if (!l.length) delete E.pend[job.key];
+    }
+
+    function lastPending(key) {
+        var l = E.pend[key];
+        return (l && l.length) ? l[l.length - 1] : null;
+    }
+
+    // Commands still waiting in the queue, per buff name (sent ones are reserved on their stack).
+    function queuedDemand() {
+        var w = {};
+        for (var i = 0; i < E.runs.length; i++) {
+            var jobs = E.runs[i].jobs;
+            for (var j = 0; j < jobs.length; j++) {
+                if (jobs[j].st === 'wait') w[jobs[j].buffName] = (w[jobs[j].buffName] || 0) + 1;
             }
         }
-        return avail;
+        return w;
     }
 
-    function takeBuffId(avail, buffName) {
-        var list = avail[buffName];
-        if (!list || !list.length) return null;
-        for (var i = 0; i < list.length; i++) {
-            if (list[i].count > 0) {
-                list[i].count--;
-                return list[i].id;
-            }
+    function release(job) {
+        if (job.stack && E.reserved[job.stack]) {
+            if (--E.reserved[job.stack] <= 0) delete E.reserved[job.stack];
         }
-        return null;
+        job.stack = '';
     }
 
-    function getBuffPacket(buffId, grid) {
-        try {
-            var uniqueIdArr = String(buffId).split("_"),
-                uniqueID = game.def("Communication.VO::dUniqueID").Create(uniqueIdArr[0], uniqueIdArr[1]);
-            return game.def("Communication.VO::dServerAction").createForCommand(CMD_APPLY_BUFF, 0, grid, 0, uniqueID);
-        } catch (ex) {
-            log(ex);
-            return null;
+    // st: 'done' | 'fail' | 'skip' (why: the row status that prevented the command).
+    function finishJob(job, st, why) {
+        if (job.st !== 'wait' && job.st !== 'sent') return;
+        release(job);
+        job.st = st;
+        job.why = why || '';
+        pendRemove(job);
+        var run = job.run;
+        if (st === 'done') run.ok++;
+        else if (st === 'fail') run.fail++;
+        else run.skip++;
+        if (st !== 'skip') E.res[job.key] = { st: st === 'done' ? 'done' : 'failed', buff: job.buffName };
+    }
+
+    // Adds a template to the queue. Every row is checked again right before its command.
+    function enqueueRecord(rec, name, items) {
+        if (!rec || !items || !items.length) return null;
+        var zoneId = Number(rec.zoneId), seq = E.seq + 1;
+        var run = {
+            id: seq,
+            name: String(name || rec.zoneUser || ('#' + seq)),
+            zoneId: zoneId,
+            zoneUser: String(rec.zoneUser || ''),
+            jobs: [], total: 0, ok: 0, fail: 0, skip: 0, cancelled: false, waitZone: false
+        };
+        for (var i = 0; i < items.length; i++) {
+            var it = items[i], grid = Number(it.buiGrid);
+            if (!isFinite(grid)) continue;
+            run.jobs.push({
+                run: run, key: zoneId + ':' + grid, buiGrid: grid,
+                buffName: String(it.buffName || ''), buiName: String(it.buiName || ''),
+                st: 'wait', why: '', sends: 0, sentAt: 0, notBefore: 0, blocked: 0, stack: '', top: null
+            });
         }
+        if (!run.jobs.length) return null;
+        E.seq = seq;
+        for (i = 0; i < run.jobs.length; i++) {
+            pendAdd(run.jobs[i]);
+            delete E.res[run.jobs[i].key];
+        }
+        run.total = run.jobs.length;
+        E.runs.push(run);
+        syncSub();
+        schedule(0);
+        return run;
     }
 
+    // Apply button: the selected rows of the window go to the queue (also while another one runs).
     function startRun() {
         if (S.rec || !S.record) return;
         analyzeAll();
-        var sel = [], i;
-        for (i = 0; i < S.rows.length; i++) {
-            if (S.rows[i].sel) sel.push(S.rows[i]);
+        var items = [];
+        for (var i = 0; i < S.rows.length; i++) {
+            var r = S.rows[i];
+            if (r.sel) items.push({ buiGrid: r.grid, buffName: r.buffName, buiName: r.buiName });
         }
-        if (!sel.length) { refresh(true); return; }
-
-        var isAppending = !!(S.run && !S.run.cancelled);
-        var avail = getBuffAvailableMap(isAppending);
-        var jobs = [];
-        for (i = 0; i < sel.length; i++) {
-            var r = sel[i];
-            if (isAppending && S.res[r.grid]) continue;
-            var buffId = takeBuffId(avail, r.buffName);
-            if (buffId) {
-                var pkt = getBuffPacket(buffId, r.grid);
-                if (pkt) {
-                    jobs.push({ grid: r.grid, buffName: r.buffName, buiName: r.buiName, packet: pkt });
-                }
-            }
-        }
-
-        if (isAppending) {
-            if (!jobs.length) {
-                setMinimized(true);
-                try {
-                    alertMsg(txt('unavailable'));
-                } catch (eAl) {
-                    log(eAl);
-                }
-                refresh(true);
-                return;
-            }
-
-            for (i = 0; i < jobs.length; i++) {
-                S.res[jobs[i].grid] = 'pending';
-                S.run.jobs.push(jobs[i]);
-                S.run.queue.addTask(jobs[i].packet);
-            }
-            S.run.total += sel.length;
-            S.run.skip += (sel.length - jobs.length);
-
-            if (S.run.queue.tasksQueue.length === jobs.length) {
-                S.run.queue.nextTaskBatch();
-            }
-
-            setMinimized(true);
-            try {
-                if (typeof getText === 'function') {
-                    game.showAlert(getText('command_sent'));
-                } else {
-                    alertMsg(txt('apply'));
-                }
-            } catch (eAlert) {
-                log(eAlert);
-            }
+        if (!items.length || !enqueueRecord(S.record, S.templateName, items)) {
             refresh(true);
             return;
         }
-
-        S.res = {};
-        S.lastRun = null;
-        if (!jobs.length) {
-            S.lastRun = { reason: 'done', total: sel.length, ok: 0, fail: 0, skip: sel.length };
-            refresh(true);
-            return;
-        }
-
-        for (i = 0; i < jobs.length; i++) {
-            S.res[jobs[i].grid] = 'pending';
-        }
-
-        var QClass = (typeof TimedQueue !== 'undefined') ? TimedQueue : function (delay) {
-            this.queue = [];
-            this.index = 0;
-            this.batchSize = 1;
-            this.tasksQueue = [];
-            this.defaultDelay = delay || 1000;
-            this.stamp = 0;
-            this.inId = void 0;
-        };
-        if (!QClass.prototype.addTask) {
-            QClass.prototype.addTask = function (task) { this.tasksQueue.push(task); };
-            QClass.prototype.tick = function (delay, callback) {
-                var e = this;
-                e.stamp = Date.now() + delay;
-                e.inId = setInterval(function () {
-                    if (Date.now() >= e.stamp) {
-                        clearInterval(e.inId);
-                        (callback || function () { e.next(); })();
-                    }
-                }, 50);
-            };
-            QClass.prototype.reset = function () {
-                if (typeof this.inId === 'number') clearInterval(this.inId);
-                this.index = 0;
-                this.tasksQueue = [];
-            };
-        }
-
-        var q = new QClass(1000);
-        q.batchSize = 1;
-        for (i = 0; i < jobs.length; i++) {
-            q.addTask(jobs[i].packet);
-        }
-
-        S.run = {
-            queue: q,
-            jobs: jobs,
-            curIdx: 0,
-            total: sel.length,
-            sent: 0,
-            ok: 0,
-            fail: 0,
-            skip: sel.length - jobs.length,
-            cancelled: false
-        };
-
-        q.nextTaskBatch = function () {
-            if (!S.run || S.run.cancelled) return;
-            var batch = this.tasksQueue.splice(0, Math.max(1, this.batchSize));
-            if (!batch.length) {
-                finishRun('done');
-                return;
-            }
-            try {
-                var g = gi();
-                if (g && typeof g.SendServerActionBatch === 'function') {
-                    g.SendServerActionBatch(batch);
-                }
-            } catch (eSend) {
-                log(eSend);
-            }
-            if (S.run) {
-                for (var b = 0; b < batch.length; b++) {
-                    if (S.run.curIdx < S.run.jobs.length) {
-                        var jb = S.run.jobs[S.run.curIdx++];
-                        S.res[jb.grid] = 'done';
-                        S.run.ok++;
-                        S.run.sent++;
-                    }
-                }
-                requestRefresh();
-                updateTitle();
-            }
-            if (this.tasksQueue.length && !S.run.cancelled) {
-                var self = this;
-                this.tick(this.defaultDelay, function () {
-                    self.nextTaskBatch();
-                });
-            } else {
-                finishRun('done');
-            }
-        };
-
-        subscribe();
-        q.run();
-        setMinimized(true);
-        try {
-            if (typeof getText === 'function') {
-                game.showAlert(getText('command_sent'));
-            } else {
-                alertMsg(txt('apply'));
-            }
-        } catch (eAlert) {
-            log(eAlert);
-        }
+        alertMsg(txt('sent'));
+        if (cfg.autoMin) setMinimized(true);
         refresh(true);
     }
 
-    function cancelRun() {
-        if (!S.run) return;
-        S.run.cancelled = true;
-        if (S.run.queue) {
-            try {
-                if (typeof S.run.queue.inId === 'number') clearInterval(S.run.queue.inId);
-                if (typeof S.run.queue.reset === 'function') S.run.queue.reset();
-                S.run.queue.tasksQueue = [];
-            } catch (e) {
-                log(e);
+    function schedule(ms) {
+        if (S.disposed) return;
+        if (E.timer) clearTimeout(E.timer);
+        E.timer = setTimeout(pump, Math.max(0, ms || 0));
+    }
+
+    function stopTimer() {
+        if (E.timer) clearTimeout(E.timer);
+        E.timer = null;
+    }
+
+    function pump() {
+        E.timer = null;
+        if (S.disposed) return;
+        var t = now(), changed = false;
+        try {
+            if (checkSent(t)) changed = true;
+            if (t - E.lastSend >= cfg.delay && sendNext(t)) changed = true;
+            if (finishRuns()) changed = true;
+        } catch (e) {
+            log(e);
+        }
+        if (busy()) {
+            schedule(PUMP_TICK);
+        } else {
+            stopTimer();
+            syncSub();
+        }
+        if (changed) {
+            updateTitle();
+            requestRefresh(!busy());
+        }
+    }
+
+    // Sends the first command that can go now, in queue order. Rows that cannot be buffed any more
+    // are skipped; a building waits until the earlier command for it is finished; a template of
+    // another island waits until that island is open.
+    function sendNext(t) {
+        var ctxs = {}, held = {}, checks = 0, changed = false;
+        for (var i = 0; i < E.runs.length; i++) {
+            var run = E.runs[i], ctx = null;
+            if (run.cancelled) continue;
+            for (var j = 0; j < run.jobs.length; j++) {
+                var job = run.jobs[j];
+                if (job.st !== 'wait') continue;
+                var l = E.pend[job.key];
+                if (held[job.key] || job.notBefore > t || (l && l[0] !== job)) {
+                    held[job.key] = 1;
+                    continue;
+                }
+                if (!ctx) {
+                    ctx = own(ctxs, run.zoneId) ? ctxs[run.zoneId] : (ctxs[run.zoneId] = makeCtx(run.zoneId, true));
+                    run.waitZone = !ctx.zoneOk;
+                    if (!ctx.zoneOk) break;
+                }
+                if (++checks > MAX_CHECKS) return changed;
+                var v = checkJob(job, ctx, t);
+                if (v === 'send') {
+                    sendJob(job, ctx, t);
+                    return true;
+                }
+                if (v === 'later') held[job.key] = 1;
+                else changed = true;
             }
         }
-        finishRun('cancel');
+        return changed;
+    }
+
+    // 'send' | 'later' | 'final' (the command is finished: done, failed or skipped).
+    function checkJob(job, ctx, t) {
+        var r = analyzeRow(job, ctx), remove = isRemoveBuff(job.buffName);
+        if (job.sends > 0 && r.st !== 'missing' && (remove ? !r.act : !!(r.act && r.act.name === job.buffName))) {
+            // Sent before and not confirmed (e.g. another island was opened): it was applied.
+            finishJob(job, 'done');
+            return 'final';
+        }
+        if (job.sends >= MAX_SENDS) {
+            finishJob(job, 'fail');
+            return 'final';
+        }
+        if (r.ok) {
+            var st = ctx.stacks[job.buffName], top = (st && st.list.length) ? st.list[0] : null;
+            if (!top || !(top.n > 0)) {
+                finishJob(job, 'skip', 'nostock');
+                return 'final';
+            }
+            job.top = top;
+            return 'send';
+        }
+        if (r.st === 'pending' && ++job.blocked <= BLOCKED_MAX) {
+            job.notBefore = t + BLOCKED_RETRY;
+            return 'later';
+        }
+        finishJob(job, 'skip', r.st);
+        return 'final';
+    }
+
+    function sendJob(job, ctx, t) {
+        var top = job.top;
+        job.top = null;
+        E.lastSend = t;
+        if (!sendApply(ctx.gi || gi(), top.b, job.buiGrid)) {
+            finishJob(job, 'fail', 'unavail');
+            return;
+        }
+        job.st = 'sent';
+        job.sends++;
+        job.sentAt = t;
+        top.n--;
+        if (top.id) {
+            job.stack = top.id;
+            E.reserved[top.id] = (E.reserved[top.id] || 0) + 1;
+        }
+    }
+
+    // APPLY_BUFF like the stock module: a dServerAction batch of one command.
+    function sendApply(g, stack, grid) {
+        try {
+            var u = stack.GetUniqueId();
+            var uid = game.def('Communication.VO::dUniqueID').Create(u.uniqueID1, u.uniqueID2);
+            if (typeof g.SendServerActionBatch === 'function') {
+                g.SendServerActionBatch([game.def('Communication.VO::dServerAction').createForCommand(CMD_APPLY_BUFF, 0, grid, 0, uid)]);
+            } else {
+                g.SendServerAction(CMD_APPLY_BUFF, 0, grid, 0, uid);
+            }
+            return true;
+        } catch (e) {
+            log(e);
+            return false;
+        }
+    }
+
+    function appliedNow(job, ctx) {
+        var bui = safe(function () { return ctx.zone.GetBuildingFromGridPosition(job.buiGrid); }, null);
+        if (!bui || String(safe(function () { return bui.GetBuildingName_string(); }, '')) !== job.buiName) return false;
+        var act = activeBuff(bui, ctx.now);
+        return isRemoveBuff(job.buffName) ? !act : !!(act && act.name === job.buffName);
+    }
+
+    // Commands without a confirmation in time: the building decides (applied -> done, otherwise the
+    // command is queued again; the second one without a result fails).
+    function checkSent(t) {
+        var changed = false, ctxs = {};
+        for (var i = 0; i < E.runs.length; i++) {
+            var run = E.runs[i];
+            for (var j = 0; j < run.jobs.length; j++) {
+                var job = run.jobs[j];
+                if (job.st !== 'sent' || t - job.sentAt < CONFIRM_TIMEOUT) continue;
+                var ctx = own(ctxs, run.zoneId) ? ctxs[run.zoneId] : (ctxs[run.zoneId] = makeCtx(run.zoneId, true));
+                changed = true;
+                if (ctx.zoneOk && appliedNow(job, ctx)) finishJob(job, 'done');
+                else if (run.cancelled) finishJob(job, 'skip', 'cancel');
+                else if (ctx.zoneOk && job.sends >= MAX_SENDS) finishJob(job, 'fail');
+                else {
+                    release(job);
+                    job.st = 'wait';
+                    job.notBefore = 0;
+                }
+            }
+        }
+        return changed;
+    }
+
+    // Own 'buffApplied' matching a sent command: the command is done.
+    function confirmBuff(d) {
+        if (!busy()) return false;
+        var grid = Number(safe(function () { return d.target.GetGrid(); }, NaN));
+        var name = String(safe(function () { return d.buff.GetBuffDefinition().GetName_string(); }, '') || '');
+        var l = (isFinite(grid) && name) ? E.pend[viewedZone() + ':' + grid] : null;
+        if (!l) return false;
+        for (var i = 0; i < l.length; i++) {
+            if (l[i].st === 'sent' && l[i].buffName === name) {
+                finishJob(l[i], 'done');
+                schedule(0);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function runOpen(run) {
+        for (var j = 0; j < run.jobs.length; j++) {
+            if (run.jobs[j].st === 'wait' || run.jobs[j].st === 'sent') return true;
+        }
+        return false;
     }
 
     function runSummary(lr) {
         if (!lr) return '';
-        var head = lr.reason === 'done' ? txt('done') : (lr.reason === 'conn' ? txt('connLost') : txt('cancelled'));
-        return head + ': ' + lr.ok + ' / ' + lr.total;
+        return (lr.name ? lr.name + ' - ' : '') + (lr.reason === 'done' ? txt('done') : txt('cancelled')) +
+            ': ' + lr.ok + ' / ' + lr.total;
     }
 
-    function finishRun(reason) {
-        var run = S.run;
-        if (!run) return;
-        if (run.queue) {
-            try {
-                if (typeof run.queue.inId === 'number') clearInterval(run.queue.inId);
-                if (typeof run.queue.reset === 'function') run.queue.reset();
-                run.queue.tasksQueue = [];
-            } catch (e) {
-                log(e);
+    function finishRuns() {
+        var changed = false, quiet = isOpen() && !isMinimized();
+        for (var i = 0; i < E.runs.length; i++) {
+            var run = E.runs[i];
+            if (runOpen(run)) continue;
+            E.runs.splice(i--, 1);
+            var sum = {
+                id: run.id, name: run.name, reason: run.cancelled ? 'cancel' : 'done',
+                total: run.total, ok: run.ok, fail: run.fail, skip: run.skip
+            };
+            E.done.unshift(sum);
+            if (E.done.length > KEEP_DONE) E.done.length = KEEP_DONE;
+            if (!quiet) alertMsg(runSummary(sum));
+            changed = true;
+        }
+        return changed;
+    }
+
+    // Cancels one template (id) or the whole queue; commands already sent still get confirmed.
+    function cancelRun(id) {
+        for (var i = 0; i < E.runs.length; i++) {
+            var run = E.runs[i];
+            if (id !== undefined && run.id !== id) continue;
+            run.cancelled = true;
+            for (var j = 0; j < run.jobs.length; j++) {
+                if (run.jobs[j].st === 'wait') finishJob(run.jobs[j], 'skip', 'cancel');
             }
         }
-        for (var p in S.res) {
-            if (own(S.res, p) && S.res[p] === 'pending') {
-                if (reason === 'cancel') delete S.res[p];
-            }
-        }
-        S.lastRun = { reason: reason, total: run.total, ok: run.ok, fail: run.fail, skip: run.skip };
-        S.run = null;
-        syncSub();
-        var open = isOpen() && !isMinimized();
-        if (!open) {
-            S.record = null;
-            S.templateName = '';
-            S.templatePath = '';
-            S.manual = {};
-            S.res = {};
-            S.filter = 'all';
-            S.search = '';
+        finishRuns();
+        if (!busy()) {
+            stopTimer();
+            syncSub();
         }
         refresh(true);
-        if (!open) alertMsg(runSummary(S.lastRun));
+    }
+
+    function findRun(id) {
+        for (var i = 0; i < E.runs.length; i++) if (E.runs[i].id === id) return E.runs[i];
+        return null;
+    }
+
+    function runLeft(run) {
+        var o = { wait: 0, sent: 0 };
+        for (var j = 0; j < run.jobs.length; j++) {
+            if (run.jobs[j].st === 'wait') o.wait++;
+            else if (run.jobs[j].st === 'sent') o.sent++;
+        }
+        return o;
+    }
+
+    function queueInfo() {
+        var out = [];
+        for (var i = 0; i < E.runs.length; i++) {
+            var r = E.runs[i], left = runLeft(r);
+            out.push({
+                id: r.id, name: r.name, zoneId: r.zoneId, total: r.total, ok: r.ok, fail: r.fail, skip: r.skip,
+                wait: left.wait, sent: left.sent, cancelled: r.cancelled, waitZone: !!r.waitZone
+            });
+        }
+        return out;
+    }
+
+    function visitZone(zoneId) {
+        zoneId = Number(zoneId);
+        if (!isFinite(zoneId) || zoneId === viewedZone()) return;
+        try { game.gi.visitZone(zoneId); } catch (e) { log(e); }
+        requestRefresh(true);
     }
 
     /* ------------------------------------------------------------------ */
-    /* Recording                                                           */
+    /* Recording (the stock module rules)                                  */
     /* ------------------------------------------------------------------ */
 
     function cloneRecord(rec) {
@@ -1298,14 +1541,13 @@
     }
 
     function startRecording() {
-        if (S.run || S.rec) return;
-        S.rec = { backup: cloneRecord(S.record), backupName: S.templateName, count: 0 };
+        if (busy() || S.rec) return;
+        S.rec = { backup: cloneRecord(S.record), backupName: S.templateName, backupPath: S.templatePath, count: 0 };
+        S.showRecents = false;
         syncSub();
+        alertMsg(txt('recStarted'));
         refresh(true);
-        if (!setMinimized(true)) {
-            hideWindow();
-            alertMsg(txt('record'));
-        }
+        if (!setMinimized(true)) hideWindow();
     }
 
     function stopRecording(keep) {
@@ -1315,44 +1557,42 @@
         if (!keep) {
             S.record = rec.backup;
             S.templateName = rec.backupName;
+            S.templatePath = rec.backupPath;
         }
         if (S.record && !S.record.data.length) {
             S.record = null;
             S.templateName = '';
+            S.templatePath = '';
         }
         syncSub();
+        if (keep) alertMsg(txt('recStopped'));
         setMinimized(false);
         refresh(true);
     }
 
+    // Like the stock module: every own buff applied to a building is recorded (whatever its type),
+    // the first one fixes the island, buildings already in the list keep their recorded buff.
     function recordBuff(d) {
         var buff = d.buff, target = d.target;
         if (!buff || !target) return;
-        var type = String(safe(function () { return buff.GetType(); }, '') || '');
         var name = String(safe(function () { return buff.GetBuffDefinition().GetName_string(); }, '') || '');
-        if (!name || !(checkBuffType(type) || checkBuffType(name))) return;
         var grid = Number(safe(function () { return target.GetGrid(); }, NaN));
         var bn = String(safe(function () { return target.GetBuildingName_string(); }, '') || '');
-        if (!isFinite(grid) || !bn) return;
+        if (!name || !isFinite(grid) || !bn) return;
         var viewed = viewedZone();
         if (!S.record) {
             S.record = { zoneId: viewed, zoneUser: zoneOwnerName(viewed), data: [] };
             S.templateName = '';
+            S.templatePath = '';
         } else if (Number(S.record.zoneId) !== viewed) {
             return;
         }
-        var data = S.record.data, found = false;
+        var data = S.record.data;
         for (var i = 0; i < data.length; i++) {
-            if (Number(data[i].buiGrid) === grid) {
-                data[i].buffName = name;
-                data[i].buiName = bn;
-                found = true;
-                break;
-            }
+            if (Number(data[i].buiGrid) === grid) return;
         }
-        if (!found) data.push({ buffName: name, buiGrid: grid, buiName: bn });
+        data.push({ buffName: name, buiGrid: grid, buiName: bn });
         delete S.manual[grid];
-        delete S.res[grid];
         S.rec.count++;
         updateTitle();
         updateRecPanel();
@@ -1378,89 +1618,127 @@
         return out.data.length ? out : null;
     }
 
+    // Folder rules (lastDir, shortcuts folder) of the stock SaveLoadTemplate('buff').
     function getTpl() {
-        if (!S.tpl) {
-            S.tpl = safe(function () {
-                var slt = new SaveLoadTemplate(TEMPLATE_MODULE, function (data, name, fullPath) {
-                    var bm = window.__BUFF_MANAGER__;
-                    if (bm && typeof bm._onTemplate === 'function') bm._onTemplate(data, name, fullPath);
-                });
-                if (slt) {
-                    var origLoad = slt.load;
-                    slt.load = function () {
-                        try {
-                            var t = this;
-                            var file = new air.File(this.getLastDir());
-                            var txtFilter = new air.FileFilter("All files", "*.*");
-                            file.browseForOpen("Open", [txtFilter]);
-                            file.addEventListener(air.Event.SELECT, function (e) {
-                                e.target.addEventListener(air.Event.COMPLETE, function (ev) {
-                                    try {
-                                        var a = JSON.parse(ev.target.data);
-                                        var fullPath = ev.target.nativePath;
-                                        if (!t.skipLRU && typeof lruTemplate !== 'undefined') {
-                                            lruTemplate[t.module] = (lruTemplate[t.module] || new LRUCache(mainSettings.lruCacheSize));
-                                            lruTemplate[t.module].put(Date.now(), fullPath);
-                                        }
-                                        t.loadCallback(a, ev.target.name, fullPath);
-                                    } catch (err) {
-                                        if (typeof getText === 'function') alert(getText("bad_template"));
-                                        if (typeof debug === 'function') debug(err);
-                                    }
-                                });
-                                e.target.load();
-                            });
-                        } catch (e) {
-                            if (origLoad) origLoad.call(slt);
-                        }
-                    };
-                }
-                return slt;
-            }, null);
+        return safe(function () { return new SaveLoadTemplate(TEMPLATE_MODULE, function () { }); }, null);
+    }
+
+    function lastDir() {
+        var t = getTpl();
+        return String((t && safe(function () { return t.getLastDir(); }, '')) ||
+            safe(function () { return air.File.documentsDirectory.nativePath; }, '') || '');
+    }
+
+    function putLRU(path) {
+        if (!path) return;
+        try {
+            if (typeof lruTemplate === 'undefined' || typeof LRUCache === 'undefined') return;
+            lruTemplate[TEMPLATE_MODULE] = lruTemplate[TEMPLATE_MODULE] || new LRUCache(mainSettings.lruCacheSize);
+            lruTemplate[TEMPLATE_MODULE].put(now(), path);
+        } catch (e) {
+            log(e);
         }
-        return S.tpl;
+    }
+
+    function aliasOf(path) {
+        var list = isArr(cfg.recent) ? cfg.recent : [], np = normPath(path);
+        for (var i = 0; np && i < list.length; i++) {
+            if (list[i] && list[i].path && normPath(list[i].path) === np) return list[i].name;
+        }
+        return '';
     }
 
     function onTemplate(data, name, fullPath) {
-        if (S.disposed) return;
+        if (S.disposed || S.rec) return;
+        var rec = normalizeRecord(data);
+        if (!rec) {
+            alertMsg(txt('badTpl'));
+            return;
+        }
+        if (!fullPath && typeof lruTemplate !== 'undefined' && lruTemplate[TEMPLATE_MODULE] && lruTemplate[TEMPLATE_MODULE].tracker) {
+            var lastKey = lruTemplate[TEMPLATE_MODULE].tracker.slice(-1)[0];
+            if (lastKey) fullPath = lruTemplate[TEMPLATE_MODULE].store[lastKey];
+        }
+        S.record = rec;
+        S.templatePath = fullPath || '';
+        S.templateName = aliasOf(S.templatePath) || baseName(name) || baseName(S.templatePath);
+        S.manual = {};
+        S.filter = 'all';
+        S.search = '';
+        S.editingRecent = null;
+        S.showRecents = false;
+        if (!busy()) E.done = [];
+        $(SEL).find('.bm-search input').val('');
+        addRecentTemplate(S.templateName, S.templatePath);
+        openWindow();
+    }
+
+    // Open dialog of the stock module (same folder, LRU entry), keeping the full path of the file.
+    function loadTemplate() {
+        if (S.rec) return;
         try {
-            var rec = normalizeRecord(data);
-            if (!rec) throw new Error('template');
-            if (S.rec) return;
-            if (!fullPath && typeof lruTemplate !== 'undefined' && lruTemplate[TEMPLATE_MODULE] && lruTemplate[TEMPLATE_MODULE].tracker) {
-                var lastKey = lruTemplate[TEMPLATE_MODULE].tracker.slice(-1)[0];
-                if (lastKey) fullPath = lruTemplate[TEMPLATE_MODULE].store[lastKey];
-            }
-            S.record = rec;
-            S.templateName = String(name || '').replace(/\.[^.]+$/, '');
-            S.templatePath = fullPath || '';
-            S.manual = {};
-            if (!S.run) S.res = {};
-            S.lastRun = null;
-            S.filter = 'all';
-            addRecentTemplate(S.templateName, S.templatePath);
-            openWindow();
+            var f = new air.File(lastDir());
+            f.addEventListener(air.Event.SELECT, function (e) {
+                var sel = e.target;
+                sel.addEventListener(air.Event.COMPLETE, function (ev) {
+                    var data = null, p = String(ev.target.nativePath || '');
+                    try { data = JSON.parse(ev.target.data); } catch (err) { log(err); }
+                    if (!data) {
+                        alertMsg(txt('badTpl'));
+                        return;
+                    }
+                    putLRU(p);
+                    var bm = window.__BUFF_MANAGER__;
+                    if (bm && typeof bm._onTemplate === 'function') bm._onTemplate(data, ev.target.name, p);
+                });
+                sel.load();
+            });
+            f.browseForOpen('Open', [new air.FileFilter('All files', '*.*')]);
         } catch (e) {
             log(e);
             alertMsg(txt('loadError'));
         }
     }
 
-    function saveTemplate() {
-        if (!S.record || S.rec) return;
-        var t = getTpl();
-        if (!t) return;
-        try {
-            t.save(cloneRecord(S.record));
-            if (S.templateName) addRecentTemplate(S.templateName, S.templatePath || '');
-        } catch (e) { log(e); }
+    function fileName(name) {
+        var n = trim(String(name || '').replace(/[\\\/:*?"<>|]+/g, '_'));
+        return (n || TEMPLATE_MODULE + 'Template') + '.txt';
     }
 
-    function loadTemplate() {
-        if (S.rec) return;
-        var t = getTpl();
-        if (!t) return;
-        try { t.load(); } catch (e) { log(e); alertMsg(txt('loadError')); }
+    // Save dialog like SaveLoadTemplate.save() (same file format and folder rules); the saved file
+    // becomes the current template and a recent card.
+    function saveTemplate() {
+        if (!S.record || S.rec) return;
+        try {
+            var f = S.templatePath ? safe(function () { return new air.File(S.templatePath); }, null) : null;
+            if (!f) f = new air.File(lastDir()).resolvePath(fileName(S.templateName));
+            var data = JSON.stringify(cloneRecord(S.record), null, ' ');
+            f.addEventListener(air.Event.COMPLETE, function (ev) { onSaved(ev.target); });
+            f.save(data);
+        } catch (e) {
+            log(e);
+            alertMsg(txt('loadError'));
+        }
+    }
+
+    function onSaved(file) {
+        var p = String(safe(function () { return file.nativePath; }, '') || '');
+        try {
+            if (mainSettings.changeTemplateFolder) {
+                var t = getTpl(), a = {};
+                var dir = t ? t.getRealPath(file.parent.nativePath, true) : file.parent.nativePath;
+                a[TEMPLATE_MODULE + 'lastDir'] = dir;
+                mainSettings[TEMPLATE_MODULE + 'lastDir'] = dir;
+                settings.store(a);
+            }
+        } catch (e) {
+            log(e);
+        }
+        if (S.disposed || !p) return;
+        S.templatePath = p;
+        addRecentTemplate(baseName(file.name || p), p);
+        S.templateName = aliasOf(p) || baseName(file.name || p);
+        updateTitle();
     }
 
     function resetAll() {
@@ -1469,27 +1747,29 @@
         S.templateName = '';
         S.templatePath = '';
         S.manual = {};
-        if (!S.run) S.res = {};
-        S.lastRun = null;
         S.filter = 'all';
         S.search = '';
         S.editingRecent = null;
+        S.showRecents = false;
+        if (!busy()) {
+            E.done = [];
+            E.res = {};
+        }
         $(SEL).find('.bm-search input').val('');
         refresh(true);
     }
 
     function deleteRow(grid) {
-        if (S.run || S.rec || !S.record) return;
+        if (S.rec || !S.record) return;
         var data = S.record.data;
         for (var i = data.length - 1; i >= 0; i--) {
             if (Number(data[i].buiGrid) === grid) data.splice(i, 1);
         }
         delete S.manual[grid];
-        delete S.res[grid];
         if (!data.length) {
             S.record = null;
             S.templateName = '';
-            S.lastRun = null;
+            S.templatePath = '';
         }
         refresh(true);
     }
@@ -1613,9 +1893,9 @@
                 'background-color:rgba(0,0,0,.28);border:1px solid #8C6A3C;' + radius('4px') + '}',
             P + '.bm-prog .bm-btn{float:right;margin:3px 0 0 6px}',
             P + '.bm-prog .bm-del{float:right;margin:4px 3px 0 0}',
-            P + '.bm-pt{display:inline-block;vertical-align:top;min-width:150px;margin-right:12px;font-weight:bold;color:#F6E7C1}',
+            P + '.bm-pt{display:inline-block;vertical-align:top;min-width:150px;max-width:220px;margin-right:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:bold;color:#F6E7C1}',
             P + '.bm-pt .bm-i{margin:-3px 6px 0 0}',
-            P + '.bm-bar{display:inline-block;vertical-align:top;width:260px;height:12px;margin:9px 14px 0 0;overflow:hidden;' +
+            P + '.bm-bar{display:inline-block;vertical-align:top;width:180px;height:12px;margin:9px 14px 0 0;overflow:hidden;' +
                 'background-color:#2A231B;border:1px solid #8B6B3E;' + radius('6px') + '}',
             P + '.bm-bar i{display:block;height:10px;background-color:#D9A441;' + radius('5px') + '}',
             P + '.bm-pc{display:inline-block;vertical-align:top;margin-right:14px}',
@@ -1721,7 +2001,7 @@
             P + '.bm-recents-head{margin:0 0 8px 2px;font-size:12px;font-weight:bold;color:#E2C27A;text-transform:uppercase;letter-spacing:.5px}',
             P + '.bm-recents-head .bm-i{margin:-2px 6px 0 0}',
             P + '.bm-recents-grid{display:block;margin:0 -4px;max-height:220px;overflow-y:auto;padding-right:2px;box-sizing:border-box;font-size:0}',
-            P + '.bm-rec-item{position:relative;display:inline-block;vertical-align:top;width:256px;height:36px;line-height:34px;box-sizing:border-box;margin:4px;padding:0 54px 0 34px;cursor:pointer;' +
+            P + '.bm-rec-item{position:relative;display:inline-block;vertical-align:top;width:256px;height:36px;line-height:34px;box-sizing:border-box;margin:4px;padding:0 76px 0 34px;cursor:pointer;' +
                 'background-color:rgba(30,22,14,.65);border:1px solid #7D5F35;' + radius('4px') +
                 ';color:#F6E7C1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;' +
                 shadow('inset 0 1px 0 rgba(255,255,255,.05)') + '}',
@@ -1755,7 +2035,29 @@
             /* tooltip */
             P + '.bm-tip{position:absolute;z-index:3000;display:none;max-width:320px;padding:5px 8px;white-space:pre-line;text-align:left;' +
                 'pointer-events:none;' + F + 'font-size:12px;font-weight:normal;line-height:16px;color:#2B1D0E;text-shadow:none;' +
-                'background-color:#F4E6C3;border:1px solid #6B4A2B;' + radius('4px') + shadow('0 2px 6px rgba(0,0,0,.5)') + '}'
+                'background-color:#F4E6C3;border:1px solid #6B4A2B;' + radius('4px') + shadow('0 2px 6px rgba(0,0,0,.5)') + '}',
+            /* queue */
+            P + '.bm-pw{display:inline-block;vertical-align:top;width:180px;margin-right:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#FFB39A}',
+            P + '.bm-queue{height:30px;margin:-4px 0 8px;padding:0 3px 0 8px;line-height:28px;white-space:nowrap;overflow:hidden;' + PANEL + '}',
+            P + '.bm-queue .bm-btn{float:right;margin:1px 0 0 6px}',
+            P + '.bm-ql{display:inline-block;vertical-align:top;margin-right:8px;font-weight:bold;color:#F6E7C1}',
+            P + '.bm-ql .bm-i{margin:-3px 5px 0 0}',
+            P + '.bm-qi{display:inline-block;vertical-align:top;height:22px;max-width:230px;margin:2px 6px 0 0;padding:0 3px 0 8px;line-height:20px;' +
+                'overflow:hidden;white-space:nowrap;font-size:12px;color:#E9DDBF;background-color:rgba(0,0,0,.25);border:1px solid #6B5634;' + radius('11px') + '}',
+            P + '.bm-qi .bm-i{margin:-2px 4px 0 -3px}',
+            P + '.bm-qn{display:inline-block;vertical-align:top;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:bold}',
+            P + '.bm-qi b{display:inline-block;vertical-align:top;margin:0 2px 0 6px;font-weight:normal;color:#F6E7C1}',
+            P + '.bm-qi .bm-del{width:18px;height:18px;margin:1px 0 0 2px;vertical-align:top;-webkit-background-size:14px 13px;background-size:14px 13px}',
+
+            /* recent templates in the list view, quick start */
+            P + '.bm-recw .bm-recents{width:auto;margin:0 0 8px;padding:6px 10px 8px}',
+            P + '.bm-recw .bm-recents-grid{max-height:132px}',
+            P + '.bm-rec-item.bm-rec-editing{padding-right:54px}',
+            P + '.bm-rec-item.bm-cur{border-color:#D9A441}',
+            P + '.bm-rec-go{position:absolute;right:50px;top:8px;width:22px;height:18px;line-height:18px;text-align:center;cursor:pointer;opacity:.6}',
+            P + '.bm-rec-go:hover{opacity:1}',
+            P + '.bm-rec-go .bm-i{margin:2px 0 0;vertical-align:top}',
+            P + '.bm-tile.bm-dis,' + P + '.bm-tile.bm-dis:hover{opacity:.45;cursor:default;background-color:rgba(0,0,0,.22);border-color:#6B5634}'
         ];
         R = R.concat(checkboxRules(), windowIconRules());
         var el = document.createElement('style');
@@ -1836,6 +2138,7 @@
         buffed: ['BuffStarIndicator1', 'buffed', 'buf'],
         done: ['IconPlayerIn', 'done', 'ok'],
         pending: ['IconPlayerWait', 'pending', 'wait'],
+        queued: ['IconPlayerWait', 'queued', 'wait'],
         failed: ['FailedIcon', 'failed', 'bad'],
         zone: ['IconToolTipWarning', 'unavailable', 'bad'],
         missing: ['IconToolTipWarning', 'unavailable', 'bad'],
@@ -1873,12 +2176,19 @@
             (disabled ? ' disabled' : '') + '>' + ic(icon, w, h) + '</button>';
     }
 
+    // Replaces the content only when it changed (keeps hover states and tooltips of live parts).
+    function setHtml($el, h) {
+        if (!$el.length || $el.data('bmh') === h) return;
+        $el.data('bmh', h).html(h);
+    }
+
     function colgroup() {
         return '<colgroup><col class="bm-c0"><col class="bm-c1"><col class="bm-c2"><col class="bm-c3"><col class="bm-c4"><col class="bm-c5"></colgroup>';
     }
 
     function skeleton() {
-        return '<div class="bm-empty bm-hide"></div>' +
+        return '<div class="bm-progw"></div>' +
+            '<div class="bm-empty bm-hide"></div>' +
             '<div class="bm-recp bm-hide"></div>' +
             '<div class="bm-list bm-hide">' +
                 '<div class="bm-info">' +
@@ -1887,13 +2197,14 @@
                             '<input type="text" maxlength="40" placeholder="' + esc(txt('search')) + '"></span>' +
                         iconBtn('update', 'ButtonIconReload', 22, 21, txt('update')) +
                         iconBtn('settings', 'OptionsButtonOptions', 22, 22, txt('settings')) +
-                        iconBtn('record', 'ButtonIconStart', 20, 18, txt('record')) +
+                        iconBtn('tpls', 'ChangeLogIcon', 20, 20, txt('templates')) +
+                        iconBtn('record', 'ButtonIconStart', 20, 18, txt('recMore') || txt('record')) +
                     '</div>' +
                     '<div class="bm-infol"></div>' +
                 '</div>' +
                 '<div class="bm-setw"></div>' +
+                '<div class="bm-recw"></div>' +
                 '<div class="bm-cards"></div>' +
-                '<div class="bm-progw"></div>' +
                 '<div class="bm-chips"></div>' +
                 '<div class="bm-grid">' +
                     '<div class="bm-thead"><table>' + colgroup() + '<thead><tr>' +
@@ -1917,7 +2228,7 @@
             '<div class="bm-frt">' +
                 btn('reset', 'ButtonIconThrowAway', 24, 23, txt('reset')) +
                 '<button type="button" class="bm-btn bm-act" data-bm="apply">' + ic('ButtonIconAcceptLoot', 36, 20) +
-                    '<span>' + esc(txt('apply')) + '</span><span class="bm-badge">0</span></button>' +
+                    '<span class="bm-al">' + esc(txt('apply')) + '</span><span class="bm-badge">0</span></button>' +
                 '<button type="button" class="bm-btn" data-dismiss="modal">' + ic('Close', 20, 18) +
                     '<span>' + esc(txt('close')) + '</span></button>' +
             '</div>';
@@ -1950,25 +2261,49 @@
         return $m;
     }
 
+    function runName(run) { return run.name || run.zoneUser || ('#' + run.id); }
+
+    function runDone(run) { return run.ok + run.fail + run.skip; }
+
+    // The template shown in the progress line: the first one that is not waiting for its island.
+    function activeRun() {
+        for (var i = 0; i < E.runs.length; i++) if (!E.runs[i].waitZone) return E.runs[i];
+        return E.runs[0] || null;
+    }
+
+    function queueTip() {
+        var out = [];
+        for (var i = 0; i < E.runs.length; i++) {
+            var r = E.runs[i];
+            out.push(runName(r) + ': ' + runDone(r) + ' / ' + r.total + (r.waitZone ? ' (' + txt('waitZone') + ')' : ''));
+        }
+        return out.join('\n');
+    }
+
     function updateTitle() {
         var $t = $(SEL + ' .modal-title');
         if (!$t.length) return;
         var h = ic('ProductivityBuffLvl3', 34, 34, 'bm-ti') + esc(txt('title'));
         if (S.rec) {
-            h += '<span class="bm-tag bm-rec"' + tipAttr(txt('record')) + '>' + ic('BuffStarIndicator1', 18, 18) + S.rec.count + '</span>' +
-                iconBtn('recOk', 'OKIcon', 20, 20, txt('ok'));
+            h += '<span class="bm-tag bm-rec"' + tipAttr(txt('recProgress')) + '>' + ic('BuffStarIndicator1', 18, 18) + S.rec.count + '</span>' +
+                iconBtn('recOk', 'OKIcon', 20, 20, txt('recStop') || txt('ok'));
         } else {
-            if (S.run) {
-                h += '<span class="bm-tag bm-run"' + tipAttr(txt('apply')) + '>' + ic('IconPlayerWait', 18, 18) +
-                    (S.run.ok + S.run.fail + S.run.skip) + ' / ' + S.run.total + '</span>' +
-                    iconBtn('cancelRun', 'ButtonIconAbort', 20, 20, txt('cancel'));
+            if (busy()) {
+                var done = 0, total = 0;
+                for (var i = 0; i < E.runs.length; i++) {
+                    done += runDone(E.runs[i]);
+                    total += E.runs[i].total;
+                }
+                h += '<span class="bm-tag bm-run"' + tipAttr(queueTip()) + '>' + ic('IconPlayerWait', 18, 18) +
+                    done + ' / ' + total + (E.runs.length > 1 ? ' \u00b7 ' + E.runs.length : '') + '</span>' +
+                    iconBtn('cancelAll', 'ButtonIconAbort', 20, 20, E.runs.length > 1 ? txt('clearQueue') : txt('cancel'));
             }
             if (S.templateName) {
                 h += '<span class="bm-tag"' + tipAttr(txt('current')) + '>' + ic('ChangeLogIcon', 18, 18) + esc(S.templateName) + '</span>';
             }
         }
         flushIcons();
-        $t.html(h);
+        setHtml($t, h);
     }
 
     function renderInfo() {
@@ -1982,7 +2317,7 @@
             h += '<span class="bm-it bm-warn">' + ic('IconPlayerWait', 18, 18) + esc(txt('loading')) + '</span>';
         } else if (!zoneOk) {
             h += '<span class="bm-it bm-warn">' + ic('IconToolTipWarning', 18, 18) + esc(txt('unavailable')) + '</span>' +
-                '<button type="button" class="bm-btn bm-sm" data-bm="visit"' + (S.run ? ' disabled' : '') + '>' +
+                '<button type="button" class="bm-btn bm-sm" data-bm="visit">' +
                 ic('ButtonIconSendToOtherZone', 22, 20) + '<span>' + esc(txt('visit')) + '</span></button>';
         }
         return h;
@@ -2015,32 +2350,79 @@
             (o.skip ? '<span class="bm-pc"' + tipAttr(txt('unavailable')) + '>' + ic('IconToolTipWarning', 20, 20) + o.skip + '</span>' : '');
     }
 
+    function sumHead(lr) { return lr.reason === 'done' ? txt('done') : txt('cancelled'); }
+
+    function sumIcon(lr) {
+        return lr.reason === 'cancel' ? 'ButtonIconAbort' : ((lr.fail || lr.skip) ? 'IconToolTipWarning' : 'IconPlayerIn');
+    }
+
+    // Active template with its progress, the rest of the queue as chips; when the queue is empty,
+    // the summary of the finished templates.
     function renderProg() {
-        var run = S.run, lr = S.lastRun;
+        var run = activeRun(), h, i, r;
         if (run) {
-            var done = run.ok + run.fail + run.skip,
+            var done = runDone(run), left = runLeft(run),
                 pct = run.total ? Math.min(100, Math.round(done * 100 / run.total)) : 0,
-                waiting = run.cancelled || (run.ok + run.skip >= run.total),
-                icon = waiting ? 'IconPlayerWait' : 'ButtonIconStart',
-                label = waiting ? txt('pending') : txt('apply');
-            return '<div class="bm-prog">' +
-                '<button type="button" class="bm-btn bm-sm" data-bm="cancelRun"' + (run.cancelled ? ' disabled' : '') + '>' +
+                user = run.zoneUser || zoneOwnerName(run.zoneId) || String(run.zoneId),
+                icon = run.waitZone ? 'IconToolTipWarning' : (left.wait ? 'ButtonIconStart' : 'IconPlayerWait'),
+                tip = runName(run) + '\n' + (run.waitZone ? txt('waitZone') + ': ' + user : (left.wait ? txt('apply') : txt('pending')));
+            h = '<div class="bm-prog">' +
+                '<button type="button" class="bm-btn bm-sm" data-bm="cancelRun" data-id="' + run.id + '"' + (run.cancelled ? ' disabled' : '') + '>' +
                     ic('ButtonIconAbort', 20, 19) + '<span>' + esc(txt('cancel')) + '</span></button>' +
-                '<span class="bm-pt">' + ic(icon, 20, 20) + esc(label) + '</span>' +
-                '<span class="bm-bar"><i style="width:' + pct + '%"></i></span>' +
+                (run.waitZone ? '<button type="button" class="bm-btn bm-sm" data-bm="visitRun" data-id="' + run.id + '">' +
+                    ic('ButtonIconSendToOtherZone', 22, 20) + '<span>' + esc(txt('visit')) + '</span></button>' : '') +
+                '<span class="bm-pt"' + tipAttr(tip) + '>' + ic(icon, 20, 20) + esc(runName(run)) + '</span>' +
+                (run.waitZone ?
+                    '<span class="bm-pw">' + esc(txt('waitZone') + ': ' + user) + '</span>' :
+                    '<span class="bm-bar"><i style="width:' + pct + '%"></i></span>') +
                 '<span class="bm-pc"><b>' + done + '</b> / ' + run.total + '</span>' +
                 progCounts(run) + '</div>';
+            if (E.runs.length > 1) {
+                var q = '';
+                for (i = 0; i < E.runs.length; i++) {
+                    r = E.runs[i];
+                    if (r === run) continue;
+                    q += '<span class="bm-qi"' + tipAttr(runName(r) + (r.waitZone ? '\n' + txt('waitZone') : '')) + '>' +
+                        (r.waitZone ? ic('IconToolTipWarning', 16, 16) : '') +
+                        '<span class="bm-qn">' + esc(runName(r)) + '</span><b>' + runDone(r) + ' / ' + r.total + '</b>' +
+                        '<i class="bm-del" data-bm="cancelRun" data-id="' + r.id + '"' + tipAttr(txt('cancel')) + '></i></span>';
+                }
+                h += '<div class="bm-queue">' +
+                    '<button type="button" class="bm-btn bm-sm" data-bm="cancelAll">' + ic('ButtonIconAbort', 20, 19) +
+                        '<span>' + esc(txt('clearQueue') || txt('cancel')) + '</span></button>' +
+                    '<span class="bm-ql">' + ic('IconPlayerWait', 18, 18) + esc(txt('inQueue')) + ':</span>' + q + '</div>';
+            }
+            return h;
         }
-        if (lr) {
-            var clean = lr.reason === 'done' && !lr.fail && !lr.skip,
-                icon2 = lr.reason === 'cancel' ? 'ButtonIconAbort' : (clean ? 'IconPlayerIn' : 'IconToolTipWarning'),
-                head = lr.reason === 'done' ? txt('done') : (lr.reason === 'conn' ? txt('connLost') : txt('cancelled'));
-            return '<div class="bm-prog">' +
-                '<i class="bm-del" data-bm="dismissRun"' + tipAttr(txt('close')) + '></i>' +
-                '<span class="bm-pt">' + ic(icon2, 20, 20) + esc(head) + '</span>' +
-                progCounts(lr) + '</div>';
+        var lr = E.done[0];
+        if (!lr) return '';
+        h = '<div class="bm-prog">' +
+            '<i class="bm-del" data-bm="dismissRun"' + tipAttr(txt('close')) + '></i>' +
+            '<span class="bm-pt"' + tipAttr(lr.name ? lr.name + '\n' + sumHead(lr) : '') + '>' + ic(sumIcon(lr), 20, 20) +
+                esc(lr.name || sumHead(lr)) + '</span>' +
+            '<span class="bm-pc">' + esc(sumHead(lr)) + ': <b>' + lr.ok + '</b> / ' + lr.total + '</span>' +
+            (lr.fail ? '<span class="bm-pc"' + tipAttr(txt('failed')) + '>' + ic('FailedIcon', 17, 20) + lr.fail + '</span>' : '') +
+            (lr.skip ? '<span class="bm-pc"' + tipAttr(txt('unavailable')) + '>' + ic('IconToolTipWarning', 20, 20) + lr.skip + '</span>' : '') +
+            '</div>';
+        if (E.done.length > 1) {
+            var older = '';
+            for (i = 1; i < E.done.length; i++) {
+                r = E.done[i];
+                older += '<span class="bm-qi"' + tipAttr(sumHead(r) + (r.fail ? '\n' + txt('failed') + ': ' + r.fail : '') +
+                        (r.skip ? '\n' + txt('unavailable') + ': ' + r.skip : '')) + '>' + ic(sumIcon(r), 16, 16) +
+                    '<span class="bm-qn">' + esc(r.name || '#' + r.id) + '</span><b>' + r.ok + ' / ' + r.total + '</b></span>';
+            }
+            h += '<div class="bm-queue">' + older + '</div>';
         }
-        return '';
+        return h;
+    }
+
+    function renderProgPanel() {
+        var $w = $(SEL + ' .bm-progw');
+        if (!$w.length) return;
+        var h = S.rec ? '' : renderProg();
+        flushIcons();
+        setHtml($w, h);
     }
 
     function renderChips() {
@@ -2061,19 +2443,27 @@
 
     function renderSettings() {
         if (!S.showSettings) return '';
+        var seg = '';
+        for (var i = 0; i < SPEEDS.length; i++) {
+            seg += '<span class="bm-seg' + (i === 0 ? ' bm-first' : '') + (i === SPEEDS.length - 1 ? ' bm-last' : '') +
+                (cfg.delay === SPEEDS[i] ? ' bm-act' : '') + '" data-bm="speed" data-v="' + SPEEDS[i] + '">' +
+                esc(unit('SecondsShort', SPEEDS[i] / 1000)) + '</span>';
+        }
         return '<div class="bm-set">' +
             '<div class="bm-sg"><span class="bm-sl">' + esc(txt('select')) + ':</span>' +
                 opt('optStopped', cfg.buffStopped, 'BuildingSleepMode', 16, 20, txt('stopped')) +
                 opt('optMines', !cfg.safeMines, 'DetailsIconDeposit', 20, 19, txt('depleted')) + '</div>' +
+            '<div class="bm-sg"><span class="bm-sl">' + esc(txt('speed')) + ':</span>' + seg + '</div>' +
+            '<div class="bm-sg">' + opt('optAutoMin', cfg.autoMin, 'IconPlayerWait', 18, 18, txt('autoMin')) + '</div>' +
             '</div>';
     }
 
-    function rowHtml(r, odd, zoneOk, running) {
+    function rowHtml(r, odd, zoneOk) {
         var st = ST[r.st] || ST.unavail, bn = buiTitle(r.buiName), fn = buffTitle(r.buffName), sText = txt(st[1]) || r.st;
         var sTip = r.tip || (r.st === 'unsafe' ? r.timeTip : '') || (sText.length > 22 ? sText : '');
         var tTip = r.timeTip || (r.endAt ? txt('time') : '');
         var tVal = r.endAt ? fmtDur(r.endAt - clientTime()) : r.time;
-        var locked = S.rec || (S.run && !!S.res[r.grid]);
+        var locked = !!S.rec;
         return '<tr class="bm-row' + (odd ? ' bm-odd' : '') + (r.sel ? ' bm-sel' : '') + (r.ok ? '' : ' bm-na') + '" data-g="' + r.grid + '">' +
             '<td class="bm-c0"><i class="bm-cb' + (r.sel ? ' bm-on' : '') + (r.ok && !locked ? '' : ' bm-dis') + '"></i></td>' +
             '<td class="bm-c1">' +
@@ -2085,7 +2475,7 @@
             '<td class="bm-c3"' + tipAttr(sTip) + '>' + ic(st[0], 20, 20) + '<span class="bm-s-' + st[2] + '">' + esc(sText) + '</span></td>' +
             '<td class="bm-c4"' + tipAttr(tTip) + '><span class="bm-t' + (r.timeCls ? ' bm-' + r.timeCls : '') + '"' +
                 (r.endAt ? ' data-end="' + r.endAt + '"' : '') + '>' + esc(tVal) + '</span></td>' +
-            '<td class="bm-c5"><i class="bm-del' + (running ? ' bm-dis' : '') + '" data-bm="del"' + tipAttr(txt('del')) + '></i></td>' +
+            '<td class="bm-c5"><i class="bm-del' + (locked ? ' bm-dis' : '') + '" data-bm="del"' + tipAttr(txt('del')) + '></i></td>' +
             '</tr>';
     }
 
@@ -2107,9 +2497,9 @@
     function renderTable() {
         var $m = $(SEL);
         if (!$m.length) return;
-        var rows = visibleRows(), zoneOk = !!(S.ctx && S.ctx.zoneOk), running = !!S.run, h = '';
-        for (var i = 0; i < rows.length; i++) h += rowHtml(rows[i], i % 2 === 1, zoneOk, running);
-        if (!h) h = '<tr class="bm-nomatch"><td colspan="6">' + ic('SearchBtnIcon', 26, 25) + '</td></tr>';
+        var rows = visibleRows(), zoneOk = !!(S.ctx && S.ctx.zoneOk), out = [];
+        for (var i = 0; i < rows.length; i++) out.push(rowHtml(rows[i], i % 2 === 1, zoneOk));
+        var h = out.length ? out.join('') : '<tr class="bm-nomatch"><td colspan="6">' + ic('SearchBtnIcon', 26, 25) + '</td></tr>';
         flushIcons();
         var tb = $m.find('.bm-tbody')[0], top = tb ? tb.scrollTop : 0;
         $m.find('.bm-tbody tbody').html(h);
@@ -2154,83 +2544,89 @@
         fitTable();
     }
 
+    // Recent templates inside the list view (open another one or put it into the queue).
+    function renderRecentsPanel() {
+        var $m = $(SEL);
+        if (!$m.length) return;
+        var has = isArr(cfg.recent) && cfg.recent.length > 0, show = has && S.showRecents && !!S.record && !S.rec;
+        var h = show ? recentsHtml() : '';
+        flushIcons();
+        $m.find('.bm-recw').html(h);
+        $m.find('.bm-tools [data-bm="tpls"]').toggleClass('bm-act', show).prop('disabled', !has);
+    }
+
     function renderList() {
         var $m = $(SEL);
         if (!$m.length) return;
-        var info = renderInfo(), cards = renderCards(), prog = renderProg(), chips = renderChips();
+        var info = renderInfo(), cards = renderCards(), chips = renderChips();
         flushIcons();
         $m.find('.bm-infol').html(info);
         $m.find('.bm-cards').html(cards);
-        $m.find('.bm-progw').html(prog);
         $m.find('.bm-chips').html(chips);
         renderSettingsPanel();
-        $m.find('.bm-tools [data-bm="update"]').prop('disabled', !!S.run);
-        $m.find('.bm-tools [data-bm="record"]').prop('disabled', !!S.run || !(S.ctx && S.ctx.zoneOk));
+        renderRecentsPanel();
+        $m.find('.bm-tools [data-bm="record"]').prop('disabled', busy() || !(S.ctx && S.ctx.zoneOk));
         renderTable();
     }
 
-    function emptyHtml() {
-        var loadLbl = '';
-        var recLbl = '';
-        try {
-            if (typeof getText === 'function') {
-                var t1 = getText('load_template'), t2 = getText('buff_start_record');
-                if (t1 && t1.charAt(0) !== '!') loadLbl = t1;
-                if (t2 && t2.charAt(0) !== '!') recLbl = t2;
+    function recentsHtml() {
+        var list = isArr(cfg.recent) ? cfg.recent : [], cur = normPath(S.templatePath), items = '';
+        for (var i = 0; i < list.length && i < 10; i++) {
+            var it = list[i];
+            if (!it) continue;
+            var nm = it.name || baseName(it.path) || ('#' + (i + 1));
+            if (S.editingRecent === i) {
+                items += '<div class="bm-rec-item bm-rec-editing" data-idx="' + i + '">' +
+                    ic('ChangeLogIcon', 20, 20, 'bm-rec-ico') +
+                    '<input type="text" class="bm-rec-input" value="' + esc(nm) + '" maxlength="40" data-idx="' + i + '">' +
+                    '<span class="bm-rec-save" data-bm="saveRecent" data-idx="' + i + '"' + tipAttr(txt('ok')) + '>' +
+                        ic('OKIcon', 18, 18) +
+                    '</span>' +
+                    '<i class="bm-del bm-rec-cancel" data-bm="cancelRecent" data-idx="' + i + '"' + tipAttr(txt('cancel')) + '></i>' +
+                '</div>';
+            } else {
+                items += '<div class="bm-rec-item' + (cur && it.path && normPath(it.path) === cur ? ' bm-cur' : '') +
+                        '" data-bm="openRecent" data-idx="' + i + '"' + tipAttr(nm.length > 24 ? nm : '') + '>' +
+                    ic('ChangeLogIcon', 20, 20, 'bm-rec-ico') +
+                    '<span class="bm-rec-name">' + esc(nm) + '</span>' +
+                    '<span class="bm-rec-go" data-bm="queueRecent" data-idx="' + i + '"' + tipAttr(txt('quick')) + '>' +
+                        ic('ButtonIconAcceptLoot', 22, 14) +
+                    '</span>' +
+                    '<span class="bm-rec-edit" data-bm="editRecent" data-idx="' + i + '"' + tipAttr(txt('rename')) + '>' +
+                        ic('IconMailWrite', 16, 16) +
+                    '</span>' +
+                    '<i class="bm-del bm-rec-del" data-bm="delRecent" data-idx="' + i + '"' + tipAttr(txt('del')) + '></i>' +
+                '</div>';
             }
-        } catch (e) { }
-        if (!loadLbl) loadLbl = 'Загрузить шаблон';
-        if (!recLbl) recLbl = 'Начать запись';
-        var h = ic('HelpOrnamentalTop', 293, 70, 'bm-orn') +
-            '<div>' +
-                '<span class="bm-tile" data-bm="load">' + ic('IconMailInbox', 56, 56) + '<span>' + esc(loadLbl) + '</span></span>' +
-                '<span class="bm-tile" data-bm="record">' + ic('ProductivityBuffLvl3', 48, 48) + '<span>' + esc(recLbl) + '</span></span>' +
-            '</div>';
-
-        var list = dedupeRecent(isArr(cfg.recent) ? cfg.recent : []);
-        if (list.length > 0) {
-            var itemsHtml = '';
-            for (var i = 0; i < list.length && i < 10; i++) {
-                var it = list[i];
-                var nm = it.name || (it.path ? it.path.split(/[\/\\]/).pop().replace(/\.[^.]+$/, '') : ('#' + (i + 1)));
-                if (S.editingRecent === i) {
-                    itemsHtml += '<div class="bm-rec-item bm-rec-editing" data-idx="' + i + '">' +
-                        ic('ChangeLogIcon', 20, 20, 'bm-rec-ico') +
-                        '<input type="text" class="bm-rec-input" value="' + esc(nm) + '" maxlength="40" data-idx="' + i + '">' +
-                        '<span class="bm-rec-save" data-bm="saveRecent" data-idx="' + i + '"' + tipAttr(txt('ok')) + '>' +
-                            ic('OKIcon', 18, 18) +
-                        '</span>' +
-                        '<i class="bm-del bm-rec-cancel" data-bm="cancelRecent" data-idx="' + i + '"' + tipAttr(txt('cancel')) + '></i>' +
-                    '</div>';
-                } else {
-                    itemsHtml += '<div class="bm-rec-item" data-bm="openRecent" data-idx="' + i + '">' +
-                        ic('ChangeLogIcon', 20, 20, 'bm-rec-ico') +
-                        '<span class="bm-rec-name">' + esc(nm) + '</span>' +
-                        '<span class="bm-rec-edit" data-bm="editRecent" data-idx="' + i + '"' + tipAttr(txt('rename')) + '>' +
-                            ic('IconMailWrite', 16, 16) +
-                        '</span>' +
-                        '<i class="bm-del bm-rec-del" data-bm="delRecent" data-idx="' + i + '"' + tipAttr(txt('del')) + '></i>' +
-                    '</div>';
-                }
-            }
-            h += '<div class="bm-recents">' +
-                '<div class="bm-recents-head">' +
-                    ic('ChangeLogIcon', 20, 20) +
-                    '<span>' + esc(txt('history') || 'История') + '</span>' +
-                '</div>' +
-                '<div class="bm-recents-grid">' + itemsHtml + '</div>' +
-            '</div>';
         }
-        return h;
+        if (!items) return '';
+        return '<div class="bm-recents">' +
+            '<div class="bm-recents-head">' + ic('ChangeLogIcon', 20, 20) +
+                '<span>' + esc(txt('history') || txt('templates')) + '</span>' +
+            '</div>' +
+            '<div class="bm-recents-grid">' + items + '</div>' +
+        '</div>';
+    }
+
+    function emptyHtml() {
+        return ic('HelpOrnamentalTop', 293, 70, 'bm-orn') +
+            '<div>' +
+                '<span class="bm-tile" data-bm="load">' + ic('IconMailInbox', 56, 56) + '<span>' + esc(txt('loadTpl')) + '</span></span>' +
+                '<span class="bm-tile' + (busy() ? ' bm-dis' : '') + '" data-bm="record">' + ic('ProductivityBuffLvl3', 48, 48) +
+                    '<span>' + esc(txt('recStart')) + '</span></span>' +
+            '</div>' + recentsHtml();
     }
 
     function updateRecPanel() {
         var $p = $(SEL + ' .bm-recp');
         if (!$p.length || !S.rec) return;
+        var rec = S.record, user = rec ? (rec.zoneUser || zoneOwnerName(rec.zoneId) || String(rec.zoneId)) : '';
         var h = ic('ProductivityBuffLvl3', 48, 48, 'bm-big') +
-            '<h3>' + esc(txt('record')) + '</h3>' +
+            '<h3>' + esc(txt('recProgress') || txt('record')) + '</h3>' +
+            (rec ? '<div class="bm-rc">' + ic('IconMailTypeFriend', 22, 18) + esc(txt('player')) + ': <b>' + esc(user) + '</b>&nbsp;&nbsp; ' +
+                ic('StarMenuTabIconBuilding', 18, 18) + esc(txt('buildings')) + ': <b>' + rec.data.length + '</b></div>' : '') +
             '<div class="bm-rc">' + ic('BuffStarIndicator1', 22, 22) + esc(txt('buffed')) + ': <b>' + S.rec.count + '</b></div>' +
-            '<button type="button" class="bm-btn bm-act" data-bm="recOk">' + ic('OKIcon', 20, 20) + '<span>' + esc(txt('ok')) + '</span></button>' +
+            '<button type="button" class="bm-btn bm-act" data-bm="recOk">' + ic('OKIcon', 20, 20) + '<span>' + esc(txt('recStop') || txt('ok')) + '</span></button>' +
             '<button type="button" class="bm-btn" data-bm="recCancel">' + ic('ButtonIconAbort', 20, 19) + '<span>' + esc(txt('discard')) + '</span></button>';
         flushIcons();
         $p.html(h);
@@ -2239,11 +2635,12 @@
     function updateFooter() {
         var $f = $(SEL + ' .modal-footer');
         if (!$f.length) return;
-        var rec = !!S.rec, has = !!S.record, sel = (S.counts && S.counts.sel) || 0;
+        var rec = !!S.rec, has = !!S.record, sel = (has && S.counts && S.counts.sel) || 0;
         $f.find('[data-bm="save"]').prop('disabled', !has || rec);
         $f.find('[data-bm="load"]').prop('disabled', rec);
         $f.find('[data-bm="reset"]').prop('disabled', !has || rec);
         $f.find('[data-bm="apply"]').prop('disabled', !has || rec || !sel);
+        $f.find('.bm-al').text(busy() ? (txt('enqueue') || txt('apply')) : txt('apply'));
         $f.find('.bm-badge').text(String(sel)).toggleClass('bm-hide', !has || rec);
     }
 
@@ -2254,14 +2651,20 @@
         $m.find('.bm-empty').toggleClass('bm-hide', mode !== 'empty');
         $m.find('.bm-recp').toggleClass('bm-hide', mode !== 'rec');
         $m.find('.bm-list').toggleClass('bm-hide', mode !== 'list');
+        renderProgPanel();
         if (mode === 'empty') {
             var h = emptyHtml();
             flushIcons();
             $m.find('.bm-empty').html(h);
-        } else if (mode === 'rec') {
-            updateRecPanel();
         } else {
-            renderList();
+            // Hidden views keep no stale inputs (rename field) behind.
+            $m.find('.bm-empty').html('');
+            if (mode === 'rec') {
+                $m.find('.bm-recw').html('');
+                updateRecPanel();
+            } else {
+                renderList();
+            }
         }
         updateFooter();
     }
@@ -2296,7 +2699,7 @@
             var s = fmtDur(left);
             if (this.textContent !== s) this.textContent = s;
         });
-        if (expired) requestRefresh();
+        if (expired) requestRefresh(true);
     }
 
     /* ------------------------------------------------------------------ */
@@ -2356,7 +2759,6 @@
 
     function toggleRow(grid) {
         if (S.rec) return;
-        if (S.run && S.res[grid]) return;
         var r = findRow(grid);
         if (!r || !r.ok) return;
         S.manual[grid] = !r.sel;
@@ -2369,7 +2771,6 @@
         var rows = visibleRows(), list = [], all = true, i;
         for (i = 0; i < rows.length; i++) {
             if (!rows[i].ok) continue;
-            if (S.run && S.res[rows[i].grid]) continue;
             list.push(rows[i]);
             if (!rows[i].sel) all = false;
         }
@@ -2380,19 +2781,30 @@
     }
 
     function visitRecordZone() {
-        if (!S.record || S.run || S.rec) return;
-        try { game.gi.visitZone(Number(S.record.zoneId)); } catch (e) { log(e); }
-        requestRefresh();
+        if (!S.record || S.rec) return;
+        visitZone(S.record.zoneId);
+    }
+
+    function stopEvent(e) {
+        if (e) { e.stopPropagation(); e.stopImmediatePropagation(); }
     }
 
     function onAction(act, $el, e) {
         var v;
         switch (act) {
             case 'apply': startRun(); break;
-            case 'cancelRun': cancelRun(); break;
+            case 'cancelRun':
+                v = Number($el.attr('data-id'));
+                if (isFinite(v)) cancelRun(v);
+                break;
+            case 'cancelAll': cancelRun(); break;
+            case 'visitRun':
+                v = findRun(Number($el.attr('data-id')));
+                if (v) visitZone(v.zoneId);
+                break;
             case 'dismissRun':
-                S.lastRun = null;
-                S.res = {};
+                E.done = [];
+                if (!busy()) E.res = {};
                 refresh(true);
                 break;
             case 'save': saveTemplate(); break;
@@ -2407,36 +2819,46 @@
                 renderSettingsPanel();
                 fitTable();
                 break;
+            case 'tpls':
+                S.showRecents = !S.showRecents;
+                S.editingRecent = null;
+                renderRecentsPanel();
+                fitTable();
+                break;
             case 'visit': visitRecordZone(); break;
             case 'goto': gotoGrid(rowGrid($el)); break;
             case 'del': deleteRow(rowGrid($el)); break;
             case 'openRecent':
-                if (e && $(e.target).closest('[data-bm="delRecent"], [data-bm="editRecent"], [data-bm="saveRecent"], [data-bm="cancelRecent"], .bm-rec-input').length) break;
+                if (e && $(e.target).closest('[data-bm="delRecent"], [data-bm="editRecent"], [data-bm="saveRecent"], [data-bm="cancelRecent"], [data-bm="queueRecent"], .bm-rec-input').length) break;
                 if (S.editingRecent !== null) {
                     cancelEditRecent();
                     break;
                 }
-                v = Number($el.attr('data-idx'));
-                openRecentTemplate(v);
+                openRecentTemplate(Number($el.attr('data-idx')));
+                break;
+            case 'queueRecent':
+                stopEvent(e);
+                if (S.editingRecent !== null) {
+                    cancelEditRecent();
+                    break;
+                }
+                queueRecent(Number($el.attr('data-idx')));
                 break;
             case 'editRecent':
-                if (e) { e.stopPropagation(); e.stopImmediatePropagation(); }
-                v = Number($el.attr('data-idx'));
-                startEditRecent(v);
+                stopEvent(e);
+                startEditRecent(Number($el.attr('data-idx')));
                 break;
             case 'saveRecent':
-                if (e) { e.stopPropagation(); e.stopImmediatePropagation(); }
-                v = Number($el.attr('data-idx'));
-                commitEditRecent(v);
+                stopEvent(e);
+                commitEditRecent(Number($el.attr('data-idx')));
                 break;
             case 'cancelRecent':
-                if (e) { e.stopPropagation(); e.stopImmediatePropagation(); }
+                stopEvent(e);
                 cancelEditRecent();
                 break;
             case 'delRecent':
-                if (e) { e.stopPropagation(); e.stopImmediatePropagation(); }
-                v = Number($el.attr('data-idx'));
-                removeRecentTemplate(v);
+                stopEvent(e);
+                removeRecentTemplate(Number($el.attr('data-idx')));
                 break;
             case 'filter':
                 v = String($el.attr('data-f') || 'all');
@@ -2452,6 +2874,19 @@
                 cfg.safeMines = !cfg.safeMines;
                 saveCfg();
                 refresh(true);
+                break;
+            case 'optAutoMin':
+                cfg.autoMin = !cfg.autoMin;
+                saveCfg();
+                renderSettingsPanel();
+                break;
+            case 'speed':
+                v = Number($el.attr('data-v'));
+                if (SPEEDS.indexOf(v) >= 0 && v !== cfg.delay) {
+                    cfg.delay = v;
+                    saveCfg();
+                    renderSettingsPanel();
+                }
                 break;
             case 'master': toggleMaster(); break;
         }
@@ -2480,8 +2915,7 @@
         });
         $m.on('dblclick.bm2', '.bm-rec-name', function (e) {
             e.stopPropagation();
-            var $item = $(this).closest('.bm-rec-item');
-            var idx = Number($item.attr('data-idx'));
+            var idx = Number($(this).closest('.bm-rec-item').attr('data-idx'));
             if (!isNaN(idx)) startEditRecent(idx);
         });
         $m.on('click.bm2', '.bm-rec-input', function (e) {
@@ -2529,9 +2963,8 @@
             if (e.target !== this) return;
             stopUi();
             hideTip();
-            if (!S.run && !S.rec) {
-                resetAll();
-            }
+            // The queue keeps working without the window; its template stays loaded.
+            if (!busy() && !S.rec) resetAll();
         });
         $m.find('.bm-tbody').on('scroll.bm2', hideTip);
     }
@@ -2556,47 +2989,54 @@
         try {
             tipCheck();
             if (!isOpen() || isMinimized() || S.rec) return;
-            if (zoneSig() !== S.zoneSig) { requestRefresh(); return; }
-            if (!S.run && S.record && now() - S.lastAuto >= AUTO_REFRESH) { refresh(false); return; }
+            if (S.needFull || zoneSig() !== S.zoneSig) { requestRefresh(true); return; }
+            if (S.record && now() - S.lastAuto >= AUTO_REFRESH) { refresh(false); return; }
             tickTimes();
         } catch (e) {
             log(e);
         }
     }
 
-    function requestRefresh() {
-        if (S.disposed || S.refreshT) return;
+    // full: the rows must be analysed again; otherwise, while the queue works, only its statuses
+    // are laid over the rows.
+    function requestRefresh(full) {
+        if (S.disposed) return;
+        if (full) S.needFull = true;
+        if (S.refreshT) return;
         S.refreshT = setTimeout(function () {
             S.refreshT = null;
             try {
-                if (S.run) refreshRun(); else refresh(false);
+                if (busy() && !S.needFull) refreshRun(); else refresh(false);
             } catch (e) {
                 log(e);
             }
         }, REFRESH_DELAY);
     }
 
-    // Light update while a run is active: overlay statuses, no re-analysis.
+    // Light update while the queue works: progress, title and the queue statuses of the rows.
     function refreshRun() {
-        var rows = S.rows;
-        for (var i = 0; i < rows.length; i++) {
-            var r = rows[i], ov = S.res[r.grid];
-            if ((ov === 'pending' || ov === 'done' || ov === 'failed') && r.st !== ov) {
-                r.st = ov;
-                r.ok = false;
-                r.tip = '';
-            }
-        }
-        applySelection();
         updateTitle();
         var $m = $(SEL);
-        if (!$m.length || !$m.is(':visible') || isMinimized()) return;
-        var prog = renderProg(), chips = renderChips();
-        flushIcons();
-        $m.find('.bm-progw').html(prog);
-        $m.find('.bm-chips').html(chips);
-        renderTable();
+        if (!$m.length) return;
+        if (!$m.is(':visible') || isMinimized()) {
+            S.needFull = true;
+            return;
+        }
+        if (S.rec) return;
+        if (S.record && !overlayRows()) {
+            refresh(false);
+            return;
+        }
+        renderProgPanel();
+        if (S.record) {
+            var chips = renderChips(), cards = renderCards();
+            flushIcons();
+            $m.find('.bm-chips').html(chips);
+            $m.find('.bm-cards').html(cards);
+            renderTable();
+        }
         updateFooter();
+        fitTable();
     }
 
     function refresh(force) {
@@ -2609,10 +3049,12 @@
         if (!$m.length) return;
         var vis = $m.is(':visible') && !isMinimized();
         if (!vis && !force) {
+            S.needFull = true;
             updateTitle();
             return;
         }
         if (!S.rec) analyzeAll();
+        S.needFull = false;
         S.lastAuto = now();
         updateTitle();
         renderBody();
@@ -2664,18 +3106,14 @@
         if (S.disposed) return;
         S.disposed = true;
         stopUi();
+        stopTimer();
         if (S.refreshT) clearTimeout(S.refreshT);
         if (S.searchT) clearTimeout(S.searchT);
         if (S.fitT) clearTimeout(S.fitT);
         S.refreshT = S.searchT = S.fitT = null;
-        if (S.run && S.run.queue) {
-            try {
-                if (typeof S.run.queue.inId === 'number') clearInterval(S.run.queue.inId);
-                if (typeof S.run.queue.reset === 'function') S.run.queue.reset();
-                S.run.queue.tasksQueue = [];
-            } catch (e) { }
-        }
-        S.run = null;
+        E.runs = [];
+        E.pend = {};
+        E.reserved = {};
         S.rec = null;
         unsubscribe(true);
         $(window).off('.bm2');
@@ -2687,9 +3125,7 @@
     }
 
     function openFromMenu() {
-        if (!S.run && !S.rec) {
-            resetAll();
-        }
+        if (!busy() && !S.rec) resetAll();
         openWindow();
     }
 
@@ -2699,9 +3135,19 @@
         open: openFromMenu,
         refresh: function () { refresh(true); },
         dispose: dispose,
+        queue: queueInfo,
         _onBuff: onBuff,
         _onTemplate: onTemplate
     };
+    if (window.__BUFF_MANAGER_TEST__) {
+        API._t = {
+            S: S, E: E, cfg: cfg, enqueueRecord: enqueueRecord, pump: pump, analyzeAll: analyzeAll, makeCtx: makeCtx,
+            collectStacks: collectStacks, defaultItems: defaultItems, startRun: startRun, cancelRun: cancelRun,
+            queueRecent: queueRecent, startRecording: startRecording, stopRecording: stopRecording, saveCfg: saveCfg,
+            loadCfg: loadCfg, renderBody: renderBody, renderProg: renderProg, refresh: refresh, onAction: onAction,
+            addRecentTemplate: addRecentTemplate, removeRecentTemplate: removeRecentTemplate, onSaved: onSaved
+        };
+    }
     window.__BUFF_MANAGER__ = API;
 
     $('#buffManagerStyle').remove();
