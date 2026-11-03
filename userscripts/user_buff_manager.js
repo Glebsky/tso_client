@@ -1,5 +1,5 @@
 /**
- * Buff Manager 2.2.0
+ * Buff Manager 2.3.0
  *
  * Buff template manager for The Settlers Online client, built on the stock buff module (6-buffs.js).
  *  - Window styled to match classic client windows (window_*, btn_* textures),
@@ -8,7 +8,12 @@
  *  - Template recording like the stock module: every own buff applied to a building of the recorded
  *    island is captured (any buff type, already recorded buildings are kept), record more, discard;
  *  - Templates compatible with SaveLoadTemplate('buff') files; saving remembers the chosen file;
- *    recent template cards with rename, delete and quick start;
+ *    recent template cards with rename, delete and quick start; every card shows the owner of its
+ *    island, the templates of the viewed island come first, the others offer to visit their island;
+ *  - A template is used only on its island (like the stock module): on another island its rows are
+ *    marked, Apply and quick start are not offered, "Visit island" opens it. Right before every
+ *    command the building must belong to the owner of that island (no buffs on buildings of another
+ *    player, also while the client still shows the previous island after a visit);
  *  - Apply engine: a single paced sender (one command per batch, 1 s like the client TimedQueue or
  *    faster), a FIFO queue of templates (start one template and immediately the next one), star menu
  *    stacks reserved per command, cBuff.IsApplyable pre-check right before every command, server
@@ -24,7 +29,7 @@
 (function () {
     'use strict';
 
-    var VERSION = '2.2.0';
+    var VERSION = '2.3.0';
     var MODAL_ID = 'buffManagerModal';
     var SEL = '#' + MODAL_ID;
     var SETTINGS_KEY = 'BUFF_MANAGER_SETTINGS';
@@ -38,6 +43,8 @@
     var BLOCKED_RETRY = 1500;           // building temporarily blocked: try again a bit later
     var BLOCKED_MAX = 8;
     var ZONE_SETTLE = 1500;             // after another island was opened, commands wait until it is loaded
+    var ZONE_STALE_MAX = 20000;         // longest wait for the zone of a just opened island to replace the previous one
+    var OWNER_SAMPLE = 6;               // buildings sampled for the owner of the shown island
     var MISSING_GRACE = 10000;          // a building not found so soon after an island change is checked again
     var PUMP_TICK = 250;
     var MAX_CHECKS = 60;                // rows checked per engine step (keeps every step short)
@@ -45,6 +52,7 @@
     var AUTO_REFRESH = 10000;           // full analysis of the open window (only changed parts are redrawn)
     var SETTLE_REFRESH = 2000;          // one more full analysis after the queue is finished
     var UI_TICK = 1000;
+    var WATCH_TICK = 1000;              // the shown island is watched all the time (visits are seen step by step)
     var REFRESH_DELAY = 120;
     var SEARCH_DELAY = 200;
     // cBuff.IsApplyable() results (CURSOR_VALID codes) handled by the manager.
@@ -177,17 +185,23 @@
             waitZone: 'Waiting for the island', loadTpl: 'Load template', recStart: 'Start recording',
             recStop: 'Stop recording', recProgress: 'Recording in progress!', recMore: 'Record more',
             recStarted: 'Recording started', recStopped: 'Recording stopped', sent: 'Command sent',
-            badTpl: 'Bad template file'
+            badTpl: 'Bad template file', otherIsland: 'Other island', otherIslands: 'Other islands',
+            notFound: 'Building not found', foreign: 'Building of another player',
+            needVisit: 'Template for the island of {0}: visit the island first'
         },
         'ru-ru': {
             queued: 'В очереди', enqueue: 'В очередь', quick: 'Использовать сразу (шаблон встанет в очередь)',
             templates: 'Шаблоны', inQueue: 'Очередь', autoMin: 'Сворачивать окно при запуске',
-            waitZone: 'Ожидание острова'
+            waitZone: 'Ожидание острова', otherIsland: 'Другой остров', otherIslands: 'Другие острова',
+            notFound: 'Здание не найдено', foreign: 'Здание другого игрока',
+            needVisit: 'Шаблон для острова игрока {0}: сначала посетите остров'
         },
         'de-de': {
             queued: 'In Warteschlange', enqueue: 'Zur Warteschlange', quick: 'Sofort anwenden (Vorlage kommt in die Warteschlange)',
             templates: 'Vorlagen', inQueue: 'Warteschlange', autoMin: 'Fenster beim Start minimieren',
-            waitZone: 'Warten auf die Insel'
+            waitZone: 'Warten auf die Insel', otherIsland: 'Andere Insel', otherIslands: 'Andere Inseln',
+            notFound: 'Gebäude nicht gefunden', foreign: 'Gebäude eines anderen Spielers',
+            needVisit: 'Vorlage für die Insel von {0}: zuerst die Insel besuchen'
         }
     };
 
@@ -320,14 +334,16 @@
         }
     }
 
-    function addRecentTemplate(name, path) {
+    // rec: the template (its island is kept in the recent entry for the cards).
+    function addRecentTemplate(name, path, rec) {
         if (!name && !path) return;
         var cleanName = String(name || '').replace(/\.[^.]+$/, '').trim();
         var cleanPath = String(path || '').trim();
         var list = isArr(cfg.recent) ? cfg.recent : [];
-        var existingAlias = '';
+        var existingAlias = '', existing = null;
         for (var i = 0; i < list.length; i++) {
             if (cleanPath && list[i] && list[i].path && normPath(list[i].path) === normPath(cleanPath)) {
+                existing = list[i];
                 existingAlias = list[i].name;
                 break;
             }
@@ -341,13 +357,48 @@
             next.push(it);
         }
         var finalName = existingAlias || cleanName || (cleanPath ? cleanPath.split(/[\/\\]/).pop().replace(/\.[^.]+$/, '') : '');
-        next.unshift({
+        var entry = {
             name: finalName,
             path: cleanPath,
             time: now()
-        });
+        };
+        if (!setRecentZone(entry, rec) && existing) setRecentZone(entry, existing);
+        next.unshift(entry);
         cfg.recent = dedupeRecent(next);
         saveCfg();
+    }
+
+    // Island of a recent template (zoneId, zoneUser) kept in its entry; true when it changed.
+    function setRecentZone(item, rec) {
+        var z = rec ? Number(rec.zoneId) : NaN;
+        if (!item || !rec || rec.zoneId === null || rec.zoneId === undefined || rec.zoneId === '' || !isFinite(z)) return false;
+        var u = String(rec.zoneUser == null ? '' : rec.zoneUser);
+        if (item.zoneId === z && item.zoneUser === u) return false;
+        item.zoneId = z;
+        item.zoneUser = u;
+        return true;
+    }
+
+    var _rzMiss = {}, _rzDirty = false;
+
+    // { id, user } of a recent template: cached in the entry, otherwise read from its file once
+    // (an unreadable file is not tried again in this session); null when unknown.
+    function recentZone(item) {
+        if (!item) return null;
+        if (typeof item.zoneId !== 'number' || !isFinite(item.zoneId)) {
+            var path = recentPath(item), key = normPath(path);
+            if (!key || own(_rzMiss, key)) return null;
+            var fo = readFileDirect(path), d = null;
+            if (fo) {
+                try { d = JSON.parse(fo.data); } catch (e) { d = null; }
+            }
+            if (!d || typeof d !== 'object' || !setRecentZone(item, d)) {
+                _rzMiss[key] = 1;
+                return null;
+            }
+            _rzDirty = true;
+        }
+        return { id: item.zoneId, user: String(item.zoneUser || '') };
     }
 
     function removeRecentTemplate(idx) {
@@ -478,6 +529,7 @@
             alertMsg((fo ? txt('badTpl') : txt('loadError')) + (item.name ? ': ' + item.name : ''));
             return null;
         }
+        if (setRecentZone(item, rec)) saveCfg();
         return { rec: rec, name: item.name || baseName(fo.name), path: fo.path || path };
     }
 
@@ -487,11 +539,17 @@
         if (t) onTemplate(t.rec, t.name, t.path);
     }
 
-    // Quick start from a recent card: the template goes straight into the queue.
+    // Quick start from a recent card: the template goes straight into the queue. Like the stock
+    // module a template is used only on its island (the card of another island offers a visit).
     function queueRecent(idx) {
         if (S.rec) return;
         var t = loadRecent(idx);
         if (!t) return;
+        if (Number(t.rec.zoneId) !== viewedZone()) {
+            alertMsg(t.name + ': ' + txt('needVisit', [recUser(t.rec)]));
+            refresh(true);
+            return;
+        }
         var items = defaultItems(t.rec);
         if (!items.length) {
             alertMsg(t.name + ': ' + txt('unavailable'));
@@ -501,6 +559,16 @@
         enqueueRecord(t.rec, t.name, items);
         alertMsg(t.name + ': ' + txt('sent'));
         refresh(true);
+    }
+
+    // Visit button of a recent card (template of another island): the template is opened and its
+    // island visited; the rows are checked as soon as the island is loaded.
+    function visitRecent(idx) {
+        if (S.rec) return;
+        var t = loadRecent(idx);
+        if (!t) return;
+        onTemplate(t.rec, t.name, t.path);
+        visitZone(t.rec.zoneId);
     }
 
     /* ------------------------------------------------------------------ */
@@ -545,7 +613,8 @@
         done: [],            // summaries of finished templates, newest first
         touch: {},           // 'zone:grid' -> 1: rows to analyse again at the next window update
         dirty: false,        // a command changed outside the engine step (confirmation, cancel)
-        zw: null,            // island watch { v: viewed zone id, n: buildings, at: last change }
+        zw: null,            // island watch { v: viewed zone id, n: buildings, own: their owner, at: last change, stale }
+        watchT: null,
         timer: null,
         lastSend: 0,
         seq: 0
@@ -763,7 +832,53 @@
             n = safe(function () { return fl.GetFriendById(zoneId).username; }, '');
             if (!n) n = safe(function () { return fl.GetGuildMemberById(zoneId).username; }, '');
         }
+        if (!n) n = safe(function () { return game.gi.GetPlayerName_string(Number(zoneId)); }, '');
         return String(n || '');
+    }
+
+    function recUser(rec) {
+        return rec ? (rec.zoneUser || zoneOwnerName(rec.zoneId) || String(rec.zoneId)) : '';
+    }
+
+    // Owner of a building: the client writes it into the building description
+    // (<Building name='..' grid='..' player='<id>' ... />); null when unknown.
+    var OWNER_RE = /\bplayer='(-?\d+)'/;
+    function buildingOwner(bui) {
+        if (!bui) return null;
+        var m = OWNER_RE.exec(String(safe(function () { return bui.toString(); }, '') || ''));
+        var id = m ? Number(m[1]) : 0;
+        return id > 0 ? id : null;
+    }
+
+    // Owner of the shown island from its first buildings: { id: the owner most of them have, mixed:
+    // they belong to several players (adventures, shared islands) }, null when unknown.
+    function zoneOwnerOf(z) {
+        var vec = z ? safe(function () { return z.mStreetDataMap.GetBuildings_vector(); }, null) : null;
+        var n = vec ? Number(safe(function () { return vec.length; }, 0)) : 0, cnt = {}, best = null, kinds = 0, seen = 0;
+        for (var i = 0; i < n && i < OWNER_SAMPLE * 3 && seen < OWNER_SAMPLE; i++) {
+            var id = buildingOwner(safe(function () { return vec[i]; }, null));
+            if (id === null) continue;
+            seen++;
+            if (!own(cnt, id)) { cnt[id] = 0; kinds++; }
+            cnt[id]++;
+            if (best === null || cnt[id] > cnt[best]) best = id;
+        }
+        return best === null ? null : { id: best, mixed: kinds > 1 };
+    }
+
+    // Owner the buildings of an island belong to: a home island has the id of its owner, the own one
+    // the own player id; adventures (buildings of several players) are not checked (null).
+    function zoneOwnerId(zoneId) {
+        var z = Number(zoneId);
+        if (!isFinite(z) || z <= 0) return null;
+        if (z === homeZoneId()) {
+            var me = myId();
+            return me > 0 ? me : null;
+        }
+        var g = gi(), adv = (g && typeof g.IsAdventureZoneID === 'function') ?
+            safe(function () { return g.IsAdventureZoneID(z); }, false) :
+            (z === viewedZone() && safe(function () { return curPlayer().mIsAdventureZone; }, false));
+        return adv ? null : z;
     }
 
     function isRemoveBuff(name) { return String(name || '').indexOf('RemoveBuff') >= 0; }
@@ -888,12 +1003,15 @@
     /* Analysis                                                            */
     /* ------------------------------------------------------------------ */
 
-    var BAD = { zone: 1, missing: 1, unavail: 1, nostock: 1, failed: 1, depleted: 1 };
+    var BAD = { zone: 1, missing: 1, foreign: 1, unavail: 1, nostock: 1, failed: 1, depleted: 1 };
     var BUFFED = { buffed: 1, done: 1, pending: 1, queued: 1 };
 
     // forSend: check right before a command (raw stacks minus reservations, no queue overlay).
+    // zoneOk: the island of the template is shown (loading: it is opened but not shown yet);
+    // owner: the player its buildings must belong to (null: not checked).
     function makeCtx(zoneId, forSend) {
-        var zone = curZone(), viewed = viewedZone(), z = Number(zoneId);
+        var w = zoneWatch(), zone = curZone(), viewed = viewedZone(), z = Number(zoneId);
+        var same = isFinite(z) && z === viewed, ok = same && !!zone && !w.stale;
         return {
             zone: zone,
             gi: gi(),
@@ -901,37 +1019,84 @@
             now: clientTime(),
             viewed: viewed,
             zoneId: z,
-            zoneOk: !!zone && isFinite(z) && z === viewed,
+            zoneOk: ok,
+            loading: same && !ok,
+            owner: ok ? rowOwner(z, w) : null,
             stacks: collectStacks(!forSend),
             mode: durMode(z),
             send: !!forSend
         };
     }
 
-    // Island watch: the viewed island and its buildings count, with the time of the last change
-    // (the first look counts as settled).
+    // Island watch: the viewed island, its buildings count and their owner, with the time of the last
+    // change (the first loaded island seen counts as settled). Right after another island was opened the client may
+    // still show the zone of the previous one: its buildings do not belong to the owner of the opened
+    // island, the zone is stale (at most ZONE_STALE_MAX; the rows keep the owner check). An island
+    // that turns out to belong to another player than its id tells is trusted when its zone replaced
+    // the one of the previous island after the visit.
     function zoneWatch() {
-        var z = curZone(), v = viewedZone(), w = E.zw;
+        var z = curZone(), v = viewedZone(), w = E.zw, t = now();
         var n = z ? Number(safe(function () { return z.mStreetDataMap.GetBuildings_vector().length; }, 0)) : -1;
         if (!w) {
-            E.zw = w = { v: v, n: n, at: 0 };
-        } else if (w.v !== v || w.n !== n) {
+            E.zw = w = { v: v, n: n, at: 0, own: null, mixed: false, ownAt: t, sampled: 0, prev: null, vAt: -ZONE_STALE_MAX,
+                trust: null, stale: false, loaded: false };
+        }
+        var first = !w.loaded, moved = w.v !== v, changed = moved || w.n !== n;
+        if (moved) {
+            w.prev = w.own;
+            w.vAt = t;
+            w.trust = null;
+        }
+        if (first || changed || w.stale || (w.own === null && n > 0 && t - w.sampled >= 1000)) {
+            var so = n > 0 ? zoneOwnerOf(z) : null, o = so ? so.id : null, exp = o ? zoneOwnerId(v) : null, stale = false;
+            w.sampled = t;
+            w.mixed = !!(so && so.mixed);
+            if (o !== w.own) {
+                w.own = o;
+                w.ownAt = t;
+            }
+            if (o && exp !== null && o !== exp && o !== v) {
+                if (w.trust !== o && w.prev !== null && o !== w.prev && t - w.vAt < ZONE_STALE_MAX) w.trust = o;
+                stale = w.trust !== o && t - Math.max(w.vAt, w.ownAt) < ZONE_STALE_MAX;
+            }
+            if (stale !== w.stale) {
+                w.stale = stale;
+                changed = true;
+            }
+        }
+        if (changed) {
             w.v = v;
             w.n = n;
-            w.at = now();
+            if (!first) w.at = t;
         }
+        if (n > 0) w.loaded = true;
         return w;
+    }
+
+    // Owner the buildings of the shown island must have (null: not checked). The island of the expected
+    // owner is checked even when a few buildings belong to others; an island of several players whose
+    // owner is not the expected one (shared island) is not checked.
+    function rowOwner(zoneId, w) {
+        var exp = zoneOwnerId(zoneId);
+        if (exp === null || w.own === null || w.own === exp || w.own === Number(zoneId)) return exp;
+        if (w.mixed) return null;
+        return w.trust === w.own ? w.own : exp;
+    }
+
+    function watchTick() {
+        if (S.disposed) return;
+        try { zoneWatch(); } catch (e) { log(e); }
     }
 
     function zoneSig() {
         var w = zoneWatch();
-        return w.v + ':' + w.n;
+        return w.v + ':' + w.n + ':' + (w.stale ? 's' : '') + (w.own === null ? '' : w.own);
     }
 
-    // Commands may go: the island of the template is open, loaded and did not change just now.
+    // Commands may go: the island of the template is shown, loaded and did not change just now.
     function zoneReady(zoneId) {
         var w = zoneWatch();
-        return w.v === Number(zoneId) && w.n > 0 && now() - w.at >= ZONE_SETTLE;
+        return w.v === Number(zoneId) && w.n > 0 && !w.stale && now() - w.at >= ZONE_SETTLE;
     }
 
     function setActive(r, act, buffName) {
@@ -970,8 +1135,13 @@
             r.level = Number(lv) || 0;
         }
         if (q) { r.st = q.st; r.tip = q.tip; return r; }
-        if (!ctx.zoneOk) { r.st = 'zone'; return r; }
+        if (!ctx.zoneOk) { r.st = ctx.loading ? 'loading' : 'zone'; return r; }
         if (!bui) { r.st = 'missing'; return r; }
+        if (ctx.owner !== null) {
+            // Only buildings of the island owner (never a building of another player).
+            var bo = buildingOwner(bui);
+            if (bo !== null && bo !== ctx.owner && bo !== ctx.zoneId) { r.st = 'foreign'; return r; }
+        }
 
         var act = after ? null : activeBuff(bui, ctx.now);
         r.act = act;
@@ -1070,10 +1240,11 @@
         return S.rows;
     }
 
-    // Rows a template would buff with the default selection (quick start). On another island the
-    // rows cannot be checked yet: all of them go to the queue and are checked before each command.
+    // Rows a template would buff with the default selection (quick start): none on another island;
+    // while its island is still loading all rows go to the queue and are checked before each command.
     function defaultItems(rec) {
         var ctx = makeCtx(rec.zoneId, false), out = [];
+        if (ctx.viewed !== ctx.zoneId) return out;
         for (var i = 0; i < rec.data.length; i++) {
             var it = rec.data[i];
             if (ctx.zoneOk) {
@@ -1092,7 +1263,7 @@
         var rec = S.record;
         if (!rec || !S.ctx) return false;
         var ctx = makeCtx(rec.zoneId, false);
-        if (ctx.zoneOk !== S.ctx.zoneOk) return false;
+        if (ctx.zoneOk !== S.ctx.zoneOk || ctx.loading !== S.ctx.loading || ctx.owner !== S.ctx.owner) return false;
         var rows = S.rows, touched = E.touch;
         E.touch = {};
         for (var i = 0; i < rows.length; i++) {
@@ -1408,7 +1579,8 @@
     // 'send' | 'later' | 'final' (the command is finished: done, failed or skipped).
     function checkJob(job, ctx, t) {
         var r = analyzeRow(job, ctx), remove = isRemoveBuff(job.buffName);
-        if (job.sends > 0 && r.st !== 'missing' && (remove ? !r.act : !!(r.act && r.act.name === job.buffName))) {
+        var seen = ctx.zoneOk && r.st !== 'missing' && r.st !== 'foreign';
+        if (job.sends > 0 && seen && (remove ? !r.act : !!(r.act && r.act.name === job.buffName))) {
             // Sent before and not confirmed (e.g. another island was opened): it was applied.
             finishJob(job, 'done');
             return 'final';
@@ -1755,7 +1927,7 @@
         S.showRecents = false;
         if (!busy()) E.done = [];
         $(SEL).find('.bm-search input').val('');
-        addRecentTemplate(S.templateName, S.templatePath);
+        addRecentTemplate(S.templateName, S.templatePath, rec);
         openWindow();
     }
 
@@ -1822,7 +1994,7 @@
         }
         if (S.disposed || !p) return;
         S.templatePath = p;
-        addRecentTemplate(baseName(file.name || p), p);
+        addRecentTemplate(baseName(file.name || p), p, S.record);
         S.templateName = aliasOf(p) || baseName(file.name || p);
         updateTitle();
     }
@@ -2143,6 +2315,13 @@
             P + '.bm-rec-go{position:absolute;right:50px;top:8px;width:22px;height:18px;line-height:18px;text-align:center;cursor:pointer;opacity:.6}',
             P + '.bm-rec-go:hover{opacity:1}',
             P + '.bm-rec-go .bm-i{margin:2px 0 0;vertical-align:top}',
+            P + '.bm-rec-go[data-bm="visitRecent"] .bm-i{margin:0}',
+            P + '.bm-rec-item.bm-rec-2l .bm-rec-name{line-height:15px;padding-top:3px;box-sizing:border-box}',
+            P + '.bm-rec-own{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;font-weight:normal;line-height:14px;color:#C9AE7E}',
+            P + '.bm-rec-own .bm-i{margin:-2px 4px 0 0}',
+            P + '.bm-rec-away .bm-rec-name{color:#D9C9A3}',
+            P + '.bm-rec-sep{display:block;margin:6px 4px 2px;padding:5px 2px 0;border-top:1px solid rgba(125,95,53,.6);' + F +
+                'font-size:11px;font-weight:bold;line-height:14px;color:#BFA67A;text-transform:uppercase;letter-spacing:.5px}',
             P + '.bm-tile.bm-dis,' + P + '.bm-tile.bm-dis:hover{opacity:.45;cursor:default;background-color:rgba(0,0,0,.22);border-color:#6B5634}'
         ];
         R = R.concat(checkboxRules(), windowIconRules());
@@ -2226,8 +2405,10 @@
         pending: ['IconPlayerWait', 'pending', 'wait'],
         queued: ['IconPlayerWait', 'queued', 'wait'],
         failed: ['FailedIcon', 'failed', 'bad'],
-        zone: ['IconToolTipWarning', 'unavailable', 'bad'],
-        missing: ['IconToolTipWarning', 'unavailable', 'bad'],
+        zone: ['ButtonIconSendToOtherZone', 'otherIsland', 'bad'],
+        loading: ['IconPlayerWait', 'loading', 'wait'],
+        missing: ['IconToolTipWarning', 'notFound', 'bad'],
+        foreign: ['IconToolTipWarning', 'foreign', 'bad'],
         unavail: ['IconToolTipWarning', 'unavailable', 'bad'],
         nostock: ['BuildQueueResourceMissing', 'nostock', 'bad'],
         noRes: ['BuildQueueResourceMissing', 'nostock', 'warn'],
@@ -2392,19 +2573,20 @@
         setHtml($t, h);
     }
 
+    // Owner and size of the template; on another island a visit button, while its island is still
+    // loading a note (the rows are checked once it is shown).
     function renderInfo() {
         var rec = S.record;
         if (!rec) return '';
-        var zoneOk = !!(S.ctx && S.ctx.zoneOk), loading = !curZone();
-        var user = rec.zoneUser || zoneOwnerName(rec.zoneId) || String(rec.zoneId);
+        var ctx = S.ctx, user = recUser(rec);
         var h = '<span class="bm-it">' + ic('IconMailTypeFriend', 22, 18) + esc(txt('player')) + ': <b>' + esc(user) + '</b></span>' +
             '<span class="bm-it">' + ic('StarMenuTabIconBuilding', 18, 18) + esc(txt('buildings')) + ': <b>' + rec.data.length + '</b></span>';
-        if (loading) {
-            h += '<span class="bm-it bm-warn">' + ic('IconPlayerWait', 18, 18) + esc(txt('loading')) + '</span>';
-        } else if (!zoneOk) {
-            h += '<span class="bm-it bm-warn">' + ic('IconToolTipWarning', 18, 18) + esc(txt('unavailable')) + '</span>' +
-                '<button type="button" class="bm-btn bm-sm" data-bm="visit">' +
+        if (ctx && !ctx.zoneOk && !ctx.loading) {
+            h += '<span class="bm-it bm-warn">' + ic('ButtonIconSendToOtherZone', 22, 20) + esc(txt('otherIsland')) + '</span>' +
+                '<button type="button" class="bm-btn bm-sm" data-bm="visit"' + tipAttr(txt('visit') + ': ' + user) + '>' +
                 ic('ButtonIconSendToOtherZone', 22, 20) + '<span>' + esc(txt('visit')) + '</span></button>';
+        } else if (ctx && ctx.loading) {
+            h += '<span class="bm-it bm-warn">' + ic('IconPlayerWait', 18, 18) + esc(txt('loading')) + '</span>';
         }
         return h;
     }
@@ -2659,14 +2841,18 @@
         renderTable();
     }
 
+    // Recent template cards: those of the viewed island first (quick start), then the ones of other
+    // islands (visit button); every card shows the owner of its island.
     function recentsHtml() {
-        var list = isArr(cfg.recent) ? cfg.recent : [], cur = normPath(S.templatePath), items = '';
+        var list = isArr(cfg.recent) ? cfg.recent : [], cur = normPath(S.templatePath), viewed = viewedZone();
+        var here = '', away = '';
         for (var i = 0; i < list.length && i < 10; i++) {
             var it = list[i];
             if (!it) continue;
-            var nm = it.name || baseName(it.path) || ('#' + (i + 1));
+            var nm = it.name || baseName(it.path) || ('#' + (i + 1)), z = recentZone(it), h;
+            var other = !!z && z.id !== viewed, user = z ? (z.user || zoneOwnerName(z.id) || String(z.id)) : '';
             if (S.editingRecent === i) {
-                items += '<div class="bm-rec-item bm-rec-editing" data-idx="' + i + '">' +
+                h = '<div class="bm-rec-item bm-rec-editing" data-idx="' + i + '">' +
                     ic('ChangeLogIcon', 20, 20, 'bm-rec-ico') +
                     '<input type="text" class="bm-rec-input" value="' + esc(nm) + '" maxlength="40" data-idx="' + i + '">' +
                     '<span class="bm-rec-save" data-bm="saveRecent" data-idx="' + i + '"' + tipAttr(txt('ok')) + '>' +
@@ -2675,26 +2861,40 @@
                     '<i class="bm-del bm-rec-cancel" data-bm="cancelRecent" data-idx="' + i + '"' + tipAttr(txt('cancel')) + '></i>' +
                 '</div>';
             } else {
-                items += '<div class="bm-rec-item' + (cur && it.path && normPath(it.path) === cur ? ' bm-cur' : '') +
+                h = '<div class="bm-rec-item' + (cur && it.path && normPath(it.path) === cur ? ' bm-cur' : '') +
+                        (user ? ' bm-rec-2l' : '') + (other ? ' bm-rec-away' : '') +
                         '" data-bm="openRecent" data-idx="' + i + '"' + tipAttr(nm.length > 24 ? nm : '') + '>' +
                     ic('ChangeLogIcon', 20, 20, 'bm-rec-ico') +
-                    '<span class="bm-rec-name">' + esc(nm) + '</span>' +
-                    '<span class="bm-rec-go" data-bm="queueRecent" data-idx="' + i + '"' + tipAttr(txt('quick')) + '>' +
-                        ic('ButtonIconAcceptLoot', 22, 14) +
+                    '<span class="bm-rec-name">' + esc(nm) +
+                        (user ? '<span class="bm-rec-own">' + ic('IconMailTypeFriend', 14, 11) + esc(user) + '</span>' : '') +
                     '</span>' +
+                    (other ?
+                        '<span class="bm-rec-go" data-bm="visitRecent" data-idx="' + i + '"' + tipAttr(txt('visit') + ': ' + user) + '>' +
+                            ic('ButtonIconSendToOtherZone', 20, 18) +
+                        '</span>' :
+                        '<span class="bm-rec-go" data-bm="queueRecent" data-idx="' + i + '"' + tipAttr(txt('quick')) + '>' +
+                            ic('ButtonIconAcceptLoot', 22, 14) +
+                        '</span>') +
                     '<span class="bm-rec-edit" data-bm="editRecent" data-idx="' + i + '"' + tipAttr(txt('rename')) + '>' +
                         ic('IconMailWrite', 16, 16) +
                     '</span>' +
                     '<i class="bm-del bm-rec-del" data-bm="delRecent" data-idx="' + i + '"' + tipAttr(txt('del')) + '></i>' +
                 '</div>';
             }
+            if (other) away += h; else here += h;
         }
-        if (!items) return '';
+        if (_rzDirty) {
+            _rzDirty = false;
+            saveCfg();
+        }
+        if (!here && !away) return '';
         return '<div class="bm-recents">' +
             '<div class="bm-recents-head">' + ic('ChangeLogIcon', 20, 20) +
                 '<span>' + esc(txt('history') || txt('templates')) + '</span>' +
             '</div>' +
-            '<div class="bm-recents-grid">' + items + '</div>' +
+            '<div class="bm-recents-grid">' + here +
+                (here && away ? '<div class="bm-rec-sep">' + esc(txt('otherIslands')) + '</div>' : '') + away +
+            '</div>' +
         '</div>';
     }
 
@@ -2919,7 +3119,7 @@
             case 'goto': gotoGrid(rowGrid($el)); break;
             case 'del': deleteRow(rowGrid($el)); break;
             case 'openRecent':
-                if (e && $(e.target).closest('[data-bm="delRecent"], [data-bm="editRecent"], [data-bm="saveRecent"], [data-bm="cancelRecent"], [data-bm="queueRecent"], .bm-rec-input').length) break;
+                if (e && $(e.target).closest('[data-bm="delRecent"], [data-bm="editRecent"], [data-bm="saveRecent"], [data-bm="cancelRecent"], [data-bm="queueRecent"], [data-bm="visitRecent"], .bm-rec-input').length) break;
                 if (S.editingRecent !== null) {
                     cancelEditRecent();
                     break;
@@ -2933,6 +3133,14 @@
                     break;
                 }
                 queueRecent(Number($el.attr('data-idx')));
+                break;
+            case 'visitRecent':
+                stopEvent(e);
+                if (S.editingRecent !== null) {
+                    cancelEditRecent();
+                    break;
+                }
+                visitRecent(Number($el.attr('data-idx')));
                 break;
             case 'editRecent':
                 stopEvent(e);
@@ -3211,7 +3419,8 @@
         if (S.searchT) clearTimeout(S.searchT);
         if (S.fitT) clearTimeout(S.fitT);
         if (S.settleT) clearTimeout(S.settleT);
-        S.refreshT = S.searchT = S.fitT = S.settleT = null;
+        if (E.watchT) clearInterval(E.watchT);
+        S.refreshT = S.searchT = S.fitT = S.settleT = E.watchT = null;
         E.runs = [];
         E.pend = {};
         E.reserved = {};
@@ -3248,7 +3457,8 @@
             collectStacks: collectStacks, defaultItems: defaultItems, startRun: startRun, cancelRun: cancelRun,
             queueRecent: queueRecent, startRecording: startRecording, stopRecording: stopRecording, saveCfg: saveCfg,
             loadCfg: loadCfg, renderBody: renderBody, renderProg: renderProg, refresh: refresh, onAction: onAction,
-            addRecentTemplate: addRecentTemplate, removeRecentTemplate: removeRecentTemplate, onSaved: onSaved
+            addRecentTemplate: addRecentTemplate, removeRecentTemplate: removeRecentTemplate, onSaved: onSaved,
+            visitRecent: visitRecent, recentsHtml: recentsHtml, zoneWatch: zoneWatch, zoneReady: zoneReady
         };
     }
     window.__BUFF_MANAGER__ = API;
@@ -3256,6 +3466,8 @@
     $('#buffManagerStyle').remove();
     unsubscribe(true);
     $(window).off('.bm2').on('resize.bm2', onResize);
+    watchTick();
+    E.watchT = setInterval(watchTick, WATCH_TICK);
     try {
         addToolsMenuItem(txt('menu') || txt('title') || 'Buff Manager', openFromMenu);
     } catch (e) {
