@@ -1,5 +1,5 @@
 /**
- * Buff Manager 2.3.0
+ * Buff Manager 2.3.1
  *
  * Buff template manager for The Settlers Online client, built on the stock buff module (6-buffs.js).
  *  - Window styled to match classic client windows (window_*, btn_* textures),
@@ -18,8 +18,15 @@
  *    faster), a FIFO queue of templates (start one template and immediately the next one), star menu
  *    stacks reserved per command, cBuff.IsApplyable pre-check right before every command, server
  *    confirmation through the 'buffApplied' notification or the building itself (missed or foreign
- *    notifications), re-check with one retry on timeout,
+ *    notifications), re-check with retries on timeout,
  *    pause while another island is open, cancellation per template or of the whole queue.
+ *    The selection is sent as it was chosen: right before a command only what makes it impossible
+ *    (buff placed, no stock, building missing, depleted deposit) skips it, temporary states are
+ *    checked again a bit later. Short production waits of a working building (resources, warehouse,
+ *    settler, tools) are buffed like in the stock module, the options only concern stopped buildings
+ *    and mines;
+ *  - Results: "Complete" is shown while the buff is active, then the row can be buffed again;
+ *    failed rows can be sent again;
  *  - Live window: every confirmed command, every buff placed on a listed building (star menu,
  *    friends, other scripts) and every restore of the minimized window update the rows at once;
  *    the game state is analysed again periodically and only changed parts are redrawn.
@@ -29,7 +36,7 @@
 (function () {
     'use strict';
 
-    var VERSION = '2.3.0';
+    var VERSION = '2.3.1';
     var MODAL_ID = 'buffManagerModal';
     var SEL = '#' + MODAL_ID;
     var SETTINGS_KEY = 'BUFF_MANAGER_SETTINGS';
@@ -39,9 +46,10 @@
     var SPEEDS = [1000, 700, 500];      // pause between two commands, ms (1000 = client TimedQueue)
     var CONFIRM_TIMEOUT = 12000;        // no 'buffApplied' within this time: the building is checked
     var EARLY_CHECK = 1500;             // a sent command is also confirmed when the building already shows the buff
-    var MAX_SENDS = 2;                  // a command is sent at most twice (one automatic retry)
-    var BLOCKED_RETRY = 1500;           // building temporarily blocked: try again a bit later
+    var MAX_SENDS = 3;                  // a command is sent at most three times (two automatic retries)
+    var BLOCKED_RETRY = 1500;           // building temporarily blocked / not applicable: try again a bit later
     var BLOCKED_MAX = 8;
+    var DONE_HOLD = 30000;              // a confirmed row stays 'done' at least this long, then while its buff is active
     var ZONE_SETTLE = 1500;             // after another island was opened, commands wait until it is loaded
     var ZONE_STALE_MAX = 20000;         // longest wait for the zone of a just opened island to replace the previous one
     var OWNER_SAMPLE = 6;               // buildings sampled for the owner of the shown island
@@ -187,21 +195,24 @@
             recStarted: 'Recording started', recStopped: 'Recording stopped', sent: 'Command sent',
             badTpl: 'Bad template file', otherIsland: 'Other island', otherIslands: 'Other islands',
             notFound: 'Building not found', foreign: 'Building of another player',
-            needVisit: 'Template for the island of {0}: visit the island first'
+            needVisit: 'Template for the island of {0}: visit the island first',
+            noSettler: 'Waiting for a settler'
         },
         'ru-ru': {
             queued: 'В очереди', enqueue: 'В очередь', quick: 'Использовать сразу (шаблон встанет в очередь)',
             templates: 'Шаблоны', inQueue: 'Очередь', autoMin: 'Сворачивать окно при запуске',
             waitZone: 'Ожидание острова', otherIsland: 'Другой остров', otherIslands: 'Другие острова',
             notFound: 'Здание не найдено', foreign: 'Здание другого игрока',
-            needVisit: 'Шаблон для острова игрока {0}: сначала посетите остров'
+            needVisit: 'Шаблон для острова игрока {0}: сначала посетите остров',
+            noSettler: 'Ожидание поселенца'
         },
         'de-de': {
             queued: 'In Warteschlange', enqueue: 'Zur Warteschlange', quick: 'Sofort anwenden (Vorlage kommt in die Warteschlange)',
             templates: 'Vorlagen', inQueue: 'Warteschlange', autoMin: 'Fenster beim Start minimieren',
             waitZone: 'Warten auf die Insel', otherIsland: 'Andere Insel', otherIslands: 'Andere Inseln',
             notFound: 'Gebäude nicht gefunden', foreign: 'Gebäude eines anderen Spielers',
-            needVisit: 'Vorlage für die Insel von {0}: zuerst die Insel besuchen'
+            needVisit: 'Vorlage für die Insel von {0}: zuerst die Insel besuchen',
+            noSettler: 'Warten auf einen Siedler'
         }
     };
 
@@ -973,6 +984,7 @@
             case 0: return '';
             case 1: return 'noRes';
             case 2: return 'whFull';
+            case 3: return 'noSettler';
             case 4: return 'noTools';
             case 7: case 14: return 'upgrade';
             case 8: return 'prodStopped';
@@ -1005,8 +1017,14 @@
 
     var BAD = { zone: 1, missing: 1, foreign: 1, unavail: 1, nostock: 1, failed: 1, depleted: 1 };
     var BUFFED = { buffed: 1, done: 1, pending: 1, queued: 1 };
+    // Short waits of the production cycle (resources, warehouse, settler, tools): the building works
+    // and is buffed like in the stock module. The other states stop the production (option).
+    var WAITS = { noRes: 1, whFull: 1, noSettler: 1, noTools: 1 };
+    // Statuses right before a command that may change in a moment: checked again a bit later.
+    var RETRY = { pending: 1, unavail: 1 };
 
-    // forSend: check right before a command (raw stacks minus reservations, no queue overlay).
+    // forSend: check right before a command (raw stacks minus reservations, no queue overlay, only what
+    // makes the command impossible: the options of the selection were applied when it was chosen).
     // zoneOk: the island of the template is shown (loading: it is opened but not shown yet);
     // owner: the player its buildings must belong to (null: not checked).
     function makeCtx(zoneId, forSend) {
@@ -1122,7 +1140,7 @@
             ok: false, sel: false, idle: false, mine: false, act: null,
             time: '', timeCls: '', timeTip: '', endAt: 0, tip: ''
         };
-        var remove = isRemoveBuff(buffName), after = false, q = null;
+        var remove = isRemoveBuff(buffName), after = false, q = null, failed = false;
         if (!ctx.send) {
             q = queuedState(ctx.zoneId, grid, buffName);
             if (q && q.after) { after = true; q = null; }
@@ -1146,12 +1164,20 @@
         var act = after ? null : activeBuff(bui, ctx.now);
         r.act = act;
         if (!ctx.send && !after) {
-            var res = E.res[ctx.zoneId + ':' + grid], ov = (res && res.buff === buffName) ? res.st : '';
-            if (ov === 'failed' && (remove ? !act : !!act)) ov = 'done';
-            if (ov === 'done' || ov === 'failed') {
-                r.st = ov;
-                if (ov === 'done' && act && !remove) setActive(r, act, buffName);
-                return r;
+            // Result of the last command: 'done' while the building shows it (at least DONE_HOLD, a buff
+            // without duration until the window is reset), then the row is analysed again (the buff
+            // expired: it can be buffed again). A failed row keeps its normal analysis (it can be sent again).
+            var key = ctx.zoneId + ':' + grid, res = E.res[key];
+            if (res && res.buff === buffName) {
+                var hit = remove ? !act : !!(act && act.name === buffName);
+                if (hit || (res.st === 'done' && (now() - (res.at || 0) < DONE_HOLD ||
+                        (!remove && !(buffDuration(buffDef(buffName, ctx), ctx.mode) > 0))))) {
+                    r.st = 'done';
+                    if (act && !remove) setActive(r, act, buffName);
+                    return r;
+                }
+                if (res.st === 'done') delete E.res[key];
+                else failed = true;
             }
         }
         if (act && !remove) {
@@ -1175,8 +1201,15 @@
             return r;
         }
 
-        var ok = true, idle = idleState(bui);
-        if (idle) { r.idle = true; r.st = idle; ok = cfg.buffStopped; }
+        var ok = true, idle = idleState(bui), soft = !ctx.send;
+        if (idle) {
+            r.st = idle;
+            if (idle === 'noSettler') r.tip = tr('LAB', 'MissingWorkyardSettler');
+            if (!WAITS[idle]) {
+                r.idle = true;
+                if (soft) ok = cfg.buffStopped;
+            }
+        }
 
         var def = buffDef(buffName, ctx), dur = buffDuration(def, ctx.mode);
         var mi = mineInfo(bui, grid, ctx, def);
@@ -1191,21 +1224,22 @@
                     r.timeTip = txt('deposit') + ': ' + r.time;
                 }
                 if (unsafe) {
-                    ok = ok && !cfg.safeMines;
-                    if (!idle) r.st = 'unsafe';
+                    if (soft && cfg.safeMines) ok = false;
+                    if (!r.idle) r.st = 'unsafe';
                 }
             }
         }
         if (dur > 0) {
             if (r.timeTip) {
                 r.timeTip += '\n' + txt('duration') + ': ' + fmtDur(dur);
-            } else if (!idle) {
+            } else if (!r.idle) {
                 r.time = fmtDur(dur);
                 r.timeCls = 'dim';
                 r.timeTip = txt('duration') + ': ' + r.time;
             }
         }
         r.ok = ok;
+        if (failed && r.st === 'ready') r.st = 'failed';
         return r;
     }
 
@@ -1434,7 +1468,7 @@
         if (st === 'done') run.ok++;
         else if (st === 'fail') run.fail++;
         else run.skip++;
-        if (st !== 'skip') E.res[job.key] = { st: st === 'done' ? 'done' : 'failed', buff: job.buffName };
+        if (st !== 'skip') E.res[job.key] = { st: st === 'done' ? 'done' : 'failed', buff: job.buffName, at: now() };
     }
 
     // Adds a template to the queue. Every row is checked again right before its command.
@@ -1576,10 +1610,21 @@
         return changed;
     }
 
+    // A command for this buff waits for the server (its stack is reserved until the result).
+    function inFlight(buffName) {
+        for (var i = 0; i < E.runs.length; i++) {
+            var jobs = E.runs[i].jobs;
+            for (var j = 0; j < jobs.length; j++) {
+                if (jobs[j].st === 'sent' && jobs[j].buffName === buffName) return true;
+            }
+        }
+        return false;
+    }
+
     // 'send' | 'later' | 'final' (the command is finished: done, failed or skipped).
     function checkJob(job, ctx, t) {
-        var r = analyzeRow(job, ctx), remove = isRemoveBuff(job.buffName);
-        var seen = ctx.zoneOk && r.st !== 'missing' && r.st !== 'foreign';
+        var r = analyzeRow(job, ctx), remove = isRemoveBuff(job.buffName), st = r.st;
+        var seen = ctx.zoneOk && st !== 'missing' && st !== 'foreign';
         if (job.sends > 0 && seen && (remove ? !r.act : !!(r.act && r.act.name === job.buffName))) {
             // Sent before and not confirmed (e.g. another island was opened): it was applied.
             finishJob(job, 'done');
@@ -1590,21 +1635,26 @@
             return 'final';
         }
         if (r.ok) {
-            var st = ctx.stacks[job.buffName], top = (st && st.list.length) ? st.list[0] : null;
-            if (!top || !(top.n > 0)) {
-                finishJob(job, 'skip', 'nostock');
-                return 'final';
+            var stk = ctx.stacks[job.buffName], top = (stk && stk.list.length) ? stk.list[0] : null;
+            if (top && top.n > 0) {
+                job.top = top;
+                return 'send';
             }
-            job.top = top;
-            return 'send';
+            st = 'nostock';
         }
-        // Blocked for a moment, or not found right after an island change (still loading): later.
-        var soon = r.st === 'missing' && !!E.zw && now() - E.zw.at < MISSING_GRACE;
-        if ((r.st === 'pending' || soon) && ++job.blocked <= BLOCKED_MAX) {
+        // The rest of the stock is reserved by commands still waiting for the server: one may fail.
+        if (st === 'nostock' && inFlight(job.buffName)) {
             job.notBefore = t + BLOCKED_RETRY;
             return 'later';
         }
-        finishJob(job, 'skip', r.st);
+        // Blocked or not applicable for a moment, or not found right after an island change (still
+        // loading): later, a few times.
+        var soon = st === 'missing' && !!E.zw && now() - E.zw.at < MISSING_GRACE;
+        if ((RETRY[st] || soon) && ++job.blocked <= BLOCKED_MAX) {
+            job.notBefore = t + BLOCKED_RETRY;
+            return 'later';
+        }
+        finishJob(job, 'skip', st);
         return 'final';
     }
 
@@ -1652,7 +1702,7 @@
     }
 
     // Sent commands: done as soon as the building shows the buff (also when the notification is
-    // missed); without a result in time the command is queued again, the second one fails.
+    // missed); without a result in time the command is queued again, after MAX_SENDS commands it fails.
     function checkSent(t) {
         var changed = false, zs = {};
         for (var i = 0; i < E.runs.length; i++) {
@@ -2417,6 +2467,7 @@
         stopped: ['BuildingSleepMode', 'stopped', 'warn'],
         upgrade: ['ButtonIconUpgrade', 'upgrade', 'warn'],
         noTools: ['BuildQueueResourceMissing', 'noTools', 'warn'],
+        noSettler: ['IconToolTipWarning', 'noSettler', 'warn'],
         whFull: ['IconToolTipWarning', 'whFull', 'warn'],
         prodStopped: ['IconToolTipWarning', 'prodStopped', 'warn']
     };
