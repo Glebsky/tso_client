@@ -1,32 +1,34 @@
 /**
- * Buff Manager 2.3.1
+ * Buff Manager 2.3.2
  *
  * Buff template manager for The Settlers Online client, built on the stock buff module (6-buffs.js).
  *  - Window styled to match classic client windows (window_*, btn_* textures),
  *    isolated from Bootstrap styles (custom classes, scoped to #buffManagerModal);
- *  - Texts from the in-game localization (loca) and the client translations, images from game assets;
+ *  - Texts from the in-game localization (loca) and the client translations, images from game assets.
+ *    Own texts (queue features) only in English, Russian and German: every other language shows the
+ *    game text of the closest meaning, never a text of another language;
  *  - Template recording like the stock module: every own buff applied to a building of the recorded
  *    island is captured (any buff type, already recorded buildings are kept), record more, discard;
  *  - Templates compatible with SaveLoadTemplate('buff') files; saving remembers the chosen file;
  *    recent template cards with rename, delete and quick start; every card shows the owner of its
  *    island, the templates of the viewed island come first, the others offer to visit their island;
  *  - A template is used only on its island (like the stock module): on another island its rows are
- *    marked, Apply and quick start are not offered, "Visit island" opens it. Right before every
- *    command the building must belong to the owner of that island (no buffs on buildings of another
- *    player, also while the client still shows the previous island after a visit);
+ *    marked, Apply and quick start are not offered, "Visit island" opens it. Buildings of another
+ *    player are never selected; commands wait while another island is shown, also while the client
+ *    still shows the previous island after a visit (commands always go to the shown island);
  *  - Apply engine: a single paced sender (one command per batch, 1 s like the client TimedQueue or
  *    faster), a FIFO queue of templates (start one template and immediately the next one), star menu
- *    stacks reserved per command, cBuff.IsApplyable pre-check right before every command, server
- *    confirmation through the 'buffApplied' notification or the building itself (missed or foreign
- *    notifications), re-check with retries on timeout,
- *    pause while another island is open, cancellation per template or of the whole queue.
- *    The selection is sent as it was chosen: right before a command only what makes it impossible
- *    (buff placed, no stock, building missing, depleted deposit) skips it, temporary states are
- *    checked again a bit later. Short production waits of a working building (resources, warehouse,
- *    settler, tools) are buffed like in the stock module, the options only concern stopped buildings
- *    and mines;
+ *    stacks reserved per command, server confirmation through the 'buffApplied' notification or the
+ *    building itself (missed or foreign notifications), pause while another island is open,
+ *    cancellation per template or of the whole queue;
+ *  - Every check is made when the rows are chosen (window or quick start, cBuff.IsApplyable included):
+ *    short production waits of a working building (resources, warehouse, settler, tools) are selected
+ *    like in the stock module, the options only concern stopped buildings and mines. The queue sends
+ *    the selection as it is, nothing is checked again before a command; a command without a result in
+ *    time is sent once more (not when the building shows another buff, e.g. buffed by hand meanwhile),
+ *    then its row is marked as failed;
  *  - Results: "Complete" is shown while the buff is active, then the row can be buffed again;
- *    failed rows can be sent again;
+ *    failed rows are marked (the current state of the building in the tooltip) and can be sent again;
  *  - Live window: every confirmed command, every buff placed on a listed building (star menu,
  *    friends, other scripts) and every restore of the minimized window update the rows at once;
  *    the game state is analysed again periodically and only changed parts are redrawn.
@@ -36,7 +38,7 @@
 (function () {
     'use strict';
 
-    var VERSION = '2.3.1';
+    var VERSION = '2.3.2';
     var MODAL_ID = 'buffManagerModal';
     var SEL = '#' + MODAL_ID;
     var SETTINGS_KEY = 'BUFF_MANAGER_SETTINGS';
@@ -44,18 +46,14 @@
     var TEMPLATE_MODULE = 'buff';
     var CMD_APPLY_BUFF = 61;
     var SPEEDS = [1000, 700, 500];      // pause between two commands, ms (1000 = client TimedQueue)
-    var CONFIRM_TIMEOUT = 12000;        // no 'buffApplied' within this time: the building is checked
+    var CONFIRM_TIMEOUT = 12000;        // no result within this time: the command is sent once more, then it failed
     var EARLY_CHECK = 1500;             // a sent command is also confirmed when the building already shows the buff
-    var MAX_SENDS = 3;                  // a command is sent at most three times (two automatic retries)
-    var BLOCKED_RETRY = 1500;           // building temporarily blocked / not applicable: try again a bit later
-    var BLOCKED_MAX = 8;
+    var MAX_SENDS = 2;                  // a command is sent at most twice (one automatic retry)
     var DONE_HOLD = 30000;              // a confirmed row stays 'done' at least this long, then while its buff is active
     var ZONE_SETTLE = 1500;             // after another island was opened, commands wait until it is loaded
     var ZONE_STALE_MAX = 20000;         // longest wait for the zone of a just opened island to replace the previous one
     var OWNER_SAMPLE = 6;               // buildings sampled for the owner of the shown island
-    var MISSING_GRACE = 10000;          // a building not found so soon after an island change is checked again
     var PUMP_TICK = 250;
-    var MAX_CHECKS = 60;                // rows checked per engine step (keeps every step short)
     var KEEP_DONE = 5;                  // finished templates kept for the summary
     var AUTO_REFRESH = 10000;           // full analysis of the open window (only changed parts are redrawn)
     var SETTLE_REFRESH = 2000;          // one more full analysis after the queue is finished
@@ -185,7 +183,7 @@
         recStopped: 'buff_rec_stop', sent: 'command_sent', badTpl: 'bad_template'
     };
 
-    // Own texts for the queue features (no loca / client text exists for them).
+    // Own texts for the queue features (no loca / client text exists for them), only these languages.
     var OWN = {
         'en-uk': {
             queued: 'Queued', enqueue: 'Add to queue', quick: 'Use now (the template is added to the queue)',
@@ -216,16 +214,54 @@
         }
     };
 
+    // Every other language shows only texts of the game with the closest meaning: loca, or the client
+    // translation of that very language ('client'); nothing when the game has none (never English).
+    var GAME = {
+        queued: [['LAB', 'SpecialistTask10'], ['LAB', 'SpecialistTaskNone']],
+        quick: [['LAB', 'UseProduction'], ['LAB', 'Send']],
+        templates: [['LAB', 'History'], ['LAB', 'LatestChanges']],
+        inQueue: [['LAB', 'OrdersWaiting']],
+        autoMin: [['TOT', 'eventpanelbutton_closewindow'], ['LAB', 'Close']],
+        waitZone: [['LAB', 'VisitIsland'], ['LAB', 'VisitZone'], ['LAB', 'Visit']],
+        otherIsland: [['client', 'buff_wrong_zone'], ['LAB', 'VisitIsland'], ['LAB', 'Visit']],
+        otherIslands: [['LAB', 'VisitIsland'], ['LAB', 'Visit']],
+        notFound: [['client', 'buff_not_exist'], ['LAB', 'Unavailable']],
+        foreign: [['LAB', 'Unavailable']],
+        needVisit: [['LAB', 'VisitIsland'], ['LAB', 'Visit']],
+        noSettler: [['LAB', 'MissingWorkyardSettler'], ['HIL', 'Help_window_population_0']]
+    };
+    // Game texts without a placeholder for the argument: it follows the text (e.g. the player).
+    var GAME_ARG = { needVisit: 1 };
+
     function clientText(id) {
         var s = String(safe(function () { return getText(id); }, '') || '');
         return (!s || s.indexOf('RES not found') === 0) ? '' : s;
     }
 
+    function langId() { return String(safe(function () { return gameLang; }, '') || ''); }
+    function ownLang() { return own(OWN, langId()); }
+
+    // Client translation of the game language only (no fallback to another language).
+    function langText(key) {
+        var s = safe(function () { return baseTranslation[langId()][key]; }, '');
+        return typeof s === 'string' ? s : '';
+    }
+
     function ownText(id, args) {
-        var lang = String(safe(function () { return gameLang; }, '') || '');
-        var s = (OWN[lang] && OWN[lang][id]) || OWN['en-uk'][id] || '';
+        var lang = langId(), s = '';
+        if (!own(OWN, lang)) return gameText(id, args);
+        s = OWN[lang][id] || OWN['en-uk'][id] || '';
         if (s && args) s = s.replace(/\{(\d+)\}/g, function (m, n) { return args[n] !== undefined ? String(args[n]) : m; });
         return s;
+    }
+
+    function gameText(id, args) {
+        var chain = GAME[id] || [], suffix = !!(GAME_ARG[id] && args && args.length), s = '';
+        for (var i = 0; i < chain.length && !s; i++) {
+            s = chain[i][0] === 'client' ? langText(chain[i][1]) : tr(chain[i][0], chain[i][1], suffix ? null : args);
+        }
+        s = trim(s).replace(/[\s:\uFF1A.\u3002!]+$/, '');
+        return (s && suffix) ? s + ': ' + args.join(', ') : s;
     }
 
     var _txt = {};
@@ -561,7 +597,14 @@
             refresh(true);
             return;
         }
-        var items = defaultItems(t.rec);
+        // The rows are chosen now (nothing is checked again before the commands): not while loading.
+        var ctx = makeCtx(t.rec.zoneId);
+        if (!ctx.zoneOk) {
+            alertMsg(t.name + ': ' + txt('loading'));
+            refresh(true);
+            return;
+        }
+        var items = defaultItems(t.rec, ctx);
         if (!items.length) {
             alertMsg(t.name + ': ' + txt('unavailable'));
             refresh(true);
@@ -598,6 +641,7 @@
         showSettings: false,
         showRecents: false,  // recent templates panel in the list view
         rows: [],
+        rowsOf: null,        // template the rows were analysed for
         counts: {},
         ctx: null,
         zoneSig: '',
@@ -620,7 +664,7 @@
         runs: [],            // templates in queue order: { id, name, zoneId, zoneUser, jobs, total, ok, fail, skip, cancelled }
         pend: {},            // 'zone:grid' -> unfinished commands of all queued templates, in queue order
         reserved: {},        // star menu stack id -> commands sent and not confirmed yet
-        res: {},             // 'zone:grid' -> { st: 'done' | 'failed', buff } result of the last command
+        res: {},             // 'zone:grid' -> { st: 'done' | 'failed', buff, at } result of the last command
         done: [],            // summaries of finished templates, newest first
         touch: {},           // 'zone:grid' -> 1: rows to analyse again at the next window update
         dirty: false,        // a command changed outside the engine step (confirmation, cancel)
@@ -1020,14 +1064,11 @@
     // Short waits of the production cycle (resources, warehouse, settler, tools): the building works
     // and is buffed like in the stock module. The other states stop the production (option).
     var WAITS = { noRes: 1, whFull: 1, noSettler: 1, noTools: 1 };
-    // Statuses right before a command that may change in a moment: checked again a bit later.
-    var RETRY = { pending: 1, unavail: 1 };
 
-    // forSend: check right before a command (raw stacks minus reservations, no queue overlay, only what
-    // makes the command impossible: the options of the selection were applied when it was chosen).
+    // State for the selection (the only check: the queue sends the chosen rows as they are).
     // zoneOk: the island of the template is shown (loading: it is opened but not shown yet);
     // owner: the player its buildings must belong to (null: not checked).
-    function makeCtx(zoneId, forSend) {
+    function makeCtx(zoneId) {
         var w = zoneWatch(), zone = curZone(), viewed = viewedZone(), z = Number(zoneId);
         var same = isFinite(z) && z === viewed, ok = same && !!zone && !w.stale;
         return {
@@ -1040,24 +1081,25 @@
             zoneOk: ok,
             loading: same && !ok,
             owner: ok ? rowOwner(z, w) : null,
-            stacks: collectStacks(!forSend),
-            mode: durMode(z),
-            send: !!forSend
+            stacks: collectStacks(true),
+            mode: durMode(z)
         };
     }
 
     // Island watch: the viewed island, its buildings count and their owner, with the time of the last
     // change (the first loaded island seen counts as settled). Right after another island was opened the client may
     // still show the zone of the previous one: its buildings do not belong to the owner of the opened
-    // island, the zone is stale (at most ZONE_STALE_MAX; the rows keep the owner check). An island
-    // that turns out to belong to another player than its id tells is trusted when its zone replaced
-    // the one of the previous island after the visit.
+    // island, the zone is stale (at most ZONE_STALE_MAX; commands keep waiting while the owner of the
+    // shown zone is not the one of the island). An island that turns out to belong to another player
+    // than its id tells is trusted when its zone replaced the one of the previous island after the
+    // visit. A zone of an unexpected owner is sampled again every second (its replacement is seen also
+    // with the same number of buildings).
     function zoneWatch() {
         var z = curZone(), v = viewedZone(), w = E.zw, t = now();
         var n = z ? Number(safe(function () { return z.mStreetDataMap.GetBuildings_vector().length; }, 0)) : -1;
         if (!w) {
             E.zw = w = { v: v, n: n, at: 0, own: null, mixed: false, ownAt: t, sampled: 0, prev: null, vAt: -ZONE_STALE_MAX,
-                trust: null, stale: false, loaded: false };
+                trust: null, stale: false, odd: false, loaded: false };
         }
         var first = !w.loaded, moved = w.v !== v, changed = moved || w.n !== n;
         if (moved) {
@@ -1065,15 +1107,17 @@
             w.vAt = t;
             w.trust = null;
         }
-        if (first || changed || w.stale || (w.own === null && n > 0 && t - w.sampled >= 1000)) {
+        if (first || changed || w.stale || ((w.own === null || w.odd) && n > 0 && t - w.sampled >= 1000)) {
             var so = n > 0 ? zoneOwnerOf(z) : null, o = so ? so.id : null, exp = o ? zoneOwnerId(v) : null, stale = false;
             w.sampled = t;
             w.mixed = !!(so && so.mixed);
             if (o !== w.own) {
+                if (w.own !== null) changed = true;      // the zone of another player replaced the shown one
                 w.own = o;
                 w.ownAt = t;
             }
-            if (o && exp !== null && o !== exp && o !== v) {
+            w.odd = !!(o && exp !== null && o !== exp && o !== v);
+            if (w.odd) {
                 if (w.trust !== o && w.prev !== null && o !== w.prev && t - w.vAt < ZONE_STALE_MAX) w.trust = o;
                 stale = w.trust !== o && t - Math.max(w.vAt, w.ownAt) < ZONE_STALE_MAX;
             }
@@ -1111,10 +1155,14 @@
         return w.v + ':' + w.n + ':' + (w.stale ? 's' : '') + (w.own === null ? '' : w.own);
     }
 
-    // Commands may go: the island of the template is shown, loaded and did not change just now.
+    // Commands may go: the island of the template is shown, loaded, did not change just now and the
+    // shown zone is that island (its buildings belong to the owner of the island: never the previous
+    // island still shown after a visit). The rows themselves are not checked again.
     function zoneReady(zoneId) {
-        var w = zoneWatch();
-        return w.v === Number(zoneId) && w.n > 0 && !w.stale && now() - w.at >= ZONE_SETTLE;
+        var w = zoneWatch(), z = Number(zoneId);
+        if (w.v !== z || !(w.n > 0) || w.stale || now() - w.at < ZONE_SETTLE) return false;
+        var exp = rowOwner(z, w);
+        return exp === null || w.own === null || w.own === exp || w.own === z;
     }
 
     function setActive(r, act, buffName) {
@@ -1140,11 +1188,8 @@
             ok: false, sel: false, idle: false, mine: false, act: null,
             time: '', timeCls: '', timeTip: '', endAt: 0, tip: ''
         };
-        var remove = isRemoveBuff(buffName), after = false, q = null, failed = false;
-        if (!ctx.send) {
-            q = queuedState(ctx.zoneId, grid, buffName);
-            if (q && q.after) { after = true; q = null; }
-        }
+        var remove = isRemoveBuff(buffName), after = false, failed = false, q = queuedState(ctx.zoneId, grid, buffName);
+        if (q && q.after) { after = true; q = null; }
         var bui = ctx.zoneOk ? safe(function () { return ctx.zone.GetBuildingFromGridPosition(grid); }, null) : null;
         if (bui && String(safe(function () { return bui.GetBuildingName_string(); }, '')) !== buiName) bui = null;
         if (bui) {
@@ -1163,10 +1208,10 @@
 
         var act = after ? null : activeBuff(bui, ctx.now);
         r.act = act;
-        if (!ctx.send && !after) {
+        if (!after) {
             // Result of the last command: 'done' while the building shows it (at least DONE_HOLD, a buff
             // without duration until the window is reset), then the row is analysed again (the buff
-            // expired: it can be buffed again). A failed row keeps its normal analysis (it can be sent again).
+            // expired: it can be buffed again). A failed row is marked on top of its analysis.
             var key = ctx.zoneId + ':' + grid, res = E.res[key];
             if (res && res.buff === buffName) {
                 var hit = remove ? !act : !!(act && act.name === buffName);
@@ -1180,34 +1225,43 @@
                 else failed = true;
             }
         }
-        if (act && !remove) {
+        rowState(r, bui, act, ctx, after);
+        if (failed) markFailed(r);
+        return r;
+    }
+
+    // Status, selection and times of a row whose building is shown. The options (stopped buildings,
+    // mines) only concern the selection: whatever is chosen is sent as it is.
+    function rowState(r, bui, act, ctx, after) {
+        var grid = r.grid, buffName = r.buffName;
+        if (act && !isRemoveBuff(buffName)) {
             r.st = 'buffed';
             setActive(r, act, buffName);
-            return r;
+            return;
         }
 
         var stk = ctx.stacks[buffName], probe = (stk && stk.list.length) ? stk.list[0].b : null;
         if (probe && !after) {
             var ap = safe(function () { return probe.IsApplyable(ctx.player, ctx.gi, grid); }, null);
             var code = (typeof ap === 'number') ? ap : (ap === false ? -1 : 0);
-            if (code === AP_MAX_BUFFS) { r.st = 'buffed'; return r; }
-            if (code === AP_NO_DEPOSIT) { r.st = 'depleted'; r.mine = true; return r; }
-            if (code === AP_BLOCKED) { r.st = 'pending'; return r; }
-            if (code !== 0) { r.st = 'unavail'; return r; }
+            if (code === AP_MAX_BUFFS) { r.st = 'buffed'; return; }
+            if (code === AP_NO_DEPOSIT) { r.st = 'depleted'; r.mine = true; return; }
+            if (code === AP_BLOCKED) { r.st = 'pending'; return; }
+            if (code !== 0) { r.st = 'unavail'; return; }
         }
         if (!stk || !(stk.total > 0)) {
             r.st = 'nostock';
             r.tip = tr('LAB', 'InputResourceMissing', [buffName]);
-            return r;
+            return;
         }
 
-        var ok = true, idle = idleState(bui), soft = !ctx.send;
+        var ok = true, idle = idleState(bui);
         if (idle) {
             r.st = idle;
             if (idle === 'noSettler') r.tip = tr('LAB', 'MissingWorkyardSettler');
             if (!WAITS[idle]) {
                 r.idle = true;
-                if (soft) ok = cfg.buffStopped;
+                ok = cfg.buffStopped;
             }
         }
 
@@ -1216,7 +1270,7 @@
         if (mi) {
             r.mine = true;
             if (!mi.endless) {
-                if (!(mi.ms > 0)) { r.st = 'depleted'; return r; }
+                if (!(mi.ms > 0)) { r.st = 'depleted'; return; }
                 var unsafe = dur > 0 && mi.ms < dur;
                 if (isFinite(mi.ms)) {
                     r.time = fmtDur(mi.ms);
@@ -1224,7 +1278,7 @@
                     r.timeTip = txt('deposit') + ': ' + r.time;
                 }
                 if (unsafe) {
-                    if (soft && cfg.safeMines) ok = false;
+                    if (cfg.safeMines) ok = false;
                     if (!r.idle) r.st = 'unsafe';
                 }
             }
@@ -1239,8 +1293,14 @@
             }
         }
         r.ok = ok;
-        if (failed && r.st === 'ready') r.st = 'failed';
-        return r;
+    }
+
+    // The last command of the row failed (e.g. the building was buffed by hand meanwhile): the row is
+    // marked, its current state is the tooltip; it can be sent again as soon as that state allows it.
+    function markFailed(r) {
+        var st = ST[r.st], head = (r.st !== 'ready' && st) ? txt(st[1]) : '';
+        if (head && head !== r.tip) r.tip = head + (r.tip ? '\n' + r.tip : '');
+        r.st = 'failed';
     }
 
     function applySelection() {
@@ -1262,11 +1322,12 @@
     function analyzeAll() {
         S.zoneSig = zoneSig();
         S.rows = [];
+        S.rowsOf = S.record;
         S.ctx = null;
         S.needFull = false;
         E.touch = {};
         if (S.record) {
-            var ctx = makeCtx(S.record.zoneId, false), data = S.record.data;
+            var ctx = makeCtx(S.record.zoneId), data = S.record.data;
             for (var i = 0; i < data.length; i++) S.rows.push(analyzeRow(data[i], ctx));
             S.ctx = ctx;
         }
@@ -1274,19 +1335,14 @@
         return S.rows;
     }
 
-    // Rows a template would buff with the default selection (quick start): none on another island;
-    // while its island is still loading all rows go to the queue and are checked before each command.
-    function defaultItems(rec) {
-        var ctx = makeCtx(rec.zoneId, false), out = [];
-        if (ctx.viewed !== ctx.zoneId) return out;
+    // Rows a template buffs with the default selection (quick start), checked now like the rows of the
+    // window: none while another island is shown or its island is still loading.
+    function defaultItems(rec, ctx) {
+        var out = [];
+        ctx = ctx || makeCtx(rec.zoneId);
+        if (!ctx.zoneOk) return out;
         for (var i = 0; i < rec.data.length; i++) {
-            var it = rec.data[i];
-            if (ctx.zoneOk) {
-                if (analyzeRow(it, ctx).ok) out.push(it);
-            } else {
-                var q = queuedState(ctx.zoneId, Number(it.buiGrid), String(it.buffName || ''));
-                if (!q || q.after) out.push(it);
-            }
+            if (analyzeRow(rec.data[i], ctx).ok) out.push(rec.data[i]);
         }
         return out;
     }
@@ -1296,7 +1352,7 @@
     function updateRows() {
         var rec = S.record;
         if (!rec || !S.ctx) return false;
-        var ctx = makeCtx(rec.zoneId, false);
+        var ctx = makeCtx(rec.zoneId);
         if (ctx.zoneOk !== S.ctx.zoneOk || ctx.loading !== S.ctx.loading || ctx.owner !== S.ctx.owner) return false;
         var rows = S.rows, touched = E.touch;
         E.touch = {};
@@ -1456,7 +1512,8 @@
         E.dirty = true;
     }
 
-    // st: 'done' | 'fail' | 'skip' (why: the row status that prevented the command).
+    // st: 'done' | 'fail' | 'skip' (cancelled); why: 'nostock' (no star menu item left for the
+    // command), 'unavail' (the client did not take it), 'cancel'.
     function finishJob(job, st, why) {
         if (job.st !== 'wait' && job.st !== 'sent') return;
         release(job);
@@ -1471,7 +1528,8 @@
         if (st !== 'skip') E.res[job.key] = { st: st === 'done' ? 'done' : 'failed', buff: job.buffName, at: now() };
     }
 
-    // Adds a template to the queue. Every row is checked again right before its command.
+    // Adds rows of a template to the queue. They were checked when they were chosen and are sent as
+    // they are.
     function enqueueRecord(rec, name, items) {
         if (!rec || !items || !items.length) return null;
         var zoneId = Number(rec.zoneId), seq = E.seq + 1;
@@ -1488,7 +1546,7 @@
             run.jobs.push({
                 run: run, key: zoneId + ':' + grid, buiGrid: grid,
                 buffName: String(it.buffName || ''), buiName: String(it.buiName || ''),
-                st: 'wait', why: '', sends: 0, sentAt: 0, notBefore: 0, blocked: 0, stack: '', top: null
+                st: 'wait', why: '', sends: 0, sentAt: 0, stack: ''
             });
         }
         if (!run.jobs.length) return null;
@@ -1505,10 +1563,12 @@
         return run;
     }
 
-    // Apply button: the selected rows of the window go to the queue (also while another one runs).
+    // Apply button: the rows selected in the window go to the queue as they are shown (also while
+    // another template runs); nothing is analysed again (only rows not analysed for this template).
     function startRun() {
         if (S.rec || !S.record) return;
-        analyzeAll();
+        if (!S.ctx || S.rowsOf !== S.record || S.rows.length !== S.record.data.length) analyzeAll();
+        else applySelection();
         var items = [];
         for (var i = 0; i < S.rows.length; i++) {
             var r = S.rows[i];
@@ -1572,45 +1632,58 @@
         }, SETTLE_REFRESH);
     }
 
-    // Sends the first command that can go now, in queue order. Rows that cannot be buffed any more
-    // are skipped; a building waits until the earlier command for it is finished; a template of
-    // another island waits until that island is open and loaded.
+    // Sends the next command in queue order, as it was chosen: nothing is checked again. A building
+    // waits until the earlier command for it is finished; a template of another island waits until
+    // that island is open and loaded (commands always go to the shown island). A command needs a star
+    // menu item of its buff: while the rest of the stock is reserved by sent commands it waits for
+    // their result (one may fail and free its item), without any item left it failed.
     function sendNext(t) {
-        var ctxs = {}, held = {}, checks = 0, changed = false;
+        var changed = false, stacks = null, zc = null;
         for (var i = 0; i < E.runs.length; i++) {
-            var run = E.runs[i], ctx = null;
+            var run = E.runs[i], ready = null;
             if (run.cancelled) continue;
             for (var j = 0; j < run.jobs.length; j++) {
                 var job = run.jobs[j];
                 if (job.st !== 'wait') continue;
                 var l = E.pend[job.key];
-                if (held[job.key] || job.notBefore > t || (l && l[0] !== job)) {
-                    held[job.key] = 1;
-                    continue;
-                }
-                if (!ctx) {
-                    var ready = zoneReady(run.zoneId);
+                if (l && l[0] !== job) continue;
+                if (ready === null) {
+                    ready = zoneReady(run.zoneId);
                     if (!!run.waitZone === ready) {
                         run.waitZone = !ready;
                         changed = true;
                     }
-                    if (!ready) break;
-                    ctx = own(ctxs, run.zoneId) ? ctxs[run.zoneId] : (ctxs[run.zoneId] = makeCtx(run.zoneId, true));
                 }
-                if (++checks > MAX_CHECKS) return changed;
-                var v = checkJob(job, ctx, t);
-                if (v === 'send') {
-                    sendJob(job, ctx, t);
-                    return true;
+                if (!ready) break;
+                if (job.sends > 0) {
+                    // Sent before without a result (e.g. while another island was shown): its result first.
+                    zc = zc || { zone: curZone(), now: clientTime() };
+                    var v = sentResult(job, zc);
+                    if (v) {
+                        finishJob(job, v);
+                        changed = true;
+                        continue;
+                    }
                 }
-                if (v === 'later') held[job.key] = 1;
-                else changed = true;
+                if (!stacks) {
+                    if (!buffVector()) return changed;          // star menu not available right now
+                    stacks = collectStacks(false);
+                }
+                var stk = stacks[job.buffName], top = (stk && stk.list.length) ? stk.list[0] : null;
+                if (!top || !(top.n > 0)) {
+                    if (inFlight(job.buffName)) continue;
+                    finishJob(job, 'fail', 'nostock');
+                    changed = true;
+                    continue;
+                }
+                sendJob(job, top, t);
+                return true;
             }
         }
         return changed;
     }
 
-    // A command for this buff waits for the server (its stack is reserved until the result).
+    // A command for this buff waits for the server (its stack item is reserved until the result).
     function inFlight(buffName) {
         for (var i = 0; i < E.runs.length; i++) {
             var jobs = E.runs[i].jobs;
@@ -1621,48 +1694,9 @@
         return false;
     }
 
-    // 'send' | 'later' | 'final' (the command is finished: done, failed or skipped).
-    function checkJob(job, ctx, t) {
-        var r = analyzeRow(job, ctx), remove = isRemoveBuff(job.buffName), st = r.st;
-        var seen = ctx.zoneOk && st !== 'missing' && st !== 'foreign';
-        if (job.sends > 0 && seen && (remove ? !r.act : !!(r.act && r.act.name === job.buffName))) {
-            // Sent before and not confirmed (e.g. another island was opened): it was applied.
-            finishJob(job, 'done');
-            return 'final';
-        }
-        if (job.sends >= MAX_SENDS) {
-            finishJob(job, 'fail');
-            return 'final';
-        }
-        if (r.ok) {
-            var stk = ctx.stacks[job.buffName], top = (stk && stk.list.length) ? stk.list[0] : null;
-            if (top && top.n > 0) {
-                job.top = top;
-                return 'send';
-            }
-            st = 'nostock';
-        }
-        // The rest of the stock is reserved by commands still waiting for the server: one may fail.
-        if (st === 'nostock' && inFlight(job.buffName)) {
-            job.notBefore = t + BLOCKED_RETRY;
-            return 'later';
-        }
-        // Blocked or not applicable for a moment, or not found right after an island change (still
-        // loading): later, a few times.
-        var soon = st === 'missing' && !!E.zw && now() - E.zw.at < MISSING_GRACE;
-        if ((RETRY[st] || soon) && ++job.blocked <= BLOCKED_MAX) {
-            job.notBefore = t + BLOCKED_RETRY;
-            return 'later';
-        }
-        finishJob(job, 'skip', st);
-        return 'final';
-    }
-
-    function sendJob(job, ctx, t) {
-        var top = job.top;
-        job.top = null;
+    function sendJob(job, top, t) {
         E.lastSend = t;
-        if (!sendApply(ctx.gi || gi(), top.b, job.buiGrid)) {
+        if (!sendApply(gi(), top.b, job.buiGrid)) {
             finishJob(job, 'fail', 'unavail');
             return;
         }
@@ -1694,15 +1728,31 @@
         }
     }
 
-    function appliedNow(job, ctx) {
+    function sentBuilding(job, ctx) {
         var bui = safe(function () { return ctx.zone.GetBuildingFromGridPosition(job.buiGrid); }, null);
-        if (!bui || String(safe(function () { return bui.GetBuildingName_string(); }, '')) !== job.buiName) return false;
+        return (bui && String(safe(function () { return bui.GetBuildingName_string(); }, '')) === job.buiName) ? bui : null;
+    }
+
+    function appliedNow(job, ctx) {
+        var bui = sentBuilding(job, ctx);
+        if (!bui) return false;
         var act = activeBuff(bui, ctx.now);
         return isRemoveBuff(job.buffName) ? !act : !!(act && act.name === job.buffName);
     }
 
+    // Result of a command that got no answer in time (its island is shown): 'done' (the building shows
+    // the buff), 'fail' (sent MAX_SENDS times, or the building shows another buff: placed by hand or by
+    // a friend meanwhile) or '' (sent once more).
+    function sentResult(job, ctx) {
+        if (appliedNow(job, ctx)) return 'done';
+        if (job.sends >= MAX_SENDS) return 'fail';
+        var bui = isRemoveBuff(job.buffName) ? null : sentBuilding(job, ctx);
+        return (bui && activeBuff(bui, ctx.now)) ? 'fail' : '';
+    }
+
     // Sent commands: done as soon as the building shows the buff (also when the notification is
-    // missed); without a result in time the command is queued again, after MAX_SENDS commands it fails.
+    // missed). Without a result in time the command goes back to the queue: sent once more, or failed
+    // (sentResult); while another island is shown it waits for its island.
     function checkSent(t) {
         var changed = false, zs = {};
         for (var i = 0; i < E.runs.length; i++) {
@@ -1719,12 +1769,12 @@
                 }
                 if (age < CONFIRM_TIMEOUT) continue;
                 changed = true;
-                if (run.cancelled) finishJob(job, 'skip', 'cancel');
-                else if (zc.zoneOk && job.sends >= MAX_SENDS) finishJob(job, 'fail');
-                else {
+                var v = run.cancelled ? 'skip' : (zc.zoneOk ? sentResult(job, zc) : '');
+                if (v) {
+                    finishJob(job, v, v === 'skip' ? 'cancel' : '');
+                } else {
                     release(job);
                     job.st = 'wait';
-                    job.notBefore = 0;
                     touch(job);
                 }
             }
@@ -2633,8 +2683,10 @@
         var h = '<span class="bm-it">' + ic('IconMailTypeFriend', 22, 18) + esc(txt('player')) + ': <b>' + esc(user) + '</b></span>' +
             '<span class="bm-it">' + ic('StarMenuTabIconBuilding', 18, 18) + esc(txt('buildings')) + ': <b>' + rec.data.length + '</b></span>';
         if (ctx && !ctx.zoneOk && !ctx.loading) {
-            h += '<span class="bm-it bm-warn">' + ic('ButtonIconSendToOtherZone', 22, 20) + esc(txt('otherIsland')) + '</span>' +
-                '<button type="button" class="bm-btn bm-sm" data-bm="visit"' + tipAttr(txt('visit') + ': ' + user) + '>' +
+            // Without an own text the warning may be the label of the button itself: only the button then.
+            var other = txt('otherIsland');
+            if (other && other !== txt('visit')) h += '<span class="bm-it bm-warn">' + ic('ButtonIconSendToOtherZone', 22, 20) + esc(other) + '</span>';
+            h += '<button type="button" class="bm-btn bm-sm" data-bm="visit"' + tipAttr(txt('visit') + ': ' + user) + '>' +
                 ic('ButtonIconSendToOtherZone', 22, 20) + '<span>' + esc(txt('visit')) + '</span></button>';
         } else if (ctx && ctx.loading) {
             h += '<span class="bm-it bm-warn">' + ic('IconPlayerWait', 18, 18) + esc(txt('loading')) + '</span>';
@@ -2666,7 +2718,7 @@
     function progCounts(o) {
         return '<span class="bm-pc"' + tipAttr(txt('done')) + '>' + ic('IconPlayerIn', 20, 20) + o.ok + '</span>' +
             (o.fail ? '<span class="bm-pc"' + tipAttr(txt('failed')) + '>' + ic('FailedIcon', 17, 20) + o.fail + '</span>' : '') +
-            (o.skip ? '<span class="bm-pc"' + tipAttr(txt('unavailable')) + '>' + ic('IconToolTipWarning', 20, 20) + o.skip + '</span>' : '');
+            (o.skip ? '<span class="bm-pc"' + tipAttr(txt('cancelled')) + '>' + ic('ButtonIconAbort', 20, 19) + o.skip + '</span>' : '');
     }
 
     function sumHead(lr) { return lr.reason === 'done' ? txt('done') : txt('cancelled'); }
@@ -2709,7 +2761,8 @@
                 h += '<div class="bm-queue">' +
                     '<button type="button" class="bm-btn bm-sm" data-bm="cancelAll">' + ic('ButtonIconAbort', 20, 19) +
                         '<span>' + esc(txt('clearQueue') || txt('cancel')) + '</span></button>' +
-                    '<span class="bm-ql">' + ic('IconPlayerWait', 18, 18) + esc(txt('inQueue')) + ':</span>' + q + '</div>';
+                    '<span class="bm-ql">' + ic('IconPlayerWait', 18, 18) + esc(txt('inQueue', [E.runs.length - 1])) +
+                        (ownLang() ? ':' : '') + '</span>' + q + '</div>';
             }
             return h;
         }
@@ -2721,14 +2774,14 @@
                 esc(lr.name || sumHead(lr)) + '</span>' +
             '<span class="bm-pc">' + esc(sumHead(lr)) + ': <b>' + lr.ok + '</b> / ' + lr.total + '</span>' +
             (lr.fail ? '<span class="bm-pc"' + tipAttr(txt('failed')) + '>' + ic('FailedIcon', 17, 20) + lr.fail + '</span>' : '') +
-            (lr.skip ? '<span class="bm-pc"' + tipAttr(txt('unavailable')) + '>' + ic('IconToolTipWarning', 20, 20) + lr.skip + '</span>' : '') +
+            (lr.skip ? '<span class="bm-pc"' + tipAttr(txt('cancelled')) + '>' + ic('ButtonIconAbort', 20, 19) + lr.skip + '</span>' : '') +
             '</div>';
         if (E.done.length > 1) {
             var older = '';
             for (i = 1; i < E.done.length; i++) {
                 r = E.done[i];
                 older += '<span class="bm-qi"' + tipAttr(sumHead(r) + (r.fail ? '\n' + txt('failed') + ': ' + r.fail : '') +
-                        (r.skip ? '\n' + txt('unavailable') + ': ' + r.skip : '')) + '>' + ic(sumIcon(r), 16, 16) +
+                        (r.skip ? '\n' + txt('cancelled') + ': ' + r.skip : '')) + '>' + ic(sumIcon(r), 16, 16) +
                     '<span class="bm-qn">' + esc(r.name || '#' + r.id) + '</span><b>' + r.ok + ' / ' + r.total + '</b></span>';
             }
             h += '<div class="bm-queue">' + older + '</div>';
@@ -3509,7 +3562,8 @@
             queueRecent: queueRecent, startRecording: startRecording, stopRecording: stopRecording, saveCfg: saveCfg,
             loadCfg: loadCfg, renderBody: renderBody, renderProg: renderProg, refresh: refresh, onAction: onAction,
             addRecentTemplate: addRecentTemplate, removeRecentTemplate: removeRecentTemplate, onSaved: onSaved,
-            visitRecent: visitRecent, recentsHtml: recentsHtml, zoneWatch: zoneWatch, zoneReady: zoneReady
+            visitRecent: visitRecent, recentsHtml: recentsHtml, zoneWatch: zoneWatch, zoneReady: zoneReady,
+            txt: txt, renderInfo: renderInfo
         };
     }
     window.__BUFF_MANAGER__ = API;
