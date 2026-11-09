@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+
+	<!-- EASTER -->
+	<!-- 2015 -->
+
+	<quest name="Easter2015_StartEvent" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<startquest name="Easter2015_EventRunning" />
+			<startquest name="Easter2015_EventRunning_Shop" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2015_EventRunning" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="QuestComplete" name="Easter2015_StopEvent_Running" condition="questcompleted" amount="1" />
+		</triggers>
+	</quest>
+
+	<!-- Trigger to enable event shop -->
+	<quest name="Easter2015_EventRunning_Shop" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="QuestComplete" name="Easter2015_StopEvent_Shop" condition="questcompleted" amount="1" />
+		</triggers>
+	</quest>
+
+	<quest name="Easter2015_StopEvent_Running" showQuestWindow="false" showRewardWindow="false" >
+			<posteffects>
+			<cancelquest type="startsWith" name="Easter2015_TutAchievement" />
+			<cancelquest type="startsWith" name="Easter2015_Main" />
+		</posteffects>
+	</quest>
+
+	<!-- Trigger for removing event shop -->
+	<quest name="Easter2015_StopEvent_Shop" showQuestWindow="false" showRewardWindow="false" />
+
+	<!-- EASTER -->
+	<!-- 2014 -->
+
+	<!-- <quest name="Easter2014_StartEvent" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<startquest name="Easter2014_EventRunning" />
+			<startquest name="Easter2014_EventRunning_Shop" />
+		</posteffects>
+	</quest> -->
+
+	<!-- <quest name="Easter2014_EventRunning" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="QuestComplete" name="Easter2014_StopEvent_Running" condition="questcompleted" amount="1" />
+		</triggers>
+	</quest> -->
+
+	<!-- Trigger to enable event shop -->
+	<!-- <quest name="Easter2014_EventRunning_Shop" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="QuestComplete" name="Easter2014_StopEvent_Shop" condition="questcompleted" amount="1" />
+		</triggers>
+	</quest> -->
+
+	<!-- <quest name="Easter2014_StopEvent_Running" showQuestWindow="false" showRewardWindow="false" /> -->
+
+	<!-- Trigger for removing event shop -->
+	<!-- <quest name="Easter2014_StopEvent_Shop" showQuestWindow="false" showRewardWindow="false" /> -->
+
+	<!-- SUMMER (WM) -->
+	<!-- 2014 -->
+	<quest name="WM2014_StartEvent" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<startquest name="WM2014_EventRunning" />
+			<startquest name="EMDailyQuestLevelRequirement" />
+			<startquest name="WMMain" />
+		</posteffects>
+	</quest>
+
+	<quest name="WM2014_EventRunning" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="QuestComplete" name="WM2014_StopEvent" condition="questcompleted" amount="1" />
+		</triggers>
+	</quest>
+
+	<quest name="WM2014_StopEvent" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<cancelquest type="startsWith" name="EMDailyQuestLevelRequirement" />
+			<cancelquest type="startsWith" name="WM_Main" />
+			<cancelquest type="startsWith" name="WM_Sub" />
+			<cancelquest type="startsWith" name="EMDailyQuest" />
+			<cancelquest type="startsWith" name="EMDai" />
+		</posteffects>
+	</quest>
+
+	<!-- HALLOWEEN -->
+	<!-- 2013 -->
+
+	<!-- HALLOWEEN 2013 CONTROL QUESTS FOR COMPLETE EVENT -->
+
+	<!-- <quest name="HW2013_StartEvent" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<startquest name="HW2013_EventRunning" />
+			<startquest name="HW2013_StartQuestPhase" />
+		</posteffects>
+	</quest>
+
+	<quest name="HW2013_EventRunning" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="QuestComplete" name="HW2013_StopEvent" condition="questcompleted" amount="1" />
+		</triggers>
+	</quest>
+
+	<quest name="HW2013_StopEvent" showQuestWindow="false" showRewardWindow="false" /> -->
+
+	<!-- HALLOWEEN 2013 CONTROL QUESTS FOR EVENT PHASE -->
+
+	<!-- <quest name="HW2013_StartQuestPhase" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<startquest name="HW2013_QuestPhaseRunning" />
+			<startquest name="HW2013_EventMonster_Reach19" />
+		</posteffects>
+	</quest>
+
+	<quest name="HW2013_QuestPhaseRunning" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="QuestComplete" name="HW2013_StopQuestPhase" condition="questcompleted" amount="1" />
+		</triggers>
+	</quest>
+
+	<quest name="HW2013_StopQuestPhase" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<removebuilding grid="3349" />
+			<cancelquest type="startsWith" name="HW2013_EventMonster" />
+			<cancelquest type="startsWith" name="HW2013_ThePumpkinMaster" />
+		</posteffects>
+	</quest> -->
+	
+	<!-- HALLOWEEN -->
+	<!-- 2014 -->
+
+	<!-- HALLOWEEN 2014 CONTROL QUESTS FOR COMPLETE EVENT -->
+
+	<quest name="HW2014_StartEvent" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<startquest name="HW2014_EventRunning" />
+			<startquest name="HW2014_StartQuestPhase" />
+		</posteffects>
+	</quest>
+
+	<quest name="HW2014_EventRunning" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="QuestComplete" name="HW2014_StopEvent" condition="questcompleted" amount="1" />
+		</triggers>
+	</quest>
+
+	<quest name="HW2014_StopEvent" showQuestWindow="false" showRewardWindow="false" />
+
+	<!-- HALLOWEEN 2013 CONTROL QUESTS FOR EVENT PHASE -->
+
+	<quest name="HW2014_StartQuestPhase" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<startquest name="HW2014_QuestPhaseRunning" />
+			<startquest name="HW2014_EventMonster_Reach19" />
+		</posteffects>
+	</quest>
+
+	<quest name="HW2014_QuestPhaseRunning" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="QuestComplete" name="HW2014_StopQuestPhase" condition="questcompleted" amount="1" />
+		</triggers>
+	</quest>
+
+	<quest name="HW2014_StopQuestPhase" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<removebuilding grid="3349" />
+			<removebuilding grid="3477" />
+			<cancelquest type="startsWith" name="HW2014_EventMonster" />
+			<cancelquest type="startsWith" name="HW2014_ThePumpkinMaster" />
+		</posteffects>
+	</quest>
+
+	<!-- CHRISTMAS -->
+	<!-- 2013 -->
+	<!--
+	<quest name="XMAS2013_StartEvent" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<startquest name="XMAS2013_EventRunning" />
+			<startquest name="XMAS2013_DailyQuestLevelRequirement" />
+			<startquest name="XMAS2013_Main1" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2013_EventRunning" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="QuestComplete" name="XMAS2013_StopEvent" condition="questcompleted" amount="1" />
+		</triggers>
+	</quest>
+
+	<quest name="XMAS2013_StopEvent" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<cancelquest type="startsWith" name="XMAS2013_ChainFilter" />
+			<cancelquest type="startsWith" name="XMAS2013_Main" />
+			<cancelquest type="startsWith" name="XMAS2013_Reach" />
+			<cancelquest type="startsWith" name="XMAS2013_Sub" />
+			<cancelquest type="startsWith" name="XMAS2013_DailyQuest" />
+			<cancelquest type="startsWith" name="ChrDai" />
+		</posteffects>
+	</quest>
+	-->
+	
+	<!-- 2014 -->
+	
+	<quest name="XMAS2014_StartEvent" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<startquest name="XMAS2014_EventRunning" />
+			<startquest name="XMAS2014_ShopRunning" />
+			<startquest name="XMAS2014_DailyQuestLevelRequirement" />
+			<startquest name="XMAS2014_Main1" />
+			<spawnbuilding name="Xmas_Island_Decoration" grid="3349" mode="free" action="ignoreBlocking, spawnInstant, replace"/>
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2014_EventRunning" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="QuestComplete" name="XMAS2014_StopEvent" condition="questcompleted" amount="1" />
+		</triggers>
+	</quest>
+
+	<quest name="XMAS2014_StopEvent" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<cancelquest type="startsWith" name="XMAS2014_ChainFilter" />
+			<cancelquest type="startsWith" name="XMAS2014_Main" />
+			<cancelquest type="startsWith" name="XMAS2014_Reach" />
+			<cancelquest type="startsWith" name="XMAS2014_Sub" />
+			<cancelquest type="startsWith" name="XMAS2014_DailyQuest" />
+			<cancelquest type="startsWith" name="ChrDai" />
+			<removebuilding grid="3349" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2014_ShopRunning" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<questcomplete item="XMAS2014_ShopStop" />
+		</triggers>
+	</quest>
+	
+	<quest name="XMAS2014_ShopStop" showQuestWindow="false" showRewardWindow="false" />
+
+	<!-- OTHER EVENTS -->
+	<!-- RED NOSE DAY -->
+
+	<quest name="RedNose_StartEvent" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<startquest name="RedNose_EventRunning" />
+			<startquest name="RedNose_DonateStuff" />
+			<startquest name="RedNose_Main" />
+		</posteffects>
+	</quest>
+
+	<quest name="RedNose_EventRunning" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="QuestComplete" name="RedNose_StopEvent" condition="questcompleted" amount="1" />
+		</triggers>
+	</quest>
+
+	<quest name="RedNose_StopEvent" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<cancelquest name="RedNose_DonateStuff" />
+			<cancelquest name="RedNose_Reach16" />
+			<cancelquest name="RedNose_Main" />
+			<cancelquest type="startsWith" name="RedNose_Sub" />
+		</posteffects>
+	</quest>
+
+	<!-- BIRTHDAY EVENT -->
+	<!-- The birthday event did not use the event system, which means that there 
+		are no Start/Stop quests for that event. -->
+
+	<!-- MONETIZATION EVENTS -->
+
+	<!-- MINI ADVENTURE MYSTERYBOX -->
+	<quest name="MiniAdventureMysterybox_StartEvent" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<startquest name="MiniAdventureMysterybox_EventRunning" />
+		</posteffects>
+	</quest>
+
+	<quest name="MiniAdventureMysterybox_EventRunning" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="QuestComplete" name="MiniAdventureMysterybox_StopEvent" condition="questcompleted" amount="1" />
+		</triggers>
+	</quest>
+
+	<quest name="MiniAdventureMysterybox_StopEvent" showQuestWindow="false" showRewardWindow="false" />
+
+
+<!-- Explorer Week -->
+	
+	<quest name="SpecialistWeek_StartEvent" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<startquest name="SpecialistWeek_EventRunning" />
+		</posteffects>
+	</quest>
+
+	<quest name="SpecialistWeek_EventRunning" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<questcomplete item="SpecialistWeek_StopEvent" />
+		</triggers>
+	</quest>
+
+	<quest name="SpecialistWeek_StopEvent" showQuestWindow="false" showRewardWindow="false" />
+	
+	<quest name="Collectible_Mysterybox_StartEvent" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<startquest name="Collectible_Mysterybox_EventRunning" />
+		</posteffects>
+	</quest>
+
+	<quest name="Collectible_Mysterybox_EventRunning" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="QuestComplete" name="Collectible_Mysterybox_StopEvent" condition="questcompleted" amount="1"/>
+		</triggers>
+	</quest>
+
+	<quest name="Collectible_Mysterybox_StopEvent" showQuestWindow="false" showRewardWindow="false" />
+
+<!-- PASSIVE MONETIZATION EVENTS -->
+
+<!-- FAST SPECIALIST WEEK -->
+ <!-- <quest name="FastSpecialist_StartEvent" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<startquest name="FastSpecialist_EventRunning" />
+		</posteffects>
+	</quest>
+	
+<quest name="FastSpecialist_EventRunning" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="QuestComplete" name="FastSpecialist_StopEvent" condition="questcompleted" amount="1"/>
+		</triggers>
+	</quest>
+		
+	<quest name="FastSpecialist_StopEvent" showQuestWindow="false" showRewardWindow="false" />    -->
+	
+	<!-- TEST EVENT QUESTS -->
+	
+<!--	<quest name="TestEvent_EventRunning" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="QuestComplete" name="FastSpecialist_StopEvent" condition="questcompleted" amount="1"/>
+		</triggers>
+	</quest>	 -->
+	
+	<quest name="NewTestEvent1_EventRunning" showQuestWindow="false" showRewardWindow="false">
+ 	  <triggers>
+			<trigger type="QuestComplete" name="NewTestEvent1_StopEvent" condition="questcompleted" amount="1"/>
+		</triggers>
+	</quest>
+	
+	<quest name="NewTestEvent1_StopEvent" showQuestWindow="false" showRewardWindow="false" />
+	
+	<quest name="NewTestEvent2_EventRunning" showQuestWindow="false" showRewardWindow="false">
+ 	  <triggers>
+			<trigger type="QuestComplete" name="NewTestEvent2_StopEvent" condition="questcompleted" amount="1"/>
+		</triggers>
+	</quest>
+	
+	<quest name="NewTestEvent2_StopEvent" showQuestWindow="false" showRewardWindow="false" />
+	
+	<quest name="NewTestEvent3_EventRunning" showQuestWindow="false" showRewardWindow="false">
+ 	  <triggers>
+			<trigger type="QuestComplete" name="NewTestEvent3_StopEvent" condition="questcompleted" amount="1"/>
+		</triggers>
+	</quest>
+	
+	<quest name="NewTestEvent3_StopEvent" showQuestWindow="false" showRewardWindow="false" />
+	
+	<!-- Medipack -->	
+	<quest name="Medipack_StartEvent" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<startquest name="Medipack_EventRunning" />
+		</posteffects>
+	</quest>
+
+	<quest name="Medipack_EventRunning" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="QuestComplete" name="Medipack_StopEvent" condition="questcompleted" amount="1"/>
+		</triggers>
+	</quest>
+
+	<quest name="Medipack_StopEvent" showQuestWindow="false" showRewardWindow="false" >
+	</quest>
+	
+<!-- Military Week II -->	
+
+	<quest name="MilitaryWeekII_EventRunning" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="QuestComplete" name="MilitaryWeekII_StopEvent" condition="questcompleted" amount="1"/>
+		</triggers>
+	</quest>
+	
+	<quest name="MilitaryWeekII_StopEvent" showQuestWindow="false" showRewardWindow="false" >
+	</quest>
+
+<!-- Epic Mines -->	
+	<quest name="EpicMines_EventRunning" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="QuestComplete" name="EpicMines_StopEvent" condition="questcompleted" amount="1"/>
+		</triggers>
+	</quest>
+	
+	<quest name="EpicMines_StopEvent" showQuestWindow="false" showRewardWindow="false" >
+	</quest>
+			
+<!-- Summer Sales Event 2015 -->	
+
+	<quest name="Summer2015_EventRunning" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="QuestComplete" name="Summer2015_StopEvent" condition="questcompleted" amount="1"/>
+		</triggers>
+	</quest>
+	
+	<quest name="Summer2015_StopEvent" showQuestWindow="false" showRewardWindow="false" >
+	</quest>
+			
+	
+	<!-- Refill Mysterybox -->	
+
+	<quest name="RefillMysterybox_EventRunning" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="QuestComplete" name="RefillMysterybox_StopEvent" condition="questcompleted" amount="1"/>
+		</triggers>
+	</quest>
+	
+	<quest name="RefillMysterybox_StopEvent" showQuestWindow="false" showRewardWindow="false" >
+	</quest>
+			
+</Root>

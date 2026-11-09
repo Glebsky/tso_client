@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	
+	<quest name="HWCampaign1_Adv3_Main" specialType="firstQuestlastQuest" icon="Venture" npc="quest_character_fin02.png"  helpName="Help_window_ventures_0" showQuestWindow="false">
+		<triggers>
+			<questcomplete item="HWCampaign1_Adv3_Sub1"/> 
+			<questcomplete item="HWCampaign1_Adv3_Sub2"/> 					
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="450" />
+		</posteffects>      
+    </quest>
+		
+	<quest name="HWCampaign1_Adv3_Sub1" connectedToQuest="HWCampaign1_Adv3_Main" icon="Military" npc="quest_character_fin02.png"  helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questactive item="HWCampaign1_Adv3_Main"/>
+		</startcondition>
+		<triggers>
+			<onmap item="Witchtower_leader" max="0" locaExtension="defeatAllWitchTowers" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="150" />
+		</posteffects>      
+    </quest>
+	
+	<quest name="HWCampaign1_Adv3_Sub2" connectedToQuest="HWCampaign1_Adv3_Main" icon="Military" npc="quest_character_fin02.png"  helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="HWCampaign1_Adv3_Sub1"/>
+		</startcondition>
+		<preeffects>
+			<spawnbuilding name="Dark_Castle_01_barred" units="BuffAd_BarredGate|1" mode="enemy" x="12" y="19" action="ignoreBlocking,spawnInstant,replace"/>
+		</preeffects>
+		<triggers>
+           <buffappliedonadventure min="1" item="BattleBuffDestroy_TT_BatteringRam" locaExtension="batteringram" />
+		   <buildingdestroyed item="Dark_Castle_01" min="1" locaExtension="OpenedDarkCastle" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="150" />
+		</posteffects>      
+    </quest>
+	
+</Root>

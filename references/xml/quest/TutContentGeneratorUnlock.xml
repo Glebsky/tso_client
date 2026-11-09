@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<Root>
+    
+    	<!--
+    
+    	// name = Name of Quest
+    	// showQuestWindow="false"  = disable show Quest Window funktion
+    	// showRewardWindow="false"  = disable show Reward Window funktion
+	// colorSchema = use a colorschema could be "night" ,"oven","snow","colormod,radd,gadd,badd,rmul,gmul,bmul"
+	// specialType="firstQuest", this is the start of a quest series, will be aktivated when zone starts
+    	// active = false means quest is inactive
+    	
+    	<quests name="QuestName" colorSchema="night" specialType="firstQuest" active="true">
+    		// if all triggers true quest is finished 
+    		<triggers>
+    			// if Woodcutter exist onMap quest is finished (if amount is one, it could be ignored"
+    			<trigger type="Building" name="Woodcutter" condition="onMap" />
+    			// if Sawmill is created quest is finished
+    			<trigger type="Building" name="Sawmill" condition="created" />
+    			// if 2 Sawmill in map quest is finished
+    			<trigger type="Building" name="Sawmill" condition="ge" amount="2" />
+    			// if 100 Iron is created quest is finished ge means greater or equal
+    			<trigger type="Resource" name="Iron" condition="ge" amount="100" />
+    			// if 100 additional Iron is created quest is finished geDelta means greater or equal
+			// for example, if you have 120 iron at the start of the quest, you must have at least 220 to finish it
+    			<trigger type="Resource" name="Iron" condition="geDelta" amount="100" />
+				
+				//Trigger Events: If trigger completion shall trigger further events (besides quest progress) enter the "onComplete" property with these possible comma-seperated values (NO WHITESPACES!):
+				<trigger type="Building" condition="selected" onComplete="destroySelectedBuilding,doSomethingElse"/> //Destroys the current selected Building and is doint things:)
+    		</triggers>
+    		
+    		// Player posteffects
+    		<posteffects>
+    			// Player gets 100 iron
+    			<reward type="Resource" name="Iron" amount="100" />
+    			// Player gets 200 XP
+    			<reward type="XP" amount="200" />
+    		</posteffects>
+    		
+    		// postrequisits is called after player gets his posteffects 
+    		// startQuest is the name of the quest to start
+    		// Delay is Delay in seconds before quest starts
+    		<postrequisits startQuest="Quest2" startDelay="10" />
+			
+			// Hints (Red bouncing arrow)
+			<hints>
+				// name:       not used yet, will be used as text identifier for hint texts
+				// pointTo:    UI Element which is pointed to
+				//   		   available values:
+				//                 ActionBarButton01
+				//                 ActionBarButton02
+				//                 ActionBarButton03
+				//                 ActionBarButton04
+				//                 ActionBarButton05
+				//                 ActionBarButton06
+				//                 ActionBarButton07
+				//                 ActionBarButton08
+				//                 ActionBarButton09
+				//                 QuestButton
+				// offsetX:    x-offset in pixels from the center of the ui element
+				// offsetY:    y-offset in pixels from the center of the ui element
+				// direction:  direction the arrow will point to
+				//             available values: N, NE, E, SE, S, SW, W, NW
+				<hint name="FirstBuildMenu" pointTo="ActionBarButton01" offsetX="0" offsetY="-40" direction="S" />
+			</hints>
+			
+    	</quests>
+    	
+    	-->
+    
+    <!-- Survey Migration Quest	
+    
+    <quest name="TutSurveyQuest" type="Story" icon="Building" npc="quest_character_mentor03.png" helpName="Help_window_place_building_0" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="1" max="50"/>
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <helpeffects>
+         </helpeffects>
+         <triggers>
+           <trigger type="Resource" name="Wood" amount="2" condition="produce" locaExtension="undefined"/>
+         </triggers>
+         <posteffects>
+           <reward type="Resource" name="Stone" amount="10"/>               
+         </posteffects>
+      </quest>	 -->
+
+<!-- PLAYER LEVEL 21: START -->
+		<quest name="TutContentGeneratorUnlock" showQuestWindow="false" showRewardWindow="false">            
+	         <startcondition>
+	         </startcondition>
+	         
+	         <helpeffects>
+	         </helpeffects>
+	         
+	         <triggers> 
+	         	<playerlevel min="21" />
+	         </triggers>
+	         
+	         <posteffects>          
+					<spawnbuilding name="AirshipExcelsior" x="6" y="109" action="ignoreBlocking,spawnInstant,replace"/>
+					<reward type="Resource" name="Crystal" amount="2"/>	
+	        </posteffects>
+      	</quest>
+
+		<quest name="TutContentGeneratorMain" type="Story" icon="QuestShort" npc="quest_character_sonya_solemoon.png" helpName="Help_window_collections_0" showRewardWindow="true">            
+	         <startcondition>
+	           <questcomplete item="TutContentGeneratorUnlock"/>
+	         </startcondition>
+	         
+	         <helpeffects>
+	         </helpeffects>
+	         
+	         <triggers> 
+			   <questcomplete item="TutContentGeneratorRollShortLetter"/>
+	           <questcomplete item="TutContentGeneratorCompleteQuestBuff"/>
+	           <questcomplete item="TutContentGeneratorCompleteDailyQuest"/>
+	         </triggers>
+	         
+	         <posteffects>          
+				<reward type="XP" amount="75"/>
+	        </posteffects>
+      	</quest>
+      
+		<quest name="TutContentGeneratorRollShortLetter" type="Story" connectedToQuest="TutContentGeneratorMain" icon="QuestShort" npc="quest_character_sonya_solemoon.png"  showRewardWindow="true">
+			<startcondition>
+			 	<questcomplete item="TutContentGeneratorUnlock"/>
+	        </startcondition>
+ 	     	<helpeffects>	
+				<hint pointTo="GAMESTATE_ID_CONTENT_GENERATOR_PANEL.spinButton" type="Glow"/>
+				<hint pointTo="GAMESTATE_ID_CONTENT_GENERATOR_PANEL.LetterShort" type="Glow"/>
+			</helpeffects>
+    		<triggers>
+    			<buildingselected item="AirshipExcelsior" min="1" locaExtension="selectexcelsior"/>
+				<rollcollection item="LetterShort" amount="1"/>					 
+    		</triggers>
+	    	<posteffects>	
+	    		<reward type="XP" amount="50"/>	
+	    		<reward type="Resource" name="Crystal" amount="10"/>	
+	    		<reward type="Collectionpart" name="LetterShortPart" amount="3" />
+	     	</posteffects>
+
+		</quest>
+		
+		<quest name="TutContentGeneratorCompleteQuestBuff" type="Story" connectedToQuest="TutContentGeneratorMain" icon="QuestShort" npc="quest_character_sonya_solemoon.png"  showRewardWindow="true">
+			 <startcondition>
+	         	<questcomplete item="TutContentGeneratorRollShortLetter"/>
+	         </startcondition>
+	         <helpeffects>
+				<hint pointTo="GAMESTATE_ID_CONTENT_GENERATOR_PANEL.completeCollectionButton" type="Glow"/>
+				<hint pointTo="GAMESTATE_ID_CONTENT_GENERATOR_PANEL.LetterShort" type="Glow"/>
+			</helpeffects>
+	    		<triggers>
+	    			<buildingselected item="AirshipExcelsior" min="1" locaExtension="selectexcelsior"/>
+					<completecollection item="LetterShort" amount="1"/>
+	    		</triggers>
+	    	<posteffects>	
+	    			<reward type="XP" amount="50"/>
+	     	</posteffects>	
+	 
+		</quest>
+		
+		<quest name="TutContentGeneratorCompleteDailyQuest" type="Story" connectedToQuest="TutContentGeneratorMain" icon="QuestShort" npc="quest_character_sonya_solemoon.png"  showRewardWindow="true">
+			 <startcondition>
+	         	<questcomplete item="TutContentGeneratorCompleteQuestBuff"/>
+	         </startcondition>			 
+	    		<triggers>	    			 
+					 <questtypecompleted amount="1" type="Daily" locaExtension="daily" />
+	    		</triggers>
+	    	<posteffects>	
+	    			<reward type="XP" amount="50"/>	
+					<reward type="Resource" name="Crystal" amount="2"/>					
+	     	</posteffects>	
+	     	<helpeffects>
+				
+			</helpeffects>
+		</quest>
+		
+	<!-- Hidden quests for scripting purposes -->
+		<!-- catches purchased Rarity Provision Houses. There is also an event in game_events.xml that checks for placed ones (because players may have purchased their building before this update) --> 
+		<quest name="ProvisionHouse2Bought" showQuestWindow="false" showRewardWindow="false">
+			<startcondition>			
+			</startcondition> 
+			<triggers>	    	
+				<onmap item="ProvisionHouse2" min="1"/>		
+			</triggers>
+			<posteffects>
+				<adjustgenericvalue name="Own_RarityProvisioner" action="set" amount="1" /> 
+			</posteffects>
+		</quest>
+		
+	<!-- Mountain Clan -->	
+		<quest name="TutAdvanced_RemoveMountainPeak" showQuestWindow="false" showRewardWindow="false">
+		 <startcondition>
+		 	
+         </startcondition>
+         
+    		<triggers>
+				<playerlevel min="65" />
+    		</triggers>
+    		
+    		<posteffects>
+				<removebuilding x="65" y="123" name="decoration_mountain_peak"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>	
+
+		<quest name="TutContentGenerator_MCC_Main" type="Story" icon="QuestShort" npc="quest_character_geologist01.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<questcomplete item="TutAdvanced_RemoveMountainPeak"/>
+         </startcondition>
+         
+    		<triggers>
+    			 <questcomplete item="TutContentGenerator_MCC_Sector" locaExtension="EpicForgePrologue_Sector"/> 
+    			 <questcomplete item="TutContentGenerator_MCC_Expedition" locaExtension="EpicForgePrologue_Expedition"/> 
+    			 <questcomplete item="TutContentGenerator_MCC_Prediction" locaExtension="EpicForgePrologue_Prediction"/> 
+    			 <questcomplete item="TutContentGenerator_MCC_MountainClan" locaExtension="EpicForgePrologue_MountainClan"/> 
+    			 <questcomplete item="TutContentGenerator_MCC_EpicForge" locaExtension="EpicForgePrologue_EpicForge"/> 
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="200000"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>	
+    	
+    	
+		<quest name="TutContentGenerator_MCC_Sector" type="Story" connectedToQuest="TutContentGenerator_MCC_Main" icon="QuestShort" npc="quest_character_geologist01.png"  showRewardWindow="true">
+		 <startcondition>
+         	<questrunning item="TutContentGenerator_MCC_Main"/>
+         </startcondition>
+		 
+    		<triggers>
+    			 <sectorexplored min="16" locaExtension="EpicForgePrologue"/>
+    			 <onmap item="Banditsleader_New" max="1" locaExtension="EpicForgePrologue_Bandits" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="100000"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+		
+		<quest name="TutContentGenerator_MCC_Expedition" type="Story" connectedToQuest="TutContentGenerator_MCC_Main" icon="QuestShort" npc="quest_character_geologist01.png"  showRewardWindow="true">
+		 <startcondition>
+         	<questcomplete item="TutContentGenerator_MCC_Sector"/>
+         </startcondition>
+		 
+    		<triggers>
+    			 <trigger type="PayForQuestFinish" name="Bread" amount="83000"/>
+    			 <trigger type="PayForQuestFinish" name="Sausage" amount="69000"/>
+    			 <trigger type="PayForQuestFinish" name="Beer" amount="82000"/>
+    			 <trigger type="PayForQuestFinish" name="Swordsman" amount="200"/>
+    			 <trigger type="PayForQuestFinish" name="Marksman" amount="200"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="100000"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+		
+		<quest name="TutContentGenerator_MCC_Prediction" type="Story" connectedToQuest="TutContentGenerator_MCC_Main" icon="QuestShort" npc="quest_character_sonya_solemoon.png"  showRewardWindow="true">
+		 <startcondition>
+         	<questcomplete item="TutContentGenerator_MCC_Expedition"/>
+         </startcondition>
+		 
+    		<triggers>
+    			<buffproduced min="10" item="EffectBuff_Seismoscope"/>
+    			<buffapplied item="EffectBuff_Seismoscope" min="10"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="100000"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+    	
+    	<quest name="TutContentGenerator_MCC_MountainClan" type="Story" connectedToQuest="TutContentGenerator_MCC_Main" icon="QuestShort" npc="quest_character_sonya_solemoon.png"  showRewardWindow="true">
+		 <startcondition>
+         	<questcomplete item="TutContentGenerator_MCC_Prediction"/>
+         </startcondition>
+		 
+    		<triggers>
+    			<completecollection item="TheMountainClan" amount="1"/>
+    			<completeadventurelist item="BuffAdventures_TMC_At_the_Foot_of_the_Mountain" amount="1" locaExtension="buff_adv_atthefootofthemountain"/>
+				<completeadventurelist item="BuffAdventures_TMC_Unknown_Regions" amount="1" locaExtension="buff_adv_unknownregions"/>
+				<completeadventurelist item="BuffAdventures_TMC_Mountain_Labyrinth" amount="1" locaExtension="buff_adv_mountainlabyrinth"/>
+				<completeadventurelist item="BuffAdventures_TMC_The_People_of_the_Mountain" amount="1" locaExtension="buff_adv_thepeopleofthemountain"/>
+				<completeadventurelist item="BuffAdventures_TMC_A_giant_Battle" amount="1" locaExtension="buff_adv_agiantbattle"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="100000"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+		
+		<quest name="TutContentGenerator_MCC_EpicForge" type="Story" connectedToQuest="TutContentGenerator_MCC_Main" icon="QuestShort" npc="quest_character_sonya_solemoon.png"  showRewardWindow="true">
+		 <startcondition>
+         	<questcomplete item="TutContentGenerator_MCC_MountainClan"/>
+         </startcondition>
+		 
+    		<triggers>
+    			 <onmap item="EpicWorkyardOre" min="1" locaExtension="build_epicforge" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="100000"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+
+		
+</Root>	  

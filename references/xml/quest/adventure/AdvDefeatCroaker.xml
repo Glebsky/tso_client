@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	 <quest name="AdvDefeatCroaker" type="Story" icon="Military" npc="quest_character_santaclaus.png" specialType="firstQuestlastQuest" >
+		<triggers>
+      <trigger type="Building" name="Banditsleader_Adventure" condition="l" amount="1" locaExtension="chr"/>
+		  </triggers>
+      <rewards/>
+		  <postrequisits />
+    </quest>
+</Root>

@@ -1,0 +1,8 @@
+{
+  "picker": "both distinct tiles present",
+  "resourceIcon": "RESOURCE-Gunpowder",
+  "adventureIcon": "BUFF-Gunpowder",
+  "resourceStock": "1k",
+  "adventureStock": "2",
+  "jquery": "3.6.0"
+}

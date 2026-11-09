@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ItemLimits>
+<!-- comprehensive limitation configuration
+
+	Defines a global limit for items
+	
+	itemTypes = Specialist/Buff/Building/Adventure
+ -->
+
+	<!-- Generals --> 
+	<limit itemType="Specialist" itemName="GeneralNusala" resourceName="" amount="5" />
+	<limit itemType="Specialist" itemName="GeneralAnslem" resourceName="" amount="6" />
+<!--	<limit itemType="Specialist" itemName="GeneralAnslem" resourceName="" amount="1" requiresEvent="Valentines2019plus_Shop"/> -->
+	<limit itemType="Specialist" itemName="GeneralVargus" resourceName="" amount="8" />
+	<limit itemType="Specialist" itemName="BorisGeneral" resourceName="" amount="8" />
+<!--	<limit itemType="Specialist" itemName="BorisGeneral" resourceName="" amount="1" requiresEvent="Soccer2018plus_Shop"/>	maybe bring him in again for summer event 2020 for 6695 soccer balls -->
+	<limit itemType="Specialist" itemName="StarGeneral2" resourceName="" amount="21" />
+<!--	<limit itemType="Specialist" itemName="StarGeneral2" resourceName="" amount="3" requiresEvent="Easter2018plus_Shop"/> -->
+	<limit itemType="Specialist" itemName="StarGeneral3" resourceName="" amount="17" />
+<!--	<limit itemType="Specialist" itemName="StarGeneral3" resourceName="" amount="1" requiresEvent="Easter2018plus_Shop"/> NOT TO BE INCREASED ANYMORE--> 
+	<limit itemType="Specialist" itemName="EasterGeneral" resourceName="" amount="21" />
+<!--	<limit itemType="Specialist" itemName="EasterGeneral" resourceName="" amount="3" requiresEvent="Easter2018plus_Shop"/> -->  
+	<limit itemType="Specialist" itemName="MasterGeneral" resourceName="" amount="15" />
+	<limit itemType="Specialist" itemName="MadScientistGeneral" resourceName="" amount="18" />
+<!--	<limit itemType="Specialist" itemName="MadScientistGeneral" resourceName="" amount="2" requiresEvent="HW2017plus_Shop"/> 	-->
+	
+	<limit itemType="Specialist" itemName="MedicGeneral" resourceName="" amount="8" />
+	<limit itemType="Specialist" itemName="MedicGeneral" resourceName="" amount="6" requiresEvent="Anniversary2018plus_Content"/>
+	
+	<limit itemType="Specialist" itemName="MajorGeneral" resourceName="" amount="13" />
+<!--<limit itemType="Specialist" itemName="MajorGeneral" resourceName="" amount="2" requiresEvent="AdventureSeasonCultist2"/> -->	
+<!--	<limit itemType="Specialist" itemName="MajorGeneral" resourceName="" amount="1" requiresEvent="Easter2018plus_Shop"/> -->
+	
+	<limit itemType="Specialist" itemName="Anniversary2019General" resourceName="" amount="15" />
+<!--<limit itemType="Specialist" itemName="Anniversary2019General" resourceName="" amount="2" requiresEvent="AdventureSeasonCultist2"/>	-->
+<!--	<limit itemType="Specialist" itemName="Anniversary2019General" resourceName="" amount="1" requiresEvent="Soccer2018plus_Shop"/> -->
+<!--<limit itemType="Specialist" itemName="Anniversary2019General" resourceName="" amount="1" requiresEvent="Anniversary2018plus_Content"/>	-->
+	
+	<limit itemType="Specialist" itemName="Halloween2019General" resourceName="" amount="34" />
+<!--	<limit itemType="Specialist" itemName="Halloween2019General" resourceName="" amount="4" requiresEvent="HW2017plus_Shop"/>  -->
+<!--	<limit itemType="Specialist" itemName="Halloween2019General" resourceName="" amount="1" requiresEvent="Valentines2019plus_Shop"/> -->
+
+	<limit itemType="Specialist" itemName="HalloweenGeneralDracul" resourceName="" amount="25" />	
+<!--	<limit itemType="Specialist" itemName="HalloweenGeneralDracul" resourceName="" amount="2" requiresEvent="HW2017plus_Shop"/>	 -->
+	<limit itemType="Specialist" itemName="HalloweenGeneral" resourceName="" amount="24" />
+<!--	<limit itemType="Specialist" itemName="HalloweenGeneral" resourceName="" amount="2" requiresEvent="HW2017plus_Shop"/> -->
+
+	<limit itemType="Specialist" itemName="AssassinGeneral" resourceName="" amount="21" />	
+<!--	<limit itemType="Specialist" itemName="AssassinGeneral" resourceName="" amount="1" requiresEvent="HW2017plus_Shop"/>	-->
+	<limit itemType="Specialist" itemName="AssassinGeneral" resourceName="" amount="1" requiresEvent="Anniversary2018plus_Content"/>
+<!--		<limit itemType="Specialist" itemName="AssassinGeneral" resourceName="" amount="2" requiresEvent="Easter2018plus_Shop"/> --> 
+
+	<!-- Explorer -->
+	<limit itemType="Specialist" itemName="MasterExplorer" resourceName="" amount="13" />
+
+	<limit itemType="Specialist" itemName="FastLuckyExplorer" resourceName="" amount="28" />
+<!--	<limit itemType="Specialist" itemName="FastLuckyExplorer" resourceName="" amount="1" requiresEvent="Anniversary2018plus_Content"/> -->
+<!--	<limit itemType="Specialist" itemName="FastLuckyExplorer" resourceName="" amount="1" requiresEvent="Soccer2018plus_Shop" />-->
+<!--	<limit itemType="Specialist" itemName="FastLuckyExplorer" resourceName="" amount="1" requiresEvent="AdventureSeasonCultist2" /> -->
+	
+	<limit itemType="Specialist" itemName="CandidExplorer" resourceName="" amount="18" />
+<!--	<limit itemType="Specialist" itemName="CandidExplorer" resourceName="" amount="1" requiresEvent="HW2017plus_Shop"/> -->
+	<limit itemType="Specialist" itemName="CandidExplorer" resourceName="" amount="1" requiresEvent="Anniversary2018plus_Content"/>
+<!--	<limit itemType="Specialist" itemName="CandidExplorer" resourceName="" amount="1" requiresEvent="XMAS2017plus_Shop" />	-->
+
+	<limit itemType="Specialist" itemName="HumbleExplorer" resourceName="" amount="18" />
+<!--	<limit itemType="Specialist" itemName="HumbleExplorer" resourceName="" amount="1" requiresEvent="AdventureSeasonCultist2" />	-->
+<!--	<limit itemType="Specialist" itemName="HumbleExplorer" resourceName="" amount="2" requiresEvent="XMAS2017plus_Shop" />	-->	
+	<limit itemType="Specialist" itemName="PrincessZoeExplorer" resourceName="" amount="18" />	
+<!--	<limit itemType="Specialist" itemName="PrincessZoeExplorer" resourceName="" amount="1" requiresEvent="Easter2018plus_Shop" />  -->
+	<limit itemType="Specialist" itemName="Soccer2019Explorer" resourceName="" amount="29" />	
+<!--	<limit itemType="Specialist" itemName="Soccer2019Explorer" resourceName="" amount="3" requiresEvent="Soccer2018plus_Shop" />-->
+	
+	<limit itemType="Specialist" itemName="EmphaticExplorer" resourceName="" amount="12" /> 
+<!--	<limit itemType="Specialist" itemName="EmphaticExplorer" resourceName="" amount="1" requiresEvent="Anniversary2018plus_Content"/> -->	
+	
+	<limit itemType="Specialist" itemName="BewitchingExplorer" resourceName="" amount="30" />
+<!--	<limit itemType="Specialist" itemName="BewitchingExplorer" resourceName="" amount="4" requiresEvent="HW2017plus_Shop" /> -->	
+<!--	<limit itemType="Specialist" itemName="BewitchingExplorer" resourceName="" amount="1" requiresEvent="AdventureSeasonCultist2" /> -->	
+
+	<limit itemType="Specialist" itemName="RinaTheExplorer" resourceName="" amount="6" />
+<!--	<limit itemType="Specialist" itemName="RinaTheExplorer" resourceName="" amount="1" requiresEvent="Anniversary2018plus_Content"/> -->	
+	
+	<!-- Recipes -->
+	<limit itemType="Buff" itemName="AddRecipe_RarityProductivityBuffLvl23" resourceName="" amount="1" />
+	<limit itemType="Buff" itemName="AddRecipe_StoneRefill" resourceName="" amount="1" />
+	<limit itemType="Buff" itemName="AddRecipe_MarbleRefill" resourceName="" amount="1" />
+	<limit itemType="Buff" itemName="AddRecipe_SmallGlue" resourceName="" amount="1" />
+	<limit itemType="Buff" itemName="AddRecipe_PaperConverter" resourceName="" amount="1" />
+	<limit itemType="Buff" itemName="AddRecipe_ImprovedPaperConverter" resourceName="" amount="1" />	
+	<limit itemType="Buff" itemName="AddRecipe_WeaponsmithBoost" resourceName="" amount="1" />
+	<limit itemType="Buff" itemName="AddRecipe_BaracksBoost" resourceName="" amount="1" />
+	<limit itemType="Buff" itemName="AddRecipe_ProductivityBuff300" resourceName="" amount="1" />
+	<limit itemType="Buff" itemName="AddRecipe_RemoveBuff" resourceName="" amount="1" />
+	<limit itemType="Buff" itemName="AddRecipe_ProductivityAreaBuffLvl3" resourceName="" amount="1" />
+	<limit itemType="Buff" itemName="AddRecipe_ProductivityAreaBuffLvl4" resourceName="" amount="1" />
+	<limit itemType="Buff" itemName="AddRecipe_ProductivityAreaBuffLvl5" resourceName="" amount="1" />
+	<limit itemType="Buff" itemName="AddRecipe_ProductivityAreaBuffLvl6" resourceName="" amount="1" />	
+	<limit itemType="Buff" itemName="AddRecipe_PlatinumHorseShoes" resourceName="" amount="1" />
+	<limit itemType="Buff" itemName="AddRecipe_AdventureZoneTravelBoostMedium" resourceName="" amount="1" />
+	<limit itemType="Buff" itemName="AddRecipe_AdventureZoneTravelBoostHigh" resourceName="" amount="1" />	
+	<limit itemType="Buff" itemName="QuestStart_Harbour" resourceName="" amount="1" />	
+	
+	<!-- Mountain Destroy Buffs -->
+	<limit itemType="Buff" itemName="MountainDemolition_M" resourceName="" amount="45" />	
+	<!-- <limit itemType="Buff" itemName="MountainDemolition_M" resourceName="" amount="2" requiresEvent="Soccer2018plus_Shop" /> -->
+	<limit itemType="Buff" itemName="MountainDemolition_L" resourceName="" amount="15" />	
+	<!-- <limit itemType="Buff" itemName="MountainDemolition_L" resourceName="" amount="1" requiresEvent="Soccer2018plus_Shop" /> -->
+	
+	
+	<!-- Buildings -->
+	<limit itemType="Buff" itemName="BuildBuilding" resourceName="ProvisionHouse2" amount="1" />
+	<limit itemType="Buff" itemName="BuildBuilding" resourceName="Laboratory" amount="27" />
+<!--	<limit itemType="Buff" itemName="BuildBuilding" resourceName="Laboratory" amount="4" requiresEvent="HW2017plus_Shop"/> -->	
+	<limit itemType="Buff" itemName="BuildBuilding" resourceName="ChristmasMarket_Player" amount="13" />
+<!--	<limit itemType="Buff" itemName="BuildBuilding" resourceName="ChristmasMarket_Player" amount="3" requiresEvent="XMAS2017plus_Shop"  /> -->
+	<limit itemType="Buff" itemName="BuildBuilding" resourceName="ChristmasBakery" amount="15" />
+<!--	<limit itemType="Buff" itemName="BuildBuilding" resourceName="ChristmasBakery" amount="1" requiresEvent="AdventureSeasonCultist2"  />	-->		
+<!--	<limit itemType="Buff" itemName="BuildBuilding" resourceName="ChristmasBakery" amount="3" requiresEvent="XMAS2017plus_Shop"  />		-->
+	<limit itemType="Buff" itemName="BuildBuilding" resourceName="GiftChristmasTree" amount="16" />
+<!--	<limit itemType="Buff" itemName="BuildBuilding" resourceName="GiftChristmasTree" amount="4" requiresEvent="XMAS2017plus_Shop"  /> -->
+	<limit itemType="Buff" itemName="BuildBuilding" resourceName="Skyscraper_Residence" amount="30" />
+<!--	<limit itemType="Buff" itemName="BuildBuilding" resourceName="Skyscraper_Residence" amount="1" requiresEvent="Valentines2019plus_Shop"/> -->	
+<!--	<limit itemType="Buff" itemName="BuildBuilding" resourceName="Skyscraper_Residence" amount="1" requiresEvent="XMAS2017plus_Shop"/>	-->
+<!--		<limit itemType="Buff" itemName="BuildBuilding" resourceName="Skyscraper_Residence" amount="1" requiresEvent="Easter2018plus_Shop"/> -->
+		
+	<limit itemType="Buff" itemName="BuildBuilding" resourceName="ConcertHall" amount="11" />
+<!--	<limit itemType="Buff" itemName="BuildBuilding" resourceName="ConcertHall" amount="1" requiresEvent="Soccer2018plus_Shop"/> -->
+<!--	<limit itemType="Buff" itemName="BuildBuilding" resourceName="ConcertHall" amount="1" requiresEvent="Easter2018plus_Shop"/> -->
+
+	<limit itemType="Buff" itemName="BuildBuilding" resourceName="Spa" amount="16" />
+<!--	<limit itemType="Buff" itemName="BuildBuilding" resourceName="Spa" amount="1" requiresEvent="Soccer2018plus_Shop"/> -->
+<!--	<limit itemType="Buff" itemName="BuildBuilding" resourceName="Spa" amount="1" requiresEvent="Easter2018plus_Shop"/> -->
+
+	<limit itemType="Buff" itemName="BuildBuilding" resourceName="WeatherStation" amount="12" />
+<!--	<limit itemType="Buff" itemName="BuildBuilding" resourceName="WeatherStation" amount="1" requiresEvent="Valentines2019plus_Shop"/> -->
+	<limit itemType="Buff" itemName="BuildBuilding" resourceName="Observatory" amount="14" />
+<!--	<limit itemType="Buff" itemName="BuildBuilding" resourceName="Observatory" amount="1" requiresEvent="Valentines2019plus_Shop"/> -->
+	<limit itemType="Buff" itemName="BuildBuilding" resourceName="TreeHouseResidence" amount="41" />
+<!--	<limit itemType="Buff" itemName="BuildBuilding" resourceName="TreeHouseResidence" amount="4" requiresEvent="HW2017plus_Shop"/>	-->	
+<!--	<limit itemType="Buff" itemName="BuildBuilding" resourceName="TreeHouseResidence" amount="4" requiresEvent="Soccer2018plus_Shop"/> -->
+	
+	<limit itemType="Buff" itemName="EmptyEffectBuff_CompLimit" resourceName="" amount="5" />
+	
+	<!--New to Valentines 2023-->
+	<limit itemType="Buff" itemName="AddRecipe_TSR_SheetMusic6" resourceName="" amount="1" />
+	<limit itemType="Buff" itemName="BuildBuilding" resourceName="CarnivalGrounds" amount="5" />
+	<limit itemType="Buff" itemName="BuildBuilding" resourceName="RangerHut" amount="14" />
+	<limit itemType="Buff" itemName="BuildBuilding" resourceName="ClassyHotel" amount="7" />
+	<limit itemType="Buff" itemName="BuildBuilding" resourceName="FloatingStorehouse" amount="8" />
+	<limit itemType="Buff" itemName="BuildBuilding" resourceName="CrystalShardPit" amount="5" />
+	<!--New to Easter 2023-->
+	<limit itemType="Buff" itemName="BuildBuilding" resourceName="Ostereierbaum" amount="7" />
+	<limit itemType="Buff" itemName="BuildBuilding" resourceName="ArtMuseum" amount="7" />
+	<limit itemType="Buff" itemName="BuildBuilding" resourceName="FlowerBlossomsResidence" amount="5" />
+	<limit itemType="Buff" itemName="BuildBuilding" resourceName="FlowerBlossomsStorehouse" amount="5" />
+
+	<!--New to Summer 2023-->
+	<!--<limit itemType="Buff" itemName="BuildBuilding" resourceName="InflatableResidence" amount="6" /> -->
+	<!--<limit itemType="Buff" itemName="BuildBuilding" resourceName="InflatableStorehouse" amount="6" /> -->
+	<limit itemType="Buff" itemName="BuildBuilding" resourceName="PrintPress" amount="5" />
+	<limit itemType="Specialist" itemName="GeologistOnVacation" resourceName="" amount="8" />
+
+	
+	<!-- Added in GUILD FEST 2024-->
+	<limit itemType="Buff" itemName="BuildBuilding" resourceName="GuildFestTentI" amount="1" />
+	<limit itemType="Buff" itemName="BuildBuilding" resourceName="GuildFestTentII" amount="1" />
+	<limit itemType="Buff" itemName="BuildBuilding" resourceName="GuildFestTentIII" amount="1" />
+	
+	<limit itemType="Buff" itemName="BuildBuilding" resourceName="TowerOfBraggingRights" amount="1" />
+	
+	<!--Halloween 2025-->
+	<limit itemType="Buff" itemName="BuildBuilding" resourceName="WitchCoven" amount="1" />
+	<!--Xmas 2025-->
+	<limit itemType="Buff" itemName="BuildBuilding" resourceName="RetirementHome" amount="1" />
+	<!--Valentine 2026-->
+	<limit itemType="Buff" itemName="BuildBuilding" resourceName="WeddingChapel" amount="1" />
+	<!--Easter 2026-->
+	<limit itemType="Buff" itemName="BuildBuilding" resourceName="Depositorium" amount="5" />
+</ItemLimits>

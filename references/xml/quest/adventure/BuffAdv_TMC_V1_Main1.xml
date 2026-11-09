@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+      
+   <quest name="BuffAdv_TMC_V1_Main1" specialType="firstQuest" icon="Military" npc="quest_character_sonya_solemoon.png">
+		<triggers>
+			<questcomplete item="BuffAdv_TMC_V1_Sub1"/> 
+			<questcomplete item="BuffAdv_TMC_V1_Sub2"/> 
+			<questcomplete item="BuffAdv_TMC_V1_Sub3"/> 
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="1000"/> 
+		</rewards>
+		<postrequisits />
+    </quest>
+
+	<quest name="BuffAdv_TMC_V1_Sub1" type="Story" icon="Military" connectedToQuest="BuffAdv_TMC_V1_Main1" npc="quest_character_sonya_solemoon.png">
+		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V1_Main1"/>
+		</startcondition>
+		  <triggers>
+			<onmap max="1" item="tent_nords_leader" locaExtension="DefeatTundraNords"/>	
+		  </triggers>
+		<rewards>
+		</rewards>
+		<posteffects>
+			<removebuilding x="29" y="52" name="tmc_nords_barricade_01" />
+			<removebuilding x="25" y="66" name="tmc_nords_barricade_02" />
+			<removebuilding x="33" y="82" name="tmc_nords_barricade_01" />
+			<removebuilding x="32" y="82" name="tmc_nords_barricade_02" />
+			<exploresector id="3"/>
+        </posteffects>
+   </quest>
+   
+   <quest name="BuffAdv_TMC_V1_Sub2" type="Story" icon="Military" connectedToQuest="BuffAdv_TMC_V1_Main1" npc="quest_character_sonya_solemoon.png">
+   		<startcondition>
+		   <questcomplete item="BuffAdv_TMC_V1_Sub1"/>
+		</startcondition>
+		  <triggers>
+		  	<onmap min="1" item="tmc_nords_woodcutter" mode="free" locaExtension="RepairNordsWoodcutter"/>
+		  	<onmap min="1" item="tmc_nords_house" mode="free" locaExtension="RepairNordsHouse"/>
+		  	<onmap min="1" item="tmc_nords_well" mode="free" locaExtension="RepairNordsWell"/>
+		  	<onmap min="1" item="tmc_nords_hunter" mode="free" locaExtension="RepairNordsHunter"/>
+		  	<onmap min="1" item="tmc_nords_smith" mode="free" locaExtension="RepairNordsSmith"/>
+		  </triggers>
+		<rewards>
+		</rewards>
+		<posteffects>
+			<reward type="Buff" item="BattleBuffDestroy_TMC_NordGateKey" amount="1"/>
+        </posteffects>
+   </quest>
+   
+   <quest name="BuffAdv_TMC_V1_Sub3" type="Story" icon="Military" connectedToQuest="BuffAdv_TMC_V1_Main1" npc="quest_character_sonya_solemoon.png">
+   		<startcondition>
+		   <questcomplete item="BuffAdv_TMC_V1_Sub2"/>
+		</startcondition>
+		  <triggers>
+			<onmap min="1" item="tmc_nords_gate_open" mode="free" locaExtension="OpenNordsGate"/>	 
+		  </triggers>
+		<rewards>
+		</rewards>
+		<posteffects>
+        </posteffects>
+   </quest>
+   
+   <quest name="BuffAdv_TMC_V1_Main2" specialType="lastQuest" icon="Military" npc="quest_character_sonya_solemoon.png">
+   		<startcondition>
+		      <questcomplete item="BuffAdv_TMC_V1_Main1"/>
+     	</startcondition>
+   		<preeffects>	
+   		</preeffects>
+		<triggers>
+			<questcomplete item="BuffAdv_TMC_V1_Sub4"/> 
+			<questcomplete item="BuffAdv_TMC_V1_Sub5"/> 
+			<questcomplete item="BuffAdv_TMC_V1_Sub6"/> 
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="4000"/>   
+		</rewards>
+    </quest> 
+   
+   <quest name="BuffAdv_TMC_V1_Sub4" type="Story" icon="Military" connectedToQuest="BuffAdv_TMC_V1_Main2" npc="quest_character_sonya_solemoon.png">
+   		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V1_Main2"/>
+		</startcondition>
+		  <triggers>
+		  	<onmap max="0" item="tmc_wildlife_leader" locaExtension="DefeatNewWildlife"/>	
+		  </triggers>
+		<rewards>
+		</rewards>
+		<posteffects>
+			<givecollectibleresource name="CollectibleRobustTools" amount="1"/>
+        </posteffects>
+   </quest>
+   
+   <quest name="BuffAdv_TMC_V1_Sub5" type="Story" icon="Military" connectedToQuest="BuffAdv_TMC_V1_Main2" npc="quest_character_sonya_solemoon.png">
+   		<startcondition>
+		   <questcomplete item="BuffAdv_TMC_V1_Sub4"/>
+		</startcondition>
+		  <triggers>
+		  	<onmap min="1" item="tmc_repaired_mountain_bridge_north" mode="free" locaExtension="RepairNorthernBridge"/>							
+		  </triggers>
+		<rewards>
+		</rewards>
+		<posteffects> 
+        </posteffects>
+   </quest>
+   
+   <quest name="BuffAdv_TMC_V1_Sub6" type="Story" icon="Military" connectedToQuest="BuffAdv_TMC_V1_Main2" npc="quest_character_sonya_solemoon.png">
+   		<startcondition>
+		   <questcomplete item="BuffAdv_TMC_V1_Sub5"/>
+		</startcondition>
+		  <triggers>
+		  	<onmap max="0" item="tent_nords_leader" locaExtension="DefeatLeaderNords"/>		
+		  </triggers>
+		<rewards>
+		</rewards>
+   </quest>
+   
+     <quest name="BuffAdv_TMC_V1_Side1" type="Side" icon="Military" npc="quest_character_sonya_solemoon.png">
+     	<startcondition>
+		   <questcomplete item="BuffAdv_TMC_V1_Sub4"/>
+		</startcondition>
+		<triggers>
+			<questcomplete item="BuffAdv_TMC_V1_SideSub1"/> 
+			<questcomplete item="BuffAdv_TMC_V1_SideSub2"/> 
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="20000"/>
+		</rewards>
+		<posteffects>
+			<givecollectibleresource name="CollectibleRobustTools" amount="1"/>
+			<reward type="Buff" item="BattleBuffBomb_random_units_limited" amount="1"/>
+			<reward type="Buff" item="AddResource" name="ObsidianOre" amount="25" />
+        </posteffects>
+   </quest>
+   
+   <quest name="BuffAdv_TMC_V1_SideSub1" type="Side" icon="Military" connectedToQuest="BuffAdv_TMC_V1_Side1" npc="quest_character_sonya_solemoon.png">
+   		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V1_Side1"/>
+		</startcondition>
+		  <triggers>
+		  	<onmap min="1" item="tmc_repaired_mountain_bridge_west" mode="free" locaExtension="RepairWesternBridge"/>			
+		  </triggers>
+		<rewards>
+		</rewards>
+		<posteffects>
+        </posteffects>
+   </quest>
+   
+   <quest name="BuffAdv_TMC_V1_SideSub2" type="Side" icon="Military" connectedToQuest="BuffAdv_TMC_V1_Side1" npc="quest_character_sonya_solemoon.png">
+   		<startcondition>
+		   <questcomplete item="BuffAdv_TMC_V1_SideSub1"/>
+		</startcondition>
+		  <triggers>		
+		  	<onmap max="0" item="tmc_nords_ruin_leader_west" locaExtension="DefeatWesternRuin"/>
+		  </triggers>
+		<rewards>
+		</rewards>
+   </quest>
+    
+	<quest name="BuffAdv_TMC_V1_Side2" type="Side" icon="Military" npc="quest_character_sonya_solemoon.png">
+		<startcondition>
+		   <questcomplete item="BuffAdv_TMC_V1_Sub4"/>
+		</startcondition>
+		<preeffects>
+   			<startquest name="BuffAdv_TMC_V1_SideSub3"/>
+   		</preeffects>
+		<triggers>
+			<questcomplete item="BuffAdv_TMC_V1_SideSub3"/> 
+			<questcomplete item="BuffAdv_TMC_V1_SideSub4"/> 
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="20000"/>
+		</rewards>
+		<posteffects>
+			<givecollectibleresource name="CollectibleRobustTools" amount="1"/>
+			<reward type="Buff" item="BattleBuffKill_random_unit_type_limited" amount="1"/>
+			<reward type="Buff" item="AddResource" name="ObsidianOre" amount="25" />
+        </posteffects>
+   </quest>
+   
+   <quest name="BuffAdv_TMC_V1_SideSub3" type="Side" icon="Military" connectedToQuest="BuffAdv_TMC_V1_Side2" npc="quest_character_sonya_solemoon.png">
+   		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V1_Side2"/>
+		</startcondition>
+		  <triggers>
+		  	<onmap min="1" item="tmc_repaired_mountain_bridge_east" mode="free" locaExtension="RepairEasternBridge"/>			
+		  </triggers>
+		<rewards>
+		</rewards>
+		<posteffects>
+        </posteffects>
+   </quest>
+   
+   <quest name="BuffAdv_TMC_V1_SideSub4" type="Side" icon="Military" connectedToQuest="BuffAdv_TMC_V1_Side2" npc="quest_character_sonya_solemoon.png">
+   		<startcondition>
+		   <questcomplete item="BuffAdv_TMC_V1_SideSub3"/>
+		</startcondition>
+		  <triggers>
+		  	<onmap max="0" item="tmc_nords_ruin_leader_east" locaExtension="DefeatEasternRuin"/>
+		  </triggers>
+		<rewards>
+		</rewards>
+   </quest>
+   
+   
+   <!-- Invisible Control Quests -->
+   <quest name="BuffAdv_TMC_V1_Sub4a" showQuestWindow="false" showRewardWindow="false">
+   		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V1_Main2"/>
+		</startcondition>
+		  <triggers>
+		  	<onmap min="1" item="tmc_repaired_mountain_bridge_north" mode="free" locaExtension="RepairNorthernBridge"/>				
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+			<cancelquest name="BuffAdv_TMC_V1_Side1"/>
+			<cancelquest name="BuffAdv_TMC_V1_SideSub1"/>
+			<cancelquest name="BuffAdv_TMC_V1_SideSub2"/>
+        </posteffects>
+   </quest>
+   
+   <quest name="BuffAdv_TMC_V1_Sub4b" showQuestWindow="false" showRewardWindow="false">
+   		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V1_Main2"/>
+		</startcondition>
+		  <triggers>
+		  	<onmap min="1" item="tmc_repaired_mountain_bridge_north" mode="free" locaExtension="RepairNorthernBridge"/>		
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+			<cancelquest name="BuffAdv_TMC_V1_Side2"/>
+			<cancelquest name="BuffAdv_TMC_V1_SideSub3"/>
+			<cancelquest name="BuffAdv_TMC_V1_SideSub4"/>
+        </posteffects>
+   </quest>
+
+	<!-- Achievement Quest -->
+<!--	
+   <quest name="BuffAdv_TMC_V1_SideQuestsAchievement" showQuestWindow="false" showRewardWindow="false" notifyHomeZone="true">
+		  <triggers>
+			<questcomplete item="BuffAdv_TMC_V1_Side1"/> 
+			<questcomplete item="BuffAdv_TMC_V1_Side2"/> 
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+        </posteffects>
+   </quest>
+-->    
+</Root>
+
+    
+    
+      
+      
+      
+      
+
+

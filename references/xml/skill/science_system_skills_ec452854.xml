@@ -1,0 +1,865 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scienceSystem>
+	
+	<!--
+	<skill id="item1">
+		<skillReference id="skill1" /> Type is ID of Skill defined in Skills tag
+		<requirements>
+			<minimumLevel level="1" /> Minimum required Player Level
+			<skillPointType type="bronze" /> Skillpoint Type (reference to skillPoint ID in skillPoints) required to spend for skill
+			<unlockedSkills> Other skills where MAX points are required to be spent before item is available
+				<skillReference id="item1" /> Reference to another item inside the skilltree
+			</unlockedSkills>
+			<pointsAccumulated amount="5"> Amount of points that has to be spent in the following other skilltree items
+				<skillReference id="item1" /> Reference to another item insider the skilltree
+				<skillReference id="item2" />
+			</pointsAccumulated>
+		</requirements>
+		<levels> Unlock levels for skilltree item, every level equals another skillpoint that needs to be spent, different values per unlock level can be assigned to the available manipulators
+			<level> Levels are sorted, first sibling stand for 1st level, second sibling for 2nd etc.
+				<param targetModifierId="modifier1" name="param1" value="10" /> pass parameter with name "param1" and value "10" to modifier "modifer1"
+			</level>
+			<level>
+				<param targetModifierId="modifier2" name="param1" value="20" />
+			</level>
+		</levels>
+		<layout>  Specific rendering data, required for the client to display the skilltree
+			<icon name="icon1.png" /> Icon to display for skill
+			<position x="1" y="0" /> Rendering position inside slot matrix, x=0 equals left-most col, y=0 equals bottom-most row
+			<arrows> Arrow definitions
+				<arrow type="TOP_1_UP" /> Arrow definition syntax: <Arrow Position from current item>_<Amount of Rows the arrow is skipping>_<Directions the Arrow is pointing towards>
+				<arrow type="LEFT_2_UP" />
+				<arrow type="RIGHT_1_UP" />
+				<arrow type="TOP_1_UPRIGHT" />
+			</arrows>
+		</layout>
+	</skill>
+
+{0} = Chance / modifierChance
+{1} = value
+{2} = multiplier(*100)
+{3} = Adder
+
+	-->
+	
+
+	<!-- XMAS 2014 Recipe skills-->
+	<skills> 
+		<skill id="44" name="StoneRefillRecipe"> 
+			<levels> 
+ 				<level> 
+ 					<unlockTask type="Production" name="RarityStoneRefillBuff" channel="timed_production"/> 
+ 				</level> 
+ 			</levels> 
+		</skill>
+		<skill id="45" name="MarbleRefillRecipe"> 
+			<levels> 
+ 				<level> 
+ 					<unlockTask type="Production" name="RarityMarbleRefillBuff" channel="timed_production"/> 
+ 				</level> 
+ 			</levels> 
+		</skill>
+		<skill id="46" name="SmallGlueRecipe"> 
+			<levels> 
+ 				<level> 
+ 					<unlockTask type="Production" name="RaritySmallGlue" channel="timed_production"/> 
+ 				</level> 
+ 			</levels> 
+		</skill>
+		<skill id="47" name="PaperConverterRecipe"> 
+			<levels> 
+ 				<level> 
+ 					<unlockTask type="Production" name="AddResource_ConvertSimplePaperToIntermediatePaper" channel="timed_production"/> 
+ 				</level> 
+ 			</levels> 
+		</skill>
+		<skill id="48" name="WeaponsmithBoostRecipe"> 
+			<levels> 
+ 				<level> 
+ 					<unlockTask type="Production" name="RarityExpeditionWeaponsmithBuff" channel="timed_production"/> 
+ 				</level> 
+ 			</levels> 
+		</skill>
+		<skill id="49" name="ProductivityBuff300Recipe"> 
+			<levels> 
+ 				<level> 
+ 					<unlockTask type="Production" name="RarityProductivityBuff" channel="timed_production"/> 
+ 				</level> 
+ 			</levels> 
+		</skill>
+		<skill id="50" name="RemoveBuffRecipe"> 
+			<levels> 
+ 				<level> 
+ 					<unlockTask type="Production" name="RarityRemoveBuff" channel="timed_production"/> 
+ 				</level> 
+ 			</levels> 
+		</skill>
+		<skill id="51" name="ExpeditionBarracksBuffRecipe"> 
+			<levels> 
+ 				<level> 
+ 					<unlockTask type="Production" name="RarityExpeditionBarracksBuff" channel="timed_production"/> 
+ 				</level> 
+ 			</levels> 
+		</skill>
+		<skill id="52" name="GrilledSteakBuffRecipe"> 
+			<levels> 
+ 				<level> 
+ 					<unlockTask type="Production" name="RarityProductivityBuffLvl23" channel="timed_production"/> 
+ 				</level> 
+ 			</levels> 
+		</skill>
+		<!-- <skill id="52" name="ExpeditionWeaponsmithBuffRecipe"> 
+			<levels> 
+ 				<level> 
+ 					<unlockTask type="Production" name="RarityExpeditionWeaponsmithBuff" channel="timed_production"/>    name used in skill 48
+ 				</level> 
+ 			</levels> 
+		</skill> -->
+		<skill id="53" name="ManuscriptAddResourceRecipe"> 
+			<levels> 
+ 				<level> 
+ 					<unlockTask type="Production" name="AddResource_Manuscript" channel="timed_production"/> 
+ 				</level> 
+ 			</levels> 
+		</skill>
+		<skill id="54" name="TomeAddResourceRecipe"> 
+			<levels> 
+ 				<level> 
+ 					<unlockTask type="Production" name="AddResource_Tome" channel="timed_production"/> 
+ 				</level> 
+ 			</levels> 
+		</skill>
+		<skill id="55" name="CodexAddResourceRecipe"> 
+			<levels> 
+ 				<level> 
+ 					<unlockTask type="Production" name="AddResource_Codex" channel="timed_production"/> 
+ 				</level> 
+ 			</levels> 
+		</skill>
+		<skill id="58" name="KittyBaitRecipe"> 
+			<levels> 
+ 				<level> 
+ 					<unlockTask type="Production" name="RarityAreaCornBuff" channel="timed_production"/> 
+ 				</level> 
+ 			</levels> 
+		</skill>
+		<skill id="59" name="ForrestOfferingsRecipe"> 
+			<levels> 
+ 				<level> 
+ 					<unlockTask type="Production" name="RarityAreaWoodBuff" channel="timed_production"/> 
+ 				</level> 
+ 			</levels> 
+		</skill>		
+		
+		<skill id="70" name="EfficientTrapsRecipe"> 
+			<levels> 
+ 				<level> 
+ 					<unlockTask type="Production" name="RarityAreaMeatBuff" channel="timed_production"/> 
+ 				</level> 
+ 			</levels> 
+		</skill>	
+		<skill id="113" name="PlatinumHorseshoesRecipe"> 
+			<levels> 
+ 				<level> 
+ 					<unlockTask type="Production" name="GeneralSpeedBuff_Platinum" channel="timed_production"/> 
+ 				</level> 
+ 			</levels> 
+		</skill>	
+
+		<skill id="240" name="ImprovedPaperConverterRecipe"> 
+			<levels> 
+ 				<level> 
+ 					<unlockTask type="Production" name="AddResource_ConvertIntermediatePaperToAdvancedPaper" channel="timed_production"/> 
+ 				</level> 
+ 			</levels> 
+		</skill>	
+
+		<skill id="250" name="SmelterCalendarRecipe"> 
+			<levels> 
+ 				<level> 
+ 					<unlockTask type="Production" name="RarityAreaSmelterBuff" channel="timed_production"/> 
+ 				</level> 
+ 			</levels> 
+		</skill>
+		
+		
+		<skill id="226" name="ValentinesAdventureSeason">
+			<levels>
+				<level>
+					<ChangeLootXP type="BuccaneerRoundup" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="BuccaneerRoundup" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="BuccaneerRoundup" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+					
+					<ChangeLootXP type="TheSiege" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="TheSiege" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="TheSiege" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+					
+					<ChangeLootXP type="LakesideTreasure" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="LakesideTreasure" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="LakesideTreasure" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+					
+					<ChangeLootXP type="RaidingTheRaiders" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="RaidingTheRaiders" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="RaidingTheRaiders" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+					
+					<ChangeLootXP type="TombRaiders" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="TombRaiders" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="TombRaiders" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+					
+					<ChangeLootXP type="Whirlwind" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="Whirlwind" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="Whirlwind" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+					
+					<ChangeLootXP type="TheDarkPriests" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="TheDarkPriests" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="TheDarkPriests" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+					
+					<ChangeLootXP type="StealingFromTheRich" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="StealingFromTheRich" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="StealingFromTheRich" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+					
+					<ChangeLootXP type="TheNords" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="TheNords" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="TheNords" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+					
+					<ChangeLootXP type="SurpriseAttack" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="SurpriseAttack" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="SurpriseAttack" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+					
+					<ChangeLootXP type="SonsOfTheVeld" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="SonsOfTheVeld" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="SonsOfTheVeld" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+					
+					<ChangeLootXP type="MotherLove" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="MotherLove" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="MotherLove" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+					
+					<ChangeLootXP type="MoreSecludedExperiments" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="MoreSecludedExperiments" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="MoreSecludedExperiments" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+					
+					<ChangeLootXP type="VictorTheVicious" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="VictorTheVicious" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="VictorTheVicious" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+					
+					<ChangeLootXP type="Gunpowder" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="Gunpowder" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="Gunpowder" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+					
+					<ChangeLootXP type="TheBlackKnights" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="TheBlackKnights" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="TheBlackKnights" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+					
+					<ChangeLootXP type="RoaringBull" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="RoaringBull" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="RoaringBull" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+					
+					<ChangeLootXP type="TheDarkBrotherhood" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="TheDarkBrotherhood" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="TheDarkBrotherhood" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+					
+					<ChangeLootXP type="SecludedExperiments" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="SecludedExperiments" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="SecludedExperiments" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+					
+					<ChangeLootXP type="TheValiantLittleTailor" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="TheValiantLittleTailor" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="TheValiantLittleTailor" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+					
+					<ChangeLootXP type="TheCleverLittleTailor" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="TheCleverLittleTailor" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="TheCleverLittleTailor" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+					
+					<ChangeLootXP type="TheSonsOfTheLittleTailor" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="TheSonsOfTheLittleTailor" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="TheSonsOfTheLittleTailor" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+					
+					<ChangeLootXP type="TheHeroicLittleTailor" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="TheHeroicLittleTailor" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="TheHeroicLittleTailor" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+					
+					<ChangeLootXP type="TheBetrayedLittleTailor" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="TheBetrayedLittleTailor" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="TheBetrayedLittleTailor" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+					
+					<ChangeLootXP type="1001NightsSecondThief" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="1001NightsSecondThief" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="1001NightsSecondThief" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+					
+					<ChangeLootXP type="1001NightsTreasureKnowledge" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="1001NightsTreasureKnowledge" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="1001NightsTreasureKnowledge" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+					
+					<ChangeLootXP type="1001NightsBesiegedCity" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="1001NightsBesiegedCity" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="1001NightsBesiegedCity" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+					
+					<ChangeLootXP type="1001NightsSeaSnake" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="1001NightsSeaSnake" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="1001NightsSeaSnake" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+					
+					<ChangeLootXP type="1001NightsOilLamp" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="1001NightsOilLamp" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="1001NightsOilLamp" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+					
+					<ChangeLootXP type="SplitCityFall" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="SplitCityFall" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="SplitCityFall" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+
+					<ChangeLootXP type="SplitCity" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="SplitCity" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="SplitCity" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+
+					<ChangeLootXP type="EoWEventAdventure" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="EoWEventAdventure" property="type" item="Resource" multiplier="2.0" channel="adventure" />
+					<ChangeLootCount type="EoWEventAdventure" property="name" item="FillDeposit" multiplier="2.0" channel="adventure" />	
+					
+					<ChangeLootXP type="BonabertiBusiness" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="BonabertiBusiness" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="BonabertiBusiness" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+
+					<ChangeLootXP type="Birthday2020CakeMap" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="Birthday2020CakeMap" property="type" item="Resource" multiplier="3.0" channel="adventure" />
+					<ChangeLootCount type="Birthday2020CakeMap" property="name" item="FillDeposit" multiplier="3.0" channel="adventure" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="SmallIconStar" />
+				<position x="1" y="2" />
+			</layout>
+		</skill>
+		
+		<skill id="228" name="Observatory_StarChartMedium"> 
+			<levels> 
+ 				<level> 
+ 					<unlockTask type="Production" name="PropagationBuff_AdventureZoneTravelBoostMedium" channel="timed_production"/> 
+ 				</level> 
+ 			</levels> 
+		</skill>
+		<skill id="229" name="Observatory_StarChartHigh"> 
+			<levels> 
+ 				<level> 
+ 					<unlockTask type="Production" name="PropagationBuff_AdventureZoneTravelBoostHigh" channel="timed_production"/> 
+ 				</level> 
+ 			</levels> 
+		</skill>	
+			
+		<skill id="300" name="friendpremiumbuff">
+			<levels>
+				<level>											
+					<ChangeLootXP type="Gunpowder" multiplier="1.5" channel="adventure" />					
+					<ChangeLootXP type="MadHenry" multiplier="1.5" channel="adventure" />					
+					<ChangeLootXP type="ANightToRemember" multiplier="1.5" channel="adventure" />					
+					<ChangeLootXP type="Pirates" multiplier="1.5" channel="adventure" />				
+					<ChangeLootXP type="WitchOfTheSwamp" multiplier="1.5" channel="adventure" />					
+					<ChangeLootXP type="Horseback" multiplier="1.5" channel="adventure" />					
+					<ChangeLootXP type="Traitors" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="Outlaws" multiplier="1.5" channel="adventure" />					
+					<ChangeLootXP type="TheDarkPriests" multiplier="1.5" channel="adventure" />					
+					<ChangeLootXP type="TheDarkBrotherhood" multiplier="1.5" channel="adventure" />					
+					<ChangeLootXP type="VictorTheVicious" multiplier="1.5" channel="adventure" />					
+					<ChangeLootXP type="StealingFromTheRich" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="SonsOfTheVeld" multiplier="1.5" channel="adventure" />							
+					<ChangeLootXP type="TheNords" multiplier="1.5" channel="adventure" />					
+					<ChangeLootXP type="TheIslandOfThePirates" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="OldFriends" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="BonabertiBusiness" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="MotherLove" multiplier="1.5" channel="adventure" />					
+					<ChangeLootXP type="TheBlackKnights" multiplier="1.5" channel="adventure" />					
+					<ChangeLootXP type="SecludedExperiments" multiplier="1.5" channel="adventure" />					
+					<ChangeLootXP type="RoaringBull" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="SurpriseAttack" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="ChristmasAdventureEasy" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="ChristmasAdventureNormal" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="MadHenryReloaded" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EasterEventAdventure01" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EasterEventAdventure02" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EasterEventAdventure03" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EasterEventAdventure04" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EasterEventAdventure05" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EasterEventAdventure06" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EasterEventAdventure07" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EasterEventAdventure09" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EasterEventAdventure10" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EMEventAdventure01" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EMEventAdventure02" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EMEventAdventure03" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EMEventAdventure04" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EMEventAdventure05" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EMEventAdventure06" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EMEventAdventure01_2" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EMEventAdventure02_2" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EMEventAdventure03_2" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EMEventAdventure04_2" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EMEventAdventure05_2" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EMEventAdventure06_2" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="BountyHunterNew" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="TheNords2" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EoWEventAdventure" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="MiadTheLostSkull" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EasterEvent2013Adventure01" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EasterEvent2013Adventure02" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EasterEvent2013Adventure03" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EasterEvent2013Adventure04" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EasterEvent2013Adventure05" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EasterEvent2013Adventure06" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EasterEvent2013Adventure07" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EasterEvent2013Adventure08" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="MiadTropicalSun" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="Birthday2013Adventure1" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="Birthday2013Adventure2" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="Birthday2013Adventure3" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="Birthday2013Adventure4" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="Birthday2013Adventure5" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="Birthday2013MilitaryAdventure1" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="Birthday2013MilitaryAdventure2" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="Birthday2013MilitaryAdventure1ShopVersion" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="Birthday2013MilitaryAdventure2ShopVersion" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="TheValiantLittleTailor" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="TheCleverLittleTailor" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="TheHeroicLittleTailor" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="TheSonsOfTheLittleTailor" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="TheBetrayedLittleTailor" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="MiadTheSleepingVolcano" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="MiadPirateLife" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="MiadSleepyReef" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="ChristmasAdventure2013" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="MoreSecludedExperiments" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="NewBanditNest" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="TheSiege" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="LakesideTreasure" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="BuccaneerRoundup" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="RaidingTheRaiders" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="TombRaiders" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="Whirlwind" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="EasterGarrunTrapper" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="WMEventAdventure01" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="WMEventAdventure02" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="WMEventAdventure03" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="WMEventAdventure04" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="WMEventAdventure05" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="WMEventAdventure06" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="WMEventAdventure07" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="XMAS_Map_Easy_1" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="XMAS_Map_Easy_2" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="XMAS_Map_Easy_3" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="XMAS_Map_Easy_4" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="XMAS_Map_Easy_5" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="XMAS_Map_Easy_6" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="XMAS_Map_Easy_7" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="XMAS_Map_Easy_8" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="XMAS_Map_Medium_1" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="XMAS_Map_Medium_2" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="XMAS_Map_Medium_3" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="XMAS_Map_Medium_4" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="XMAS_Map_Medium_5" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="XMAS_Map_Medium_6" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="XMAS_Map_Medium_7" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="XMAS_Map_Medium_8" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="XMAS_Map_Hard_1" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="XMAS_Map_Hard_2" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="XMAS_Map_Hard_3" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="XMAS_Map_Hard_4" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="XMAS_Map_Hard_5" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="XMAS_Map_Hard_6" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="XMAS_Map_Hard_7" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="XMAS_Map_Hard_8" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="BuffAdventures_heartOfTheWood_medium" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="BuffAdventures_safeTheTowns_easy" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="BuffAdventures_twins_easy" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="BuffAdventures_Riches_of_the_Mountain" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="MiadArcticExplosion" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="MiadBastilleIsland" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="BuffAdventures_Easter_Event_2015" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="BuffAdventures_Storm_Recovery" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="MiadTikkiIsland" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="1001NightsWoodcutter" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="1001NightsFirstThief" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="1001NightsSecondThief" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="1001NightsThirdThief" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="1001NightsTreasureKnowledge" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="1001NightsTreasureWisdom" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="1001NightsBesiegedCity" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="1001NightsOilLamp" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="1001NightsSeaSnake" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="1001NightsPrincess" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="BuffAdventures_RaidOfTheNords" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="BuffAdventures_LostCity" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="BuffAdventures_DragonsRoost" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="BuffAdventures_ElChupacabra" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="BuffAdventures_ValuableIntel" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="BuffAdventures_Evil_Queen_Fisherman" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="BuffAdventures_Evil_Queen_Snow_White" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="BuffAdventures_Evil_Queen_Hansel_Gretel" multiplier="1.5" channel="adventure" />	
+					<ChangeLootXP type="BuffAdventures_Evil_Queen_Red_Riding_Hood" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="BuffAdventures_Evil_Queen_Piper_of_Hamelin" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="BuffAdventures_OneStepAhead" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="BuffAdventures_TF_Stage02" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="BuffAdventures_OfSongsAndCurses" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="BuffAdventures_TMC_At_the_Foot_of_the_Mountain" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="BuffAdventures_TMC_Unknown_Regions" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="BuffAdventures_TMC_Mountain_Labyrinth" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="BuffAdventures_TMC_The_People_of_the_Mountain" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="BuffAdventures_TMC_A_giant_Battle" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="HWCampaign1_Adv1" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="HWCampaign1_Adv2" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="HWCampaign1_Adv3" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="XMAS_Cookie_Easy_1" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="XMAS_Cookie_Easy_2" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="XMAS_Cookie_Medium_1" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="XMAS_Cookie_Medium_2" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="XMAS_Cookie_Hard_1" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="XMAS_Cookie_Hard_2" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="SplitCity" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="SplitCityFall" multiplier="1.5" channel="adventure" />
+					<ChangeLootXP type="BanditNest" multiplier="1.5" channel="adventure" />	
+					<ChangeLootXP type="Birthday2020CakeMap" multiplier="1.5" channel="adventure" />									
+				</level>
+			</levels>
+			<layout>
+				<icon name="SmallIconStar" />
+				<position x="1" y="2" />
+			</layout>
+		</skill>
+			
+		<!-- specialist boost -->
+		<skill id="301" name="friendpremiumbuff1">
+			<levels>
+				<level>
+					<searchTime type="FindDepositStone" multiplier="0.8" channel="specialist" />
+					<searchTime type="FindDepositMarble" multiplier="0.8" channel="specialist" />
+					<searchTime type="FindDepositCoal" multiplier="0.8" channel="specialist" />
+					<searchTime type="FindDepositBronzeOre" multiplier="0.8" channel="specialist" />
+					<searchTime type="FindDepositIronOre" multiplier="0.8" channel="specialist" />
+					<searchTime type="FindDepositGoldOre" multiplier="0.8" channel="specialist" />
+					<searchTime type="FindDepositGranite" multiplier="0.8" channel="specialist" />
+					<searchTime type="FindDepositTitaniumOre" multiplier="0.8" channel="specialist" />
+					<searchTime type="FindDepositSalpeter" multiplier="0.8" channel="specialist" />
+					
+					<searchTime type="FindAdventureZoneShort" multiplier="0.8" channel="specialist" />
+					<searchTime type="FindAdventureZoneMedium" multiplier="0.8" channel="specialist" />
+					<searchTime type="FindAdventureZoneLong" multiplier="0.8" channel="specialist" />
+					<searchTime type="FindAdventureZoneVeryLong" multiplier="0.8" channel="specialist" />	
+					
+					<searchTime type="FindExpeditionPvPSmall" multiplier="0.8" channel="specialist" />
+					<searchTime type="FindExpeditionPvPMedium" multiplier="0.8" channel="specialist" />
+					<searchTime type="FindExpeditionPvPBig" multiplier="0.8" channel="specialist" />
+									
+					<searchTime type="FindTreasureShort" multiplier="0.8" channel="specialist" />
+					<searchTime type="FindTreasureMedium" multiplier="0.8" channel="specialist" />
+					<searchTime type="FindTreasureLong" multiplier="0.8" channel="specialist" />
+					<searchTime type="FindTreasureEvenLonger" multiplier="0.8" channel="specialist" />
+					<searchTime type="FindTreasureProlonged" multiplier="0.8" channel="specialist" />
+					<searchTime type="FindTreasureTravellingErudite" multiplier="0.8" channel="specialist" />
+					<searchTime type="FindTreasureBeanACollada" multiplier="0.8" channel="specialist" />
+										
+					<searchTime type="ExploreSector" multiplier="0.8" channel="specialist" />
+					<searchTime type="ExploreIsland" multiplier="0.8" channel="specialist" />
+					
+					<searchTime type="ExpeditionRecover" multiplier="0.8" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="SmallIconStar" />
+				<position x="1" y="2" />
+			</layout>
+		</skill>
+		
+		<!-- weapon production boost -->	
+		<skill id="302" name="friendpremiumbuff2">
+			<levels>
+				<level>			
+					<productionSpeedUp type="BronzeSword" multiplier="0.5" />
+					<productionSpeedUp type="IronSword" multiplier="0.5" />
+					<productionSpeedUp type="SteelSword" multiplier="0.5" />
+					<productionSpeedUp type="TitaniumSword" multiplier="0.5" />
+					<productionSpeedUp type="Bow" multiplier="0.5" />
+					<productionSpeedUp type="Longbow" multiplier="0.5" />
+					<productionSpeedUp type="Crossbow" multiplier="0.5" />
+					<productionSpeedUp type="Cannon" multiplier="0.5" />
+					<productionSpeedUp type="Horse" multiplier="0.5" />
+					<productionSpeedUp type="PlatinumSword" multiplier="0.5" />
+					<productionSpeedUp type="BattleHorse" multiplier="0.5" />
+					<productionSpeedUp type="Archebuse" multiplier="0.5" />
+					<productionSpeedUp type="Mortar" multiplier="0.5" />						
+				</level>
+			</levels>
+		</skill>		
+		
+		<!-- Barracks Buff -->		
+		<skill id="303" name="friendpremiumbuff3">
+			<levels>
+				<level>
+					<productiontimes type="MilitaryUnit" multiplier="0.5" /> <!-- All military productions in the barracks are speeded up by 50% -->					
+					<productiontimes type="EliteUnits" multiplier="0.5" />		
+				</level>
+			</levels>
+		</skill>		
+		
+		<!-- Provisioner Buff -->	
+		<skill id="304" name="friendpremiumbuff4">
+			<levels>
+				<level>
+					<productiontimes type="StandardBuff" multiplier="0.5" />
+					<productiontimes type="RareBuff" multiplier="0.5" />
+				</level>
+			</levels>
+		</skill>		
+				
+		<!-- Art Museum Buff 3 -->	
+		<skill id="313" name="ArtMuseumBuff3">
+			<levels>
+				<level>
+					<productionSpeedUp type="BronzeSword" multiplier="0.8" />
+					<productionSpeedUp type="IronSword" multiplier="0.8" />
+					<productionSpeedUp type="SteelSword" multiplier="0.8" />
+					<productionSpeedUp type="TitaniumSword" multiplier="0.8" />
+					<productionSpeedUp type="Bow" multiplier="0.8" />
+					<productionSpeedUp type="Longbow" multiplier="0.8" />
+					<productionSpeedUp type="Crossbow" multiplier="0.8" />
+					<productionSpeedUp type="Cannon" multiplier="0.8" />
+					<productionSpeedUp type="PlatinumSword" multiplier="0.8" />
+					<productionSpeedUp type="Archebuse" multiplier="0.8" />
+					<productionSpeedUp type="Mortar" multiplier="0.8" />	
+				</level>
+			</levels>
+		</skill>	
+		
+		<skill id="314" name="ConcertHall_TSR_SheetMusic6"> 
+			<levels> 
+ 				<level> 
+ 					<unlockTask type="Production" name="TSR_SheetMusic6" channel="timed_production"/> 
+ 				</level> 
+ 			</levels> 
+		</skill>
+		
+		<!-- Print Press Buff 1 -->	
+		<skill id="316" name="PrintPressBuff1">
+			<levels>
+				<level>
+					<productionSpeedUp type="SimplePaper" multiplier="0.8" />
+					<productionSpeedUp type="IntermediatePaper" multiplier="0.8" />
+					<productionSpeedUp type="AdvancedPaper" multiplier="0.8" />	
+				</level>
+			</levels>
+		</skill>
+		<!-- Print Press Buff 2 -->	
+		<skill id="317" name="PrintPressBuff2">
+			<levels>
+				<level>
+					<productionSpeedUp type="Nib" multiplier="0.8" />
+					<productionSpeedUp type="Letter" multiplier="0.8" />
+					<productionSpeedUp type="BookFitting" multiplier="0.8" />	
+				</level>
+			</levels>
+		</skill>
+		<!--Starfall-->
+		<skill id="321" name="AddProdLoottable_Starfall_MysteryBox1B"> 
+			<levels> 
+ 				<level> 
+ 					<unlockTask type="Production" name="Loottable_Starfall_MysteryBox1B" channel="timed_production"/> 
+					<unlockTask type="Production" name="SellSpareParts" channel="timed_production"/> 
+ 				</level> 
+ 			</levels> 
+		</skill>
+		<!-- WitchCoven -->	
+		<skill id="333" name="WitchCovenProduction">
+			<levels>
+				<level>
+					<productionSpeedUp type="BronzeSword" multiplier="0.2" />
+					<productionSpeedUp type="IronSword" multiplier="0.2" />
+					<productionSpeedUp type="SteelSword" multiplier="0.2" />
+					<productionSpeedUp type="TitaniumSword" multiplier="0.2" />
+					<productionSpeedUp type="Bow" multiplier="0.2" />
+					<productionSpeedUp type="Longbow" multiplier="0.2" />
+					<productionSpeedUp type="Crossbow" multiplier="0.2" />
+					<productionSpeedUp type="Cannon" multiplier="0.2" />
+					<productionSpeedUp type="PlatinumSword" multiplier="0.2" />
+					<productionSpeedUp type="Archebuse" multiplier="0.2" />
+					<productionSpeedUp type="Mortar" multiplier="0.2" />	
+				</level>
+			</levels>
+		</skill>	
+		
+		<!--Fluffy Butte Buffs-->
+		<skill id="339" name="fluffybuttebuffadventure">
+			<levels>
+				<level>											
+					<ChangeLootCount type="Gunpowder" multiplier="1.1" channel="adventure" />					
+					<ChangeLootCount type="MadHenry" multiplier="1.1" channel="adventure" />					
+					<ChangeLootCount type="ANightToRemember" multiplier="1.1" channel="adventure" />					
+					<ChangeLootCount type="Pirates" multiplier="1.1" channel="adventure" />				
+					<ChangeLootCount type="WitchOfTheSwamp" multiplier="1.1" channel="adventure" />					
+					<ChangeLootCount type="Horseback" multiplier="1.1" channel="adventure" />					
+					<ChangeLootCount type="Traitors" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="Outlaws" multiplier="1.1" channel="adventure" />					
+					<ChangeLootCount type="TheDarkPriests" multiplier="1.1" channel="adventure" />					
+					<ChangeLootCount type="TheDarkBrotherhood" multiplier="1.1" channel="adventure" />					
+					<ChangeLootCount type="VictorTheVicious" multiplier="1.1" channel="adventure" />					
+					<ChangeLootCount type="StealingFromTheRich" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="SonsOfTheVeld" multiplier="1.1" channel="adventure" />							
+					<ChangeLootCount type="TheNords" multiplier="1.1" channel="adventure" />					
+					<ChangeLootCount type="TheIslandOfThePirates" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="OldFriends" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="BonabertiBusiness" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="MotherLove" multiplier="1.1" channel="adventure" />					
+					<ChangeLootCount type="TheBlackKnights" multiplier="1.1" channel="adventure" />					
+					<ChangeLootCount type="SecludedExperiments" multiplier="1.1" channel="adventure" />					
+					<ChangeLootCount type="RoaringBull" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="SurpriseAttack" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="ChristmasAdventureEasy" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="ChristmasAdventureNormal" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="MadHenryReloaded" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EasterEventAdventure01" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EasterEventAdventure02" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EasterEventAdventure03" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EasterEventAdventure04" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EasterEventAdventure05" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EasterEventAdventure06" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EasterEventAdventure07" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EasterEventAdventure09" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EasterEventAdventure10" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EMEventAdventure01" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EMEventAdventure02" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EMEventAdventure03" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EMEventAdventure04" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EMEventAdventure05" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EMEventAdventure06" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EMEventAdventure01_2" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EMEventAdventure02_2" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EMEventAdventure03_2" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EMEventAdventure04_2" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EMEventAdventure05_2" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EMEventAdventure06_2" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="BountyHunterNew" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="TheNords2" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EoWEventAdventure" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="MiadTheLostSkull" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EasterEvent2013Adventure01" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EasterEvent2013Adventure02" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EasterEvent2013Adventure03" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EasterEvent2013Adventure04" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EasterEvent2013Adventure05" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EasterEvent2013Adventure06" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EasterEvent2013Adventure07" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EasterEvent2013Adventure08" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="MiadTropicalSun" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="Birthday2013Adventure1" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="Birthday2013Adventure2" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="Birthday2013Adventure3" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="Birthday2013Adventure4" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="Birthday2013Adventure5" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="Birthday2013MilitaryAdventure1" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="Birthday2013MilitaryAdventure2" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="Birthday2013MilitaryAdventure1ShopVersion" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="Birthday2013MilitaryAdventure2ShopVersion" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="TheValiantLittleTailor" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="TheCleverLittleTailor" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="TheHeroicLittleTailor" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="TheSonsOfTheLittleTailor" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="TheBetrayedLittleTailor" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="MiadTheSleepingVolcano" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="MiadPirateLife" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="MiadSleepyReef" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="ChristmasAdventure2013" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="MoreSecludedExperiments" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="NewBanditNest" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="TheSiege" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="LakesideTreasure" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="BuccaneerRoundup" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="RaidingTheRaiders" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="TombRaiders" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="Whirlwind" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="EasterGarrunTrapper" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="WMEventAdventure01" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="WMEventAdventure02" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="WMEventAdventure03" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="WMEventAdventure04" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="WMEventAdventure05" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="WMEventAdventure06" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="WMEventAdventure07" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="XMAS_Map_Easy_1" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="XMAS_Map_Easy_2" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="XMAS_Map_Easy_3" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="XMAS_Map_Easy_4" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="XMAS_Map_Easy_5" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="XMAS_Map_Easy_6" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="XMAS_Map_Easy_7" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="XMAS_Map_Easy_8" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="XMAS_Map_Medium_1" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="XMAS_Map_Medium_2" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="XMAS_Map_Medium_3" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="XMAS_Map_Medium_4" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="XMAS_Map_Medium_5" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="XMAS_Map_Medium_6" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="XMAS_Map_Medium_7" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="XMAS_Map_Medium_8" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="XMAS_Map_Hard_1" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="XMAS_Map_Hard_2" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="XMAS_Map_Hard_3" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="XMAS_Map_Hard_4" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="XMAS_Map_Hard_5" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="XMAS_Map_Hard_6" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="XMAS_Map_Hard_7" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="XMAS_Map_Hard_8" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="BuffAdventures_heartOfTheWood_medium" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="BuffAdventures_safeTheTowns_easy" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="BuffAdventures_twins_easy" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="BuffAdventures_Riches_of_the_Mountain" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="MiadArcticExplosion" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="MiadBastilleIsland" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="BuffAdventures_Easter_Event_2015" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="BuffAdventures_Storm_Recovery" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="MiadTikkiIsland" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="1001NightsWoodcutter" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="1001NightsFirstThief" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="1001NightsSecondThief" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="1001NightsThirdThief" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="1001NightsTreasureKnowledge" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="1001NightsTreasureWisdom" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="1001NightsBesiegedCity" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="1001NightsOilLamp" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="1001NightsSeaSnake" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="1001NightsPrincess" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="BuffAdventures_RaidOfTheNords" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="BuffAdventures_LostCity" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="BuffAdventures_DragonsRoost" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="BuffAdventures_ElChupacabra" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="BuffAdventures_ValuableIntel" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="BuffAdventures_Evil_Queen_Fisherman" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="BuffAdventures_Evil_Queen_Snow_White" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="BuffAdventures_Evil_Queen_Hansel_Gretel" multiplier="1.1" channel="adventure" />	
+					<ChangeLootCount type="BuffAdventures_Evil_Queen_Red_Riding_Hood" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="BuffAdventures_Evil_Queen_Piper_of_Hamelin" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="BuffAdventures_OneStepAhead" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="BuffAdventures_TF_Stage02" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="BuffAdventures_OfSongsAndCurses" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="BuffAdventures_TMC_At_the_Foot_of_the_Mountain" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="BuffAdventures_TMC_Unknown_Regions" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="BuffAdventures_TMC_Mountain_Labyrinth" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="BuffAdventures_TMC_The_People_of_the_Mountain" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="BuffAdventures_TMC_A_giant_Battle" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="HWCampaign1_Adv1" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="HWCampaign1_Adv2" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="HWCampaign1_Adv3" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="XMAS_Cookie_Easy_1" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="XMAS_Cookie_Easy_2" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="XMAS_Cookie_Medium_1" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="XMAS_Cookie_Medium_2" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="XMAS_Cookie_Hard_1" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="XMAS_Cookie_Hard_2" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="SplitCity" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="SplitCityFall" multiplier="1.1" channel="adventure" />
+					<ChangeLootCount type="BanditNest" multiplier="1.1" channel="adventure" />	
+					<ChangeLootCount type="Birthday2020CakeMap" multiplier="1.1" channel="adventure" />									
+				</level>
+			</levels>
+			<layout>
+				<icon name="SmallIconStar" />
+				<position x="1" y="2" />
+			</layout>
+		</skill>
+		
+		
+	</skills>
+</scienceSystem>

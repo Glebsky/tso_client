@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	
+	<quest name="HWCampaign1_Adv2_Main" specialType="firstQuestlastQuest" icon="Venture" npc="quest_character_fin02.png"  helpName="Help_window_ventures_0" showQuestWindow="false">
+		<triggers>
+			<questcomplete item="HWCampaign1_Adv2_Sub1"/> 
+			<questcomplete item="HWCampaign1_Adv2_Sub2"/> 
+			<questcomplete item="HWCampaign1_Adv2_Sub3"/>						
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="300" />
+		</posteffects>      
+    </quest>
+		
+	<quest name="HWCampaign1_Adv2_Sub1" connectedToQuest="HWCampaign1_Adv2_Main" icon="Military" npc="quest_character_fin02.png"  helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questactive item="HWCampaign1_Adv2_Main"/>
+		</startcondition>
+		<triggers>
+			<onmap item="cave_wildlife_leader" max="1" mode="enemy" locaExtension="defeat1" />
+		</triggers>
+		<posteffects>
+			<exploresector id="5"/>
+		</posteffects>
+		<posteffects>
+			<reward type="XP" amount="100" />
+		</posteffects>      
+    </quest>
+	
+	<quest name="HWCampaign1_Adv2_Sub2" connectedToQuest="HWCampaign1_Adv2_Main" icon="Military" npc="quest_character_fin02.png"  helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="HWCampaign1_Adv2_Sub1"/>
+		</startcondition>
+		<triggers>
+			<onmap item="cave_wildlife_leader" max="0" mode="enemy" locaExtension="defeat1" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="100" />
+		</posteffects>      
+    </quest>
+	
+	<quest name="HWCampaign1_Adv2_Sub3" connectedToQuest="HWCampaign1_Adv2_Main" icon="Military" npc="quest_character_fin02.png"  helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="HWCampaign1_Adv2_Sub2"/>
+		</startcondition>
+		<preeffects>
+			<Spawnbuilding name="Dark_Castle_01" action="ignoreBlocking,spawnInstant,replace" x="12" y="19"/>
+		</preeffects>
+		<triggers>
+			<buildingselected item="Dark_Castle_01" locaExtension="TheDarkCastle" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="100" />
+		</posteffects>      
+    </quest>
+</Root>

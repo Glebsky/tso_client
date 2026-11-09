@@ -1,0 +1,2927 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Group id="40" name="AdventureSeasons" sortIndex="2" >
+			
+			<!-- Sailor Season -->
+			
+			<ShopItem id="70001" name="AdventureTheIslandOfThePirates" sortIndex="1" playerLevel="26" quality="1" icon="island_of_the_pirates" frameType="buffInstant" requiresEvent="AdventureSeasonSailor">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="69"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheIslandOfThePirates" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70002" name="AdventureTheIslandOfThePirates" sortIndex="2" playerLevel="26" quality="1" perEvent="2" icon="island_of_the_pirates" frameType="buffInstant" requiresEvent="AdventureSeasonSailor">
+				<Costs>                                                                                                                                                                    
+					<Cost name="MapPart" count="70"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheIslandOfThePirates" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70003" name="AdventureMiadTheLostSkull" sortIndex="3" playerLevel="26" quality="1" frameType="buffInstant" icon="lost_Skull" requiresEvent="AdventureSeasonSailor">
+				<Costs>
+					<Cost name="HardCurrency" count="99"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MiadTheLostSkull" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70004" name="AdventureMiadTheLostSkull" sortIndex="4" playerLevel="26" quality="1" perEvent="2" frameType="buffInstant" icon="lost_Skull" requiresEvent="AdventureSeasonSailor">
+				<Costs>
+					<Cost name="MapPart" count="110"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MiadTheLostSkull" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70005" name="AdventureMotherLove" sortIndex="5" playerLevel="36" quality="1" icon="motherlove" frameType="buffInstant" requiresEvent="AdventureSeasonSailor">
+				<Costs>
+					<Cost name="HardCurrency" count="489"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MotherLove" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70006" name="AdventureMotherLove" sortIndex="6" playerLevel="36" quality="1" perEvent="2" icon="motherlove" frameType="buffInstant" requiresEvent="AdventureSeasonSailor">
+				<Costs>
+					<Cost name="MapPart" count="530"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MotherLove" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70007" name="AdventureSecludedExperiments" sortIndex="7" playerLevel="42" quality="1" icon="secluded_experiments" frameType="buffInstant" requiresEvent="AdventureSeasonSailor">
+				<Costs>
+					<Cost name="HardCurrency" count="359"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="SecludedExperiments" count="1" />
+				</Content>
+			</ShopItem> 
+			
+			<ShopItem id="70008" name="AdventureSecludedExperiments" sortIndex="8" playerLevel="42" quality="1" perEvent="2" icon="secluded_experiments" frameType="buffInstant" requiresEvent="AdventureSeasonSailor">
+				<Costs>
+					<Cost name="MapPart" count="570"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="SecludedExperiments" count="1" />
+				</Content>
+			</ShopItem> 
+			
+			<ShopItem id="69999" name="SplitCity" sortIndex="9" playerLevel="42" quality="1" icon="splitcity_summer" frameType="buffInstant" requiresEvent="AdventureSeasonSailor">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="379"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="SplitCity" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70000" name="SplitCity" sortIndex="10" playerLevel="42" quality="1" perEvent="2" icon="splitcity_summer" frameType="buffInstant" requiresEvent="AdventureSeasonSailor">
+				<Costs>                                                                                                                                                                    
+					<Cost name="MapPart" count="540"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="SplitCity" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70009" name="1001NightsPrincess" sortIndex="11" playerLevel="51" quality="1" icon="1001_nights_princess_buff" frameType="buffInstant" requiresEvent="AdventureSeasonSailor">
+				<Costs>
+					<Cost name="HardCurrency" count="1099"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="1001NightsPrincess" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70010" name="1001NightsPrincess" sortIndex="12" playerLevel="51" quality="1" perEvent="2" icon="1001_nights_princess_buff" frameType="buffInstant" requiresEvent="AdventureSeasonSailor">
+				<Costs>
+					<Cost name="MapPart" count="2150"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="1001NightsPrincess" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70011" name="1001NightsOilLamp" sortIndex="13" playerLevel="51" quality="1" icon="1001_nights_oil_lamp_buff" frameType="buffInstant" requiresEvent="AdventureSeasonSailor">
+				<Costs>
+					<Cost name="HardCurrency" count="1399"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="1001NightsOilLamp" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70012" name="1001NightsOilLamp" sortIndex="14" playerLevel="51" quality="1" perEvent="2" icon="1001_nights_oil_lamp_buff" frameType="buffInstant" requiresEvent="AdventureSeasonSailor">
+				<Costs>
+					<Cost name="MapPart" count="2850"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="1001NightsOilLamp" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70013" name="1001NightsSeaSnake" sortIndex="15" playerLevel="51" quality="1" icon="1001_nights_sea_snake_buff" frameType="buffInstant" requiresEvent="AdventureSeasonSailor">
+				<Costs>
+					<Cost name="HardCurrency" count="1199"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="1001NightsSeaSnake" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70014" name="1001NightsSeaSnake" sortIndex="16" playerLevel="51" quality="1" perEvent="2" icon="1001_nights_sea_snake_buff" frameType="buffInstant" requiresEvent="AdventureSeasonSailor">
+				<Costs>
+					<Cost name="MapPart" count="2630"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="1001NightsSeaSnake" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70015" name="1001NightsBesiegedCity" sortIndex="17" playerLevel="51" quality="1" icon="1001_nights_besieged_city_buff" frameType="buffInstant" requiresEvent="AdventureSeasonSailor">
+				<Costs>
+					<Cost name="HardCurrency" count="1199"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="1001NightsBesiegedCity" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70016" name="1001NightsBesiegedCity" sortIndex="18" playerLevel="51" quality="1" perEvent="2" icon="1001_nights_besieged_city_buff" frameType="buffInstant" requiresEvent="AdventureSeasonSailor">
+				<Costs>
+					<Cost name="MapPart" count="2630"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="1001NightsBesiegedCity" count="1" />
+				</Content>
+			</ShopItem>		
+			
+			
+			
+			<!-- Coop Season -->
+			<ShopItem id="70101" name="AdventureBuccaneerRoundup" sortIndex="101" playerLevel="26" quality="1" icon="buccaneer_roundup" frameType="buffInstant" requiresEvent="AdventureSeasonCoop">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="49"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuccaneerRoundup" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70102" name="AdventureBuccaneerRoundup" sortIndex="102" playerLevel="26" quality="1" perEvent="2" icon="buccaneer_roundup" frameType="buffInstant" requiresEvent="AdventureSeasonCoop">
+				<Costs>                                                                                                                                                                    
+					<Cost name="MapPart" count="60"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuccaneerRoundup" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70103" name="AdventureTheSiege" sortIndex="103" playerLevel="26" quality="1" frameType="buffInstant" icon="the_siege" requiresEvent="AdventureSeasonCoop">
+				<Costs>
+					<Cost name="HardCurrency" count="49"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheSiege" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70104" name="AdventureTheSiege" sortIndex="104" playerLevel="26" quality="1" perEvent="2" frameType="buffInstant" icon="the_siege" requiresEvent="AdventureSeasonCoop">
+				<Costs>
+					<Cost name="MapPart" count="60"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheSiege" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70105" name="AdventureRaidingTheRaiders" sortIndex="107" playerLevel="36" quality="1" icon="raiding_the_raiders" frameType="buffInstant" requiresEvent="AdventureSeasonCoop">
+				<Costs>
+					<Cost name="HardCurrency" count="109"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="RaidingTheRaiders" count="1" />
+				</Content>
+			</ShopItem> 
+			
+			<ShopItem id="70106" name="AdventureRaidingTheRaiders" sortIndex="108" playerLevel="36" quality="1" perEvent="2" icon="raiding_the_raiders" frameType="buffInstant" requiresEvent="AdventureSeasonCoop">
+				<Costs>
+					<Cost name="MapPart" count="130"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="RaidingTheRaiders" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70107" name="AdventureLakesideTreasure" sortIndex="109" playerLevel="36" quality="1" icon="lakeside_treasure" frameType="buffInstant" requiresEvent="AdventureSeasonCoop">
+				<Costs>
+					<Cost name="HardCurrency" count="99"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="LakesideTreasure" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70108" name="AdventureLakesideTreasure" sortIndex="110" playerLevel="36" quality="1" perEvent="2" icon="lakeside_treasure" frameType="buffInstant" requiresEvent="AdventureSeasonCoop">
+				<Costs>
+					<Cost name="MapPart" count="130"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="LakesideTreasure" count="1" />
+				</Content>
+			</ShopItem>
+			
+						
+			<ShopItem id="70109" name="AdventureTombRaiders" sortIndex="111" playerLevel="42" quality="1" icon="tomb_raiders" frameType="buffInstant" requiresEvent="AdventureSeasonCoop">
+				<Costs>
+					<Cost name="HardCurrency" count="229"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TombRaiders" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70110" name="AdventureTombRaiders" sortIndex="112" playerLevel="42" quality="1" perEvent="2" icon="tomb_raiders" frameType="buffInstant" requiresEvent="AdventureSeasonCoop">
+				<Costs>
+					<Cost name="MapPart" count="310"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TombRaiders" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70111" name="AdventureWhirlwind" sortIndex="113" playerLevel="42" quality="1" icon="whirlwind" frameType="buffInstant" requiresEvent="AdventureSeasonCoop">
+				<Costs>
+					<Cost name="HardCurrency" count="229"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="Whirlwind" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70112" name="AdventureWhirlwind" sortIndex="114" playerLevel="42" quality="1" perEvent="2" icon="whirlwind" frameType="buffInstant" requiresEvent="AdventureSeasonCoop">
+				<Costs>
+					<Cost name="MapPart" count="310"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="Whirlwind" count="1" />
+				</Content>
+			</ShopItem>
+
+			<ShopItem id="70113" name="SplitCity" sortIndex="105" playerLevel="42" quality="1" icon="splitcity_summer" frameType="buffInstant" requiresEvent="AdventureSeasonCoop">
+				<Costs>
+					<Cost name="HardCurrency" count="399"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="SplitCity" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70114" name="SplitCity" sortIndex="106" playerLevel="42" quality="1" perEvent="2" icon="splitcity_summer" frameType="buffInstant" requiresEvent="AdventureSeasonCoop">
+				<Costs>
+					<Cost name="MapPart" count="799"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="SplitCity" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70115" name="SplitCityFall" sortIndex="115" playerLevel="55" quality="1" icon="splitcity_fall" frameType="buffInstant" requiresEvent="AdventureSeasonCoop">
+				<Costs>
+					<Cost name="HardCurrency" count="389"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="SplitCityFall" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70116" name="SplitCityFall" sortIndex="116" playerLevel="55" quality="1" perEvent="2" icon="splitcity_fall" frameType="buffInstant" requiresEvent="AdventureSeasonCoop">
+				<Costs>
+					<Cost name="MapPart" count="550"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="SplitCityFall" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<!-- 2 Player Season -->
+			<ShopItem id="70201" name="AdventureTheDarkPriests" sortIndex="201" playerLevel="26" quality="1" icon="the_dark_priests" frameType="buffInstant" requiresEvent="AdventureSeason2Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="79"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheDarkPriests" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70202" name="AdventureTheDarkPriests" sortIndex="202" playerLevel="26" quality="1" perEvent="2" icon="the_dark_priests" frameType="buffInstant" requiresEvent="AdventureSeason2Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="MapPart" count="90"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheDarkPriests" count="1" />
+				</Content>
+			</ShopItem>	
+			
+			
+			<ShopItem id="70203" name="AdventureStealingFromTheRich" sortIndex="203" playerLevel="26" quality="1" icon="stealing_from_the_rich" frameType="buffInstant" requiresEvent="AdventureSeason2Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="99"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="StealingFromTheRich" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70204" name="AdventureStealingFromTheRich" sortIndex="204" playerLevel="26" quality="1" perEvent="2" icon="stealing_from_the_rich" frameType="buffInstant" requiresEvent="AdventureSeason2Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="MapPart" count="120"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="StealingFromTheRich" count="1" />
+				</Content>
+			</ShopItem>	
+			
+			
+			<ShopItem id="70205" name="AdventureTheNords" sortIndex="205" playerLevel="36" quality="1" icon="the_nords" frameType="buffInstant" requiresEvent="AdventureSeason2Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="169"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheNords" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70206" name="AdventureTheNords" sortIndex="206" playerLevel="36" quality="1" perEvent="2" icon="the_nords" frameType="buffInstant" requiresEvent="AdventureSeason2Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="MapPart" count="230"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheNords" count="1" />
+				</Content>
+			</ShopItem>	
+			
+			
+			<ShopItem id="70209" name="AdventureSurpriseAttack" sortIndex="209" playerLevel="36" quality="1" icon="surprise_attack" frameType="buffInstant" requiresEvent="AdventureSeason2Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="179"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="SurpriseAttack" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70210" name="AdventureSurpriseAttack" sortIndex="210" playerLevel="36" quality="1" perEvent="2" icon="surprise_attack" frameType="buffInstant" requiresEvent="AdventureSeason2Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="MapPart" count="250"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="SurpriseAttack" count="1" />
+				</Content>
+			</ShopItem>	
+			
+			
+			<ShopItem id="70211" name="AdventureSonsOfTheVeld" sortIndex="211" playerLevel="36" quality="1" icon="sons_of_the_veld" frameType="buffInstant" requiresEvent="AdventureSeason2Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="189"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="SonsOfTheVeld" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70212" name="AdventureSonsOfTheVeld" sortIndex="212" playerLevel="36" quality="1" perEvent="2" icon="sons_of_the_veld" frameType="buffInstant" requiresEvent="AdventureSeason2Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="MapPart" count="270"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="SonsOfTheVeld" count="1" />
+				</Content>
+			</ShopItem>	
+			
+			
+			<ShopItem id="70213" name="AdventureMotherLove" sortIndex="213" playerLevel="36" quality="1" icon="motherlove" frameType="buffInstant" requiresEvent="AdventureSeason2Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="489"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MotherLove" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70214" name="AdventureMotherLove" sortIndex="214" playerLevel="36" quality="1" perEvent="2" icon="motherlove" frameType="buffInstant" requiresEvent="AdventureSeason2Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="MapPart" count="530"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MotherLove" count="1" />
+				</Content>
+			</ShopItem>	
+			
+			
+			<ShopItem id="70215" name="AdventureMoreSecludedExperiments" sortIndex="215" playerLevel="36" quality="1" icon="secluded_experiments2" frameType="buffInstant" requiresEvent="AdventureSeason2Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="579"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MoreSecludedExperiments" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70216" name="AdventureMoreSecludedExperiments" sortIndex="216" playerLevel="36" quality="1" perEvent="2" icon="secluded_experiments2" frameType="buffInstant" requiresEvent="AdventureSeason2Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="MapPart" count="790"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MoreSecludedExperiments" count="1" />
+				</Content>
+			</ShopItem>		
+			
+			
+			<ShopItem id="70217" name="1001NightsSecondThief" sortIndex="217" playerLevel="51" quality="1" icon="1001_nights_second_thief_buff" frameType="buffInstant" requiresEvent="AdventureSeason2Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="1299"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="1001NightsSecondThief" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70218" name="1001NightsSecondThief" sortIndex="218" playerLevel="51" quality="1" perEvent="2" icon="1001_nights_second_thief_buff" frameType="buffInstant" requiresEvent="AdventureSeason2Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="MapPart" count="2170"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="1001NightsSecondThief" count="1" />
+				</Content>
+			</ShopItem>	
+			
+			
+			<ShopItem id="70219" name="1001NightsTreasureKnowledge" sortIndex="219" playerLevel="51" quality="1" icon="1001_nights_treasure_knowledge_buff" frameType="buffInstant" requiresEvent="AdventureSeason2Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="1199"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="1001NightsTreasureKnowledge" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70220" name="1001NightsTreasureKnowledge" sortIndex="220" playerLevel="51" quality="1" perEvent="2" icon="1001_nights_treasure_knowledge_buff" frameType="buffInstant" requiresEvent="AdventureSeason2Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="MapPart" count="2630"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="1001NightsTreasureKnowledge" count="1" />
+				</Content>
+			</ShopItem>	
+			
+			
+			<ShopItem id="70221" name="1001NightsBesiegedCity" sortIndex="221" playerLevel="51" quality="1" icon="1001_nights_besieged_city_buff" frameType="buffInstant" requiresEvent="AdventureSeason2Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="1199"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="1001NightsBesiegedCity" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70222" name="1001NightsBesiegedCity" sortIndex="222" playerLevel="51" quality="1" perEvent="2" icon="1001_nights_besieged_city_buff" frameType="buffInstant" requiresEvent="AdventureSeason2Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="MapPart" count="2630"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="1001NightsBesiegedCity" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70223" name="1001NightsSeaSnake" sortIndex="223" playerLevel="51" quality="1" icon="1001_nights_sea_snake_buff" frameType="buffInstant" requiresEvent="AdventureSeason2Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="1199"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="1001NightsSeaSnake" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70224" name="1001NightsSeaSnake" sortIndex="224" playerLevel="51" quality="1" perEvent="2" icon="1001_nights_sea_snake_buff" frameType="buffInstant" requiresEvent="AdventureSeason2Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="MapPart" count="2630"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="1001NightsSeaSnake" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			
+			<!-- 3 Player Season -->
+			<ShopItem id="70301" name="AdventureVictorTheVicious" sortIndex="301" playerLevel="36" quality="1" icon="victor_the_vicious" frameType="buffInstant" requiresEvent="AdventureSeason3Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="209"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="VictorTheVicious" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70302" name="AdventureVictorTheVicious" sortIndex="302" playerLevel="36" quality="1" perEvent="2" icon="victor_the_vicious" frameType="buffInstant" requiresEvent="AdventureSeason3Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="MapPart" count="290"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="VictorTheVicious" count="1" />
+				</Content>
+			</ShopItem>	
+			
+			
+			<ShopItem id="70303" name="AdventureGunpowder" sortIndex="303" playerLevel="36" quality="1" icon="icon_shop_adventure_gunpowder" frameType="buffInstant" requiresEvent="AdventureSeason3Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="209"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="Gunpowder" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70304" name="AdventureGunpowder" sortIndex="304" playerLevel="36" quality="1" perEvent="2" icon="icon_shop_adventure_gunpowder" frameType="buffInstant" requiresEvent="AdventureSeason3Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="MapPart" count="310"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="Gunpowder" count="1" />
+				</Content>
+			</ShopItem>	
+			
+			
+			<ShopItem id="70305" name="AdventureTheBlackKnights" sortIndex="305" playerLevel="42" quality="1" icon="the_black_knights" frameType="buffInstant" requiresEvent="AdventureSeason3Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="319"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheBlackKnights" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70306" name="AdventureTheBlackKnights" sortIndex="306" playerLevel="42" quality="1" perEvent="2" icon="the_black_knights" frameType="buffInstant" requiresEvent="AdventureSeason3Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="MapPart" count="400"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheBlackKnights" count="1" />
+				</Content>
+			</ShopItem>	
+			
+			
+			<ShopItem id="70307" name="AdventureRoaringBull" sortIndex="307" playerLevel="42" quality="1" icon="roaring_bull" frameType="buffInstant" requiresEvent="AdventureSeason3Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="339"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="RoaringBull" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70308" name="AdventureRoaringBull" sortIndex="308" playerLevel="42" quality="1" perEvent="2" icon="roaring_bull" frameType="buffInstant" requiresEvent="AdventureSeason3Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="MapPart" count="440"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="RoaringBull" count="1" />
+				</Content>
+			</ShopItem>	
+			
+			
+			<ShopItem id="70309" name="AdventureTheDarkBrotherhood" sortIndex="309" playerLevel="42" quality="1" icon="the_dark_brotherhood" frameType="buffInstant" requiresEvent="AdventureSeason3Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="359"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheDarkBrotherhood" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70310" name="AdventureTheDarkBrotherhood" sortIndex="310" playerLevel="42" quality="1" perEvent="2" icon="the_dark_brotherhood" frameType="buffInstant" requiresEvent="AdventureSeason3Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="MapPart" count="520"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheDarkBrotherhood" count="1" />
+				</Content>
+			</ShopItem>	
+			
+			
+			<ShopItem id="70311" name="AdventureSecludedExperiments" sortIndex="311" playerLevel="42" quality="1" icon="secluded_experiments" frameType="buffInstant" requiresEvent="AdventureSeason3Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="359"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="SecludedExperiments" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70312" name="AdventureSecludedExperiments" sortIndex="312" playerLevel="42" quality="1" perEvent="2" icon="secluded_experiments" frameType="buffInstant" requiresEvent="AdventureSeason3Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="MapPart" count="570"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="SecludedExperiments" count="1" />
+				</Content>
+			</ShopItem>	
+			
+			
+			<ShopItem id="70313" name="AdventureTheValiantLittleTailor" sortIndex="313" playerLevel="42" quality="1" icon="the_valiant_little_tailor" frameType="buffInstant" requiresEvent="AdventureSeason3Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="359"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheValiantLittleTailor" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70314" name="AdventureTheValiantLittleTailor" sortIndex="314" playerLevel="42" quality="1" perEvent="2" icon="the_valiant_little_tailor" frameType="buffInstant" requiresEvent="AdventureSeason3Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="MapPart" count="570"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheValiantLittleTailor" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70315" name="AdventureTheCleverLittleTailor" sortIndex="315" playerLevel="42" quality="1" icon="the_clever_little_tailor" frameType="buffInstant" requiresEvent="AdventureSeason3Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="549"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheCleverLittleTailor" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70316" name="AdventureTheCleverLittleTailor" sortIndex="316" playerLevel="42" quality="1" perEvent="2" icon="the_clever_little_tailor" frameType="buffInstant" requiresEvent="AdventureSeason3Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="MapPart" count="860"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheCleverLittleTailor" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70317" name="AdventureTheSonsOfTheLittleTailor" sortIndex="317" playerLevel="42" quality="1" icon="the_sons_of_the_little_tailor" frameType="buffInstant" requiresEvent="AdventureSeason3Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="549"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheSonsOfTheLittleTailor" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70318" name="AdventureTheSonsOfTheLittleTailor" sortIndex="318" playerLevel="42" quality="1" perEvent="2" icon="the_sons_of_the_little_tailor" frameType="buffInstant" requiresEvent="AdventureSeason3Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="MapPart" count="860"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheSonsOfTheLittleTailor" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70319" name="AdventureTheHeroicLittleTailor" sortIndex="319" playerLevel="42" quality="1" icon="the_heroic_little_tailor" frameType="buffInstant" requiresEvent="AdventureSeason3Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="549"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheHeroicLittleTailor" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70320" name="AdventureTheHeroicLittleTailor" sortIndex="320" playerLevel="42" quality="1" perEvent="2" icon="the_heroic_little_tailor" frameType="buffInstant" requiresEvent="AdventureSeason3Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="MapPart" count="860"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheHeroicLittleTailor" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70321" name="AdventureTheBetrayedLittleTailor" sortIndex="321" playerLevel="42" quality="1" icon="the_betrayed_little_tailor" frameType="buffInstant" requiresEvent="AdventureSeason3Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="549"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheBetrayedLittleTailor" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70322" name="AdventureTheBetrayedLittleTailor" sortIndex="322" playerLevel="42" quality="1" perEvent="2" icon="the_betrayed_little_tailor" frameType="buffInstant" requiresEvent="AdventureSeason3Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="MapPart" count="860"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheBetrayedLittleTailor" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70323" name="1001NightsOilLamp" sortIndex="323" playerLevel="51" quality="1" icon="1001_nights_oil_lamp_buff" frameType="buffInstant" requiresEvent="AdventureSeason3Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="1399"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="1001NightsOilLamp" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70324" name="1001NightsOilLamp" sortIndex="324" playerLevel="51" quality="1" perEvent="2" icon="1001_nights_oil_lamp_buff" frameType="buffInstant" requiresEvent="AdventureSeason3Players">
+				<Costs>                                                                                                                                                                    
+					<Cost name="MapPart" count="2850"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="1001NightsOilLamp" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			
+			<!-- Bandit Season -->
+			<ShopItem id="70401" name="AdventureMiadTropicalSun" sortIndex="401" playerLevel="26" quality="1" icon="tropical_sun" frameType="buffInstant" requiresEvent="AdventureSeasonBandit">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="99"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MiadTropicalSun" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70402" name="AdventureMiadTropicalSun" sortIndex="402" playerLevel="26" quality="1" perEvent="2" icon="tropical_sun" frameType="buffInstant" requiresEvent="AdventureSeasonBandit">
+				<Costs>                                                   
+					<Cost name="MapPart" count="110"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MiadTropicalSun" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70403" name="AdventureBanditNest" sortIndex="403" playerLevel="36" quality="1" icon="bandit_nest" frameType="buffInstant" requiresEvent="AdventureSeasonBandit">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="159"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BanditNest" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70404" name="AdventureBanditNest" sortIndex="404" playerLevel="36" quality="1" perEvent="2" icon="bandit_nest" frameType="buffInstant" requiresEvent="AdventureSeasonBandit">
+				<Costs>                                                   
+					<Cost name="MapPart" count="220"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BanditNest" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70405" name="AdventureOutlaws" sortIndex="405" playerLevel="36" quality="1" icon="outlaws" frameType="buffInstant" requiresEvent="AdventureSeasonBandit">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="159"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="Outlaws" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70406" name="AdventureOutlaws" sortIndex="406" playerLevel="36" quality="1" perEvent="2" icon="outlaws" frameType="buffInstant" requiresEvent="AdventureSeasonBandit">
+				<Costs>                                                   
+					<Cost name="MapPart" count="220"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="Outlaws" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70407" name="AdventureSonsOfTheVeld" sortIndex="407" playerLevel="36" quality="1" icon="sons_of_the_veld" frameType="buffInstant" requiresEvent="AdventureSeasonBandit">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="189"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="SonsOfTheVeld" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70408" name="AdventureSonsOfTheVeld" sortIndex="408" playerLevel="36" quality="1" perEvent="2" icon="sons_of_the_veld" frameType="buffInstant" requiresEvent="AdventureSeasonBandit">
+				<Costs>                                                   
+					<Cost name="MapPart" count="270"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="SonsOfTheVeld" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70409" name="AdventureVictorTheVicious" sortIndex="409" playerLevel="36" quality="1" icon="victor_the_vicious" frameType="buffInstant" requiresEvent="AdventureSeasonBandit">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="209"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="VictorTheVicious" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70410" name="AdventureVictorTheVicious" sortIndex="410" playerLevel="36" quality="1" perEvent="2" icon="victor_the_vicious" frameType="buffInstant" requiresEvent="AdventureSeasonBandit">
+				<Costs>                                                   
+					<Cost name="MapPart" count="290"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="VictorTheVicious" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70411" name="1001NightsWoodcutter" sortIndex="411" playerLevel="51" quality="1" icon="1001_nights_woodcutter_buff" frameType="buffInstant" requiresEvent="AdventureSeasonBandit">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="739"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="1001NightsWoodcutter" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70412" name="1001NightsWoodcutter" sortIndex="412" playerLevel="51" quality="1" perEvent="2" icon="1001_nights_woodcutter_buff" frameType="buffInstant" requiresEvent="AdventureSeasonBandit">
+				<Costs>                                                   
+					<Cost name="MapPart" count="1240"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="1001NightsWoodcutter" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70413" name="1001NightsFirstThief" sortIndex="413" playerLevel="51" quality="1" icon="1001_nights_first_thief_buff" frameType="buffInstant" requiresEvent="AdventureSeasonBandit">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="1099"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="1001NightsFirstThief" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70414" name="1001NightsFirstThief" sortIndex="414" playerLevel="51" quality="1" perEvent="2" icon="1001_nights_first_thief_buff" frameType="buffInstant" requiresEvent="AdventureSeasonBandit">
+				<Costs>                                                   
+					<Cost name="MapPart" count="1890"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="1001NightsFirstThief" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70415" name="1001NightsSecondThief" sortIndex="415" playerLevel="51" quality="1" icon="1001_nights_second_thief_buff" frameType="buffInstant" requiresEvent="AdventureSeasonBandit">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="1299"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="1001NightsSecondThief" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70416" name="1001NightsSecondThief" sortIndex="416" playerLevel="51" quality="1" perEvent="2" icon="1001_nights_second_thief_buff" frameType="buffInstant" requiresEvent="AdventureSeasonBandit">
+				<Costs>                                                   
+					<Cost name="MapPart" count="2170"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="1001NightsSecondThief" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70417" name="1001NightsThirdThief" sortIndex="417" playerLevel="51" quality="1" icon="1001_nights_third_thief_buff" frameType="buffInstant" requiresEvent="AdventureSeasonBandit">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="1099"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="1001NightsThirdThief" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70418" name="1001NightsThirdThief" sortIndex="418" playerLevel="51" quality="1" perEvent="2" icon="1001_nights_third_thief_buff" frameType="buffInstant" requiresEvent="AdventureSeasonBandit">
+				<Costs>                                                   
+					<Cost name="MapPart" count="1890"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="1001NightsThirdThief" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<!-- EoW2021 Surprise Mini-Event -->
+
+			<ShopItem id="90418" name="EoWEventAdventure" sortIndex="1" playerLevel="26" quality="1" icon="end_of_the_world01" frameType="buffInstant" requiresEvent="EoW2021">
+				<Costs>                                                   
+					<Cost name="MapPart" count="100"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="EoWEventAdventure" count="1" />
+				</Content>
+			</ShopItem>
+
+			<ShopItem id="90419" name="EoWEventAdventure" sortIndex="2" playerLevel="26" quality="1" icon="end_of_the_world01" frameType="buffInstant" requiresEvent="EoW2021">
+				<Costs>                                                   
+					<Cost name="HardCurrency" count="60"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="EoWEventAdventure" count="1" />
+				</Content>
+			</ShopItem>
+
+			<!-- 4 EoW Bundles -->			
+			<ShopItem id="90420" name="ShamanBundle" perPlayer="1" playerLevel="27" sortIndex="50" quality="1" giftable="false" indicator="NEW" frameType="specialist" icon="shaman_bundle" requiresEvent="EoW2021" >
+				<Costs>
+					<Cost name="HardCurrency" count="12199"/>
+				</Costs>
+				<Content>						
+						<Item type="Buff" name="BuildBuilding" resource="ImprovedDeerstalker" recurringChance="100"/>						
+						<Item type="Specialist" name="RomanticExplorer" count="1"/>
+						<Item type="Specialist" name="LonerGeneral" count="1"/>
+						<Item type="Buff" name="MultiplierBuffZone2_PremiumFriendBuff1Day" />						
+								
+						<Item type="Buff" name="BattleBuffKill_random_unit_type" count="5" />	<!-- Weak Point Potion -->
+						<Item type="Buff" name="BattleBuffBomb_random_units" count="5"/>	<!-- Ranged Support -->
+						<Item type="Buff" name="RecruitingBuffLvl9" count="5"/>  <!-- Hugs & Kisses -->										
+				</Content>
+			</ShopItem>	
+
+			<ShopItem id="90421" name="JaguarBundle" perPlayer="1" playerLevel="15" sortIndex="51" quality="1" giftable="false" indicator="NEW" frameType="specialist" icon="jaguar_bundle" requiresEvent="EoW2021">
+				<Costs>
+					<Cost name="HardCurrency" count="9499"/>
+				</Costs>
+				<Content>						
+						<Item type="Buff" name="BuildBuilding" resource="Spa" recurringChance="100"/>
+						<Item type="Buff" name="BuildBuilding" resource="ConcertHall" recurringChance="100"/>					
+						<Item type="Buff" name="BuildBuilding" resource="ImprovedSilo" recurringChance="100"/>
+						
+						<Item type="Buff" name="PremiumAccount1Day" count="1" />
+						<Item type="Buff" name="PremiumAccount3Days" count="1" />					
+						<Item type="Buff" name="PremiumAccount3Days" count="1" />						
+								
+						<Item type="Buff" name="RecoverGeneral" count="5" />	<!-- Medipack -->
+						<Item type="Buff" name="SpeedUpPopulationGrowth5" count="5"/>	<!-- A Celebrity Comes to Town -->
+						<Item type="Buff" name="ProductivityBuffLvl5" count="5"/>  <!-- Red Flying Settler -->
+						<Item type="Buff" name="ProvisionerBuffLvl3" count="5"/>  <!-- Barazek -->										
+				</Content>
+			</ShopItem>	
+
+			<ShopItem id="90422" name="TribesmanBundle" perPlayer="5" playerLevel="1" sortIndex="52" quality="1" giftable="false" indicator="NEW" frameType="specialist" icon="tribesman_bundle" requiresEvent="EoW2021">
+				<Costs>
+					<Cost name="HardCurrency" count="2969"/>
+				</Costs>
+				<Content>														
+						<Item type="Buff" name="BattleBuffDestroy_small_medium_camps" count="10" />	<!-- Big Catapult -->
+						<Item type="Buff" name="BattleBuffKill_random_unit_type_limited" count="10"/>	<!-- Assassin -->
+						<Item type="Buff" name="BattleBuffBomb_random_units_limited" count="10"/>  <!-- Rain of Arrows -->
+						<Item type="Buff" name="BattleBuffKill_random_boss_limited" count="5"/>  <!-- Ballista -->
+						<Item type="Buff" name="BattleBuffBomb_random_units_limited_2" count="2"/>  <!-- Rain of Flaming Arrows -->
+						<Item type="Buff" name="FillDeposit" resource="TitaniumOre" count="2500" />
+						<Item type="Buff" name="FillDeposit" resource="Salpeter" count="2500" />
+						<Item type="Buff" name="FillDeposit" resource="Coal" count="10000" />										
+				</Content>
+			</ShopItem>	
+
+			<!-- See TSO 23900 -->
+		<ShopItem id="90423" name="BoosterBundle" perPlayer="1" sortIndex="101" quality="1" giftable="false" indicator="NEW" frameType="specialist" icon="booster_bundle" requiresEvent="EoW2021">
+				<Costs>
+					<Cost name="Fish" count="89000"/>
+				</Costs>
+				<Content>
+						<Item type="Specialist" name="ArcheologistGeologist" count="1" />
+						<Item type="Specialist" name="CorageousExplorer" count="1"/>	
+					<Item type="Buff" name="RecoverGeneral" count="3" />						
+					<Item type="Buff" name="RecruitingBuffLvl9" count="3" />	
+						<Item type="Buff" name="BattleBuffBomb_random_units_limited_2" count="3"/>					
+						<Item type="Buff" name="BattleBuffKill_random_boss_limited" count="3" />				
+					<Item type="Buff" name="RecruitingBuffZoneLvl1" count="3" /> <!-- Recruitment Guide --> 
+					<Item type="Buff" name="ProductivityBuffZoneWeaponLvl1" count="3" /> <!-- Weapon Crafting Guide --> 
+					<Item type="Buff" name="ProductivityBuffZoneScienceLvl1" count="3" /> <!-- Paperwork Guide --> 
+					<Item type="Buff" name="ProductivityBuffZoneOreLvl1" count="3" /> <!-- Mining Guide--> 
+					<Item type="Buff" name="ProductivityBuffZoneFoodLvl1" count="3" /> <!-- Farming & Hunting Guide --> 
+					<Item type="Buff" name="ProductivityBuffZoneStoneLvl1" count="3" /> <!-- Rock Mining Guide --> 		
+					<Item type="Buff" name="ProductivityBuffZoneWoodLvl1" count="3" /> <!-- Wood Cutting Guide --> 
+				</Content>
+			</ShopItem>
+
+				<!-- Grout & Oil -->
+
+			<ShopItem id="111133" name="Groutlvl1" sortIndex="200" playerLevel="1" quality="2" icon="icon_grout_wholesale" frameType="buffInstant" tooltip="Resource" requiresEvent="EoW2021">
+				<Costs>
+					<Cost name="HardCurrency" count="500"/>
+				</Costs>
+				<Content>
+					<Item type="Resource" resource="Grout" count="200" />
+				</Content>
+			</ShopItem>				
+			<ShopItem id="111195" name="Oillvl1" sortIndex="201" playerLevel="1" quality="2" icon="icon_oil_shop" frameType="buffInstant" tooltip="Resource" requiresEvent="EoW2021" >
+				<Costs>
+					<Cost name="HardCurrency" count="1000"/>
+				</Costs>
+				<Content>
+					<Item type="Resource" resource="Oil" count="100" />
+				</Content>
+			</ShopItem>	
+			
+			
+			<!-- Cultist Season -->
+
+			<!-- Cultist Bundles -->
+
+
+			<ShopItem id="73101" name="CultistBundle7" perPlayer="1" sortIndex="7" quality="1" giftable="false" indicator="NEW" frameType="specialist" icon="cultist_bundle_c1" requiresEvent="AdventureSeasonCultist2" >
+				<Costs>
+
+					<Cost name="BronzeSword" count="99999"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="BuildBuilding" resource="ImprovedBakery" recurringChance="100"/>
+					<Item type="Buff" name="BuildBuilding" resource="ImprovedButcher" recurringChance="100"/>
+					<Item type="Buff" name="BuildBuilding" resource="ImprovedFarm" recurringChance="100"/>
+					<Item type="Buff" name="BuildBuilding" resource="ImprovedMill" recurringChance="100"/>						
+				</Content>
+			</ShopItem>		
+	  
+	  		<ShopItem id="73102" name="CultistBundle8" perPlayer="1" sortIndex="8" quality="1" giftable="false" indicator="NEW" frameType="specialist" icon="cultist_bundle_c2" requiresEvent="AdventureSeasonCultist2" >
+				<Costs>
+
+					<Cost name="Iron" count="20000"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="PremiumAccount1Day" count="1" />
+					<Item type="Buff" name="PremiumAccount3Days" count="1" />					
+					<Item type="Buff" name="PremiumAccount3Days" count="1" />
+					<Item type="Buff" name="MultiplierBuffZone2_PremiumFriendBuff1Day" />							
+				</Content>
+			</ShopItem>			
+
+	  		<ShopItem id="73103" name="CultistBundle9" perPlayer="1" sortIndex="9" quality="1" giftable="false" indicator="NEW" frameType="specialist" icon="cultist_bundle_c3" requiresEvent="AdventureSeasonCultist2" >
+				<Costs>
+
+					<Cost name="Water" count="299999"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="BuildBuilding" resource="ImprovedLettersmith" recurringChance="100"/>
+					<Item type="Buff" name="BuildBuilding" resource="ExoticWoodTreeSchool" />
+					<Item type="Buff" name="BuildBuilding" resource="SunflowerFarm" recurringChance="100"/>						
+				</Content>
+			</ShopItem>			
+
+	  		<ShopItem id="73104" name="CultistBundleSecret" perPlayer="1" sortIndex="601" quality="1" giftable="false" indicator="NEW" frameType="specialist" icon="cultist_bundle_secret" requiresEvent="AdventureSeasonCultist2" >
+				<Costs>
+					<Cost name="Fish" count="79999"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="BuildBuilding" resource="coal_workyard" count="2" recurringChance="100"/>				
+				</Content>
+			</ShopItem>					
+	  
+	  
+			<ShopItem id="72101" name="CultistBundle1" perPlayer="1" sortIndex="1" quality="1" giftable="false" indicator="NEW" frameType="specialist" icon="cultist_bundle_a1" requiresEvent="AdventureSeasonCultist2" >
+				<Costs>
+					<Cost name="HardCurrency" count="6999"/>
+				</Costs>
+				<Content>
+					<Item type="Resource" resource="Manuscript" count="15" />	
+					<Item type="Resource" resource="Tome" count="10" />
+					<Item type="Resource" resource="Codex" count="5" />					
+					<Item type="Specialist" name="FastLuckyExplorer" count="1" />
+					<Item type="Specialist" name="HumbleExplorer" count="1"/>	
+					<Item type="Specialist" name="LovelyExplorer" count="1"/>	
+				</Content>
+			</ShopItem>			
+
+			<ShopItem id="72102" name="CultistBundle2" perPlayer="2" sortIndex="2" quality="1" giftable="false" indicator="NEW" frameType="specialist" icon="cultist_bundle_a2" requiresEvent="AdventureSeasonCultist2" >
+				<Costs>
+
+					<Cost name="HardCurrency" count="4499"/>
+				</Costs>
+				<Content>
+
+					<Item type="Buff" name="BuildBuilding" resource="ImprovedWarehouse" recurringChance="100"/>	
+					<Item type="Buff" name="BuildBuilding" resource="ImprovedWarehouse" recurringChance="100"/>						
+					<Item type="Buff" name="BuildBuilding" resource="CapaciousWarehouse" recurringChance="100"/>
+					<Item type="Buff" name="BuildBuilding" resource="StorageTower" recurringChance="100"/>
+					<Item type="Buff" name="BuildBuilding" resource="StorageTower" recurringChance="100"/>
+					<Item type="Buff" name="BuildBuilding" resource="Warehouse_Mini" recurringChance="100"/>					
+				</Content>
+			</ShopItem>		
+
+<!-- Due to a poblem with item limits (JIRA TSO-23769) this bundle has been added to the black market category utilizing the same shop id below -->
+	<!--
+			<ShopItem id="72103" name="CultistBundle3" perPlayer="2" sortIndex="3" quality="1" giftable="false" indicator="NEW" frameType="specialist" icon="cultist_bundle_a3" requiresEvent="AdventureSeasonCultist2" >
+				<Costs>
+
+					<Cost name="HardCurrency" count="17999"/>
+				</Costs>
+				<Content>					
+					<Item type="Resource" resource="Manuscript" count="15" />	
+					<Item type="Resource" resource="Tome" count="10" />
+					<Item type="Resource" resource="Codex" count="5" />	
+					<Item type="Specialist" name="Anniversary2019General" count="1" />
+					<Item type="Specialist" name="MajorGeneral" count="1" />
+					<Item type="Specialist" name="AssassinGeneral" count="1" />
+					<Item type="Specialist" name="SylvanaGeneral" count="1" />
+				</Content>
+			</ShopItem>					
+	-->
+
+			<ShopItem id="72104" name="CultistBundle4" perPlayer="1" sortIndex="4" quality="1" giftable="false" indicator="NEW" frameType="specialist" icon="cultist_bundle_b1" requiresEvent="AdventureSeasonCultist2" >
+				<Costs>
+					<Cost name="HardCurrency" count="13999"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="BuildBuilding" resource="EspionageBuilding" recurringChance="100"/>	
+					<Item type="Buff" name="BuildBuilding" resource="EliteTrainingGrounds" recurringChance="100"/>	
+					<Item type="Buff" name="BuildBuilding" resource="Observatory" recurringChance="100"/>		
+					<Item type="Buff" name="BattleBuffKill_random_unit_type_limited" count="2"/>	
+					<Item type="Buff" name="BattleBuffBomb_random_units_limited" count="2"/>
+					<Item type="Buff" name="BattleBuffBomb_random_units_limited_2" count="2"/>					
+					<Item type="Buff" name="BattleBuffKill_random_boss_limited" count="2" />				
+					<Item type="Buff" name="BattleBuffDestroy_small_medium_camps" count="2" />						
+				</Content>
+			</ShopItem>			
+
+			<ShopItem id="72105" name="CultistBundle5" perPlayer="1" sortIndex="5" quality="1" giftable="false" indicator="NEW" frameType="specialist" icon="cultist_bundle_b2" requiresEvent="AdventureSeasonCultist2" >
+				<Costs>
+					<Cost name="HardCurrency" count="16999"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="BuildBuilding" resource="AdventureBookbinder" recurringChance="100"/>	
+					<Item type="Buff" name="BuildBuilding" resource="Oilmill" recurringChance="100"/>
+					<Item type="Buff" name="BuildBuilding" resource="TokenCoinage" recurringChance="100"/>			
+				</Content>
+			</ShopItem>					
+			
+			<ShopItem id="72106" name="CultistBundle6" perPlayer="1" sortIndex="6" quality="1" giftable="false" indicator="NEW" frameType="specialist" icon="cultist_bundle_b3" requiresEvent="AdventureSeasonCultist2" >
+				<Costs>
+					<Cost name="HardCurrency" count="39999"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="BuildBuilding" resource="BronzeMineEndless" recurringChance="100"/>		
+					<Item type="Buff" name="BuildBuilding" resource="GoldMineEndless" recurringChance="100"/>	
+					<Item type="Buff" name="BuildBuilding" resource="IronMineEndless" recurringChance="100"/>		
+					<Item type="Specialist" name="IronWilledGeologist" count="1" />					
+				</Content>
+			</ShopItem>	
+
+			<ShopItem id="72107" name="CultistBundleCrazy" perPlayer="1" sortIndex="507" quality="1" giftable="false" indicator="NEW" frameType="specialist" icon="cultist_bundle_crazy" requiresEvent="AdventureSeasonCultist2" >
+				<Costs>
+					<Cost name="HardCurrency" count="18999"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="BuildBuilding" resource="Chocolatier" recurringChance="100"/>			
+					<Item type="Buff" name="BuildBuilding" resource="ChristmasBakery" recurringChance="100"/>	
+					<Item type="Buff" name="BuildBuilding" resource="Riverhouse" recurringChance="100"/>		
+					<Item type="Specialist" name="Xmas2019General" count="1" />
+					<Item type="Specialist" name="BewitchingExplorer" count="1" />
+					<Item type="Specialist" name="VersedGeologist" count="1" />
+					<Item type="Buff" name="PremiumAccount7Days" count="1" />
+					<Item type="Buff" name="PremiumAccount7Days" count="1" />
+					<Item type="Buff" name="BattleBuffDestroy_small_medium_camps" count="2" />
+					<Item type="Buff" name="BattleBuffKill_random_boss_limited" count="2" />
+					<Item type="Buff" name="BattleBuffBomb_random_units_limited_2" count="1" />
+				</Content>
+			</ShopItem>						
+		
+		<!-- Cultist Adventures -->
+		
+			<ShopItem id="70501" name="AdventureWitchOfTheSwamp" sortIndex="501" playerLevel="26" quality="1" icon="witch_of_the_swamp" frameType="buffInstant" requiresEvent="AdventureSeasonCultist2">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="69"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="WitchOfTheSwamp" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70502" name="AdventureWitchOfTheSwamp" sortIndex="502" playerLevel="26" quality="1" perEvent="2" icon="witch_of_the_swamp" frameType="buffInstant" requiresEvent="AdventureSeasonCultist2">
+				<Costs>                                                   
+					<Cost name="MapPart" count="80"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="WitchOfTheSwamp" count="1" />
+				</Content>
+			</ShopItem>
+						
+			<!--
+			<ShopItem id="70503" name="AdventureTheDarkPriests" sortIndex="503" playerLevel="26" quality="1" icon="the_dark_priests" frameType="buffInstant" requiresEvent="AdventureSeasonCultist2">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="79"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheDarkPriests" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70504" name="AdventureTheDarkPriests" sortIndex="504" playerLevel="26" quality="1" perEvent="2" icon="the_dark_priests" frameType="buffInstant" requiresEvent="AdventureSeasonCultist2">
+				<Costs>                                                   
+					<Cost name="MapPart" count="90"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheDarkPriests" count="1" />
+				</Content>
+			</ShopItem>
+			-->
+			
+			<ShopItem id="70505" name="AdventureOldFriends" sortIndex="505" playerLevel="36" quality="1" icon="old_friends" frameType="buffInstant" requiresEvent="AdventureSeasonCultist2">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="359"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="OldFriends" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70506" name="AdventureOldFriends" sortIndex="506" playerLevel="36" quality="1" perEvent="3" icon="old_friends" frameType="buffInstant" requiresEvent="AdventureSeasonCultist2">
+				<Costs>                                                   
+					<Cost name="MapPart" count="520"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="OldFriends" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70507" name="AdventureTheDarkBrotherhood" sortIndex="507" playerLevel="42" quality="1" icon="the_dark_brotherhood" frameType="buffInstant" requiresEvent="AdventureSeasonCultist2">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="469"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheDarkBrotherhood" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70508" name="AdventureTheDarkBrotherhood" sortIndex="508" playerLevel="42" quality="1" perEvent="2" icon="the_dark_brotherhood" frameType="buffInstant" requiresEvent="AdventureSeasonCultist2">
+				<Costs>                                                   
+					<Cost name="MapPart" count="580"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheDarkBrotherhood" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70509" name="AdventureSplitCity" sortIndex="509" playerLevel="26" quality="1" icon="the_dark_brotherhood" frameType="buffInstant" requiresEvent="AdventureSeasonCultist2">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="399"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="SplitCity" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70510" name="AdventureSplitCity" sortIndex="510" playerLevel="26" quality="1" perEvent="2" icon="the_dark_brotherhood" frameType="buffInstant" requiresEvent="AdventureSeasonCultist2">
+				<Costs>                                                   
+					<Cost name="MapPart" count="799"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="SplitCity" count="1" />
+				</Content>
+			</ShopItem>
+
+			<ShopItem id="70511" name="AdventureMiadTheSleepingVolcano" sortIndex="511" playerLevel="26" quality="1" icon="the_dark_brotherhood" frameType="buffInstant" requiresEvent="AdventureSeasonCultist2">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="109"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MiadTheSleepingVolcano" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70512" name="AdventureMiadTheSleepingVolcano" sortIndex="512" playerLevel="26" quality="1" perEvent="2" icon="the_dark_brotherhood" frameType="buffInstant" requiresEvent="AdventureSeasonCultist2">
+				<Costs>                                                   
+					<Cost name="MapPart" count="130"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MiadTheSleepingVolcano" count="1" />
+				</Content>
+			</ShopItem>
+
+			<ShopItem id="70513" name="BuffAdventures_OfSongsAndCurses" sortIndex="513" playerLevel="28" quality="1" icon="the_dark_brotherhood" frameType="buffInstant" requiresEvent="AdventureSeasonCultist2">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="279"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_OfSongsAndCurses" count="1" />
+				</Content>
+			</ShopItem>
+			
+
+			<ShopItem id="70514" name="BuffAdventures_OfSongsAndCurses" sortIndex="514" playerLevel="28" quality="1" perEvent="4" icon="the_dark_brotherhood" frameType="buffInstant" requiresEvent="AdventureSeasonCultist2">
+				<Costs>                                                   
+					<Cost name="MapPart" count="420"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_OfSongsAndCurses" count="1" />
+				</Content>
+			</ShopItem>
+
+			<ShopItem id="70515" name="BuffAdventures_DragonsRoost" sortIndex="515" playerLevel="28" quality="1" icon="the_dark_brotherhood" frameType="buffInstant" requiresEvent="AdventureSeasonCultist2">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="279"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_DragonsRoost" count="1" />
+				</Content>
+			</ShopItem>
+			
+
+			<ShopItem id="70516" name="BuffAdventures_DragonsRoost" sortIndex="516" playerLevel="28" quality="1" perEvent="4" icon="the_dark_brotherhood" frameType="buffInstant" requiresEvent="AdventureSeasonCultist2">
+				<Costs>                                                   
+					<Cost name="MapPart" count="420"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_DragonsRoost" count="1" />
+				</Content>
+			</ShopItem>
+
+			<ShopItem id="70517" name="AdventureSecludedExperiments" sortIndex="517" playerLevel="36" quality="1" icon="the_dark_brotherhood" frameType="buffInstant" requiresEvent="AdventureSeasonCultist2">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="369"/>
+				</Costs>
+				<Content>
+
+					<Item type="Buff" name="Adventure" resource="SecludedExperiments" count="1" />
+				</Content>
+			</ShopItem>
+			
+
+			<ShopItem id="70518" name="AdventureSecludedExperiments" sortIndex="518" playerLevel="36" quality="1" perEvent="2" icon="the_dark_brotherhood" frameType="buffInstant" requiresEvent="AdventureSeasonCultist2">
+				<Costs>                                                   
+					<Cost name="MapPart" count="500"/>
+				</Costs>
+				<Content>
+
+					<Item type="Buff" name="Adventure" resource="SecludedExperiments" count="1" />
+				</Content>
+			</ShopItem>
+
+
+			<ShopItem id="70519" name="AdventureTheValiantLittleTailor" sortIndex="519" playerLevel="42" quality="1" icon="the_dark_brotherhood" frameType="buffInstant" requiresEvent="AdventureSeasonCultist2">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="599"/>
+				</Costs>
+				<Content>
+
+					<Item type="Buff" name="Adventure" resource="TheValiantLittleTailor" count="1" />
+				</Content>
+			</ShopItem>
+			
+
+			<ShopItem id="70520" name="AdventureTheValiantLittleTailor" sortIndex="520" playerLevel="42" quality="1" perEvent="2" icon="the_dark_brotherhood" frameType="buffInstant" requiresEvent="AdventureSeasonCultist2">
+				<Costs>                                                   
+					<Cost name="MapPart" count="760"/>
+				</Costs>
+				<Content>
+
+					<Item type="Buff" name="Adventure" resource="TheValiantLittleTailor" count="1" />
+				</Content>
+			</ShopItem>
+
+			<ShopItem id="70521" name="AdventureRoaringBull" sortIndex="521" playerLevel="42" quality="1" icon="the_dark_brotherhood" frameType="buffInstant" requiresEvent="AdventureSeasonCultist2">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="399"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="RoaringBull" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70522" name="AdventureRoaringBull" sortIndex="522" playerLevel="42" quality="1" perEvent="2" icon="the_dark_brotherhood" frameType="buffInstant" requiresEvent="AdventureSeasonCultist2">
+				<Costs>                                                   
+					<Cost name="MapPart" count="540"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="RoaringBull" count="1" />
+				</Content>
+			</ShopItem>
+
+			
+			
+			
+			
+			
+			<!-- Barbarian Season -->
+			<ShopItem id="70601" name="AdventureHorseback" sortIndex="601" playerLevel="26" quality="1" icon="horseback" frameType="buffInstant" requiresEvent="AdventureSeasonBarbarian">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="79"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="Horseback" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70602" name="AdventureHorseback" sortIndex="602" playerLevel="26" quality="1" perEvent="2" icon="horseback" frameType="buffInstant" requiresEvent="AdventureSeasonBarbarian">
+				<Costs>                                                   
+					<Cost name="MapPart" count="90"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="Horseback" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70603" name="AdventureSurpriseAttack" sortIndex="603" playerLevel="36" quality="1" icon="surprise_attack" frameType="buffInstant" requiresEvent="AdventureSeasonBarbarian">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="179"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="SurpriseAttack" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70604" name="AdventureSurpriseAttack" sortIndex="604" playerLevel="36" quality="1" perEvent="2" icon="surprise_attack" frameType="buffInstant" requiresEvent="AdventureSeasonBarbarian">
+				<Costs>                                                   
+					<Cost name="MapPart" count="250"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="SurpriseAttack" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70605" name="AdventureTheNords" sortIndex="605" playerLevel="36" quality="1" icon="the_nords" frameType="buffInstant" requiresEvent="AdventureSeasonBarbarian">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="169"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheNords" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70606" name="AdventureTheNords" sortIndex="606" playerLevel="36" quality="1" perEvent="2" icon="the_nords" frameType="buffInstant" requiresEvent="AdventureSeasonBarbarian">
+				<Costs>                                                   
+					<Cost name="MapPart" count="230"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheNords" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70607" name="AdventureTheNords2" sortIndex="607" playerLevel="36" quality="1" icon="nords02" frameType="buffInstant" requiresEvent="AdventureSeasonBarbarian">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="519"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheNords2" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70608" name="AdventureTheNords2" sortIndex="608" playerLevel="36" quality="1" perEvent="2" icon="nords02" frameType="buffInstant" requiresEvent="AdventureSeasonBarbarian">
+				<Costs>                                                   
+					<Cost name="MapPart" count="810"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheNords2" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70609" name="AdventureRoaringBull" sortIndex="609" playerLevel="42" quality="1" icon="roaring_bull" frameType="buffInstant" requiresEvent="AdventureSeasonBarbarian">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="339"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="RoaringBull" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70610" name="AdventureRoaringBull" sortIndex="610" playerLevel="42" quality="1" perEvent="2" icon="roaring_bull" frameType="buffInstant" requiresEvent="AdventureSeasonBarbarian">
+				<Costs>                                                   
+					<Cost name="MapPart" count="440"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="RoaringBull" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70611" name="BuffAdventures_RaidOfTheNords" sortIndex="611" playerLevel="44" quality="1" icon="raid_of_the_nords_buff" frameType="buffInstant" requiresEvent="AdventureSeasonBarbarian">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="999"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_RaidOfTheNords" count="1" />
+				</Content>
+			</ShopItem>			
+			
+			<ShopItem id="70612" name="BuffAdventures_RaidOfTheNords" sortIndex="612" playerLevel="44" quality="1" perEvent="2" icon="raid_of_the_nords_buff" frameType="buffInstant" requiresEvent="AdventureSeasonBarbarian">
+				<Costs>                                                   
+					<Cost name="MapPart" count="1899"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_RaidOfTheNords" count="1" />
+				</Content>
+			</ShopItem>	
+			
+			<!-- Mercenary Season -->
+			<ShopItem id="70701" name="AdventureStealingFromTheRich" sortIndex="701" playerLevel="26" quality="1" icon="stealing_from_the_rich" frameType="buffInstant" requiresEvent="AdventureSeasonMercenary">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="99"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="StealingFromTheRich" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70702" name="AdventureStealingFromTheRich" sortIndex="702" playerLevel="26" quality="1" perEvent="2" icon="stealing_from_the_rich" frameType="buffInstant" requiresEvent="AdventureSeasonMercenary">
+				<Costs>                                                   
+					<Cost name="MapPart" count="120"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="StealingFromTheRich" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70703" name="AdventureTraitors" sortIndex="703" playerLevel="26" quality="1" icon="traitors" frameType="buffInstant" requiresEvent="AdventureSeasonMercenary">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="79"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="Traitors" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70704" name="AdventureTraitors" sortIndex="704" playerLevel="26" quality="1" perEvent="2" icon="traitors" frameType="buffInstant" requiresEvent="AdventureSeasonMercenary">
+				<Costs>                                                   
+					<Cost name="MapPart" count="110"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="Traitors" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70705" name="AdventureGunpowder" sortIndex="705" playerLevel="36" quality="1" icon="icon_shop_adventure_gunpowder" frameType="buffInstant" requiresEvent="AdventureSeasonMercenary">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="209"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="Gunpowder" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70706" name="AdventureGunpowder" sortIndex="706" playerLevel="36" quality="1" perEvent="2" icon="icon_shop_adventure_gunpowder" frameType="buffInstant" requiresEvent="AdventureSeasonMercenary">
+				<Costs>                                                   
+					<Cost name="MapPart" count="310"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="Gunpowder" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70707" name="AdventureTheBlackKnights" sortIndex="707" playerLevel="42" quality="1" icon="the_black_knights" frameType="buffInstant" requiresEvent="AdventureSeasonMercenary">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="319"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheBlackKnights" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70708" name="AdventureTheBlackKnights" sortIndex="708" playerLevel="42" quality="1" perEvent="2" icon="the_black_knights" frameType="buffInstant" requiresEvent="AdventureSeasonMercenary">
+				<Costs>                                                   
+					<Cost name="MapPart" count="400"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheBlackKnights" count="1" />
+				</Content>
+			</ShopItem>
+			
+						<ShopItem id="70709" name="AdventureStealingFromTheRich02" sortIndex="709" playerLevel="36" quality="1" icon="stealing_from_the_rich02" frameType="buffInstant" requiresEvent="AdventureSeasonMercenary">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="479"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="StealingFromTheRich02" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70710" name="AdventureStealingFromTheRich02" sortIndex="710" playerLevel="36" quality="1" perEvent="2" icon="stealing_from_the_rich02" frameType="buffInstant" requiresEvent="AdventureSeasonMercenary">
+				<Costs>                                                   
+					<Cost name="MapPart" count="580"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="StealingFromTheRich02" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70711" name="AdventureTraitors02" sortIndex="711" playerLevel="36" quality="1" icon="traitors02" frameType="buffInstant" requiresEvent="AdventureSeasonMercenary">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="509"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="Traitors02" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70712" name="AdventureTraitors02" sortIndex="712" playerLevel="36" quality="1" perEvent="2" icon="traitors02" frameType="buffInstant" requiresEvent="AdventureSeasonMercenary">
+				<Costs>                                                   
+					<Cost name="MapPart" count="620"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="Traitors02" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<!-- Scenario Season -->
+			<ShopItem id="708011" name="ScenarioBundle1" perPlayer="1" sortIndex="2" playerLevel="16" quality="1" icon="scenariobundle1" frameType="buffInstant" requiresEvent="AdventureSeasonScenario">
+				<Costs>                                                                                                                                                                
+					<Cost name="HardCurrency" count="25999"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="BuildBuilding" resource="Spa" recurringChance="100" />
+					<Item type="Buff" name="BuildBuilding" resource="ConcertHall" recurringChance="100" />
+					<Item type="Buff" name="BuildBuilding" resource="LoversStatue" recurringChance="100" />
+					<Item type="Buff" name="BuildBuilding" resource="Chocolatier" recurringChance="100" />
+					<Item type="Specialist" name="CorageousExplorer" count="1"/>
+					<Item type="Specialist" name="Halloween2019General" count="1"/>
+					
+					<Item type="Buff" name="PremiumAccount1Day" count="1" />
+					<Item type="Buff" name="PremiumAccount3Days" count="1" />					
+					<Item type="Buff" name="PremiumAccount3Days" count="1" />						
+							
+					<Item type="Buff" name="RecoverGeneral" count="5" />	<!-- Medipack -->
+					<Item type="Buff" name="SpeedUpPopulationGrowth5" count="5"/>	<!-- A Celebrity Comes to Town -->
+					<Item type="Buff" name="ProductivityBuffLvl5" count="5"/>  <!-- Red Flying Settler -->					
+					<Item type="Buff" name="ProvisionerBuffLvl3" count="5"/>  <!-- Barazek -->	
+				</Content>
+			</ShopItem>
+
+			<ShopItem id="708012" name="ScenarioBundle2" perPlayer="1" sortIndex="3" playerLevel="16" quality="1" icon="scenariobundle2" frameType="buffInstant" requiresEvent="AdventureSeasonScenario">
+				<Costs>                                                                                                                                                                
+					<Cost name="HardCurrency" count="19999"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="BuildBuilding" resource="RabbitBreeding" recurringChance="100" />
+					<Item type="Specialist" name="MotherlyExplorer" count="1"/>
+					<Item type="Specialist" name="LonerGeneral" count="1"/>
+					<Item type="Specialist" name="GhostGeneral" count="1"/>
+
+					<Item type="Buff" name="MultiplierBuffZone2_PremiumFriendBuff1Day" />						
+								
+					<Item type="Buff" name="BattleBuffKill_random_unit_type" count="5" />	<!-- Weak Point Potion -->
+					<Item type="Buff" name="BattleBuffBomb_random_units" count="5"/>	<!-- Ranged Support -->
+					<Item type="Buff" name="RecruitingBuffLvl9" count="5"/>  <!-- Hugs & Kisses -->			
+					
+						
+				</Content>
+			</ShopItem>
+
+				<ShopItem id="708013" name="ScenarioBundle3" perPlayer="5" sortIndex="3" playerLevel="16" quality="1" icon="scenariobundle3" frameType="buffInstant" requiresEvent="AdventureSeasonScenario">
+				<Costs>                                                                                                                                                                
+					<Cost name="HardCurrency" count="4199"/>
+				</Costs>
+				<Content>
+				
+					<Item type="Buff" name="AddResource" resource="Oil" count="500"/>
+					<Item type="Buff" name="AddResource" resource="AdvancedTools" count="500"/>
+					<Item type="Buff" name="AddResource" resource="Grout" count="500"/>	
+				
+					<Item type="Buff" name="FillDeposit" resource="TitaniumOre" count="2500" />
+					<Item type="Buff" name="FillDeposit" resource="Salpeter" count="2500" />
+					<Item type="Buff" name="FillDeposit" resource="Coal" count="10000" />	
+				
+					<Item type="Buff" name="BattleBuffBomb_random_units_limited_2" count="10"/>
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70801" name="BuffAdventureTwins" sortIndex="801" playerLevel="26" quality="1" icon="easter2015_adventure2" frameType="buffInstant" requiresEvent="AdventureSeasonScenario">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="49"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_twins_easy" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70802" name="BuffAdventureTwins" sortIndex="802" playerLevel="26" quality="1" perEvent="2" icon="easter2015_adventure2" frameType="buffInstant" requiresEvent="AdventureSeasonScenario">
+				<Costs>                                                   
+					<Cost name="MapPart" count="50"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_twins_easy" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70803" name="BuffAdventureGrainConflict" sortIndex="803" playerLevel="26" quality="1" icon="easter2015_adventure1" frameType="buffInstant" requiresEvent="AdventureSeasonScenario">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="49"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_safeTheTowns_easy" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70804" name="BuffAdventureGrainConflict" sortIndex="804" playerLevel="26" quality="1" perEvent="2" icon="easter2015_adventure1" frameType="buffInstant" requiresEvent="AdventureSeasonScenario">
+				<Costs>                                                   
+					<Cost name="MapPart" count="50"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_safeTheTowns_easy" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70805" name="BuffAdventures_heartOfTheWood_medium" sortIndex="805" playerLevel="36" quality="1" icon="easter2015_adventure3" frameType="buffInstant" requiresEvent="AdventureSeasonScenario">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="119"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_heartOfTheWood_medium" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70806" name="BuffAdventures_heartOfTheWood_medium" sortIndex="806" playerLevel="36" quality="1" perEvent="2" icon="easter2015_adventure3" frameType="buffInstant" requiresEvent="AdventureSeasonScenario">
+				<Costs>                                                   
+					<Cost name="MapPart" count="130"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_heartOfTheWood_medium" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70807" name="BuffAdventuresRichesoftheMountain" sortIndex="807" playerLevel="42" quality="1" icon="easter2015_adventure4" frameType="buffInstant" requiresEvent="AdventureSeasonScenario">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="229"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_Riches_of_the_Mountain" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70808" name="BuffAdventuresRichesoftheMountain" sortIndex="808" playerLevel="42" quality="1" perEvent="2" icon="easter2015_adventure4" frameType="buffInstant" requiresEvent="AdventureSeasonScenario">
+				<Costs>                                                   
+					<Cost name="MapPart" count="320"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_Riches_of_the_Mountain" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70809" name="AdventureStormRecovery" sortIndex="809" playerLevel="51" quality="1" icon="icon_storm_recovery" frameType="buffInstant" requiresEvent="AdventureSeasonScenario">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="529"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_Storm_Recovery" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70810" name="AdventureStormRecovery" sortIndex="810" playerLevel="51" quality="1" perEvent="2" icon="icon_storm_recovery" frameType="buffInstant" requiresEvent="AdventureSeasonScenario">
+				<Costs>                                                   
+					<Cost name="MapPart" count="890"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_Storm_Recovery" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			
+			<!-- Mini Season -->
+			<ShopItem id="70901" name="AdventureMiadTheLostSkull" sortIndex="901" playerLevel="26" quality="1" icon="lost_Skull" frameType="buffInstant" requiresEvent="AdventureSeasonMini">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="99"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MiadTheLostSkull" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70902" name="AdventureMiadTheLostSkull" sortIndex="902" playerLevel="26" quality="1" perEvent="2" icon="lost_Skull" frameType="buffInstant" requiresEvent="AdventureSeasonMini">
+				<Costs>                                                   
+					<Cost name="MapPart" count="110"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MiadTheLostSkull" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70903" name="AdventureMiadTheSleepingVolcano" sortIndex="903" playerLevel="26" quality="1" icon="the_sleeping_volcano" frameType="buffInstant" requiresEvent="AdventureSeasonMini">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="99"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MiadTheSleepingVolcano" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70904" name="AdventureMiadTheSleepingVolcano" sortIndex="904" playerLevel="26" quality="1" perEvent="2" icon="the_sleeping_volcano" frameType="buffInstant" requiresEvent="AdventureSeasonMini">
+				<Costs>                                                   
+					<Cost name="MapPart" count="110"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MiadTheSleepingVolcano" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70905" name="AdventureMiadTropicalSun" sortIndex="905" playerLevel="26" quality="1" icon="tropical_sun" frameType="buffInstant" requiresEvent="AdventureSeasonMini">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="99"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MiadTropicalSun" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70906" name="AdventureMiadTropicalSun" sortIndex="906" playerLevel="26" quality="1" perEvent="2" icon="tropical_sun" frameType="buffInstant" requiresEvent="AdventureSeasonMini">
+				<Costs>                                                   
+					<Cost name="MapPart" count="110"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MiadTropicalSun" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70907" name="AdventureMiadSleepyReef" sortIndex="907" playerLevel="26" quality="1" icon="the_sleepy_reef" frameType="buffInstant" requiresEvent="AdventureSeasonMini">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="119"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MiadSleepyReef" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70908" name="AdventureMiadSleepyReef" sortIndex="908" playerLevel="26" quality="1" perEvent="2" icon="the_sleepy_reef" frameType="buffInstant" requiresEvent="AdventureSeasonMini">
+				<Costs>                                                   
+					<Cost name="MapPart" count="130"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MiadSleepyReef" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70909" name="AdventureMiadPirateLife" sortIndex="909" playerLevel="36" quality="1" icon="pirate_life" frameType="buffInstant" requiresEvent="AdventureSeasonMini">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="219"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MiadPirateLife" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70910" name="AdventureMiadPirateLife" sortIndex="910" playerLevel="36" quality="1" perEvent="2" icon="pirate_life" frameType="buffInstant" requiresEvent="AdventureSeasonMini">
+				<Costs>                                                   
+					<Cost name="MapPart" count="270"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MiadPirateLife" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70911" name="MiadBastilleIsland" sortIndex="911" playerLevel="36" quality="1" icon="bastille_island" frameType="buffInstant" requiresEvent="AdventureSeasonMini">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="229"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MiadBastilleIsland" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70912" name="MiadBastilleIsland" sortIndex="912" playerLevel="36" quality="1" perEvent="2" icon="bastille_island" frameType="buffInstant" requiresEvent="AdventureSeasonMini">
+				<Costs>                                                   
+					<Cost name="MapPart" count="300"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MiadBastilleIsland" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70913" name="AdventureArcticExplosion" sortIndex="913" playerLevel="42" quality="1" icon="artic_explosion" frameType="buffInstant" requiresEvent="AdventureSeasonMini">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="389"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MiadArcticExplosion" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70914" name="AdventureArcticExplosion" sortIndex="914" playerLevel="42" quality="1" perEvent="2" icon="artic_explosion" frameType="buffInstant" requiresEvent="AdventureSeasonMini">
+				<Costs>                                                   
+					<Cost name="MapPart" count="500"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MiadArcticExplosion" count="1" />
+				</Content>
+			</ShopItem>
+			
+			
+			<ShopItem id="70915" name="MiadTikkiIsland" sortIndex="915" playerLevel="51" quality="1" icon="icon_tikki_island" frameType="buffInstant" requiresEvent="AdventureSeasonMini">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="299"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MiadTikkiIsland" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="70916" name="MiadTikkiIsland" sortIndex="916" playerLevel="51" quality="1" perEvent="2" icon="icon_tikki_island" frameType="buffInstant" requiresEvent="AdventureSeasonMini">
+				<Costs>                                                   
+					<Cost name="MapPart" count="320"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MiadTikkiIsland" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<!-- Venture Season -->
+			<ShopItem id="71001" name="Anniversary2019General" sortIndex="995" giftable="false" perEvent="2" playerLevel="13" quality="1" frameType="specialist" indicator="NEW" icon="icon_anniversary2019general" requiresEvent="AdventureSeasonVenture" >
+				<Costs>
+					<Cost name="HardCurrency" count="5599"/>
+				</Costs>
+				<Content>
+					<Item type="Specialist" name="Anniversary2019General" count="1" />
+				</Content>
+ 			</ShopItem>			
+
+      <!-- Bundle worth 26000+ gems 			
+			<ShopItem id="71002" name="GenerousBundle4" perPlayer="1" sortIndex="1002" quality="1" playerLevel="13" giftable="false" indicator="NEW" frameType="specialist" icon="generousbundle4" requiresEvent="AdventureSeasonVenture" >
+				<Costs>
+					<Cost name="HardCurrency" count="7999"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="BuildBuilding" resource="ImprovedFloatingResidence" recurringChance="100" />
+					<Item type="Buff" name="BuildBuilding" resource="WatermillEndless" recurringChance="100" />					
+						<Item type="Specialist" name="ArcheologistGeologist" count="1" />
+						<Item type="Specialist" name="CandidExplorer" count="1"/>					
+						<Item type="Buff" name="PremiumAccount1Day" count="1" />
+						<Item type="Buff" name="PremiumAccount3Days" count="1" />					
+						<Item type="Buff" name="PremiumAccount3Days" count="1" />
+					<Item type="Buff" name="MultiplierBuffZone2_PremiumFriendBuff1Day" />					
+					<Item type="Buff" name="FillDeposit" count="5000"/>	
+					<Item type="Resource" resource="Iron" count="1000" />
+					<Item type="Resource" resource="Salpeter" count="1000" />
+					<Item type="Resource" resource="Titanium" count="1000" />					
+					<Item type="Resource" resource="Granite" count="1000" />
+					<Item type="Resource" resource="Grout" count="1000" />					
+					<Item type="Buff" name="RecoverGeneral" count="2" />			
+						<Item type="Buff" name="BattleBuffBomb_random_units_limited_2" count="5"/>					
+						<Item type="Buff" name="BattleBuffKill_random_boss_limited" count="5" />				
+					<Item type="Buff" name="RevealCollectiblesBuff01" count="5" />
+					<Item type="Buff" name="RevealCollectiblesBuff02" count="5" />	
+					<Item type="Buff" name="ProductivityBuffLvl12" count="5" />	  Rainbow Snow
+					<Item type="Buff" name="ProductivityBuffLvl21" count="5" />	  Elixir
+					<Item type="Buff" name="ProvisionerBuffLvl3" count="5" />	Barazek 					
+				</Content>
+			</ShopItem>		-->				
+
+      <!-- Bundle worth 10000+ gems 	-->			
+			<ShopItem id="71050" name="GenerousBundle16" perPlayer="1" sortIndex="990" quality="1" playerLevel="13" giftable="false" indicator="NEW" frameType="specialist" icon="generousbundle16" requiresEvent="AdventureSeasonVenture" >
+				<Costs>
+					<Cost name="HardCurrency" count="1999"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="BuildBuilding" resource="ImprovedFloatingResidence" recurringChance="100" />
+					<Item type="Buff" name="BuildBuilding" resource="coal_workyard" recurringChance="100" />
+					<Item type="Buff" name="BuildBuilding" resource="LargeRiverhouse1" recurringChance="100" />					
+						<Item type="Buff" name="PremiumAccount1Day" count="1" />
+						<Item type="Buff" name="PremiumAccount1Day" count="1" />
+						<Item type="Buff" name="PremiumAccount1Day" count="1" />									
+					<Item type="Buff" name="RecoverGeneral" count="2" />			
+						<Item type="Buff" name="BattleBuffBomb_random_units" count="5"/>					
+						<Item type="Buff" name="BattleBuffKill_random_unit_type" count="5" />						
+				</Content>
+			</ShopItem>						
+
+      <!-- Bundle worth 10000+ gems 	-->	
+	  <!-- Due to a poblem with item limits in FEAROW version this bundle has been added to the black market category utilizing the same shop id below -->		
+	<!--		
+			<ShopItem id="71051" name="GenerousBundle17" perPlayer="1" sortIndex="991" quality="1" playerLevel="13" giftable="false" indicator="NEW" frameType="specialist" icon="generousbundle17" requiresEvent="AdventureSeasonVenture" >
+				<Costs>
+					<Cost name="HardCurrency" count="4999"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="BuildBuilding" resource="S4ThatchedCottage" recurringChance="100" />				
+						<Item type="Specialist" name="HumbleExplorer" count="1" />
+						<Item type="Specialist" name="CorageousExplorer" count="1"/>					
+						<Item type="Buff" name="PremiumAccount1Day" count="1" />
+						<Item type="Buff" name="PremiumAccount3Days" count="1" />					
+						<Item type="Buff" name="PremiumAccount3Days" count="1" />
+					<Item type="Buff" name="MultiplierBuffZone2_PremiumFriendBuff1Day" />		
+					<Item type="Buff" name="RecoverGeneral" count="5" />					
+						<Item type="Buff" name="BattleBuffBomb_random_units" count="10"/>					
+						<Item type="Buff" name="BattleBuffKill_random_unit_type" count="10" />					
+				</Content>
+			</ShopItem>	
+			-->
+
+      <!-- Bundle worth 10000+ gems 	-->			
+			<ShopItem id="71052" name="GenerousBundle18" perPlayer="1" sortIndex="992" quality="1" playerLevel="13" giftable="false" indicator="NEW" frameType="specialist" icon="generousbundle18" requiresEvent="AdventureSeasonVenture" >
+				<Costs>
+					<Cost name="HardCurrency" count="9999"/>
+				</Costs>
+				<Content>			
+						<Item type="Buff" name="BuildBuilding" resource="LargeRiverhouse2" recurringChance="100" />					
+						<Item type="Specialist" name="MajorGeneral" count="1" />
+						<Item type="Specialist" name="Halloween2019General" count="1"/>					
+						<Item type="Buff" name="PremiumAccount1Day" count="1" />
+						<Item type="Buff" name="PremiumAccount3Days" count="1" />					
+						<Item type="Buff" name="PremiumAccount3Days" count="1" />
+					<Item type="Buff" name="MultiplierBuffZone2_PremiumFriendBuff1Day" />		
+					<Item type="Buff" name="RecoverGeneral" count="10" />					
+						<Item type="Buff" name="BattleBuffBomb_random_units" count="15"/>					
+						<Item type="Buff" name="BattleBuffKill_random_unit_type" count="15" />					
+				</Content>
+			</ShopItem>						
+
+
+      		<ShopItem id="71003" name="ConversionBattleBuffBomb_random_units" perEvent="20" sortIndex="1003" playerLevel="25" quality="1" icon="icon_bandit_camp_buff3" frameType="buffInstant" requiresEvent="AdventureSeasonVenture" >
+				<Costs>
+					<Cost name="HardCurrency" count="295"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="BattleBuffBomb_random_units" />
+				</Content>
+			</ShopItem> 
+      
+      		<ShopItem id="70999" name="ConversionBattleBuffKill_random_unit_type" perEvent="20" sortIndex="1003" playerLevel="25" quality="1" icon="icon_bandit_camp_buff2" frameType="buffInstant" requiresEvent="AdventureSeasonVenture" >
+				<Costs>
+					<Cost name="HardCurrency" count="395"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="BattleBuffKill_random_unit_type" />
+				</Content>
+			</ShopItem> 
+			
+			<ShopItem id="71004" name="BuffAdventures_DragonsRoost" sortIndex="1004" playerLevel="28" quality="1" icon="dragons_roost_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="399"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_DragonsRoost" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="71005" name="BuffAdventures_DragonsRoost" sortIndex="1005" playerLevel="28" quality="1" perEvent="2" icon="dragons_roost_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                   
+					<Cost name="MapPart" count="799"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_DragonsRoost" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="71006" name="BuffAdventures_ValuableIntel" sortIndex="1006" playerLevel="28" quality="1" icon="treasure_fleet_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="399"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_ValuableIntel" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="71007" name="BuffAdventures_ValuableIntel" sortIndex="1007" playerLevel="28" quality="1" perEvent="2" icon="treasure_fleet_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                   
+					<Cost name="MapPart" count="799"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_ValuableIntel" count="1" />
+				</Content>
+			</ShopItem>			
+			
+			<ShopItem id="71008" name="BuffAdventures_OfSongsAndCurses" sortIndex="1008" playerLevel="28" quality="1" icon="Of_Songs_And_Curses_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="399"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_OfSongsAndCurses" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="71009" name="BuffAdventures_OfSongsAndCurses" sortIndex="1009" playerLevel="28" quality="1" perEvent="2" icon="Of_Songs_And_Curses_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                   
+					<Cost name="MapPart" count="799"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_OfSongsAndCurses" count="1" />
+				</Content>
+			</ShopItem>					
+			
+			<ShopItem id="71010" name="BuffAdventures_ElChupacabra" sortIndex="1010" playerLevel="44" quality="1" icon="el_chupacabre_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="999"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_ElChupacabra" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="71011" name="BuffAdventures_ElChupacabra" sortIndex="1011" playerLevel="44" quality="1" perEvent="2" icon="el_chupacabre_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                   
+					<Cost name="MapPart" count="1899"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_ElChupacabra" count="1" />
+				</Content>
+			</ShopItem>					
+			
+			<ShopItem id="71012" name="BuffAdventures_RaidOfTheNords" sortIndex="1012" playerLevel="44" quality="1" icon="raid_of_the_nords_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="999"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_RaidOfTheNords" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="71013" name="BuffAdventures_RaidOfTheNords" sortIndex="1013" playerLevel="44" quality="1" perEvent="2" icon="raid_of_the_nords_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                   
+					<Cost name="MapPart" count="1899"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_RaidOfTheNords" count="1" />
+				</Content>
+			</ShopItem>					
+			
+			<ShopItem id="71014" name="BuffAdventures_Evil_Queen_Fisherman" sortIndex="1014" playerLevel="58" quality="1" icon="evil_queen_fisherman_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="1199"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_Evil_Queen_Fisherman" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="71015" name="BuffAdventures_Evil_Queen_Fisherman" sortIndex="1015" playerLevel="58" quality="1" perEvent="2" icon="evil_queen_fisherman_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                   
+					<Cost name="MapPart" count="2499"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_Evil_Queen_Fisherman" count="1" />
+				</Content>
+			</ShopItem>					
+			
+			<ShopItem id="71016" name="BuffAdventures_Evil_Queen_Hansel_Gretel" sortIndex="1016" playerLevel="58" quality="1" icon="evil_queen_hansel_gretel_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="1299"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_Evil_Queen_Hansel_Gretel" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="71017" name="BuffAdventures_Evil_Queen_Hansel_Gretel" sortIndex="1017" playerLevel="58" quality="1" perEvent="2" icon="evil_queen_hansel_gretel_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                   
+					<Cost name="MapPart" count="2699"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_Evil_Queen_Hansel_Gretel" count="1" />
+				</Content>
+			</ShopItem>						
+	
+			<ShopItem id="71018" name="BuffAdventures_Evil_Queen_Piper_of_Hamelin" sortIndex="1018" playerLevel="58" quality="1" icon="evil_queen_pied_piper_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="1399"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_Evil_Queen_Piper_of_Hamelin" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="71019" name="BuffAdventures_Evil_Queen_Piper_of_Hamelin" sortIndex="1019" playerLevel="58" quality="1" perEvent="2" icon="evil_queen_pied_piper_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                   
+					<Cost name="MapPart" count="2899"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_Evil_Queen_Piper_of_Hamelin" count="1" />
+				</Content>
+			</ShopItem>			
+	
+			<ShopItem id="71020" name="BuffAdventures_Evil_Queen_Red_Riding_Hood" sortIndex="1020" playerLevel="58" quality="1" icon="evil_queen_red_riding_hood_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="1499"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_Evil_Queen_Red_Riding_Hood" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="71021" name="BuffAdventures_Evil_Queen_Red_Riding_Hood" sortIndex="1021" playerLevel="58" quality="1" perEvent="2" icon="evil_queen_red_riding_hood_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                   
+					<Cost name="MapPart" count="3099"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_Evil_Queen_Red_Riding_Hood" count="1" />
+				</Content>
+			</ShopItem>		
+
+	<!--		<ShopItem id="71022" name="BuffAdventures_Evil_Queen_Snow_White" sortIndex="1022" playerLevel="26" quality="1" icon="evil_queen_snow_white_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="79"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_Evil_Queen_Snow_White" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="71023" name="BuffAdventures_Evil_Queen_Snow_White" sortIndex="1023" playerLevel="26" quality="1" perEvent="2" icon="evil_queen_snow_white_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                   
+					<Cost name="MapPart" count="90"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_Evil_Queen_Snow_White" count="1" />
+				</Content>
+			</ShopItem>		-->
+	
+			<ShopItem id="71024" name="BuffAdventures_LostCity" sortIndex="1024" playerLevel="63" quality="1" icon="lost_city_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="1299"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_LostCity" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="71025" name="BuffAdventures_LostCity" sortIndex="1025" playerLevel="63" quality="1" perEvent="2" icon="lost_city_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                   
+					<Cost name="MapPart" count="2699"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_LostCity" count="1" />
+				</Content>
+			</ShopItem>			
+
+			<ShopItem id="71026" name="BuffAdventures_OneStepAhead" sortIndex="1026" playerLevel="63" quality="1" icon="pathfinders_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="1299"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_OneStepAhead" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="71027" name="BuffAdventures_OneStepAhead" sortIndex="1027" playerLevel="63" quality="1" perEvent="2" icon="pathfinders_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                   
+					<Cost name="MapPart" count="2699"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_OneStepAhead" count="1" />
+				</Content>
+			</ShopItem>		
+
+			<ShopItem id="71028" name="BuffAdventures_TMC_At_the_Foot_of_the_Mountain" sortIndex="1028" playerLevel="65" quality="1" icon="tmc_mountain_foot_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="1999"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_TMC_At_the_Foot_of_the_Mountain" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="71029" name="BuffAdventures_TMC_At_the_Foot_of_the_Mountain" sortIndex="1029" playerLevel="65" quality="1" perEvent="2" icon="tmc_mountain_foot_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                   
+					<Cost name="MapPart" count="3999"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_TMC_At_the_Foot_of_the_Mountain" count="1" />
+				</Content>
+			</ShopItem>		
+
+	<!--		<ShopItem id="71030" name="BuffAdventures_TMC_Unknown_Regions" sortIndex="1030" playerLevel="65" quality="1" icon="tmc_unknown_regions_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="79"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_TMC_Unknown_Regions" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="71031" name="BuffAdventures_TMC_Unknown_Regions" sortIndex="1031" playerLevel="65" quality="1" perEvent="2" icon="tmc_unknown_regions_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                   
+					<Cost name="MapPart" count="90"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_TMC_Unknown_Regions" count="1" />
+				</Content>
+			</ShopItem>		
+
+			<ShopItem id="71032" name="BuffAdventures_TMC_Mountain_Labyrinth" sortIndex="1032" playerLevel="65" quality="1" icon="tmc_mountain_labyrinth_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="79"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_TMC_Mountain_Labyrinth" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="71033" name="BuffAdventures_TMC_Mountain_Labyrinth" sortIndex="1033" playerLevel="65" quality="1" perEvent="2" icon="tmc_mountain_labyrinth_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                   
+					<Cost name="MapPart" count="90"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_TMC_Mountain_Labyrinth" count="1" />
+				</Content>
+			</ShopItem>		
+
+			<ShopItem id="71034" name="BuffAdventures_TMC_The_People_of_the_Mountain" sortIndex="1034" playerLevel="65" quality="1" icon="tmc_mountain_people_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="79"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_TMC_The_People_of_the_Mountain" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="71035" name="BuffAdventures_TMC_The_People_of_the_Mountain" sortIndex="1035" playerLevel="65" quality="1" perEvent="2" icon="tmc_mountain_people_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                   
+					<Cost name="MapPart" count="90"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_TMC_The_People_of_the_Mountain" count="1" />
+				</Content>
+			</ShopItem>		
+
+			<ShopItem id="71034" name="BuffAdventures_TMC_A_giant_Battle" sortIndex="1034" playerLevel="65" quality="1" icon="tmc_mountain_people_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="79"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_TMC_A_giant_Battle" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="71035" name="BuffAdventures_TMC_A_giant_Battle" sortIndex="1035" playerLevel="65" quality="1" perEvent="2" icon="tmc_mountain_people_buff" frameType="buffInstant" requiresEvent="AdventureSeasonVenture">
+				<Costs>                                                   
+					<Cost name="MapPart" count="90"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_TMC_A_giant_Battle" count="1" />
+				</Content>
+			</ShopItem>		-->
+			
+			
+			<!-- Spring Surprise Season -->
+			<!-- Spring Surprise Season -->
+			
+			
+      <!-- Spring Bundles -->			
+	  
+	  		<ShopItem id="73001" name="SpringBundle7" perPlayer="1" sortIndex="7" quality="1" giftable="false" indicator="NEW" frameType="specialist" icon="springbundle7" requiresEvent="AdventureSeasonSpringSurprise" >
+				<Costs>
+					<Cost name="Plank" count="99999"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="BuildBuilding" resource="FishFarm" recurringChance="100"/>
+					<Item type="Buff" name="BuildBuilding" resource="ImprovedSilo" recurringChance="100"/>
+					<Item type="Buff" name="BuildBuilding" resource="ImprovedDeerstalker" recurringChance="100"/>							
+				</Content>
+			</ShopItem>		
+	  
+	  		<ShopItem id="73002" name="SpringBundle8" perPlayer="1" sortIndex="8" quality="1" giftable="false" indicator="NEW" frameType="specialist" icon="springbundle8" requiresEvent="AdventureSeasonSpringSurprise" >
+				<Costs>
+					<Cost name="Coin" count="10000"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="PremiumAccount1Day" count="1" />
+					<Item type="Buff" name="PremiumAccount3Days" count="1" />					
+					<Item type="Buff" name="PremiumAccount3Days" count="1" />
+					<Item type="Buff" name="MultiplierBuffZone2_PremiumFriendBuff1Day" />							
+				</Content>
+			</ShopItem>			
+
+	  		<ShopItem id="73003" name="SpringBundle9" perPlayer="1" sortIndex="9" quality="1" giftable="false" indicator="NEW" frameType="specialist" icon="springbundle9" requiresEvent="AdventureSeasonSpringSurprise" >
+				<Costs>
+					<Cost name="Beer" count="74999"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="BuildBuilding" resource="coal_workyard" recurringChance="100"/>
+					<Item type="Buff" name="BuildBuilding" resource="ImprovedWatermill" recurringChance="100"/>
+					<Item type="Buff" name="BuildBuilding" resource="StorageTower" recurringChance="100"/>						
+				</Content>
+			</ShopItem>			
+
+	  		<ShopItem id="73004" name="SpringBundle10" perPlayer="1" sortIndex="200" quality="1" giftable="false" indicator="NEW" frameType="specialist" icon="springbundle10" requiresEvent="AdventureSeasonSpringSurprise" >
+				<Costs>
+					<Cost name="Fish" count="99999"/>
+				</Costs>
+				<Content>
+					<Item type="Specialist" name="IntrepidExplorer" count="1" />				
+				</Content>
+			</ShopItem>					
+	  
+	  
+			<ShopItem id="72001" name="SpringBundle1" perPlayer="1" sortIndex="1" quality="1" giftable="false" indicator="NEW" frameType="specialist" icon="springbundle1" requiresEvent="AdventureSeasonSpringSurprise" >
+				<Costs>
+					<Cost name="HardCurrency" count="7999"/>
+				</Costs>
+				<Content>
+					<Item type="Resource" resource="Manuscript" count="15" />	
+					<Item type="Resource" resource="Tome" count="10" />
+					<Item type="Resource" resource="Codex" count="5" />					
+					<Item type="Specialist" name="Soccer2019Explorer" count="1" />
+					<Item type="Specialist" name="EmphaticExplorer" count="1"/>	
+					<Item type="Specialist" name="KeenerExplorer" count="1"/>	
+				</Content>
+			</ShopItem>			
+
+			<ShopItem id="72002" name="SpringBundle2" perPlayer="2" sortIndex="2" quality="1" giftable="false" indicator="NEW" frameType="specialist" icon="springbundle2" requiresEvent="AdventureSeasonSpringSurprise" >
+				<Costs>
+					<Cost name="HardCurrency" count="9999"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="BuildBuilding" resource="Riverhouse" recurringChance="100"/>	
+					<Item type="Buff" name="BuildBuilding" resource="LargeRiverhouse1" recurringChance="100"/>
+					<Item type="Buff" name="BuildBuilding" resource="LargeRiverhouse2" recurringChance="100"/>
+					<Item type="Buff" name="BuildBuilding" resource="FloatingResidence" recurringChance="100"/>
+					<Item type="Buff" name="BuildBuilding" resource="ImprovedFloatingResidence" recurringChance="100"/>	
+					<Item type="Resource" resource="Token" count="100" />					
+				</Content>
+			</ShopItem>		
+
+			<ShopItem id="72003" name="SpringBundle3" perPlayer="1" sortIndex="3" quality="1" giftable="false" indicator="NEW" frameType="specialist" icon="springbundle3" requiresEvent="AdventureSeasonSpringSurprise" >
+				<Costs>
+					<Cost name="HardCurrency" count="13998"/>
+				</Costs>
+				<Content>					
+					<Item type="Resource" resource="Manuscript" count="15" />	
+					<Item type="Resource" resource="Tome" count="10" />
+					<Item type="Resource" resource="Codex" count="5" />	
+					<Item type="Specialist" name="GeneralNusala" count="1" />
+					<Item type="Specialist" name="GeneralAnslem" count="1"/>	
+					<Item type="Specialist" name="GeneralVargus" count="1"/>	
+				</Content>
+			</ShopItem>					
+
+			<ShopItem id="72004" name="SpringBundle4" perPlayer="1" sortIndex="4" quality="1" giftable="false" indicator="NEW" frameType="specialist" icon="springbundle4" requiresEvent="AdventureSeasonSpringSurprise" >
+				<Costs>
+					<Cost name="HardCurrency" count="13999"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="BuildBuilding" resource="EspionageBuilding" recurringChance="100"/>	
+					<Item type="Buff" name="BuildBuilding" resource="EliteTrainingGrounds" recurringChance="100"/>	
+					<Item type="Buff" name="BuildBuilding" resource="Observatory" recurringChance="100"/>		
+					<Item type="Buff" name="BattleBuffKill_random_unit_type_limited" count="2"/>	
+					<Item type="Buff" name="BattleBuffBomb_random_units_limited" count="2"/>
+					<Item type="Buff" name="BattleBuffBomb_random_units_limited_2" count="2"/>					
+					<Item type="Buff" name="BattleBuffKill_random_boss_limited" count="2" />				
+					<Item type="Buff" name="BattleBuffDestroy_small_medium_camps" count="2" />						
+				</Content>
+			</ShopItem>			
+
+			<ShopItem id="72005" name="SpringBundle5" perPlayer="1" sortIndex="5" quality="1" giftable="false" indicator="NEW" frameType="specialist" icon="springbundle5" requiresEvent="AdventureSeasonSpringSurprise" >
+				<Costs>
+					<Cost name="HardCurrency" count="16999"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="BuildBuilding" resource="AdventureBookbinder" recurringChance="100"/>	
+					<Item type="Buff" name="BuildBuilding" resource="Oilmill" recurringChance="100"/>
+					<Item type="Buff" name="BuildBuilding" resource="WatermillEndless" recurringChance="100"/>				
+				</Content>
+			</ShopItem>					
+			
+			<ShopItem id="72006" name="SpringBundle6" perPlayer="1" sortIndex="6" quality="1" giftable="false" indicator="NEW" frameType="specialist" icon="springbundle6" requiresEvent="AdventureSeasonSpringSurprise" >
+				<Costs>
+					<Cost name="HardCurrency" count="49999"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="BuildBuilding" resource="BronzeMineEndless" recurringChance="100"/>		
+					<Item type="Buff" name="BuildBuilding" resource="CoalMineEndless" recurringChance="100"/>	
+					<Item type="Buff" name="BuildBuilding" resource="GoldMineEndless" recurringChance="100"/>	
+					<Item type="Buff" name="BuildBuilding" resource="IronMineEndless" recurringChance="100"/>		
+					<Item type="Specialist" name="LovelyGeologist" count="1" />					
+				</Content>
+			</ShopItem>	
+
+		
+
+						
+			
+			
+			
+			<ShopItem id="72010" name="AdventureTheIslandOfThePirates" sortIndex="101" playerLevel="26" quality="1" icon="island_of_the_pirates" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="69"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheIslandOfThePirates" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="72011" name="AdventureTheIslandOfThePirates" sortIndex="102" playerLevel="26" quality="1" perEvent="1" icon="island_of_the_pirates" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                                                                                                                                    
+					<Cost name="MapPart" count="70"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="TheIslandOfThePirates" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="72012" name="AdventureTraitors" sortIndex="103" playerLevel="26" quality="1" icon="traitors" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="79"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="Traitors" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="72013" name="AdventureTraitors" sortIndex="104" playerLevel="26" quality="1" perEvent="1" icon="traitors" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                   
+					<Cost name="MapPart" count="110"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="Traitors" count="1" />
+				</Content>
+			</ShopItem>					
+					
+			<ShopItem id="72014" name="AdventureMiadTheLostSkull" sortIndex="105" playerLevel="26" quality="1" frameType="buffInstant" icon="lost_Skull" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>
+					<Cost name="HardCurrency" count="99"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MiadTheLostSkull" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="72015" name="AdventureMiadTheLostSkull" sortIndex="106" playerLevel="26" quality="1" perEvent="1" frameType="buffInstant" icon="lost_Skull" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>
+					<Cost name="MapPart" count="110"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MiadTheLostSkull" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="72016" name="AdventureMiadSleepyReef" sortIndex="107" playerLevel="26" quality="1" icon="the_sleepy_reef" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="119"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MiadSleepyReef" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="72017" name="AdventureMiadSleepyReef" sortIndex="108" playerLevel="26" quality="1" perEvent="1" icon="the_sleepy_reef" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                   
+					<Cost name="MapPart" count="130"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MiadSleepyReef" count="1" />
+				</Content>
+			</ShopItem>	
+			
+			<ShopItem id="72018" name="AdventureSurpriseAttack" sortIndex="109" playerLevel="36" quality="1" icon="surprise_attack" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="179"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="SurpriseAttack" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="72019" name="AdventureSurpriseAttack" sortIndex="110" playerLevel="36" quality="1" perEvent="1" icon="surprise_attack" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                                                                                                                                    
+					<Cost name="MapPart" count="250"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="SurpriseAttack" count="1" />
+				</Content>
+			</ShopItem>				
+			
+			<ShopItem id="72020" name="AdventureSonsOfTheVeld" sortIndex="111" playerLevel="36" quality="1" icon="sons_of_the_veld" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="189"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="SonsOfTheVeld" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="72021" name="AdventureSonsOfTheVeld" sortIndex="112" playerLevel="36" quality="1" perEvent="1" icon="sons_of_the_veld" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                                                                                                                                    
+					<Cost name="MapPart" count="270"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="SonsOfTheVeld" count="1" />
+				</Content>
+			</ShopItem>			
+
+			<ShopItem id="72022" name="AdventureVictorTheVicious" sortIndex="113" playerLevel="36" quality="1" icon="victor_the_vicious" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="209"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="VictorTheVicious" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="72023" name="AdventureVictorTheVicious" sortIndex="114" playerLevel="36" quality="1" perEvent="1" icon="victor_the_vicious" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                                                                                                                                    
+					<Cost name="MapPart" count="290"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="VictorTheVicious" count="1" />
+				</Content>
+			</ShopItem>				
+			
+			<ShopItem id="72024" name="AdventureMiadPirateLife" sortIndex="115" playerLevel="36" quality="1" icon="pirate_life" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="219"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MiadPirateLife" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="72025" name="AdventureMiadPirateLife" sortIndex="116" playerLevel="36" quality="1" perEvent="1" icon="pirate_life" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                   
+					<Cost name="MapPart" count="270"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MiadPirateLife" count="1" />
+				</Content>
+			</ShopItem>	
+	
+			<ShopItem id="72026" name="MiadTikkiIsland" sortIndex="117" playerLevel="51" quality="1" icon="icon_tikki_island" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="299"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MiadTikkiIsland" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="72027" name="MiadTikkiIsland" sortIndex="118" playerLevel="51" quality="1" perEvent="1" icon="icon_tikki_island" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                   
+					<Cost name="MapPart" count="320"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MiadTikkiIsland" count="1" />
+				</Content>
+			</ShopItem>			
+			
+			<ShopItem id="72028" name="AdventureSecludedExperiments" sortIndex="119" playerLevel="42" quality="1" icon="secluded_experiments" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>
+					<Cost name="HardCurrency" count="359"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="SecludedExperiments" count="1" />
+				</Content>
+			</ShopItem> 
+			
+			<ShopItem id="72029" name="AdventureSecludedExperiments" sortIndex="120" playerLevel="42" quality="1" perEvent="1" icon="secluded_experiments" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>
+					<Cost name="MapPart" count="570"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="SecludedExperiments" count="1" />
+				</Content>
+			</ShopItem> 	
+			
+			<ShopItem id="72030" name="BuffAdventures_OfSongsAndCurses" sortIndex="121" playerLevel="28" quality="1" icon="Of_Songs_And_Curses_buff" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="399"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_OfSongsAndCurses" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="72031" name="BuffAdventures_OfSongsAndCurses" sortIndex="122" playerLevel="28" quality="1" perEvent="1" icon="Of_Songs_And_Curses_buff" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                   
+					<Cost name="MapPart" count="799"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_OfSongsAndCurses" count="1" />
+				</Content>
+			</ShopItem>		
+
+			<ShopItem id="72032" name="BuffAdventures_DragonsRoost" sortIndex="123" playerLevel="28" quality="1" icon="dragons_roost_buff" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="399"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_DragonsRoost" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="72033" name="BuffAdventures_DragonsRoost" sortIndex="124" playerLevel="28" quality="1" perEvent="1" icon="dragons_roost_buff" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                   
+					<Cost name="MapPart" count="799"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_DragonsRoost" count="1" />
+				</Content>
+			</ShopItem>		
+
+			<ShopItem id="72034" name="AdventureSplitCity" sortIndex="125" playerLevel="42" quality="1" icon="splitcity_summer" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="399"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="SplitCity" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="72035" name="AdventureSplitCity" sortIndex="126" playerLevel="42" quality="1" perEvent="1" icon="splitcity_summer" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                   
+					<Cost name="MapPart" count="799"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="SplitCity" count="1" />
+				</Content>
+			</ShopItem>					
+
+			<ShopItem id="72036" name="AdventureOldFriends" sortIndex="127" playerLevel="36" quality="1" icon="old_friends" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="469"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="OldFriends" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="72037" name="AdventureOldFriends" sortIndex="128" playerLevel="36" quality="1" perEvent="1" icon="old_friends" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                   
+					<Cost name="MapPart" count="580"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="OldFriends" count="1" />
+				</Content>
+			</ShopItem>			
+			
+			<ShopItem id="72038" name="AdventureMotherLove" sortIndex="129" playerLevel="36" quality="1" icon="motherlove" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>
+					<Cost name="HardCurrency" count="489"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MotherLove" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="72039" name="AdventureMotherLove" sortIndex="130" playerLevel="36" quality="1" perEvent="1" icon="motherlove" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>
+					<Cost name="MapPart" count="530"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="MotherLove" count="1" />
+				</Content>
+			</ShopItem>
+						
+			<ShopItem id="72040" name="BuffAdventures_ElChupacabra" sortIndex="131" playerLevel="44" quality="1" icon="el_chupacabre_buff" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="599"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_ElChupacabra" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="72041" name="BuffAdventures_ElChupacabra" sortIndex="132" playerLevel="44" quality="1" perEvent="1" icon="el_chupacabre_buff" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                   
+					<Cost name="MapPart" count="1199"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_ElChupacabra" count="1" />
+				</Content>
+			</ShopItem>		
+
+			<ShopItem id="72042" name="BuffAdventures_Evil_Queen_Fisherman" sortIndex="133" playerLevel="58" quality="1" icon="evil_queen_fisherman_buff" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="699"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_Evil_Queen_Fisherman" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="72043" name="BuffAdventures_Evil_Queen_Fisherman" sortIndex="134" playerLevel="58" quality="1" perEvent="1" icon="evil_queen_fisherman_buff" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                   
+					<Cost name="MapPart" count="1399"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_Evil_Queen_Fisherman" count="1" />
+				</Content>
+			</ShopItem>					
+			
+			<ShopItem id="72044" name="BuffAdventures_Evil_Queen_Hansel_Gretel" sortIndex="135" playerLevel="58" quality="1" icon="evil_queen_hansel_gretel_buff" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="699"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_Evil_Queen_Hansel_Gretel" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="72045" name="BuffAdventures_Evil_Queen_Hansel_Gretel" sortIndex="136" playerLevel="58" quality="1" perEvent="1" icon="evil_queen_hansel_gretel_buff" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                   
+					<Cost name="MapPart" count="1399"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_Evil_Queen_Hansel_Gretel" count="1" />
+				</Content>
+			</ShopItem>						
+	
+			<ShopItem id="72046" name="BuffAdventures_Evil_Queen_Piper_of_Hamelin" sortIndex="137" playerLevel="58" quality="1" icon="evil_queen_pied_piper_buff" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="699"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_Evil_Queen_Piper_of_Hamelin" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="72047" name="BuffAdventures_Evil_Queen_Piper_of_Hamelin" sortIndex="138" playerLevel="58" quality="1" perEvent="1" icon="evil_queen_pied_piper_buff" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                   
+					<Cost name="MapPart" count="1399"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_Evil_Queen_Piper_of_Hamelin" count="1" />
+				</Content>
+			</ShopItem>			
+	
+			<ShopItem id="72048" name="BuffAdventures_Evil_Queen_Red_Riding_Hood" sortIndex="139" playerLevel="58" quality="1" icon="evil_queen_red_riding_hood_buff" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="799"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_Evil_Queen_Red_Riding_Hood" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="72049" name="BuffAdventures_Evil_Queen_Red_Riding_Hood" sortIndex="140" playerLevel="58" quality="1" perEvent="1" icon="evil_queen_red_riding_hood_buff" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                   
+					<Cost name="MapPart" count="1599"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_Evil_Queen_Red_Riding_Hood" count="1" />
+				</Content>
+			</ShopItem>		
+			
+			<ShopItem id="72052" name="1001NightsPrincess" sortIndex="141" playerLevel="51" quality="1" icon="1001_nights_princess_buff" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>
+					<Cost name="HardCurrency" count="899"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="1001NightsPrincess" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="72053" name="1001NightsPrincess" sortIndex="142" playerLevel="51" quality="1" perEvent="1" icon="1001_nights_princess_buff" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>
+					<Cost name="MapPart" count="1799"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="1001NightsPrincess" count="1" />
+				</Content>
+			</ShopItem>			
+	
+			<ShopItem id="72050" name="BuffAdventures_TMC_At_the_Foot_of_the_Mountain" sortIndex="143" playerLevel="65" quality="1" icon="tmc_mountain_foot_buff" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                                                                                                                                    
+					<Cost name="HardCurrency" count="999"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_TMC_At_the_Foot_of_the_Mountain" count="1" />
+				</Content>
+			</ShopItem>
+			
+			<ShopItem id="72051" name="BuffAdventures_TMC_At_the_Foot_of_the_Mountain" sortIndex="144" playerLevel="65" quality="1" perEvent="1" icon="tmc_mountain_foot_buff" frameType="buffInstant" requiresEvent="AdventureSeasonSpringSurprise">
+				<Costs>                                                   
+					<Cost name="MapPart" count="1999"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="BuffAdventures_TMC_At_the_Foot_of_the_Mountain" count="1" />
+				</Content>
+			</ShopItem>		
+	
+</Group>

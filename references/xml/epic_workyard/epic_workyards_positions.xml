@@ -1,0 +1,1533 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<!-- 
+		- postions - contains a list of "pos" elements
+		- pos:
+			- attributes:
+				- name (String) - the name of the position; will be referenced in "epicWorkyard" elements for positioning subbuildings
+				- x (Number) - x offset on the map (multiple of .5)
+				- y (Number) - y offset on the map (multiple of .5)
+	-->
+	<positions>
+		<pos name="down_left"      x="-0.5" y="0.5"  iconX="0"   iconY="-100"/>
+		<pos name="down_right"     x="0.5"  y="0.5"  iconX="50"  iconY="-50"/>
+		<pos name="down"           x="0"    y="1"    iconX="-20" iconY="-20"/>
+		<pos name="down_2"         x="0"    y="2"    iconX="0"   iconY="0"/>
+		<pos name="refinery_top"   x="-0.5" y="0.5"  iconX="-10"  iconY="-120"/>
+		<pos name="refinery_right" x="0.5"  y="0.5"  iconX="-70"  iconY="-30"/>
+		<pos name="refinery_left"  x="0"    y="1"    iconX="-140" iconY="-60"/>		
+	</positions>
+
+	<!-- 
+		- epicWorkyards - contains a list of "epicWorkyard" elements
+		- epicWorkyard:
+			- contains a list of "chain" elements 
+			- attributes:
+				- buildingId (String) - the name of the building
+				- subBuildings (Integer) - number of subbuildings
+				- subBuildingPositions (String) - comma separated list of position names for subbuildings; positions are defined in the "positions" element in this xml file
+	    - chainGroup
+			- contains a list of chains, which are set by their output productivity
+			- from each group the user will see the most restrictive chain which is unlocked, and the following "displayedChains"-1 chains
+			- attributes:
+				- displayedChains - the number of chains displayed from this group at runtime according to the requirement levels
+		- chain:
+			- attributes:
+				- subBuildingId (String) - the name of the subbuilding
+				- requirementQuest (String) - the name of the quest that must be completed for the chain to become usable
+				- requirementLevel (Integer) -  the minimum level for which the chain is usable
+				- rank - the rank in the production chain. The higher number is considered the higher rank
+	-->
+	<epicWorkyards>
+		<epicWorkyard buildingId="EpicWorkyardWood" subBuildings="3" subBuildingPositions="down_left,down_right,down">
+			<chainGroup subBuildingId="EW_Wood_SeedToWood" displayedChains="2">
+				<!-- also add subBuildingId in game_settings.xml -> BuildingDefaultParameter node -> doNotCount -->
+				<chain rank="1" />
+				<chain rank="2" requirementQuest="TutMainEpicWorkyards" />
+				
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Wood_SeedToRealWood" displayedChains="2">
+				<!-- also add subBuildingId in game_settings.xml -> BuildingDefaultParameter node -> doNotCount -->
+				<chain rank="1" requirementQuest="TutMainEpicWorkyards" />
+				<chain rank="2" requirementQuest="UnlockEW_SeedToHardwoodRank2" />
+				
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Wood_WoodToPlank" displayedChains="2">
+				<!-- also add subBuildingId in game_settings.xml -> BuildingDefaultParameter node -> doNotCount -->
+				<chain rank="1" requirementQuest="TutMainEpicWorkyards" />
+				<chain rank="2" requirementQuest="UnlockEW_WoodToPlankRank2" />
+				<chain rank="3" requirementQuest="UnlockEW_WoodToPlankRank3" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Wood_RealWoodToRealPlank" displayedChains="2">
+				<!-- also add subBuildingId in game_settings.xml -> BuildingDefaultParameter node -> doNotCount -->
+				<chain rank="1" requirementQuest="TutMainEpicWorkyards" />
+				<chain rank="2" requirementQuest="UnlockEW_HardwoodToHWPlanksRank2" />
+				<chain rank="3" requirementQuest="UnlockEW_HardwoodToHWPlanksRank3" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Wood_ExoticWoodToExoticPlank" displayedChains="2">
+				<!-- also add subBuildingId in game_settings.xml -> BuildingDefaultParameter node -> doNotCount -->
+				<chain rank="1" requirementQuest="UnlockEW_ExWoodToExPlankRank1"/>
+				<chain rank="2" requirementQuest="UnlockEW_ExWoodToExPlankRank2"/>
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Wood_WoodToCoal" displayedChains="2">
+				<!-- also add subBuildingId in game_settings.xml -> BuildingDefaultParameter node -> doNotCount -->
+				<chain rank="1" requirementQuest="TutMainEpicWorkyards" />
+				<chain rank="2" requirementQuest="UnlockEW_WoodToCoalRank2" />
+				<chain rank="3" requirementQuest="UnlockEW_WoodToCoalRank3" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Wood_RealWoodToCoal" displayedChains="2">
+				<!-- also add subBuildingId in game_settings.xml -> BuildingDefaultParameter node -> doNotCount -->
+				<chain rank="1" requirementQuest="UnlockEW_HardwoodToCoalRank1" />
+				<chain rank="2" requirementQuest="UnlockEW_HardwoodToCoalRank2" />
+			</chainGroup>
+		</epicWorkyard>
+		
+		
+		<epicWorkyard buildingId="EpicWorkyardCorn" subBuildings="3" subBuildingPositions="down_left,down_right,down">
+			<chainGroup subBuildingId="EW_Corn_CornToCorn" displayedChains="2">
+				<!-- also add subBuildingId in game_settings.xml -> BuildingDefaultParameter node -> doNotCount -->
+				<chain rank="1" />
+				<chain rank="2" requirementQuest="UnlockEW_CornToCornRank2" unlockToolTipLoca="UnlockEpicChain_with_buff_CtC" />
+				<chain rank="3" requirementQuest="UnlockEW_CornToCornRank3" unlockToolTipLoca="UnlockEpicChain_with_buff_CtC" />
+				<chain rank="4" requirementQuest="UnlockEW_CornToCornRank4" unlockToolTipLoca="UnlockEpicChain_with_buff_CtC" />
+				<chain rank="5" requirementQuest="UnlockEW_CornToCornRank5" unlockToolTipLoca="UnlockEpicChain_with_buff_CtC" />
+				<chain rank="6" requirementQuest="UnlockEW_CornToCornRank6" unlockToolTipLoca="UnlockEpicChain_with_buff_CtC" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Corn_SeedToWater" displayedChains="2" showWithQuestInactive="true">
+				<!-- also add subBuildingId in game_settings.xml -> BuildingDefaultParameter node -> doNotCount -->
+				<chain rank="1" requirementQuest="UnlockEW_SeedToWaterRank1" unlockToolTipLoca="UnlockEpicChain_with_buff_StW" />
+				<chain rank="2" requirementQuest="UnlockEW_SeedToWaterRank2" unlockToolTipLoca="UnlockEpicChain_with_buff_StW" />
+				<chain rank="3" requirementQuest="UnlockEW_SeedToWaterRank3" unlockToolTipLoca="UnlockEpicChain_with_buff_StW" />
+				<chain rank="4" requirementQuest="UnlockEW_SeedToWaterRank4" unlockToolTipLoca="UnlockEpicChain_with_buff_StW" />
+				<chain rank="5" requirementQuest="UnlockEW_SeedToWaterRank5" unlockToolTipLoca="UnlockEpicChain_with_buff_StW" />
+				<chain rank="6" requirementQuest="UnlockEW_SeedToWaterRank6" unlockToolTipLoca="UnlockEpicChain_with_buff_StW" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Corn_SeedToCorn" displayedChains="2" showWithQuestInactive="true">
+				<!-- also add subBuildingId in game_settings.xml -> BuildingDefaultParameter node -> doNotCount -->
+				<chain rank="1" requirementQuest="UnlockEW_SeedToCornRank1" unlockToolTipLoca="UnlockEpicChain_with_buff_StC" />
+				<chain rank="2" requirementQuest="UnlockEW_SeedToCornRank2" unlockToolTipLoca="UnlockEpicChain_with_buff_StC" />
+				<chain rank="3" requirementQuest="UnlockEW_SeedToCornRank3" unlockToolTipLoca="UnlockEpicChain_with_buff_StC" />
+				<chain rank="4" requirementQuest="UnlockEW_SeedToCornRank4" unlockToolTipLoca="UnlockEpicChain_with_buff_StC" />
+				<chain rank="5" requirementQuest="UnlockEW_SeedToCornRank5" unlockToolTipLoca="UnlockEpicChain_with_buff_StC" />
+				<chain rank="6" requirementQuest="UnlockEW_SeedToCornRank6" unlockToolTipLoca="UnlockEpicChain_with_buff_StC" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Corn_CornToFlour" displayedChains="2" showWithQuestInactive="true">
+				<!-- also add subBuildingId in game_settings.xml -> BuildingDefaultParameter node -> doNotCount -->
+				<chain rank="1" requirementQuest="UnlockEW_CornToFlourRank1" unlockToolTipLoca="UnlockEpicChain_with_buff_CtF" />
+				<chain rank="2" requirementQuest="UnlockEW_CornToFlourRank2" unlockToolTipLoca="UnlockEpicChain_with_buff_CtF" />
+				<chain rank="3" requirementQuest="UnlockEW_CornToFlourRank3" unlockToolTipLoca="UnlockEpicChain_with_buff_CtF" />
+				<chain rank="4" requirementQuest="UnlockEW_CornToFlourRank4" unlockToolTipLoca="UnlockEpicChain_with_buff_CtF" />
+				<chain rank="5" requirementQuest="UnlockEW_CornToFlourRank5" unlockToolTipLoca="UnlockEpicChain_with_buff_CtF" />
+				<chain rank="6" requirementQuest="UnlockEW_CornToFlourRank6" unlockToolTipLoca="UnlockEpicChain_with_buff_CtF" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Corn_FlourToBread" displayedChains="2" showWithQuestInactive="true">
+				<!-- also add subBuildingId in game_settings.xml -> BuildingDefaultParameter node -> doNotCount -->
+				<chain rank="1" requirementQuest="UnlockEW_FlourToBreadRank1" unlockToolTipLoca="UnlockEpicChain_with_buff_FtB" />
+				<chain rank="2" requirementQuest="UnlockEW_FlourToBreadRank2" unlockToolTipLoca="UnlockEpicChain_with_buff_FtB" />
+				<chain rank="3" requirementQuest="UnlockEW_FlourToBreadRank3" unlockToolTipLoca="UnlockEpicChain_with_buff_FtB" />
+				<chain rank="4" requirementQuest="UnlockEW_FlourToBreadRank4" unlockToolTipLoca="UnlockEpicChain_with_buff_FtB" />
+				<chain rank="5" requirementQuest="UnlockEW_FlourToBreadRank5" unlockToolTipLoca="UnlockEpicChain_with_buff_FtB" />
+				<chain rank="6" requirementQuest="UnlockEW_FlourToBreadRank6" unlockToolTipLoca="UnlockEpicChain_with_buff_FtB" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Corn_CornToBeer" displayedChains="2" showWithQuestInactive="true">
+				<!-- also add subBuildingId in game_settings.xml -> BuildingDefaultParameter node -> doNotCount -->
+				<chain rank="1" requirementQuest="UnlockEW_CornToBeerRank1" unlockToolTipLoca="UnlockEpicChain_with_buff_CtB" />
+				<chain rank="2" requirementQuest="UnlockEW_CornToBeerRank2" unlockToolTipLoca="UnlockEpicChain_with_buff_CtB" />
+				<chain rank="3" requirementQuest="UnlockEW_CornToBeerRank3" unlockToolTipLoca="UnlockEpicChain_with_buff_CtB" />
+				<chain rank="4" requirementQuest="UnlockEW_CornToBeerRank4" unlockToolTipLoca="UnlockEpicChain_with_buff_CtB" />
+				<chain rank="5" requirementQuest="UnlockEW_CornToBeerRank5" unlockToolTipLoca="UnlockEpicChain_with_buff_CtB" />
+				<chain rank="6" requirementQuest="UnlockEW_CornToBeerRank6" unlockToolTipLoca="UnlockEpicChain_with_buff_CtB" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Corn_CornToHorse" displayedChains="2" showWithQuestInactive="true">
+				<!-- also add subBuildingId in game_settings.xml -> BuildingDefaultParameter node -> doNotCount -->
+				<chain rank="1" requirementQuest="UnlockEW_CornToHorseRank1" unlockToolTipLoca="UnlockEpicChain_with_buff_CtH" />
+				<chain rank="2" requirementQuest="UnlockEW_CornToHorseRank2" unlockToolTipLoca="UnlockEpicChain_with_buff_CtH" />
+				<chain rank="3" requirementQuest="UnlockEW_CornToHorseRank3" unlockToolTipLoca="UnlockEpicChain_with_buff_CtH" />
+				<chain rank="4" requirementQuest="UnlockEW_CornToHorseRank4" unlockToolTipLoca="UnlockEpicChain_with_buff_CtH" />
+				<chain rank="5" requirementQuest="UnlockEW_CornToHorseRank5" unlockToolTipLoca="UnlockEpicChain_with_buff_CtH" />
+				<chain rank="6" requirementQuest="UnlockEW_CornToHorseRank6" unlockToolTipLoca="UnlockEpicChain_with_buff_CtH" />
+			</chainGroup>
+			
+		</epicWorkyard>
+		
+		<epicWorkyard buildingId="EpicWorkyardOre" subBuildings="3" subBuildingPositions="down,down_right,down_left">
+			<chainGroup subBuildingId="EW_Ore_OreToBronze" displayedChains="2">
+				<!-- also add subBuildingId in game_settings.xml -> BuildingDefaultParameter node -> doNotCount -->
+				<chain rank="1" />
+				<chain rank="2" requirementQuest="UnlockEW_OreToBronzeRank2" unlockToolTipLoca="UnlockEpicChain_with_buff_OtB" />
+				<chain rank="3" requirementQuest="UnlockEW_OreToBronzeRank3" unlockToolTipLoca="UnlockEpicChain_with_buff_OtB" />
+				<chain rank="4" requirementQuest="UnlockEW_OreToBronzeRank4" unlockToolTipLoca="UnlockEpicChain_with_buff_OtB" />
+				<chain rank="5" requirementQuest="UnlockEW_OreToBronzeRank5" unlockToolTipLoca="UnlockEpicChain_with_buff_OtB" />
+				<chain rank="6" requirementQuest="UnlockEW_OreToBronzeRank6" unlockToolTipLoca="UnlockEpicChain_with_buff_OtB" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Ore_OreToIron" displayedChains="2" showWithQuestInactive="true">
+				<!-- also add subBuildingId in game_settings.xml -> BuildingDefaultParameter node -> doNotCount -->
+				<chain rank="1" />
+				<chain rank="2" requirementQuest="UnlockEW_OreToIronRank2" unlockToolTipLoca="UnlockEpicChain_with_buff_OtI" />
+				<chain rank="3" requirementQuest="UnlockEW_OreToIronRank3" unlockToolTipLoca="UnlockEpicChain_with_buff_OtI" />
+				<chain rank="4" requirementQuest="UnlockEW_OreToIronRank4" unlockToolTipLoca="UnlockEpicChain_with_buff_OtI" />
+				<chain rank="5" requirementQuest="UnlockEW_OreToIronRank5" unlockToolTipLoca="UnlockEpicChain_with_buff_OtI" />
+				<chain rank="6" requirementQuest="UnlockEW_OreToIronRank6" unlockToolTipLoca="UnlockEpicChain_with_buff_OtI" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Ore_IronToSteel" displayedChains="2" showWithQuestInactive="true">
+				<!-- also add subBuildingId in game_settings.xml -> BuildingDefaultParameter node -> doNotCount -->
+				<chain rank="1" />
+				<chain rank="2" requirementQuest="UnlockEW_IronToSteelRank2" unlockToolTipLoca="UnlockEpicChain_with_buff_ItS" />
+				<chain rank="3" requirementQuest="UnlockEW_IronToSteelRank3" unlockToolTipLoca="UnlockEpicChain_with_buff_ItS" />
+				<chain rank="4" requirementQuest="UnlockEW_IronToSteelRank4" unlockToolTipLoca="UnlockEpicChain_with_buff_ItS" />
+				<chain rank="5" requirementQuest="UnlockEW_IronToSteelRank5" unlockToolTipLoca="UnlockEpicChain_with_buff_ItS" />
+				<chain rank="6" requirementQuest="UnlockEW_IronToSteelRank6" unlockToolTipLoca="UnlockEpicChain_with_buff_ItS" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Ore_OreToTitanium" displayedChains="2" showWithQuestInactive="true">
+				<!-- also add subBuildingId in game_settings.xml -> BuildingDefaultParameter node -> doNotCount -->
+				<chain rank="1" />
+				<chain rank="2" requirementQuest="UnlockEW_OreToTitaniumRank2" unlockToolTipLoca="UnlockEpicChain_with_buff_OtT" />
+				<chain rank="3" requirementQuest="UnlockEW_OreToTitaniumRank3" unlockToolTipLoca="UnlockEpicChain_with_buff_OtT" />
+				<chain rank="4" requirementQuest="UnlockEW_OreToTitaniumRank4" unlockToolTipLoca="UnlockEpicChain_with_buff_OtT" />
+				<chain rank="5" requirementQuest="UnlockEW_OreToTitaniumRank5" unlockToolTipLoca="UnlockEpicChain_with_buff_OtT" />
+				<chain rank="6" requirementQuest="UnlockEW_OreToTitaniumRank6" unlockToolTipLoca="UnlockEpicChain_with_buff_OtT" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Ore_OreToPlatinum" displayedChains="2" showWithQuestInactive="true">
+				<!-- also add subBuildingId in game_settings.xml -> BuildingDefaultParameter node -> doNotCount -->
+				<chain rank="1" />
+				<chain rank="2" requirementQuest="UnlockEW_OreToPlatinumRank2" unlockToolTipLoca="UnlockEpicChain_with_buff_OtP" />
+				<chain rank="3" requirementQuest="UnlockEW_OreToPlatinumRank3" unlockToolTipLoca="UnlockEpicChain_with_buff_OtP" />
+				<chain rank="4" requirementQuest="UnlockEW_OreToPlatinumRank4" unlockToolTipLoca="UnlockEpicChain_with_buff_OtP" />
+				<chain rank="5" requirementQuest="UnlockEW_OreToPlatinumRank5" unlockToolTipLoca="UnlockEpicChain_with_buff_OtP" />
+				<chain rank="6" requirementQuest="UnlockEW_OreToPlatinumRank6" unlockToolTipLoca="UnlockEpicChain_with_buff_OtP" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Ore_BronzeToSword" displayedChains="2" showWithQuestInactive="true">
+				<!-- also add subBuildingId in game_settings.xml -> BuildingDefaultParameter node -> doNotCount -->
+				<chain rank="1" />
+				<chain rank="2" requirementQuest="UnlockEW_BronzeToSwordRank2" unlockToolTipLoca="UnlockEpicChain_with_buff_BtBS" />
+				<chain rank="3" requirementQuest="UnlockEW_BronzeToSwordRank3" unlockToolTipLoca="UnlockEpicChain_with_buff_BtBS" />
+				<chain rank="4" requirementQuest="UnlockEW_BronzeToSwordRank4" unlockToolTipLoca="UnlockEpicChain_with_buff_BtBS" />
+				<chain rank="5" requirementQuest="UnlockEW_BronzeToSwordRank5" unlockToolTipLoca="UnlockEpicChain_with_buff_BtBS" />
+				<chain rank="6" requirementQuest="UnlockEW_BronzeToSwordRank6" unlockToolTipLoca="UnlockEpicChain_with_buff_BtBS" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Ore_IronToSword" displayedChains="2" showWithQuestInactive="true">
+				<!-- also add subBuildingId in game_settings.xml -> BuildingDefaultParameter node -> doNotCount -->
+				<chain rank="1" />
+				<chain rank="2" requirementQuest="UnlockEW_IronToSwordRank2" unlockToolTipLoca="UnlockEpicChain_with_buff_ItIS" />
+				<chain rank="3" requirementQuest="UnlockEW_IronToSwordRank3" unlockToolTipLoca="UnlockEpicChain_with_buff_ItIS" />
+				<chain rank="4" requirementQuest="UnlockEW_IronToSwordRank4" unlockToolTipLoca="UnlockEpicChain_with_buff_ItIS" />
+				<chain rank="5" requirementQuest="UnlockEW_IronToSwordRank5" unlockToolTipLoca="UnlockEpicChain_with_buff_ItIS" />
+				<chain rank="6" requirementQuest="UnlockEW_IronToSwordRank6" unlockToolTipLoca="UnlockEpicChain_with_buff_ItIS" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Ore_SteelToSword" displayedChains="2" showWithQuestInactive="true">
+				<!-- also add subBuildingId in game_settings.xml -> BuildingDefaultParameter node -> doNotCount -->
+				<chain rank="1" />
+				<chain rank="2" requirementQuest="UnlockEW_SteelToSwordRank2" unlockToolTipLoca="UnlockEpicChain_with_buff_StSS" />
+				<chain rank="3" requirementQuest="UnlockEW_SteelToSwordRank3" unlockToolTipLoca="UnlockEpicChain_with_buff_StSS" />
+				<chain rank="4" requirementQuest="UnlockEW_SteelToSwordRank4" unlockToolTipLoca="UnlockEpicChain_with_buff_StSS" />
+				<chain rank="5" requirementQuest="UnlockEW_SteelToSwordRank5" unlockToolTipLoca="UnlockEpicChain_with_buff_StSS" />
+				<chain rank="6" requirementQuest="UnlockEW_SteelToSwordRank6" unlockToolTipLoca="UnlockEpicChain_with_buff_StSS" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Ore_TitaniumToSword" displayedChains="2" showWithQuestInactive="true">
+				<!-- also add subBuildingId in game_settings.xml -> BuildingDefaultParameter node -> doNotCount -->
+				<chain rank="1" />
+				<chain rank="2" requirementQuest="UnlockEW_TitaniumToSwordRank2" unlockToolTipLoca="UnlockEpicChain_with_buff_TtTS" />
+				<chain rank="3" requirementQuest="UnlockEW_TitaniumToSwordRank3" unlockToolTipLoca="UnlockEpicChain_with_buff_TtTS" />
+				<chain rank="4" requirementQuest="UnlockEW_TitaniumToSwordRank4" unlockToolTipLoca="UnlockEpicChain_with_buff_TtTS" />
+				<chain rank="5" requirementQuest="UnlockEW_TitaniumToSwordRank5" unlockToolTipLoca="UnlockEpicChain_with_buff_TtTS" />
+				<chain rank="6" requirementQuest="UnlockEW_TitaniumToSwordRank6" unlockToolTipLoca="UnlockEpicChain_with_buff_TtTS" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Ore_PlatinumToSword" displayedChains="2" showWithQuestInactive="true">
+				<!-- also add subBuildingId in game_settings.xml -> BuildingDefaultParameter node -> doNotCount -->
+				<chain rank="1" />
+				<chain rank="2" requirementQuest="UnlockEW_PlatinumToSwordRank2" unlockToolTipLoca="UnlockEpicChain_with_buff_PtPS" />
+				<chain rank="3" requirementQuest="UnlockEW_PlatinumToSwordRank3" unlockToolTipLoca="UnlockEpicChain_with_buff_PtPS" />
+				<chain rank="4" requirementQuest="UnlockEW_PlatinumToSwordRank4" unlockToolTipLoca="UnlockEpicChain_with_buff_PtPS" />
+				<chain rank="5" requirementQuest="UnlockEW_PlatinumToSwordRank5" unlockToolTipLoca="UnlockEpicChain_with_buff_PtPS" />
+				<chain rank="6" requirementQuest="UnlockEW_PlatinumToSwordRank6" unlockToolTipLoca="UnlockEpicChain_with_buff_PtPS" />
+			</chainGroup>
+			
+		</epicWorkyard>
+
+		<epicWorkyard buildingId="EpicWorkyardBalloons" subBuildings="3" subBuildingPositions="down_left,down_right,down" autoupgrade="true">
+			<chainGroup subBuildingId="EW_Balloons_MagicBeanstalk" displayedChains="0">
+				<chain rank="1" requirementLevel="65" />
+				<chain rank="2" requirementLevel="66" />
+				<chain rank="3" requirementLevel="67" />
+				<chain rank="4" requirementLevel="68" />
+				<chain rank="5" requirementLevel="69" />
+				<chain rank="6" requirementLevel="70" />
+				<chain rank="7" requirementLevel="71" />
+				<chain rank="8" requirementLevel="72" />
+				<chain rank="9" requirementLevel="73" />
+				<chain rank="10" requirementLevel="74" />
+				<chain rank="11" requirementLevel="75" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Balloons_Mortar" displayedChains="0">
+				<chain rank="1" requirementLevel="62" />
+				<chain rank="2" requirementLevel="63" />
+				<chain rank="3" requirementLevel="64" />
+				<chain rank="4" requirementLevel="65" />
+				<chain rank="5" requirementLevel="66" />
+				<chain rank="6" requirementLevel="67" />
+				<chain rank="7" requirementLevel="68" />
+				<chain rank="8" requirementLevel="69" />
+				<chain rank="9" requirementLevel="70" />
+				<chain rank="10" requirementLevel="71" />
+				<chain rank="11" requirementLevel="72" />
+				<chain rank="12" requirementLevel="73" />
+				<chain rank="13" requirementLevel="74" />
+				<chain rank="14" requirementLevel="75" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Balloons_Archebuse" displayedChains="0">
+				<chain rank="1" requirementLevel="59" />
+				<chain rank="2" requirementLevel="60" />
+				<chain rank="3" requirementLevel="61" />
+				<chain rank="4" requirementLevel="62" />
+				<chain rank="5" requirementLevel="63" />
+				<chain rank="6" requirementLevel="64" />
+				<chain rank="7" requirementLevel="65" />
+				<chain rank="8" requirementLevel="66" />
+				<chain rank="9" requirementLevel="67" />
+				<chain rank="10" requirementLevel="68" />
+				<chain rank="11" requirementLevel="69" />
+				<chain rank="12" requirementLevel="70" />
+				<chain rank="13" requirementLevel="71" />
+				<chain rank="14" requirementLevel="72" />
+				<chain rank="15" requirementLevel="73" />
+				<chain rank="16" requirementLevel="74" />
+				<chain rank="17" requirementLevel="75" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Balloons_BattleHorse" displayedChains="0">
+				<chain rank="1" requirementLevel="58" />
+				<chain rank="2" requirementLevel="59" />
+				<chain rank="3" requirementLevel="60" />
+				<chain rank="4" requirementLevel="61" />
+				<chain rank="5" requirementLevel="62" />
+				<chain rank="6" requirementLevel="63" />
+				<chain rank="7" requirementLevel="64" />
+				<chain rank="8" requirementLevel="65" />
+				<chain rank="9" requirementLevel="66" />
+				<chain rank="10" requirementLevel="67" />
+				<chain rank="11" requirementLevel="68" />
+				<chain rank="12" requirementLevel="69" />
+				<chain rank="13" requirementLevel="70" />
+				<chain rank="14" requirementLevel="71" />
+				<chain rank="15" requirementLevel="72" />
+				<chain rank="16" requirementLevel="73" />
+				<chain rank="17" requirementLevel="74" />
+				<chain rank="18" requirementLevel="75" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Balloons_Cloth" displayedChains="0">
+				<chain rank="1" requirementLevel="57" />
+				<chain rank="2" requirementLevel="58" />
+				<chain rank="3" requirementLevel="59" />
+				<chain rank="4" requirementLevel="60" />
+				<chain rank="5" requirementLevel="61" />
+				<chain rank="6" requirementLevel="62" />
+				<chain rank="7" requirementLevel="63" />
+				<chain rank="8" requirementLevel="64" />
+				<chain rank="9" requirementLevel="65" />
+				<chain rank="10" requirementLevel="66" />
+				<chain rank="11" requirementLevel="67" />
+				<chain rank="12" requirementLevel="68" />
+				<chain rank="13" requirementLevel="69" />
+				<chain rank="14" requirementLevel="70" />
+				<chain rank="15" requirementLevel="71" />
+				<chain rank="16" requirementLevel="72" />
+				<chain rank="17" requirementLevel="73" />
+				<chain rank="18" requirementLevel="74" />
+				<chain rank="19" requirementLevel="75" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Balloons_PlatinumSword" displayedChains="0">
+				<chain rank="1" requirementLevel="54" />
+				<chain rank="2" requirementLevel="55" />
+				<chain rank="3" requirementLevel="56" />
+				<chain rank="4" requirementLevel="57" />
+				<chain rank="5" requirementLevel="58" />
+				<chain rank="6" requirementLevel="59" />
+				<chain rank="7" requirementLevel="60" />
+				<chain rank="8" requirementLevel="61" />
+				<chain rank="9" requirementLevel="62" />
+				<chain rank="10" requirementLevel="63" />
+				<chain rank="11" requirementLevel="64" />
+				<chain rank="12" requirementLevel="65" />
+				<chain rank="13" requirementLevel="66" />
+				<chain rank="14" requirementLevel="67" />
+				<chain rank="15" requirementLevel="68" />
+				<chain rank="16" requirementLevel="69" />
+				<chain rank="17" requirementLevel="70" />
+				<chain rank="18" requirementLevel="71" />
+				<chain rank="19" requirementLevel="72" />
+				<chain rank="20" requirementLevel="73" />
+				<chain rank="21" requirementLevel="74" />
+				<chain rank="22" requirementLevel="75" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Balloons_MahoganyPlank" displayedChains="0">
+				<chain rank="1" requirementLevel="53" />
+				<chain rank="2" requirementLevel="54" />
+				<chain rank="3" requirementLevel="55" />
+				<chain rank="4" requirementLevel="56" />
+				<chain rank="5" requirementLevel="57" />
+				<chain rank="6" requirementLevel="58" />
+				<chain rank="7" requirementLevel="59" />
+				<chain rank="8" requirementLevel="60" />
+				<chain rank="9" requirementLevel="61" />
+				<chain rank="10" requirementLevel="62" />
+				<chain rank="11" requirementLevel="63" />
+				<chain rank="12" requirementLevel="64" />
+				<chain rank="13" requirementLevel="65" />
+				<chain rank="14" requirementLevel="66" />
+				<chain rank="15" requirementLevel="67" />
+				<chain rank="16" requirementLevel="68" />
+				<chain rank="17" requirementLevel="69" />
+				<chain rank="18" requirementLevel="70" />
+				<chain rank="19" requirementLevel="71" />
+				<chain rank="20" requirementLevel="72" />
+				<chain rank="21" requirementLevel="73" />
+				<chain rank="22" requirementLevel="74" />
+				<chain rank="23" requirementLevel="75" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Balloons_Gunpowder" displayedChains="0">
+				<chain rank="1" requirementLevel="49" />
+				<chain rank="2" requirementLevel="50" />
+				<chain rank="3" requirementLevel="51" />
+				<chain rank="4" requirementLevel="52" />
+				<chain rank="5" requirementLevel="53" />
+				<chain rank="6" requirementLevel="54" />
+				<chain rank="7" requirementLevel="55" />
+				<chain rank="8" requirementLevel="56" />
+				<chain rank="9" requirementLevel="57" />
+				<chain rank="10" requirementLevel="58" />
+				<chain rank="11" requirementLevel="59" />
+				<chain rank="12" requirementLevel="60" />
+				<chain rank="13" requirementLevel="61" />
+				<chain rank="14" requirementLevel="62" />
+				<chain rank="15" requirementLevel="63" />
+				<chain rank="16" requirementLevel="64" />
+				<chain rank="17" requirementLevel="65" />
+				<chain rank="18" requirementLevel="66" />
+				<chain rank="19" requirementLevel="67" />
+				<chain rank="20" requirementLevel="68" />
+				<chain rank="21" requirementLevel="69" />
+				<chain rank="22" requirementLevel="70" />
+				<chain rank="23" requirementLevel="71" />
+				<chain rank="24" requirementLevel="72" />
+				<chain rank="25" requirementLevel="73" />
+				<chain rank="26" requirementLevel="74" />
+				<chain rank="27" requirementLevel="75" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Balloons_Wheel" displayedChains="0">
+				<chain rank="1" requirementLevel="46" />
+				<chain rank="2" requirementLevel="47" />
+				<chain rank="3" requirementLevel="48" />
+				<chain rank="4" requirementLevel="49" />
+				<chain rank="5" requirementLevel="50" />
+				<chain rank="6" requirementLevel="51" />
+				<chain rank="7" requirementLevel="52" />
+				<chain rank="8" requirementLevel="53" />
+				<chain rank="9" requirementLevel="54" />
+				<chain rank="10" requirementLevel="55" />
+				<chain rank="11" requirementLevel="56" />
+				<chain rank="12" requirementLevel="57" />
+				<chain rank="13" requirementLevel="58" />
+				<chain rank="14" requirementLevel="59" />
+				<chain rank="15" requirementLevel="60" />
+				<chain rank="16" requirementLevel="61" />
+				<chain rank="17" requirementLevel="62" />
+				<chain rank="18" requirementLevel="63" />
+				<chain rank="19" requirementLevel="64" />
+				<chain rank="20" requirementLevel="65" />
+				<chain rank="21" requirementLevel="66" />
+				<chain rank="22" requirementLevel="67" />
+				<chain rank="23" requirementLevel="68" />
+				<chain rank="24" requirementLevel="69" />
+				<chain rank="25" requirementLevel="70" />
+				<chain rank="26" requirementLevel="71" />
+				<chain rank="27" requirementLevel="72" />
+				<chain rank="28" requirementLevel="73" />
+				<chain rank="29" requirementLevel="74" />
+				<chain rank="30" requirementLevel="75" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Balloons_TitaniumSword" displayedChains="0">
+				<chain rank="1" requirementLevel="43" />
+				<chain rank="2" requirementLevel="44" />
+				<chain rank="3" requirementLevel="45" />
+				<chain rank="4" requirementLevel="46" />
+				<chain rank="5" requirementLevel="47" />
+				<chain rank="6" requirementLevel="48" />
+				<chain rank="7" requirementLevel="49" />
+				<chain rank="8" requirementLevel="50" />
+				<chain rank="9" requirementLevel="51" />
+				<chain rank="10" requirementLevel="52" />
+				<chain rank="11" requirementLevel="53" />
+				<chain rank="12" requirementLevel="54" />
+				<chain rank="13" requirementLevel="55" />
+				<chain rank="14" requirementLevel="56" />
+				<chain rank="15" requirementLevel="57" />
+				<chain rank="16" requirementLevel="58" />
+				<chain rank="17" requirementLevel="59" />
+				<chain rank="18" requirementLevel="60" />
+				<chain rank="19" requirementLevel="61" />
+				<chain rank="20" requirementLevel="62" />
+				<chain rank="21" requirementLevel="63" />
+				<chain rank="22" requirementLevel="64" />
+				<chain rank="23" requirementLevel="65" />
+				<chain rank="24" requirementLevel="66" />
+				<chain rank="25" requirementLevel="67" />
+				<chain rank="26" requirementLevel="68" />
+				<chain rank="27" requirementLevel="69" />
+				<chain rank="28" requirementLevel="70" />
+				<chain rank="29" requirementLevel="71" />
+				<chain rank="30" requirementLevel="72" />
+				<chain rank="31" requirementLevel="73" />
+				<chain rank="32" requirementLevel="74" />
+				<chain rank="33" requirementLevel="75" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Balloons_Crossbow" displayedChains="0">
+				<chain rank="1" requirementLevel="41" />
+				<chain rank="2" requirementLevel="42" />
+				<chain rank="3" requirementLevel="43" />
+				<chain rank="4" requirementLevel="44" />
+				<chain rank="5" requirementLevel="45" />
+				<chain rank="6" requirementLevel="46" />
+				<chain rank="7" requirementLevel="47" />
+				<chain rank="8" requirementLevel="48" />
+				<chain rank="9" requirementLevel="49" />
+				<chain rank="10" requirementLevel="50" />
+				<chain rank="11" requirementLevel="51" />
+				<chain rank="12" requirementLevel="52" />
+				<chain rank="13" requirementLevel="53" />
+				<chain rank="14" requirementLevel="54" />
+				<chain rank="15" requirementLevel="55" />
+				<chain rank="16" requirementLevel="56" />
+				<chain rank="17" requirementLevel="57" />
+				<chain rank="18" requirementLevel="58" />
+				<chain rank="19" requirementLevel="59" />
+				<chain rank="20" requirementLevel="60" />
+				<chain rank="21" requirementLevel="61" />
+				<chain rank="22" requirementLevel="62" />
+				<chain rank="23" requirementLevel="63" />
+				<chain rank="24" requirementLevel="64" />
+				<chain rank="25" requirementLevel="65" />
+				<chain rank="26" requirementLevel="66" />
+				<chain rank="27" requirementLevel="67" />
+				<chain rank="28" requirementLevel="68" />
+				<chain rank="29" requirementLevel="69" />
+				<chain rank="30" requirementLevel="70" />
+				<chain rank="31" requirementLevel="71" />
+				<chain rank="32" requirementLevel="72" />
+				<chain rank="33" requirementLevel="73" />
+				<chain rank="34" requirementLevel="74" />
+				<chain rank="35" requirementLevel="75" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Balloons_Titanium" displayedChains="0">
+				<chain rank="1" requirementLevel="38" />
+				<chain rank="2" requirementLevel="39" />
+				<chain rank="3" requirementLevel="40" />
+				<chain rank="4" requirementLevel="41" />
+				<chain rank="5" requirementLevel="42" />
+				<chain rank="6" requirementLevel="43" />
+				<chain rank="7" requirementLevel="44" />
+				<chain rank="8" requirementLevel="45" />
+				<chain rank="9" requirementLevel="46" />
+				<chain rank="10" requirementLevel="47" />
+				<chain rank="11" requirementLevel="48" />
+				<chain rank="12" requirementLevel="49" />
+				<chain rank="13" requirementLevel="50" />
+				<chain rank="14" requirementLevel="51" />
+				<chain rank="15" requirementLevel="52" />
+				<chain rank="16" requirementLevel="53" />
+				<chain rank="17" requirementLevel="54" />
+				<chain rank="18" requirementLevel="55" />
+				<chain rank="19" requirementLevel="56" />
+				<chain rank="20" requirementLevel="57" />
+				<chain rank="21" requirementLevel="58" />
+				<chain rank="22" requirementLevel="59" />
+				<chain rank="23" requirementLevel="60" />
+				<chain rank="24" requirementLevel="61" />
+				<chain rank="25" requirementLevel="62" />
+				<chain rank="26" requirementLevel="63" />
+				<chain rank="27" requirementLevel="64" />
+				<chain rank="28" requirementLevel="65" />
+				<chain rank="29" requirementLevel="66" />
+				<chain rank="30" requirementLevel="67" />
+				<chain rank="31" requirementLevel="68" />
+				<chain rank="32" requirementLevel="69" />
+				<chain rank="33" requirementLevel="70" />
+				<chain rank="34" requirementLevel="71" />
+				<chain rank="35" requirementLevel="72" />
+				<chain rank="36" requirementLevel="73" />
+				<chain rank="37" requirementLevel="74" />
+				<chain rank="38" requirementLevel="75" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Balloons_Coin" displayedChains="0">
+				<chain rank="1" requirementLevel="35" />
+				<chain rank="2" requirementLevel="36" />
+				<chain rank="3" requirementLevel="37" />
+				<chain rank="4" requirementLevel="38" />
+				<chain rank="5" requirementLevel="39" />
+				<chain rank="6" requirementLevel="40" />
+				<chain rank="7" requirementLevel="41" />
+				<chain rank="8" requirementLevel="42" />
+				<chain rank="9" requirementLevel="43" />
+				<chain rank="10" requirementLevel="44" />
+				<chain rank="11" requirementLevel="45" />
+				<chain rank="12" requirementLevel="46" />
+				<chain rank="13" requirementLevel="47" />
+				<chain rank="14" requirementLevel="48" />
+				<chain rank="15" requirementLevel="49" />
+				<chain rank="16" requirementLevel="50" />
+				<chain rank="17" requirementLevel="51" />
+				<chain rank="18" requirementLevel="52" />
+				<chain rank="19" requirementLevel="53" />
+				<chain rank="20" requirementLevel="54" />
+				<chain rank="21" requirementLevel="55" />
+				<chain rank="22" requirementLevel="56" />
+				<chain rank="23" requirementLevel="57" />
+				<chain rank="24" requirementLevel="58" />
+				<chain rank="25" requirementLevel="59" />
+				<chain rank="26" requirementLevel="60" />
+				<chain rank="27" requirementLevel="61" />
+				<chain rank="28" requirementLevel="62" />
+				<chain rank="29" requirementLevel="63" />
+				<chain rank="30" requirementLevel="64" />
+				<chain rank="31" requirementLevel="65" />
+				<chain rank="32" requirementLevel="66" />
+				<chain rank="33" requirementLevel="67" />
+				<chain rank="34" requirementLevel="68" />
+				<chain rank="35" requirementLevel="69" />
+				<chain rank="36" requirementLevel="70" />
+				<chain rank="37" requirementLevel="71" />
+				<chain rank="38" requirementLevel="72" />
+				<chain rank="39" requirementLevel="73" />
+				<chain rank="40" requirementLevel="74" />
+				<chain rank="41" requirementLevel="75" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Balloons_ExoticPlank" displayedChains="0">
+				<chain rank="1" requirementLevel="32" />
+				<chain rank="2" requirementLevel="33" />
+				<chain rank="3" requirementLevel="34" />
+				<chain rank="4" requirementLevel="35" />
+				<chain rank="5" requirementLevel="36" />
+				<chain rank="6" requirementLevel="37" />
+				<chain rank="7" requirementLevel="38" />
+				<chain rank="8" requirementLevel="39" />
+				<chain rank="9" requirementLevel="40" />
+				<chain rank="10" requirementLevel="41" />
+				<chain rank="11" requirementLevel="42" />
+				<chain rank="12" requirementLevel="43" />
+				<chain rank="13" requirementLevel="44" />
+				<chain rank="14" requirementLevel="45" />
+				<chain rank="15" requirementLevel="46" />
+				<chain rank="16" requirementLevel="47" />
+				<chain rank="17" requirementLevel="48" />
+				<chain rank="18" requirementLevel="49" />
+				<chain rank="19" requirementLevel="50" />
+				<chain rank="20" requirementLevel="51" />
+				<chain rank="21" requirementLevel="52" />
+				<chain rank="22" requirementLevel="53" />
+				<chain rank="23" requirementLevel="54" />
+				<chain rank="24" requirementLevel="55" />
+				<chain rank="25" requirementLevel="56" />
+				<chain rank="26" requirementLevel="57" />
+				<chain rank="27" requirementLevel="58" />
+				<chain rank="28" requirementLevel="59" />
+				<chain rank="29" requirementLevel="60" />
+				<chain rank="30" requirementLevel="61" />
+				<chain rank="31" requirementLevel="62" />
+				<chain rank="32" requirementLevel="63" />
+				<chain rank="33" requirementLevel="64" />
+				<chain rank="34" requirementLevel="65" />
+				<chain rank="35" requirementLevel="66" />
+				<chain rank="36" requirementLevel="67" />
+				<chain rank="37" requirementLevel="68" />
+				<chain rank="38" requirementLevel="69" />
+				<chain rank="39" requirementLevel="70" />
+				<chain rank="40" requirementLevel="71" />
+				<chain rank="41" requirementLevel="72" />
+				<chain rank="42" requirementLevel="73" />
+				<chain rank="43" requirementLevel="74" />
+				<chain rank="44" requirementLevel="75" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Balloons_Granite" displayedChains="0">
+				<chain rank="1" requirementLevel="33" />
+				<chain rank="2" requirementLevel="34" />
+				<chain rank="3" requirementLevel="35" />
+				<chain rank="4" requirementLevel="36" />
+				<chain rank="5" requirementLevel="37" />
+				<chain rank="6" requirementLevel="38" />
+				<chain rank="7" requirementLevel="39" />
+				<chain rank="8" requirementLevel="40" />
+				<chain rank="9" requirementLevel="41" />
+				<chain rank="10" requirementLevel="42" />
+				<chain rank="11" requirementLevel="43" />
+				<chain rank="12" requirementLevel="44" />
+				<chain rank="13" requirementLevel="45" />
+				<chain rank="14" requirementLevel="46" />
+				<chain rank="15" requirementLevel="47" />
+				<chain rank="16" requirementLevel="48" />
+				<chain rank="17" requirementLevel="49" />
+				<chain rank="18" requirementLevel="50" />
+				<chain rank="19" requirementLevel="51" />
+				<chain rank="20" requirementLevel="52" />
+				<chain rank="21" requirementLevel="53" />
+				<chain rank="22" requirementLevel="54" />
+				<chain rank="23" requirementLevel="55" />
+				<chain rank="24" requirementLevel="56" />
+				<chain rank="25" requirementLevel="57" />
+				<chain rank="26" requirementLevel="58" />
+				<chain rank="27" requirementLevel="59" />
+				<chain rank="28" requirementLevel="60" />
+				<chain rank="29" requirementLevel="61" />
+				<chain rank="30" requirementLevel="62" />
+				<chain rank="31" requirementLevel="63" />
+				<chain rank="32" requirementLevel="64" />
+				<chain rank="33" requirementLevel="65" />
+				<chain rank="34" requirementLevel="66" />
+				<chain rank="35" requirementLevel="67" />
+				<chain rank="36" requirementLevel="68" />
+				<chain rank="37" requirementLevel="69" />
+				<chain rank="38" requirementLevel="70" />
+				<chain rank="39" requirementLevel="71" />
+				<chain rank="40" requirementLevel="72" />
+				<chain rank="41" requirementLevel="73" />
+				<chain rank="42" requirementLevel="74" />
+				<chain rank="43" requirementLevel="75" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Balloons_SteelSword" displayedChains="0">
+				<chain rank="1" requirementLevel="28" />
+				<chain rank="2" requirementLevel="29" />
+				<chain rank="3" requirementLevel="30" />
+				<chain rank="4" requirementLevel="31" />
+				<chain rank="5" requirementLevel="32" />
+				<chain rank="6" requirementLevel="33" />
+				<chain rank="7" requirementLevel="34" />
+				<chain rank="8" requirementLevel="35" />
+				<chain rank="9" requirementLevel="36" />
+				<chain rank="10" requirementLevel="37" />
+				<chain rank="11" requirementLevel="38" />
+				<chain rank="12" requirementLevel="39" />
+				<chain rank="13" requirementLevel="40" />
+				<chain rank="14" requirementLevel="41" />
+				<chain rank="15" requirementLevel="42" />
+				<chain rank="16" requirementLevel="43" />
+				<chain rank="17" requirementLevel="44" />
+				<chain rank="18" requirementLevel="45" />
+				<chain rank="19" requirementLevel="46" />
+				<chain rank="20" requirementLevel="47" />
+				<chain rank="21" requirementLevel="48" />
+				<chain rank="22" requirementLevel="49" />
+				<chain rank="23" requirementLevel="50" />
+				<chain rank="24" requirementLevel="51" />
+				<chain rank="25" requirementLevel="52" />
+				<chain rank="26" requirementLevel="53" />
+				<chain rank="27" requirementLevel="54" />
+				<chain rank="28" requirementLevel="55" />
+				<chain rank="29" requirementLevel="56" />
+				<chain rank="30" requirementLevel="57" />
+				<chain rank="31" requirementLevel="58" />
+				<chain rank="32" requirementLevel="59" />
+				<chain rank="33" requirementLevel="60" />
+				<chain rank="34" requirementLevel="61" />
+				<chain rank="35" requirementLevel="62" />
+				<chain rank="36" requirementLevel="63" />
+				<chain rank="37" requirementLevel="64" />
+				<chain rank="38" requirementLevel="65" />
+				<chain rank="39" requirementLevel="66" />
+				<chain rank="40" requirementLevel="67" />
+				<chain rank="41" requirementLevel="68" />
+				<chain rank="42" requirementLevel="69" />
+				<chain rank="43" requirementLevel="70" />
+				<chain rank="44" requirementLevel="71" />
+				<chain rank="45" requirementLevel="72" />
+				<chain rank="46" requirementLevel="73" />
+				<chain rank="47" requirementLevel="74" />
+				<chain rank="48" requirementLevel="75" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Balloons_Longbow" displayedChains="0">
+				<chain rank="1" requirementLevel="26" />
+				<chain rank="2" requirementLevel="27" />
+				<chain rank="3" requirementLevel="28" />
+				<chain rank="4" requirementLevel="29" />
+				<chain rank="5" requirementLevel="30" />
+				<chain rank="6" requirementLevel="31" />
+				<chain rank="7" requirementLevel="32" />
+				<chain rank="8" requirementLevel="33" />
+				<chain rank="9" requirementLevel="34" />
+				<chain rank="10" requirementLevel="35" />
+				<chain rank="11" requirementLevel="36" />
+				<chain rank="12" requirementLevel="37" />
+				<chain rank="13" requirementLevel="38" />
+				<chain rank="14" requirementLevel="39" />
+				<chain rank="15" requirementLevel="40" />
+				<chain rank="16" requirementLevel="41" />
+				<chain rank="17" requirementLevel="42" />
+				<chain rank="18" requirementLevel="43" />
+				<chain rank="19" requirementLevel="44" />
+				<chain rank="20" requirementLevel="45" />
+				<chain rank="21" requirementLevel="46" />
+				<chain rank="22" requirementLevel="47" />
+				<chain rank="23" requirementLevel="48" />
+				<chain rank="24" requirementLevel="49" />
+				<chain rank="25" requirementLevel="50" />
+				<chain rank="26" requirementLevel="51" />
+				<chain rank="27" requirementLevel="52" />
+				<chain rank="28" requirementLevel="53" />
+				<chain rank="29" requirementLevel="54" />
+				<chain rank="30" requirementLevel="55" />
+				<chain rank="31" requirementLevel="56" />
+				<chain rank="32" requirementLevel="57" />
+				<chain rank="33" requirementLevel="58" />
+				<chain rank="34" requirementLevel="59" />
+				<chain rank="35" requirementLevel="60" />
+				<chain rank="36" requirementLevel="61" />
+				<chain rank="37" requirementLevel="62" />
+				<chain rank="38" requirementLevel="63" />
+				<chain rank="39" requirementLevel="64" />
+				<chain rank="40" requirementLevel="65" />
+				<chain rank="41" requirementLevel="66" />
+				<chain rank="42" requirementLevel="67" />
+				<chain rank="43" requirementLevel="68" />
+				<chain rank="44" requirementLevel="69" />
+				<chain rank="45" requirementLevel="70" />
+				<chain rank="46" requirementLevel="71" />
+				<chain rank="47" requirementLevel="72" />
+				<chain rank="48" requirementLevel="73" />
+				<chain rank="49" requirementLevel="74" />
+				<chain rank="50" requirementLevel="75" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Balloons_Gold" displayedChains="0">
+				<chain rank="1" requirementLevel="26" />
+				<chain rank="2" requirementLevel="27" />
+				<chain rank="3" requirementLevel="28" />
+				<chain rank="4" requirementLevel="29" />
+				<chain rank="5" requirementLevel="30" />
+				<chain rank="6" requirementLevel="31" />
+				<chain rank="7" requirementLevel="32" />
+				<chain rank="8" requirementLevel="33" />
+				<chain rank="9" requirementLevel="34" />
+				<chain rank="10" requirementLevel="35" />
+				<chain rank="11" requirementLevel="36" />
+				<chain rank="12" requirementLevel="37" />
+				<chain rank="13" requirementLevel="38" />
+				<chain rank="14" requirementLevel="39" />
+				<chain rank="15" requirementLevel="40" />
+				<chain rank="16" requirementLevel="41" />
+				<chain rank="17" requirementLevel="42" />
+				<chain rank="18" requirementLevel="43" />
+				<chain rank="19" requirementLevel="44" />
+				<chain rank="20" requirementLevel="45" />
+				<chain rank="21" requirementLevel="46" />
+				<chain rank="22" requirementLevel="47" />
+				<chain rank="23" requirementLevel="48" />
+				<chain rank="24" requirementLevel="49" />
+				<chain rank="25" requirementLevel="50" />
+				<chain rank="26" requirementLevel="51" />
+				<chain rank="27" requirementLevel="52" />
+				<chain rank="28" requirementLevel="53" />
+				<chain rank="29" requirementLevel="54" />
+				<chain rank="30" requirementLevel="55" />
+				<chain rank="31" requirementLevel="56" />
+				<chain rank="32" requirementLevel="57" />
+				<chain rank="33" requirementLevel="58" />
+				<chain rank="34" requirementLevel="59" />
+				<chain rank="35" requirementLevel="60" />
+				<chain rank="36" requirementLevel="61" />
+				<chain rank="37" requirementLevel="62" />
+				<chain rank="38" requirementLevel="63" />
+				<chain rank="39" requirementLevel="64" />
+				<chain rank="40" requirementLevel="65" />
+				<chain rank="41" requirementLevel="66" />
+				<chain rank="42" requirementLevel="67" />
+				<chain rank="43" requirementLevel="68" />
+				<chain rank="44" requirementLevel="69" />
+				<chain rank="45" requirementLevel="70" />
+				<chain rank="46" requirementLevel="71" />
+				<chain rank="47" requirementLevel="72" />
+				<chain rank="48" requirementLevel="73" />
+				<chain rank="49" requirementLevel="74" />
+				<chain rank="50" requirementLevel="75" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Balloons_Horse" displayedChains="0">
+				<chain rank="1" requirementLevel="24" />
+				<chain rank="2" requirementLevel="25" />
+				<chain rank="3" requirementLevel="26" />
+				<chain rank="4" requirementLevel="27" />
+				<chain rank="5" requirementLevel="28" />
+				<chain rank="6" requirementLevel="29" />
+				<chain rank="7" requirementLevel="30" />
+				<chain rank="8" requirementLevel="31" />
+				<chain rank="9" requirementLevel="32" />
+				<chain rank="10" requirementLevel="33" />
+				<chain rank="11" requirementLevel="34" />
+				<chain rank="12" requirementLevel="35" />
+				<chain rank="13" requirementLevel="36" />
+				<chain rank="14" requirementLevel="37" />
+				<chain rank="15" requirementLevel="38" />
+				<chain rank="16" requirementLevel="39" />
+				<chain rank="17" requirementLevel="40" />
+				<chain rank="18" requirementLevel="41" />
+				<chain rank="19" requirementLevel="42" />
+				<chain rank="20" requirementLevel="43" />
+				<chain rank="21" requirementLevel="44" />
+				<chain rank="22" requirementLevel="45" />
+				<chain rank="23" requirementLevel="46" />
+				<chain rank="24" requirementLevel="47" />
+				<chain rank="25" requirementLevel="48" />
+				<chain rank="26" requirementLevel="49" />
+				<chain rank="27" requirementLevel="50" />
+				<chain rank="28" requirementLevel="51" />
+				<chain rank="29" requirementLevel="52" />
+				<chain rank="30" requirementLevel="53" />
+				<chain rank="31" requirementLevel="54" />
+				<chain rank="32" requirementLevel="55" />
+				<chain rank="33" requirementLevel="56" />
+				<chain rank="34" requirementLevel="57" />
+				<chain rank="35" requirementLevel="58" />
+				<chain rank="36" requirementLevel="59" />
+				<chain rank="37" requirementLevel="60" />
+				<chain rank="38" requirementLevel="61" />
+				<chain rank="39" requirementLevel="62" />
+				<chain rank="40" requirementLevel="63" />
+				<chain rank="41" requirementLevel="64" />
+				<chain rank="42" requirementLevel="65" />
+				<chain rank="43" requirementLevel="66" />
+				<chain rank="44" requirementLevel="67" />
+				<chain rank="45" requirementLevel="68" />
+				<chain rank="46" requirementLevel="69" />
+				<chain rank="47" requirementLevel="70" />
+				<chain rank="48" requirementLevel="71" />
+				<chain rank="49" requirementLevel="72" />
+				<chain rank="50" requirementLevel="73" />
+				<chain rank="51" requirementLevel="74" />
+				<chain rank="52" requirementLevel="75" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Balloons_Sausage" displayedChains="0">
+				<chain rank="1" requirementLevel="23" />
+				<chain rank="2" requirementLevel="24" />
+				<chain rank="3" requirementLevel="25" />
+				<chain rank="4" requirementLevel="26" />
+				<chain rank="5" requirementLevel="27" />
+				<chain rank="6" requirementLevel="28" />
+				<chain rank="7" requirementLevel="29" />
+				<chain rank="8" requirementLevel="30" />
+				<chain rank="9" requirementLevel="31" />
+				<chain rank="10" requirementLevel="32" />
+				<chain rank="11" requirementLevel="33" />
+				<chain rank="12" requirementLevel="34" />
+				<chain rank="13" requirementLevel="35" />
+				<chain rank="14" requirementLevel="36" />
+				<chain rank="15" requirementLevel="37" />
+				<chain rank="16" requirementLevel="38" />
+				<chain rank="17" requirementLevel="39" />
+				<chain rank="18" requirementLevel="40" />
+				<chain rank="19" requirementLevel="41" />
+				<chain rank="20" requirementLevel="42" />
+				<chain rank="21" requirementLevel="43" />
+				<chain rank="22" requirementLevel="44" />
+				<chain rank="23" requirementLevel="45" />
+				<chain rank="24" requirementLevel="46" />
+				<chain rank="25" requirementLevel="47" />
+				<chain rank="26" requirementLevel="48" />
+				<chain rank="27" requirementLevel="49" />
+				<chain rank="28" requirementLevel="50" />
+				<chain rank="29" requirementLevel="51" />
+				<chain rank="30" requirementLevel="52" />
+				<chain rank="31" requirementLevel="53" />
+				<chain rank="32" requirementLevel="54" />
+				<chain rank="33" requirementLevel="55" />
+				<chain rank="34" requirementLevel="56" />
+				<chain rank="35" requirementLevel="57" />
+				<chain rank="36" requirementLevel="58" />
+				<chain rank="37" requirementLevel="59" />
+				<chain rank="38" requirementLevel="60" />
+				<chain rank="39" requirementLevel="61" />
+				<chain rank="40" requirementLevel="62" />
+				<chain rank="41" requirementLevel="63" />
+				<chain rank="42" requirementLevel="64" />
+				<chain rank="43" requirementLevel="65" />
+				<chain rank="44" requirementLevel="66" />
+				<chain rank="45" requirementLevel="67" />
+				<chain rank="46" requirementLevel="68" />
+				<chain rank="47" requirementLevel="69" />
+				<chain rank="48" requirementLevel="70" />
+				<chain rank="49" requirementLevel="71" />
+				<chain rank="50" requirementLevel="72" />
+				<chain rank="51" requirementLevel="73" />
+				<chain rank="52" requirementLevel="74" />
+				<chain rank="53" requirementLevel="75" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Balloons_IronSword" displayedChains="0">
+				<chain rank="1" requirementLevel="22" />
+				<chain rank="2" requirementLevel="23" />
+				<chain rank="3" requirementLevel="24" />
+				<chain rank="4" requirementLevel="25" />
+				<chain rank="5" requirementLevel="26" />
+				<chain rank="6" requirementLevel="27" />
+				<chain rank="7" requirementLevel="28" />
+				<chain rank="8" requirementLevel="29" />
+				<chain rank="9" requirementLevel="30" />
+				<chain rank="10" requirementLevel="31" />
+				<chain rank="11" requirementLevel="32" />
+				<chain rank="12" requirementLevel="33" />
+				<chain rank="13" requirementLevel="34" />
+				<chain rank="14" requirementLevel="35" />
+				<chain rank="15" requirementLevel="36" />
+				<chain rank="16" requirementLevel="37" />
+				<chain rank="17" requirementLevel="38" />
+				<chain rank="18" requirementLevel="39" />
+				<chain rank="19" requirementLevel="40" />
+				<chain rank="20" requirementLevel="41" />
+				<chain rank="21" requirementLevel="42" />
+				<chain rank="22" requirementLevel="43" />
+				<chain rank="23" requirementLevel="44" />
+				<chain rank="24" requirementLevel="45" />
+				<chain rank="25" requirementLevel="46" />
+				<chain rank="26" requirementLevel="47" />
+				<chain rank="27" requirementLevel="48" />
+				<chain rank="28" requirementLevel="49" />
+				<chain rank="29" requirementLevel="50" />
+				<chain rank="30" requirementLevel="51" />
+				<chain rank="31" requirementLevel="52" />
+				<chain rank="32" requirementLevel="53" />
+				<chain rank="33" requirementLevel="54" />
+				<chain rank="34" requirementLevel="55" />
+				<chain rank="35" requirementLevel="56" />
+				<chain rank="36" requirementLevel="57" />
+				<chain rank="37" requirementLevel="58" />
+				<chain rank="38" requirementLevel="59" />
+				<chain rank="39" requirementLevel="60" />
+				<chain rank="40" requirementLevel="61" />
+				<chain rank="41" requirementLevel="62" />
+				<chain rank="42" requirementLevel="63" />
+				<chain rank="43" requirementLevel="64" />
+				<chain rank="44" requirementLevel="65" />
+				<chain rank="45" requirementLevel="66" />
+				<chain rank="46" requirementLevel="67" />
+				<chain rank="47" requirementLevel="68" />
+				<chain rank="48" requirementLevel="69" />
+				<chain rank="49" requirementLevel="70" />
+				<chain rank="50" requirementLevel="71" />
+				<chain rank="51" requirementLevel="72" />
+				<chain rank="52" requirementLevel="73" />
+				<chain rank="53" requirementLevel="74" />
+				<chain rank="54" requirementLevel="75" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Balloons_Water" displayedChains="0">
+				<chain rank="1" requirementLevel="21" />
+				<chain rank="2" requirementLevel="22" />
+				<chain rank="3" requirementLevel="23" />
+				<chain rank="4" requirementLevel="24" />
+				<chain rank="5" requirementLevel="25" />
+				<chain rank="6" requirementLevel="26" />
+				<chain rank="7" requirementLevel="27" />
+				<chain rank="8" requirementLevel="28" />
+				<chain rank="9" requirementLevel="29" />
+				<chain rank="10" requirementLevel="30" />
+				<chain rank="11" requirementLevel="31" />
+				<chain rank="12" requirementLevel="32" />
+				<chain rank="13" requirementLevel="33" />
+				<chain rank="14" requirementLevel="34" />
+				<chain rank="15" requirementLevel="35" />
+				<chain rank="16" requirementLevel="36" />
+				<chain rank="17" requirementLevel="37" />
+				<chain rank="18" requirementLevel="38" />
+				<chain rank="19" requirementLevel="39" />
+				<chain rank="20" requirementLevel="40" />
+				<chain rank="21" requirementLevel="41" />
+				<chain rank="22" requirementLevel="42" />
+				<chain rank="23" requirementLevel="43" />
+				<chain rank="24" requirementLevel="44" />
+				<chain rank="25" requirementLevel="45" />
+				<chain rank="26" requirementLevel="46" />
+				<chain rank="27" requirementLevel="47" />
+				<chain rank="28" requirementLevel="48" />
+				<chain rank="29" requirementLevel="49" />
+				<chain rank="30" requirementLevel="50" />
+				<chain rank="31" requirementLevel="51" />
+				<chain rank="32" requirementLevel="52" />
+				<chain rank="33" requirementLevel="53" />
+				<chain rank="34" requirementLevel="54" />
+				<chain rank="35" requirementLevel="55" />
+				<chain rank="36" requirementLevel="56" />
+				<chain rank="37" requirementLevel="57" />
+				<chain rank="38" requirementLevel="58" />
+				<chain rank="39" requirementLevel="59" />
+				<chain rank="40" requirementLevel="60" />
+				<chain rank="41" requirementLevel="61" />
+				<chain rank="42" requirementLevel="62" />
+				<chain rank="43" requirementLevel="63" />
+				<chain rank="44" requirementLevel="64" />
+				<chain rank="45" requirementLevel="65" />
+				<chain rank="46" requirementLevel="66" />
+				<chain rank="47" requirementLevel="67" />
+				<chain rank="48" requirementLevel="68" />
+				<chain rank="49" requirementLevel="69" />
+				<chain rank="50" requirementLevel="70" />
+				<chain rank="51" requirementLevel="71" />
+				<chain rank="52" requirementLevel="72" />
+				<chain rank="53" requirementLevel="73" />
+				<chain rank="54" requirementLevel="74" />
+				<chain rank="55" requirementLevel="75" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Balloons_Marble" displayedChains="0">
+				<chain rank="1" requirementLevel="20" />
+				<chain rank="2" requirementLevel="21" />
+				<chain rank="3" requirementLevel="22" />
+				<chain rank="4" requirementLevel="23" />
+				<chain rank="5" requirementLevel="24" />
+				<chain rank="6" requirementLevel="25" />
+				<chain rank="7" requirementLevel="26" />
+				<chain rank="8" requirementLevel="27" />
+				<chain rank="9" requirementLevel="28" />
+				<chain rank="10" requirementLevel="29" />
+				<chain rank="11" requirementLevel="30" />
+				<chain rank="12" requirementLevel="31" />
+				<chain rank="13" requirementLevel="32" />
+				<chain rank="14" requirementLevel="33" />
+				<chain rank="15" requirementLevel="34" />
+				<chain rank="16" requirementLevel="35" />
+				<chain rank="17" requirementLevel="36" />
+				<chain rank="18" requirementLevel="37" />
+				<chain rank="19" requirementLevel="38" />
+				<chain rank="20" requirementLevel="39" />
+				<chain rank="21" requirementLevel="40" />
+				<chain rank="22" requirementLevel="41" />
+				<chain rank="23" requirementLevel="42" />
+				<chain rank="24" requirementLevel="43" />
+				<chain rank="25" requirementLevel="44" />
+				<chain rank="26" requirementLevel="45" />
+				<chain rank="27" requirementLevel="46" />
+				<chain rank="28" requirementLevel="47" />
+				<chain rank="29" requirementLevel="48" />
+				<chain rank="30" requirementLevel="49" />
+				<chain rank="31" requirementLevel="50" />
+				<chain rank="32" requirementLevel="51" />
+				<chain rank="33" requirementLevel="52" />
+				<chain rank="34" requirementLevel="53" />
+				<chain rank="35" requirementLevel="54" />
+				<chain rank="36" requirementLevel="55" />
+				<chain rank="37" requirementLevel="56" />
+				<chain rank="38" requirementLevel="57" />
+				<chain rank="39" requirementLevel="58" />
+				<chain rank="40" requirementLevel="59" />
+				<chain rank="41" requirementLevel="60" />
+				<chain rank="42" requirementLevel="61" />
+				<chain rank="43" requirementLevel="62" />
+				<chain rank="44" requirementLevel="63" />
+				<chain rank="45" requirementLevel="64" />
+				<chain rank="46" requirementLevel="65" />
+				<chain rank="47" requirementLevel="66" />
+				<chain rank="48" requirementLevel="67" />
+				<chain rank="49" requirementLevel="68" />
+				<chain rank="50" requirementLevel="69" />
+				<chain rank="51" requirementLevel="70" />
+				<chain rank="52" requirementLevel="71" />
+				<chain rank="53" requirementLevel="72" />
+				<chain rank="54" requirementLevel="73" />
+				<chain rank="55" requirementLevel="74" />
+				<chain rank="56" requirementLevel="75" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Balloons_RealPlank" displayedChains="0">
+				<chain rank="1" requirementLevel="19" />
+				<chain rank="2" requirementLevel="20" />
+				<chain rank="3" requirementLevel="21" />
+				<chain rank="4" requirementLevel="22" />
+				<chain rank="5" requirementLevel="23" />
+				<chain rank="6" requirementLevel="24" />
+				<chain rank="7" requirementLevel="25" />
+				<chain rank="8" requirementLevel="26" />
+				<chain rank="9" requirementLevel="27" />
+				<chain rank="10" requirementLevel="28" />
+				<chain rank="11" requirementLevel="29" />
+				<chain rank="12" requirementLevel="30" />
+				<chain rank="13" requirementLevel="31" />
+				<chain rank="14" requirementLevel="32" />
+				<chain rank="15" requirementLevel="33" />
+				<chain rank="16" requirementLevel="34" />
+				<chain rank="17" requirementLevel="35" />
+				<chain rank="18" requirementLevel="36" />
+				<chain rank="19" requirementLevel="37" />
+				<chain rank="20" requirementLevel="38" />
+				<chain rank="21" requirementLevel="39" />
+				<chain rank="22" requirementLevel="40" />
+				<chain rank="23" requirementLevel="41" />
+				<chain rank="24" requirementLevel="42" />
+				<chain rank="25" requirementLevel="43" />
+				<chain rank="26" requirementLevel="44" />
+				<chain rank="27" requirementLevel="45" />
+				<chain rank="28" requirementLevel="46" />
+				<chain rank="29" requirementLevel="47" />
+				<chain rank="30" requirementLevel="48" />
+				<chain rank="31" requirementLevel="49" />
+				<chain rank="32" requirementLevel="50" />
+				<chain rank="33" requirementLevel="51" />
+				<chain rank="34" requirementLevel="52" />
+				<chain rank="35" requirementLevel="53" />
+				<chain rank="36" requirementLevel="54" />
+				<chain rank="37" requirementLevel="55" />
+				<chain rank="38" requirementLevel="56" />
+				<chain rank="39" requirementLevel="57" />
+				<chain rank="40" requirementLevel="58" />
+				<chain rank="41" requirementLevel="59" />
+				<chain rank="42" requirementLevel="60" />
+				<chain rank="43" requirementLevel="61" />
+				<chain rank="44" requirementLevel="62" />
+				<chain rank="45" requirementLevel="63" />
+				<chain rank="46" requirementLevel="64" />
+				<chain rank="47" requirementLevel="65" />
+				<chain rank="48" requirementLevel="66" />
+				<chain rank="49" requirementLevel="67" />
+				<chain rank="50" requirementLevel="68" />
+				<chain rank="51" requirementLevel="69" />
+				<chain rank="52" requirementLevel="70" />
+				<chain rank="53" requirementLevel="71" />
+				<chain rank="54" requirementLevel="72" />
+				<chain rank="55" requirementLevel="73" />
+				<chain rank="56" requirementLevel="74" />
+				<chain rank="57" requirementLevel="75" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Balloons_Bread" displayedChains="0">
+				<chain rank="1" requirementLevel="16" />
+				<chain rank="2" requirementLevel="17" />
+				<chain rank="3" requirementLevel="18" />
+				<chain rank="4" requirementLevel="19" />
+				<chain rank="5" requirementLevel="20" />
+				<chain rank="6" requirementLevel="21" />
+				<chain rank="7" requirementLevel="22" />
+				<chain rank="8" requirementLevel="23" />
+				<chain rank="9" requirementLevel="24" />
+				<chain rank="10" requirementLevel="25" />
+				<chain rank="11" requirementLevel="26" />
+				<chain rank="12" requirementLevel="27" />
+				<chain rank="13" requirementLevel="28" />
+				<chain rank="14" requirementLevel="29" />
+				<chain rank="15" requirementLevel="30" />
+				<chain rank="16" requirementLevel="31" />
+				<chain rank="17" requirementLevel="32" />
+				<chain rank="18" requirementLevel="33" />
+				<chain rank="19" requirementLevel="34" />
+				<chain rank="20" requirementLevel="35" />
+				<chain rank="21" requirementLevel="36" />
+				<chain rank="22" requirementLevel="37" />
+				<chain rank="23" requirementLevel="38" />
+				<chain rank="24" requirementLevel="39" />
+				<chain rank="25" requirementLevel="40" />
+				<chain rank="26" requirementLevel="41" />
+				<chain rank="27" requirementLevel="42" />
+				<chain rank="28" requirementLevel="43" />
+				<chain rank="29" requirementLevel="44" />
+				<chain rank="30" requirementLevel="45" />
+				<chain rank="31" requirementLevel="46" />
+				<chain rank="32" requirementLevel="47" />
+				<chain rank="33" requirementLevel="48" />
+				<chain rank="34" requirementLevel="49" />
+				<chain rank="35" requirementLevel="50" />
+				<chain rank="36" requirementLevel="51" />
+				<chain rank="37" requirementLevel="52" />
+				<chain rank="38" requirementLevel="53" />
+				<chain rank="39" requirementLevel="54" />
+				<chain rank="40" requirementLevel="55" />
+				<chain rank="41" requirementLevel="56" />
+				<chain rank="42" requirementLevel="57" />
+				<chain rank="43" requirementLevel="58" />
+				<chain rank="44" requirementLevel="59" />
+				<chain rank="45" requirementLevel="60" />
+				<chain rank="46" requirementLevel="61" />
+				<chain rank="47" requirementLevel="62" />
+				<chain rank="48" requirementLevel="63" />
+				<chain rank="49" requirementLevel="64" />
+				<chain rank="50" requirementLevel="65" />
+				<chain rank="51" requirementLevel="66" />
+				<chain rank="52" requirementLevel="67" />
+				<chain rank="53" requirementLevel="68" />
+				<chain rank="54" requirementLevel="69" />
+				<chain rank="55" requirementLevel="70" />
+				<chain rank="56" requirementLevel="71" />
+				<chain rank="57" requirementLevel="72" />
+				<chain rank="58" requirementLevel="73" />
+				<chain rank="59" requirementLevel="74" />
+				<chain rank="60" requirementLevel="75" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Balloons_Bow" displayedChains="0">
+				<chain rank="1" requirementLevel="16" />
+				<chain rank="2" requirementLevel="17" />
+				<chain rank="3" requirementLevel="18" />
+				<chain rank="4" requirementLevel="19" />
+				<chain rank="5" requirementLevel="20" />
+				<chain rank="6" requirementLevel="21" />
+				<chain rank="7" requirementLevel="22" />
+				<chain rank="8" requirementLevel="23" />
+				<chain rank="9" requirementLevel="24" />
+				<chain rank="10" requirementLevel="25" />
+				<chain rank="11" requirementLevel="26" />
+				<chain rank="12" requirementLevel="27" />
+				<chain rank="13" requirementLevel="28" />
+				<chain rank="14" requirementLevel="29" />
+				<chain rank="15" requirementLevel="30" />
+				<chain rank="16" requirementLevel="31" />
+				<chain rank="17" requirementLevel="32" />
+				<chain rank="18" requirementLevel="33" />
+				<chain rank="19" requirementLevel="34" />
+				<chain rank="20" requirementLevel="35" />
+				<chain rank="21" requirementLevel="36" />
+				<chain rank="22" requirementLevel="37" />
+				<chain rank="23" requirementLevel="38" />
+				<chain rank="24" requirementLevel="39" />
+				<chain rank="25" requirementLevel="40" />
+				<chain rank="26" requirementLevel="41" />
+				<chain rank="27" requirementLevel="42" />
+				<chain rank="28" requirementLevel="43" />
+				<chain rank="29" requirementLevel="44" />
+				<chain rank="30" requirementLevel="45" />
+				<chain rank="31" requirementLevel="46" />
+				<chain rank="32" requirementLevel="47" />
+				<chain rank="33" requirementLevel="48" />
+				<chain rank="34" requirementLevel="49" />
+				<chain rank="35" requirementLevel="50" />
+				<chain rank="36" requirementLevel="51" />
+				<chain rank="37" requirementLevel="52" />
+				<chain rank="38" requirementLevel="53" />
+				<chain rank="39" requirementLevel="54" />
+				<chain rank="40" requirementLevel="55" />
+				<chain rank="41" requirementLevel="56" />
+				<chain rank="42" requirementLevel="57" />
+				<chain rank="43" requirementLevel="58" />
+				<chain rank="44" requirementLevel="59" />
+				<chain rank="45" requirementLevel="60" />
+				<chain rank="46" requirementLevel="61" />
+				<chain rank="47" requirementLevel="62" />
+				<chain rank="48" requirementLevel="63" />
+				<chain rank="49" requirementLevel="64" />
+				<chain rank="50" requirementLevel="65" />
+				<chain rank="51" requirementLevel="66" />
+				<chain rank="52" requirementLevel="67" />
+				<chain rank="53" requirementLevel="68" />
+				<chain rank="54" requirementLevel="69" />
+				<chain rank="55" requirementLevel="70" />
+				<chain rank="56" requirementLevel="71" />
+				<chain rank="57" requirementLevel="72" />
+				<chain rank="58" requirementLevel="73" />
+				<chain rank="59" requirementLevel="74" />
+				<chain rank="60" requirementLevel="75" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Balloons_Beer" displayedChains="0">
+				<chain rank="1" requirementLevel="16" />
+				<chain rank="2" requirementLevel="17" />
+				<chain rank="3" requirementLevel="18" />
+				<chain rank="4" requirementLevel="19" />
+				<chain rank="5" requirementLevel="20" />
+				<chain rank="6" requirementLevel="21" />
+				<chain rank="7" requirementLevel="22" />
+				<chain rank="8" requirementLevel="23" />
+				<chain rank="9" requirementLevel="24" />
+				<chain rank="10" requirementLevel="25" />
+				<chain rank="11" requirementLevel="26" />
+				<chain rank="12" requirementLevel="27" />
+				<chain rank="13" requirementLevel="28" />
+				<chain rank="14" requirementLevel="29" />
+				<chain rank="15" requirementLevel="30" />
+				<chain rank="16" requirementLevel="31" />
+				<chain rank="17" requirementLevel="32" />
+				<chain rank="18" requirementLevel="33" />
+				<chain rank="19" requirementLevel="34" />
+				<chain rank="20" requirementLevel="35" />
+				<chain rank="21" requirementLevel="36" />
+				<chain rank="22" requirementLevel="37" />
+				<chain rank="23" requirementLevel="38" />
+				<chain rank="24" requirementLevel="39" />
+				<chain rank="25" requirementLevel="40" />
+				<chain rank="26" requirementLevel="41" />
+				<chain rank="27" requirementLevel="42" />
+				<chain rank="28" requirementLevel="43" />
+				<chain rank="29" requirementLevel="44" />
+				<chain rank="30" requirementLevel="45" />
+				<chain rank="31" requirementLevel="46" />
+				<chain rank="32" requirementLevel="47" />
+				<chain rank="33" requirementLevel="48" />
+				<chain rank="34" requirementLevel="49" />
+				<chain rank="35" requirementLevel="50" />
+				<chain rank="36" requirementLevel="51" />
+				<chain rank="37" requirementLevel="52" />
+				<chain rank="38" requirementLevel="53" />
+				<chain rank="39" requirementLevel="54" />
+				<chain rank="40" requirementLevel="55" />
+				<chain rank="41" requirementLevel="56" />
+				<chain rank="42" requirementLevel="57" />
+				<chain rank="43" requirementLevel="58" />
+				<chain rank="44" requirementLevel="59" />
+				<chain rank="45" requirementLevel="60" />
+				<chain rank="46" requirementLevel="61" />
+				<chain rank="47" requirementLevel="62" />
+				<chain rank="48" requirementLevel="63" />
+				<chain rank="49" requirementLevel="64" />
+				<chain rank="50" requirementLevel="65" />
+				<chain rank="51" requirementLevel="66" />
+				<chain rank="52" requirementLevel="67" />
+				<chain rank="53" requirementLevel="68" />
+				<chain rank="54" requirementLevel="69" />
+				<chain rank="55" requirementLevel="70" />
+				<chain rank="56" requirementLevel="71" />
+				<chain rank="57" requirementLevel="72" />
+				<chain rank="58" requirementLevel="73" />
+				<chain rank="59" requirementLevel="74" />
+				<chain rank="60" requirementLevel="75" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Balloons_BronzeSword" displayedChains="0">
+				<chain rank="1" requirementLevel="16" />
+				<chain rank="2" requirementLevel="17" />
+				<chain rank="3" requirementLevel="18" />
+				<chain rank="4" requirementLevel="19" />
+				<chain rank="5" requirementLevel="20" />
+				<chain rank="6" requirementLevel="21" />
+				<chain rank="7" requirementLevel="22" />
+				<chain rank="8" requirementLevel="23" />
+				<chain rank="9" requirementLevel="24" />
+				<chain rank="10" requirementLevel="25" />
+				<chain rank="11" requirementLevel="26" />
+				<chain rank="12" requirementLevel="27" />
+				<chain rank="13" requirementLevel="28" />
+				<chain rank="14" requirementLevel="29" />
+				<chain rank="15" requirementLevel="30" />
+				<chain rank="16" requirementLevel="31" />
+				<chain rank="17" requirementLevel="32" />
+				<chain rank="18" requirementLevel="33" />
+				<chain rank="19" requirementLevel="34" />
+				<chain rank="20" requirementLevel="35" />
+				<chain rank="21" requirementLevel="36" />
+				<chain rank="22" requirementLevel="37" />
+				<chain rank="23" requirementLevel="38" />
+				<chain rank="24" requirementLevel="39" />
+				<chain rank="25" requirementLevel="40" />
+				<chain rank="26" requirementLevel="41" />
+				<chain rank="27" requirementLevel="42" />
+				<chain rank="28" requirementLevel="43" />
+				<chain rank="29" requirementLevel="44" />
+				<chain rank="30" requirementLevel="45" />
+				<chain rank="31" requirementLevel="46" />
+				<chain rank="32" requirementLevel="47" />
+				<chain rank="33" requirementLevel="48" />
+				<chain rank="34" requirementLevel="49" />
+				<chain rank="35" requirementLevel="50" />
+				<chain rank="36" requirementLevel="51" />
+				<chain rank="37" requirementLevel="52" />
+				<chain rank="38" requirementLevel="53" />
+				<chain rank="39" requirementLevel="54" />
+				<chain rank="40" requirementLevel="55" />
+				<chain rank="41" requirementLevel="56" />
+				<chain rank="42" requirementLevel="57" />
+				<chain rank="43" requirementLevel="58" />
+				<chain rank="44" requirementLevel="59" />
+				<chain rank="45" requirementLevel="60" />
+				<chain rank="46" requirementLevel="61" />
+				<chain rank="47" requirementLevel="62" />
+				<chain rank="48" requirementLevel="63" />
+				<chain rank="49" requirementLevel="64" />
+				<chain rank="50" requirementLevel="65" />
+				<chain rank="51" requirementLevel="66" />
+				<chain rank="52" requirementLevel="67" />
+				<chain rank="53" requirementLevel="68" />
+				<chain rank="54" requirementLevel="69" />
+				<chain rank="55" requirementLevel="70" />
+				<chain rank="56" requirementLevel="71" />
+				<chain rank="57" requirementLevel="72" />
+				<chain rank="58" requirementLevel="73" />
+				<chain rank="59" requirementLevel="74" />
+				<chain rank="60" requirementLevel="75" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Balloons_Corn" displayedChains="0">
+				<chain rank="1" requirementLevel="16" />
+				<chain rank="2" requirementLevel="17" />
+				<chain rank="3" requirementLevel="18" />
+				<chain rank="4" requirementLevel="19" />
+				<chain rank="5" requirementLevel="20" />
+				<chain rank="6" requirementLevel="21" />
+				<chain rank="7" requirementLevel="22" />
+				<chain rank="8" requirementLevel="23" />
+				<chain rank="9" requirementLevel="24" />
+				<chain rank="10" requirementLevel="25" />
+				<chain rank="11" requirementLevel="26" />
+				<chain rank="12" requirementLevel="27" />
+				<chain rank="13" requirementLevel="28" />
+				<chain rank="14" requirementLevel="29" />
+				<chain rank="15" requirementLevel="30" />
+				<chain rank="16" requirementLevel="31" />
+				<chain rank="17" requirementLevel="32" />
+				<chain rank="18" requirementLevel="33" />
+				<chain rank="19" requirementLevel="34" />
+				<chain rank="20" requirementLevel="35" />
+				<chain rank="21" requirementLevel="36" />
+				<chain rank="22" requirementLevel="37" />
+				<chain rank="23" requirementLevel="38" />
+				<chain rank="24" requirementLevel="39" />
+				<chain rank="25" requirementLevel="40" />
+				<chain rank="26" requirementLevel="41" />
+				<chain rank="27" requirementLevel="42" />
+				<chain rank="28" requirementLevel="43" />
+				<chain rank="29" requirementLevel="44" />
+				<chain rank="30" requirementLevel="45" />
+				<chain rank="31" requirementLevel="46" />
+				<chain rank="32" requirementLevel="47" />
+				<chain rank="33" requirementLevel="48" />
+				<chain rank="34" requirementLevel="49" />
+				<chain rank="35" requirementLevel="50" />
+				<chain rank="36" requirementLevel="51" />
+				<chain rank="37" requirementLevel="52" />
+				<chain rank="38" requirementLevel="53" />
+				<chain rank="39" requirementLevel="54" />
+				<chain rank="40" requirementLevel="55" />
+				<chain rank="41" requirementLevel="56" />
+				<chain rank="42" requirementLevel="57" />
+				<chain rank="43" requirementLevel="58" />
+				<chain rank="44" requirementLevel="59" />
+				<chain rank="45" requirementLevel="60" />
+				<chain rank="46" requirementLevel="61" />
+				<chain rank="47" requirementLevel="62" />
+				<chain rank="48" requirementLevel="63" />
+				<chain rank="49" requirementLevel="64" />
+				<chain rank="50" requirementLevel="65" />
+				<chain rank="51" requirementLevel="66" />
+				<chain rank="52" requirementLevel="67" />
+				<chain rank="53" requirementLevel="68" />
+				<chain rank="54" requirementLevel="69" />
+				<chain rank="55" requirementLevel="70" />
+				<chain rank="56" requirementLevel="71" />
+				<chain rank="57" requirementLevel="72" />
+				<chain rank="58" requirementLevel="73" />
+				<chain rank="59" requirementLevel="74" />
+				<chain rank="60" requirementLevel="75" />
+			</chainGroup>
+		</epicWorkyard>
+		
+		<!--Ore Refinery-->
+		<epicWorkyard buildingId="EpicWorkyardRefinery" subBuildings="3" subBuildingPositions="refinery_top,refinery_right,refinery_left">
+			<chainGroup subBuildingId="EW_Refinery_BronzeOre" displayedChains="0">
+				<!-- also add subBuildingId in game_settings.xml -> BuildingDefaultParameter node -> doNotCount -->
+				<chain rank="1" requirementQuest="BuiBonus_OreRefinery_Unlock_01" />
+				<chain rank="2" requirementQuest="BuiBonus_OreRefinery_Bronze_02" />
+				<chain rank="3" requirementQuest="BuiBonus_OreRefinery_Bronze_03" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Refinery_IronOre" displayedChains="0">
+				<!-- also add subBuildingId in game_settings.xml -> BuildingDefaultParameter node -> doNotCount -->
+				<chain rank="1" requirementQuest="BuiBonus_OreRefinery_Iron_01" />
+				<chain rank="2" requirementQuest="BuiBonus_OreRefinery_Iron_02" />
+				<chain rank="3" requirementQuest="BuiBonus_OreRefinery_Iron_03" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Refinery_GoldOre" displayedChains="0">
+				<!-- also add subBuildingId in game_settings.xml -> BuildingDefaultParameter node -> doNotCount -->
+				<chain rank="1" requirementQuest="BuiBonus_OreRefinery_Gold_01" />
+				<chain rank="2" requirementQuest="BuiBonus_OreRefinery_Gold_02" />
+				<chain rank="3" requirementQuest="BuiBonus_OreRefinery_Gold_03" />
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Refinery_TitaniumOre" displayedChains="0">
+				<!-- also add subBuildingId in game_settings.xml -> BuildingDefaultParameter node -> doNotCount -->
+				<chain rank="1" requirementQuest="BuiBonus_OreRefinery_Titanium_01"/>
+				<chain rank="2" requirementQuest="BuiBonus_OreRefinery_Titanium_02"/>
+				<chain rank="3" requirementQuest="BuiBonus_OreRefinery_Titanium_03"/>
+			</chainGroup>
+			<chainGroup subBuildingId="EW_Refinery_PlatinumOre" displayedChains="0">
+				<!-- also add subBuildingId in game_settings.xml -> BuildingDefaultParameter node -> doNotCount -->
+				<chain rank="1" requirementQuest="BuiBonus_OreRefinery_Platinum_01" />
+				<chain rank="2" requirementQuest="BuiBonus_OreRefinery_Platinum_02" />
+				<chain rank="3" requirementQuest="BuiBonus_OreRefinery_Platinum_03" />
+			</chainGroup>
+		</epicWorkyard>	
+
+	</epicWorkyards>
+</root>

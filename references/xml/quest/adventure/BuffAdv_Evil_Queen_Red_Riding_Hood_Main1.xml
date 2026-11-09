@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Root>
+      
+   <quest name="BuffAdv_Evil_Queen_Red_Riding_Hood_Main1" specialType="firstQuestlastQuest" icon="Military" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_ventures_0" showQuestWindow="false">
+		<triggers>
+			<questcomplete item="BuffAdv_Evil_Queen_Red_Riding_Hood_Sub1"/> 
+			<questcomplete item="BuffAdv_Evil_Queen_Red_Riding_Hood_Sub2"/> 
+			<questcomplete item="BuffAdv_Evil_Queen_Red_Riding_Hood_Sub3"/> 
+			<questcomplete item="BuffAdv_Evil_Queen_Red_Riding_Hood_Sub4"/>
+			<questcomplete item="BuffAdv_Evil_Queen_Red_Riding_Hood_Sub5"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="7000"/>   
+		</rewards>
+		<postrequisits />
+    </quest>
+
+	<quest name="BuffAdv_Evil_Queen_Red_Riding_Hood_Sub1" connectedToQuest="BuffAdv_Evil_Queen_Red_Riding_Hood_Main1" type="Story" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questactive item="BuffAdv_Evil_Queen_Red_Riding_Hood_Main1"/>
+		</startcondition>
+		  <triggers>
+			<onmap max="0"  item="cave_wildlife_leader" locaExtension="DefeatAll"/>
+			<!--trigger type="Building" name="cave_wildlife_leader" condition="l" amount="1"/-->
+		  </triggers>
+	</quest>	
+	
+	<quest name="BuffAdv_Evil_Queen_Red_Riding_Hood_Sub2" connectedToQuest="BuffAdv_Evil_Queen_Red_Riding_Hood_Main1" type="Story" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAdv_Evil_Queen_Red_Riding_Hood_Sub1"/>
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="BuffAd_Evil_Queen_Red_Riding_Hood_Quest1"/>
+        </preeffects>
+		  <triggers>
+			<buildingdestroyed item="BuildingMountainOre" min="5" locaExtension="pickup" />	
+			<buffappliedonadventure item="BattleBuffHurt_BuffAd_Stones" min="1" locaExtension="wolf"/>
+		  </triggers>
+	</quest>
+   
+   <quest name="BuffAdv_Evil_Queen_Red_Riding_Hood_Sub3" connectedToQuest="BuffAdv_Evil_Queen_Red_Riding_Hood_Main1" type="Story" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAdv_Evil_Queen_Red_Riding_Hood_Sub2"/>
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="BuffAd_Evil_Queen_Red_Riding_Hood_Quest2"/>
+		</preeffects>
+		  <triggers>
+			<buildingdestroyed item="BuildingHeartFruit" min="5" locaExtension="pickup" />
+			<buffappliedonadventure item="BattleBuffHurt_BuffAd_Grandmothers_Hut" min="1" locaExtension="grandmatea"/>
+		  </triggers>
+   </quest>
+      
+   <quest name="BuffAdv_Evil_Queen_Red_Riding_Hood_Sub4" connectedToQuest="BuffAdv_Evil_Queen_Red_Riding_Hood_Main1" type="Story" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAdv_Evil_Queen_Red_Riding_Hood_Sub3"/>
+		</startcondition>
+		<preeffects>
+        </preeffects>
+		  <triggers>
+			<onmap max="0"  item="Banditsleader_Dark" locaExtension="DefeatAll"/>
+			<!--trigger type="Building" name="Banditsleader_Dark" condition="l" amount="1" locaExtension="darkcult"/-->
+		  </triggers>
+   </quest>
+   
+   <quest name="BuffAdv_Evil_Queen_Red_Riding_Hood_Sub5" connectedToQuest="BuffAdv_Evil_Queen_Red_Riding_Hood_Main1" type="Story" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAdv_Evil_Queen_Red_Riding_Hood_Sub4"/>
+		</startcondition>
+		<preeffects>
+        </preeffects>
+		  <triggers>
+			<trigger type="Building" name="Evil_Queen_leader" condition="l" amount="1" locaExtension="evilqueen"/>
+		  </triggers>
+   </quest>
+  
+</Root>
+
+    
+    
+      
+      
+ 
+      
+      
+      
+      
+
+

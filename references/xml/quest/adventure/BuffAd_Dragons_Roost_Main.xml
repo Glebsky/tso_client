@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	
+	<quest name="BuffAd_Dragons_Roost_Main" specialType="firstQuestlastQuest" icon="Military" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_ventures_0" showQuestWindow="false">
+		<triggers>
+			<questcomplete item="BuffAd_Dragons_Roost_Sub1"/> 
+			<questcomplete item="BuffAd_Dragons_Roost_Sub2"/> 
+			<questcomplete item="BuffAd_Dragons_Roost_Sub3"/>
+			<questcomplete item="BuffAd_Dragons_Roost_Sub4"/>
+			<questcomplete item="BuffAd_Dragons_Roost_Sub5"/>							
+		</triggers>
+		<posteffects>  
+		</posteffects>           
+		<postrequisits />
+    </quest>
+		
+	<quest name="BuffAd_Dragons_Roost_Sub1" connectedToQuest="BuffAd_Dragons_Roost_Main" icon="Military" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questactive item="BuffAd_Dragons_Roost_Main"/>
+		</startcondition>
+		<preeffects>
+        </preeffects>
+		<triggers>
+			<trigger type="Building" name="cave_wildlife_leader" condition="l" amount="1" locaExtension="all" />
+			<trigger type="Building" name="Banditsleader_Dark" condition="l" amount="1" locaExtension="all" />
+		</triggers>
+		<postrequisits />
+    </quest>
+	
+	<quest name="BuffAd_Dragons_Roost_Sub2" connectedToQuest="BuffAd_Dragons_Roost_Main" icon="BattleBuffHurt_BuffAd_PickAxe" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questactive item="BuffAd_Dragons_Roost_Main"/>
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="BuffAd_Dragons_Roost_Quest1" />
+        </preeffects>
+		<triggers>
+            <buildingdestroyed item="buffad_collectible_bridge_base_material" min="2" locaExtension="pickup" />
+			<buildingdestroyed item="BuildingMountainOre" min="4" locaExtension="pickup" />
+			<trigger type="Building" name="buffad_swamp_2" condition="l" amount="1" locaExtension="dragonsroost"/>
+			<trigger type="Building" name="buffad_destructible_boulder" condition="l" amount="1" locaExtension="dragonsroost"/>
+		</triggers>
+		<postrequisits />
+    </quest>
+		
+	<quest name="BuffAd_Dragons_Roost_Sub3" connectedToQuest="BuffAd_Dragons_Roost_Main" icon="BattleBuffHurt_BuffAd_Dragon" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questactive item="BuffAd_Dragons_Roost_Main"/>
+		</startcondition>
+		<triggers>
+			<buildingdestroyed item="BuildingGlowingHerbs" min="5" locaExtension="pickup" />
+			<buffowned item="BattleBuffHurt_BuffAd_Dragon" min="1" />
+		</triggers>
+		<postrequisits />
+    </quest>
+	
+	<quest name="BuffAd_Dragons_Roost_Sub4" connectedToQuest="BuffAd_Dragons_Roost_Main" icon="Military" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAd_Dragons_Roost_Sub1"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Building" name="Dark_Castle_01" condition="l" amount="1" locaExtension="dragonsroost"/>
+		</triggers>
+		<postrequisits />
+    </quest>
+	
+	<quest name="BuffAd_Dragons_Roost_Sub5" connectedToQuest="BuffAd_Dragons_Roost_Main" icon="BattleBuffHurt_BuffAd_Dragon" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAd_Dragons_Roost_Sub4"/>
+		</startcondition>
+		<preeffects>
+			<spawnbuilding name="a_cave_01_camp" x="39" y="9" units="BuffAd_Dragon_Unit|1" action="ignoreBlocking,spawnInstant,replace" mode="enemy"/> 
+		</preeffects>
+		<triggers>
+			<buffappliedonadventure item="BattleBuffHurt_BuffAd_Dragon" min="1" locaExtension="dragonsroost" />
+		</triggers>
+		<postrequisits />
+    </quest>
+	
+</Root>

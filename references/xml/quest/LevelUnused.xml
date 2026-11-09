@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+
+     <quest name="LevelUnused"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="1000"/>
+          </triggers>
+     </quest>
+
+<!-- Daily Log In -->
+     <quest name="Level5-20"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="5"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="21"/>
+          </triggers>
+     </quest>
+     
+     <quest name="Level21-80"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="21"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+          </triggers>
+     </quest>
+     
+<!-- Daily Quests -->   
+	<quest name="Level21-50"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="21"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="51"/>
+          </triggers>
+     </quest>
+
+     <quest name="Level24-50"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="24"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="51"/>
+          </triggers>
+     </quest>
+     
+     <quest name="Level31-65"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="31"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="66"/>
+          </triggers>
+     </quest>
+     
+     <quest name="Level51-80"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="51"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+          </triggers>
+     </quest>
+
+     <quest name="Level62-80"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="62"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+          </triggers>
+     </quest>
+     
+     <quest name="Level66-80"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="66"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+          </triggers>
+     </quest> 
+
+
+     
+     <quest name="Level10-17"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="10"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="18"/>
+          </triggers>
+     </quest>
+
+	 <quest name="Level10-26"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="10"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="27"/>
+          </triggers>
+     </quest>
+	 
+	 <quest name="Level16-26"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="16"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="27"/>
+          </triggers>
+     </quest>
+	 
+     <quest name="Level18-25"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="18"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="26"/>
+          </triggers>
+     </quest>
+     
+     <quest name="Level26-35"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="26"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="36"/>
+          </triggers>
+     </quest>
+     
+     <quest name="Level36-50"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="36"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="51"/>
+          </triggers>
+     </quest>
+
+<!-- Old Daily Quests -->          
+     <quest name="Level10-80"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="10"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+          </triggers>
+     </quest>
+     
+     <quest name="Level15-80"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="15"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+          </triggers>
+     </quest>
+     
+     <quest name="Level20-80"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="20"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+          </triggers>
+     </quest>
+
+     <quest name="Level25-80"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="25"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+          </triggers>
+     </quest>
+	 
+	 <quest name="Level27-36"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="27"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="37"/>
+          </triggers>
+     </quest>
+     
+     <quest name="Level30-80"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="30"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+          </triggers>
+     </quest>
+     
+     <quest name="Level35-80"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="35"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+          </triggers>
+     </quest>
+     
+	 <quest name="Level36-80"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="36"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+          </triggers>
+     </quest>     
+     
+	 <quest name="Level37-50"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="37"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="51"/>
+          </triggers>
+     </quest>
+     
+	 <quest name="Level37-55"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="37"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="56"/>
+          </triggers>
+     </quest>
+	 
+	 <quest name="Level37-80"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="37"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+          </triggers>
+     </quest>
+	 
+     <quest name="Level40-80"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="40"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+          </triggers>
+     </quest>
+     
+     <quest name="Level45-80"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="45"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+          </triggers>
+     </quest>
+     
+     <quest name="Level47-80"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="47"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+          </triggers>
+     </quest>
+     
+     <quest name="Level20-30"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="20"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="31"/>
+          </triggers>
+     </quest>
+
+   <quest name="Level10-18" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="10"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="19"/>
+          </triggers>
+     </quest>
+     
+   <quest name="Level19-25" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="19"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="26"/>
+          </triggers>
+     </quest>
+     
+    <quest name="Level36-45" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="36"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="46"/>
+          </triggers>
+     </quest> 
+    
+	<quest name="Level46-55" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="46"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="56"/>
+          </triggers>
+     </quest> 
+
+    <quest name="Level46-50" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="46"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="51"/>
+          </triggers>
+     </quest> 
+	 
+    <quest name="Level47-50" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="47"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="51"/>
+          </triggers>
+     </quest> 
+	 
+     <quest name="Level56-65" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="56"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="66"/>
+          </triggers>
+     </quest> 
+	 
+    <quest name="Level56-80" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="56"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+          </triggers>
+     </quest>
+
+     <quest name="Level50-65" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="50"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="66"/>
+          </triggers>
+     </quest> 
+     
+     <quest name="Level51-65" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="51"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="66"/>
+          </triggers>
+     </quest>
+     
+    <quest name="Level17-24" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="17"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="25"/>
+          </triggers>
+     </quest>
+     
+     <quest name="Level25-39" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="25"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="40"/>
+          </triggers>
+     </quest>
+     
+     <quest name="Level40-50" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="40"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="51"/>
+          </triggers>
+     </quest>  
+     
+    <quest name="Level26-80" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="26"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+          </triggers>
+     </quest>
+     
+     <quest name="Level28-80" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="28"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+          </triggers>
+     </quest>
+
+    <quest name="Level17-50" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="17"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="51"/>
+          </triggers>
+     </quest>
+
+    <quest name="Level1-15" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="1"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="16"/>
+          </triggers>
+     </quest>  	 
+
+<!-- Crisis Quest Filters -->
+
+   <quest name="Level10-15" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="10"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="16"/>
+          </triggers>
+     </quest>
+     
+   <quest name="Level16-25" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="16"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="26"/>
+          </triggers>
+     </quest>
+	 
+	<quest name="Level1-16" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="1"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="17"/>
+          </triggers>
+     </quest>
+
+	 <quest name="Level23-26" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="23"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="27"/>
+          </triggers>
+     </quest>
+
+<!-- XMAS2013 Quest Filters -->     
+   <quest name="Level1-22" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="1"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="23"/>
+          </triggers>
+     </quest>
+
+	 <quest name="Level23-35" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="23"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="36"/>
+          </triggers>
+     </quest>
+	 
+   <quest name="Level36-43" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="36"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="44"/>
+          </triggers>
+     </quest>
+
+   <quest name="Level44-50" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="44"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="51"/>
+          </triggers>
+     </quest>
+	 
+   <quest name="Level44-80" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="44"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+          </triggers>
+     </quest>
+     
+      <quest name="Level17-80" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="17"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+          </triggers>
+     </quest>
+	 	
+	<!-- adjusted in 2016 -->
+
+	<quest name="Level36-47" showQuestWindow="false" showRewardWindow="false" >
+        <triggers>
+            <trigger type="PlayerLevel" name="" condition="ge" amount="36"/>
+            <trigger type="PlayerLevel" name="" condition="l" amount="48"/>
+        </triggers>
+    </quest>	
+	<quest name="Level48-80" showQuestWindow="false" showRewardWindow="false" >
+        <triggers>
+            <trigger type="PlayerLevel" name="" condition="ge" amount="48"/>
+            <trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+        </triggers>
+    </quest>		
+	 
+	 
+     <!-- 26 - 35 Already exists -->
+     
+     <!-- 36 - 45 Already exists -->
+     
+     <!-- 46 - 50 Already exists -->
+	 
+	 <!-- For Soccer 2018plus -->
+	<quest name="Level1-21" showQuestWindow="false" showRewardWindow="false" >
+        <triggers>
+            <trigger type="PlayerLevel" name="" condition="l" amount="22"/>
+        </triggers>
+    </quest>	
+    <quest name="Level22-27" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+            <trigger type="PlayerLevel" name="" condition="ge" amount="22"/>
+            <trigger type="PlayerLevel" name="" condition="l" amount="28"/>
+          </triggers>
+    </quest>
+    <quest name="Level28-39" showQuestWindow="false" showRewardWindow="false" >
+        <triggers>
+            <trigger type="PlayerLevel" name="" condition="ge" amount="28"/>
+            <trigger type="PlayerLevel" name="" condition="l" amount="40"/>
+        </triggers>
+    </quest>
+    <quest name="Level40-51" showQuestWindow="false" showRewardWindow="false" >
+        <triggers>
+            <trigger type="PlayerLevel" name="" condition="ge" amount="40"/>
+            <trigger type="PlayerLevel" name="" condition="l" amount="52"/>
+        </triggers>
+    </quest>
+    <quest name="Level52-63" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+			<trigger type="PlayerLevel" name="" condition="ge" amount="52"/>
+			<trigger type="PlayerLevel" name="" condition="l" amount="64"/>
+		</triggers>
+    </quest>
+    <quest name="Level64-80" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+			<trigger type="PlayerLevel" name="" condition="ge" amount="64"/>
+			<trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+		</triggers>
+    </quest>
+    <quest name="Level26-46" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+			<trigger type="PlayerLevel" name="" condition="ge" amount="26"/>
+			<trigger type="PlayerLevel" name="" condition="l" amount="47"/>
+		</triggers>
+    </quest>
+    <quest name="Level47-61" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+			<trigger type="PlayerLevel" name="" condition="ge" amount="47"/>
+			<trigger type="PlayerLevel" name="" condition="l" amount="62"/>
+		</triggers>
+    </quest>
+	
+	<!-- For Anniversary 2018plus -->
+	<quest name="Level16-80" showQuestWindow="false" showRewardWindow="false" >
+	  <triggers>
+			<trigger type="PlayerLevel" name="" condition="ge" amount="16"/>
+			<trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+	  </triggers>
+	</quest>
+
+      <quest name="Level1-25" showQuestWindow="false" showRewardWindow="false" >
+	  <triggers>
+			<trigger type="PlayerLevel" name="" condition="ge" amount="1"/>
+			<trigger type="PlayerLevel" name="" condition="l" amount="26"/>
+	  </triggers>
+	</quest>
+      
+      <quest name="Level51-61" showQuestWindow="false" showRewardWindow="false" >
+	  <triggers>
+			<trigger type="PlayerLevel" name="" condition="ge" amount="51"/>
+			<trigger type="PlayerLevel" name="" condition="l" amount="62"/>
+	  </triggers>
+	</quest>
+	
+	<!-- Specialist tasks -->
+	<quest name="Level4-80" showQuestWindow="false" showRewardWindow="false" >
+	  <triggers>
+			<trigger type="PlayerLevel" name="" condition="ge" amount="4"/>
+			<trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+	  </triggers>
+	</quest>
+	<quest name="Level9-80" showQuestWindow="false" showRewardWindow="false" >
+	  <triggers>
+			<trigger type="PlayerLevel" name="" condition="ge" amount="9"/>
+			<trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+	  </triggers>
+	</quest>
+	<quest name="Level19-80" showQuestWindow="false" showRewardWindow="false" >
+	  <triggers>
+			<trigger type="PlayerLevel" name="" condition="ge" amount="19"/>
+			<trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+	  </triggers>
+	</quest>
+	<quest name="Level23-80"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="23"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+          </triggers>
+     </quest>
+	<quest name="Level24-80"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="24"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+          </triggers>
+     </quest>
+     <quest name="Level32-80"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="32"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+          </triggers>
+     </quest>
+     <quest name="Level42-80"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="42"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+          </triggers>
+     </quest>
+     <quest name="Level54-80"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="54"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+          </triggers>
+     </quest>
+     <quest name="Level60-80"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="60"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+          </triggers>
+     </quest>
+     <quest name="Level61-80"  showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="61"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+          </triggers>
+     </quest>
+
+   <quest name="Level1-75" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="1"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="76"/>
+          </triggers>
+     </quest>	 
+	 
+	<quest name="Level26-38" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="26"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="39"/>
+          </triggers>		  
+     </quest>
+     <quest name="Level39-53" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="39"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="54"/>
+          </triggers>	  
+     </quest>
+
+	<!--Added for Starfall-->
+	<quest name="Level64-69" showQuestWindow="false" showRewardWindow="false" >
+        <triggers>
+            <trigger type="PlayerLevel" name="" condition="ge" amount="64"/>
+            <trigger type="PlayerLevel" name="" condition="l" amount="70"/>
+        </triggers>		  
+    </quest>	
+	 <quest name="Level70-79" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="70"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="80"/>
+          </triggers>		  
+     </quest>	
+	 <quest name="Level80" showQuestWindow="false" showRewardWindow="false" >
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="80"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+          </triggers>		  
+     </quest>	
+	 
+	 
+</Root>

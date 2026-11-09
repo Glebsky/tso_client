@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+
+	 <quest name="TwinTown_Cave1_Main" type="Story" icon="Military" npc="quest_character_sonya_solemoon.png" specialType="firstQuestlastQuest" >
+		<triggers>
+			<questcomplete item="TwinTown_AdvDefeatAllCaves"/> 
+			<!-- <questcomplete item="TwinTown"/> 
+			<questcomplete item="TwinTown"/> -->
+		</triggers>
+    </quest>
+
+	 <quest name="TwinTown_AdvDefeatAllCaves" connectedToQuest="TwinTown_Cave1_Main" type="Story" icon="Military" npc="quest_character_sonya_solemoon.png" >
+		<triggers>
+			<buildingdestroyed min="3" item="TwinTown_TrollCave_Leader" />
+			<buildingdestroyed min="9" item="TwinTown_WildlifeCamp" />	
+		</triggers>
+    </quest>
+	
+	<!-- First time only quest -->
+	<quest name="TwinTown_Cave1_Tracks_Helper" showQuestWindow="false" showRewardWindow="false" >	
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Home_Chapter1_Main2_Sub_7" min="1" max="1"/>			
+		</startcondition>	
+		<triggers>				
+		</triggers>
+		<posteffects>		
+			<spawnbuilding name="Tracks" x="20" y="31" mode="enemy" action="ignoreBlocking,spawnInstant"/>			
+			<spawnbuilding name="Tracks" x="26" y="17" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="19" y="53" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="16" y="68" mode="enemy" action="ignoreBlocking,spawnInstant"/>		
+			<spawnbuilding name="Tracks" x="20" y="75" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="27" y="51" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="31" y="71" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="37" y="67" mode="enemy" action="ignoreBlocking,spawnInstant"/>
+			<spawnbuilding name="Tracks" x="39" y="67" mode="enemy" action="ignoreBlocking,spawnInstant"/>
+			<spawnbuilding name="Tracks" x="42" y="62" mode="enemy" action="ignoreBlocking,spawnInstant"/>
+			<spawnbuilding name="Tracks" x="45" y="75" mode="enemy" action="ignoreBlocking,spawnInstant"/>
+			<spawnbuilding name="Tracks" x="41" y="85" mode="enemy" action="ignoreBlocking,spawnInstant"/>			
+			<startquest name="TwinTown_Cave1_Tracks"/>				
+		</posteffects>		
+    </quest>		
+	
+   <quest name="TwinTown_Cave1_Tracks" type="Story" icon="QuestShort" npc="quest_character_sonya_solemoon.png" notifyHomeZone="true" >	
+		<triggers>
+			<buildingselected min="12" item="Tracks"/>				
+		</triggers>
+		<posteffects>		
+			<adjustgenericvalue name="TwinTown_Home_Chapter1_Main2_Sub_7" action="set" amount="10" />	
+		</posteffects>		
+    </quest>		
+
+ 	<quest name="TwinTown_Cave1_EnemySapwn" showQuestWindow="false" showRewardWindow="false" >
+		<startcondition>
+			<questactive item="TwinTown_Cave1_Main"/>		
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Cave1_EnemySapwn_RandomLeader_Left"/>
+			<startquest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Left"/>
+			<startquest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Left"/>
+			<startquest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Left"/>
+			<startquest name="TwinTown_Cave1_EnemySapwn_RandomLeader_Mid"/>
+			<startquest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Mid"/>
+			<startquest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Mid"/>
+			<startquest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Mid"/>	
+			<startquest name="TwinTown_Cave1_EnemySapwn_RandomLeader_Right"/>
+			<startquest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Right"/>
+			<startquest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Right"/>
+			<startquest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Right"/>
+			<startquest name="TwinTown_AdvDefeatAllCaves" />			
+		</posteffects>  	
+	</quest>	
+
+
+	<quest name="TwinTown_Cave1_EnemySapwn_RandomLeader_Left" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomLeader_Left1" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomLeader_Left2" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomLeader_Left3" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomLeader_Left4" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomLeader_Left5" />				
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomLeader_Left1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_TrollCave_Leader" action="ignoreBlocking,spawnInstant" x="20" y="65" mode="enemy" units="EliteWildlifeRecruit|1,EliteWildlifeAir|1" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomLeader_Left2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_TrollCave_Leader" action="ignoreBlocking,spawnInstant" x="20" y="65" mode="enemy" units="EliteWildlifeRecruit|2,EliteWildlifeAir|2" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomLeader_Left3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_TrollCave_Leader" action="ignoreBlocking,spawnInstant" x="20" y="65" mode="enemy" units="EliteWildlifeRecruit|3,EliteWildlifeAir|3" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomLeader_Left4" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_TrollCave_Leader" action="ignoreBlocking,spawnInstant" x="20" y="65" mode="enemy" units="EliteWildlifeRecruit|4,EliteWildlifeAir|4" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomLeader_Left5" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_TrollCave_Leader" action="ignoreBlocking,spawnInstant" x="20" y="65" mode="enemy" units="EliteWildlifeRecruit|5,EliteWildlifeAir|5" />		
+		</posteffects>
+	</quest>		
+	
+	<quest name="TwinTown_Cave1_EnemySapwn_RandomLeader_Mid" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomLeader_Mid1" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomLeader_Mid2" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomLeader_Mid3" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomLeader_Mid4" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomLeader_Mid5" />				
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomLeader_Mid1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_TrollCave_Leader" action="ignoreBlocking,spawnInstant" x="30" y="23" mode="enemy" units="EliteWildlifeRecruit|11,EliteWildlifeAir|11" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomLeader_Mid2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_TrollCave_Leader" action="ignoreBlocking,spawnInstant" x="30" y="23" mode="enemy" units="EliteWildlifeRecruit|12,EliteWildlifeAir|12" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomLeader_Mid3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_TrollCave_Leader" action="ignoreBlocking,spawnInstant" x="30" y="23" mode="enemy" units="EliteWildlifeRecruit|13,EliteWildlifeAir|13" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomLeader_Mid4" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_TrollCave_Leader" action="ignoreBlocking,spawnInstant" x="30" y="23" mode="enemy" units="EliteWildlifeRecruit|14,EliteWildlifeAir|14" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomLeader_Mid5" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_TrollCave_Leader" action="ignoreBlocking,spawnInstant" x="30" y="23" mode="enemy" units="EliteWildlifeRecruit|15,EliteWildlifeAir|15" />		
+		</posteffects>
+	</quest>			
+
+	<quest name="TwinTown_Cave1_EnemySapwn_RandomLeader_Right" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomLeader_Right1" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomLeader_Right2" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomLeader_Right3" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomLeader_Right4" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomLeader_Right5" />				
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomLeader_Right1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_TrollCave_Leader" action="ignoreBlocking,spawnInstant" x="41" y="74" mode="enemy" units="EliteWildlifeRecruit|21,EliteWildlifeAir|21" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomLeader_Right2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_TrollCave_Leader" action="ignoreBlocking,spawnInstant" x="41" y="74" mode="enemy" units="EliteWildlifeRecruit|22,EliteWildlifeAir|22" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomLeader_Right3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_TrollCave_Leader" action="ignoreBlocking,spawnInstant" x="41" y="74" mode="enemy" units="EliteWildlifeRecruit|23,EliteWildlifeAir|23" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomLeader_Right4" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_TrollCave_Leader" action="ignoreBlocking,spawnInstant" x="41" y="74" mode="enemy" units="EliteWildlifeRecruit|24,EliteWildlifeAir|24" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomLeader_Right5" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_TrollCave_Leader" action="ignoreBlocking,spawnInstant" x="41" y="74" mode="enemy" units="EliteWildlifeRecruit|25,EliteWildlifeAir|25" />		
+		</posteffects>
+	</quest>		
+
+	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Left" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Left_left1" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Left_left2" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Left_left3" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Left_left4" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Left_left5" />				
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Left_left1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="16" y="65" mode="enemy" units="EliteWildlifeRecruit|121,EliteWildlifeAir|121" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Left_left2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="16" y="65" mode="enemy" units="EliteWildlifeRecruit|122,EliteWildlifeAir|122" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Left_left3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="16" y="65" mode="enemy" units="EliteWildlifeRecruit|123,EliteWildlifeAir|123" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Left_left4" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="16" y="65" mode="enemy" units="EliteWildlifeRecruit|124,EliteWildlifeAir|124" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Left_left5" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="16" y="65" mode="enemy" units="EliteWildlifeRecruit|125,EliteWildlifeAir|125" />		
+		</posteffects>
+	</quest>		
+
+	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Left" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Left_mid1" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Left_mid2" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Left_mid3" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Left_mid4" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Left_mid5" />				
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Left_mid1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="18" y="58" mode="enemy" units="EliteWildlifeRecruit|1,EliteWildlifeAir|1" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Left_mid2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="18" y="58" mode="enemy" units="EliteWildlifeRecruit|2,EliteWildlifeAir|2" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Left_mid3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="18" y="58" mode="enemy" units="EliteWildlifeRecruit|3,EliteWildlifeAir|3" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Left_mid4" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="18" y="58" mode="enemy" units="EliteWildlifeRecruit|4,EliteWildlifeAir|4" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Left_mid5" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="18" y="58" mode="enemy" units="EliteWildlifeRecruit|5,EliteWildlifeAir|5" />		
+		</posteffects>
+	</quest>		
+
+	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Left" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Left_right1" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Left_right2" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Left_right3" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Left_right4" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Left_right5" />				
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Left_right1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="21" y="58" mode="enemy" units="EliteWildlifeRecruit|41,EliteWildlifeAir|41" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Left_right2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="21" y="58" mode="enemy" units="EliteWildlifeRecruit|42,EliteWildlifeAir|42" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Left_right3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="21" y="58" mode="enemy" units="EliteWildlifeRecruit|43,EliteWildlifeAir|43" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Left_right4" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="21" y="58" mode="enemy" units="EliteWildlifeRecruit|44,EliteWildlifeAir|44" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Left_right5" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="21" y="58" mode="enemy" units="EliteWildlifeRecruit|45,EliteWildlifeAir|45" />		
+		</posteffects>
+	</quest>		
+
+
+
+	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Mid" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Mid_left1" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Mid_left2" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Mid_left3" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Mid_left4" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Mid_left5" />				
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Mid_left1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="28" y="21" mode="enemy" units="EliteWildlifeRecruit|34,EliteWildlifeAir|121" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Mid_left2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="28" y="21" mode="enemy" units="EliteWildlifeRecruit|34,EliteWildlifeAir|122" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Mid_left3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="28" y="21" mode="enemy" units="EliteWildlifeRecruit|34,EliteWildlifeAir|123" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Mid_left4" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="28" y="21" mode="enemy" units="EliteWildlifeRecruit|34,EliteWildlifeAir|124" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Mid_left5" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="28" y="21" mode="enemy" units="EliteWildlifeRecruit|34,EliteWildlifeAir|125" />		
+		</posteffects>
+	</quest>		
+
+	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Mid" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Mid_mid1" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Mid_mid2" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Mid_mid3" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Mid_mid4" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Mid_mid5" />				
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Mid_mid1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="28" y="28" mode="enemy" units="EliteWildlifeRecruit|9,EliteWildlifeAir|1" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Mid_mid2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="28" y="28" mode="enemy" units="EliteWildlifeRecruit|9,EliteWildlifeAir|2" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Mid_mid3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="28" y="28" mode="enemy" units="EliteWildlifeRecruit|9,EliteWildlifeAir|3" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Mid_mid4" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="28" y="28" mode="enemy" units="EliteWildlifeRecruit|9,EliteWildlifeAir|4" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Mid_mid5" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="28" y="28" mode="enemy" units="EliteWildlifeRecruit|9,EliteWildlifeAir|5" />		
+		</posteffects>
+	</quest>		
+
+	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Mid" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Mid_right1" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Mid_right2" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Mid_right3" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Mid_right4" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Mid_right5" />				
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Mid_right1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="31" y="28" mode="enemy" units="EliteWildlifeRecruit|55,EliteWildlifeAir|41" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Mid_right2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="31" y="28" mode="enemy" units="EliteWildlifeRecruit|55,EliteWildlifeAir|42" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Mid_right3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="31" y="28" mode="enemy" units="EliteWildlifeRecruit|55,EliteWildlifeAir|43" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Mid_right4" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="31" y="28" mode="enemy" units="EliteWildlifeRecruit|55,EliteWildlifeAir|44" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Mid_right5" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="31" y="28" mode="enemy" units="EliteWildlifeRecruit|55,EliteWildlifeAir|45" />		
+		</posteffects>
+	</quest>	
+
+
+
+
+	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Right" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Right_left1" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Right_left2" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Right_left3" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Right_left4" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Right_left5" />				
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Right_left1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="38" y="72" mode="enemy" units="EliteWildlifeRecruit|77,EliteWildlifeAir|121" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Right_left2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="38" y="72" mode="enemy" units="EliteWildlifeRecruit|77,EliteWildlifeAir|122" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Right_left3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="38" y="72" mode="enemy" units="EliteWildlifeRecruit|77,EliteWildlifeAir|123" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Right_left4" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="38" y="72" mode="enemy" units="EliteWildlifeRecruit|77,EliteWildlifeAir|124" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup1_Right_left5" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="38" y="72" mode="enemy" units="EliteWildlifeRecruit|77,EliteWildlifeAir|125" />		
+		</posteffects>
+	</quest>		
+
+	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Right" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Right_mid1" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Right_mid2" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Right_mid3" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Right_mid4" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Right_mid5" />				
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Right_mid1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="39" y="68" mode="enemy" units="EliteWildlifeRecruit|88,EliteWildlifeAir|1" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Right_mid2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="39" y="68" mode="enemy" units="EliteWildlifeRecruit|88,EliteWildlifeAir|2" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Right_mid3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="39" y="68" mode="enemy" units="EliteWildlifeRecruit|88,EliteWildlifeAir|3" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Right_mid4" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="39" y="68" mode="enemy" units="EliteWildlifeRecruit|88,EliteWildlifeAir|4" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup2_Right_mid5" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="39" y="68" mode="enemy" units="EliteWildlifeRecruit|88,EliteWildlifeAir|5" />		
+		</posteffects>
+	</quest>		
+
+	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Right" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Right_right1" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Right_right2" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Right_right3" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Right_right4" />
+				<postrequisite startQuest="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Right_right5" />				
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Right_right1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="41" y="67" mode="enemy" units="EliteWildlifeRecruit|99,EliteWildlifeAir|41" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Right_right2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="41" y="67" mode="enemy" units="EliteWildlifeRecruit|99,EliteWildlifeAir|42" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Right_right3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="41" y="67" mode="enemy" units="EliteWildlifeRecruit|99,EliteWildlifeAir|43" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Right_right4" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="41" y="67" mode="enemy" units="EliteWildlifeRecruit|99,EliteWildlifeAir|44" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Cave1_EnemySapwn_RandomCampGroup3_Right_right5" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="41" y="67" mode="enemy" units="EliteWildlifeRecruit|99,EliteWildlifeAir|45" />		
+		</posteffects>
+	</quest>	
+
+
+</Root>

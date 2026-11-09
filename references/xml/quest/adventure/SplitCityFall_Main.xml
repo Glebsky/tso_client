@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	 <quest name="SplitCityFall_Main" type="Story" icon="Military" npc="quest_character_sonya_solemoon.png" specialType="firstQuestlastQuest" >
+		<triggers>
+			<questcomplete item="BuffAdv_SplitCityFall_Sub1"/> 
+			<questcomplete item="BuffAdv_SplitCityFall_Sub2"/>  
+			<onmap max="0" item="splitcity_left_boss_leader" locaExtension="DefeatTMCStrongholdRuinsNorth"/>
+		  	<onmap max="0" item="splitcity_right_boss_leader" locaExtension="DefeatTMCStrongholdRuinsNorth"/>			
+		  </triggers>
+		<rewards>
+			<reward type="XP" amount="150000" />		  
+		</rewards>
+	 </quest>
+	
+		 <!--  Defeat all sector bosses/ leader camps  -->
+	<quest name="BuffAdv_SplitCityFall_Sub1" type="Story" icon="Military" connectedToQuest="SplitCityFall_Main" npc="quest_character_sonya_solemoon.png">
+		<startcondition>
+		   <questrunning item="SplitCityFall_Main"/>
+		</startcondition>
+		  <triggers>
+		  	<onmap max="0" item="splitcity_left_leader_01" locaExtension="DefeatTMCStrongholdRuinsNorth"/>
+		  	<onmap max="0" item="splitcity_left_leader_02" locaExtension="DefeatTMCStrongholdRuinsNorth"/>	
+		  	<onmap max="0" item="splitcity_right_leader_01" locaExtension="DefeatTMCStrongholdRuinsNorth"/>
+		  	<onmap max="0" item="splitcity_right_leader_02" locaExtension="DefeatTMCStrongholdRuinsNorth"/>	
+		  </triggers>
+		<rewards>
+			<reward type="XP" amount="50000" />	
+		</rewards>
+		<posteffects>
+        </posteffects>
+	</quest>	
+	
+	<quest name="BuffAdv_SplitCityFall_Sub2" type="Story" icon="Military" connectedToQuest="SplitCityFall_Main" npc="quest_character_sonya_solemoon.png">
+		<startcondition>
+		   <questrunning item="SplitCityFall_Main"/>
+		</startcondition>
+		  <triggers>
+		  	<onmap max="0" item="splitcity_left_leader_03" locaExtension="DefeatTMCStrongholdRuinsNorth"/>	
+		  	<onmap max="0" item="splitcity_left_leader_04" locaExtension="DefeatTMCStrongholdRuinsNorth"/>	
+		  	<onmap max="0" item="splitcity_left_leader_05" locaExtension="DefeatTMCStrongholdRuinsNorth"/>	
+		  	<onmap max="0" item="splitcity_right_leader_03" locaExtension="DefeatTMCStrongholdRuinsNorth"/>	
+		  	<onmap max="0" item="splitcity_right_leader_04" locaExtension="DefeatTMCStrongholdRuinsNorth"/>	
+		  	<onmap max="0" item="splitcity_right_leader_05" locaExtension="DefeatTMCStrongholdRuinsNorth"/>			
+		  </triggers>
+		<rewards>
+			<reward type="XP" amount="100000" />	
+		</rewards>
+		<posteffects>
+        </posteffects>
+	</quest>	
+	
+</Root>

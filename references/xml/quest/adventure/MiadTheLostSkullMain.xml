@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Root>
+
+	<quest name="MiadTheLostSkullMain" type="Story" specialType="firstQuestlastQuest" icon="Military" npc="quest_character_mentor03.png" showQuestWindow="false">
+	   	<preeffects>
+        </preeffects>
+	   	<triggers>
+	   		<questcomplete item="MiadTheLostSkullQ1"/>
+	   		<questcomplete item="MiadTheLostSkullQ2"/>
+	   		<questcomplete item="MiadTheLostSkullQ3"/>
+         	<questcomplete item="MiadTheLostSkullQ4"/>
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="300"/>        
+      </rewards>
+    </quest> 
+    
+   <quest name="MiadTheLostSkullQ1" type="Story" icon="Military" connectedToQuest="MiadTheLostSkullMain" npc="quest_character_mentor03.png" >
+		  <startcondition>
+		   <questactive item="MiadTheLostSkullMain"/>
+		</startcondition>
+		  <triggers>
+         <trigger type="Building" name="Bandits_Adventure" condition="l" amount="2" locaExtension="tls1" />
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="600"/>        
+      </rewards>
+      <postrequisits>
+         <postrequisite startQuest="MiadTheLostSkullQ2" />
+         <postrequisite startQuest="MiadTheLostSkullQ3" /> 
+       </postrequisits> 
+   </quest>
+  
+	 <quest name="MiadTheLostSkullQ2" type="Story" icon="Military" connectedToQuest="MiadTheLostSkullMain" npc="quest_character_mentor03.png" >
+	  	<triggers>
+         <trigger type="Building" name="Banditsleader_Adventure" condition="l" amount="2" locaExtension="tls2" />
+  	   </triggers>
+      <rewards>
+         <reward type="XP" amount="600"/>        
+      </rewards>
+		  <postrequisits>
+         <postrequisite startQuest="MiadTheLostSkullQ4" /> 
+      </postrequisits>       
+    </quest>
+   
+    
+   <quest name="MiadTheLostSkullQ3" type="Story" icon="Military" connectedToQuest="MiadTheLostSkullMain" npc="quest_character_mentor03.png" >
+		  <triggers>
+         <trigger type="Building" name="ruinAncientLibrary_02" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="tls3" />
+         <trigger type="Building" name="ruinAncientLibrary_02_b" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="tls4" />
+         <trigger type="Building" name="ruinAncientLibrary_02_a" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="tls5" />
+         <trigger type="Building" name="ruinAncientLibrary_01" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="tls6"/>
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="300"/>        
+      </rewards>
+      <postrequisits>
+       </postrequisits> 
+    </quest>
+    
+    
+   <quest name="MiadTheLostSkullQ4" type="Story" icon="Military" connectedToQuest="MiadTheLostSkullMain" npc="quest_character_mentor03.png" >
+	   	<triggers>
+         <trigger type="Building" name="Banditsleader_Adventure" condition="l" amount="1" locaExtension="tls7" />
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="300"/>        
+      </rewards>
+		  <postrequisits/>     
+    </quest>  
+
+</Root>
+
+    
+    
+      
+      
+      
+      
+
+

@@ -1,0 +1,808 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Root>
+      
+   <quest name="BuffAdv_TMC_V4_Main" specialType="firstQuestlastQuest" icon="Military" npc="mountain_clan_uncovered.png"  helpName="Help_window_ventures_0" showQuestWindow="false">	
+		<preeffects>		
+		</preeffects>
+		<triggers>
+			<questcomplete item="BuffAdv_TMC_V4_Sub1"/> 
+			<questcomplete item="BuffAdv_TMC_V4_Gate"/> 
+			<questcomplete item="BuffAdv_TMC_V4_Sub2"/> 
+			<questcomplete item="BuffAdv_TMC_V4_Sub4"/>
+			<questcomplete item="BuffAdv_TMC_V4_Sub6"/>
+			<questcomplete item="BuffAdv_TMC_V4_Sub8"/>
+		</triggers>
+		
+		<rewards>
+			<reward type="XP" amount="7000"/>   
+		</rewards>
+		<posteffects>		
+			<adjustgenericvalue name="MountainClan_BuildingSlot1" action="set" amount="1">
+				<conditions>
+					<questcomplete item="BuffAdv_TMC_V4_Aon1"/>
+				</conditions>
+			</adjustgenericvalue>
+			<adjustgenericvalue name="MountainClan_BuildingSlot1" action="set" amount="2">
+				<conditions>
+					<questcomplete item="BuffAdv_TMC_V4_Bon1"/>
+				</conditions>
+			</adjustgenericvalue>
+			<adjustgenericvalue name="MountainClan_BuildingSlot1" action="set" amount="3">
+				<conditions>
+					<questcomplete item="BuffAdv_TMC_V4_Con1"/>
+				</conditions>
+			</adjustgenericvalue>
+			<adjustgenericvalue name="MountainClan_BuildingSlot1" action="set" amount="4">
+				<conditions>
+					<questcomplete item="BuffAdv_TMC_V4_Don1"/>
+				</conditions>
+			</adjustgenericvalue>
+			<adjustgenericvalue name="MountainClan_BuildingSlot2" action="set" amount="1">
+				<conditions>
+					<questcomplete item="BuffAdv_TMC_V4_Aon2"/>
+				</conditions>
+			</adjustgenericvalue>
+			<adjustgenericvalue name="MountainClan_BuildingSlot2" action="set" amount="2">
+				<conditions>
+					<questcomplete item="BuffAdv_TMC_V4_Bon2"/>
+				</conditions>
+			</adjustgenericvalue>
+			<adjustgenericvalue name="MountainClan_BuildingSlot2" action="set" amount="3">
+				<conditions>
+					<questcomplete item="BuffAdv_TMC_V4_Con2"/>
+				</conditions>
+			</adjustgenericvalue>
+			<adjustgenericvalue name="MountainClan_BuildingSlot2" action="set" amount="4">
+				<conditions>
+					<questcomplete item="BuffAdv_TMC_V4_Don2"/>
+				</conditions>
+			</adjustgenericvalue>
+			<adjustgenericvalue name="MountainClan_BuildingSlot3" action="set" amount="1">
+				<conditions>
+					<questcomplete item="BuffAdv_TMC_V4_Aon3"/>
+				</conditions>
+			</adjustgenericvalue>
+			<adjustgenericvalue name="MountainClan_BuildingSlot3" action="set" amount="2">
+				<conditions>
+					<questcomplete item="BuffAdv_TMC_V4_Bon3"/>
+				</conditions>
+			</adjustgenericvalue>
+			<adjustgenericvalue name="MountainClan_BuildingSlot3" action="set" amount="3">
+				<conditions>
+					<questcomplete item="BuffAdv_TMC_V4_Con3"/>
+				</conditions>
+			</adjustgenericvalue>
+			<adjustgenericvalue name="MountainClan_BuildingSlot3" action="set" amount="4">
+				<conditions>
+					<questcomplete item="BuffAdv_TMC_V4_Don3"/>
+				</conditions>
+			</adjustgenericvalue>
+			
+		</posteffects>
+		<rewards>
+			<reward type="Buff" item="ProductivityBuffLvl12" amount="1"/>	
+		</rewards>
+    </quest>
+
+	<quest name="BuffAdv_TMC_V4_Sub1" connectedToQuest="BuffAdv_TMC_V4_Main" type="Story" icon="Military" npc="mountain_clan_uncovered.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V4_Main"/>
+		</startcondition>
+		<triggers>
+			<sectorliberated min="2" id="16,2" locaExtension="TMC_LiberateSouth"/>
+		</triggers>
+		<posteffects>
+			<spawnbuilding  x="30" y="92" name="tmc_nords_gate_open" mode="free" action="ignoreBlocking,spawnInstant,replace"/>			
+			<exploresector id="4"/>
+			<adjustgenericvalue name="MountainClan_ObsidianDynamiteDummy" action="reset" />
+		</posteffects>
+	</quest>	
+
+	<quest name="BuffAdv_TMC_V4_Click1" connectedToQuest="BuffAdv_TMC_V4_Main" type="Story" icon="Military" npc="mountain_clan_uncovered.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAdv_TMC_V4_Sub1"/>
+		</startcondition>
+		<triggers>
+			<buildingselected min="1" item="BuffAdv_TMC_V4_meadhall"/>
+		</triggers>
+		<posteffects>
+			<exploresector id="3"/>			
+			<exploresector id="6"/>
+			<exploresector id="7"/>		
+			<exploresector id="8"/>			
+			<exploresector id="9"/>
+			<exploresector id="11"/>
+			<exploresector id="12"/>
+		</posteffects>
+	</quest>	
+
+	<quest name="BuffAdv_TMC_V4_Click2" connectedToQuest="BuffAdv_TMC_V4_Main" type="Story" icon="Military" npc="mountain_clan_uncovered.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAdv_TMC_V4_Sub5"/>
+		</startcondition>
+		<triggers>
+			<buildingselected min="1" item="BuffAdv_TMC_V4_meadhall"/>
+		</triggers>
+		<posteffects>
+			<exploresector id="10"/>
+		</posteffects>
+	</quest>	
+	
+	<quest name="BuffAdv_TMC_V4_Gate" connectedToQuest="BuffAdv_TMC_V4_Main" type="Story" icon="Military" npc="mountain_clan_uncovered.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAdv_TMC_V4_Click1"/>
+		</startcondition>
+		<triggers>
+			<buffappliedonadventure min="2" item="BattleBuffDestroy_TMC_GateKit" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="BookbinderBuffLvl1" amount="1"/>
+			<reward type="Buff" item="ProductivityBuffLvl18" amount="1"/>
+			<reward type="Buff" item="ProductivityBuffLvl22" amount="1"/>	
+		</posteffects>
+	</quest>	
+	
+	<!-- Player outpost quests -->
+	<quest name="BuffAdv_TMC_V4_Sub2" connectedToQuest="BuffAdv_TMC_V4_Main" type="Story" icon="Military" npc="mountain_clan_uncovered.png" helpName="Help_window_ventures_0" unlockTooltipLoca="BuffAdv_TMC_V4_Sub2">
+		<startcondition>
+			<completequestlist item="BuffAdv_TMC_V4_Obsidian1a,BuffAdv_TMC_V4_Obsidian2a,BuffAdv_TMC_V4_Obsidian3a,BuffAdv_TMC_V4_Obsidian4" amount="2" />   	<!-- RECHECK TRIGGER if delta/working -->
+		</startcondition>
+		<preeffects>
+			<exploresector id="15"/>
+		</preeffects>		
+		<triggers>
+			<sectorliberated min="1" id="15" locaExtension="TMC_LiberateNorth"/>
+		</triggers>
+		<posteffects>
+			<exploresector id="13"/>
+			<exploresector id="14"/>
+			<reward type="Buff" item="BattleBuffDestroy_small_medium_camps" amount="1"/>			
+		</posteffects>
+		<rewards>
+		</rewards>
+	</quest>		
+	<quest name="BuffAdv_TMC_V4_Sub4" connectedToQuest="BuffAdv_TMC_V4_Main" type="Story" icon="Military" npc="mountain_clan_uncovered.png" helpName="Help_window_ventures_0">
+		<startcondition>
+			<questcomplete item="BuffAdv_TMC_V4_Sub3"/>  				
+		</startcondition>
+		<preeffects>
+			<spawnbuilding name="tmc_buffad_outpost_lot" action="ignoreBlocking,spawnInstant,replace" x="28" y="12" />
+		</preeffects>
+		<triggers>
+			<buffappliedonadventure target="tmc_buffad_outpost_lot" locaExtension="BuildOutpostBuilding" />
+		</triggers>
+		<posteffects>
+		</posteffects>
+	</quest>	
+	<quest name="BuffAdv_TMC_V4_Sub6" connectedToQuest="BuffAdv_TMC_V4_Main" type="Story" icon="Military" npc="mountain_clan_uncovered.png" helpName="Help_window_ventures_0">
+		<startcondition>
+			<questcomplete item="BuffAdv_TMC_V4_Sub5"/>  				
+		</startcondition>
+		<preeffects>
+			<spawnbuilding name="tmc_buffad_outpost_lot1" action="ignoreBlocking,spawnInstant,replace" x="29" y="15" />
+		</preeffects>
+		<triggers>
+			<buffappliedonadventure target="tmc_buffad_outpost_lot1" locaExtension="BuildOutpostBuilding"/>
+		</triggers>
+		<posteffects>
+			<startquest name="BuffAdv_TMC_V4_Sub7_Spawn">
+				<conditions>
+					<onmaplist item="tmc_buffad_broken_gate_west,tmc_buffad_broken_gate_east" min="1" locaExtension="DefeatBrokenThroughCamps"/>					
+				</conditions>
+			</startquest>
+			<startquest name="BuffAdv_TMC_V4_Sub8">
+				<conditions>
+					<onmaplist item="tmc_buffad_broken_gate_west,tmc_buffad_broken_gate_east" max="0" locaExtension="DefeatBrokenThroughCamps"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	<quest name="BuffAdv_TMC_V4_Sub8" connectedToQuest="BuffAdv_TMC_V4_Main" type="Story" icon="Military" npc="mountain_clan_uncovered.png" helpName="Help_window_ventures_0" unlockTooltipLoca="BuffAdv_TMC_V4_Sub8" >
+		<preeffects>
+			<spawnbuilding name="tmc_buffad_outpost_lot2" action="ignoreBlocking,spawnInstant,replace" x="30" y="11"/>
+		</preeffects>		
+		<triggers>
+			<buffappliedonadventure target="tmc_buffad_outpost_lot2" locaExtension="BuildOutpostBuilding"/>
+		</triggers>
+	</quest>
+
+	<!-- Obsidian Quests -->	
+	<quest name="BuffAdv_TMC_V4_Obsidian1a" type="Optional" icon="Military" npc="mountain_clan_uncovered.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAdv_TMC_V4_Click1"/>
+		</startcondition>
+		<triggers>
+			<onmap max="0" item="tmc_buffad_v4_Camp_StoneQuarryLeader" locaExtension="DefeatNewWildlife"/>
+		</triggers>
+		<posteffects>		
+			<givecollectibleresource name="CollectibleObsidianShard" amount="2"/>
+			<reward type="Buff" item="AddResource" name="ObsidianOre" amount="10" />
+		</posteffects>
+	</quest>	
+
+	<quest name="BuffAdv_TMC_V4_Obsidian2a" type="Optional" icon="Military" npc="mountain_clan_uncovered.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAdv_TMC_V4_Click1"/>
+		</startcondition>
+		<triggers>
+			<onmap max="0" item="tmc_buffad_v4_Camp_FarmLeader" locaExtension="DefeatNewWildlife"/>
+		</triggers>
+		<posteffects>		
+			<givecollectibleresource name="CollectibleObsidianShard" amount="2"/>
+			<reward type="Buff" item="AddResource" name="ObsidianOre" amount="10" />
+		</posteffects>
+	</quest>	
+	
+	<quest name="BuffAdv_TMC_V4_Obsidian3a" type="Optional" icon="Military" npc="mountain_clan_uncovered.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAdv_TMC_V4_Click1"/>
+		</startcondition>
+		<triggers>
+			<onmap max="0" item="tmc_buffad_v4_Camp_HermitLeader" locaExtension="DefeatNewWildlife"/>
+		</triggers>
+		<posteffects>		
+			<givecollectibleresource name="CollectibleObsidianShard" amount="2"/>
+			<reward type="Buff" item="AddResource" name="ObsidianOre" amount="10" />
+		</posteffects>
+	</quest>	
+
+	<quest name="BuffAdv_TMC_V4_Obsidian4" type="Optional" icon="Military" npc="mountain_clan_uncovered.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAdv_TMC_V4_Click1"/>
+		</startcondition>
+		<triggers>
+			<onmap max="0" item="tmc_buffad_v4_Camp_BlacksmithLeader" locaExtension="DefeatBlacksmithRuins"/>	
+			<buffappliedonadventure item="BattleBuffDestroy_TMC_RepairKit_V4" target="tmc_buffad_v4_nords_weaponsmith_ruin" min="1" locaExtension="TMC_BuildingRepaired" />
+		</triggers>
+		<posteffects>		
+			<spawnbuilding  x="13" y="63" name="decoration_nords_woodcutter" mode="free" action="ignoreBlocking,spawnInstant,replace"/>	
+			<spawnbuilding  x="16" y="62" name="tmc_nords_hunter" mode="free" action="ignoreBlocking,spawnInstant,replace"/>	
+			<spawnbuilding  x="14" y="58" name="Firebow3" mode="free" action="ignoreBlocking,spawnInstant"/>			
+			<givecollectibleresource name="CollectibleObsidianShard" amount="1"/>
+			<reward type="Buff" item="AddResource" name="ObsidianOre" amount="5" />
+		</posteffects>
+	</quest>
+	
+	<quest name="BuffAdv_TMC_V4_Obsidian5" type="Optional" icon="Military" npc="mountain_clan_uncovered.png" helpName="Help_window_ventures_0">
+		<startcondition>
+			<questcomplete item="BuffAdv_TMC_V4_Click2"/> 
+		</startcondition>
+		<triggers>
+			<onmap max="0" item="tmc_buffad_v4_Camp_WellLeader" locaExtension="DefeatExhaustedWell"/>	
+			<onmap min="1" item="tmc_v4_nords_well" mode="free" locaExtension="RefillWell"/>
+		</triggers>
+		<posteffects>		
+			<spawnbuilding  x="28" y="33" name="tmc_nords_house_2b" mode="free" action="ignoreBlocking,spawnInstant,replace"/>	
+			<spawnbuilding  x="32" y="33" name="tmc_nords_house" mode="free" action="ignoreBlocking,spawnInstant,replace"/>	
+			<spawnbuilding  x="29" y="31" name="tmc_nords_hunter" mode="free" action="ignoreBlocking,spawnInstant,replace"/>	
+			<spawnbuilding  x="29" y="33" name="Firebow3" mode="free" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding  x="32" y="32" name="Firebow3" mode="free" action="ignoreBlocking,spawnInstant"/>							
+			<givecollectibleresource name="CollectibleObsidianShard" amount="1"/>
+			<reward type="Buff" item="AddResource" name="ObsidianOre" amount="5" />
+		</posteffects>
+	</quest>		
+
+	<quest name="BuffAdv_TMC_V4_Obsidian1b" type="Optional" icon="Military" npc="mountain_clan_uncovered.png" helpName="Help_window_ventures_0">
+		<startcondition>
+			<questcomplete item="BuffAdv_TMC_V4_Obsidian1a"/>
+			<questcomplete item="BuffAdv_TMC_V4_Click2"/> 			
+		</startcondition>
+		<preeffects>
+			<spawnbuilding  x="19" y="83" name="tmc_buffad_mason" action="ignoreBlocking,spawnInstant,replace"/>
+		</preeffects>
+		<triggers>
+			<buffappliedonadventure item="BattleBuffDestroy_TMC_RepairKit_V4" target="tmc_buffad_mason" min="1" locaExtension="TMC_BuildingRepaired" />
+		</triggers>
+		<posteffects>	
+			<spawnbuilding  x="20" y="86" name="Firebow3" mode="free" action="ignoreBlocking,spawnInstant"/>
+			<spawnbuilding  x="19" y="84" name="Firebow3" mode="free" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding  x="21" y="78" name="tmc_buffad_mason_upgraded" mode="free" action="ignoreBlocking,spawnInstant,replace"/>				
+			<givecollectibleresource name="CollectibleObsidianShard" amount="1"/>
+			<reward type="Buff" item="AddResource" name="ObsidianOre" amount="5" />
+		</posteffects>
+	</quest>	
+	<quest name="BuffAdv_TMC_V4_Obsidian2b" type="Optional" icon="Military" npc="mountain_clan_uncovered.png" helpName="Help_window_ventures_0">
+		<startcondition>
+			<questcomplete item="BuffAdv_TMC_V4_Obsidian2a"/> 
+			<questcomplete item="BuffAdv_TMC_V4_Click2"/> 	
+		</startcondition>
+		<preeffects>
+			<spawnbuilding  x="46" y="74" name="tmc_buffad_farm" action="ignoreBlocking,spawnInstant,replace"/>
+		</preeffects>
+		<triggers>
+			<buffappliedonadventure item="EmptyEffectBuff_TMC_Fertilizer" target="tmc_buffad_farm" min="1" locaExtension="TMC_FertilizerDelivered" />
+		</triggers>
+		<posteffects>	
+			<spawnbuilding  x="46" y="74" mode="free" name="tmc_buffad_farm" action="ignoreBlocking,spawnInstant,replace"/>		
+			<spawnbuilding name="Farmfield_04" mode="free" action="ignoreBlocking,spawnInstant,replace" x="46" y="77"/>
+			<spawnbuilding name="Farmfield_04" mode="free" action="ignoreBlocking,spawnInstant,replace" x="47" y="79"/>
+			<spawnbuilding name="Farmfield_04" mode="free" action="ignoreBlocking,spawnInstant,replace" x="48" y="77"/>
+			<spawnbuilding name="Farmfield_04" mode="free" action="ignoreBlocking,spawnInstant,replace" x="47" y="72"/>		
+			<givecollectibleresource name="CollectibleObsidianShard" amount="2"/>
+			<reward type="Buff" item="AddResource" name="ObsidianOre" amount="10" />
+		</posteffects>
+	</quest>	
+	<quest name="BuffAdv_TMC_V4_Obsidian3b" type="Optional" icon="Military" npc="mountain_clan_uncovered.png" helpName="Help_window_ventures_0">
+		<startcondition>
+			<questcomplete item="BuffAdv_TMC_V4_Obsidian3a"/> 
+			<questcomplete item="BuffAdv_TMC_V4_Click2"/> 				
+		</startcondition>
+		<preeffects>
+			<spawnbuilding  x="47" y="49" name="tmc_buffad_alchemist" action="ignoreBlocking,spawnInstant,replace"/>
+		</preeffects>		
+		<triggers>
+			<buffappliedonadventure item="EmptyEffectBuff_TMC_Reagents" target="tmc_buffad_alchemist" min="1" locaExtension="TMC_ReagentsDelivered" />
+		</triggers>
+		<posteffects>		
+			<spawnbuilding  x="47" y="49" mode="free" name="tmc_buffad_alchemist" action="ignoreBlocking,spawnInstant,replace"/>
+			<givecollectibleresource name="CollectibleObsidianShard" amount="2"/>
+			<reward type="Buff" item="AddResource" name="ObsidianOre" amount="10" />
+		</posteffects>
+	</quest>	
+	
+	<!-- Emergency Defence quests -->
+	<quest name="BuffAdv_TMC_V4_Sub3_Spawn" showQuestWindow="false" showRewardWindow="false" >
+		<startcondition>
+			<questcomplete item="BuffAdv_TMC_V4_Sub2"/>  				
+		</startcondition>
+		<triggers></triggers>
+		<posteffects>
+			<spawnbuilding name="tmc_cave_breakthrough_A" action="ignoreBlocking,spawnInstant,replace" x="19" y="58" mode="enemy" units="EliteWildlifeRecruit|50,EliteWildlifeBowman|30,EliteWildlifeCavalry|150">
+				<conditions>
+					<onmap item="tmc_buffad_closed_gate_clickable_west" max="0"/>
+				</conditions>
+			</spawnbuilding>
+			<spawnbuilding name="tmc_cave_breakthrough_B" action="ignoreBlocking,spawnInstant,replace" x="24" y="28" mode="enemy" units="EliteWildlifeRecruit|100,EliteWildlifeAir|80">
+				<conditions>
+					<onmap item="tmc_buffad_closed_gate_clickable_west" max="0"/>
+				</conditions>
+			</spawnbuilding>
+			<spawnbuilding name="tmc_cave_breakthrough_C" action="ignoreBlocking,spawnInstant,replace" x="38" y="47" mode="enemy" units="EliteWildlifeMilitia|50,EliteWildlifeBowman|95,EliteWildlifeLongbowman|45">
+				<conditions>
+					<onmap item="tmc_buffad_closed_gate_clickable_east" max="0"/>
+				</conditions>
+			</spawnbuilding>
+			<spawnbuilding name="tmc_cave_breakthrough_D" action="ignoreBlocking,spawnInstant,replace" x="39" y="27" mode="enemy" units="EliteWildlifeMilitia|100,EliteWildlifeCavalry|25,EliteWildlifeAir|30">
+				<conditions>
+					<onmap item="tmc_buffad_closed_gate_clickable_east" max="0"/>
+				</conditions>
+			</spawnbuilding>
+			
+		</posteffects>
+	</quest>
+	
+	<quest name="BuffAdv_TMC_V4_Sub3" connectedToQuest="BuffAdv_TMC_V4_Main" type="Story" icon="Military" npc="mountain_clan_uncovered.png" helpName="Help_window_ventures_0">
+		<startcondition>
+			<questcomplete item="BuffAdv_TMC_V4_Sub3_Spawn"/>  				
+		</startcondition>
+		<triggers>
+		<!-- 	<onmap max="0" item="tmc_cave_breakthrough_A" locaExtension="DefeatBrokenThroughCamps"/>	
+			<onmap max="0" item="tmc_cave_breakthrough_B" locaExtension="DefeatBrokenThroughCamps"/>	
+			<onmap max="0" item="tmc_cave_breakthrough_C" locaExtension="DefeatBrokenThroughCamps"/>	
+			<onmap max="0" item="tmc_cave_breakthrough_D" locaExtension="DefeatBrokenThroughCamps"/>	-->
+		<onmaplist item="tmc_cave_breakthrough_A,tmc_cave_breakthrough_B,tmc_cave_breakthrough_C,tmc_cave_breakthrough_D" max="0" locaExtension="DefeatBrokenThroughCamps" />	 				
+		</triggers>
+		<posteffects>		
+		</posteffects>
+	</quest>			
+	
+	<quest name="BuffAdv_TMC_V4_Sub5_Spawn" showQuestWindow="false" showRewardWindow="false" >
+		<startcondition>
+			<questcomplete item="BuffAdv_TMC_V4_Sub4"/>  				
+		</startcondition>
+		<triggers></triggers>
+		<posteffects>
+			<spawnbuilding name="tmc_cave_breakthrough_A1" action="ignoreBlocking,spawnInstant,replace" x="19" y="43" mode="enemy" units="EliteWildlifeRecruit|100,EliteWildlifeCavalry|100,TMC_BossGargantuanLynx|2">
+				<conditions>
+					<onmap item="tmc_buffad_closed_gate_clickable_west" max="0"/>
+				</conditions>
+			</spawnbuilding>
+			<spawnbuilding name="tmc_cave_breakthrough_B1" action="ignoreBlocking,spawnInstant,replace" x="25" y="83" mode="enemy" units="EliteWildlifeRecruit|150,EliteWildlifeBowman|150,EliteWildlifeLongbowman|150,TMC_BossRavagingOx|1">
+				<conditions>
+					<onmap item="tmc_buffad_closed_gate_clickable_west" max="0"/>
+				</conditions>
+			</spawnbuilding>
+			<spawnbuilding name="tmc_cave_breakthrough_C1" action="ignoreBlocking,spawnInstant,replace" x="38" y="26" mode="enemy" units="EliteWildlifeMilitia|75,EliteWildlifeAir|150,TMC_BossEnormousIbex|2">
+				<conditions>
+					<onmap item="tmc_buffad_closed_gate_clickable_east" max="0"/>
+				</conditions>
+			</spawnbuilding>
+			<spawnbuilding name="tmc_cave_breakthrough_D1" action="ignoreBlocking,spawnInstant,replace" x="40" y="65" mode="enemy" units="EliteWildlifeRecruit|100,EliteWildlifeMilitia|75,TMC_BossGhastlyWolf|2">
+				<conditions>
+					<onmap item="tmc_buffad_closed_gate_clickable_east" max="0"/>
+				</conditions>
+			</spawnbuilding>
+			
+		</posteffects>
+	</quest>
+	
+	<quest name="BuffAdv_TMC_V4_Sub5" connectedToQuest="BuffAdv_TMC_V4_Main" type="Story" icon="Military" npc="mountain_clan_uncovered.png" helpName="Help_window_ventures_0">
+		<startcondition>
+			<questcomplete item="BuffAdv_TMC_V4_Sub5_Spawn"/>  				
+		</startcondition>
+		<triggers>
+		<!-- 	<onmap max="0" item="tmc_cave_breakthrough_A1" locaExtension="DefeatBrokenThroughCamps"/>	
+			<onmap max="0" item="tmc_cave_breakthrough_B1" locaExtension="DefeatBrokenThroughCamps"/>	
+			<onmap max="0" item="tmc_cave_breakthrough_C1" locaExtension="DefeatBrokenThroughCamps"/>	
+			<onmap max="0" item="tmc_cave_breakthrough_D1" locaExtension="DefeatBrokenThroughCamps"/>	-->
+			<onmaplist item="tmc_cave_breakthrough_A1,tmc_cave_breakthrough_B1,tmc_cave_breakthrough_C1,tmc_cave_breakthrough_D1" max="0" locaExtension="DefeatBrokenThroughCamps"/>	
+		</triggers>
+		<posteffects>		
+		</posteffects>
+	</quest>		
+
+	<quest name="BuffAdv_TMC_V4_Sub7_Spawn" showQuestWindow="false" showRewardWindow="false" >
+		<triggers></triggers>
+		<posteffects>
+			<spawnbuilding name="tmc_cave_breakthrough_A2" action="ignoreBlocking,spawnInstant,replace" x="23" y="25" mode="enemy" units="EliteWildlifeMilitia|100,EliteWildlifeAir|75,TMC_BossGargantuanLynx|1">
+				<conditions>
+					<onmap item="tmc_buffad_closed_gate_clickable_west" max="0"/>
+				</conditions>
+			</spawnbuilding>
+			<spawnbuilding name="tmc_cave_breakthrough_B2" action="ignoreBlocking,spawnInstant,replace" x="15" y="38" mode="enemy" units="EliteWildlifeMilitia|200,EliteWildlifeBowman|125,EliteWildlifeLongbowman|125,TMC_BossRavagingOx|1">
+				<conditions>
+					<onmap item="tmc_buffad_closed_gate_clickable_west" max="0"/>
+				</conditions>
+			</spawnbuilding>
+			<spawnbuilding name="tmc_cave_breakthrough_C2" action="ignoreBlocking,spawnInstant,replace" x="38" y="79" mode="enemy" units="EliteWildlifeMilitia|75,EliteWildlifeLongbowman|100,EliteWildlifeAir|150,TMC_BossEnormousIbex|1,TMC_BossGhastlyWolf|1">
+				<conditions>
+					<onmap item="tmc_buffad_closed_gate_clickable_east" max="0"/>
+				</conditions>
+			</spawnbuilding>
+			<spawnbuilding name="tmc_cave_breakthrough_D2" action="ignoreBlocking,spawnInstant,replace" x="31" y="35" mode="enemy" units="EliteWildlifeMilitia|100,EliteWildlifeLongbowman|50,EliteWildlifeAir|100,TMC_BossGhastlyWolf|2">
+				<conditions>
+					<onmap item="tmc_buffad_closed_gate_clickable_east" max="0"/>
+				</conditions>
+			</spawnbuilding>
+		
+			
+		</posteffects>
+	</quest>
+
+	<quest name="BuffAdv_TMC_V4_Sub7" connectedToQuest="BuffAdv_TMC_V4_Main" type="Story" icon="Military" npc="mountain_clan_uncovered.png" helpName="Help_window_ventures_0">
+		<startcondition>
+			<questcomplete item="BuffAdv_TMC_V4_Sub7_Spawn"/>  				
+		</startcondition>
+		<preeffects>
+			<exploresector id="10"/>
+		</preeffects>
+		<triggers>
+		<!--	<onmap max="0" item="tmc_cave_breakthrough_A2" locaExtension="DefeatBrokenThroughCamps"/>	
+			<onmap max="0" item="tmc_cave_breakthrough_B2" locaExtension="DefeatBrokenThroughCamps"/>	
+			<onmap max="0" item="tmc_cave_breakthrough_C2" locaExtension="DefeatBrokenThroughCamps"/>	
+			<onmap max="0" item="tmc_cave_breakthrough_D2" locaExtension="DefeatBrokenThroughCamps"/>	-->
+			<onmaplist item="tmc_cave_breakthrough_A2,tmc_cave_breakthrough_B2,tmc_cave_breakthrough_C2,tmc_cave_breakthrough_D2" max="0" locaExtension="DefeatBrokenThroughCamps"/> 
+		</triggers>
+		<posteffects>		
+			<startquest name="BuffAdv_TMC_V4_Sub8"/>
+		</posteffects>
+	</quest>	
+	
+	
+	<!-- Invisible quests for scripting -->
+	<quest name="BuffAdv_TMC_V4_BuffWestGate" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questcomplete item="BuffAdv_TMC_V4_Click1"/>
+		</startcondition>
+		<triggers>
+			<sectorliberated min="1" id="17"/>
+		</triggers>
+	</quest>
+	<quest name="BuffAdv_TMC_V4_BuffEastGate" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questcomplete item="BuffAdv_TMC_V4_Click1"/>
+		</startcondition>
+		<triggers>
+			<sectorliberated min="1" id="18"/>
+		</triggers>	
+	</quest>
+	<quest name="BuffAdv_TMC_V4_ConstructA" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		</startcondition>	
+		<triggers>
+           <buffappliedonadventure min="1" item="EmptyEffectBuff_TMC_ConstructionKitA" locaExtension="outpost_provisionhousebuild" />
+		</triggers>
+		<posteffects>
+			<applyzonebuff name="EffectBuff_TMC_OutpostBuffA"/>			
+		</posteffects>
+	</quest>
+	
+	<quest name="BuffAdv_TMC_V4_ConstructB" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		</startcondition>	
+		<triggers>
+           <buffappliedonadventure min="1" item="EmptyEffectBuff_TMC_ConstructionKitB" locaExtension="outpost_armorybuild" />
+		</triggers>
+		<posteffects>
+			<applyzonebuff name="EffectBuff_TMC_OutpostBuffB"/>			
+		</posteffects>
+	</quest>
+		
+	<quest name="BuffAdv_TMC_V4_ConstructC" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		</startcondition>	
+		<triggers>
+           <buffappliedonadventure min="1" item="EmptyEffectBuff_TMC_ConstructionKitC" locaExtension="outpost_watchtowerbuild" />
+		</triggers>
+		<posteffects>
+			<applyzonebuff name="EffectBuff_TMC_OutpostBuffC"/>			
+		</posteffects>
+	</quest>
+	
+	<quest name="BuffAdv_TMC_V4_ConstructD" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		</startcondition>	
+		<triggers>
+           <buffappliedonadventure min="1" item="EmptyEffectBuff_TMC_ConstructionKitD" locaExtension="outpost_headquartersbuild"/>
+		</triggers>
+		<posteffects>
+			<applyzonebuff name="EffectBuff_TMC_OutpostBuffD"/>			
+		</posteffects>
+	</quest>
+	
+	<quest name="BuffAdv_TMC_V4_Aon1" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questactive item="BuffAdv_TMC_V4_Sub4"/>
+           <buffappliedonadventure min="1" item="EmptyEffectBuff_TMC_ConstructionKitA" target="tmc_buffad_outpost_lot" />
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="tmc_buffad_provision_house" mode="free" action="spawnConstructing,ignoreBlocking,replace" x="28" y="12"/>
+			<spawnbuilding name="firewoodHut_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="27" y="15"/>
+			<spawnbuilding name="FoodCart_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="28" y="14"/>
+			<spawnbuilding name="Kettle_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="28" y="13"/>
+			<spawnbuilding name="loadedCart_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="29" y="14"/>
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="27" y="13"/>			
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="28" y="11"/>				
+		</posteffects>
+	</quest>	
+	<quest name="BuffAdv_TMC_V4_Bon1" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questactive item="BuffAdv_TMC_V4_Sub4"/>
+           <buffappliedonadventure min="1" item="EmptyEffectBuff_TMC_ConstructionKitB" target="tmc_buffad_outpost_lot"/>
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="tmc_buffad_armory" mode="free" action="spawnConstructing,ignoreBlocking,replace"  x="28" y="12"/>	
+			<spawnbuilding name="crates_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="27" y="12"/>
+			<spawnbuilding name="Banner_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="28" y="14"/>
+			<spawnbuilding name="Banner_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="29" y="12"/>			
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="27" y="13"/>			
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="28" y="11"/>						
+		</posteffects>
+	</quest>
+	<quest name="BuffAdv_TMC_V4_Con1" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questactive item="BuffAdv_TMC_V4_Sub4"/>
+           <buffappliedonadventure min="1" item="EmptyEffectBuff_TMC_ConstructionKitC" target="tmc_buffad_outpost_lot"/>
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="tmc_buffad_watchtower" mode="free" action="spawnConstructing,ignoreBlocking,replace"  x="28" y="12"/>
+			<spawnbuilding name="lanternSingle_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="29" y="14"/>
+			<spawnbuilding name="Bucket_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="28" y="14"/>			
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="27" y="13"/>			
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="28" y="11"/>					
+		</posteffects>
+	</quest>
+	<quest name="BuffAdv_TMC_V4_Don1" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questactive item="BuffAdv_TMC_V4_Sub4"/>
+           <buffappliedonadventure min="1" item="EmptyEffectBuff_TMC_ConstructionKitD" target="tmc_buffad_outpost_lot"/>
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="tmc_buffad_hq" mode="free" action="spawnConstructing,ignoreBlocking,replace" x="28" y="12"/>
+			<spawnbuilding name="signpost_03_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="27" y="14"/>
+			<spawnbuilding name="Cherry_Tree_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="28" y="11"/>			
+			<spawnbuilding name="Cherry_Tree_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="27" y="12"/>					
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="27" y="13"/>							
+		</posteffects>
+	</quest>
+	<quest name="BuffAdv_TMC_V4_Aon2" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questactive item="BuffAdv_TMC_V4_Sub6"/>
+           <buffappliedonadventure min="1" item="EmptyEffectBuff_TMC_ConstructionKitA" target="tmc_buffad_outpost_lot1"/>
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="tmc_buffad_provision_house" mode="free" action="spawnConstructing,ignoreBlocking,replace" x="29" y="15"/>
+			<spawnbuilding name="firewoodHut_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="29" y="18"/>
+			<spawnbuilding name="FoodCart_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="29" y="17"/>
+			<spawnbuilding name="Kettle_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="30" y="16"/>
+			<spawnbuilding name="loadedCart_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="30" y="17"/>
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="29" y="16"/>			
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="30" y="14"/>		
+		</posteffects>
+	</quest>	
+	<quest name="BuffAdv_TMC_V4_Bon2" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questactive item="BuffAdv_TMC_V4_Sub6"/>
+           <buffappliedonadventure min="1" item="EmptyEffectBuff_TMC_ConstructionKitB" target="tmc_buffad_outpost_lot1"/>
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="tmc_buffad_armory" mode="free" action="spawnConstructing,ignoreBlocking,replace" x="29" y="15"/>
+			<spawnbuilding name="crates_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="28" y="15"/>
+			<spawnbuilding name="Banner_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="29" y="17"/>
+			<spawnbuilding name="Banner_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="30" y="15"/>			
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="29" y="16"/>			
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="30" y="14"/>						
+		</posteffects>
+	</quest>
+	<quest name="BuffAdv_TMC_V4_Con2" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questactive item="BuffAdv_TMC_V4_Sub6"/>
+           <buffappliedonadventure min="1" item="EmptyEffectBuff_TMC_ConstructionKitC" target="tmc_buffad_outpost_lot1"/>
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="tmc_buffad_watchtower" mode="free" action="spawnConstructing,ignoreBlocking,replace" x="29" y="15"/>
+			<spawnbuilding name="lanternSingle_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="30" y="17"/>
+			<spawnbuilding name="Bucket_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="29" y="17"/>			
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="29" y="16"/>			
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="30" y="14"/>					
+		</posteffects>
+	</quest>
+	<quest name="BuffAdv_TMC_V4_Don2" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questactive item="BuffAdv_TMC_V4_Sub6"/>
+           <buffappliedonadventure min="1" item="EmptyEffectBuff_TMC_ConstructionKitD" target="tmc_buffad_outpost_lot1"/>
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="tmc_buffad_hq" mode="free" action="spawnConstructing,ignoreBlocking,replace" x="29" y="15"/>
+			<spawnbuilding name="signpost_03_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="28" y="17"/>
+			<spawnbuilding name="Cherry_Tree_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="30" y="14"/>			
+			<spawnbuilding name="Cherry_Tree_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="28" y="15"/>					
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="29" y="16"/>				
+		</posteffects>
+	</quest>
+	<quest name="BuffAdv_TMC_V4_Aon3" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questactive item="BuffAdv_TMC_V4_Sub8"/>
+           <buffappliedonadventure min="1" item="EmptyEffectBuff_TMC_ConstructionKitA" target="tmc_buffad_outpost_lot2"/>
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="tmc_buffad_provision_house" mode="free" action="spawnConstructing,ignoreBlocking,replace" x="30" y="11"/>
+			<spawnbuilding name="firewoodHut_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="30" y="14"/>
+			<spawnbuilding name="FoodCart_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="30" y="13"/>
+			<spawnbuilding name="Kettle_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="31" y="12"/>
+			<spawnbuilding name="loadedCart_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="31" y="13"/>
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="30" y="12"/>			
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="31" y="10"/>				
+		</posteffects>
+	</quest>	
+	<quest name="BuffAdv_TMC_V4_Bon3" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questactive item="BuffAdv_TMC_V4_Sub8"/>
+           <buffappliedonadventure min="1" item="EmptyEffectBuff_TMC_ConstructionKitB" target="tmc_buffad_outpost_lot2"/>
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="tmc_buffad_armory" mode="free" action="spawnConstructing,ignoreBlocking,replace" x="30" y="11"/>
+			<spawnbuilding name="crates_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="29" y="11"/>
+			<spawnbuilding name="Banner_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="30" y="13"/>
+			<spawnbuilding name="Banner_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="31" y="11"/>			
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="30" y="12"/>			
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="31" y="10"/>				
+		</posteffects>
+	</quest>
+	<quest name="BuffAdv_TMC_V4_Con3" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questactive item="BuffAdv_TMC_V4_Sub8"/>
+           <buffappliedonadventure min="1" item="EmptyEffectBuff_TMC_ConstructionKitC" target="tmc_buffad_outpost_lot2"/>
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="tmc_buffad_watchtower" mode="free" action="spawnConstructing,ignoreBlocking,replace" x="30" y="11"/>
+			<spawnbuilding name="lanternSingle_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="31" y="13"/>
+			<spawnbuilding name="Bucket_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="30" y="13"/>			
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="30" y="12"/>			
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="31" y="10"/>					
+		</posteffects>
+	</quest>
+	<quest name="BuffAdv_TMC_V4_Don3" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questactive item="BuffAdv_TMC_V4_Sub8"/>
+           <buffappliedonadventure min="1" item="EmptyEffectBuff_TMC_ConstructionKitD" target="tmc_buffad_outpost_lot2"/>
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="tmc_buffad_hq" mode="free" action="spawnConstructing,ignoreBlocking,replace" x="30" y="11"/>
+			<spawnbuilding name="signpost_03_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="29" y="13"/>
+			<spawnbuilding name="Cherry_Tree_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="31" y="10"/>			
+			<spawnbuilding name="Cherry_Tree_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="29" y="11"/>					
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="30" y="12"/>					
+		</posteffects>
+	</quest>
+  
+    <!-- ObsidianDynamiteDummy & Optional Camp-->
+   <quest name="BuffAdv_TMC_V4_ObsidianDynamiteDummy" type="Side" icon="Military" npc="mountain_clan_uncovered.png" helpName="Help_window_ventures_0">
+   		<startcondition>
+			<questcomplete item="BuffAdv_TMC_V4_Sub2"/>  				
+		</startcondition>
+		  <triggers>
+		  	<onmap max="0" item="tmc_buffad_v4_Camp_ObsidianDynamiteDummy" locaExtension="DefeatNewWildlifeOddCargo" />				
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+			<reward type="Buff" item="EmptyEffectBuff_TMC_v4_ObsidianDynamiteDummy" amount="1"/>    
+			<avatarmessage action="buffReceived" name="buffReceived" item="buff_obsidian_dynamite"/>   
+			<adjustgenericvalue name="MountainClan_ObsidianDynamiteDummy" action="set" amount="1"/>
+			<reward type="Buff" item="AddResource" name="ObsidianOre" amount="5" />
+        </posteffects>
+   </quest>
+  
+    <quest name="BuffAdv_TMC_V4_OptionalCamp" type="Side" icon="Military" npc="mountain_clan_uncovered.png" helpName="Help_window_ventures_0">
+    	<startcondition>
+			<questcomplete item="BuffAdv_TMC_V4_Sub2"/>  				
+		</startcondition>
+		  <triggers>
+		  	<onmap max="0" item="tmc_buffad_v4_Camp_OptionalCamp" locaExtension="DefeatNewWildlife" />				
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl18" amount="1"/>    
+			<avatarmessage action="buffReceived" name="buffReceived" item="icon_damascene_hammer_buff"/>
+			<reward type="Buff" item="AddResource" name="ObsidianOre" amount="5" />  
+        </posteffects>
+   </quest>
+  
+  	<quest name="BuffAdv_TMC_V4_DebuffStartQuest" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>
+			<applyzonebuff name="GeneralSpeedBuff_TMC_A">
+				<conditions>
+					<checkgenericvalue name="MountainClan_DispelledDebuffA" max="0"/>
+				</conditions>
+			</applyzonebuff>
+			<applyzonebuff name="EffectBuff_TMC_B">
+				<conditions>
+					<checkgenericvalue name="MountainClan_DispelledDebuffB" max="0"/>
+				</conditions>
+			</applyzonebuff>		
+			<applyzonebuff name="EffectBuff_TMC_C">
+				<conditions>
+					<checkgenericvalue name="MountainClan_DispelledDebuffC" max="0"/>
+				</conditions>
+			</applyzonebuff>
+			<applyzonebuff name="EffectBuff_TMC_D">
+				<conditions>
+					<checkgenericvalue name="MountainClan_DispelledDebuffD" max="0"/>
+				</conditions>
+			</applyzonebuff>	
+		</posteffects>
+	</quest>
+  
+  
+</Root>
+
+    
+    
+      
+      
+ 
+      
+      
+      
+      
+
+

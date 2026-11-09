@@ -1,0 +1,2408 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<Root>
+    
+    	<!--
+    
+    	// name = Name of Quest
+    	// showQuestWindow="false"  = disable show Quest Window funktion
+    	// showRewardWindow="false"  = disable show Reward Window funktion
+	// colorSchema = use a colorschema could be "night" ,"oven","snow","colormod,radd,gadd,badd,rmul,gmul,bmul"
+	// specialType="firstQuest", this is the start of a quest series, will be aktivated when zone starts
+    	// active = false means quest is inactive
+    	
+    	<quests name="QuestName" colorSchema="night" specialType="firstQuest" active="true">
+    		// if all triggers true quest is finished 
+    		<triggers>
+    			// if Woodcutter exist onMap quest is finished (if amount is one, it could be ignored"
+    			<trigger type="Building" name="Woodcutter" condition="onMap" />
+    			// if Sawmill is created quest is finished
+    			<trigger type="Building" name="Sawmill" condition="created" />
+    			// if 2 Sawmill in map quest is finished
+    			<trigger type="Building" name="Sawmill" condition="ge" amount="2" />
+    			// if 100 Iron is created quest is finished ge means greater or equal
+    			<trigger type="Resource" name="Iron" condition="ge" amount="100" />
+    			// if 100 additional Iron is created quest is finished geDelta means greater or equal
+			// for example, if you have 120 iron at the start of the quest, you must have at least 220 to finish it
+    			<trigger type="Resource" name="Iron" condition="geDelta" amount="100" />
+				
+				//Trigger Events: If trigger completion shall trigger further events (besides quest progress) enter the "onComplete" property with these possible comma-seperated values (NO WHITESPACES!):
+				<trigger type="Building" condition="selected" onComplete="destroySelectedBuilding,doSomethingElse"/> //Destroys the current selected Building and is doint things:)
+    		</triggers>
+    		
+    		// Player posteffects
+    		<posteffects>
+    			// Player gets 100 iron
+    			<reward type="Resource" name="Iron" amount="100" />
+    			// Player gets 200 XP
+    			<reward type="XP" amount="200" />
+    			
+    			// Quest shows a dummy reward (just visual), designer can define an icon and a loca key for the tooltip
+    			<reward type="Dummy" item="icon_name.png" name="loca_key"/>
+    		</posteffects>
+    		
+    		// postrequisits is called after player gets his posteffects 
+    		// startQuest is the name of the quest to start
+    		// Delay is Delay in seconds before quest starts
+    		<postrequisits startQuest="Quest2" startDelay="10" />
+			
+			// Hints (Red bouncing arrow)
+			<hints>
+				// name:       not used yet, will be used as text identifier for hint texts
+				// pointTo:    UI Element which is pointed to
+				//   		   available values:
+				//                 ActionBarButton01
+				//                 ActionBarButton02
+				//                 ActionBarButton03
+				//                 ActionBarButton04
+				//                 ActionBarButton05
+				//                 ActionBarButton06
+				//                 ActionBarButton07
+				//                 ActionBarButton08
+				//                 ActionBarButton09
+				//                 QuestButton
+				// offsetX:    x-offset in pixels from the center of the ui element
+				// offsetY:    y-offset in pixels from the center of the ui element
+				// direction:  direction the arrow will point to
+				//             available values: N, NE, E, SE, S, SW, W, NW
+				<hint name="FirstBuildMenu" pointTo="ActionBarButton01" offsetX="0" offsetY="-40" direction="S" />
+			</hints>
+			
+    	</quests>
+    	
+    	-->
+    
+    <!-- Survey Migration Quest	
+    
+    <quest name="TutSurveyQuest" type="Story" icon="Building" npc="quest_character_mentor03.png" helpName="Help_window_place_building_0" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="1" max="50"/>
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <helpeffects>
+         </helpeffects>
+         <triggers>
+           <trigger type="Resource" name="Wood" amount="2" condition="produce" locaExtension="undefined"/>
+         </triggers>
+         <posteffects>
+           <reward type="Resource" name="Stone" amount="10"/>               
+         </posteffects>
+      </quest>	 -->
+
+<!-- PLAYER LEVEL 50: PREPARATION -->
+
+	<quest name="TutAdvancedNewSectorChain" type="Story" icon="QuestShort" npc="noble_ludwig.png" helpName="Help_window_collections_0" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="50" />
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <questcomplete item="TutAdvancedNewSectorExploration"/> 
+		   <questcomplete item="TutAdvancedNewSectorDeed"/>
+           <questcomplete item="TutAdvancedNewSectorWarehouse"/>
+         </triggers>
+         
+         <posteffects>          
+			<reward type="Resource" name="PlatinumOre" amount="300" /> 
+			<reward type="Resource" name="Granite" amount="150" /> 
+        </posteffects>
+      </quest>
+
+	  <quest name="TutAdvancedNewSectorExploration" type="Story" connectedToQuest="TutAdvancedNewSectorChain" icon="QuestShort" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+         	<playerlevel min="50" />
+         </startcondition>
+		 
+    		<triggers>
+    			 <sectorexplored min="10"/>
+    		</triggers>
+    	<posteffects>	
+    			<reward type="XP" amount="3500"/>
+			    <reward type="Resource" name="PlatinumOre" amount="50" /> 	
+				<reward type="Buff" item="IslandDeed_FreeIsland" amount="1"/>				
+     	</posteffects>	
+			  <hints>
+			  </hints>
+		</quest>
+	  
+	  <quest name="TutAdvancedNewSectorDeed" type="Story" connectedToQuest="TutAdvancedNewSectorChain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true">
+		 <startcondition>
+         	<playerlevel min="50" />
+			<questcomplete item="TutAdvancedNewSectorExploration"/>
+         </startcondition>
+		 
+    		<triggers>
+				<buffapplied item="IslandDeed_FreeIsland" min="1"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="1800"/>
+			    <reward type="Resource" name="PlatinumOre" amount="50" /> 
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+		
+				
+		<quest name="TutAdvancedNewSectorWarehouse" type="Story" connectedToQuest="TutAdvancedNewSectorChain" icon="Building" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="50" />
+         	<questcomplete item="TutAdvancedNewSectorDeed"/>			
+         </startcondition>
+         
+    		<triggers> 	
+    			 <onmap item="SpecialWarehouse" min="1" />	
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="5000"/>
+				<reward type="Resource" name="PlatinumOre" amount="60" />
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+	 
+	
+    
+<!-- PLAYER LEVEL 51: NEW SECTOR -->
+	
+	<quest name="TutAdvancedNewSectorPrepare" type="Story" icon="QuestMedium" npc="quest_character_mentor03.png" helpName="Help_window_collections_0" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="51" />
+		   <questcomplete item="TutAdvancedNewSectorWarehouse"/>
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+			<questcomplete item="TutAdvancedStockMaterials"/> 
+			<questcomplete item="TutAdvancedReadyArmy"/> 
+			<questcomplete item="TutAdvancedRecruitArmy"/> 
+            <questcomplete item="TutAdvancedNewSectorBandits"/> 
+
+         </triggers>
+         
+         <posteffects>          
+			<reward type="Resource" name="PlatinumOre" amount="300" /> 
+			<reward type="Resource" name="Granite" amount="150" /> 
+        </posteffects>
+      </quest>
+	  
+		<!-- Quest 1 for preparing -->
+		<quest name="TutAdvancedStockMaterials" type="Story" connectedToQuest="TutAdvancedNewSectorPrepare" icon="Resources" npc="quest_character_mentor03.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="51" />
+           	<questcomplete item="TutAdvancedNewSectorWarehouse"/>
+         </startcondition>
+         
+    		<triggers>
+    			<resource item="Granite" min="3000"/>
+				<resource item="ExoticPlank" min="1000"/>
+    		</triggers>
+    		
+    		<posteffects>	
+    			<reward type="XP" amount="7700"/>
+				<reward type="Resource" name="PlatinumOre" amount="65" />
+				<reward type="Buff" item="ProductivityBuffLvl5" amount="5"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+    	</quest>
+		
+		<!-- Quest 2 for preparing -->			
+		<quest name="TutAdvancedReadyArmy" type="Story" connectedToQuest="TutAdvancedNewSectorPrepare" icon="Military" npc="quest_character_general02.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="51" />
+           	<questcomplete item="TutAdvancedNewSectorWarehouse"/>
+         </startcondition>
+         
+    		<triggers>
+    			<resource item="SteelSword" min="1000"/>
+				<resource item="TitaniumSword" min="500"/>
+				<resource item="Cannon" min="500"/>
+				<resource item="Crossbow" min="700"/>
+    		</triggers>
+    		
+    		<posteffects>	
+    			<reward type="XP" amount="56400"/>
+				<reward type="Resource" name="PlatinumOre" amount="160" />
+				<reward type="Resource" name="Population" amount="40"/>
+				<reward type="Buff" item="RecruitingBuffLvl3" amount="2"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+    	</quest>
+		
+		<!-- Quest 3 for preparing -->		
+		<quest name="TutAdvancedRecruitArmy" type="Story" connectedToQuest="TutAdvancedNewSectorPrepare" icon="Military" npc="quest_character_general02.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="51" />
+           	<questcomplete item="TutAdvancedReadyArmy"/>
+         </startcondition>
+         
+    		<triggers>
+				<trigger type="CheckArmy" condition="ge" amount="3000"/>
+    		</triggers>
+    		
+    		<posteffects>	
+    			<reward type="XP" amount="10000"/>
+				<reward type="Resource" name="PlatinumOre" amount="100" />
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+    	</quest>
+		
+		<!--Return to normal progression-->
+		<quest name="TutAdvancedNewSectorBandits" type="Story" connectedToQuest="TutAdvancedNewSectorPrepare" icon="Military" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="51" />
+           	<questcomplete item="TutAdvancedRecruitArmy"/>
+         </startcondition>
+         
+    		<triggers>
+    			<!--trigger type="Building" name="Bandits_New" condition="l" amount="22"/-->
+				<!--<buildingdestroyed item="Bandits_New" min="2"/-->
+				<onmap item="Bandits_New" max="21" locaExtension="TutAdvancedNewSectorBandits"/>				
+    		</triggers>
+    		
+    		<posteffects>	
+    			<reward type="XP" amount="11500"/>
+				<reward type="Resource" name="PlatinumOre" amount="65" />
+				<reward type="Resource" name="Bread" amount="1000" />
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+    	</quest>
+		 
+	
+	
+<!-- PLAYER LEVEL 52: MAHOGANY -->	
+
+		<quest name="TutAdvancedMahoganyChain" type="Story" icon="QuestShort" npc="noble_ludwig.png" helpName="Help_window_collections_0" showRewardWindow="true">
+		 <startcondition>
+		   <playerlevel min="52" />
+         </startcondition>
+         
+    		<triggers>
+           		<questcomplete item="TutAdvancedMahoganyGather"/>
+           		<questcomplete item="TutAdvancedMahoganySawmill"/>
+           		<questcomplete item="TutAdvancedMahoganyPlanks"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="Resource" name="Granite" amount="200" />	
+				<reward type="Resource" name="PlatinumOre" amount="500" />
+     		</posteffects>
+     		
+			  <hints>			   
+			  </hints>
+    	</quest>
+    	
+    	
+    	<quest name="TutAdvancedMahoganyGather" type="Story" connectedToQuest="TutAdvancedMahoganyChain" icon="Resources" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+         	<playerlevel min="52" />
+         </startcondition>
+		 
+    		<triggers>
+    			 <resource item="MahoganyWood" min="50" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="4000"/>
+				<reward type="Resource" name="PlatinumOre" amount="100" />
+				<reward type="Resource" name="MahoganyWood" amount="50" />
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+				
+		<quest name="TutAdvancedMahoganySawmill" type="Story" connectedToQuest="TutAdvancedMahoganyChain" icon="Building" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="52" />
+         	<questcomplete item="TutAdvancedMahoganyGather"/> 
+         </startcondition>
+         <helpeffects>
+           <hint pointTo="GAMESTATE_ID_ACTIONBAR.actionBarLeft.btnActionBar01" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.cl5" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.MahoganySawmill.image" type="Glow"/>
+         </helpeffects>
+         
+    		<triggers>
+    			 <onmap item="MahoganySawmill" min="1"/> 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="16200"/>
+				<reward type="Resource" name="PlatinumOre" amount="100" />
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	<quest name="TutAdvancedMahoganyPlanks" type="Story" connectedToQuest="TutAdvancedMahoganyChain" icon="Resources" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="52" />
+         	<questcomplete item="TutAdvancedMahoganySawmill"/> 
+         </startcondition>
+         
+    		<triggers> 
+    			 <trigger type="Resource" name="MahoganyPlank" amount="50" condition="produce"/>		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="3000"/>
+				<reward type="Resource" name="PlatinumOre" amount="150" />
+				<reward type="Resource" name="MahoganyWood" amount="50" />
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	
+    	
+<!-- PLAYER LEVEL 53: EXOTIC WOOD -->	
+
+		<quest name="TutAdvancedExoticWoodChain" type="Story" icon="QuestShort" npc="noble_ludwig.png" helpName="Help_window_collections_0" showRewardWindow="true">
+		 <startcondition>
+		   <playerlevel min="53" />
+         </startcondition>
+         
+    		<triggers>
+           		<questcomplete item="TutAdvancedExoticWoodCutter"/>
+           		<questcomplete item="TutAdvancedExoticWoodForester"/>
+           		<questcomplete item="TutAdvancedExoticWoodProduce"/> 
+    		</triggers>
+    		
+    		<posteffects>
+				<reward type="Resource" name="PlatinumOre" amount="1200" />
+				<reward type="Buff" item="ProductivityBuffLvl21" amount="1"/>
+     		</posteffects>
+     		
+			  <hints>			   
+			  </hints>
+    	</quest>
+    	
+    	
+    	<quest name="TutAdvancedExoticWoodCutter" type="Story" connectedToQuest="TutAdvancedExoticWoodChain" icon="Building" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+         	<playerlevel min="53" />
+         </startcondition>
+         <helpeffects>
+           <hint pointTo="GAMESTATE_ID_ACTIONBAR.actionBarLeft.btnActionBar01" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.cl5" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.ExoticWoodCutter.image" type="Glow"/>
+         </helpeffects>
+		 
+    		<triggers>
+    			 <onmap item="ExoticWoodCutter" min="1"/> 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="3550"/>
+				<reward type="Resource" name="PlatinumOre" amount="100" />
+				<reward type="Resource" name="MahoganyWood" amount="10"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+				
+		<quest name="TutAdvancedExoticWoodForester" type="Story" connectedToQuest="TutAdvancedExoticWoodChain" icon="Building" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="53" />
+         	<questcomplete item="TutAdvancedExoticWoodCutter"/> 
+         </startcondition>
+         <helpeffects>
+           <hint pointTo="GAMESTATE_ID_ACTIONBAR.actionBarLeft.btnActionBar01" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.cl5" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.ExoticWoodForester.image" type="Glow"/>
+         </helpeffects>
+         
+    		<triggers>
+    			 <onmap item="ExoticWoodForester" min="1"/> 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="3000"/>
+				<reward type="Resource" name="Coal" amount="300"/>
+				<reward type="Resource" name="PlatinumOre" amount="150" />
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	<quest name="TutAdvancedExoticWoodProduce" type="Story" connectedToQuest="TutAdvancedExoticWoodChain" icon="Resources" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="53" />
+         	<questcomplete item="TutAdvancedExoticWoodForester"/> 
+         </startcondition>
+         
+    		<triggers> 	
+    			 <trigger type="Resource" name="ExoticWood" amount="50" condition="produce"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="2800"/>
+				<reward type="Resource" name="PlatinumOre" amount="100" />				
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	
+    	
+<!-- PLAYER LEVEL 54: SWORDMAN -->	
+
+		<quest name="TutAdvancedSwordmanChain" type="Story" icon="QuestShort" npc="noble_ludwig.png" helpName="Help_window_collections_0" showRewardWindow="true">
+		 <startcondition>
+		   <playerlevel min="54" />
+         </startcondition>
+         
+    		<triggers>
+           		<questcomplete item="TutAdvancedSwordmanPaltinumSmelter"/> 
+           		<questcomplete item="TutAdvancedSwordmanPlatinumWeaponsmith"/> 
+           		<questcomplete item="TutAdvancedSwordmanEliteBarracks"/> 
+           		<questcomplete item="TutAdvancedSwordmanPlatinumOre"/> 
+           		<questcomplete item="TutAdvancedSwordmanPlatinumSwords"/> 
+           		<questcomplete item="TutAdvancedSwordmanTraining"/> 
+    		</triggers>
+    		
+    		<posteffects>
+				<reward type="Resource" name="PlatinumOre" amount="800" />
+				<reward type="Buff" item="MountainDemolition_S" amount="1"/>	
+			</posteffects>
+     		
+			  <hints>			   
+			  </hints>
+    	</quest>
+    	
+    	
+    	<quest name="TutAdvancedSwordmanPaltinumSmelter" type="Story" connectedToQuest="TutAdvancedSwordmanChain" icon="Building" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+         	<playerlevel min="54" />
+         </startcondition>
+         <helpeffects>
+           <hint pointTo="GAMESTATE_ID_ACTIONBAR.actionBarLeft.btnActionBar01" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.cl5" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.PlatinumSmelter.image" type="Glow"/>
+         </helpeffects>
+		 
+    		<triggers>
+    			 <onmap item="PlatinumSmelter" min="1"/> 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="22000"/>
+				<reward type="Resource" name="PlatinumOre" amount="300" />
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+				
+		<quest name="TutAdvancedSwordmanPlatinumWeaponsmith" type="Story" connectedToQuest="TutAdvancedSwordmanChain" icon="Building" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="54" />
+         	<questcomplete item="TutAdvancedSwordmanPaltinumSmelter"/> 
+         </startcondition>
+         <helpeffects>
+           <hint pointTo="GAMESTATE_ID_ACTIONBAR.actionBarLeft.btnActionBar01" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.cl5" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.PlatinumWeaponsmith.image" type="Glow"/>
+         </helpeffects>
+         
+    		<triggers>
+    			 <onmap item="PlatinumWeaponsmith" min="1"/> 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="22400"/>
+				<reward type="Resource" name="PlatinumOre" amount="200" />
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	<quest name="TutAdvancedSwordmanEliteBarracks" type="Story" connectedToQuest="TutAdvancedSwordmanChain" icon="Building" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="54" />
+         	<questcomplete item="TutAdvancedSwordmanPlatinumWeaponsmith"/> 
+         </startcondition>
+         <helpeffects>
+           <hint pointTo="GAMESTATE_ID_ACTIONBAR.actionBarLeft.btnActionBar01" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.cl5" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.Barracks4.image" type="Glow"/>
+         </helpeffects>
+         
+    		<triggers>
+    			 <onmap item="EliteBarracks" min="1"/> 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="19700"/>
+				<reward type="Resource" name="PlatinumOre" amount="175" />
+				<reward type="Buff" item="RecruitingBuffLvl3" amount="1"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	<quest name="TutAdvancedSwordmanPlatinumOre" type="Story" connectedToQuest="TutAdvancedSwordmanChain" icon="Resources" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="54" /> 
+		 	<questcomplete item="TutAdvancedSwordmanEliteBarracks"/>
+         </startcondition>
+         
+    		<triggers>
+    			 <resource item="PlatinumOre" min="2000"/>
+				 <trigger type="SpecialistTask" name="FindTreasureProlonged" condition="found" resourceType="PlatinumOre" amount="60" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="6400"/>
+				<reward type="Resource" name="Coal" amount="1000"/>
+				<reward type="Resource" name="Beer" amount="250" />
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	<quest name="TutAdvancedSwordmanPlatinumSwords" type="Story" connectedToQuest="TutAdvancedSwordmanChain" icon="Resources" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="54" />
+         	<questcomplete item="TutAdvancedSwordmanPlatinumOre"/> 
+         </startcondition>
+         
+    		<triggers>
+    			 <trigger type="Resource" name="PlatinumSword" amount="10" condition="produce"/>	
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="1500"/>
+				<reward type="Resource" name="PlatinumOre" amount="80" />
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	<quest name="TutAdvancedSwordmanTraining" type="Story" connectedToQuest="TutAdvancedSwordmanChain" icon="Military" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="54" />
+         	<questcomplete item="TutAdvancedSwordmanPlatinumSwords"/> 
+         </startcondition>
+         
+    		<triggers>
+    			 <trigger type="MilitaryUnit" name="Swordsman" condition="ge" amount="20"/> 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="3500"/>
+				<reward type="Resource" name="Coin" amount="100"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	
+    	
+<!-- PLAYER LEVEL 55: KNIGHT -->	
+
+		<quest name="TutAdvancedKnightChain" type="Story" icon="QuestShort" npc="noble_ludwig.png" helpName="Help_window_collections_0" showRewardWindow="true">
+		 <startcondition>
+		   <playerlevel min="55" />
+         </startcondition>
+         
+    		<triggers>
+           		<questcomplete item="TutAdvancedKnightShepard"/> 
+           		<questcomplete item="TutAdvancedKnightWeaver"/> 
+           		<questcomplete item="TutAdvancedKnightSaddleMaker"/> 
+           		<questcomplete item="TutAdvancedKnightEliteStable"/> 
+           		<questcomplete item="TutAdvancedKnightBattleHorses"/> 
+           		<questcomplete item="TutAdvancedKnightMountedSwordsman"/> 
+           		<questcomplete item="TutAdvancedKnightTraining"/> 
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="Resource" name="Coin" amount="300" />
+				<reward type="Resource" name="TitaniumOre" amount="150"/>
+     		</posteffects>
+     		
+			  <hints>			   
+			  </hints>
+    	</quest>
+    	
+    	
+    	<quest name="TutAdvancedKnightShepard" type="Story" connectedToQuest="TutAdvancedKnightChain" icon="Building" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+         	<playerlevel min="55" />
+         </startcondition>
+         <helpeffects>
+           <hint pointTo="GAMESTATE_ID_ACTIONBAR.actionBarLeft.btnActionBar01" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.cl5" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.Shepard.image" type="Glow"/>
+         </helpeffects>
+		 
+    		<triggers>
+    			 <onmap item="Shepard" min="1"/> 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="13300"/>
+				<reward type="Resource" name="Marble" amount="250"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+				
+		<quest name="TutAdvancedKnightWeaver" type="Story" connectedToQuest="TutAdvancedKnightChain" icon="Building" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="55" />
+         	<questcomplete item="TutAdvancedKnightShepard"/> 
+         </startcondition>
+         <helpeffects>
+           <hint pointTo="GAMESTATE_ID_ACTIONBAR.actionBarLeft.btnActionBar01" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.cl5" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.Weaver.image" type="Glow"/>
+         </helpeffects>
+         
+    		<triggers>
+    			 <onmap item="Weaver" min="1"/> 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="16200"/>
+				<reward type="Resource" name="Wool" amount="30"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	<quest name="TutAdvancedKnightSaddleMaker" type="Story" connectedToQuest="TutAdvancedKnightChain" icon="Building" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="55" />
+         	<questcomplete item="TutAdvancedKnightWeaver"/> 
+         </startcondition>
+         <helpeffects>
+           <hint pointTo="GAMESTATE_ID_ACTIONBAR.actionBarLeft.btnActionBar01" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.cl5" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.SaddleMaker.image" type="Glow"/>
+         </helpeffects>
+         
+    		<triggers>
+    			 <onmap item="SaddleMaker" min="1"/> 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="13300"/>
+				<reward type="Resource" name="PlatinumOre" amount="30"/>			
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	<quest name="TutAdvancedKnightEliteStable" type="Story" connectedToQuest="TutAdvancedKnightChain" icon="Building" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="55" /> 
+		 	<questcomplete item="TutAdvancedKnightSaddleMaker"/>
+         </startcondition>
+         <helpeffects>
+           <hint pointTo="GAMESTATE_ID_ACTIONBAR.actionBarLeft.btnActionBar01" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.cl5" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.EliteStable.image" type="Glow"/>
+         </helpeffects>
+         
+    		<triggers>
+    			 <onmap item="EliteStable" min="1"/> 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="26800"/>
+				<reward type="Resource" name="Beer" amount="200"/>
+			</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	<quest name="TutAdvancedKnightBattleHorses" type="Story" connectedToQuest="TutAdvancedKnightChain" icon="Resources" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="55" />
+         	<questcomplete item="TutAdvancedKnightEliteStable"/> 
+         </startcondition>
+         
+    		<triggers> 
+    			 <trigger type="Resource" name="BattleHorse" amount="20" condition="produce"/>		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="5000"/>
+				<reward type="Resource" name="Iron" amount="300"/>	
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	<quest name="TutAdvancedKnightMountedSwordsman" type="Story" connectedToQuest="TutAdvancedKnightChain" icon="Military" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="55" />
+         	<questcomplete item="TutAdvancedKnightBattleHorses"/> 
+         </startcondition>
+         
+    		<triggers>
+    			 <trigger type="MilitaryUnit" name="MountedSwordsman" condition="ge" amount="10"/> 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="5000"/>
+				<reward type="Resource" name="Beer" amount="300"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	<quest name="TutAdvancedKnightTraining" type="Story" connectedToQuest="TutAdvancedKnightChain" icon="Military" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="55" />
+         	<questcomplete item="TutAdvancedKnightMountedSwordsman"/> 
+         </startcondition>
+         
+    		<triggers>
+    			 <trigger type="MilitaryUnit" name="Knight" condition="ge" amount="10"/> 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="5000"/>.
+				<reward type="Resource" name="Coin" amount="100"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	
+    	
+<!-- PLAYER LEVEL 56: MOUNTED MARKSMAN -->	
+
+		<quest name="TutAdvancedMountedMarksmanChain" type="Story" icon="QuestShort" npc="noble_ludwig.png" helpName="Help_window_collections_0" showRewardWindow="true">
+		 <startcondition>
+		   <playerlevel min="56" />
+         </startcondition>
+         
+    		<triggers>
+           		<questcomplete item="TutAdvancedMountedMarksmanArchebuseMaker"/> 
+           		<questcomplete item="TutAdvancedMountedMarksmanArchebuse"/> 
+           		<questcomplete item="TutAdvancedMountedMarksmanEpicTutentureSearch"/> 
+           		<questcomplete item="TutAdvancedMarksmanTraining"/> 
+           		<questcomplete item="TutAdvancedArmouredMarksmanTraining"/> 
+           		<questcomplete item="TutAdvancedMountedMarksmanTraining"/> 
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="Buff" item="RecruitingBuffLvl2" amount="5" />			
+				<reward type="Buff" item="BattleBuffBomb_random_units" amount="1"/>	
+				<reward type="Buff" item="ProductivityBuffLvl14" amount="1"/>	
+     		</posteffects>
+     		
+			  <hints>			   
+			  </hints>
+    	</quest>
+    	
+    	
+    	<quest name="TutAdvancedMountedMarksmanArchebuseMaker" type="Story" connectedToQuest="TutAdvancedMountedMarksmanChain" icon="Building" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+         	<playerlevel min="56" />
+         </startcondition>
+         <helpeffects>
+           <hint pointTo="GAMESTATE_ID_ACTIONBAR.actionBarLeft.btnActionBar01" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.cl5" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.ArchebuseMaker.image" type="Glow"/>
+         </helpeffects>
+		 
+    		<triggers>
+    			 <onmap item="ArchebuseMaker" min="1"/> 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="13850"/>
+				<reward type="Resource" name="Salpeter" amount="50"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+				
+		<quest name="TutAdvancedMountedMarksmanArchebuse" type="Story" connectedToQuest="TutAdvancedMountedMarksmanChain" icon="Resources" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="56" />
+         	<questcomplete item="TutAdvancedMountedMarksmanArchebuseMaker"/> 
+         </startcondition>
+         
+    		<triggers>
+    			 <trigger type="Resource" name="Archebuse" amount="30" condition="produce"/> 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="5000"/>
+				<reward type="Resource" name="MahoganyWood" amount="20"/>
+				<reward type="Buff" item="ProductivityBuffLvl5" amount="1"/>					
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	<quest name="TutAdvancedMountedMarksmanEpicTutentureSearch" type="Story" connectedToQuest="TutAdvancedMountedMarksmanChain" icon="QuestShort" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="56" />
+         	<questcomplete item="TutAdvancedMountedMarksmanArchebuse"/> 
+         </startcondition>
+         
+    		<triggers>
+				<ownStarMenuItemTypeList amount="1" type="Adventure" target="Fairytale" locaExtension="Fairytale"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="5500"/>
+				<reward type="Resource" name="Coin" amount="100"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	<quest name="TutAdvancedMarksmanTraining" type="Story" connectedToQuest="TutAdvancedMountedMarksmanChain" icon="Military" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="56" /> 
+		 	<questcomplete item="TutAdvancedMountedMarksmanEpicTutentureSearch"/>
+         </startcondition>
+         
+    		<triggers>
+    			 <trigger type="MilitaryUnit" name="Marksman" condition="ge" amount="10"/> 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="6500"/>
+				<reward type="Resource" name="MahoganyWood" amount="20"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	<quest name="TutAdvancedArmouredMarksmanTraining" type="Story" connectedToQuest="TutAdvancedMountedMarksmanChain" icon="Military" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="56" />
+         	<questcomplete item="TutAdvancedMarksmanTraining"/> 
+         </startcondition>
+         
+    		<triggers>
+    			 <trigger type="MilitaryUnit" name="ArmoredMarksman" condition="ge" amount="10"/> 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="8500"/>
+				<reward type="Resource" name="Bread" amount="1500"/>
+				<reward type="Resource" name="Beer" amount="300"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	<quest name="TutAdvancedMountedMarksmanTraining" type="Story" connectedToQuest="TutAdvancedMountedMarksmanChain" icon="Military" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="56" />
+         	<questcomplete item="TutAdvancedArmouredMarksmanTraining"/> 
+         </startcondition>
+         
+    		<triggers>
+    			 <trigger type="MilitaryUnit" name="MountedMarksman" condition="ge" amount="10"/> 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="9000"/>
+				<reward type="Resource" name="Salpeter" amount="30"/>
+				<reward type="Resource" name="Grout" amount="10"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	
+    	
+<!-- PLAYER LEVEL 57: BESIEGER -->	
+
+		<quest name="TutAdvancedBesiegerChain" type="Story" icon="QuestShort" npc="noble_ludwig.png" helpName="Help_window_collections_0" showRewardWindow="true">
+		 <startcondition>
+		   <playerlevel min="57" />
+         </startcondition>
+         
+    		<triggers>
+           		<questcomplete item="TutAdvancedBesiegerWagonMaker"/> 
+           		<questcomplete item="TutAdvancedBesiegerFoundry"/> 
+           		<questcomplete item="TutAdvancedBesiegerMortar"/> 
+           		<questcomplete item="TutAdvancedBesiegerTraining"/> 
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="Resource" name="Coin" amount="500" />
+				<reward type="Buff" item="PremiumAccount1Day" amount="1"/>					
+     		</posteffects>
+     		
+			  <hints>			   
+			  </hints>
+    	</quest>
+    	
+    	
+    	<quest name="TutAdvancedBesiegerWagonMaker" type="Story" connectedToQuest="TutAdvancedBesiegerChain" icon="Building" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+         	<playerlevel min="57" />
+         </startcondition>
+         <helpeffects>
+           <hint pointTo="GAMESTATE_ID_ACTIONBAR.actionBarLeft.btnActionBar01" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.cl5" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.WagonMaker.image" type="Glow"/>
+         </helpeffects>
+		 
+    		<triggers>
+    			 <onmap item="WagonMaker" min="1"/> 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="20100"/>
+				<reward type="Resource" name="Marble" amount="500"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+				
+		<quest name="TutAdvancedBesiegerFoundry" type="Story" connectedToQuest="TutAdvancedBesiegerChain" icon="Building" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="57" />
+         	<questcomplete item="TutAdvancedBesiegerWagonMaker"/> 
+         </startcondition>
+         <helpeffects>
+           <hint pointTo="GAMESTATE_ID_ACTIONBAR.actionBarLeft.btnActionBar01" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.cl5" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.Foundry.image" type="Glow"/>
+         </helpeffects>
+         
+    		<triggers>
+    			 <onmap item="Foundry" min="1"/> 	 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="44000"/>
+				<reward type="Resource" name="TitaniumOre" amount="250"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	<quest name="TutAdvancedBesiegerMortar" type="Story" connectedToQuest="TutAdvancedBesiegerChain" icon="Resources" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="57" />
+         	<questcomplete item="TutAdvancedBesiegerFoundry"/> 
+         </startcondition>
+         
+    		<triggers> 	
+    			 <trigger type="Resource" name="Mortar" amount="10" condition="produce"/> 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="4500"/>
+				<reward type="Resource" name="Grout" amount="30"/>
+				<reward type="Resource" name="Coin" amount="75"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	<quest name="TutAdvancedBesiegerTraining" type="Story" connectedToQuest="TutAdvancedBesiegerChain" icon="Military" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="57" /> 
+		 	<questcomplete item="TutAdvancedBesiegerMortar"/>
+         </startcondition>
+         
+    		<triggers>
+    			 <trigger type="MilitaryUnit" name="Besieger" condition="ge" amount="10"/>  		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="6000"/>
+				<reward type="Resource" name="PlatinumOre" amount="250"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	
+    	
+<!-- PLAYER LEVEL 58: BANDITS -->	
+
+		<quest name="TutAdvancedBanditsFirst" type="Story" icon="Military" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="58" />
+         </startcondition>
+         
+    		<triggers>
+    			<trigger type="Building" name="Banditsleader_New" condition="l" amount="7"/>
+    		</triggers>
+    		
+    		<posteffects>	
+    			<reward type="XP" amount="5000"/>
+				<reward type="Resource" name="PlatinumOre" amount="100"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+    	</quest>
+    	
+    	<quest name="TutAdvancedStory01" type="Story" icon="QuestShort" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="58" />
+		 	<questcomplete item="TutAdvancedBanditsFirst"/>
+         </startcondition>
+         
+    		<triggers>
+    			<buildingupgradelevel item="EliteBarracks" amount="1" min="3" />
+    			<trigger type="PayForQuestFinish" name="Wagon" amount="50" />
+    			<trigger type="PayForQuestFinish" name="Archebuse" amount="50" />
+    			<trigger type="PayForQuestFinish" name="Horse" amount="50" />
+    		</triggers>
+    		
+    		<posteffects>	
+    			<reward type="XP" amount="150000"/>	
+				<reward type="Buff" item="RecruitingBuffLvl3" amount="1"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+    	</quest>
+    	
+<!-- LEVEL 58: EPIC FARMYARD -->
+	<quest name="TutAdvancedEWCorn_Main" type="Story" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<playerlevel min="51" /> 
+			<!-- The quest should not start before level 58 because that is the earliest intended time that a player can get an epic farmyard. The lower level is a failsave in case we ever change how the evil queen adventures are made available.-->
+			<onmap item="EpicWorkyardCorn" min="1" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="TutAdvancedEWCorn_UnlockChain"/> 
+			<questcomplete item="TutAdvancedEWCorn_CompleteSnowWhite"/> 
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="1800"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="TutAdvancedEWCorn_UnlockChain" type="Story" connectedToQuest="TutAdvancedEWCorn_Main" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questactive item="TutAdvancedEWCorn_Main"/>
+		</startcondition>
+		<triggers>
+			<!--buffapplied item="EffectBuff_UpgradeEpicChain_SeedToWater" min="1"/-->
+			<questcomplete item="UnlockEW_SeedToWaterRank2" locaExtension="UnlockSeedToWater"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="1800"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="TutAdvancedEWCorn_CompleteSnowWhite" type="Story" connectedToQuest="TutAdvancedEWCorn_Main" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="TutAdvancedEWCorn_UnlockChain"/>
+		</startcondition>
+		<triggers>
+			<completeadventurelist item="BuffAdventures_Evil_Queen_Fisherman" amount="1" locaExtension="fisherman" />
+			<completeadventurelist item="BuffAdventures_Evil_Queen_Hansel_Gretel" amount="1" locaExtension="hanselgretel"/>
+			<completeadventurelist item="BuffAdventures_Evil_Queen_Red_Riding_Hood" amount="1" locaExtension="redridinghood"/>
+			<completeadventurelist item="BuffAdventures_Evil_Queen_Piper_of_Hamelin" amount="1" locaExtension="piperofhamelin"/>
+			<completeadventurelist item="BuffAdventures_Evil_Queen_Snow_White" amount="1" locaExtension="snowwhite" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="1800"/>
+		</posteffects>
+	</quest>
+
+
+
+<!-- PLAYER LEVEL 59: EXOTIC PLANKS -->
+
+		<quest name="TutAdvancedExoticPlanksChain" type="Story" icon="QuestShort" npc="noble_ludwig.png" helpName="Help_window_collections_0" showRewardWindow="true">
+		 <startcondition>
+		   <playerlevel min="59" />
+         </startcondition>
+         
+    		<triggers>
+           		<questcomplete item="TutAdvancedExoticPlanksExoticWood"/>
+           		<questcomplete item="TutAdvancedExoticPlanksProduce"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="Resource" name="MahoganyWood" amount="150" />	
+				<reward type="Buff" item="ProductivityBuffLvl14" amount="1"/>	
+				<reward type="Buff" item="ProductivityBuffLvl14" amount="1"/>	
+				<reward type="Buff" item="ProductivityBuffLvl14" amount="1"/>
+     		</posteffects>
+     		
+			  <hints>			   
+			  </hints>
+    	</quest>
+    	
+    	
+    	<quest name="TutAdvancedExoticPlanksExoticWood" type="Story" connectedToQuest="TutAdvancedExoticPlanksChain" icon="Resources" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+         	<playerlevel min="59" />
+         </startcondition>
+		 
+    		<triggers>
+    			 <trigger type="Resource" name="ExoticWood" amount="50" condition="produce"/> 		 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="4500"/>
+				<reward type="Resource" name="Granite" amount="50"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+				
+		<quest name="TutAdvancedExoticPlanksProduce" type="Story" connectedToQuest="TutAdvancedExoticPlanksChain" icon="Resources" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="59" />
+         	<questcomplete item="TutAdvancedExoticPlanksExoticWood"/> 
+         </startcondition>
+         
+    		<triggers>	
+    			 <trigger type="Resource" name="ExoticPlank" amount="50" condition="produce"/> 		 		 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="3500"/>
+				<reward type="Resource" name="PlatinumOre" amount="50"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	
+    	
+<!-- PLAYER LEVEL 60: GRANITE -->	
+
+		<quest name="TutAdvancedGraniteChain" type="Story" icon="QuestShort" npc="noble_ludwig.png" helpName="Help_window_collections_0" showRewardWindow="true">
+		 <startcondition>
+		   <playerlevel min="60" />
+         </startcondition>
+         
+    		<triggers>
+           		<questcomplete item="TutAdvancedGraniteDeposit"/> 
+           		<questcomplete item="TutAdvancedGraniteMason"/> 
+           		<questcomplete item="TutAdvancedGraniteProduce"/> 
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="Buff" item="ProductivityBuffLvl20" amount="1" />
+				<reward type="Buff" item="RecruitingBuffLvl301" amount="1"/>
+     		</posteffects>
+     		
+			  <hints>			   
+			  </hints>
+    	</quest>
+    	
+    	
+    	<quest name="TutAdvancedGraniteDeposit" type="Story" connectedToQuest="TutAdvancedGraniteChain" icon="QuestShort" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+         	<playerlevel min="60" />
+         </startcondition>
+		 
+    		<triggers>
+    			 <trigger type="Specialist" name="Granite" condition="foundDeposit" amount="1" /> 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="5000"/>
+				<reward type="Resource" name="RealWood" amount="1000"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+				
+		<quest name="TutAdvancedGraniteMason" type="Story" connectedToQuest="TutAdvancedGraniteChain" icon="Building" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="60" />
+         	<questcomplete item="TutAdvancedGraniteDeposit"/> 
+         </startcondition>
+         <helpeffects>
+           <hint pointTo="GAMESTATE_ID_ACTIONBAR.actionBarLeft.btnActionBar01" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.cl5" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.GraniteMason.image" type="Glow"/>
+         </helpeffects>
+         
+    		<triggers>
+    			 <onmap item="GraniteMason" min="1"/> 	 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="9000"/>
+				<reward type="Resource" name="PlatinumOre" amount="50"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	<quest name="TutAdvancedGraniteProduce" type="Story" connectedToQuest="TutAdvancedGraniteChain" icon="Resources" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="60" />
+         	<questcomplete item="TutAdvancedGraniteMason"/> 
+         </startcondition>
+         
+    		<triggers> 
+    			 <trigger type="Resource" name="Granite" amount="50" condition="produce"/> 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="5000"/>
+				<reward type="Resource" name="Coal" amount="1000"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	
+    	
+<!-- PLAYER LEVEL 61: TITANIUM -->	
+
+		<quest name="TutAdvancedTitaniumChain" type="Story" icon="QuestShort" npc="noble_ludwig.png" helpName="Help_window_collections_0" showRewardWindow="true">
+		 <startcondition>
+		   <playerlevel min="61" />
+         </startcondition>
+         
+    		<triggers>
+           		<questcomplete item="TutAdvancedTitaniumDeposit"/> 
+           		<questcomplete item="TutAdvancedTitaniumMine"/> 
+           		<questcomplete item="TutAdvancedTitaniumProduce"/>  
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="buff" item="MountainDemolition_M" amount="1" />
+     		</posteffects>
+     		
+			  <hints>			   
+			  </hints>
+    	</quest>
+    	
+    	
+    	<quest name="TutAdvancedTitaniumDeposit" type="Story" connectedToQuest="TutAdvancedTitaniumChain" icon="QuestShort" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+         	<playerlevel min="61" />
+         </startcondition>
+		 
+    		<triggers>
+    			 <trigger type="Specialist" name="TitaniumOre" condition="foundDeposit" amount="1" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="5000"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+				
+		<quest name="TutAdvancedTitaniumMine" type="Story" connectedToQuest="TutAdvancedTitaniumChain" icon="Building" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="61" />
+         	<questcomplete item="TutAdvancedTitaniumDeposit"/> 
+         </startcondition>
+         <helpeffects>
+           <hint pointTo="GAMESTATE_ID_ACTIONBAR.actionBarLeft.btnActionBar01" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.cl5" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.TitaniumMine.image" type="Glow"/>
+         </helpeffects>
+         
+    		<triggers>
+    			<buildinglistupgradelevel min="1" amount="1" item="TitaniumMine" name="EpicTitaniumMine" />	
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="8300"/>
+				<reward type="Resource" name="PlatinumOre" amount="50"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	<quest name="TutAdvancedTitaniumProduce" type="Story" connectedToQuest="TutAdvancedTitaniumChain" icon="Resources" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="61" />
+         	<questcomplete item="TutAdvancedTitaniumMine"/> 
+         </startcondition>
+         
+    		<triggers>
+    			 <trigger type="Resource" name="TitaniumOre" amount="50" condition="produce"/> 	 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="4000"/>
+				<reward type="Resource" name="Coal" amount="2500"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	
+   
+<!-- PLAYER LEVEL 62: SALPETER -->	
+
+		<quest name="TutAdvancedSalpeterChain" type="Story" icon="QuestShort" npc="noble_ludwig.png" helpName="Help_window_collections_0" showRewardWindow="true">
+		 <startcondition>
+		   <playerlevel min="62" />
+         </startcondition>
+         
+    		<triggers>
+           		<questcomplete item="TutAdvancedSalpeterDeposit"/> 
+           		<questcomplete item="TutAdvancedSalpeterMine"/> 
+           		<questcomplete item="TutAdvancedSalpeterProduce"/>  
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="Resource" name="PlatinumOre" amount="100" />		
+				<reward type="Buff" item="ProductivityBuffLvl21" amount="1"/>
+				<reward type="XP" amount="10000"/>
+     		</posteffects>
+     		
+			  <hints>			   
+			  </hints>
+    	</quest>
+    	
+    	
+    	<quest name="TutAdvancedSalpeterDeposit" type="Story" connectedToQuest="TutAdvancedSalpeterChain" icon="QuestShort" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+         	<playerlevel min="62" />
+         </startcondition>
+		 
+    		<triggers>
+    			 <trigger type="Specialist" name="Salpeter" condition="foundDeposit" amount="1" /> 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="2000"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+				
+		<quest name="TutAdvancedSalpeterMine" type="Story" connectedToQuest="TutAdvancedSalpeterChain" icon="Building" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="62" />
+         	<questcomplete item="TutAdvancedSalpeterDeposit"/> 
+         </startcondition>
+         <helpeffects>
+           <hint pointTo="GAMESTATE_ID_ACTIONBAR.actionBarLeft.btnActionBar01" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.cl5" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.SalpeterMine.image" type="Glow"/>
+         </helpeffects>
+         
+    		<triggers>
+    			 <buildinglistupgradelevel min="1" amount="1" item="SalpeterMine" name="EpicSalpeterMine" />	 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="8500"/>
+				<reward type="Resource" name="Coal" amount="700"/>
+				<reward type="Resource" name="IronOre" amount="250"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	<quest name="TutAdvancedSalpeterProduce" type="Story" connectedToQuest="TutAdvancedSalpeterChain" icon="Resources" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="62" />
+         	<questcomplete item="TutAdvancedSalpeterMine"/> 
+         </startcondition>
+         
+    		<triggers>
+    			 <trigger type="Resource" name="Salpeter" amount="50" condition="produce"/> 	 	 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="2500"/>
+				<reward type="Resource" name="Granite" amount="30"/>
+				
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	
+    	
+<!-- PLAYER LEVEL 63: FAST TRAVEL -->	
+
+		<quest name="TutAdvancedProvisionBuffChain" type="Story" icon="QuestShort" npc="noble_ludwig.png" helpName="Help_window_collections_0" showRewardWindow="true">
+		 <startcondition>
+		   <playerlevel min="63" />
+         </startcondition>
+         
+    		<triggers>
+           		<questcomplete item="TutAdvancedProvisionBuffOwn"/> 
+           		<questcomplete item="TutAdvancedProvisionBuffUse"/> 
+    		</triggers>
+    		
+    		<posteffects>
+				<reward type="Adventure" name="1001NightsWoodcutter" amount="1"/>			
+     		</posteffects>
+     		
+			  <hints>			   
+			  </hints>
+    	</quest>
+    	
+    	
+    	<quest name="TutAdvancedProvisionBuffOwn" type="Story" connectedToQuest="TutAdvancedProvisionBuffChain" icon="QuestShort" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+         	<playerlevel min="63" />
+         </startcondition>
+		 
+    		<triggers>
+    			 <buffowned item="ProvisionerBuffLvl3" min="1"/>	
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="7500"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+				
+		<quest name="TutAdvancedProvisionBuffUse" type="Story" connectedToQuest="TutAdvancedProvisionBuffChain" icon="QuestShort" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="63" />
+         	<questcomplete item="TutAdvancedProvisionBuffOwn"/> 
+         </startcondition>
+         
+    		<triggers>
+    			 <buffapplied item="ProvisionerBuffLvl3" min="1"/> 
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="8500"/>
+				<reward type="Buff" item="SpeedUpPopulationGrowth100" amount="1"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	
+    	
+<!-- PLAYER LEVEL 64: BANDITS -->
+	
+		<quest name="TutAdvancedBanditsSecond" type="Story" icon="Military" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="64" />
+         </startcondition>
+         
+    		<triggers>
+    			<trigger type="Building" name="BanditsLvl2_New" condition="l" amount="6"/>
+    		</triggers>
+    		
+    		<posteffects>	
+    			<reward type="XP" amount="8500"/>		
+				<reward type="Resource" name="PlatinumOre" amount="70"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+    	</quest>
+    	
+    	<quest name="TutAdvancedStory02" type="Story" icon="QuestLong" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="64" />
+		 	<questcomplete item="TutAdvancedBanditsSecond"/>
+         </startcondition>
+         
+    		<triggers>
+    			<buildingupgradelevel item="EliteBarracks" amount="1" min="5" />
+    			<trigger type="MilitaryUnit" name="Knight" condition="ge" amount="100"/>
+				<trigger type="MilitaryUnit" name="Marksman" condition="ge" amount="50"/>
+				<trigger type="MilitaryUnit" name="ArmoredMarksman" condition="ge" amount="50"/>
+				<trigger type="MilitaryUnit" name="Besieger" condition="ge" amount="20"/>
+    		</triggers>
+    		
+    		<posteffects>	
+    			<reward type="XP" amount="216000"/>			 
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+    	</quest>
+
+
+
+<!-- PLAYER LEVEL 65: EPIC TREASURE HUNT -->
+
+		<quest name="TutAdvancedEpicTreasureHuntUse" type="Story" icon="QuestShort" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="65" />
+         </startcondition>
+         
+    		<triggers>
+    			 <trigger type="SpecialistTask" name="FindTreasureProlonged" condition="found" resourceType="PlatinumOre" amount="60" /> 		
+    			 <trigger type="SpecialistTask" name="FindTreasureProlonged" condition="found" resourceType="ExoticWood" amount="100" /> 
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="3500"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	<quest name="TutAdvancedStory03" type="Story" icon="QuestShort" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="65" />
+		 	<questcomplete item="TutAdvancedEpicTreasureHuntUse"/>
+         </startcondition>
+         
+    		<triggers>
+    			<buildingupgradelevel item="PlatinumSmelter" amount="2" min="5" /> <!--53k XP-->
+    			<buildingupgradelevel item="PlatinumWeaponsmith" amount="2" min="5" /> <!--53k XP-->
+    			<trigger type="PayForQuestFinish" name="PlatinumSword" amount="50" /> <!--4.5k XP-->
+    		</triggers>
+    		
+    		<posteffects>	
+    			<reward type="XP" amount="91000"/>		
+				<reward type="Buff" item="PremiumAccount3Days" amount="1"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+    	</quest>
+    	
+    	
+<!-- PLAYER LEVEL 66: EXOTIC WOOD OPTIMIZATION -->
+
+		<quest name="TutAdvancedExoticWoodOptimize" type="Story" icon="Resources" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="66" />
+         </startcondition>
+         
+    		<triggers> 
+    			 <productionvalue item="ExoticWood" min="6" />
+    			 <productionvalue item="Iron" min="20" />		
+    			 <productionvalue item="Wheel" min="5" />
+    			 <productionvalue item="ExoticPlank" min="6" />	
+    			 <productionvalue item="Wagon" min="5" />	
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="7500"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	<quest name="TutAdvancedStory04" type="Story" icon="QuestShort" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="66" />
+		 	<questcomplete item="TutAdvancedExoticWoodOptimize"/>
+         </startcondition>
+         
+    		<triggers>
+			    <buildingupgradelevel item="Wheelmaker" amount="2" min="6" />
+    			<!--refilldeposits item="ExoticWood" amount="500"/-->
+    			<trigger type="Resource" name="Wheel" amount="5" condition="produce"/>
+    			<trigger type="PayForQuestFinish" name="Wheel" amount="5" />
+    		</triggers>
+    		
+    		<posteffects>	
+    			<reward type="XP" amount="98900"/>
+				<reward type="Resource" name="Coal" amount="5000"/>
+				<reward type="Buff" item="BattleBuffDestroy_small_medium_camps" amount="1"/>
+				<reward type="Buff" item="BattleBuffKill_random_unit_type" amount="1"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+    	</quest>
+    	
+    	
+    	
+<!-- PLAYER LEVEL 67: GRANITE OPTIMIZATION -->
+
+		<quest name="TutAdvancedGraniteOptimize" type="Story" icon="Resources" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="67" />
+         </startcondition>
+         
+    		<triggers>
+    			 <productionvalue item="Granite" min="5" /> 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="6500"/>
+				<reward type="Resource" name="Coal" amount="2500"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	<quest name="TutAdvancedStory05" type="Story" icon="QuestShort" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="67" />
+		 	<questcomplete item="TutAdvancedGraniteOptimize"/>
+         </startcondition>
+         
+    		<triggers>
+    			<countdeposittype amount="3" item="Granite"/>
+				<!--trigger type="Specialist" name="Granite" condition="foundDeposit" amount="3" /-->  
+				<!--refilldeposits item="Granite" amount="15000"/-->
+				<resourcegathered min="1500" type="Granite"/>    			
+    			<trigger type="PayForQuestFinish" name="Granite" amount="500" />
+    		</triggers>
+    		
+    		<posteffects>	
+    			<reward type="XP" amount="57500"/>	
+				<reward type="Resource" name="PlatinumOre" amount="250"/>
+				<reward type="Buff" item="ProductivityBuffLvl20" amount="1"/>
+				<reward type="Buff" item="MountainDemolition_S" amount="1"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+    	</quest>
+    	
+    	
+    	
+<!-- PLAYER LEVEL 68: SALPETER OPTIMIZATION -->
+
+		<quest name="TutAdvancedSalpeterOptimize" type="Story" icon="Resources" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="68" />
+         </startcondition>
+         
+    		<triggers>
+    			 <productionvalue item="Salpeter" min="5" /> 
+    			 <productionvalue item="Gunpowder" min="4" />
+    			 <productionvalue item="Wagon" min="2" />
+    			 <productionvalue item="Mortar" min="5" />		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="6700"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	<quest name="TutAdvancedStory06" type="Story" icon="QuestShort" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="68" />
+		 	<questcomplete item="TutAdvancedSalpeterOptimize"/>
+         </startcondition>
+         
+    		<triggers>
+				<countdeposittype amount="1" item="Salpeter"/>    			
+				<!--refilldeposits item="Salpeter" amount="5000"/-->
+				<!--buffapplied min="5000" item="FillDeposit" resource="Salpeter" locaExtension="refill"/-->
+    			<trigger type="Resource" name="Gunpowder" amount="500" condition="produce"/> 
+    			<trigger type="PayForQuestFinish" name="Gunpowder" amount="50" /> 
+    		</triggers>
+    		
+    		<posteffects>	
+    			<reward type="XP" amount="47100"/>
+				<reward type="Buff" item="ProvisionerBuffLvl3" amount="1"/>
+				<reward type="Buff" item="QuestStart_TheLittlePanda" amount="1"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+    	</quest>
+    	
+    	
+    	
+<!-- PLAYER LEVEL 69: TITANIUM OPTIMIZATION -->
+
+		<quest name="TutAdvancedTitaniumOptimize" type="Story" icon="Resources" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="69" />
+         </startcondition>
+         
+    		<triggers>
+    			 <productionvalue item="TitaniumOre" min="15" />
+    			 <productionvalue item="Coal" min="150" />
+    			 <productionvalue item="Titanium" min="6" /> 
+    			 <productionvalue item="TitaniumSword" min="5" /> 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="9500"/>
+				<reward type="Buff" item="ProductivityBuffLvl14" amount="1"/>
+				<reward type="Buff" item="ProductivityBuffLvl14" amount="1"/>
+				<reward type="Buff" item="ProductivityBuffLvl14" amount="1"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	<quest name="TutAdvancedStory07" type="Story" icon="QuestShort" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="69" />
+		 	<questcomplete item="TutAdvancedTitaniumOptimize"/>
+         </startcondition>
+         
+    		<triggers>
+				<countdeposittype amount="1" item="TitaniumOre"/>    			
+				<!--refilldeposits item="TitaniumOre" amount="5000"/-->
+				<!--buffapplied min="5000" item="FillDeposit" resource="TitaniumOre" locaExtension="refill"/--> 
+    			<trigger type="Resource" name="BookFitting" amount="250" condition="produce"/>
+    			<trigger type="PayForQuestFinish" name="BookFitting" amount="50" />
+    		</triggers>
+    		
+    		<posteffects>	
+    			<reward type="XP" amount="25000"/>
+				<reward type="Buff" item="ProductivityBuffLvl12" amount="1"/> 
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+    	</quest>
+    	
+    	
+    	
+<!-- PLAYER LEVEL 70: TASK BUILDING -->	
+
+		<quest name="TutAdvancedStory08" type="Story" icon="QuestShort" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="70" />
+		 	<questcomplete item="TutAdvancedStory07"/>
+         </startcondition>
+
+    		<triggers>
+    			<trigger type="Resource" name="PlatinumOre" amount="2000" condition="buy"/>
+    			<trigger type="Resource" name="Platinum" amount="1000" condition="sell"/>
+    		</triggers>
+
+    		<posteffects>	
+    			<reward type="XP" amount="25000"/>
+				<reward type="Resource" name="Grout" amount="50"/>
+				<reward type="Resource" name="Coin" amount="250"/>
+				<reward type="Resource" name="PlatinumOre" amount="300"/>
+				<reward type="Resource" name="Coal" amount="3000"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+    	</quest>
+
+		<quest name="TutAdvancedStory09" type="Story" icon="QuestShort" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		   <playerlevel min="70" />
+		 	<questcomplete item="TutAdvancedStory08"/>
+         </startcondition>
+         
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Meat" amount="15000" />
+    			<trigger type="PayForQuestFinish" name="Fish" amount="25000" />
+    			<trigger type="PayForQuestFinish" name="Bread" amount="17000" />
+    			<trigger type="PayForQuestFinish" name="Beer" amount="5000" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="50000"/>
+				<reward type="Resource" name="PlatinumOre" amount="500"/>
+				<reward type="Buff" item="RecruitingBuffLvl3" amount="1"/>
+				<reward type="Buff" item="RecruitingBuffLvl3" amount="1"/>
+				<reward type="Buff" item="SpeedUpPopulationGrowth" amount="1"/>
+				<reward type="Buff" item="SpeedUpPopulationGrowth" amount="1"/>
+     		</posteffects>
+     		
+			  <hints>			   
+			  </hints>
+    	</quest>
+    	
+    	<quest name="TutAdvancedStoryChain" type="Story" icon="QuestShort" npc="noble_ludwig.png" helpName="Help_window_collections_0" showRewardWindow="true">
+		 <startcondition>
+         	<playerlevel min="70" />
+		   <questcomplete item="TutAdvancedStory09"/>
+         </startcondition>
+		 
+    		<triggers>
+           		<questcomplete item="TutAdvancedStory10"/>
+           		<questcomplete item="TutAdvancedStory11"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="Resource" name="HardCurrency" amount="500" />	
+				<reward type="Buff" item="BuildBuilding" name="TaskBuilding" amount="1" recurringChance="100"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+				
+    	<quest name="TutAdvancedStory10" type="Story" connectedToQuest="TutAdvancedStoryChain" icon="Building" npc="quest_character_mentor03.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="70" />
+		   <questcomplete item="TutAdvancedStory09"/>
+         </startcondition>
+         
+    		<triggers>
+    			<specialisttaskresulttype item="FindTreasureProlonged" type="PlatinumOre" amount="300" locaExtension="type"/>  		
+				<specialisttaskresulttype item="FindTreasureProlonged" type="Granite" amount="600" locaExtension="type"/>  					 
+				<specialisttaskresulttype item="FindTreasureProlonged" type="ExoticWood" amount="1000" locaExtension="type"/>  					
+				<specialisttaskresulttype item="FindTreasureProlonged" type="MahoganyWood" amount="400" locaExtension="type"/>  					
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="35000"/> 		
+				<reward type="Resource" name="StarCoin" amount="100"/>
+				<reward type="Resource" name="Coal" amount="750"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+		<quest name="TutAdvancedStory11" type="Story" connectedToQuest="TutAdvancedStoryChain" icon="QuestShort" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="70" />
+         	<questcomplete item="TutAdvancedStory10"/> 
+         </startcondition>
+         
+    		<triggers>
+    			 <trigger type="Resource" resourceType="GoldOre" amount="1000" condition="ChkResources" name="Adventure" actionName="" locaExtension="refiller"/>
+				<lootedresource amount="2500" type="PlatinumOre" tier="10" locaExtension="AnyAdventure_Dif10" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="26000"/>
+				
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+		
+<!-- PLAYER LEVEL 71: PLATINUM OPTIMIZATION -->
+
+		<quest name="TutAdvancedPlatinumOptimize" type="Story" icon="Resources" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="71" />
+         </startcondition>
+         
+    		<triggers>
+    			 <productionvalue item="Platinum" min="15" />
+    			 <productionvalue item="Coal" min="250" />
+    			 <productionvalue item="PlatinumSword" min="5" />		
+    		</triggers>
+    		
+    		<posteffects>	
+    			<reward type="XP" amount="9000"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+    	</quest>
+    	
+    	
+    	
+    	
+    	
+<!-- PLAYER LEVEL 72: MANOR -->	
+
+		<quest name="TutAdvancedManorChain" type="Story" icon="QuestShort" npc="noble_ludwig.png" helpName="Help_window_collections_0" showRewardWindow="true">
+		 <startcondition>
+		   <playerlevel min="72" />
+         </startcondition>
+         
+    		<triggers>
+           		<questcomplete item="TutAdvancedManorBuild"/>
+           		<questcomplete item="TutAdvancedManorPopulation"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="Resource" name="HardCurrency" amount="100" />				
+     		</posteffects>
+     		
+			  <hints>			   
+			  </hints>
+    	</quest>
+    	
+    	
+    	<quest name="TutAdvancedManorBuild" type="Story" connectedToQuest="TutAdvancedManorChain" icon="Building" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+         	<playerlevel min="72" />
+         </startcondition>
+		 
+    		<triggers>
+    			 <onmap item="Manor" min="1"/>  		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="14150"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+				
+		<quest name="TutAdvancedManorPopulation" type="Story" connectedToQuest="TutAdvancedManorChain" icon="QuestShort" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="72" />
+         	<questcomplete item="TutAdvancedManorBuild"/> 
+         </startcondition>
+         
+    		<triggers>
+    			 <population item="maxCapacity" min="5000"/> 	 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="70750"/>
+				<reward type="Buff" item="SpeedUpPopulationGrowth100" amount="1"/>
+				<reward type="Buff" item="SpeedUpPopulationGrowth100" amount="1"/>
+				<reward type="Buff" item="SpeedUpPopulationGrowth100" amount="1"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+    	
+    	
+    	
+<!-- PLAYER LEVEL 73: BANDITS -->
+
+		<quest name="TutAdvancedBanditsThird" type="Story" connectedToQuest="TutAdvancedCollectionsChain" icon="QuestShort" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="73" />
+         </startcondition>
+         
+    		<triggers>
+    			<trigger type="Building" name="BanditsLvl3_New" condition="l" amount="2"/>
+    		</triggers>
+    		
+    		<posteffects>	
+    			<reward type="XP" amount="35500"/>
+				<reward type="Resource" name="PlatinumOre" amount="200"/>
+				<reward type="Resource" name="Coal" amount="2500"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+    	</quest>
+    	
+         
+    		
+<!-- PLAYER LEVEL 74: STORY (Task Building unlock)-->
+		
+         
+		<quest name="TutAdvanced1001NightsRaid" type="Story" icon="QuestShort" npc="noble_ludwig.png" helpName="Help_window_collections_0" showRewardWindow="true">
+		 <startcondition>
+         	<playerlevel min="74" />
+         </startcondition>
+		 
+    		<triggers>
+                <completeadventurelist item="1001NightsWoodcutter" amount="1" locaExtension="woodcutter"/>
+				<completeadventurelist item="1001NightsFirstThief" amount="1" locaExtension="firstthief"/>
+				<completeadventurelist item="1001NightsSecondThief" amount="1" locaExtension="secondthief"/>
+				<completeadventurelist item="1001NightsThirdThief" amount="1" locaExtension="thirdthief"/>			
+				<completeadventurelist item="1001NightsTreasureKnowledge" amount="1" locaExtension="treasureknowledge"/>
+				<completeadventurelist item="1001NightsTreasureWisdom" amount="1" locaExtension="treasurewisdom"/>
+				<completeadventurelist item="1001NightsBesiegedCity" amount="1" locaExtension="besiegedcity"/>
+				<completeadventurelist item="1001NightsSeaSnake" amount="1" locaExtension="seasnake"/>
+				<completeadventurelist item="1001NightsOilLamp" amount="1" locaExtension="oillamp"/>
+				<completeadventurelist item="1001NightsPrincess" amount="1" locaExtension="princess"/>
+    		</triggers>
+    		
+    		<posteffects>
+				<reward type="XP" amount="75000"/>
+    			<reward type="Resource" name="PlatinumOre" amount="2000" />
+				<reward type="Resource" name="StarCoin" amount="1000" />
+				<reward type="Resource" name="MahoganyWood" amount="1000" />
+				<reward type="Resource" name="Grout" amount="300" />
+				<reward type="Buff" item="ProductivityBuffLvl12" amount="3"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+				
+         
+<!-- PLAYER LEVEL 75: ALL SECTORS -->
+
+		<quest name="TutAdvancedAllSectorsChain" type="Story" icon="QuestShort" npc="noble_ludwig.png" helpName="Help_window_collections_0" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="75" />
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <questcomplete item="TutAdvancedAllSectorsExploration"/> 
+           <questcomplete item="TutAdvancedAllSectorsUnlock"/> 
+         </triggers>
+         
+         <posteffects>
+           <reward type="Resource" name="HardCurrency" amount="1500" />   
+			<reward type="Buff" item="ProductivityBuffLvl12" amount="1"/> 
+			<reward type="Buff" item="ProductivityBuffLvl12" amount="1"/>
+         </posteffects>
+      </quest>
+	  
+		  
+	  <quest name="TutAdvancedAllSectorsExploration" type="Story" connectedToQuest="TutAdvancedAllSectorsChain" icon="QuestShort" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+         	<playerlevel min="75" />
+         </startcondition>
+		 
+    		<triggers>
+    			 <sectorexplored min="19"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="1500"/>
+				<reward type="Buff" item="BattleBuffBomb_random_units" amount="1"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+				
+		<quest name="TutAdvancedAllSectorsUnlock" type="Story" connectedToQuest="TutAdvancedAllSectorsChain" icon="Military" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="75" />
+         	<questcomplete item="TutAdvancedAllSectorsExploration"/> 
+         </startcondition>
+         
+    		<triggers>
+    			 <trigger type="Building" name="Banditsleader_New" condition="l" amount="1"/>		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="75000"/>
+				<reward type="Adventure" name="1001NightsOilLamp" amount="1"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+	
+
+<!-- PLAYER LEVEL 76: WEALTH AND PROSPERITY -->
+
+<quest name="TutAdvancedWealthAndProsperityChain" type="Story" icon="QuestMedium" npc="noble_ludwig.png" helpName="Help_window_collections_0" showRewardWindow="true">
+		 <startcondition>
+		   <playerlevel min="76" />
+		   <questcomplete item="TutAdvancedAllSectorsChain"/>
+         </startcondition>
+         
+    		<triggers>
+           		<questcomplete item="TutAdvancedWealthAndProsperity01"/> 
+           		<questcomplete item="TutAdvancedWealthAndProsperity02"/>  
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="Resource" name="StarCoin" amount="350" />		
+				<reward type="Buff" item="ProductivityBuffLvl13" amount="3"/>
+				<reward type="XP" amount="17000"/>
+     		</posteffects>
+     		
+			  <hints>			   
+			  </hints>
+    	</quest>
+    	
+    	
+    	<quest name="TutAdvancedWealthAndProsperity01" type="Story" connectedToQuest="TutAdvancedWealthAndProsperityChain" icon="Trade" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+         	<playerlevel min="76" />
+			 <questcomplete item="TutAdvancedAllSectorsChain"/>
+         </startcondition>
+		 
+    		<triggers>
+    			 <trigger type="Resource" name="Coin" amount="12000" condition="buy"/> 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="12000"/>
+				<reward type="Resource" name="Oil" amount="30" />
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+				
+		<quest name="TutAdvancedWealthAndProsperity02" type="Story" connectedToQuest="TutAdvancedWealthAndProsperityChain" icon="Resources" npc="noble_ludwig.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="76" />
+         	<questcomplete item="TutAdvancedWealthAndProsperity01"/> 
+         </startcondition>
+         
+    		<triggers>
+    			 <trigger type="Resource" name="Coin" amount="10000" condition="produce"/>	 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="14500"/>
+				<reward type="Resource" name="Oil" amount="30"/>
+				<reward type="Resource" name="StarCoin" amount="100"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+
+	<!-- PLAYER LEVEL 77: A NEW COAT OF PAINT -->
+
+		<quest name="TutAdvancedNewCoatOfPaint" type="Story" icon="Building" npc="quest_character_mentor03.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="77" />
+         </startcondition>
+         
+    		<triggers>
+    			<buildingupgradelevel item="Mayorhouse" amount="1" min="7" />
+    		</triggers>
+    		
+    		<posteffects>	
+    			<reward type="XP" amount="44000"/>
+				<reward type="Resource" name="StarCoin" amount="200"/>
+				<reward type="Buff" item="ProductivityBuffLvl14" amount="1"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+    	</quest>
+
+<!-- PLAYER LEVEL 78: ALTERNATIVE MEDICINE -->
+
+<quest name="TutAdvancedAlternativeMedicineChain" type="Story" icon="QuestMedium" npc="quest_character_mentor02.png" helpName="Help_window_collections_0" showRewardWindow="true">
+		 <startcondition>
+		   <playerlevel min="78" />
+         </startcondition>
+         
+    		<triggers>
+           		<questcomplete item="TutAdvancedAlternativeMedicine01"/> 
+           		<questcomplete item="TutAdvancedAlternativeMedicine02"/>  
+    		</triggers>
+    		
+    		<posteffects>
+				<reward type="Resource" name="Oil" amount="50" />	
+				<reward type="Buff" item="ProductivityBuffLvl21" amount="1"/>
+				<reward type="XP" amount="36500"/>
+     		</posteffects>
+     		
+			  <hints>			   
+			  </hints>
+    	</quest>
+    	
+    	
+    	<quest name="TutAdvancedAlternativeMedicine01" type="Story" connectedToQuest="TutAdvancedAlternativeMedicineChain" icon="Resources" npc="quest_character_mentor02.png"  showRewardWindow="true">
+		 <startcondition>
+         	<playerlevel min="78" />
+         </startcondition>
+		 
+    		<triggers>
+    			 <trigger type="PayForQuestFinish" name="ObsidianOre" amount="250" /> 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="27000"/>
+				<reward type="Resource" name="Oil" amount="30" />
+				<reward type="Resource" name="StarCoin" amount="200" />
+				<reward type="Buff" item="ProductivityBuffLvl14" amount="1"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+				
+		<quest name="TutAdvancedAlternativeMedicine02" type="Story" connectedToQuest="TutAdvancedAlternativeMedicineChain" icon="Resources" npc="quest_character_mentor02.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="78" />
+         	<questcomplete item="TutAdvancedAlternativeMedicine01"/> 
+         </startcondition>
+         
+    		<triggers>
+    			 <trigger type="Resource" name="Oilseed" amount="240" condition="produce"/>	 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="27500"/>
+				<reward type="Resource" name="Oil" amount="30"/>
+				<reward type="Resource" name="StarCoin" amount="200"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+
+		<!-- PLAYER LEVEL 79: Family Bonaberti -->
+
+<quest name="TutAdvancedFamilyBonabertiChain" type="Story" icon="QuestMedium" npc="quest_character_mentor03.png" helpName="Help_window_collections_0" showRewardWindow="true">
+		 <startcondition>
+		   <playerlevel min="79" />
+         </startcondition>
+         
+    		<triggers>
+           		<questcomplete item="TutAdvancedFamilyBonaberti01"/> 
+           		<questcomplete item="TutAdvancedFamilyBonaberti02"/>  
+    		</triggers>
+    		
+    		<posteffects>
+				<reward type="Resource" name="ObsidianOre" amount="150" />	
+				<reward type="Resource" name="Oil" amount="50" />
+				<reward type="XP" amount="33500"/>
+     		</posteffects>
+     		
+			  <hints>			   
+			  </hints>
+    	</quest>
+    	
+    	
+    	<quest name="TutAdvancedFamilyBonaberti01" type="Story" connectedToQuest="TutAdvancedFamilyBonabertiChain" icon="Building" npc="quest_character_mentor03.png"  showRewardWindow="true">
+		 <startcondition>
+         	<playerlevel min="79" />
+         </startcondition>
+		 
+    		<triggers>
+    			 <buildingupgradelevel item="Manor" amount="2" min="7" /> 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="36500"/>
+				<reward type="Resource" name="StarCoin" amount="300" />
+				<reward type="Resource" name="Oil" amount="100" />
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+				
+		<quest name="TutAdvancedFamilyBonaberti02" type="Story" connectedToQuest="TutAdvancedFamilyBonabertiChain" icon="Resources" npc="quest_character_mentor03.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="79" />
+         	<questcomplete item="TutAdvancedFamilyBonaberti01"/> 
+         </startcondition>
+         
+    		<triggers>
+    			 <trigger type="Resource" name="MahoganyPlank" amount="8000" condition="produce"/>
+				 <trigger type="PayForQuestFinish" name="MahoganyPlank" amount="8000" /> 	 		
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="17500"/>
+				<reward type="Resource" name="StarCoin" amount="150"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+
+		<!-- PLAYER LEVEL 80: Wild Horses -->
+		<!-- Level Cap is at 80 momentarily, which means there can be no XP given for this quest at the moment. Please activate this quest and rebalance rewards once level cap is raised again 
+
+<quest name="TutAdvancedWildHorsesChain" type="Story" icon="QuestMedium" npc="quest_character_general01.png" helpName="Help_window_collections_0" showRewardWindow="true">
+		 <startcondition>
+		   <playerlevel min="80" />
+         </startcondition>
+         
+    		<triggers>
+           		<questcomplete item="TutAdvancedWildHorses01"/> 
+           		<questcomplete item="TutAdvancedWildHorses02"/>  
+    		</triggers>
+    		
+    		<posteffects>	
+				<reward type="Resource" name="Oil" amount="150" />
+     		</posteffects>
+     		
+			  <hints>			   
+			  </hints>
+    	</quest>
+    	
+    	
+    	<quest name="TutAdvancedWildHorses01" type="Story" connectedToQuest="TutAdvancedWildHorsesChain" icon="Resources" npc="quest_character_general01.png"  showRewardWindow="true">
+		 <startcondition>
+         	<playerlevel min="80" />
+         </startcondition>
+		 
+    		<triggers>
+    			 <trigger type="Resource" name="Saddlecloth" amount="3000" condition="produce"/> 		
+    		</triggers>
+    		
+    		<posteffects>
+				<reward type="Resource" name="Horse" amount="70" />
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+				
+		<quest name="TutAdvancedWildHorses02" type="Story" connectedToQuest="TutAdvancedWildHorsesChain" icon="Military" npc="quest_character_general01.png"  showRewardWindow="true">
+		 <startcondition>
+		 	<playerlevel min="80" />
+         	<questcomplete item="TutAdvancedWildHorses01"/> 
+         </startcondition>
+         
+    		<triggers>
+    			 <trigger type="Resource" name="BattleHorse" amount="70" condition="produce"/> 	 		
+    		</triggers>
+    		
+    		<posteffects>
+				<reward type="Resource" name="StarCoin" amount="1000"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+-->
+
+</Root>

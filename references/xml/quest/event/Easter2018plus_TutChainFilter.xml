@@ -1,0 +1,3011 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>	
+	<!-- EASTER QUESTS FOR COMPLETE EVENT -->
+	<!-- 2017 (Please use this for future events)-->
+
+	 <quest name="Easter2018plus_TutChainFilter" showQuestWindow="false" showRewardWindow="false">
+        <postrequisits>
+	      <postrequisite filterQuest="Level1-16" startQuest="Easter2018plus_LevelRequirement"/>	<!-- Level  1-16 -->
+          <postrequisite filterQuest="Level17-80" startQuest="Easter2018plus_TutAchievements" /> <!-- Level 17-75 -->
+        </postrequisits>
+     </quest>
+	
+	<quest name="Easter2018plus_LevelRequirement" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" >
+		<triggers>
+			<playerlevel min="17"/>
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="StripedEggs" amount="10" />
+		</rewards>
+		<posteffects>
+			<startquest name="Easter2018plus_TutAchievementsHelper" />
+		</posteffects>
+	</quest>
+	
+	 <quest name="Easter2018plus_TutAchievementsHelper" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<adjustgenericvalue name="Easter_CountStartedWeeklyQuests" action="reset" />
+			<cancelquest name="Easter2018plus_TutChainFilter"/>		
+			<startquest name="Easter2018plus_TutAchievements" />
+		</posteffects>
+     </quest>	
+	
+	<quest name="Easter2018plus_TutAchievements" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" >
+		<triggers>
+		   <questcomplete item="Easter2018plus_TutAchievements_Sub01"/>
+		   <questcomplete item="Easter2018plus_TutAchievementBuild_Sub02"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="10" />	
+			<startquest name="EasWeeklyDailyQuest_2018plus"/>	
+			<spawnbuilding name="PartyCrashers_Bridge" x="21" y="57" action="ignoreBlocking,spawnInstant,replace" mode="free" />
+			<spawnbuilding name="PartyCrashers_Easy" x="21" y="54" units="PartyCrasherRecruit|10,PartyCrasherBowman|10" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+			<startquest name="Easter2018plus_PartyCrasher_Easy1Peace" />
+			<startquest name="Easter2018plus_PartyCrasher_Easy1War" />	
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_TutAchievements_Sub01" type="Event" icon="StripedEggs" connectedToQuest="Easter2018plus_TutAchievements" npc="quest_character_bunnysuit01.png" showRewardWindow="true" >
+		<startcondition>
+			<questrunning item="Easter2018plus_TutAchievements" />
+		</startcondition>
+		<triggers>
+			<click item="GAMESTATE_ID_AVATAR.achievement"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="BuildBuilding" name="EasterEvent2026_Residence" amount="1" recurringChance="100"/>
+			<!-- <reward type="Buff" item="BuildBuilding" name="EasterEvent2021_Warehouse" amount="1" recurringChance="100"/> -->
+			<!-- <reward type="Buff" item="BuildBuilding" name="University2020" amount="1" recurringChance="100"/> -->
+			<!--	<reward type="Buff" item="BuildBuilding" name="EasterEvent2019_Warehouse" amount="1" recurringChance="100"/> --> 
+			<!--<reward type="Buff" item="BuildBuilding" name="EasterEvent2018_Residence" amount="1" recurringChance="100"/> --> 
+           <!--reward type="Buff" item="BuildBuilding" name="EasterEvent2015_Residence" amount="1" recurringChance="100"/-->  <!-- Change with the new building! -->            
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_TutAchievementBuild_Sub02" type="Event" icon="StripedEggs" connectedToQuest="Easter2018plus_TutAchievements" npc="quest_character_bunnysuit01.png" showRewardWindow="true" >
+		<startcondition>
+			<questcomplete item="Easter2018plus_TutAchievements_Sub01" />
+		</startcondition>
+		<triggers>
+			<onmap item="EasterEvent2026_Residence" min="1" locaExtension="newResidence" />
+			<!-- <onmap item="EasterEvent2021_Warehouse" min="1"/> -->
+			<!-- <onmap item="University2020" min="1" locaExtension="newUniversity"/> -->
+			<!-- 	<onmap item="EasterEvent2019_Warehouse" min="1"/> --> 
+			<!-- <onmap item="EasterEvent2018_Residence" min="1" locaExtension="newResidence" /> --> 
+			<!-- <onmap item="EasterEvent2015_Residence" min="1"/> -->  <!-- Change with the new building! -->  
+		</triggers>
+		<posteffects>       
+		</posteffects>
+	</quest>
+	
+	<quest name="EasWeeklyDailyQuest_Delay" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" repeatable="true">   
+		<startcondition>
+			<any>
+				<questcomplete item="Easter2018plus_Main1Low"/>
+				<questcomplete item="Easter2018plus_Main1Middle"/>
+				<questcomplete item="Easter2018plus_Main1High"/>
+				<questcomplete item="Easter2018plus_Main1Elite"/>
+				
+				<questcomplete item="Easter2018plus_Main2Low"/>
+				<questcomplete item="Easter2018plus_Main2Middle"/>
+				<questcomplete item="Easter2018plus_Main2High"/>
+				<questcomplete item="Easter2018plus_Main2Elite"/>
+				
+				<questcomplete item="Easter2018plus_Main3Low"/>
+				<questcomplete item="Easter2018plus_Main3Middle"/>
+				<questcomplete item="Easter2018plus_Main3High"/>
+				<questcomplete item="Easter2018plus_Main3Elite"/>
+				
+				<questcomplete item="Easter2018plus_Main4Low"/>
+				<questcomplete item="Easter2018plus_Main4Middle"/>
+				<questcomplete item="Easter2018plus_Main4High"/>
+				<questcomplete item="Easter2018plus_Main4Elite"/>
+			</any>
+		</startcondition>
+		
+		<triggers>
+			<hourselapsed amount="120" />
+		</triggers>
+
+		<posteffects>
+			<reward type="Dummy" item="icon_startquest.png" name="ActivateWeeklyEasterQuest"/>
+			<resetquest name="EasWeeklyDailyQuest_2018plus"/>
+			
+			<adjustgenericvalue name="Easter_CountStartedWeeklyQuests" action="add" amount="1"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="EasWeeklyDailyQuest_2018plus" showQuestWindow="false" showRewardWindow="false" specialType="regularDailyQuestList">
+		<triggers></triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite filterQuest="Level17-24" startQuest="Easter2018plus_Main1Low" >
+					<conditions>
+						<checkgenericvalue name="Easter_CountStartedWeeklyQuests" min="0" max="3"/>
+					</conditions>
+				</postrequisite>
+				<postrequisite filterQuest="Level25-39" startQuest="Easter2018plus_Main1Middle" >
+					<conditions>
+						<checkgenericvalue name="Easter_CountStartedWeeklyQuests" min="0" max="3"/>
+					</conditions>
+				</postrequisite>
+				
+				<postrequisite filterQuest="Level40-50" startQuest="Easter2018plus_Main1High" >
+					<conditions>
+						<checkgenericvalue name="Easter_CountStartedWeeklyQuests" min="0" max="3"/>
+					</conditions>
+				</postrequisite>
+				
+				<postrequisite filterQuest="Level51-80" startQuest="Easter2018plus_Main1Elite" >
+					<conditions>
+						<checkgenericvalue name="Easter_CountStartedWeeklyQuests" min="0" max="3"/>
+					</conditions>
+				</postrequisite>
+				
+				<postrequisite filterQuest="Level17-24" startQuest="Easter2018plus_Main2Low" >
+					<conditions>
+						<checkgenericvalue name="Easter_CountStartedWeeklyQuests" min="0" max="3"/>
+					</conditions>
+				</postrequisite>
+				
+				<postrequisite filterQuest="Level25-39" startQuest="Easter2018plus_Main2Middle" >
+					<conditions>
+						<checkgenericvalue name="Easter_CountStartedWeeklyQuests" min="0" max="3"/>
+					</conditions>
+				</postrequisite>
+				
+				<postrequisite filterQuest="Level40-50" startQuest="Easter2018plus_Main2High" >
+					<conditions>
+						<checkgenericvalue name="Easter_CountStartedWeeklyQuests" min="0" max="3"/>
+					</conditions>
+				</postrequisite>
+				
+				<postrequisite filterQuest="Level51-80" startQuest="Easter2018plus_Main2Elite" >
+					<conditions>
+						<checkgenericvalue name="Easter_CountStartedWeeklyQuests" min="0" max="3"/>
+					</conditions>
+				</postrequisite>
+				
+				<postrequisite filterQuest="Level17-24" startQuest="Easter2018plus_Main3Low" >
+					<conditions>
+						<checkgenericvalue name="Easter_CountStartedWeeklyQuests" min="0" max="3"/>
+					</conditions>
+				</postrequisite>
+				
+				<postrequisite filterQuest="Level25-39" startQuest="Easter2018plus_Main3Middle" >
+					<conditions>
+						<checkgenericvalue name="Easter_CountStartedWeeklyQuests" min="0" max="3"/>
+					</conditions>
+				</postrequisite>
+				
+				<postrequisite filterQuest="Level40-50" startQuest="Easter2018plus_Main3High" >
+					<conditions>
+						<checkgenericvalue name="Easter_CountStartedWeeklyQuests" min="0" max="3"/>
+					</conditions>
+				</postrequisite>
+				
+				<postrequisite filterQuest="Level51-80" startQuest="Easter2018plus_Main3Elite" >
+					<conditions>
+						<checkgenericvalue name="Easter_CountStartedWeeklyQuests" min="0" max="3"/>
+					</conditions>
+				</postrequisite>
+				
+				<postrequisite filterQuest="Level17-24" startQuest="Easter2018plus_Main4Low" >
+					<conditions>
+						<checkgenericvalue name="Easter_CountStartedWeeklyQuests" min="0" max="3"/>
+					</conditions>
+				</postrequisite>
+				<postrequisite filterQuest="Level25-39" startQuest="Easter2018plus_Main4Middle" >
+					<conditions>
+						<checkgenericvalue name="Easter_CountStartedWeeklyQuests" min="0" max="3"/>
+					</conditions>
+				</postrequisite>
+				<postrequisite filterQuest="Level40-50" startQuest="Easter2018plus_Main4High" >
+					<conditions>
+						<checkgenericvalue name="Easter_CountStartedWeeklyQuests" min="0" max="3"/>
+					</conditions>
+				</postrequisite>
+				<postrequisite filterQuest="Level51-80" startQuest="Easter2018plus_Main4Elite" >
+					<conditions>
+						<checkgenericvalue name="Easter_CountStartedWeeklyQuests" min="0" max="3"/>
+					</conditions>
+				</postrequisite>
+			</postrequisite>
+		</postrequisits>
+	</quest>
+
+	<!-- Main 1 -->
+	<!-- Low -->
+	<quest name="Easter2018plus_Main1Low" type="Event" icon="StripedEggs" npc="quest_character_mentor03.png" showRewardWindow="true">
+		<triggers>
+			<questcomplete item="Easter2018plus_Main1LowSub1"/>
+			<questcomplete item="Easter2018plus_Main1LowSub2"/>
+			<questcomplete item="Easter2018plus_Main1LowSub3"/>
+			<questcomplete item="Easter2018plus_Main1LowSub4"/>
+			<questcomplete item="Easter2018plus_Main1LowSub5"/>			
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="120" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main1LowSub1" type="Event" connectedToQuest="Easter2018plus_Main1Low" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questrunning item="Easter2018plus_Main1Low" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Beer" condition="produce" amount="100" />  <!-- Needs new trigger? -->
+			<trigger type="PayForQuestFinish" name="Beer" amount="100" />	<!-- Needs new trigger? -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main1LowSub2" type="Event" connectedToQuest="Easter2018plus_Main1Low" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main1LowSub1" />
+		</startcondition>
+		<triggers>
+			<!--specialisttaskresulttype item="FindTreasureShort" type="StripedEggs" amount="10"/-->
+			<trigger type="SpecialistTask" name="FindTreasureShort" condition="found" resourceType="StripedEggs" amount="10" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Adventure" name="EasterEvent2013Adventure01" amount="1" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main1LowSub3" type="Event" connectedToQuest="Easter2018plus_Main1Low" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main1LowSub2" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure01"/-->
+			<trigger type="Adventure" name="EasterEvent2013Adventure01" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main1LowSub4" type="Event" connectedToQuest="Easter2018plus_Main1Low" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main1LowSub3" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Bread" condition="produce" amount="30" /> <!-- Needs new trigger? -->
+			<trigger type="Resource" name="Water" condition="produce" amount="30" /> <!-- Needs new trigger? -->
+			<trigger type="PayForQuestFinish" name="Bread" amount="30" /> <!-- Needs new trigger? -->
+			<trigger type="PayForQuestFinish" name="Water" amount="30" /> <!-- Needs new trigger? -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Adventure" name="EasterEvent2013Adventure02" amount="1" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main1LowSub5" type="Event" connectedToQuest="Easter2018plus_Main1Low" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main1LowSub4" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure02"/-->
+			<trigger type="Adventure" name="EasterEvent2013Adventure02" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<!-- Middle -->
+
+	<quest name="Easter2018plus_Main1Middle" type="Event" icon="StripedEggs" npc="quest_character_mentor03.png" showRewardWindow="true">
+		<triggers>
+			<questcomplete item="Easter2018plus_Main1MiddleSub1"/>
+			<questcomplete item="Easter2018plus_Main1MiddleSub2"/>
+			<questcomplete item="Easter2018plus_Main1MiddleSub3"/>
+			<questcomplete item="Easter2018plus_Main1MiddleSub4"/>
+			<questcomplete item="Easter2018plus_Main1MiddleSub5"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="120" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main1MiddleSub1" type="Event" connectedToQuest="Easter2018plus_Main1Middle" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questrunning item="Easter2018plus_Main1Middle" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Beer" condition="produce" amount="300" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="300" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main1MiddleSub2" type="Event" connectedToQuest="Easter2018plus_Main1Middle" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main1MiddleSub1" />
+		</startcondition>
+		<triggers>
+			<!--specialisttaskresulttype item="FindTreasureMedium" type="StripedEggs" amount="20"/-->
+			<trigger type="SpecialistTask" name="FindTreasureMedium" condition="found" resourceType="StripedEggs" amount="20" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Adventure" name="EasterEvent2013Adventure01" amount="1" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main1MiddleSub3" type="Event" connectedToQuest="Easter2018plus_Main1Middle" icon="StripedEggs" npc="quest_character_bunnysuit01.png"
+		showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main1MiddleSub2" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure01"/-->
+			<trigger type="Adventure" name="EasterEvent2013Adventure01" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main1MiddleSub4" type="Event" connectedToQuest="Easter2018plus_Main1Middle" icon="StripedEggs" npc="quest_character_bunnysuit01.png"
+		showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main1MiddleSub3" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Bread" condition="produce" amount="100" /> <!-- Needs new trigger? -->
+			<trigger type="Resource" name="Water" condition="produce" amount="100" /> <!-- Needs new trigger? -->
+			<trigger type="PayForQuestFinish" name="Bread" amount="100" /> <!-- Needs new trigger? -->
+			<trigger type="PayForQuestFinish" name="Water" amount="100" /> <!-- Needs new trigger? -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Adventure" name="EasterEvent2013Adventure02" amount="1" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main1MiddleSub5" type="Event" connectedToQuest="Easter2018plus_Main1Middle" icon="StripedEggs" npc="quest_character_bunnysuit01.png"
+		showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main1MiddleSub4" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure02"/-->
+			<trigger type="Adventure" name="EasterEvent2013Adventure02" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<!-- High -->
+
+	<quest name="Easter2018plus_Main1High" type="Event" icon="StripedEggs" npc="quest_character_mentor03.png" showRewardWindow="true">
+		<triggers>
+			<questcomplete item="Easter2018plus_Main1HighSub1"/>
+			<questcomplete item="Easter2018plus_Main1HighSub2"/>
+			<questcomplete item="Easter2018plus_Main1HighSub3"/>
+			<questcomplete item="Easter2018plus_Main1HighSub4"/>
+			<questcomplete item="Easter2018plus_Main1HighSub5"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="120" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main1HighSub1" type="Event" connectedToQuest="Easter2018plus_Main1High" icon="StripedEggs" npc="quest_character_bunnysuit01.png"
+		showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questrunning item="Easter2018plus_Main1High" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Beer" condition="produce" amount="1000" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="1000" /> 
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main1HighSub2" type="Event" connectedToQuest="Easter2018plus_Main1High" icon="StripedEggs" npc="quest_character_bunnysuit01.png"
+		showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main1HighSub1" />
+		</startcondition>
+		<triggers>
+			<!--specialisttaskresulttype item="FindTreasureEvenLonger" type="StripedEggs" amount="30"/-->
+			<trigger type="SpecialistTask" name="FindTreasureEvenLonger" condition="found" resourceType="StripedEggs" amount="50" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Adventure" name="EasterEvent2013Adventure01" amount="1" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main1HighSub3" type="Event" connectedToQuest="Easter2018plus_Main1High" icon="StripedEggs" npc="quest_character_bunnysuit01.png"
+		showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main1HighSub2" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure01"/-->
+			<trigger type="Adventure" name="EasterEvent2013Adventure01" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main1HighSub4" type="Event" connectedToQuest="Easter2018plus_Main1High" icon="StripedEggs" npc="quest_character_bunnysuit01.png"
+		showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main1HighSub3" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Sausage" condition="produce" amount="500" /> <!-- Needs new trigger? -->
+			<trigger type="Resource" name="Water" condition="produce" amount="500" /> <!-- Needs new trigger? -->
+			<trigger type="PayForQuestFinish" name="Sausage" amount="100" /> <!-- Needs new trigger? -->
+			<trigger type="PayForQuestFinish" name="Water" amount="100" /> <!-- Needs new trigger? -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Adventure" name="EasterEvent2013Adventure02" amount="1" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main1HighSub5" type="Event" connectedToQuest="Easter2018plus_Main1High" icon="StripedEggs" npc="quest_character_bunnysuit01.png"
+		showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main1HighSub4" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure02"/-->
+			<trigger type="Adventure" name="EasterEvent2013Adventure02" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<!-- Elite -->
+	
+	<quest name="Easter2018plus_Main1Elite" type="Event" icon="StripedEggs" npc="quest_character_mentor03.png" showRewardWindow="true">
+		<triggers>
+			<questcomplete item="Easter2018plus_Main1EliteSub1"/>
+			<questcomplete item="Easter2018plus_Main1EliteSub2"/>
+			<questcomplete item="Easter2018plus_Main1EliteSub3"/>
+			<questcomplete item="Easter2018plus_Main1EliteSub4"/>
+			<questcomplete item="Easter2018plus_Main1EliteSub5"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="120" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main1EliteSub1" type="Event" connectedToQuest="Easter2018plus_Main1Elite" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questrunning item="Easter2018plus_Main1Elite" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Beer" condition="produce" amount="2000" /> <!-- Needs new trigger? -->
+			<trigger type="PayForQuestFinish" name="Beer" amount="2000" /> <!-- Needs new trigger? -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main1EliteSub2" type="Event" connectedToQuest="Easter2018plus_Main1Elite" icon="StripedEggs" npc="quest_character_bunnysuit01.png"
+		showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main1EliteSub1" />
+		</startcondition>
+		<triggers>
+			<!--specialisttaskresulttype item="FindTreasureShort" type="StripedEggs" amount="30"/-->
+			<trigger type="SpecialistTask" name="FindTreasureEvenLonger" condition="found" resourceType="StripedEggs" amount="50" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Adventure" name="EasterEvent2013Adventure01" amount="1" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main1EliteSub3" type="Event" connectedToQuest="Easter2018plus_Main1Elite" icon="StripedEggs" npc="quest_character_bunnysuit01.png"
+		showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main1EliteSub2" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure01"/-->
+			<trigger type="Adventure" name="EasterEvent2013Adventure01" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main1EliteSub4" type="Event" connectedToQuest="Easter2018plus_Main1Elite" icon="StripedEggs" npc="quest_character_bunnysuit01.png"
+		showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main1EliteSub3" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Sausage" condition="produce" amount="1000" /> <!-- Needs new trigger? -->
+			<trigger type="Resource" name="Water" condition="produce" amount="1000" /> <!-- Needs new trigger? -->
+			<trigger type="PayForQuestFinish" name="Sausage" amount="500" /> <!-- Needs new trigger? -->
+			<trigger type="PayForQuestFinish" name="Water" amount="500" /> <!-- Needs new trigger? -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Adventure" name="EasterEvent2013Adventure02" amount="1" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main1EliteSub5" type="Event" connectedToQuest="Easter2018plus_Main1Elite" icon="StripedEggs" npc="quest_character_bunnysuit01.png"
+		showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main1EliteSub4" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure02"/-->
+			<trigger type="Adventure" name="EasterEvent2013Adventure02" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+	
+	<!-- Main 2 -->
+	<!-- Low -->
+	<quest name="Easter2018plus_Main2Low" type="Event" icon="StripedEggs" npc="quest_character_mentor03.png" showRewardWindow="true" >
+		<triggers>
+			<questcomplete item="Easter2018plus_Main2LowSub1"/>
+			<questcomplete item="Easter2018plus_Main2LowSub2"/>
+			<questcomplete item="Easter2018plus_Main2LowSub3"/>
+			<questcomplete item="Easter2018plus_Main2LowSub4"/>
+			<questcomplete item="Easter2018plus_Main2LowSub5"/>			
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="120" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main2LowSub1" type="Event" connectedToQuest="Easter2018plus_Main2Low" icon="StripedEggs" npc="quest_character_bunnysuit01.png"	showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questrunning item="Easter2018plus_Main2Low" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Fish" amount="100" /> <!-- Needs new trigger? -->
+			<trigger type="PayForQuestFinish" name="Wood" amount="100" /> <!-- Needs new trigger? -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main2LowSub2" type="Event" connectedToQuest="Easter2018plus_Main2Low" icon="StripedEggs" npc="quest_character_bunnysuit01.png"	showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main2LowSub1" />
+		</startcondition>
+		<triggers>
+			<resourcegathered min="250" type="BronzeOre"/>
+			<buildinglistupgradelevel min="2" amount="1" item="BronzeMine,BronzeMineEndless" name="EpicBronzeMine,SpookyBronzeMine" locaExtension="BronzeMine"/>
+			<buildingselected item="BronzeMine,EpicBronzeMine,BronzeMineEndless,SpookyBronzeMine" locaExtension="AnyBronzeMine"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main2LowSub3" type="Event" connectedToQuest="Easter2018plus_Main2Low" icon="StripedEggs" npc="quest_character_bunnysuit01.png"	showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main2LowSub2" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="BronzeOre" condition="produce" amount="30" /> <!-- Needs new trigger? -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Adventure" name="EasterEvent2013Adventure03" amount="1" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main2LowSub4" type="Event" connectedToQuest="Easter2018plus_Main2Low" icon="StripedEggs" npc="quest_character_bunnysuit01.png"	showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main2LowSub3" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure03"/-->
+			<trigger type="Adventure" name="EasterEvent2013Adventure03" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Adventure" name="EasterEvent2013Adventure04" amount="1" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main2LowSub5" type="Event" connectedToQuest="Easter2018plus_Main2Low" icon="StripedEggs" npc="quest_character_bunnysuit01.png"
+		showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main2LowSub4" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure04"/-->
+			<trigger type="Adventure" name="EasterEvent2013Adventure04" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<!-- Middle -->
+
+	<quest name="Easter2018plus_Main2Middle" type="Event" icon="StripedEggs" npc="quest_character_mentor03.png" showRewardWindow="true" >
+		<triggers>
+			<questcomplete item="Easter2018plus_Main2MiddleSub1"/>
+			<questcomplete item="Easter2018plus_Main2MiddleSub2"/>
+			<questcomplete item="Easter2018plus_Main2MiddleSub3"/>
+			<questcomplete item="Easter2018plus_Main2MiddleSub4"/>
+			<questcomplete item="Easter2018plus_Main2MiddleSub5"/>		
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="120" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main2MiddleSub1" type="Event" connectedToQuest="Easter2018plus_Main2Middle" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questrunning item="Easter2018plus_Main2Middle" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Meat" amount="500" /> <!-- Needs new trigger? -->
+			<trigger type="PayForQuestFinish" name="RealWood" amount="500" /> <!-- Needs new trigger? -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main2MiddleSub2" type="Event" connectedToQuest="Easter2018plus_Main2Middle" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main2MiddleSub1" />
+		</startcondition>
+		<triggers>
+			<resourcegathered min="250" type="IronOre"/>
+			<buildinglistupgradelevel min="3" amount="1" item="IronMine,IronMineEndless" name="ArcticIronMine,EpicIronMine" locaExtension="IronMine"/>
+			<buildingselected item="IronMine,EpicIronMine,ArcticIronMine,IronMineEndless" locaExtension="AnyIronMine"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main2MiddleSub3" type="Event" connectedToQuest="Easter2018plus_Main2Middle" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main2MiddleSub2" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="IronOre" condition="produce" amount="300" /> <!-- Needs new trigger? -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Adventure" name="EasterEvent2013Adventure03" amount="1" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main2MiddleSub4" type="Event" connectedToQuest="Easter2018plus_Main2Middle" icon="StripedEggs" npc="quest_character_bunnysuit01.png"
+		showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main2MiddleSub3" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure03"/-->
+			<trigger type="Adventure" name="EasterEvent2013Adventure03" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Adventure" name="EasterEvent2013Adventure04" amount="1" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main2MiddleSub5" type="Event" connectedToQuest="Easter2018plus_Main2Middle" icon="StripedEggs" npc="quest_character_bunnysuit01.png"
+		showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main2MiddleSub4" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure04"/-->
+			<trigger type="Adventure" name="EasterEvent2013Adventure04" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<!-- High -->
+
+	<quest name="Easter2018plus_Main2High" type="Event" icon="StripedEggs" npc="quest_character_mentor03.png" showRewardWindow="true" >
+		<triggers>
+			<questcomplete item="Easter2018plus_Main2HighSub1"/>
+			<questcomplete item="Easter2018plus_Main2HighSub2"/>
+			<questcomplete item="Easter2018plus_Main2HighSub3"/>
+			<questcomplete item="Easter2018plus_Main2HighSub4"/>
+			<questcomplete item="Easter2018plus_Main2HighSub5"/>		
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="120" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main2HighSub1" type="Event" connectedToQuest="Easter2018plus_Main2High" icon="StripedEggs" npc="quest_character_bunnysuit01.png"
+		showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questrunning item="Easter2018plus_Main2High" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Sausage" amount="1500" /> <!-- Needs new trigger? -->
+			<trigger type="PayForQuestFinish" name="ExoticWood" amount="1500" /> <!-- Needs new trigger? -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main2HighSub2" type="Event" connectedToQuest="Easter2018plus_Main2High" icon="StripedEggs" npc="quest_character_bunnysuit01.png"
+		showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main2HighSub1" />
+		</startcondition>
+		<triggers>
+			<resourcegathered min="4000" type="Coal"/>
+			<buildinglistupgradelevel min="5" amount="1" item="CoalMine,CoalMineEndless" name="EpicCoalMine" locaExtension="CoalMine"/>
+			<buildingselected item="CoalMine,EpicCoalMine,CoalMineEndless" locaExtension="AnyCoalMine"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main2HighSub3" type="Event" connectedToQuest="Easter2018plus_Main2High" icon="StripedEggs" npc="quest_character_bunnysuit01.png"
+		showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main2HighSub2" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Coal" condition="produce" amount="2300" /> <!-- Needs new trigger? -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Adventure" name="EasterEvent2013Adventure03" amount="1" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main2HighSub4" type="Event" connectedToQuest="Easter2018plus_Main2High" icon="StripedEggs" npc="quest_character_bunnysuit01.png"
+		showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main2HighSub3" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure03"/-->
+			<trigger type="Adventure" name="EasterEvent2013Adventure03" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Adventure" name="EasterEvent2013Adventure04" amount="1" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main2HighSub5" type="Event" connectedToQuest="Easter2018plus_Main2High" icon="StripedEggs" npc="quest_character_bunnysuit01.png"
+		showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main2HighSub4" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure04"/-->
+			<trigger type="Adventure" name="EasterEvent2013Adventure04" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<!-- Elite -->
+
+	<quest name="Easter2018plus_Main2Elite" type="Event" icon="StripedEggs" npc="quest_character_mentor03.png" showRewardWindow="true" >
+		<triggers>
+			<questcomplete item="Easter2018plus_Main2EliteSub1"/>
+			<questcomplete item="Easter2018plus_Main2EliteSub2"/>
+			<questcomplete item="Easter2018plus_Main2EliteSub3"/>
+			<questcomplete item="Easter2018plus_Main2EliteSub4"/>
+			<questcomplete item="Easter2018plus_Main2EliteSub5"/>		
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="120" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main2EliteSub1" type="Event" connectedToQuest="Easter2018plus_Main2Elite" icon="StripedEggs" npc="quest_character_bunnysuit01.png"	showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questrunning item="Easter2018plus_Main2Elite" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Sausage" amount="2500" /> <!-- Needs new trigger? -->
+			<trigger type="PayForQuestFinish" name="MahoganyWood" amount="200" /> <!-- Needs new trigger? -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main2EliteSub2" type="Event" connectedToQuest="Easter2018plus_Main2Elite" icon="StripedEggs" npc="quest_character_bunnysuit01.png"	showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main2EliteSub1" />
+		</startcondition>
+		<triggers>
+			<resourcegathered min="500" type="GoldOre"/>
+			<buildinglistupgradelevel min="5" amount="1" item="GoldMine,GoldMineEndless" name="ArcticGoldMine,EpicGoldMine" locaExtension="GoldMine"/>
+			<buildingselected item="GoldMine,ArcticGoldMine,EpicGoldMine,GoldMineEndless" locaExtension="AnyGoldMine"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main2EliteSub3" type="Event" connectedToQuest="Easter2018plus_Main2Elite" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main2EliteSub2" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="GoldOre" condition="produce" amount="1500" /> <!-- Needs new trigger? -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Adventure" name="EasterEvent2013Adventure03" amount="1" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main2EliteSub4" type="Event" connectedToQuest="Easter2018plus_Main2Elite" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main2EliteSub3" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure03"/-->
+			<trigger type="Adventure" name="EasterEvent2013Adventure03" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Adventure" name="EasterEvent2013Adventure04" amount="1" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main2EliteSub5" type="Event" connectedToQuest="Easter2018plus_Main2Elite" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main2EliteSub4" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure04"/-->
+			<trigger type="Adventure" name="EasterEvent2013Adventure04" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+	
+	<!-- Main 3 -->
+	<!-- Low -->
+	<quest name="Easter2018plus_Main3Low" type="Event" icon="StripedEggs" npc="quest_character_mentor03.png" showRewardWindow="true" >
+		<triggers>
+			<questcomplete item="Easter2018plus_Main3LowSub0"/>
+			<questcomplete item="Easter2018plus_Main3LowSub1"/>
+			<questcomplete item="Easter2018plus_Main3LowSub2"/>
+			<questcomplete item="Easter2018plus_Main3LowSub3"/>
+			<questcomplete item="Easter2018plus_Main3LowSub4"/>
+			<questcomplete item="Easter2018plus_Main3LowSub5"/>	
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="120" />
+		</posteffects>
+	</quest>
+
+
+	<quest name="Easter2018plus_Main3LowSub0" type="Event" connectedToQuest="Easter2018plus_Main3Low" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questrunning item="Easter2018plus_Main3Low" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Coin" amount="1" /> <!-- Needs new trigger? -->
+		</triggers>
+		<posteffects>
+			<reward type="Adventure" name="EasterEvent2013Adventure05" amount="1" />
+		</posteffects>
+	</quest>
+
+
+
+
+	<quest name="Easter2018plus_Main3LowSub1" type="Event" connectedToQuest="Easter2018plus_Main3Low" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main3LowSub0" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure05"/-->
+			<trigger type="Adventure" name="EasterEvent2013Adventure05" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main3LowSub2" type="Event" connectedToQuest="Easter2018plus_Main3Low" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main3LowSub1" />
+		</startcondition>
+		<triggers>
+			<buffproduced min="20" item="ProductivityBuffLvl1"/>
+			<buffapplied min="1" item="ProductivityBuffLvl1" target="Bakery,ImprovedBakery" locaExtension="FishPlatterOnAnyBakery"/>
+			<!--trigger type="Buff" name="ProductivityBuffLvl1" amount="20" condition="produce" /--> 
+			<!--trigger type="Buff" name="Bakery" actionName="ProductivityBuffLvl1" condition="geDelta" amount="1" /-->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Adventure" name="EasterEvent2013Adventure06" amount="1" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main3LowSub3" type="Event" connectedToQuest="Easter2018plus_Main3Low" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main3LowSub2" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure06"/-->
+			<trigger type="Adventure" name="EasterEvent2013Adventure06" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="50" />
+			<!--reward type="Adventure" name="EasterEvent2013Adventure03" amount="1" /-->
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main3LowSub4" type="Event" connectedToQuest="Easter2018plus_Main3Low" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main3LowSub3" />
+		</startcondition>
+		<triggers>
+			<resourcegathered min="50" type="Coin"/>
+			<!--trigger type="Resource" name="Coin" amount="50" condition="geDelta" /--> <!-- Needs new trigger? -->
+			<trigger type="Resource" name="Population" amount="10" condition="geDelta" /> <!-- Needs new trigger? -->
+			<trigger type="PayForQuestFinish" name="Coin" amount="50" /> <!-- Needs new trigger? -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Resource" name="Coin" amount="50" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main3LowSub5" type="Event" connectedToQuest="Easter2018plus_Main3Low" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main3LowSub4" />
+		</startcondition>
+		<triggers>
+			<trigger type="Buff" name="FillDeposit_Fishfood" amount="200" condition="produce" /> <!-- Needs new trigger? -->
+			<buffapplied item="FillDeposit" type="Fish" min="200" locaExtension="filldeposit"/>
+			<!--trigger type="Buff" name="FillDeposit_Fishfood" amount="200" condition="consume" /--> <!-- Needs new trigger? -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<!-- Middle -->
+
+	<quest name="Easter2018plus_Main3Middle" type="Event" icon="StripedEggs" npc="quest_character_mentor03.png" showRewardWindow="true" >
+		<triggers>
+			<questcomplete item="Easter2018plus_Main3MiddleSub0"/>
+			<questcomplete item="Easter2018plus_Main3MiddleSub1"/>
+			<questcomplete item="Easter2018plus_Main3MiddleSub2"/>
+			<questcomplete item="Easter2018plus_Main3MiddleSub3"/>
+			<questcomplete item="Easter2018plus_Main3MiddleSub4"/>
+			<questcomplete item="Easter2018plus_Main3MiddleSub5"/>	
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="120" />
+		</posteffects>
+	</quest>
+
+
+	<quest name="Easter2018plus_Main3MiddleSub0" type="Event" connectedToQuest="Easter2018plus_Main3Middle" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questrunning item="Easter2018plus_Main3Middle" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Coin" amount="10" /> <!-- Needs new trigger? -->
+		</triggers>
+		<posteffects>
+			<reward type="Adventure" name="EasterEvent2013Adventure05" amount="1" />
+		</posteffects>
+	</quest>
+
+
+
+
+	<quest name="Easter2018plus_Main3MiddleSub1" type="Event" connectedToQuest="Easter2018plus_Main3Middle" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main3MiddleSub0" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure05"/--> 
+			<trigger type="Adventure" name="EasterEvent2013Adventure05" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main3MiddleSub2" type="Event" connectedToQuest="Easter2018plus_Main3Middle" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main3MiddleSub1" />
+		</startcondition>
+		<triggers>
+			<buffproduced min="30" item="ProductivityBuffLvl2"/>
+			<buffapplied min="2" item="ProductivityBuffLvl2" target="Bakery,ImprovedBakery" locaExtension="AnyBakeries"/>
+			<!--trigger type="Buff" name="ProductivityBuffLvl2" amount="30" condition="produce" /-->
+			<!--trigger type="Buff" name="Bakery" actionName="ProductivityBuffLvl2" condition="geDelta" amount="2" /-->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Adventure" name="EasterEvent2013Adventure06" amount="1" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main3MiddleSub3" type="Event" connectedToQuest="Easter2018plus_Main3Middle" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main3MiddleSub2" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure06"/--> 
+			<trigger type="Adventure" name="EasterEvent2013Adventure06" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="50" />
+			<!--reward type="Adventure" name="EasterEvent2013Adventure03" amount="1" /-->
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main3MiddleSub4" type="Event" connectedToQuest="Easter2018plus_Main3Middle" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main3MiddleSub3" />
+		</startcondition>
+		<triggers>
+			<resourcegathered min="200" type="Coin"/>
+			<!--trigger type="Resource" name="Coin" amount="200" condition="geDelta" /--> <!-- Needs new trigger? -->
+			<trigger type="Resource" name="Population" amount="10" condition="geDelta" /> <!-- Needs new trigger? -->
+			<trigger type="PayForQuestFinish" name="Coin" amount="200" /> <!-- Needs new trigger? -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Resource" name="Coin" amount="200" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main3MiddleSub5" type="Event" connectedToQuest="Easter2018plus_Main3Middle" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main3MiddleSub4" />
+		</startcondition>
+		<triggers>
+			<trigger type="Buff" name="FillDeposit_Fishfood" amount="1000" condition="produce" /> <!-- Needs new trigger? -->
+			<trigger type="Buff" name="FillDeposit_Hunter" amount="1000" condition="produce" /> <!-- Needs new trigger? -->
+			<buffapplied item="FillDeposit" type="Fish" min="1000" locaExtension="filldeposit"/>
+			<buffapplied item="FillDeposit" type="Meat" min="1000" locaExtension="filldeposit"/>
+			<!--trigger type="Buff" name="FillDeposit_Fishfood" amount="1000" condition="consume" /--> <!-- Needs new trigger? -->
+			<!--trigger type="Buff" name="FillDeposit_Hunter" amount="1000" condition="consume" /--> <!-- Needs new trigger? -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<!-- High -->
+	<quest name="Easter2018plus_Main3High" type="Event" icon="StripedEggs" npc="quest_character_mentor03.png" showRewardWindow="true" >
+		<triggers>
+			<questcomplete item="Easter2018plus_Main3HighSub0"/>
+			<questcomplete item="Easter2018plus_Main3HighSub1"/>
+			<questcomplete item="Easter2018plus_Main3HighSub2"/>
+			<questcomplete item="Easter2018plus_Main3HighSub3"/>
+			<questcomplete item="Easter2018plus_Main3HighSub4"/>
+			<questcomplete item="Easter2018plus_Main3HighSub5"/>	
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="120" />
+		</posteffects>
+	</quest>
+
+
+	<quest name="Easter2018plus_Main3HighSub0" type="Event" connectedToQuest="Easter2018plus_Main3High" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questrunning item="Easter2018plus_Main3High" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Coin" amount="100" /> <!-- Needs new trigger? -->
+		</triggers>
+		<posteffects>
+			<reward type="Adventure" name="EasterEvent2013Adventure05" amount="1" />
+		</posteffects>
+	</quest>
+
+
+
+
+	<quest name="Easter2018plus_Main3HighSub1" type="Event" connectedToQuest="Easter2018plus_Main3High" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main3HighSub0" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure05"/--> 
+			<trigger type="Adventure" name="EasterEvent2013Adventure05" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+
+	<quest name="Easter2018plus_Main3HighSub2" type="Event" connectedToQuest="Easter2018plus_Main3High" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main3HighSub1" />
+		</startcondition>
+		<triggers>
+			<buffproduced min="50" item="ProductivityBuffLvl3"/>
+			<buffapplied min="3" item="ProductivityBuffLvl3" target="Bakery,ImprovedBakery" locaExtension="AnyBakeries"/>
+			<!--trigger type="Buff" name="ProductivityBuffLvl3" amount="50" condition="produce" /-->
+			<!--trigger type="Buff" name="Bakery" actionName="ProductivityBuffLvl3" condition="geDelta" amount="3" /-->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Adventure" name="EasterEvent2013Adventure06" amount="1" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main3HighSub3" type="Event" connectedToQuest="Easter2018plus_Main3High" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main3HighSub2" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure06"/-->
+			<trigger type="Adventure" name="EasterEvent2013Adventure06" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="50" />
+			<!--reward type="Adventure" name="EasterEvent2013Adventure03" amount="1" /-->
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main3HighSub4" type="Event" connectedToQuest="Easter2018plus_Main3High" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main3HighSub3" />
+		</startcondition>
+		<triggers>
+			<resourcegathered min="1500" type="Coin"/>
+			<!--trigger type="Resource" name="Coin" amount="1500" condition="geDelta" /--> <!-- Needs new trigger? -->
+			<trigger type="Resource" name="Population" amount="50" condition="geDelta" /> <!-- Needs new trigger? -->
+			<trigger type="PayForQuestFinish" name="Coin" amount="1500" /> <!-- Needs new trigger? -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Resource" name="Coin" amount="1500" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main3HighSub5" type="Event" connectedToQuest="Easter2018plus_Main3High" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main3HighSub4" />
+		</startcondition>
+		<triggers>
+			<trigger type="Buff" name="FillDeposit_Fishfood" amount="3000" condition="produce" /> <!-- Needs new trigger? -->
+			<trigger type="Buff" name="FillDeposit_Hunter" amount="3000" condition="produce" /> <!-- Needs new trigger? -->
+			<buffapplied item="FillDeposit" type="Fish" min="3000" locaExtension="filldeposit"/>
+			<buffapplied item="FillDeposit" type="Meat" min="3000" locaExtension="filldeposit"/>
+			<!--trigger type="Buff" name="FillDeposit_Fishfood" amount="3000" condition="consume" /--> <!-- Needs new trigger? -->
+			<!--trigger type="Buff" name="FillDeposit_Hunter" amount="3000" condition="consume" /--> <!-- Needs new trigger? --> 
+		</triggers> 
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<!-- Elite -->
+	<quest name="Easter2018plus_Main3Elite" type="Event" icon="StripedEggs" npc="quest_character_mentor03.png" showRewardWindow="true" >
+		<triggers>
+			<questcomplete item="Easter2018plus_Main3EliteSub0"/>
+			<questcomplete item="Easter2018plus_Main3EliteSub1"/>
+			<questcomplete item="Easter2018plus_Main3EliteSub2"/>
+			<questcomplete item="Easter2018plus_Main3EliteSub3"/>
+			<questcomplete item="Easter2018plus_Main3EliteSub4"/>
+			<questcomplete item="Easter2018plus_Main3EliteSub5"/>	
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="120" />
+		</posteffects>
+	</quest>
+
+
+	<quest name="Easter2018plus_Main3EliteSub0" type="Event" connectedToQuest="Easter2018plus_Main3Elite" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questrunning item="Easter2018plus_Main3Elite" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Coin" amount="300" /> <!-- Needs new trigger? -->
+		</triggers>
+		<posteffects>
+			<reward type="Adventure" name="EasterEvent2013Adventure05" amount="1" />
+		</posteffects>
+	</quest>
+
+
+
+
+	<quest name="Easter2018plus_Main3EliteSub1" type="Event" connectedToQuest="Easter2018plus_Main3Elite" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main3EliteSub0" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure05"/--> 
+			<trigger type="Adventure" name="EasterEvent2013Adventure05" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+
+	<quest name="Easter2018plus_Main3EliteSub2" type="Event" connectedToQuest="Easter2018plus_Main3Elite" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main3EliteSub1" />
+		</startcondition>
+		<triggers>
+			<buffproduced min="75" item="ProductivityBuffLvl3"/>
+			<buffapplied min="10" item="ProductivityBuffLvl3" target="Bakery,ImprovedBakery" locaExtension="AnyBakeries"/>
+			<!--trigger type="Buff" name="ProductivityBuffLvl3" amount="50" condition="produce" /-->
+			<!--trigger type="Buff" name="Bakery" actionName="ProductivityBuffLvl3" condition="geDelta" amount="3" /-->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Adventure" name="EasterEvent2013Adventure06" amount="1" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main3EliteSub3" type="Event" connectedToQuest="Easter2018plus_Main3Elite" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main3EliteSub2" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure06"/-->
+			<trigger type="Adventure" name="EasterEvent2013Adventure06" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="50" />
+			<!--reward type="Adventure" name="EasterEvent2013Adventure03" amount="1" /-->
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main3EliteSub4" type="Event" connectedToQuest="Easter2018plus_Main3Elite" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main3EliteSub3" />
+		</startcondition>
+		<triggers>
+			<resourcegathered min="5000" type="Coin"/>
+			<!--trigger type="Resource" name="Coin" amount="5000" condition="geDelta" /--> <!-- Needs new trigger? -->
+			<trigger type="Resource" name="Population" amount="50" condition="geDelta" /> <!-- Needs new trigger? -->
+			<trigger type="PayForQuestFinish" name="Coin" amount="5000" /> <!-- Needs new trigger? -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Resource" name="Coin" amount="5000" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main3EliteSub5" type="Event" connectedToQuest="Easter2018plus_Main3Elite" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main3EliteSub4" />
+		</startcondition>
+		<triggers>
+			<trigger type="Buff" name="FillDeposit_Fishfood" amount="10000" condition="produce" /> <!-- Needs new trigger? -->
+			<trigger type="Buff" name="FillDeposit_Hunter" amount="10000" condition="produce" /> <!-- Needs new trigger? -->
+			<buffapplied item="FillDeposit" type="Fish" min="10000" locaExtension="filldeposit"/>
+			<buffapplied item="FillDeposit" type="Meat" min="10000" locaExtension="filldeposit"/>
+			<!--trigger type="Buff" name="FillDeposit_Fishfood" amount="10000" condition="consume" /--> <!-- Needs new trigger? -->
+			<!--trigger type="Buff" name="FillDeposit_Hunter" amount="10000" condition="consume" /--> <!-- Needs new trigger? --> 
+		</triggers> 
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+	
+	<!-- Main 4 -->
+	<!-- Low -->
+	<quest name="Easter2018plus_Main4Low" type="Event" icon="StripedEggs" npc="quest_character_geologist01.png" showRewardWindow="true" >
+		<triggers>
+			<questcomplete item="Easter2018plus_Main4LowSub1"/>
+			<questcomplete item="Easter2018plus_Main4LowSub2"/>
+			<questcomplete item="Easter2018plus_Main4LowSub3"/>
+			<questcomplete item="Easter2018plus_Main4LowSub4"/>
+			<questcomplete item="Easter2018plus_Main4LowSub5"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="120" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main4LowSub1" type="Event" connectedToQuest="Easter2018plus_Main4Low" icon="StripedEggs" npc="quest_character_bunnysuit01.png" 	showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questrunning item="Easter2018plus_Main4Low" />
+		</startcondition>
+		<triggers>
+			<!--soldgoods amount="1000"/-->
+			<trigger type="Resource" name="" condition="sell" amount="1000" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Adventure" name="EasterEvent2013Adventure07" amount="1" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main4LowSub2" type="Event" connectedToQuest="Easter2018plus_Main4Low" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main4LowSub1" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure07"/-->
+			<trigger type="Adventure" name="EasterEvent2013Adventure07" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main4LowSub3" type="Event" connectedToQuest="Easter2018plus_Main4Low" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main4LowSub2" />
+		</startcondition>
+		<triggers>
+			<!--boughtgoods amount="1000"/-->
+			<trigger type="Resource" name="" condition="buy" amount="1000" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Adventure" name="EasterEvent2013Adventure08" amount="1" />
+		</posteffects>
+		
+	</quest>
+
+	<quest name="Easter2018plus_Main4LowSub4" type="Event" connectedToQuest="Easter2018plus_Main4Low" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main4LowSub3" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure08"/-->
+			<trigger type="Adventure" name="EasterEvent2013Adventure08" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main4LowSub5" type="Event" connectedToQuest="Easter2018plus_Main4Low" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main4LowSub4" />
+		</startcondition>
+		<triggers>
+			<resourcegathered min="200" type="StripedEggs" locaExtension="StripedEggs" />
+			<!--trigger type="Resource" name="StripedEggs" amount="200" condition="geDelta" /-->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<!-- Middle -->
+	<quest name="Easter2018plus_Main4Middle" type="Event" icon="StripedEggs" npc="quest_character_geologist01.png" showRewardWindow="true" >
+		<triggers>
+			<questcomplete item="Easter2018plus_Main4MiddleSub1"/>
+			<questcomplete item="Easter2018plus_Main4MiddleSub2"/>
+			<questcomplete item="Easter2018plus_Main4MiddleSub3"/>
+			<questcomplete item="Easter2018plus_Main4MiddleSub4"/>
+			<questcomplete item="Easter2018plus_Main4MiddleSub5"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="120" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main4MiddleSub1" type="Event" connectedToQuest="Easter2018plus_Main4Middle" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questrunning item="Easter2018plus_Main4Middle" />
+		</startcondition>
+		<triggers>
+			<!--soldgoods amount="5000"/-->
+			<trigger type="Resource" name="" condition="sell" amount="5000" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Adventure" name="EasterEvent2013Adventure07" amount="1" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main4MiddleSub2" type="Event" connectedToQuest="Easter2018plus_Main4Middle" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main4MiddleSub1" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure07"/-->
+			<trigger type="Adventure" name="EasterEvent2013Adventure07" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main4MiddleSub3" type="Event" connectedToQuest="Easter2018plus_Main4Middle" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main4MiddleSub2" />
+		</startcondition>
+		<triggers>
+			<!--boughtgoods amount="5000"/-->
+			<trigger type="Resource" name="" condition="buy" amount="5000" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Adventure" name="EasterEvent2013Adventure08" amount="1" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main4MiddleSub4" type="Event" connectedToQuest="Easter2018plus_Main4Middle" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main4MiddleSub3" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure08"/-->
+			<trigger type="Adventure" name="EasterEvent2013Adventure08" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main4MiddleSub5" type="Event" connectedToQuest="Easter2018plus_Main4Middle" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main4MiddleSub4" />
+		</startcondition>
+		<triggers>
+			<resourcegathered min="500" type="StripedEggs" locaExtension="StripedEggs"/>
+			<!--trigger type="Resource" name="StripedEggs" amount="500" condition="geDelta" /-->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<!-- High -->
+	<quest name="Easter2018plus_Main4High" type="Event" icon="StripedEggs" npc="quest_character_geologist01.png" showRewardWindow="true" >
+		<triggers>
+			<questcomplete item="Easter2018plus_Main4HighSub1"/>
+			<questcomplete item="Easter2018plus_Main4HighSub2"/>
+			<questcomplete item="Easter2018plus_Main4HighSub3"/>
+			<questcomplete item="Easter2018plus_Main4HighSub4"/>
+			<questcomplete item="Easter2018plus_Main4HighSub5"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="120" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main4HighSub1" type="Event" connectedToQuest="Easter2018plus_Main4High" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questrunning item="Easter2018plus_Main4High" />
+		</startcondition>
+		<triggers>
+			<!--soldgoods amount="10000"/-->
+			<trigger type="Resource" name="" condition="sell" amount="10000" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Adventure" name="EasterEvent2013Adventure07" amount="1" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main4HighSub2" type="Event" connectedToQuest="Easter2018plus_Main4High" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main4HighSub1" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure07"/-->
+			<trigger type="Adventure" name="EasterEvent2013Adventure07" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main4HighSub3" type="Event" connectedToQuest="Easter2018plus_Main4High" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main4HighSub2" />
+		</startcondition>
+		<triggers>
+			<!--boughtgoods amount="10000"/-->
+			<trigger type="Resource" name="" condition="buy" amount="10000" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Adventure" name="EasterEvent2013Adventure08" amount="1" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main4HighSub4" type="Event" connectedToQuest="Easter2018plus_Main4High" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main4HighSub3" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure08"/-->	
+			<trigger type="Adventure" name="EasterEvent2013Adventure08" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main4HighSub5" type="Event" connectedToQuest="Easter2018plus_Main4High" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main4HighSub4" />
+		</startcondition>
+		<triggers>
+			<resourcegathered min="800" type="StripedEggs" locaExtension="StripedEggs"/>
+			<!--trigger type="Resource" name="StripedEggs" amount="800" condition="geDelta" /-->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+	
+	<!-- Elite -->
+	<quest name="Easter2018plus_Main4Elite" type="Event" icon="StripedEggs" npc="quest_character_geologist01.png" showRewardWindow="true" >
+		<triggers>
+			<questcomplete item="Easter2018plus_Main4EliteSub1"/>
+			<questcomplete item="Easter2018plus_Main4EliteSub2"/>
+			<questcomplete item="Easter2018plus_Main4EliteSub3"/>
+			<questcomplete item="Easter2018plus_Main4EliteSub4"/>
+			<questcomplete item="Easter2018plus_Main4EliteSub5"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="120" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main4EliteSub1" type="Event" connectedToQuest="Easter2018plus_Main4Elite" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questrunning item="Easter2018plus_Main4Elite" />
+		</startcondition>
+		<triggers>
+			<!--soldgoods amount="50000"/-->
+			<trigger type="Resource" name="" condition="sell" amount="50000" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Adventure" name="EasterEvent2013Adventure07" amount="1" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main4EliteSub2" type="Event" connectedToQuest="Easter2018plus_Main4Elite" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main4EliteSub1" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure07"/-->
+			<trigger type="Adventure" name="EasterEvent2013Adventure07" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main4EliteSub3" type="Event" connectedToQuest="Easter2018plus_Main4Elite" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main4EliteSub2" />
+		</startcondition>
+		<triggers>
+			<!--boughtgoods amount="50000"/-->
+			<trigger type="Resource" name="" condition="buy" amount="50000" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+			<reward type="Adventure" name="EasterEvent2013Adventure08" amount="1" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main4EliteSub4" type="Event" connectedToQuest="Easter2018plus_Main4Elite" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="15">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main4EliteSub3" />
+		</startcondition>
+		<triggers>
+			<!--completeadventurelist amount="1" item="EasterEvent2013Adventure08"/-->	
+			<trigger type="Adventure" name="EasterEvent2013Adventure08" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_Main4EliteSub5" type="Event" connectedToQuest="Easter2018plus_Main4Elite" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="Easter2018plus_Main4EliteSub4" />
+		</startcondition>
+		<triggers>
+			<resourcegathered min="1200" type="StripedEggs" locaExtension="StripedEggs"/>
+			<!--trigger type="Resource" name="StripedEggs" amount="1200" condition="geDelta" /-->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="40" />
+		</posteffects>
+	</quest>
+	
+	
+	<!--2018plus Party Crashers -->
+
+	<!-- Recurring "Lend a hand" Quest -->
+	<quest name="Easter2018plus_PartyCrasher_LendAHand" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit02.png" linkEventWindow="true">
+		<startcondition>	
+			<questcomplete item="Easter2018plus_TutAchievements" />
+		</startcondition>
+		<triggers>
+			<buffappliedonfriend amount="4" item="EffectBuff_Easter2016_TruceLow,EffectBuff_Easter2016_TruceMed,EffectBuff_Easter2016_TruceHigh,EffectBuff_Easter2016_TruceAlex,EffectBuff_Easter2016_TruceBob,EffectBuff_Easter2016_TruceDenis" locaExtension="TruceAny"/> <!-- NEEDS TO HAVE ALL THE OTHER BUFFS -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="20" /> 
+			<resetquest name="Easter2018plus_PartyCrasher_LendAHand" startDelay="82800" />
+		</posteffects>
+	</quest>
+	
+	<!-- Party Crashers: Day 1 (Easy)  -->
+	<quest name="Easter2018plus_PartyCrasher_MainEasy1" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true">
+		<startcondition>	
+			<questcomplete item="Easter2018plus_TutAchievements" />
+		</startcondition>
+		<triggers>
+			<completequestlist amount="1" item="Easter2018plus_PartyCrasher_Easy1Peace,Easter2018plus_PartyCrasher_Easy1War" locaExtension="PartyCrasherWin"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="35" /> 
+			<spawnbuilding name="PartyCrashers_Easy" x="21" y="54" units="PartyCrasherRecruit|20,PartyCrasherCavalry|10" action="ignoreBlocking,replace,spawnConstructing" mode="enemy"/> 
+			<startquest name="Easter2018plus_PartyCrasher_MainEasy2" startDelay="82800" /> 
+			<startquest name="Easter2018plus_PartyCrasher_Easy2Peace" startDelay="82810" />
+			<startquest name="Easter2018plus_PartyCrasher_Easy2War"	startDelay="82810"/>
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_Easy1Peace" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_MainEasy1" icon="StripedEggs" npc="quest_character_bunnysuit02.png" showRewardWindow="true">	 
+    		<triggers>
+    			 <buffreceivedfromfriend amount="2" item="EffectBuff_Easter2016_TruceLow" target="PartyCrashers_Easy" locaExtension="pc_receive"/> 
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_Easy1War"/>
+				<removebuilding x="21" y="54" name="PartyCrashers" />
+     	</posteffects>	
+		</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_Easy1War" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_MainEasy1" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true">	 
+    		<triggers>
+    			 <buildingdestroyed item="PartyCrashers_Easy" min="1"/> 
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_Easy1Peace"/>
+     	</posteffects>	
+		</quest>		
+	
+	
+	<!-- Party Crashers: Day 2 (Easy)  -->
+	<quest name="Easter2018plus_PartyCrasher_MainEasy2" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true">
+		<triggers>
+			<completequestlist amount="1" item="Easter2018plus_PartyCrasher_Easy2Peace,Easter2018plus_PartyCrasher_Easy2War" locaExtension="PartyCrasherWin"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="35" /> 
+			<spawnbuilding name="PartyCrashers_Easy" x="21" y="54" units="PartyCrasherRecruit|30,PartyCrasherMilitia|10,PartyCrasherCavalry|10" action="ignoreBlocking,replace,spawnConstructing" mode="enemy"/> 
+			<startquest name="Easter2018plus_PartyCrasher_MainEasy3" startDelay="82800" /> 
+			<startquest name="Easter2018plus_PartyCrasher_Easy3Peace" startDelay="82810" />
+			<startquest name="Easter2018plus_PartyCrasher_Easy3War"	startDelay="82810"/>
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_Easy2Peace" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_MainEasy2" icon="StripedEggs" npc="quest_character_bunnysuit02.png" showRewardWindow="true">	 
+    		<startcondition>
+    			<questrunning item="Easter2018plus_PartyCrasher_MainEasy2"/>
+    		</startcondition>
+    		<triggers>
+    			 <buffreceivedfromfriend amount="3" item="EffectBuff_Easter2016_TruceLow" target="PartyCrashers_Easy" locaExtension="pc_receive"/> 
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_Easy2War"/>
+     	</posteffects>	
+		</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_Easy2War" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_MainEasy2" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true">		 
+    		<startcondition>
+    			<questrunning item="Easter2018plus_PartyCrasher_MainEasy2"/>
+    		</startcondition>
+    		<triggers>
+    			 <buildingdestroyed item="PartyCrashers_Easy" min="1"/> 
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_Easy2Peace"/>
+     	</posteffects>	
+		</quest>	
+	
+	
+	<!-- Party Crashers: Day 3 (Easy)  -->
+	<quest name="Easter2018plus_PartyCrasher_MainEasy3" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true">
+		<triggers>
+			<completequestlist amount="1" item="Easter2018plus_PartyCrasher_Easy3Peace,Easter2018plus_PartyCrasher_Easy3War" locaExtension="PartyCrasherWin"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="35" /> 
+			<spawnbuilding name="PartyCrashers_Easy" x="21" y="54" units="PartyCrasherMilitia|25,PartyCrasherCavalry|30,PartyCrasherBowman|20" action="ignoreBlocking,replace,spawnConstructing" mode="enemy"/> 
+			<startquest name="Easter2018plus_PartyCrasher_MainEasy4" startDelay="82800" /> 
+			<startquest name="Easter2018plus_PartyCrasher_Easy4Peace" startDelay="82810" />
+			<startquest name="Easter2018plus_PartyCrasher_Easy4War"	startDelay="82810"/>
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_Easy3Peace" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_MainEasy3" icon="StripedEggs" npc="quest_character_bunnysuit02.png" showRewardWindow="true">	
+			<startcondition>
+    			<questrunning item="Easter2018plus_PartyCrasher_MainEasy3"/>
+    		</startcondition> 
+    		<triggers>
+    			 <buffreceivedfromfriend amount="4" item="EffectBuff_Easter2016_TruceLow" target="PartyCrashers_Easy" locaExtension="pc_receive"/> 
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_Easy3War"/>
+     	</posteffects>	
+		</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_Easy3War" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_MainEasy3" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true">		 
+    		<startcondition>
+    			<questrunning item="Easter2018plus_PartyCrasher_MainEasy3"/>
+    		</startcondition>
+    		<triggers>
+    			 <buildingdestroyed item="PartyCrashers_Easy" min="1"/>
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_Easy3Peace"/>
+     	</posteffects>	
+		</quest>
+	
+	
+	<!-- Party Crashers: Day 4 (Easy)  -->
+	<quest name="Easter2018plus_PartyCrasher_MainEasy4" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true">
+		<triggers>
+			<completequestlist amount="1" item="Easter2018plus_PartyCrasher_Easy4Peace,Easter2018plus_PartyCrasher_Easy4War" locaExtension="PartyCrasherWin"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="35" /> 
+			<spawnbuilding name="PartyCrashers_Easy" x="21" y="54" units="PartyCrasherRecruit|70,PartyCrasherCavalry|50,PartyCrasherBoss1|1" action="ignoreBlocking,replace,spawnConstructing" mode="enemy"/> 
+			<startquest name="Easter2018plus_PartyCrasher_MainEasy5" startDelay="82800" /> 
+			<startquest name="Easter2018plus_PartyCrasher_Easy5Peace" startDelay="82810"/>
+			<startquest name="Easter2018plus_PartyCrasher_Easy5War" startDelay="82810"/>
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_Easy4Peace" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_MainEasy4" icon="StripedEggs" npc="quest_character_bunnysuit02.png" showRewardWindow="true">
+		<startcondition>
+    		<questrunning item="Easter2018plus_PartyCrasher_MainEasy4"/>
+    	</startcondition>	 
+    		<triggers>
+    			 <buffreceivedfromfriend amount="6" item="EffectBuff_Easter2016_TruceLow" target="PartyCrashers_Easy" locaExtension="pc_receive"/>	 
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_Easy4War"/>
+     	</posteffects>	
+		</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_Easy4War" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_MainEasy4" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true">	
+		<startcondition>
+    		<questrunning item="Easter2018plus_PartyCrasher_MainEasy4"/>
+    	</startcondition> 
+    		<triggers>
+    			 <buildingdestroyed item="PartyCrashers_Easy" min="1"/>
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_Easy4Peace"/>
+     	</posteffects>	
+		</quest>	
+	
+	
+	<!-- Party Crashers: Day 5 (Easy)  -->
+	<quest name="Easter2018plus_PartyCrasher_MainEasy5" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true">
+		<triggers>
+			<completequestlist amount="1" item="Easter2018plus_PartyCrasher_Easy5Peace,Easter2018plus_PartyCrasher_Easy5War" locaExtension="PartyCrasherWin"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="50" /> <!-- To be balanced! -->
+			<spawnbuilding name="PartyCrashers_Medium" x="21" y="54" units="PartyCrasherMilitia|50,PartyCrasherLongbowman|30,PartyCrasherCavalry|50" action="ignoreBlocking,replace,spawnConstructing" mode="enemy"/> <!-- TRANSITION GRAPHIC -->
+			<startquest name="Easter2018plus_PartyCrasher_MainMedium1" startDelay="82800" /> 
+			<startquest name="Easter2018plus_PartyCrasher_Medium1Peace" startDelay="82810" />
+			<startquest name="Easter2018plus_PartyCrasher_Medium1War" startDelay="82810"/>
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_Easy5Peace" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_MainEasy5" icon="StripedEggs" npc="quest_character_bunnysuit02.png" showRewardWindow="true">	 
+    	<startcondition>
+    		<questrunning item="Easter2018plus_PartyCrasher_MainEasy5"/>
+    	</startcondition>	
+    		<triggers>
+    			 <buffreceivedfromfriend amount="8" item="EffectBuff_Easter2016_TruceLow" target="PartyCrashers_Easy" locaExtension="pc_receive"/>
+				 <buffreceivedfromfriend amount="1" item="EffectBuff_Easter2016_TruceDenis" target="PartyCrashers_Easy" locaExtension="pc_receive"/>				 
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_Easy5War"/>
+     	</posteffects>	
+		</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_Easy5War" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_MainEasy5" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true">	 
+    	<startcondition>
+    		<questrunning item="Easter2018plus_PartyCrasher_MainEasy5"/>
+    	</startcondition>
+    		<triggers>
+    			 <buildingdestroyed item="PartyCrashers_Easy" min="1"/>
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_Easy5Peace"/>
+     	</posteffects>	
+		</quest>	
+	
+	
+	<!-- Party Crashers: Day 6 (Medium)  -->
+	<quest name="Easter2018plus_PartyCrasher_MainMedium1" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true">
+		<triggers>
+			<completequestlist amount="1" item="Easter2018plus_PartyCrasher_Medium1Peace,Easter2018plus_PartyCrasher_Medium1War" locaExtension="PartyCrasherWin"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="50" /> 
+			<spawnbuilding name="PartyCrashers_Medium" x="21" y="54" units="PartyCrasherMilitia|50,PartyCrasherEliteCavalry|20,PartyCrasherCavalry|50" action="ignoreBlocking,replace,spawnConstructing" mode="enemy"/> 
+			<startquest name="Easter2018plus_PartyCrasher_MainMedium2" startDelay="82800" /> 
+			<startquest name="Easter2018plus_PartyCrasher_Medium2Peace" startDelay="82810" />
+			<startquest name="Easter2018plus_PartyCrasher_Medium2War" startDelay="82810"/>
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_Medium1Peace" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_MainMedium1" icon="StripedEggs" npc="quest_character_bunnysuit02.png" showRewardWindow="true">	 
+    	<startcondition>
+    		<questrunning item="Easter2018plus_PartyCrasher_MainMedium1"/>
+    	</startcondition>	
+    	<triggers>
+    		 <buffreceivedfromfriend amount="4" item="EffectBuff_Easter2016_TruceMed" target="PartyCrashers_Medium" locaExtension="pc_receive"/> 
+    	</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_Medium1War"/>
+     	</posteffects>	
+		</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_Medium1War" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_MainMedium1" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true">		 
+    	<startcondition>
+    		<questrunning item="Easter2018plus_PartyCrasher_MainMedium1"/>
+    	</startcondition>
+    		<triggers>
+    			 <buildingdestroyed item="PartyCrashers_Medium" min="1"/>
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_Medium1Peace"/>
+     	</posteffects>	
+		</quest>	
+	
+	
+	<!-- Party Crashers: Day 7 (Medium)  -->
+	<quest name="Easter2018plus_PartyCrasher_MainMedium2" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true">
+		<triggers>
+			<completequestlist amount="1" item="Easter2018plus_PartyCrasher_Medium2Peace,Easter2018plus_PartyCrasher_Medium2War" locaExtension="PartyCrasherWin"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="50" /> 
+			<spawnbuilding name="PartyCrashers_Medium" x="21" y="54" units="PartyCrasherMilitia|50,PartyCrasherSoldier|20,PartyCrasherCavalry|70" action="ignoreBlocking,replace,spawnConstructing" mode="enemy"/> 
+			<startquest name="Easter2018plus_PartyCrasher_MainMedium3" startDelay="82800" /> 
+			<startquest name="Easter2018plus_PartyCrasher_Medium3Peace" startDelay="82810" />
+			<startquest name="Easter2018plus_PartyCrasher_Medium3War" startDelay="82810"/>
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_Medium2Peace" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_MainMedium2" icon="StripedEggs" npc="quest_character_bunnysuit02.png" showRewardWindow="true">	 
+    	<startcondition>
+    		<questrunning item="Easter2018plus_PartyCrasher_MainMedium2"/>
+    	</startcondition>	
+    		<triggers>
+    			 <buffreceivedfromfriend amount="6" item="EffectBuff_Easter2016_TruceMed" target="PartyCrashers_Medium" locaExtension="pc_receive"/> 
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_Medium2War"/>
+     	</posteffects>	
+		</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_Medium2War" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_MainMedium2" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true">	 
+    	<startcondition>
+    		<questrunning item="Easter2018plus_PartyCrasher_MainMedium2"/>
+    	</startcondition>
+    		<triggers>
+    			 <buildingdestroyed item="PartyCrashers_Medium" min="1"/>
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_Medium2Peace"/>
+     	</posteffects>	
+		</quest>	
+	
+	<!-- Party Crashers: Day 8 (Medium)  -->
+	<quest name="Easter2018plus_PartyCrasher_MainMedium3" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true">
+		<triggers>
+			<completequestlist amount="1" item="Easter2018plus_PartyCrasher_Medium3Peace,Easter2018plus_PartyCrasher_Medium3War" locaExtension="PartyCrasherWin"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="50" /> 
+			<spawnbuilding name="PartyCrashers_Medium" x="21" y="54" units="PartyCrasherMilitia|100,PartyCrasherLongbowman|50" action="ignoreBlocking,replace,spawnConstructing" mode="enemy"/> 
+			<startquest name="Easter2018plus_PartyCrasher_MainMedium4" startDelay="82800" />
+			<startquest name="Easter2018plus_PartyCrasher_Medium4Peace" startDelay="82810" />
+			<startquest name="Easter2018plus_PartyCrasher_Medium4War" startDelay="82810"/>
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_Medium3Peace" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_MainMedium3" icon="StripedEggs" npc="quest_character_bunnysuit02.png" showRewardWindow="true">	 
+    	<startcondition>
+    		<questrunning item="Easter2018plus_PartyCrasher_MainMedium3"/>
+    	</startcondition>
+    		<triggers>
+    			 <buffreceivedfromfriend amount="9" item="EffectBuff_Easter2016_TruceMed" target="PartyCrashers_Medium" locaExtension="pc_receive"/> 
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_Medium3War"/>
+     	</posteffects>	
+		</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_Medium3War" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_MainMedium3" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true"> 
+    	<startcondition>
+    		<questrunning item="Easter2018plus_PartyCrasher_MainMedium3"/>
+    	</startcondition>
+    		<triggers>
+    			 <buildingdestroyed item="PartyCrashers_Medium" min="1"/>
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_Medium3Peace"/>
+     	</posteffects>	
+		</quest>		
+	
+	<!-- Party Crashers: Day 9 (Medium)  -->
+	<quest name="Easter2018plus_PartyCrasher_MainMedium4" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true">
+		<triggers>
+			<completequestlist amount="1" item="Easter2018plus_PartyCrasher_Medium4Peace,Easter2018plus_PartyCrasher_Medium4War" locaExtension="PartyCrasherWin"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="50" /> 
+			<spawnbuilding name="PartyCrashers_Medium" x="21" y="54" units="PartyCrasherSoldier|80,PartyCrasherEliteCavalry|20,PartyCrasherBoss2|1" action="ignoreBlocking,replace,spawnConstructing" mode="enemy"/> 
+			<startquest name="Easter2018plus_PartyCrasher_MainMedium5" startDelay="82800" /> 
+			<startquest name="Easter2018plus_PartyCrasher_Medium5Peace" startDelay="82810" />
+			<startquest name="Easter2018plus_PartyCrasher_Medium5War" startDelay="82810"/>
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_Medium4Peace" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_MainMedium4" icon="StripedEggs" npc="quest_character_bunnysuit02.png" showRewardWindow="true">		 
+    	<startcondition>
+    		<questrunning item="Easter2018plus_PartyCrasher_MainMedium4"/>
+    	</startcondition>
+    		<triggers>
+    			 <buffreceivedfromfriend amount="12" item="EffectBuff_Easter2016_TruceMed" target="PartyCrashers_Medium" locaExtension="pc_receive"/> 
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_Medium4War"/>
+     	</posteffects>	
+		</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_Medium4War" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_MainMedium4" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true">	 
+    	<startcondition>
+    		<questrunning item="Easter2018plus_PartyCrasher_MainMedium4"/>
+    	</startcondition>
+    		<triggers>
+    			 <buildingdestroyed item="PartyCrashers_Medium" min="1"/> 
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_Medium4Peace"/>
+     	</posteffects>	
+		</quest>		
+	
+	<!-- Party Crashers: Day 10 (Medium)  -->
+	<quest name="Easter2018plus_PartyCrasher_MainMedium5" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true">
+		<triggers>
+			<completequestlist amount="1" item="Easter2018plus_PartyCrasher_Medium5Peace,Easter2018plus_PartyCrasher_Medium5War" locaExtension="PartyCrasherWin"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="75" /> 
+			<spawnbuilding name="PartyCrashers_Hard" x="21" y="54" units="PartyCrasherSoldier|50,PartyCrasherCrossbowman|100,PartyCrasherEliteCavalry|30" action="ignoreBlocking,replace,spawnConstructing" mode="enemy"/> <!-- TRANSITION GRAPHIC -->
+			<startquest name="Easter2018plus_PartyCrasher_MainHard1" startDelay="82800" /> <!-- To be changed with the next quest -->
+			<startquest name="Easter2018plus_PartyCrasher_Hard1Peace" startDelay="82810" />
+			<startquest name="Easter2018plus_PartyCrasher_Hard1War" startDelay="82810"/>
+			<!-- Insert second looped quest here if we go for it -->
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_Medium5Peace" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_MainMedium5" icon="StripedEggs" npc="quest_character_bunnysuit02.png" showRewardWindow="true"> 
+    	<startcondition>
+    		<questrunning item="Easter2018plus_PartyCrasher_MainMedium5"/>
+    	</startcondition>
+    		<triggers>
+    			 <buffreceivedfromfriend amount="15" item="EffectBuff_Easter2016_TruceMed" target="PartyCrashers_Medium" locaExtension="pc_receive"/> 
+				 <buffreceivedfromfriend amount="1" item="EffectBuff_Easter2016_TruceAlex" target="PartyCrashers_Medium" locaExtension="pc_receive"/> 
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_Medium5War"/>
+     	</posteffects>	
+		</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_Medium5War" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_MainMedium5" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true">	 
+    	<startcondition>
+    		<questrunning item="Easter2018plus_PartyCrasher_MainMedium5"/>
+    	</startcondition>
+    		<triggers>
+    			 <buildingdestroyed item="PartyCrashers_Medium" min="1"/> 
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_Medium5Peace"/>
+     	</posteffects>	
+		</quest>		
+	
+	<!-- Party Crashers: Day 11 (Hard)  -->
+	<quest name="Easter2018plus_PartyCrasher_MainHard1" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true">
+		<triggers>
+			<completequestlist amount="1" item="Easter2018plus_PartyCrasher_Hard1Peace,Easter2018plus_PartyCrasher_Hard1War" locaExtension="PartyCrasherWin"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="75" /> 
+			<spawnbuilding name="PartyCrashers_Hard" x="21" y="54" units="PartyCrasherSoldier|50,PartyCrasherBowman|50,PartyCrasherEliteCavalry|70" action="ignoreBlocking,replace,spawnConstructing" mode="enemy"/> 
+			<startquest name="Easter2018plus_PartyCrasher_MainHard2" startDelay="82800" /> 
+			<startquest name="Easter2018plus_PartyCrasher_Hard2Peace" startDelay="82810" />
+			<startquest name="Easter2018plus_PartyCrasher_Hard2War" startDelay="82810"/>
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_Hard1Peace" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_MainHard1" icon="StripedEggs" npc="quest_character_bunnysuit02.png" showRewardWindow="true">	 
+    	<startcondition>
+    		<questrunning item="Easter2018plus_PartyCrasher_MainHard1"/>
+    	</startcondition>
+    		<triggers>
+    			 <buffreceivedfromfriend amount="10" item="EffectBuff_Easter2016_TruceHigh" target="PartyCrashers_Hard" locaExtension="pc_receive"/> 
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_Hard1War"/>
+     	</posteffects>	
+		</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_Hard1War" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_MainHard1" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true">	 
+    	<startcondition>
+    		<questrunning item="Easter2018plus_PartyCrasher_MainHard1"/>
+    	</startcondition>
+    		<triggers>
+    			 <buildingdestroyed item="PartyCrashers_Hard" min="1"/> 
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_Hard1Peace"/>
+     	</posteffects>	
+		</quest>		
+		
+	<!-- Party Crashers: Day 12 (Hard)  -->
+	<quest name="Easter2018plus_PartyCrasher_MainHard2" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true">
+		<triggers>
+			<completequestlist amount="1" item="Easter2018plus_PartyCrasher_Hard2Peace,Easter2018plus_PartyCrasher_Hard2War" locaExtension="PartyCrasherWin"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="75" /> 
+			<spawnbuilding name="PartyCrashers_Hard" x="21" y="54" units="PartyCrasherEliteSoldier|20,PartyCrasherCannoneer|100" action="ignoreBlocking,replace,spawnConstructing" mode="enemy"/>
+			<startquest name="Easter2018plus_PartyCrasher_MainHard3" startDelay="82800" />
+			<startquest name="Easter2018plus_PartyCrasher_Hard3Peace" startDelay="82810" />
+			<startquest name="Easter2018plus_PartyCrasher_Hard3War" startDelay="82810"/>
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_Hard2Peace" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_MainHard2" icon="StripedEggs" npc="quest_character_bunnysuit02.png" showRewardWindow="true"> 
+    	<startcondition>
+    		<questrunning item="Easter2018plus_PartyCrasher_MainHard2"/>
+    	</startcondition>
+    		<triggers>
+    			 <buffreceivedfromfriend amount="15" item="EffectBuff_Easter2016_TruceHigh" target="PartyCrashers_Hard" locaExtension="pc_receive"/> 
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_Hard2War"/>
+     	</posteffects>	
+		</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_Hard2War" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_MainHard2" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true">
+    	<startcondition>
+    		<questrunning item="Easter2018plus_PartyCrasher_MainHard2"/>
+    	</startcondition>
+    		<triggers>
+    			 <buildingdestroyed item="PartyCrashers_Hard" min="1"/> 
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_Hard2Peace"/>
+     	</posteffects>	
+		</quest>	
+
+	<!-- Party Crashers: Day 13 (Hard)  -->
+	<quest name="Easter2018plus_PartyCrasher_MainHard3" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true">
+		<triggers>
+			<completequestlist amount="1" item="Easter2018plus_PartyCrasher_Hard3Peace,Easter2018plus_PartyCrasher_Hard3War" locaExtension="PartyCrasherWin"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="75" />
+			<spawnbuilding name="PartyCrashers_Hard" x="21" y="54" units="PartyCrasherSoldier|50,PartyCrasherEliteSoldier|50,PartyCrasherCannoneer|150" action="ignoreBlocking,replace,spawnConstructing" mode="enemy"/> 
+			<startquest name="Easter2018plus_PartyCrasher_MainHard4" startDelay="82800" /> 
+			<startquest name="Easter2018plus_PartyCrasher_Hard4Peace" startDelay="82810" />
+			<startquest name="Easter2018plus_PartyCrasher_Hard4War" startDelay="82810"/>
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_Hard3Peace" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_MainHard3" icon="StripedEggs" npc="quest_character_bunnysuit02.png" showRewardWindow="true"> 
+    	<startcondition>
+    		<questrunning item="Easter2018plus_PartyCrasher_MainHard3"/>
+    	</startcondition>
+    		<triggers>
+    			 <buffreceivedfromfriend amount="20" item="EffectBuff_Easter2016_TruceHigh" target="PartyCrashers_Hard" locaExtension="pc_receive"/> 
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_Hard3War"/>
+     	</posteffects>	
+		</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_Hard3War" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_MainHard3" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true">	 
+    	<startcondition>
+    		<questrunning item="Easter2018plus_PartyCrasher_MainHard3"/>
+    	</startcondition>
+    		<triggers>
+    			 <buildingdestroyed item="PartyCrashers_Hard" min="1"/> 
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_Hard3Peace"/>
+     	</posteffects>	
+		</quest>
+
+	<!-- Party Crashers: Day 14 (Hard)  -->
+	<quest name="Easter2018plus_PartyCrasher_MainHard4" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true">
+		<triggers>
+			<completequestlist amount="1" item="Easter2018plus_PartyCrasher_Hard4Peace,Easter2018plus_PartyCrasher_Hard4War" locaExtension="PartyCrasherWin"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="75" /> 
+			<spawnbuilding name="PartyCrashers_Hard" x="21" y="54" units="PartyCrasherEliteCavalry|50,PartyCrasherEliteSoldier|100,PartyCrasherBoss3|1" action="ignoreBlocking,replace,spawnConstructing" mode="enemy"/> 
+			<startquest name="Easter2018plus_PartyCrasher_MainHard5" startDelay="82800" /> 
+			<startquest name="Easter2018plus_PartyCrasher_Hard5Peace" startDelay="82810" />
+			<startquest name="Easter2018plus_PartyCrasher_Hard5War" startDelay="82810"/>
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_Hard4Peace" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_MainHard4" icon="StripedEggs" npc="quest_character_bunnysuit02.png" showRewardWindow="true">	 
+    	<startcondition>
+    		<questrunning item="Easter2018plus_PartyCrasher_MainHard4"/>
+    	</startcondition>
+    		<triggers>
+    			 <buffreceivedfromfriend amount="25" item="EffectBuff_Easter2016_TruceHigh" target="PartyCrashers_Hard" locaExtension="pc_receive"/>
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_Hard4War"/>
+     	</posteffects>	
+		</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_Hard4War" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_MainHard4" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true">	 
+    	<startcondition>
+    		<questrunning item="Easter2018plus_PartyCrasher_MainHard4"/>
+    	</startcondition>
+    		<triggers>
+    			 <buildingdestroyed item="PartyCrashers_Hard" min="1"/>
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_Hard4Peace"/>
+     	</posteffects>	
+		</quest>
+
+	<!-- Party Crashers: Day 15 (Hard)  -->
+	<quest name="Easter2018plus_PartyCrasher_MainHard5" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true">
+		<triggers>
+			<completequestlist amount="1" item="Easter2018plus_PartyCrasher_Hard5Peace,Easter2018plus_PartyCrasher_Hard5War" locaExtension="PartyCrasherWin"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="100" /> 
+			<spawnbuilding name="PartyCrashers_Hard" x="21" y="54" units="PartyCrasherEliteSoldier|50,PartyCrasherBoss1|1,PartyCrasherBoss2|1,PartyCrasherBoss3|1" action="ignoreBlocking,replace,spawnConstructing" mode="enemy" /> 
+			<startquest name="Easter2018plus_PartyCrasher_BossGrind" startDelay="82800" /> 
+			<startquest name="Easter2018plus_PartyCrasher_BossGrindPeace" startDelay="82810" />
+			<startquest name="Easter2018plus_PartyCrasher_BossGrindWar" startDelay="82810"/>
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_Hard5Peace" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_MainHard5" icon="StripedEggs" npc="quest_character_bunnysuit02.png" showRewardWindow="true">	 
+    	<startcondition>
+    		<questrunning item="Easter2018plus_PartyCrasher_MainHard5"/>
+    	</startcondition>
+    		<triggers>
+    			 <buffreceivedfromfriend amount="30" item="EffectBuff_Easter2016_TruceHigh" target="PartyCrashers_Hard" locaExtension="pc_receive"/> 
+				 <buffreceivedfromfriend amount="1" item="EffectBuff_Easter2016_TruceBob" target="PartyCrashers_Hard" locaExtension="pc_receive"/> 
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_Hard5War"/>
+     	</posteffects>	
+		</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_Hard5War" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_MainHard5" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true">	 
+    	<startcondition>
+    		<questrunning item="Easter2018plus_PartyCrasher_MainHard5"/>
+    	</startcondition>
+    		<triggers>
+    			 <buildingdestroyed item="PartyCrashers_Hard" min="1"/> 
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_Hard5Peace"/>
+     	</posteffects>	
+		</quest>
+
+	<!-- Party Crashers: Day 16+ (Boss Grind)  -->
+	<quest name="Easter2018plus_PartyCrasher_BossGrind" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true">
+		<triggers>
+			<completequestlist amount="1" item="Easter2018plus_PartyCrasher_BossGrindPeace,Easter2018plus_PartyCrasher_BossGrindWar" locaExtension="PartyCrasherWin"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="100" /> 
+			<spawnbuilding name="PartyCrashers_Hard" x="21" y="54" units="PartyCrasherEliteSoldier|50,PartyCrasherBoss1|1,PartyCrasherBoss2|1,PartyCrasherBoss3|1" action="ignoreBlocking,replace,spawnConstructing" mode="enemy"/>
+			<resetquest name="Easter2018plus_PartyCrasher_BossGrind" startDelay="82800" />
+			<resetquest name="Easter2018plus_PartyCrasher_BossGrindPeace" startDelay="82810" />
+			<resetquest name="Easter2018plus_PartyCrasher_BossGrindWar" startDelay="82810"/>
+		</posteffects>
+	</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_BossGrindPeace" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_BossGrind" icon="StripedEggs" npc="quest_character_bunnysuit02.png" showRewardWindow="true">	 
+    	<startcondition>
+    		<questrunning item="Easter2018plus_PartyCrasher_BossGrind"/>
+    	</startcondition>
+    		<triggers>
+				<buffreceivedfromfriend amount="20" item="EffectBuff_Easter2016_TruceHigh" target="PartyCrashers_Hard" locaExtension="pc_receive"/> 
+				<buffreceivedfromfriend amount="1" item="EffectBuff_Easter2016_TruceBob" target="PartyCrashers_Hard" locaExtension="pc_receive"/>
+				<buffreceivedfromfriend amount="1" item="EffectBuff_Easter2016_TruceAlex" target="PartyCrashers_Hard" locaExtension="pc_receive"/>
+				<buffreceivedfromfriend amount="1" item="EffectBuff_Easter2016_TruceDenis" target="PartyCrashers_Hard" locaExtension="pc_receive"/> 
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_BossGrindWar"/>
+     	</posteffects>	
+		</quest>
+
+	<quest name="Easter2018plus_PartyCrasher_BossGrindWar" type="Event" connectedToQuest="Easter2018plus_PartyCrasher_BossGrind" icon="StripedEggs" npc="quest_character_bunnysuit01.png" showRewardWindow="true">	 
+    	<startcondition>
+    		<questrunning item="Easter2018plus_PartyCrasher_BossGrind"/>
+    	</startcondition>
+    		<triggers>
+    			 <buildingdestroyed item="PartyCrashers_Hard" min="1"/> 
+    		</triggers>
+    	<posteffects>					
+				<cancelquest name="Easter2018plus_PartyCrasher_BossGrindPeace"/>
+     	</posteffects>	
+		</quest>
+	
+	<!-- 2018plus's new Questline: Mr. Croix Sant's new delight -->
+	
+	<quest name="Easter2018plus_NewDelight_Filter" showQuestWindow="false" showRewardWindow="false" >
+		<startcondition>
+			<questcomplete item="Easter2018plus_TutAchievements" />
+		</startcondition>
+		<triggers>
+			
+		</triggers>
+		<rewards>
+		</rewards>
+		<postrequisits>
+				<postrequisite filterQuest="Level16-25" startQuest="Easter2018plus_NewDelight_MainLvl16" />
+				<postrequisite filterQuest="Level26-35" startQuest="Easter2018plus_NewDelight_MainLvl26" />
+				<postrequisite filterQuest="Level36-45" startQuest="Easter2018plus_NewDelight_MainLvl36" />
+				<postrequisite filterQuest="Level46-55" startQuest="Easter2018plus_NewDelight_MainLvl46" />
+				<postrequisite filterQuest="Level56-65" startQuest="Easter2018plus_NewDelight_MainLvl56" />
+				<postrequisite filterQuest="Level66-80" startQuest="Easter2018plus_NewDelight_MainLvl66" />	
+		</postrequisits>
+	</quest>
+	
+	<!-- Main quest -->
+	<quest name="Easter2018plus_NewDelight_MainLvl16" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" showRewardWindow="true">		
+		
+		<triggers>
+			<completequestlist item="Easter2018plus_NewDelight_Sub1_Lvl16,Easter2018plus_NewDelight_Sub2_Lvl16,Easter2018plus_NewDelight_Sub3_Lvl16,Easter2018plus_NewDelight_Sub4_Lvl16,Easter2018plus_NewDelight_Sub5_Lvl16,Easter2018plus_NewDelight_Sub6_Lvl16,Easter2018plus_NewDelight_Sub7_Lvl16" amount="7" locaExtension="Story" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="100" /> 
+			<reward type="XP" amount="1150"/>
+			<reward type="Buff" item="BuildBuilding" name="Easter2017Deco_RabbitBush" amount="1" recurringChance="100"/> <!-- New Deco! -->
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_MainLvl26" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" showRewardWindow="true">	
+		<triggers>
+			<completequestlist item="Easter2018plus_NewDelight_Sub1_Lvl26,Easter2018plus_NewDelight_Sub2_Lvl26,Easter2018plus_NewDelight_Sub3_Lvl26,Easter2018plus_NewDelight_Sub4_Lvl26,Easter2018plus_NewDelight_Sub5_Lvl26,Easter2018plus_NewDelight_Sub6_Lvl26,Easter2018plus_NewDelight_Sub7_Lvl26" amount="7" locaExtension="Story" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="100" /> 
+			<reward type="XP" amount="3450"/>
+			<reward type="Buff" item="BuildBuilding" name="Easter2017Deco_RabbitBush" amount="1" recurringChance="100"/> <!-- New Deco! -->
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_MainLvl36" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" showRewardWindow="true">	
+		<triggers>
+			<completequestlist item="Easter2018plus_NewDelight_Sub1_Lvl36,Easter2018plus_NewDelight_Sub2_Lvl36,Easter2018plus_NewDelight_Sub3_Lvl36,Easter2018plus_NewDelight_Sub4_Lvl36,Easter2018plus_NewDelight_Sub5_Lvl36,Easter2018plus_NewDelight_Sub6_Lvl36,Easter2018plus_NewDelight_Sub7_Lvl36"  amount="7" locaExtension="Story" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="100" /> 
+			<reward type="XP" amount="6875"/>
+			<reward type="Buff" item="BuildBuilding" name="Easter2017Deco_RabbitBush" amount="1" recurringChance="100"/> <!-- New Deco! -->
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_MainLvl46" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" showRewardWindow="true">	
+		<triggers>
+			<completequestlist item="Easter2018plus_NewDelight_Sub1_Lvl46,Easter2018plus_NewDelight_Sub2_Lvl46,Easter2018plus_NewDelight_Sub3_Lvl46,Easter2018plus_NewDelight_Sub4_Lvl46,Easter2018plus_NewDelight_Sub5_Lvl46,Easter2018plus_NewDelight_Sub6_Lvl46,Easter2018plus_NewDelight_Sub7_Lvl46"  amount="7" locaExtension="Story" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="100" /> 
+			<reward type="XP" amount="15475"/>
+			<reward type="Buff" item="BuildBuilding" name="Easter2017Deco_RabbitBush" amount="1" recurringChance="100"/> <!-- New Deco! -->
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_MainLvl56" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" showRewardWindow="true">	
+		<triggers>
+			<completequestlist item="Easter2018plus_NewDelight_Sub1_Lvl56,Easter2018plus_NewDelight_Sub2_Lvl56,Easter2018plus_NewDelight_Sub3_Lvl56,Easter2018plus_NewDelight_Sub4_Lvl56,Easter2018plus_NewDelight_Sub5_Lvl56,Easter2018plus_NewDelight_Sub6_Lvl56,Easter2018plus_NewDelight_Sub7_Lvl56"  amount="7" locaExtension="Story" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="100" /> 
+			<reward type="XP" amount="18775"/>
+			<reward type="Buff" item="BuildBuilding" name="Easter2017Deco_RabbitBush" amount="1" recurringChance="100"/> <!-- New Deco! -->
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_MainLvl66" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" showRewardWindow="true">	
+		<triggers>
+			<completequestlist item="Easter2018plus_NewDelight_Sub1_Lvl66,Easter2018plus_NewDelight_Sub2_Lvl66,Easter2018plus_NewDelight_Sub3_Lvl66,Easter2018plus_NewDelight_Sub4_Lvl66,Easter2018plus_NewDelight_Sub5_Lvl66,Easter2018plus_NewDelight_Sub6_Lvl66,Easter2018plus_NewDelight_Sub7_Lvl66"  amount="7" locaExtension="Story" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StripedEggs" amount="100" /> 
+			<reward type="XP" amount="24850"/>
+			<reward type="Buff" item="BuildBuilding" name="Easter2017Deco_RabbitBush" amount="1" recurringChance="100"/> <!-- New Deco! -->
+		</posteffects>
+	</quest>
+	
+	<!-- Sub-Quest 1 -->
+	<quest name="Easter2018plus_NewDelight_Sub1_Lvl16" connectedToQuest="Easter2018plus_NewDelight_MainLvl16" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="40" cancelable="false">
+		<startcondition>
+			<questrunning item="Easter2018plus_NewDelight_MainLvl16"/>
+		</startcondition>
+		<triggers>
+			<collectedpickups item="BuildingStripedEggs" amount="20" locaExtension="eggs" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="250" />
+			<reward type="Resource" name="StripedEggs" amount="5" /> 			
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub1_Lvl26" connectedToQuest="Easter2018plus_NewDelight_MainLvl26" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="40" cancelable="false">
+		<startcondition>
+			<questrunning item="Easter2018plus_NewDelight_MainLvl26"/>
+		</startcondition>
+		<triggers>
+			<collectedpickups item="BuildingStripedEggs" amount="20" locaExtension="eggs" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="250" />
+			<reward type="Resource" name="StripedEggs" amount="5" /> 			
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub1_Lvl36" connectedToQuest="Easter2018plus_NewDelight_MainLvl36" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="40" cancelable="false">
+		<startcondition>
+			<questrunning item="Easter2018plus_NewDelight_MainLvl36"/>
+		</startcondition>
+		<triggers>
+			<collectedpickups item="BuildingStripedEggs" amount="20" locaExtension="eggs" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="250" />
+			<reward type="Resource" name="StripedEggs" amount="5" /> 			
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub1_Lvl46" connectedToQuest="Easter2018plus_NewDelight_MainLvl46" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="40" cancelable="false">
+		<startcondition>
+			<questrunning item="Easter2018plus_NewDelight_MainLvl46"/>
+		</startcondition>
+		<triggers>
+			<collectedpickups item="BuildingStripedEggs" amount="20" locaExtension="eggs" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="250" />
+			<reward type="Resource" name="StripedEggs" amount="5" /> 			
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub1_Lvl56" connectedToQuest="Easter2018plus_NewDelight_MainLvl56" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="40" cancelable="false">
+		<startcondition>
+			<questrunning item="Easter2018plus_NewDelight_MainLvl56"/>
+		</startcondition>
+		<triggers>
+			<collectedpickups item="BuildingStripedEggs" amount="20" locaExtension="eggs" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="250" />
+			<reward type="Resource" name="StripedEggs" amount="5" /> 			
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub1_Lvl66" connectedToQuest="Easter2018plus_NewDelight_MainLvl66" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="40" cancelable="false">
+		<startcondition>
+			<questrunning item="Easter2018plus_NewDelight_MainLvl66"/>
+		</startcondition>
+		<triggers>
+			<collectedpickups item="BuildingStripedEggs" amount="20" locaExtension="eggs" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="250" />
+			<reward type="Resource" name="StripedEggs" amount="5" /> 			
+		</posteffects>
+	</quest>
+	
+	<!-- Sub-Quest 2 -->
+	<quest name="Easter2018plus_NewDelight_Sub2_Lvl16" connectedToQuest="Easter2018plus_NewDelight_MainLvl16" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="85" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub1_Lvl16" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Tool" amount="100" condition="produce" />
+			<trigger type="Resource" name="Plank" amount="250" condition="produce" />
+			<trigger type="Resource" name="Bronze" amount="250" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Coal" amount="200" />
+			<trigger type="PayForQuestFinish" name="Tool" amount="100" />
+			<trigger type="PayForQuestFinish" name="Plank" amount="250" />
+			<trigger type="PayForQuestFinish" name="Bronze" amount="250" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="700" />
+			<reward type="Buff" item="ProductivityBuffLvl13" amount="1"/>	 		
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub2_Lvl26" connectedToQuest="Easter2018plus_NewDelight_MainLvl26" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="175" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub1_Lvl26" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Tool" amount="500" condition="produce" />
+			<trigger type="Resource" name="RealPlank" amount="500" condition="produce" />
+			<trigger type="Resource" name="Iron" amount="400" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Coal" amount="500" />
+			<trigger type="PayForQuestFinish" name="Tool" amount="500" />
+			<trigger type="PayForQuestFinish" name="RealPlank" amount="500" />
+			<trigger type="PayForQuestFinish" name="Iron" amount="400" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="3600" />
+			<reward type="Buff" item="ProductivityBuffLvl13" amount="1"/>	 		
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub2_Lvl36" connectedToQuest="Easter2018plus_NewDelight_MainLvl36" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="240" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub1_Lvl36" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Tool" amount="850" condition="produce" />
+			<trigger type="Resource" name="RealPlank" amount="750" condition="produce" />
+			<trigger type="Resource" name="Steel" amount="250" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Coal" amount="500" />
+			<trigger type="PayForQuestFinish" name="Tool" amount="850" />
+			<trigger type="PayForQuestFinish" name="RealPlank" amount="750" />
+			<trigger type="PayForQuestFinish" name="Steel" amount="250" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="5550" />
+			<reward type="Buff" item="ProductivityBuffLvl13" amount="1"/>	 		
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub2_Lvl46" connectedToQuest="Easter2018plus_NewDelight_MainLvl46" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="285" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub1_Lvl46" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Tool" amount="1000" condition="produce" />
+			<trigger type="Resource" name="ExoticPlank" amount="250" condition="produce" />
+			<trigger type="Resource" name="Titanium" amount="150" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Coal" amount="750" />
+			<trigger type="PayForQuestFinish" name="Tool" amount="1000" />
+			<trigger type="PayForQuestFinish" name="ExoticPlank" amount="250" />
+			<trigger type="PayForQuestFinish" name="Titanium" amount="150" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="6750" />
+			<reward type="Buff" item="ProductivityBuffLvl13" amount="1"/>	 		
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub2_Lvl56" connectedToQuest="Easter2018plus_NewDelight_MainLvl56" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="325" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub1_Lvl56" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Tool" amount="1500" condition="produce" />
+			<trigger type="Resource" name="ExoticPlank" amount="500" condition="produce" />
+			<trigger type="Resource" name="Titanium" amount="350" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Coal" amount="1250" />
+			<trigger type="PayForQuestFinish" name="Tool" amount="1500" />
+			<trigger type="PayForQuestFinish" name="ExoticPlank" amount="500" />
+			<trigger type="PayForQuestFinish" name="Titanium" amount="350" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="10200" />
+			<reward type="Buff" item="ProductivityBuffLvl13" amount="1"/>	 		
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub2_Lvl66" connectedToQuest="Easter2018plus_NewDelight_MainLvl66" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="350" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub1_Lvl66" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Tool" amount="2000" condition="produce" />
+			<trigger type="Resource" name="MahoganyPlank" amount="350" condition="produce" />
+			<trigger type="Resource" name="Titanium" amount="500" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Coal" amount="1750" />
+			<trigger type="PayForQuestFinish" name="Tool" amount="2000" />
+			<trigger type="PayForQuestFinish" name="MahoganyPlank" amount="350" />
+			<trigger type="PayForQuestFinish" name="Titanium" amount="500" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="14250" />
+			<reward type="Buff" item="ProductivityBuffLvl13" amount="1"/>	 		
+		</posteffects>
+	</quest>
+	
+	<!-- Sub-Quest 3 -->
+	<quest name="Easter2018plus_NewDelight_Sub3_Lvl16" connectedToQuest="Easter2018plus_NewDelight_MainLvl16" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="45" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub2_Lvl16" />
+		</startcondition>
+		<triggers>
+			<buffappliedonfriend amount="30"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="350" />
+			<reward type="Resource" name="StripedEggs" amount="10" /> 			
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub3_Lvl26" connectedToQuest="Easter2018plus_NewDelight_MainLvl26" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="120" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub2_Lvl26" />
+		</startcondition>
+		<triggers>
+			<completeadventurelist amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="1250" />
+			<reward type="Resource" name="StripedEggs" amount="15" /> 			
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub3_Lvl36" connectedToQuest="Easter2018plus_NewDelight_MainLvl36" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="120" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub2_Lvl36" />
+		</startcondition>
+		<triggers>
+			<completeadventurelist amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="1250" />
+			<reward type="Resource" name="StripedEggs" amount="15" /> 			
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub3_Lvl46" connectedToQuest="Easter2018plus_NewDelight_MainLvl46" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="240" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub2_Lvl46" />
+		</startcondition>
+		<triggers>
+			<completeadventurelist amount="2"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="2500" />
+			<reward type="Resource" name="StripedEggs" amount="30" /> 			
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub3_Lvl56" connectedToQuest="Easter2018plus_NewDelight_MainLvl56" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="240" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub2_Lvl56" />
+		</startcondition>
+		<triggers>
+			<completeadventurelist amount="2"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="2500" />
+			<reward type="Resource" name="StripedEggs" amount="30" /> 			
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub3_Lvl66" connectedToQuest="Easter2018plus_NewDelight_MainLvl66" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="360" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub2_Lvl66" />
+		</startcondition>
+		<triggers>
+			<completeadventurelist amount="3"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="3750" />
+			<reward type="Resource" name="StripedEggs" amount="45" /> 			
+		</posteffects>
+	</quest>
+	
+	<!-- Sub-Quest 4 -->
+	<quest name="Easter2018plus_NewDelight_Sub4_Lvl16" connectedToQuest="Easter2018plus_NewDelight_MainLvl16" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="45" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub3_Lvl16" />
+		</startcondition>
+		<triggers>
+			<buffappliedonfriend amount="30" item="ProductivityBuffLvl2" locaExtension="item"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="650" />
+			<reward type="Resource" name="Coin" amount="100" /> 			
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub4_Lvl26" connectedToQuest="Easter2018plus_NewDelight_MainLvl26" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="90" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub3_Lvl26" />
+		</startcondition>
+		<triggers>
+			<buffappliedonfriend amount="25" item="ProductivityBuffLvl2" locaExtension="item"/>
+			<buffappliedonfriend amount="25" item="ProductivityBuffLvl3" locaExtension="item"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="1250" />
+			<reward type="Resource" name="Coin" amount="250" /> 			
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub4_Lvl36" connectedToQuest="Easter2018plus_NewDelight_MainLvl36" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="110" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub3_Lvl36" />
+		</startcondition>
+		<triggers>
+			<buffappliedonfriend amount="25" item="ProductivityBuffLvl3" locaExtension="item"/>
+			<buffappliedonfriend amount="1" item="ProductivityBuffLvl102" locaExtension="item"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="3550" />
+			<reward type="Resource" name="Steel" amount="250" /> 			
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub4_Lvl46" connectedToQuest="Easter2018plus_NewDelight_MainLvl46" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="140" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub3_Lvl46" />
+		</startcondition>
+		<triggers>
+			<buffappliedonfriend amount="50" item="ProductivityBuffLvl3" locaExtension="item"/>
+			<buffappliedonfriend amount="2" item="ProductivityBuffLvl102" locaExtension="item"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="7000" />
+			<reward type="Resource" name="TitaniumOre" amount="100" /> 			
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub4_Lvl56" connectedToQuest="Easter2018plus_NewDelight_MainLvl56" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="160" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub3_Lvl56" />
+		</startcondition>
+		<triggers>
+			<buffappliedonfriend amount="75" item="ProductivityBuffLvl3" locaExtension="item"/>
+			<buffappliedonfriend amount="5" item="ProductivityBuffLvl102" locaExtension="item"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="11500" />
+			<reward type="Resource" name="PlatinumOre" amount="250" /> 			
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub4_Lvl66" connectedToQuest="Easter2018plus_NewDelight_MainLvl66" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="180" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub3_Lvl66" />
+		</startcondition>
+		<triggers>
+			<buffappliedonfriend amount="100" item="ProductivityBuffLvl3" locaExtension="item"/>
+			<buffappliedonfriend amount="10" item="ProductivityBuffLvl102" locaExtension="item"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="16450" />
+			<reward type="Resource" name="MahoganyWood" amount="200" /> 			
+		</posteffects>
+	</quest>
+	
+	<!-- Sub-Quest 5 -->
+	<quest name="Easter2018plus_NewDelight_Sub5_Lvl16" connectedToQuest="Easter2018plus_NewDelight_MainLvl16" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="175" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub4_Lvl16" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Fish" amount="500" condition="produce" />
+			<trigger type="Resource" name="Bread" amount="500" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Fish" amount="500" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="500" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="650" />
+			<reward type="Buff" item="ProductivityBuffLvl25" amount="1"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub5_Lvl26" connectedToQuest="Easter2018plus_NewDelight_MainLvl26" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="250" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub4_Lvl26" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Fish" amount="750" condition="produce" />
+			<trigger type="Resource" name="Bread" amount="500" condition="produce" />
+			<trigger type="Resource" name="Meat" amount="350" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Fish" amount="750" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="500" />
+			<trigger type="PayForQuestFinish" name="Meat" amount="350" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="1400" />
+			<reward type="Buff" item="ProductivityBuffLvl25" amount="1"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub5_Lvl36" connectedToQuest="Easter2018plus_NewDelight_MainLvl36" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="365" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub4_Lvl36" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Fish" amount="1500" condition="produce" />
+			<trigger type="Resource" name="Bread" amount="750" condition="produce" />
+			<trigger type="Resource" name="Meat" amount="500" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Fish" amount="1500" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="750" />
+			<trigger type="PayForQuestFinish" name="Meat" amount="500" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="2050" />
+			<reward type="Buff" item="ProductivityBuffLvl25" amount="1"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub5_Lvl46" connectedToQuest="Easter2018plus_NewDelight_MainLvl46" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="538" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub4_Lvl46" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Fish" amount="2500" condition="produce" />
+			<trigger type="Resource" name="Bread" amount="1250" condition="produce" />
+			<trigger type="Resource" name="Sausage" amount="750" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Fish" amount="2500" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="1250" />
+			<trigger type="PayForQuestFinish" name="Sausage" amount="750" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="3250" />
+			<reward type="Buff" item="ProductivityBuffLvl25" amount="1"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub5_Lvl56" connectedToQuest="Easter2018plus_NewDelight_MainLvl56" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="683" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub4_Lvl56" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Fish" amount="2500" condition="produce" />
+			<trigger type="Resource" name="Bread" amount="1500" condition="produce" />
+			<trigger type="Resource" name="Sausage" amount="1000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Fish" amount="2500" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="1250" />
+			<trigger type="PayForQuestFinish" name="Sausage" amount="1000" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="7550" />
+			<reward type="Buff" item="ProductivityBuffLvl25" amount="1"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub5_Lvl66" connectedToQuest="Easter2018plus_NewDelight_MainLvl66" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="742" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub4_Lvl66" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Bread" amount="2500" condition="produce" />
+			<trigger type="Resource" name="Meat" amount="1500" condition="produce" />
+			<trigger type="Resource" name="Sausage" amount="1000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="2500" />
+			<trigger type="PayForQuestFinish" name="Meat" amount="1500" />
+			<trigger type="PayForQuestFinish" name="Sausage" amount="1000" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="10500" />
+			<reward type="Buff" item="ProductivityBuffLvl25" amount="1"/>
+		</posteffects>
+	</quest>
+	
+	<!-- Sub-Quest 6 -->
+	<quest name="Easter2018plus_NewDelight_Sub6_Lvl16" connectedToQuest="Easter2018plus_NewDelight_MainLvl16" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="75" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub5_Lvl16" />
+		</startcondition>
+		<triggers>
+			<buffapplied item="ProductivityBuffLvl25" min="1" />
+			<buffapplied item="EffectBuffSweetTreat" min="1" locaExtension="1delight"/>  
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="450" />
+			<reward type="Buff" item="ProvisionerBuffLvl1" amount="2"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub6_Lvl26" connectedToQuest="Easter2018plus_NewDelight_MainLvl26" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="75" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub5_Lvl26" />
+		</startcondition>
+		<triggers>
+			<buffapplied item="ProductivityBuffLvl25" min="1" />
+			<buffapplied item="EffectBuffSweetTreat" min="1" locaExtension="1delight"/>  
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="450" />
+			<reward type="Buff" item="ProvisionerBuffLvl1" amount="2"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub6_Lvl36" connectedToQuest="Easter2018plus_NewDelight_MainLvl36" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="75" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub5_Lvl36" />
+		</startcondition>
+		<triggers>
+			<buffapplied item="ProductivityBuffLvl25" min="1" />
+			<buffapplied item="EffectBuffSweetTreat" min="1" locaExtension="1delight"/>  
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="450" />
+			<reward type="Buff" item="ProvisionerBuffLvl1" amount="2"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub6_Lvl46" connectedToQuest="Easter2018plus_NewDelight_MainLvl46" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="75" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub5_Lvl46" />
+		</startcondition>
+		<triggers>
+			<buffapplied item="ProductivityBuffLvl25" min="1" />
+			<buffapplied item="EffectBuffSweetTreat" min="1" locaExtension="1delight"/>  
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="450" />
+			<reward type="Buff" item="ProvisionerBuffLvl1" amount="2"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub6_Lvl56" connectedToQuest="Easter2018plus_NewDelight_MainLvl56" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="75" cancelable="false">
+		<startcondition>	
+			<questcomplete item="Easter2018plus_NewDelight_Sub5_Lvl56" />
+		</startcondition>
+		<triggers>
+			<buffapplied item="ProductivityBuffLvl25" min="1" />
+			<buffapplied item="EffectBuffSweetTreat" min="1" locaExtension="1delight"/>  
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="450" />
+			<reward type="Buff" item="ProvisionerBuffLvl1" amount="2"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub6_Lvl66" connectedToQuest="Easter2018plus_NewDelight_MainLvl66" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="75" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub5_Lvl66" />
+		</startcondition>
+		<triggers>
+			<buffapplied item="ProductivityBuffLvl25" min="1" />
+			<buffapplied item="EffectBuffSweetTreat" min="1" locaExtension="1delight"/> 
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="450" />
+			<reward type="Buff" item="ProvisionerBuffLvl1" amount="2"/>
+		</posteffects>
+	</quest>
+	
+	<!-- Sub-Quest 7 -->
+	<quest name="Easter2018plus_NewDelight_Sub7_Lvl16" connectedToQuest="Easter2018plus_NewDelight_MainLvl16" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="300" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub6_Lvl16" />
+		</startcondition>
+		<triggers>
+			<buffapplied min="15" item="EffectBuffSweetTreat" locaExtension="manyDelights"/> 
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="1350" />
+			<reward type="Resource" name="StripedEggs" amount="25" /> 			
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub7_Lvl26" connectedToQuest="Easter2018plus_NewDelight_MainLvl26" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="400" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub6_Lvl26"/>
+		</startcondition>
+		<triggers>
+			<buffapplied min="20" item="EffectBuffSweetTreat" locaExtension="manyDelights" />  
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="1800" />
+			<reward type="Resource" name="StripedEggs" amount="25" /> 			
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub7_Lvl36" connectedToQuest="Easter2018plus_NewDelight_MainLvl36" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="500" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub6_Lvl36" />
+		</startcondition>
+		<triggers>
+			<buffapplied min="25" item="EffectBuffSweetTreat" locaExtension="manyDelights"/>  
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="2250" />
+			<reward type="Resource" name="StripedEggs" amount="25"/> 			
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub7_Lvl46" connectedToQuest="Easter2018plus_NewDelight_MainLvl46" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="500" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub6_Lvl46" />
+		</startcondition>
+		<triggers>
+			<buffapplied min="25" item="EffectBuffSweetTreat" locaExtension="manyDelights"/>  
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="2250" />
+			<reward type="Resource" name="StripedEggs" amount="25" /> 			
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub7_Lvl56" connectedToQuest="Easter2018plus_NewDelight_MainLvl56" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="500" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub6_Lvl56" />
+		</startcondition>
+		<triggers>
+			<buffapplied min="25" item="EffectBuffSweetTreat" locaExtension="manyDelights"/>  
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="2250" />
+			<reward type="Resource" name="StripedEggs" amount="25" /> 			
+		</posteffects>
+	</quest>
+	
+	<quest name="Easter2018plus_NewDelight_Sub7_Lvl66" connectedToQuest="Easter2018plus_NewDelight_MainLvl66" type="Event" icon="StripedEggs" npc="quest_character_bunnysuit01.png" linkEventWindow="true" questWinGemCosts="500" cancelable="false">
+		<startcondition>
+			<questcomplete item="Easter2018plus_NewDelight_Sub6_Lvl66" />
+		</startcondition>
+		<triggers>
+			<buffapplied min="25" item="EffectBuffSweetTreat" locaExtension="manyDelights"/>  
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="2250" />
+			<reward type="Resource" name="StripedEggs" amount="25" /> 			
+		</posteffects>
+	</quest>
+	
+</Root>

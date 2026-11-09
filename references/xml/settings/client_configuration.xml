@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Configuration>
+	<ShopTracking analyticsId="UA-12443096-3" />
+	<ShopBanners>
+		<ShopBannerGroup>
+			<Banner slot="3" url="shop/banner/ru-ru/shopbanner_left.png" linkType="group" id="19" />
+			<Banner slot="4" url="shop/banner/ru-ru/shopbanner_middle.png" linkType="group" id="19" />
+			<Banner slot="5" url="shop/banner/ru-ru/shopbanner_right.png" linkType="group" id="19" />
+		</ShopBannerGroup>
+		
+		
+		<ShopBannerGroup requiresEvent="MilitaryWeekII_EventRunning">
+			<Banner slot="3" url="shop/banner/ru-ru/MilitaryWeek_shopbanner_left.png" linkType="group" id="18" />
+			<Banner slot="4" url="shop/banner/ru-ru/MilitaryWeek_shopbanner_middle.png" linkType="group" id="18" />
+			<Banner slot="5" url="shop/banner/ru-ru/MilitaryWeek_shopbanner_right.png" linkType="group" id="18" />
+		</ShopBannerGroup>
+		
+				
+		<ShopBannerGroup requiresEvent="Valentines2019plus_Shop">
+			<Banner slot="3" url="shop/banner/default/shop_banner_valentine_narcissisticgeneral.png" linkType="item" id="2026012015" />
+			<Banner slot="4" url="shop/banner/default/shop_banner_valentine_02.png" linkType="item" id="25002" />
+			<Banner slot="5" url="shop/banner/default/shop_banner_valentine_weddingchapelheartballoon.png" linkType="item" id="2026012007" />
+		</ShopBannerGroup>
+		
+		<ShopBannerGroup requiresEvent="Easter2018plus_Shop">
+			<Banner slot="3" url="shop/banner/default/banner_Depositorium.png" linkType="item" id="202603069" />
+			<Banner slot="4" url="shop/banner/default/banner_glori.png" linkType="item" id="2026030613" />
+			<Banner slot="5" url="shop/banner/default/banner_LogisticsOffice.png" linkType="item" id="2026030607" />
+		</ShopBannerGroup>
+		
+		<ShopBannerGroup requiresEvent="Soccer2018plus_Shop">
+			<Banner slot="3" url="shop/banner/default/banner_industrialorerefinery2026.png" linkType="item" id="2026051502" />
+			<Banner slot="4" url="shop/banner/default/banner_titangeologist2026.png" linkType="item" id="2026051501" />
+			<Banner slot="5" url="shop/banner/default/banner_offshorelighthouse2026.png" linkType="item" id="2026051506" />
+		</ShopBannerGroup>
+		
+		<ShopBannerGroup requiresEvent="Anniversary2018plus_Content">
+			<Banner slot="3" url="shop/banner/default/banner_anniversary_2025_1.png" linkType="item" id="2025071001" />
+			<Banner slot="4" url="shop/banner/default/banner_anniversary_2024_2.png" linkType="item" id="30401" />
+			<Banner slot="5" url="shop/banner/default/banner_anniversary_2025_3.png" linkType="item" id="2025071000" />
+		</ShopBannerGroup>
+		
+		<ShopBannerGroup requiresEvent="HW2017plus_Shop">
+			<Banner slot="3" url="shop/banner/default/hw2025ghostexplorer.png" linkType="item" id="2025290801" />
+			<Banner slot="4" url="shop/banner/default/banner_halloween_pumpkins.png" linkType="item" id="11011" />
+			<Banner slot="5" url="shop/banner/default/hw2025witchcoven.png" linkType="item" id="2025290803" />
+		</ShopBannerGroup>
+		
+		<ShopBannerGroup requiresEvent="XMAS2017plus_Shop">
+			<Banner slot="3" url="shop/banner/default/banner_xmas_20205_retirementvillage.png" linkType="item" id="2025201111" />
+			<Banner slot="4" url="shop/banner/default/banner_xmas_presents.png" linkType="item" id="11019" />
+			<Banner slot="5" url="shop/banner/default/banner_xmas_2025_krampuspit.png" linkType="item" id="2025201109" />
+		</ShopBannerGroup>
+	</ShopBanners>
+	
+	<DefaultLanguage name="ru-ru"/>
+	
+	<News ChangeLogUrl="/redirect/changelog" />
+	<Links PromotionCodeUrl="/redirect/promocode" />
+
+	<ChatDefaultChannels>
+		<ChatDefaultChannel country="de" channel="1" />
+		<ChatDefaultChannel country="cs" channel="1" />
+		<ChatDefaultChannel country="en" channel="1" />
+		<ChatDefaultChannel country="ru" channel="1"/>
+		<ChatDefaultChannel country="pl" channel="1"/>
+		<ChatDefaultChannel country="hu" channel="1"/>
+	</ChatDefaultChannels>
+	
+</Configuration>

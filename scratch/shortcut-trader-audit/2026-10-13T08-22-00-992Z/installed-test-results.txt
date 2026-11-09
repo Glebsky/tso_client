@@ -1,0 +1,21 @@
+PASS no synthetic trade injection or shared TimedQueue
+PASS no Gunpowder recursion regression; resource and adventure icon caches separate
+PASS empty star inventory remains authoritative
+PASS Gunpowder stock does not merge adventure with warehouse
+PASS queue sends first immediately and next after 3000ms; rejects overlap
+PASS Stop cancels unsent trades
+PASS zone change stops queue before second send
+PASS leaving home stops queue
+PASS aggregate warehouse reservation rejects overcommit
+PASS buff reservation includes lots and preceding offers
+PASS batch snapshots trade data
+PASS send exception stops without retry
+PASS invalid integers, amounts, recipients and lots rejected
+PASS dispose clears owned timers and invalidates callbacks
+PASS reload disposes previous module, re-registers menu without sending trade
+PASS closed window does not start a slot watcher
+PASS actual drag handler preserves next target identity
+PASS retire visible modal preserves it until hidden and hides only once
+PASS retire already hiding modal does not invoke duplicate stage hide
+PASS retire during show transition waits for shown before hiding
+TOTAL 20 tests passed; mocks only, no AIR/server access

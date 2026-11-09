@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<Root>
+    
+    	<!--
+    
+    	// name = Name of Quest
+    	// showQuestWindow="false"  = disable show Quest Window funktion
+    	// showRewardWindow="false"  = disable show Reward Window funktion
+	// colorSchema = use a colorschema could be "night" ,"oven","snow","colormod,radd,gadd,badd,rmul,gmul,bmul"
+	// specialType="firstQuest", this is the start of a quest series, will be aktivated when zone starts
+    	// active = false means quest is inactive
+    	
+    	<quests name="QuestName" colorSchema="night" specialType="firstQuest" active="true">
+    		// if all triggers true quest is finished 
+    		<triggers>
+    			// if Woodcutter exist onMap quest is finished (if amount is one, it could be ignored"
+    			<trigger type="Building" name="Woodcutter" condition="onMap" />
+    			// if Sawmill is created quest is finished
+    			<trigger type="Building" name="Sawmill" condition="created" />
+    			// if 2 Sawmill in map quest is finished
+    			<trigger type="Building" name="Sawmill" condition="ge" amount="2" />
+    			// if 100 Iron is created quest is finished ge means greater or equal
+    			<trigger type="Resource" name="Iron" condition="ge" amount="100" />
+    			// if 100 additional Iron is created quest is finished geDelta means greater or equal
+			// for example, if you have 120 iron at the start of the quest, you must have at least 220 to finish it
+    			<trigger type="Resource" name="Iron" condition="geDelta" amount="100" />
+				
+				//Trigger Events: If trigger completion shall trigger further events (besides quest progress) enter the "onComplete" property with these possible comma-seperated values (NO WHITESPACES!):
+				<trigger type="Building" condition="selected" onComplete="destroySelectedBuilding,doSomethingElse"/> //Destroys the current selected Building and is doint things:)
+    		</triggers>
+    		
+    		// Player Rewards
+    		<rewards>
+    			// Player gets 100 iron
+    			<reward type="Resource" name="Iron" amount="100" />
+    			// Player gets 200 XP
+    			<reward type="XP" amount="200" />
+    		</rewards>
+    		
+    		// postrequisits is called after player gets his rewards 
+    		// startQuest is the name of the quest to start
+    		// Delay is Delay in seconds before quest starts
+    		<postrequisits startQuest="Quest2" startDelay="10" />
+			
+			// Hints (Red bouncing arrow)
+			<hints>
+				// name:       not used yet, will be used as text identifier for hint texts
+				// pointTo:    UI Element which is pointed to
+				//   		   available values:
+				//                 ActionBarButton01
+				//                 ActionBarButton02
+				//                 ActionBarButton03
+				//                 ActionBarButton04
+				//                 ActionBarButton05
+				//                 ActionBarButton06
+				//                 ActionBarButton07
+				//                 ActionBarButton08
+				//                 ActionBarButton09
+				//                 QuestButton
+				// offsetX:    x-offset in pixels from the center of the ui element
+				// offsetY:    y-offset in pixels from the center of the ui element
+				// direction:  direction the arrow will point to
+				//             available values: N, NE, E, SE, S, SW, W, NW
+				<hint name="FirstBuildMenu" pointTo="ActionBarButton01" offsetX="0" offsetY="-40" direction="S" />
+			</hints>
+			
+    	</quests>
+    	
+    	-->
+       
+    <!-- PREMIUM ACOUNT MAIN QUEST -->
+    
+      <quest name="MainPremium" type="Story" icon="QuestShort" npc="quest_character_mentor03.png" helpName="Help_window_premium_account_0" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="26"/>
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <helpeffects>
+         </helpeffects>
+         <triggers>
+           <trigger type="QuestComplete" name="PremiumSub1" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="PremiumSub2" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="PremiumSub3" condition="questcompleted" amount="1"/>
+         </triggers>
+         <posteffects>
+            <reward type="Buff" item="PremiumAccount1DayGift" amount="1"/>             
+         </posteffects>
+      </quest>
+       
+      <quest name="PremiumSub1" type="Story" connectedToQuest="MainPremium" icon="Resources" npc="quest_character_mentor03.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="26"/>
+         </startcondition>
+         <preeffects>
+			     <reward type="Buff" item="PremiumAccount1DayGift" amount="1" />
+         </preeffects>
+         <helpeffects>
+         </helpeffects>
+         <triggers>
+         	<buffapplied item="PremiumAccount1Day*" min="1"/>
+         </triggers>
+         <posteffects>
+           <reward type="XP" amount="10"/>               
+         </posteffects>
+      </quest>       
+      
+      <quest name="PremiumSub2" type="Story" connectedToQuest="MainPremium" icon="Social" npc="quest_character_mentor03.png" showRewardWindow="true">            
+        <startcondition>
+          <questcomplete item="PremiumSub1"/>   
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <helpeffects>
+        </helpeffects>
+        <triggers>
+          <trigger type="BuffOnFriend" name="" condition="geDelta" amount="1"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="20"/>               
+        </posteffects>
+      </quest> 
+
+      <quest name="PremiumSub3" type="Story" connectedToQuest="MainPremium" icon="Military" npc="quest_character_mentor03.png" showRewardWindow="true">            
+        <startcondition>
+          <questcomplete item="PremiumSub1"/>    
+        </startcondition>
+        <preeffects> 
+        </preeffects>
+        <helpeffects>
+        </helpeffects>
+        <triggers>
+           <trigger type="Adventure" name="" condition="geDelta" amount="1" /> 
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="50"/>               
+        </posteffects>
+      </quest>
+      
+</Root>

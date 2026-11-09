@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+
+
+	<quest name="Easter_Event_2015_Buff_Adventure_MainQuest" specialType="firstQuestlastQuest" showQuestWindow="false" icon="CollectiblePlainEgg" npc="quest_character_bunnysuit01.png">
+		<triggers>
+		   <questcomplete item="Easter_Event_2015_Buff_Adventure_SubQuest01" />
+		   <questcomplete item="Easter_Event_2015_Buff_Adventure_SubQuest02" />
+		   <questcomplete item="Easter_Event_2015_Buff_Adventure_SubQuest03" />
+		   <questcomplete item="Easter_Event_2015_Buff_Adventure_SubQuest04" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="400"/>
+		</rewards>
+		<postrequisits />
+	</quest>
+
+	<quest name="Easter_Event_2015_Buff_Adventure_SubQuest01" connectedToQuest="Easter_Event_2015_Buff_Adventure_MainQuest" icon="CollectiblePlainEgg" npc="quest_character_bunnysuit01.png">
+		<startcondition>
+		   <questactive item="Easter_Event_2015_Buff_Adventure_MainQuest"/>
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="Easter_Event_2015_Buff_Adventure_Collectible1" />
+        </preeffects>
+		<triggers>
+			<buildingdestroyed item="Easter_Event_2015_Buff_Adventure_Building_Stinky_plant" min="5" locaExtension="pickup" />
+			<buffappliedonadventure item="ChangeSkin_Easter_BuffAd_Polecat_Spray" min="5" locaExtension="Anti-Fitch_Spray"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="150"/>        
+		</rewards>
+		<postrequisits />
+    </quest>
+
+
+	<quest name="Easter_Event_2015_Buff_Adventure_SubQuest02" connectedToQuest="Easter_Event_2015_Buff_Adventure_MainQuest" icon="CollectiblePlainEgg" npc="quest_character_bunnysuit01.png">
+		<startcondition>
+			<questactive item="Easter_Event_2015_Buff_Adventure_MainQuest"/>
+		</startcondition>
+		<preeffects>
+        </preeffects>
+		<triggers>
+			<buildingdestroyed item="Easter2016_wildlife_cave_1" min="7" locaExtension="Fitch_Gin" />
+    		<!--trigger type="Building" name="Easter2016_wildlife_cave_1" condition="l" amount="1"/-->
+			<!--buffappliedonadventure item="Easter2016_wildlife_cave_1" min="7" locaExtension="Fitch_Gin"/-->
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="300"/>        
+		</rewards>
+		<postrequisits />
+    </quest>
+
+	<quest name="Easter_Event_2015_Buff_Adventure_SubQuest03" connectedToQuest="Easter_Event_2015_Buff_Adventure_MainQuest" icon="CollectiblePlainEgg" npc="quest_character_bunnysuit01.png">
+		<startcondition>
+			<questcomplete item="Easter_Event_2015_Buff_Adventure_SubQuest01"/>
+			<questcomplete item="Easter_Event_2015_Buff_Adventure_SubQuest02"/> 
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="Easter_Event_2015_Buff_Adventure_Collectible2" />
+        </preeffects>
+		<triggers>
+			<buildingdestroyed item="Easter_Event_2015_Buff_Adventure_Building_Frightened_chicken" min="5" locaExtension="pickup" />
+			<buffappliedonadventure item="ChangeSkin_Easter_BuffAd_Frightened_chicken" min="5" locaExtension="Frightened_chicken"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="200"/>        
+		</rewards>
+		<postrequisits />
+    </quest>
+
+	<quest name="Easter_Event_2015_Buff_Adventure_SubQuest04" connectedToQuest="Easter_Event_2015_Buff_Adventure_MainQuest" icon="CollectiblePlainEgg" npc="quest_character_bunnysuit01.png">
+		<startcondition>
+			<questcomplete item="Easter_Event_2015_Buff_Adventure_SubQuest03"/> 
+		</startcondition>
+		<preeffects>
+        </preeffects>
+		<triggers>
+			<buffappliedonadventure item="EmptyEffectBuff_Easter_BuffAd_ChickWellness" min="5" locaExtension="Chicken_Wellness_ki"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="200"/>        
+		</rewards>
+		<postrequisits />
+    </quest>
+
+</Root>

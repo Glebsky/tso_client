@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	
+	<quest name="BuffAd_SafeTheTowns_Main" specialType="firstQuestlastQuest" icon="Corn" npc="quest_character_mentor03.png" showQuestWindow="false"  helpName="Help_window_buff_adventure_0">
+		<triggers>
+		   <questcomplete item="BuffAd_SafeTheTowns_Sub1" />
+		   <questcomplete item="BuffAd_SafeTheTowns_Sub2" />
+		   <questcomplete item="BuffAd_SafeTheTowns_Sub3" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="500"/>   
+		</rewards>
+		<postrequisits />
+    </quest>
+	
+	<quest name="BuffAd_SafeTheTowns_Sub1" connectedToQuest="BuffAd_SafeTheTowns_Main" icon="Furniture" npc="quest_character_mentor03.png"  helpName="Help_window_buff_adventure_0">
+		<startcondition>
+		   <questactive item="BuffAd_SafeTheTowns_Main"/>
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="BuffAd_SafeTheTowns_Quest1" />
+        </preeffects>
+		<triggers>
+            <buildingdestroyed item="buffad_collectible_furniture" min="5" locaExtension="pickup" />
+			<buffappliedonadventure item="ChangeSkin_BuffAd_Repairkit" target="BuffAd_ruin" min="1" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="30"/>        
+		</rewards>
+		<postrequisits />
+    </quest>
+	
+	<quest name="BuffAd_SafeTheTowns_Sub2" connectedToQuest="BuffAd_SafeTheTowns_Main" icon="Bread" npc="quest_character_mentor03.png"  helpName="Help_window_buff_adventure_0">
+		<startcondition>
+		   <questcomplete item="BuffAd_SafeTheTowns_Sub1"/>
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="BuffAd_SafeTheTowns_Quest2" />
+        </preeffects>
+		<triggers>
+            <buildingdestroyed item="buffad_collectible_sacks" min="3" locaExtension="pickup" />
+            <buildingdestroyed item="buffad_collectible_barrels" min="3" locaExtension="pickup" />
+			<buffappliedonadventure item="ChangeSkin_BuffAd_Bread" target="buffad_brewery" min="3" />
+			<buffappliedonadventure item="ChangeSkin_BuffAd_Beer" target="buffad_bakery" min="3" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="50"/>        
+		</rewards>
+		<postrequisits />
+    </quest>		
+
+	<quest name="BuffAd_SafeTheTowns_Sub3" connectedToQuest="BuffAd_SafeTheTowns_Main" icon="Sausage" npc="quest_character_mentor03.png"  helpName="Help_window_buff_adventure_0">
+		<startcondition>
+		   <questcomplete item="BuffAd_SafeTheTowns_Sub2"/>
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="BuffAd_SafeTheTowns_Quest3" />
+        </preeffects>
+		<triggers>
+            <buildingdestroyed item="buffad_collectible_boards" min="3" locaExtension="pickup" />
+			<buffappliedonadventure item="ChangeSkin_BuffAd_Sausage" min="1" target="BuffAd_ruin"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="70"/>        
+		</rewards>
+		<postrequisits />
+    </quest>	
+</Root>

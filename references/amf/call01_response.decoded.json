@@ -1,0 +1,26 @@
+{
+  "amf_version": 3,
+  "headers": 0,
+  "bodies": [
+    {
+      "target": "/1/onResult",
+      "response": "",
+      "declared_len": 4294967295,
+      "marker": "0x11",
+      "value": {
+        "__class": "flex.messaging.messages.AcknowledgeMessage",
+        "body": null,
+        "clientId": "956ca9b5-21f5-493c-b863-f2c1e9e0bfe1",
+        "correlationId": "6762eb5b-ad60-408a-81f2-50983a851a7b",
+        "destination": null,
+        "headers": {
+          "__class": "Object",
+          "DSId": "56096d06-b0fd-4d9f-954f-7c1086e47af7"
+        },
+        "messageId": "9dfd7d73-dd36-40b8-9b5a-a6254143fba4",
+        "timeToLive": 0.0,
+        "timestamp": 1787943108472.0
+      }
+    }
+  ]
+}

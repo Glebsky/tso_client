@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+
+
+	 <quest name="EMEventAdvQ6" specialType="firstQuestlastQuest" >
+		<triggers>
+      <trigger type="Building" name="EMSoccerCamp01_d" condition="l" amount="1"/>
+      <trigger type="Building" name="EMSoccerGate_d" condition="l" amount="1"/>
+		  </triggers>
+      <rewards/>
+		  <postrequisits />
+    </quest>
+
+
+</Root>

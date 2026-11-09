@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<Root>
+          
+    	<quest name="DailyLoginBonus0" showQuestWindow="false" showRewardWindow="false" specialType="firstQuest" > 
+			<triggers>
+				<playerlevel min="5"/>
+    		</triggers>
+    		<rewards>
+    		</rewards>
+    		<postrequisits>
+    			<postrequisite filterQuest="Level5-20" startQuest="DailyLoginBonus1" />
+    			<postrequisite filterQuest="Level21-80" startQuest="DailyLoginBonusAdv1" />
+    		</postrequisits>
+    	</quest>
+
+    	<quest name="DailyLoginBonus1" showQuestWindow="false"  specialType="firstDailyQuest" > 
+			<triggers>
+    			<trigger type="DailyLogin" name="DailyLoginBonus1" amount="1"/>
+    		</triggers>
+    		<rewards>
+		          <reward type="Loot" amount="37" />    			
+    		</rewards>
+    		<postrequisits>
+    			<postrequisite filterQuest="Level5-20" startQuest="DailyLoginBonus2" />
+    			<postrequisite filterQuest="Level21-80" startQuest="DailyLoginBonusAdv2" />
+    		</postrequisits>
+    	</quest>
+
+    	<quest name="DailyLoginBonus2" showQuestWindow="false"  > 
+			<triggers>
+    			<trigger type="DailyLogin" name="DailyLoginBonus1" amount="1"/>
+    		</triggers>
+    		<rewards>
+		          <reward type="Loot" amount="38" />    			
+    		</rewards>
+    		<postrequisits>
+    			<postrequisite filterQuest="Level5-20" startQuest="DailyLoginBonus3" />
+    			<postrequisite filterQuest="Level21-80" startQuest="DailyLoginBonusAdv3" />
+    		</postrequisits>
+    	</quest>
+
+    	<quest name="DailyLoginBonus3" showQuestWindow="false" > 
+			<triggers>
+    			<trigger type="DailyLogin" name="DailyLoginBonus1" amount="1"/>
+    		</triggers>
+    		<rewards>
+		          <reward type="Loot" amount="39" />    			
+    		</rewards>
+    		<postrequisits>
+    			<postrequisite filterQuest="Level5-20" startQuest="DailyLoginBonus4" />
+    			<postrequisite filterQuest="Level21-80" startQuest="DailyLoginBonusAdv4" />
+    		</postrequisits>
+    	</quest>
+
+    	<quest name="DailyLoginBonus4" showQuestWindow="false" > 
+			<triggers>
+    			<trigger type="DailyLogin" name="DailyLoginBonus1" amount="1"/>
+    		</triggers>
+    		<rewards>
+		          <reward type="Loot" amount="40" />    			
+    		</rewards>
+    		<postrequisits>
+    			<postrequisite filterQuest="Level5-20" startQuest="DailyLoginBonus5" />
+    			<postrequisite filterQuest="Level21-80" startQuest="DailyLoginBonusAdv5" />
+    		</postrequisits>
+    	</quest>
+
+		<quest name="DailyLoginBonus5" showQuestWindow="false" > 
+			<triggers>
+    			<trigger type="DailyLogin" name="DailyLoginBonus1" amount="1"/>
+    		</triggers>
+    		<rewards>
+		          <reward type="Loot" amount="41" />    		
+    		</rewards>
+    		<postrequisits>
+    			<postrequisite filterQuest="Level5-20" startQuest="DailyLoginBonus6" />
+    			<postrequisite filterQuest="Level21-80" startQuest="DailyLoginBonusAdv6" />
+    		</postrequisits>
+    	</quest>
+
+		<quest name="DailyLoginBonus6" showQuestWindow="false" > 
+			<triggers>
+    			<trigger type="DailyLogin" name="DailyLoginBonus1" amount="1"/>
+    		</triggers>
+    		<rewards>
+		          <reward type="Loot" amount="42" />    			
+    		</rewards>
+    		<postrequisits>
+    			<postrequisite filterQuest="Level5-20" startQuest="DailyLoginBonus7" />
+    			<postrequisite filterQuest="Level21-80" startQuest="DailyLoginBonusAdv7" />
+    		</postrequisits>
+    	</quest>
+
+		<quest name="DailyLoginBonus7" showQuestWindow="false" > 
+			<triggers>
+    			<trigger type="DailyLogin" name="DailyLoginBonus1" amount="1"/>
+    		</triggers>
+    		<rewards>
+		          <reward type="Resource" name="HardCurrency" amount="100" />    
+    		</rewards>
+    		<postrequisits>
+    			<postrequisite filterQuest="Level5-20" startQuest="DailyLoginBonus1" />
+    			<postrequisite filterQuest="Level21-80" startQuest="DailyLoginBonusAdv1" />
+    		</postrequisits>
+    	</quest>
+
+    	
+<!-- Advanced Daily Log In for Content Generator (Level 21)-->    	    	
+    	<quest name="DailyLoginBonusAdv1" showQuestWindow="false"  specialType="firstDailyQuest" > 
+			<triggers>
+    			<trigger type="DailyLogin" name="DailyLoginBonusAdv1" amount="1"/>
+    		</triggers>
+    		<rewards>
+		          <reward type="Resource" name="Crystal" amount="2" />    			
+    		</rewards>
+    		<postrequisits>
+    			<postrequisite startQuest="DailyLoginBonusAdv2" />
+    		</postrequisits>
+    	</quest>
+
+    	<quest name="DailyLoginBonusAdv2" showQuestWindow="false"  > 
+			<triggers>
+    			<trigger type="DailyLogin" name="DailyLoginBonusAdv1" amount="1"/>
+    		</triggers>
+    		<rewards>
+		          <reward type="Resource" name="Crystal" amount="2"  />    			
+    		</rewards>
+    		<postrequisits>
+    			<postrequisite startQuest="DailyLoginBonusAdv3" />
+    		</postrequisits>
+    	</quest>
+
+    	<quest name="DailyLoginBonusAdv3" showQuestWindow="false" > 
+			<triggers>
+    			<trigger type="DailyLogin" name="DailyLoginBonusAdv1" amount="1"/>
+    		</triggers>
+    		<rewards>
+		          <reward type="Resource" name="Crystal" amount="2"  />    			
+    		</rewards>
+    		<postrequisits>
+    			<postrequisite startQuest="DailyLoginBonusAdv4" />
+    		</postrequisits>
+    	</quest>
+
+    	<quest name="DailyLoginBonusAdv4" showQuestWindow="false" > 
+			<triggers>
+    			<trigger type="DailyLogin" name="DailyLoginBonusAdv1" amount="1"/>
+    		</triggers>
+    		<rewards>
+		          <reward type="Resource" name="Crystal" amount="3"  />    			
+    		</rewards>
+    		<postrequisits>
+    			<postrequisite startQuest="DailyLoginBonusAdv5" />
+    		</postrequisits>
+    	</quest>
+
+		<quest name="DailyLoginBonusAdv5" showQuestWindow="false" > 
+			<triggers>
+    			<trigger type="DailyLogin" name="DailyLoginBonusAdv1" amount="1"/>
+    		</triggers>
+    		<rewards>
+		          <reward type="Resource" name="Crystal" amount="3"  />    		
+    		</rewards>
+    		<postrequisits>
+    			<postrequisite startQuest="DailyLoginBonusAdv6" />
+    		</postrequisits>
+    	</quest>
+
+		<quest name="DailyLoginBonusAdv6" showQuestWindow="false" > 
+			<triggers>
+    			<trigger type="DailyLogin" name="DailyLoginBonusAdv1" amount="1"/>
+    		</triggers>
+    		<rewards>
+		          <reward type="Resource" name="Crystal" amount="4" />    			
+    		</rewards>
+    		<postrequisits>
+    			<postrequisite startQuest="DailyLoginBonusAdv7" />
+    		</postrequisits>
+    	</quest>
+
+		<quest name="DailyLoginBonusAdv7" showQuestWindow="false" > 
+			<triggers>
+    			<trigger type="DailyLogin" name="DailyLoginBonusAdv1" amount="1"/>
+    		</triggers>
+    		<rewards>
+		          <reward type="Resource" name="HardCurrency" amount="100" />    
+    		</rewards>
+    		<postrequisits>
+    			<postrequisite startQuest="DailyLoginBonusAdv1" />
+    		</postrequisits>
+    	</quest>
+
+ </Root>   	

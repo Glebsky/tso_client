@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+
+
+	<quest name="Buff_Adv_StormRecovery_MainQuest" specialType="firstQuestlastQuest" showQuestWindow="false" icon="CollectiblePlainEgg" npc="quest_character_geologist01.png">
+		<triggers>
+		   <questcomplete item="Buff_Adv_StormRecovery_SubQuest01" />
+		   <questcomplete item="Buff_Adv_StormRecovery_SubQuest02" />
+		   <questcomplete item="Buff_Adv_StormRecovery_SubQuest03" />
+		   <questcomplete item="Buff_Adv_StormRecovery_SubQuest04" />
+		   <questcomplete item="Buff_Adv_StormRecovery_SubQuest05" />
+		   <questcomplete item="Buff_Adv_StormRecovery_SubQuest06" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="15000"/>
+		</rewards>
+		<postrequisits />
+	</quest>
+
+	<quest name="Buff_Adv_StormRecovery_SubQuest01" connectedToQuest="Buff_Adv_StormRecovery_MainQuest" icon="CollectiblePlainEgg" npc="quest_character_geologist01.png">
+		<startcondition>
+		   <questactive item="Buff_Adv_StormRecovery_MainQuest"/>
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="BuffAd_Storm_Recovery_Quest1" />
+        </preeffects>
+		<triggers>
+			<buildingdestroyed item="BuildingDeadCrops" min="9" locaExtension="pickup" />
+			<buffappliedonadventure item="ChangeSkin_BuffAd_Seeds" min="9" />
+			<buffappliedonadventure item="EmptyEffectBuff_BuffAd_Fertilizer" min="9" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="100"/>        
+		</rewards>
+		<postrequisits />
+    </quest>
+
+
+	<quest name="Buff_Adv_StormRecovery_SubQuest02" connectedToQuest="Buff_Adv_StormRecovery_MainQuest" icon="CollectiblePlainEgg" npc="quest_character_geologist01.png">
+		<startcondition>
+			<questcomplete item="Buff_Adv_StormRecovery_SubQuest01"/> 
+		</startcondition>
+		<preeffects>
+        </preeffects>
+		<triggers>
+			<!--buildingdestroyed item="buffad_boulder_01" min="4" locaExtension="StormRecovery_Boulder1"/>
+			<buildingdestroyed item="buffad_boulder_02" min="3" locaExtension="StormRecovery_Boulder2"/-->
+			<onmap item="buffad_boulder_01" max="0" locaExtension="StormRecovery_bigrocks"/>
+			<onmap item="buffad_boulder_02" max="0" locaExtension="StormRecovery_smallrocks"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="200"/>        
+		</rewards>
+		<postrequisits />
+    </quest>
+
+	<quest name="Buff_Adv_StormRecovery_SubQuest03" connectedToQuest="Buff_Adv_StormRecovery_MainQuest" icon="CollectiblePlainEgg" npc="quest_character_geologist01.png">
+		<startcondition>
+			<questcomplete item="Buff_Adv_StormRecovery_SubQuest02"/> 
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="BuffAd_Storm_Recovery_Quest2" />
+			<spawncollectibles type="BuffAd_Storm_Recovery_Quest3" />
+        </preeffects>
+		<triggers>
+			<buildingdestroyed item="BuildingStinkyMushroom" min="11" locaExtension="pickup" />
+			<buildingdestroyed item="BuildingGlowingHerbs" min="11" locaExtension="pickup" />
+			<buffowned item="BattleBuffHurt_BuffAd_StinkyPotion" min="11" />
+			<buffowned item="BattleBuffHurt_BuffAd_Decomposer" min="11" />
+		</triggers>
+		<failconditions failAdventure="true">
+			<buffappliedonadventure item="BattleBuffHurt_BuffAd_StinkyPotion" min="1" locaExtension="StormRecovery_Stinkypotion"/>
+			<buffappliedonadventure item="BattleBuffHurt_BuffAd_Decomposer" min="1" locaExtension="StormRecovery_Decomposer"/>
+		</failconditions>
+		<rewards>
+			<reward type="XP" amount="300"/>        
+		</rewards>
+		<postrequisits />
+    </quest>
+    
+    <quest name="Buff_Adv_StormRecovery_SubQuest04" connectedToQuest="Buff_Adv_StormRecovery_MainQuest" icon="CollectiblePlainEgg" npc="quest_character_geologist01.png">
+		<startcondition>
+			<questcomplete item="Buff_Adv_StormRecovery_SubQuest03"/> 
+		</startcondition>
+		<triggers>
+			<!--buildingdestroyed item="BuffAd_Ruin_01" min="4" locaExtension="StormRecovery_Ruin1"/>
+            <buildingdestroyed item="BuffAd_Ruin_02" min="3" locaExtension="StormRecovery_Ruin2"/>
+            <buildingdestroyed item="BuffAd_Ruin_03" min="2" locaExtension="StormRecovery_Ruin3"/>
+            <buildingdestroyed item="BuffAd_Ruin_04" min="1" locaExtension="StormRecovery_Ruin4"/-->	
+			<onmap item="BuffAd_Ruin_01" max="0" locaExtension="StormRecovery_Ruin1"/>
+			<onmap item="BuffAd_Ruin_02" max="0" locaExtension="StormRecovery_Ruin2"/>
+			<onmap item="BuffAd_Ruin_03" max="0" locaExtension="StormRecovery_Ruin3"/>
+			<onmap item="BuffAd_Ruin_04" max="0" locaExtension="StormRecovery_Ruin4"/>
+		</triggers>
+		<failconditions failAdventure="true">
+         	<buffinsufficientforenemies item="BattleBuffHurt_BuffAd_StinkyPotion" target="BuffAd_Worms"/> 
+         	<buffinsufficientforenemies item="BattleBuffHurt_BuffAd_Decomposer" target="BuffAd_BrittledWood"/> 
+        </failconditions>
+		<rewards>
+			<reward type="XP" amount="400"/>        
+		</rewards>
+		<postrequisits />
+    </quest>
+
+	<quest name="Buff_Adv_StormRecovery_SubQuest05" connectedToQuest="Buff_Adv_StormRecovery_MainQuest" icon="CollectiblePlainEgg" npc="quest_character_geologist01.png">
+		<startcondition>
+			<questcomplete item="Buff_Adv_StormRecovery_SubQuest04"/> 
+		</startcondition>
+		<preeffects>
+        </preeffects>
+		<triggers>
+			<buffappliedonadventure item="ChangeSkin_BuffAd_TavernKit1" min="2" />
+			<buffappliedonadventure item="ChangeSkin_BuffAd_ResidenceKit" min="4" />
+			<buffappliedonadventure item="ChangeSkin_BuffAd_NobleResidenceKit" min="2" />
+			<buffappliedonadventure item="ChangeSkin_BuffAd_SchoolKit" min="1" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="500"/>     
+		</rewards>
+		<failconditions failAdventure="true">
+			<buffinsufficienttargetbuildings item="ChangeSkin_BuffAd_TavernKit1" min="2" locaExtension="StormRecoveryBuilding" />
+			<buffinsufficienttargetbuildings item="ChangeSkin_BuffAd_ResidenceKit" min="4" locaExtension="StormRecoveryBuilding" />
+			<buffinsufficienttargetbuildings item="ChangeSkin_BuffAd_NobleResidenceKit" min="2" locaExtension="StormRecoveryBuilding" />
+			<buffinsufficienttargetbuildings item="ChangeSkin_BuffAd_SchoolKit" min="1" locaExtension="StormRecoveryBuilding" />
+		</failconditions>
+		<postrequisits />
+    </quest>
+
+	<quest name="Buff_Adv_StormRecovery_SubQuest06" connectedToQuest="Buff_Adv_StormRecovery_MainQuest" icon="CollectiblePlainEgg" npc="quest_character_geologist01.png">
+		<startcondition>
+			<questcomplete item="Buff_Adv_StormRecovery_SubQuest05"/> 
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="BuffAd_Storm_Recovery_Quest4" />
+        </preeffects>
+		<triggers>
+			<buffappliedonadventure item="EmptyEffectBuff_BuffAd_StickyFluid" min="1" locaExtension="StormRecoveryBuilding" />
+			<buildingdestroyed item="BuildingFlowers" min="2" locaExtension="pickup" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="800"/>        
+		</rewards>
+		<postrequisits />
+    </quest>
+
+</Root>

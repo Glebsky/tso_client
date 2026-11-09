@@ -1,0 +1,23 @@
+<?php
+require 'amf.php';
+$dServerCall = new defaultGame_Communication_VO_dServerCall();
+$dServerCall->type = 1001;
+$dServerCall->zoneID = 0;
+$dServerCall->data = false;
+$dServerCall->dsoAuthUser = '1601416';
+$dServerCall->dsoAuthToken = 'KdgfpHWm5zRjpz6jKVrRMZQYTacASUJd';
+$dServerCall->dsoAuthRandomClientID = '0.123456789';
+$message = new flex_messaging_messages_RemotingMessage();
+$message->destination = 'SMC';
+$message->operation = 'ReceiveMessage';
+$message->source = 'com.bluebyte.game.servlet.EventHandler';
+$message->messageId = '1234';
+$message->headers = new stdClass();
+$message->headers->DSId = 'nil';
+$message->headers->DSEndpoint = 'SMC-Endpoint';
+$message->body = [$dServerCall];
+$encoder = new Amf3Encoder();
+$encoder->encode($message);
+$amf3Body = $encoder->getOutput();
+$amf0Envelope = wrapAmf0Remoting('null', '/1', $amf3Body);
+file_put_contents('debug_zone_req.amf', $amf0Envelope);

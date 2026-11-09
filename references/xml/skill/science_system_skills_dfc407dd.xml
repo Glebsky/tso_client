@@ -1,0 +1,1127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scienceSystem>
+	
+	<!--
+	<skill id="item1">
+		<skillReference id="skill1" /> Type is ID of Skill defined in Skills tag
+		<requirements>
+			<minimumLevel level="1" /> Minimum required Player Level
+			<skillPointType type="bronze" /> Skillpoint Type (reference to skillPoint ID in skillPoints) required to spend for skill
+			<unlockedSkills> Other skills where MAX points are required to be spent before item is available
+				<skillReference id="item1" /> Reference to another item inside the skilltree
+			</unlockedSkills>
+			<pointsAccumulated amount="5"> Amount of points that has to be spent in the following other skilltree items
+				<skillReference id="item1" /> Reference to another item insider the skilltree
+				<skillReference id="item2" />
+			</pointsAccumulated>
+		</requirements>
+		<levels> Unlock levels for skilltree item, every level equals another skillpoint that needs to be spent, different values per unlock level can be assigned to the available manipulators
+			<level> Levels are sorted, first sibling stand for 1st level, second sibling for 2nd etc.
+				<param targetModifierId="modifier1" name="param1" value="10" /> pass parameter with name "param1" and value "10" to modifier "modifer1"
+			</level>
+			<level>
+				<param targetModifierId="modifier2" name="param1" value="20" />
+			</level>
+		</levels>
+		<layout>  Specific rendering data, required for the client to display the skilltree
+			<icon name="icon1.png" /> Icon to display for skill
+			<position x="1" y="0" /> Rendering position inside slot matrix, x=0 equals left-most col, y=0 equals bottom-most row
+			<arrows> Arrow definitions
+				<arrow type="TOP_1_UP" /> Arrow definition syntax: <Arrow Position from current item>_<Amount of Rows the arrow is skipping>_<Directions the Arrow is pointing towards>
+				<arrow type="LEFT_2_UP" />
+				<arrow type="RIGHT_1_UP" />
+				
+				<arrow type="TOP_1_UPRIGHT" />
+			</arrows>
+		</layout>
+	</skill>
+
+{0} = Chance / modifierChance
+{1} = value
+{2} = multiplier(*100)
+{3} = Adder
+
+	-->
+	
+	<skills>
+		<skill id="80" name="Skill_IncreaseBowmanMaximumAD"> <!-- Rapid Fire: Increases maximum attack damage of your Bowmen by {0}. -->
+			<requirements>
+				<minimumLevel level="19" />
+				<skillPointType type="bronze" />
+			</requirements>
+			<levels>	
+				<level>
+					<CombatModifier name="Player" item="MaxAttackDamage" type="Bowman" chance="1" adder="5" channel="specialist" />
+				</level>
+				<level>
+					<CombatModifier name="Player" item="MaxAttackDamage" type="Bowman" chance="1" adder="10" channel="specialist" />
+				</level>
+				<level>
+					<CombatModifier name="Player" item="MaxAttackDamage" type="Bowman" chance="1" adder="15" channel="specialist" />
+				</level>		
+			</levels>
+			<layout>
+				<icon name="Rapid_fire.png" />
+				<position x="0" y="4" />
+			</layout>
+		</skill>
+		
+		<!-- Home Field Advantage: Increases attack damage of this army by {0}% while on the home island. Bonus is halved for elite units. Got replaced before release due to low player popularity.
+		<skill id="81" name="Skill_IncreaseADOnHomeZone">  
+			<requirements>
+				<minimumLevel level="33" />
+				<skillPointType type="silver" />
+				<pointsAccumulated amount="10" />
+			</requirements>
+			<levels>			
+				<level>
+					<CombatModifier name="Player" item="MinAttackDamageOnHomeZone" type="" chance="1" multiplier="1.06" channel="specialist" />
+					<CombatModifier name="Player" item="MaxAttackDamageOnHomeZone" type="" chance="1" multiplier="1.06" channel="specialist" />
+				</level>
+				<level>
+					<CombatModifier name="Player" item="MinAttackDamageOnHomeZone" type="" chance="1" multiplier="1.13" channel="specialist" />
+					<CombatModifier name="Player" item="MaxAttackDamageOnHomeZone" type="" chance="1" multiplier="1.13" channel="specialist" />
+				</level>
+				<level>
+					<CombatModifier name="Player" item="MinAttackDamageOnHomeZone" type="" chance="1" multiplier="1.2" channel="specialist" />
+					<CombatModifier name="Player" item="MaxAttackDamageOnHomeZone" type="" chance="1" multiplier="1.2" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="Home_field_advantage.png" />
+				<position x="2" y="2" />
+			</layout>
+		</skill-->
+		<skill id="81" name="Skill_IncreaseXP">  <!-- Fast Learner: Increases XP gained from enemy units defeated by this army by 10/20/30%.-->
+			<requirements>
+				<minimumLevel level="33" />
+				<skillPointType type="silver" />
+				<pointsAccumulated amount="10" />
+			</requirements>
+			<levels>			
+				<level>
+					<CombatModifier name="Player" type="CombatGeneral" item="CombatXP"  chance="1" multiplier="1.1" channel="specialist" />
+				</level>
+				<level>
+					<CombatModifier name="Player" type="CombatGeneral" item="CombatXP"  chance="1" multiplier="1.2" channel="specialist" />
+				</level>
+				<level>
+					<CombatModifier name="Player" type="CombatGeneral" item="CombatXP" chance="1" multiplier="1.3" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="Fast_Learner.png" />
+				<position x="2" y="2" />
+			</layout>
+		</skill>
+		
+		<skill id="82" name="Skill_IncreaseGeneralSplashAndAD"> <!-- Juggernaut: Increases the General's attack damage by {0} and his/her attacks have a {1}% chance to deal splash damage. -->
+			<requirements>
+				<minimumLevel level="19" />
+				<skillPointType type="bronze" />
+			</requirements>
+			<levels>			
+				<level>
+					<CombatModifier name="Player" item="MaxAttackDamage" type="CombatGeneral" chance="1" adder="20" channel="specialist" />
+					<CombatModifier name="Player" item="MinAttackDamage" type="CombatGeneral" chance="1" adder="20" channel="specialist" />
+					<CombatModifier name="Player" item="GainSkill_Splash" type="CombatGeneral" chance="0.33" channel="specialist" />
+				</level>
+				<level>
+					<CombatModifier name="Player" item="MaxAttackDamage" type="CombatGeneral" chance="1" adder="40" channel="specialist" />
+					<CombatModifier name="Player" item="MinAttackDamage" type="CombatGeneral" chance="1" adder="40" channel="specialist" />
+					<CombatModifier name="Player" item="GainSkill_Splash" type="CombatGeneral" chance="0.66" channel="specialist" />
+				</level>
+				<level>
+					<CombatModifier name="Player" item="MaxAttackDamage" type="CombatGeneral" chance="1" adder="60" channel="specialist" />
+					<CombatModifier name="Player" item="MinAttackDamage" type="CombatGeneral" chance="1" adder="60" channel="specialist" />
+					<CombatModifier name="Player" item="GainSkill_Splash" type="CombatGeneral" chance="1" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="Jaggernaut.png" />
+				<position x="1" y="4" />
+			</layout>
+		</skill>
+		
+		<skill id="83" name="Skill_DescreaseBossHP"> <!-- Overrun: Decreases HP of enemy bosses by {0}%. -->
+			<requirements>
+				<minimumLevel level="26" />
+				<skillPointType type="silver" />
+				<pointsAccumulated amount="5" />
+			</requirements>
+			<levels>			
+				<level>
+					<CombatModifier name="Enemy" item="UnitHP" type="Boss" chance="1" multiplier="0.92" channel="specialist" />
+				</level>
+				<level>
+					<CombatModifier name="Enemy" item="UnitHP" type="Boss" chance="1" multiplier="0.84" channel="specialist" />
+				</level>
+				<level>
+					<CombatModifier name="Enemy" item="UnitHP" type="Boss" chance="1" multiplier="0.75" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="Overrun2.png" />
+				<position x="1" y="3" />
+			</layout>
+		</skill>
+		
+		<skill id="84" name="Skill_IncreaseLongbowmanAndMarksmanAD"> <!-- Sniper Training: Increases friendly Longbowmen's minimum attack damage by {0} and the maximum by {1}. -->
+			<requirements>
+				<minimumLevel level="26" />
+				<skillPointType type="silver" />
+				<pointsAccumulated amount="5" />
+			</requirements>
+			<levels>			
+				<level>
+					<CombatModifier name="Player" item="MaxAttackDamage" type="Longbowman" chance="1" multiplier="1.05" channel="specialist" />
+					<CombatModifier name="Player" item="MinAttackDamage" type="Longbowman" chance="1" multiplier="1.45" channel="specialist" />
+					<CombatModifier name="Player" item="MaxAttackDamage" type="Marksman" chance="1" multiplier="1.05" channel="specialist" />
+					<CombatModifier name="Player" item="MinAttackDamage" type="Marksman" chance="1" multiplier="1.45" channel="specialist" />
+				</level>
+				<level>
+					<CombatModifier name="Player" item="MaxAttackDamage" type="Longbowman" chance="1" multiplier="1.10" channel="specialist" />
+					<CombatModifier name="Player" item="MinAttackDamage" type="Longbowman" chance="1" multiplier="1.85" channel="specialist" />
+					<CombatModifier name="Player" item="MaxAttackDamage" type="Marksman" chance="1" multiplier="1.10" channel="specialist" />
+					<CombatModifier name="Player" item="MinAttackDamage" type="Marksman" chance="1" multiplier="1.85" channel="specialist" />
+				</level>
+				<level>
+					<CombatModifier name="Player" item="MaxAttackDamage" type="Longbowman" chance="1" multiplier="1.15" channel="specialist" />
+					<CombatModifier name="Player" item="MinAttackDamage" type="Longbowman" chance="1" multiplier="2.3" channel="specialist" />
+					<CombatModifier name="Player" item="MaxAttackDamage" type="Marksman" chance="1" multiplier="1.15" channel="specialist" />
+					<CombatModifier name="Player" item="MinAttackDamage" type="Marksman" chance="1" multiplier="2.3" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="Sniper Training_new.png" />
+				<position x="0" y="3" />
+			</layout>
+		</skill>
+		
+		<skill id="85" name="Skill_IncreaseCombatSpeed"> <!-- Confident Leader: Reduces the length of combat rounds by {0}%. -->
+			<requirements>
+				<minimumLevel level="41" />
+				<skillPointType type="gold" />
+				<pointsAccumulated amount="15" />
+			</requirements>
+			<levels>			
+				<level>
+					<CombatRoundDuration multiplier="0.85" channel="specialist"/>
+				</level>
+				<level>
+					<CombatRoundDuration multiplier="0.7" channel="specialist"/>
+				</level>
+				<level>
+					<CombatRoundDuration multiplier="0.55" channel="specialist" />
+				</level>				
+			</levels>
+			<layout>
+				<icon name="Confident_leader.png" />
+				<position x="3" y="1" />
+			</layout>
+		</skill>
+		
+		<skill id="86" name="Skill_IncreaseTravelSpeed"> <!-- Navigation Crash Course: Reduces the general's travel time by {0}%. -->
+			<requirements>
+				<minimumLevel level="26" />
+				<skillPointType type="silver" />
+				<pointsAccumulated amount="5" />
+			</requirements>
+			<levels>	
+				<level>
+					<zonetravelspeed multiplier="0.85" channel="specialist" />
+				</level>
+				<level>
+					<zonetravelspeed multiplier="0.7" channel="specialist" />
+				</level>
+				<level>
+					<zonetravelspeed multiplier="0.55" channel="specialist" />
+				</level>		
+			</levels>
+			<layout>
+				<icon name="Navigation_crash_course.png" />
+				<position x="3" y="3" />
+			</layout>
+		</skill>
+		
+		<skill id="87" name="Skill_IncreaseRecoverySpeed"> <!-- Just a Flesh Wound: Reduces the general's recovery time by {0}%. -->
+			<requirements>
+				<minimumLevel level="33" />
+				<skillPointType type="silver" />
+				<pointsAccumulated amount="10" />
+			</requirements>
+			<levels>
+				<level>
+					<GeneralRecoverySpeed multiplier="0.85" />
+				</level>
+				<level>
+					<GeneralRecoverySpeed multiplier="0.7" />
+				</level>
+				<level>
+					<GeneralRecoverySpeed multiplier="0.55" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="Just_a_flesh_wound.png" />
+				<position x="3" y="2" />
+			</layout>
+		</skill>
+		
+		<skill id="88" name="Skill_IncreaseADEveryRound"> <!-- Battle Frenzy: Increases attack damage of this army by {0}% for every combat round past the first. -->
+			<requirements>
+				<minimumLevel level="33" />
+				<skillPointType type="silver" />
+				<pointsAccumulated amount="10" />
+			</requirements>
+			<levels>			
+				<level>
+					<CombatModifier name="Player" item="BattleFrenzy" type="" chance="1" adder="10" channel="specialist" />
+				</level>
+				<level>
+					<CombatModifier name="Player" item="BattleFrenzy" type="" chance="1" adder="20" channel="specialist" />
+				</level>
+				<level>
+					<CombatModifier name="Player" item="BattleFrenzy" type="" chance="1" adder="30" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="Battle_frenzy.png" />
+				<position x="1" y="2" />
+			</layout>
+		</skill>
+		
+		<skill id="89" name="Skill_IncreaseSwiftSplashAndAD"> <!-- Unstoppable Charge: Increases maximum attack damage of your swift units by {0} and their attacks have a {1}% chance to deal splash damage. -->
+			<requirements>
+				<minimumLevel level="33" />
+				<skillPointType type="silver" />
+				<pointsAccumulated amount="10" />
+			</requirements>
+			<levels>					
+				<level>
+					<CombatModifier name="Player" item="MaxAttackDamage" type="Swift" chance="1" adder="1" channel="specialist" />
+					<CombatModifier name="Player" item="GainSkill_Splash" type="Swift" chance="0.33" channel="specialist" />
+				</level>
+				<level>
+					<CombatModifier name="Player" item="MaxAttackDamage" type="Swift" chance="1" adder="2" channel="specialist" />
+					<CombatModifier name="Player" item="GainSkill_Splash" type="Swift" chance="0.66" channel="specialist" />
+				</level>
+				<level>
+					<CombatModifier name="Player" item="MaxAttackDamage" type="Swift" chance="1" adder="3" channel="specialist" />
+					<CombatModifier name="Player" item="GainSkill_Splash" type="Swift" chance="1" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="Unstoppable_Charge3.png" />
+				<position x="0" y="2" />
+			</layout>
+		</skill>
+		
+		<skill id="90" name="Skill_GetRecruits"> <!-- Hostile Takeover: Gain 1 Recruit mercenary for every {0} XP worth of enemies defeated by this General. -->
+			<requirements>
+				<minimumLevel level="26" />
+				<skillPointType type="silver" />
+				<pointsAccumulated amount="5" />
+			</requirements>
+			<levels>
+				<level>
+					<CombatModifier name="Player" item="HiredMilitaryForXP" type="CombatGeneral" chance="1" multiplier="600" channel="specialist" />
+				</level>
+				<level>
+					<CombatModifier name="Player" item="HiredMilitaryForXP" type="CombatGeneral" chance="1" multiplier="300" channel="specialist" />
+				</level>
+				<level>
+					<CombatModifier name="Player" item="HiredMilitaryForXP" type="CombatGeneral" chance="1" multiplier="200" channel="specialist" />
+				</level>			
+			</levels>
+			<layout>
+				<icon name="Hostile_takeover.png" />
+				<position x="2" y="3" />
+			</layout>
+		</skill>
+		
+		<skill id="91" name="Skill_IncreasePeacefulMovementSpeed"> <!-- Jog: Increases non-attacking movement speed by {0}%. -->
+			<requirements>
+				<minimumLevel level="19" />
+				<skillPointType type="bronze" />
+			</requirements>
+			<levels>
+				<level>
+					<SpeedUpSettlerNotAttacking multiplier="1.33" />
+				</level>
+				<level>
+					<SpeedUpSettlerNotAttacking multiplier="1.66" />
+				</level>
+				<level>
+					<SpeedUpSettlerNotAttacking multiplier="2" />
+				</level>			
+			</levels>
+			<layout>
+				<icon name="Jog.png" />
+				<position x="3" y="4" />
+			</layout>
+		</skill>
+		
+		<skill id="92" name="Skill_IncreaseCapacity"> <!-- Garrison Annex: Increases unit capacity by {0}. -->
+			<requirements>
+				<minimumLevel level="41" />
+				<skillPointType type="gold" />
+				<pointsAccumulated amount="15" />
+			</requirements>
+			<levels>
+				<level>
+					<UnitCapacity chance="1" adder="5" channel="specialist"/>
+				</level>
+				<level>
+					<UnitCapacity chance="1" adder="10" channel="specialist"/>
+				</level>
+				<level>
+					<UnitCapacity chance="1" adder="15" channel="specialist"/>
+				</level>						
+			</levels>
+			<layout>
+				<icon name="Garrison_annex.png" />
+				<position x="2" y="1" />
+			</layout>
+		</skill>
+		
+		<skill id="93" name="Skill_IncreaseHeavyAD"> <!-- Weekly Maintenance: Increases attack damage of assigned heavy units by {0}. -->
+			<requirements>
+				<minimumLevel level="41" />
+				<skillPointType type="gold" />
+				<pointsAccumulated amount="15" />
+			</requirements>
+			<levels>	
+				<level>
+					<CombatModifier name="Player" item="MaxAttackDamage" type="Heavy" chance="1" adder="10" channel="specialist" />
+					<CombatModifier name="Player" item="MinAttackDamage" type="Heavy" chance="1" adder="10" channel="specialist" />
+				</level>
+				<level>
+					<CombatModifier name="Player" item="MaxAttackDamage" type="Heavy" chance="1" adder="20" channel="specialist" />
+					<CombatModifier name="Player" item="MinAttackDamage" type="Heavy" chance="1" adder="20" channel="specialist" />
+				</level>
+				<level>
+					<CombatModifier name="Player" item="MaxAttackDamage" type="Heavy" chance="1" adder="30" channel="specialist" />
+					<CombatModifier name="Player" item="MinAttackDamage" type="Heavy" chance="1" adder="30" channel="specialist" />
+				</level>		
+			</levels>
+			<layout>
+				<icon name="Weekly_maintenance.png" />
+				<position x="1" y="1" />
+			</layout>
+		</skill>
+		
+		<skill id="94" name="Skill_ResurrectLosses"> <!-- First Aid: Recovers {0}% of lost units after every combat. -->
+			<requirements>
+				<minimumLevel level="19" />
+				<skillPointType type="bronze" />
+			</requirements>
+			<levels>
+				<level>
+					<CombatModifier name="Player" item="RecoverLostTroops" type="" chance="1" multiplier="0.03" channel="specialist" />
+				</level>
+				<level>
+					<CombatModifier name="Player" item="RecoverLostTroops" type="" chance="1" multiplier="0.06" channel="specialist" />
+				</level>
+				<level>
+					<CombatModifier name="Player" item="RecoverLostTroops" type="" chance="1" multiplier="0.09" channel="specialist" />
+				</level>						
+			</levels>
+			<layout>
+				<icon name="First_aid.png" />
+				<position x="2" y="4" />
+			</layout>
+		</skill>
+		
+		<skill id="95" name="Skill_IncreaseEliteSoldierSplashAndAD"> <!-- Cleave: Increases attack damage of your Elite Soldiers by {0} and their attacks have a {1}% chance to deal splash damage. -->
+			<requirements>
+				<minimumLevel level="41" />
+				<skillPointType type="gold" />
+				<pointsAccumulated amount="15" />
+			</requirements>
+			<levels>
+				<level>
+					<CombatModifier name="Player" item="MaxAttackDamage" type="EliteSoldier" chance="1" adder="4" channel="specialist" />
+					<CombatModifier name="Player" item="MinAttackDamage" type="EliteSoldier" chance="1" adder="4" channel="specialist" />
+					<CombatModifier name="Player" item="GainSkill_Splash" type="EliteSoldier" chance="0.33" channel="specialist" />
+				</level>
+				<level>
+					<CombatModifier name="Player" item="MaxAttackDamage" type="EliteSoldier" chance="1" adder="8" channel="specialist" />
+					<CombatModifier name="Player" item="MinAttackDamage" type="EliteSoldier" chance="1" adder="8" channel="specialist" />
+					<CombatModifier name="Player" item="GainSkill_Splash" type="EliteSoldier" chance="0.66" channel="specialist" />
+				</level>
+				<level>
+					<CombatModifier name="Player" item="MaxAttackDamage" type="EliteSoldier" chance="1" adder="12" channel="specialist" />
+					<CombatModifier name="Player" item="MinAttackDamage" type="EliteSoldier" chance="1" adder="12" channel="specialist" />
+					<CombatModifier name="Player" item="GainSkill_Splash" type="EliteSoldier" chance="1" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="Cleave.png" />
+				<position x="0" y="1" />
+			</layout>
+		</skill>
+		
+		<skill id="96" name="Skill_InstantRecovery"> <!-- 1-Up: The General has a {0}% chance to instantly recover after a defeat -->
+			<requirements>
+				<minimumLevel level="45" />
+				<skillPointType type="gold" />
+				<pointsAccumulated amount="20" />
+			</requirements>
+			<levels>	
+				<level>
+<!-- 					<GeneralRecoverySpeed multiplier="0.00001" chance="0.3" /> -->
+					<CombatModifier name="Player" item="InstantRecover" type="CombatGeneral" value="1" chance="1.0" channel="specialist" />
+				</level>
+	
+			</levels>
+			<layout>
+				<icon name="1-Up.png" />
+				<position x="3" y="0" />
+			</layout>
+		</skill>
+		
+		<skill id="97" name="Skill_GetStarCoins"> <!-- Bounty Hunter: Gain 1 star coin for every {0} XP worth of enemies defeated. -->
+			<requirements>
+				<minimumLevel level="45" />
+				<skillPointType type="gold" />
+				<pointsAccumulated amount="20" />
+			</requirements>
+			<levels>			
+				<level><CombatModifier name="Player" item="StarCoinsForXP" type="CombatGeneral" chance="1" multiplier="1000" channel="specialist" /> </level>
+			</levels>
+			<layout>
+				<icon name="Bounty_hunter.png" />
+				<position x="2" y="0" />
+			</layout>
+		</skill>
+		
+		<skill id="98" name="Skill_GeneralAttacksTwice"> <!-- Lightning Slash: The general attacks twice per round. That second attack's initiative is "Last Strike". -->
+			<requirements>
+				<minimumLevel level="45" />
+				<skillPointType type="gold" />
+				<pointsAccumulated amount="20" />
+			</requirements>
+			<levels>			
+				<level>
+					<CombatModifier name="Player" item="DoubleAttack" type="CombatGeneral" chance="1" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="Lightning_slash2.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+		
+		<skill id="99" name="Skill_IncreaseAccuracy"> <!-- Master Planner: Adds {0}% to this army's accuracy. -->
+			<requirements>
+				<minimumLevel level="45" />
+				<skillPointType type="gold" />
+				<pointsAccumulated amount="20" />
+			</requirements>
+			<levels>
+				<level>
+					<CombatModifier name="Player" item="Accuracy" type="" chance="1" adder="10" channel="specialist" />
+				</level>		
+			</levels>
+			<layout>
+				<icon name="Master_planner.png" />
+				<position x="1" y="0" />
+			</layout>
+		</skill>
+		
+		<!-- Transporter skills-->
+		
+		<skill id="100" name="Skill_TransporterCapacity_Bronze"> <!-- Logistics Apprentice: Increases unit capacity by {0}. -->
+			<requirements>
+				<minimumLevel level="19" />
+				<skillPointType type="bronze" />
+			</requirements>
+			<levels>
+				<level>
+					<UnitCapacity chance="1" adder="65" channel="specialist"/>
+				</level>
+				<level>
+					<UnitCapacity chance="1" adder="130" channel="specialist"/>
+				</level>
+				<level>
+					<UnitCapacity chance="1" adder="200" channel="specialist"/>
+				</level>					
+			</levels>
+			<layout>
+				<icon name="Logistics_Apprentice.png" />
+				<position x="0" y="2" />
+			</layout>
+		</skill>
+		
+		<skill id="101" name="Skill_TransporterCapacity_Silver"> <!-- Logistics Journeyman: Increases unit capacity by {0}. -->
+			<requirements>
+				<minimumLevel level="26" />
+				<skillPointType type="silver" />
+				<pointsAccumulated amount="3" />
+			</requirements>
+			<levels>
+				<level>
+					<UnitCapacity chance="1" adder="115" channel="specialist"/>
+				</level>
+				<level>
+					<UnitCapacity chance="1" adder="230" channel="specialist"/>
+				</level>
+				<level>
+					<UnitCapacity chance="1" adder="350" channel="specialist"/>
+				</level>					
+			</levels>
+			<layout>
+				<icon name="Logistics_Master.png" />
+				<position x="0" y="1" />
+			</layout>
+		</skill>
+		
+		<skill id="102" name="Skill_TransporterCapacity_Gold"> <!-- Logistics Master: Increases unit capacity by {0}. -->
+			<requirements>
+				<minimumLevel level="41" />
+				<skillPointType type="gold" />
+				<pointsAccumulated amount="6" />
+			</requirements>
+			<levels>
+				<level>
+					<UnitCapacity chance="1" adder="450" channel="specialist"/>
+				</level>						
+			</levels>
+			<layout>
+				<icon name="Logistics_Journeyman.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+		
+		<skill id="103" name="Skill_TransporterTravelSpeed_Bronze"> <!-- Navigation Apprentice: Adds {0}% to the General's travel speed. -->
+			<requirements>
+				<minimumLevel level="19" />
+				<skillPointType type="bronze" />
+			</requirements>
+			<levels>
+				<level>
+					<zonetravelspeed multiplier="0.96" channel="specialist" />
+				</level>
+				<level>
+					<zonetravelspeed multiplier="0.92" channel="specialist" />
+				</level>
+				<level>
+					<zonetravelspeed multiplier="0.88" channel="specialist" />
+				</level>				
+			</levels>
+			<layout>
+				<icon name="Navigation_Apprentice.png" />
+				<position x="1" y="2" />
+			</layout>
+		</skill>
+		
+		<skill id="104" name="Skill_TransporterTravelSpeed_Silver"> <!-- Navigation Journeyman: Adds {0}% to the General's travel speed. -->
+			<requirements>
+				<minimumLevel level="26" />
+				<skillPointType type="silver" />
+				<pointsAccumulated amount="3" />
+			</requirements>
+			<levels>
+				<level>
+					<zonetravelspeed multiplier="0.93" channel="specialist" />
+				</level>
+				<level>
+					<zonetravelspeed multiplier="0.86" channel="specialist" />
+				</level>
+				<level>
+					<zonetravelspeed multiplier="0.79" channel="specialist" />
+				</level>				
+			</levels>
+			<layout>
+				<icon name="Navigation_Master.png" />
+				<position x="1" y="1" />
+			</layout>
+		</skill>
+		
+		<skill id="105" name="Skill_TransporterTravelSpeed_Gold"> <!-- Navigation Master: Adds {0}% to the General's travel speed. -->
+			<requirements>
+				<minimumLevel level="41" />
+				<skillPointType type="gold" />
+				<pointsAccumulated amount="6" />
+			</requirements>
+			<levels>
+				<level>
+					<zonetravelspeed multiplier="0.7" channel="specialist" />
+				</level>				
+			</levels>
+			<layout>
+				<icon name="Navigation_Journeyman.png" />
+				<position x="1" y="0" />
+			</layout>
+		</skill>
+		
+		
+		<!-- General Traits -->
+		
+		<skill id="108" name="Trait_Vargus"> <!-- Intercept: enemy units deal 5% less damage and lose Flanking. -->
+			<levels>	
+				<level>
+					<CombatModifier name="Enemy" item="LoseSkill_Flanking" chance="1" channel="specialist" />
+					<CombatModifier name="Enemy" item="MinAttackDamage" chance="1" multiplier="0.95" channel="specialist" />
+					<CombatModifier name="Enemy" item="MaxAttackDamage" chance="1" multiplier="0.95" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="Intercept.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+		
+		<skill id="109" name="Trait_Anslem"> <!-- Dazzle: Enemy accuracy is reduced to 0% -->
+			<levels>	
+				<level>
+					<CombatModifier name="Enemy" item="Accuracy" multiplier="0.0" chance="1" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="Dazzle.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+		
+		<skill id="110" name="Trait_Nusala"> <!-- Explosive Ammunition: Offense units gain Flanking and Splash Damage -->
+			<levels>	
+				<level>
+					<CombatModifier name="Player" item="GainSkill_Flanking" type="Offense" chance="1" channel="specialist" />
+					<CombatModifier name="Player" item="GainSkill_Splash" type="Offense" chance="1" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="Explosive_ammunition.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+	
+		<!-- Mary Christmas' trait: 2x XP -->
+		<skill id="114" name="Trait_MaryDoubleXP"> 
+			<levels>	
+				<level>
+					<CombatModifier name="Player" type="CombatGeneral" item="CombatXP" chance="1" multiplier="2.0" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="have_a_treat_icon.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>		
+		<!-- Mad Scientist's trait: Demolition for Defense, +100% AD for Heavy -->
+		<skill id="118" name="Trait_MadScientist"> 
+			<levels>	
+				<level>
+					<CombatModifier name="Player" item="MaxAttackDamage" type="Heavy" chance="1" multiplier="2" channel="specialist" />
+					<CombatModifier name="Player" item="MinAttackDamage" type="Heavy" chance="1" multiplier="2" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="Bombastic_Personality.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+
+		<!-- Anniversary Event trait - General Custom Skins : allows to set a custom skin when the general moves on the map -->
+		<skill id="120" name="Trait_SkinGoldenArmor">
+			<levels>
+				<level>
+					<!-- name = name of the custom skin as defined in gfx_settings.xml -->
+					<SkinModifier name="GoldenGeneral" channel="specialist"/>
+				</level>
+			</levels>
+		</skill>
+		
+		<!-- Field Surgery: resurrect 0.3% of losses -->
+		<skill id="117" name="Trait_MedicResurrectLosses"> 
+			<levels>	
+				<level>
+					<CombatModifier name="Player" item="RecoverLostTroops" type="" chance="1" multiplier="0.3" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="field_surgery_icon.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+		
+		<skill id="150" name="Trait_Boris"> 
+			<levels>	
+				<level>
+					<CombatModifier name="Player" item="MaxAttackDamage" type="Swift" chance="1" multiplier="1.5" channel="specialist" />
+					<CombatModifier name="Player" item="MinAttackDamage" type="Swift" chance="1" multiplier="1.5" channel="specialist" />
+					<CombatModifier name="Enemy" item="MaxAttackDamage" type="Swift" chance="1" multiplier="0.5" channel="specialist" />
+					<CombatModifier name="Enemy" item="MinAttackDamage" type="Swift" chance="1" multiplier="0.5" channel="specialist" />					
+					<CombatModifier name="Player" type="CombatGeneral" item="CombatXP" chance="1" multiplier="1.5" channel="specialist" />					
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_boris.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+
+		<skill id="151" name="Trait_Sylvana"> 
+			<levels>	
+				<level>
+					<CombatModifier name="Player" item="MaxAttackDamage" type="Swift" chance="1" multiplier="1.5" channel="specialist" />
+					<CombatModifier name="Player" item="MinAttackDamage" type="Swift" chance="1" multiplier="1.5" channel="specialist" />
+					<CombatModifier name="Enemy" item="MaxAttackDamage" type="Swift" chance="1" multiplier="0.5" channel="specialist" />
+					<CombatModifier name="Enemy" item="MinAttackDamage" type="Swift" chance="1" multiplier="0.5" channel="specialist" />					
+					<CombatModifier name="Player" type="CombatGeneral" item="CombatXP" chance="1" multiplier="1.5" channel="specialist" />					
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_sylvana.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>				
+		
+		<skill id="227" name="Skill_TravelBoost">
+			<levels>	
+				<level>
+					<zonetravelspeed multiplier="0.75"/>
+				</level>
+				<level>
+					<zonetravelspeed multiplier="0.5"/>
+				</level>
+				<level>
+					<zonetravelspeed multiplier="0.25"/>
+				</level>		
+			</levels>
+			<layout>
+				<icon name="SmallIconStar" />
+				<position x="0" y="4" />
+			</layout>
+		</skill>
+	
+		<!-- Field Surgery: resurrect 0.3% of losses -->
+		<skill id="270" name="Trait_Anniversary2019General"> 
+			<levels>	
+				<level>
+					<CombatModifier name="Player" item="RecoverLostTroops" type="" chance="1" multiplier="0.20" channel="specialist" />
+					<GeneralRecoverySpeed multiplier="0.67" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="anniversary2019general_trait.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+
+		<skill id="271" name="Trait_Halloween2019General"> <!-- Defense units gain Flanking and + 10% Accuracy -->
+			<levels>	
+				<level>
+					<CombatModifier name="Player" item="GainSkill_Flanking" type="Defense" chance="1" channel="specialist" />
+					<CombatModifier name="Player" item="Accuracy" type="Defense" chance="1" adder="10" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="halloween2019general_trait.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+
+		<skill id="272" name="Trait_Xmas2019General"> <!-- Swift units gain Splash and + 20% Accuracy and + 10% Damage-->
+			<levels>	
+				<level>
+					<CombatModifier name="Player" item="GainSkill_Splash" type="Swift" chance="1" channel="specialist" />
+					<CombatModifier name="Player" item="GainSkill_Flanking" type="Swift" chance="1" channel="specialist" />					
+					<CombatModifier name="Player" item="Accuracy" type="Swift" chance="1" adder="20" channel="specialist" />
+					<CombatModifier name="Player" item="MinAttackDamage" type="Swift" chance="1" multiplier="1.2" channel="specialist" />
+					<CombatModifier name="Player" item="MaxAttackDamage" type="Swift" chance="1" multiplier="1.2" channel="specialist" />					
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_steadfast.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+		
+		<skill id="273" name="Trait_AssassinGeneral"> <!-- Uses mechanic of and should stack with "Overrun: Decreases HP of enemy bosses by {0}%". -->
+			<levels>			
+				<level>
+					<CombatModifier name="Enemy" item="UnitHP" type="Boss" chance="1" multiplier="0.75" channel="specialist" />
+					<CombatModifier name="Enemy" item="UnitHP" type="Defense" chance="1" multiplier="0.75" channel="specialist" />					
+					<CombatModifier name="Enemy" item="MinAttackDamage" type="Boss" chance="1" multiplier="0.75" channel="specialist" />
+					<CombatModifier name="Enemy" item="MaxAttackDamage" type="Boss" chance="1" multiplier="0.75" channel="specialist" />						
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_assassin.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>		
+	
+		<!-- Mary Christmas' trait: 2x XP -->
+		<skill id="276" name="Trait_TrembleBeard"> 
+			<levels>	
+				<level>
+					<CombatModifier name="Player" type="CombatGeneral" item="CombatXP" chance="1" multiplier="3.0" channel="specialist" />
+					<CombatModifier name="Player" item="StarCoinsForXP" type="CombatGeneral" chance="1" multiplier="1000" channel="specialist" />				
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_tremblebeard_general.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>		
+	
+		<skill id="278" name="Trait_GhostGeneral"> <!-- Halloween 2020 General -->
+			<levels>	
+				<level>
+					<CombatModifier name="Enemy" item="Accuracy" multiplier="0.5" chance="1" channel="specialist" />
+					<CombatModifier name="Player" item="UnitHP" type="" chance="1" multiplier="1.2" channel="specialist" />	
+					<CombatModifier name="Player" item="RecoverLostTroops" type="" chance="1" multiplier="0.20" channel="specialist" />									
+					<GeneralRecoverySpeed multiplier="0.75" />			
+					<CombatModifier name="Player" item="InstantRecover" type="CombatGeneral" value="1" chance="1.0" channel="specialist" />					
+				</level>				
+			</levels>
+			<layout>
+				<icon name="resource_ghostgeneral.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>	
+	
+		<skill id="279" name="Skill_TravelBoost_BlackTree">
+			<levels>	
+				<level>
+					<zonetravelspeed multiplier="0.65"/>
+				</level>
+			</levels>
+			<layout>
+				<icon name="SmallIconStar" />
+				<position x="0" y="4" />
+			</layout>
+		</skill>
+
+		<skill id="281" name="Trait_FrostyGeneral"> <!-- XMAS 2020 - Frosty General -->
+			<levels>	
+				<level>
+					<CombatModifier name="Player" item="MinAttackDamage" type="Defense" chance="1" multiplier="1.3" channel="specialist" />
+					<CombatModifier name="Player" item="MaxAttackDamage" type="Defense" chance="1" multiplier="1.3" channel="specialist" />
+					<CombatModifier name="Player" item="GainSkill_Splash" type="Defense" chance="1" channel="specialist" />																
+				</level>				
+			</levels>
+			<layout>
+				<icon name="resource_frostygeneral.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+
+		<skill id="284" name="Trait_LonerGeneral"> <!-- VALENTINE 2021 - Loner General -->
+			<levels>	
+				<level>
+					<CombatModifier name="Player" item="RecoverLostTroops" type="" chance="1" multiplier="0.1" channel="specialist" />
+					<CombatModifier name="Player" item="MinAttackDamage" type="Offense" chance="1" multiplier="1.5" channel="specialist" />
+					<CombatModifier name="Player" item="MaxAttackDamage" type="Offense" chance="1" multiplier="1.5" channel="specialist" />
+				</level>				
+			</levels>
+			<layout>
+				<icon name="resource_lonergeneral.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>	
+
+		<skill id="299" name="Trait_Loudmouth"> <!-- Anniversary 2021: General Loudmouth -->
+			<levels>	
+				<level>
+					<CombatModifier name="Enemy" item="LoseSkill_Flanking" chance="1" channel="specialist" />
+					<CombatModifier name="Enemy" item="MinAttackDamage" chance="1" multiplier="0.90" channel="specialist" />
+					<CombatModifier name="Enemy" item="MaxAttackDamage" chance="1" multiplier="0.90" channel="specialist" />
+					<GeneralRecoverySpeed multiplier="0.67" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_loudmouth_general.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+		
+		<skill id="305" name="Trait_Nutcracker"> <!-- XMAS 2021: Nutcracker General  -->
+			<levels>	
+				<level>
+					<CombatModifier name="Player" item="UnitHP" type="" chance="1" multiplier="1.3" channel="specialist" />	
+					<CombatModifier name="Player" item="RecoverLostTroops" type="" chance="1" multiplier="0.2" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_nutcrackergeneral.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+		
+		<skill id="307" name="Trait_Miraculous"> <!-- Easter 2022: Miraculous General  -->
+			<levels>	
+				<level>	
+					<CombatModifier name="Player" item="RecoverLostTroops" type="" chance="1" multiplier="0.45" channel="specialist" />
+					<CombatModifier name="Player" item="InstantRecover" type="CombatGeneral" value="1" chance="1.0" channel="specialist" />	
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_miraculousgeneral.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+		
+		<skill id="309" name="Trait_Resolute"> <!-- Halloween 2022: Resolute General  -->
+			<levels>	
+				<level>	
+					<CombatModifier name="Enemy" item="LoseSkill_Flanking" chance="1" channel="specialist" />
+					<CombatModifier name="Enemy" item="MinAttackDamage" type="Offense" chance="1" multiplier="0.7" channel="specialist" />
+					<CombatModifier name="Enemy" item="MaxAttackDamage" type="Offense" chance="1" multiplier="0.7" channel="specialist" />
+					<CombatModifier name="Enemy" item="MinAttackDamage" type="Heavy" chance="1" multiplier="0.7" channel="specialist" />
+					<CombatModifier name="Enemy" item="MaxAttackDamage" type="Heavy" chance="1" multiplier="0.7" channel="specialist" />
+					<CombatModifier name="Player" item="UnitHP" type="Soldier" chance="1" multiplier="2" channel="specialist" />
+					<CombatModifier name="Player" item="GainSkill_Splash" type="Soldier" chance="1" channel="specialist" />
+					<CombatModifier name="Player" item="MinAttackDamage" type="Soldier" chance="1" multiplier="0.7" channel="specialist" />
+					<CombatModifier name="Player" item="MaxAttackDamage" type="Soldier" chance="1" multiplier="0.7" channel="specialist" />
+					<!--<CombatModifier name="Player" item="BattleFrenzy" type="Soldier" chance="1" adder="50" channel="specialist" />-->
+					<CombatModifier name="Player" item="UnitHP" type="EliteSoldier" chance="1" multiplier="2" channel="specialist" />
+					<CombatModifier name="Player" item="GainSkill_Splash" type="EliteSoldier" chance="1" channel="specialist" />
+					<CombatModifier name="Player" item="MinAttackDamage" type="EliteSoldier" chance="1" multiplier="0.7" channel="specialist" />
+					<CombatModifier name="Player" item="MaxAttackDamage" type="EliteSoldier" chance="1" multiplier="0.7" channel="specialist" />
+					<!--<CombatModifier name="Player" item="BattleFrenzy" type="EliteSoldier" chance="1" adder="50" channel="specialist" />-->
+					<CombatModifier name="Player" item="UnitHP" type="Swordsman" chance="1" multiplier="2" channel="specialist" />
+					<CombatModifier name="Player" item="GainSkill_Splash" type="Swordsman" chance="1" channel="specialist" />
+					<CombatModifier name="Player" item="MinAttackDamage" type="Swordsman" chance="1" multiplier="0.7" channel="specialist" />
+					<CombatModifier name="Player" item="MaxAttackDamage" type="Swordsman" chance="1" multiplier="0.7" channel="specialist" />
+					<!--<CombatModifier name="Player" item="BattleFrenzy" type="Swordsman" chance="1" adder="50" channel="specialist" />-->
+					<CombatModifier name="Player" item="BattleFrenzy" type="" chance="1" adder="50" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_resolute.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+	
+		<skill id="319" name="Trait_GetHiredMilitary"> <!-- Halloween 2023: Quartermaster Bjoern -->
+			<levels>	
+				<level>	
+					<modifierEffect property="TASK_TRAVEL_TO_ZONE_FINISH" chance="1" channel="specialist" rules="effect">
+						<reward type="loottable" name="NewRecruitsBuff" id="277"/>
+					</modifierEffect>
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_quartermasterbjoern.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+
+		<skill id="322" name="Skill_TravelBoost_DoggyBag"> <!-- Valentine 2024: Romantic Restaurant -->
+			<levels>	
+				<level>
+					<zonetravelspeed multiplier="0.80"/>
+				</level>
+			</levels>
+			<layout>
+				<icon name="SmallIconStar" />
+				<position x="0" y="4" />
+			</layout>
+		</skill>
+
+		<!-- General Juan trait: 2x XP -->
+		<skill id="324" name="Trait_GeneralJuan"> 
+			<levels>	
+				<level>
+					<CombatModifier name="Player" item="RecoverLostTroops" type="" chance="1" multiplier="0.20" channel="specialist" />
+					<CombatModifier name="Player" type="CombatGeneral" item="CombatXP" chance="1" multiplier="2.0" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_generaljuan.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>	
+
+		<!-- Brohmann trait -->
+		<skill id="327" name="Trait_Brohmann"> 
+			<levels>	
+				<level>
+					<CombatModifier name="Player" item="MaxAttackDamage" type="Cavalry" chance="1" adder="30" channel="specialist" />
+					<CombatModifier name="Player" item="MinAttackDamage" type="Cavalry" chance="1" adder="30" channel="specialist" />
+					<CombatModifier name="Player" item="MaxAttackDamage" type="Knight" chance="1" adder="30" channel="specialist" />
+					<CombatModifier name="Player" item="MinAttackDamage" type="Knight" chance="1" adder="30" channel="specialist" />
+					<CombatModifier name="Player" item="GainSkill_Flanking" type="Knight" chance="1" channel="specialist" />
+					<CombatModifier name="Player" item="CombatLootForXP" value="292" type="CombatGeneral" chance=".33" multiplier="450" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_brohmann.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+
+		<!-- Anniversary 2025: The Smuggler -->
+		<skill id="332" name="Trait_Smuggling"> 
+			<levels>	
+				<level>	
+                    <modifierEffect property="TASK_TRAVEL_TO_ZONE_FINISH" chance="1" channel="specialist" rules="effect">
+						<reward type="loottable" name="NewRecruitsBuff" id="292"/>
+                    </modifierEffect>
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_thesmuggler.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+		
+		<skill id="337" name="Trait_NarcissisticGeneral"> <!-- Valentines 2026 General -->
+			<levels>	
+				<level>
+					<CombatModifier name="Player" type="CombatGeneral" item="CombatXP" chance="1" multiplier="0.2" channel="specialist" />
+					<CombatModifier name="Enemy" item="UnitHP" type="Boss" chance="1" multiplier="0.75" channel="specialist" />							
+					<GeneralRecoverySpeed multiplier="0.75" />			
+					<CombatModifier name="Player" item="InstantRecover" type="CombatGeneral" value="1" chance="1.0" channel="specialist" />		
+					<CombatModifier name="Player" item="CombatLootForXP" value="334" type="CombatGeneral" chance=".1" multiplier="1000" channel="specialist" />					
+				</level>				
+			</levels>
+			<layout>
+				<icon name="narcissisticgeneral_r.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+
+	</skills>
+		
+	<skillTrees>
+		<skillTree id="3" name="general" maxPoints="21">
+			<skillReference id="80" /> <!-- Rapid Fire: Increases maximum attack damage of your Bowmen by {0}. -->
+			<skillReference id="81" /> <!-- Home Field Advantage: Increases attack damage of this army by {0}% while on the home island. Bonus is halved for elite units. -->
+			<skillReference id="82" /> <!-- Juggernaut: Increases the General's attack damage by {0} and his/her attacks have a {1}% chance to deal splash damage. -->
+			<skillReference id="83" /> <!-- Overrun: Decreases HP of enemy bosses by {0}%. -->
+			<skillReference id="84" /> <!-- Sniper Training: Increases friendly Longbowmen's minimum attack damage by {0} and the maximum by {1}. -->
+			<skillReference id="85" /> <!-- Confident Leader: Adds {0}% to the General's combat speed. -->
+			<skillReference id="86" /> <!-- Navigation Crash Course: Adds {0}% to the General's travel speed. -->
+			<skillReference id="87" /> <!-- Just a Flesh Wound: Adds {0}% to the General's recovery speed. -->
+			<skillReference id="88" /> <!-- Battle Frenzy: Increases attack damage of this army by {0}% for every combat round past the first. -->
+			<skillReference id="89" /> <!-- Unstoppable Charge: Friendly swift units have a {0}% chance to deal splash damage. -->
+			<skillReference id="90" /> <!-- Hostile Takeover: Gain {0} Recruit mercenaries for every 150 XP worth of enemies defeated by this General. -->
+			<skillReference id="91" /> <!-- Jog: Increases movement speed by {0} %. -->
+			<skillReference id="92" /> <!-- Garrison Annex: Increases unit capacity by {0}. -->
+			<skillReference id="93" /> <!-- Weekly Maintenance: Increases attack damage of assigned heavy units by {0}. -->
+			<skillReference id="94" /> <!-- First Aid: Recovers {0}% of lost units after every combat. -->
+			<skillReference id="95" /> <!-- Best of the Best: Increases friendly Elite Soldiers' HP by {0}%. -->
+			<skillReference id="96" /> <!-- 1-Up: Instantly recover when defeated. Only once per adventure. -->
+			<skillReference id="97" /> <!-- Bounty Hunter: Gain 1 star coin for every {0} XP worth of enemies defeated. -->
+			<skillReference id="98" /> <!-- Lightning Slash: The General attacks twice per round, as if he had both First and Last Strike. -->
+			<skillReference id="99" /> <!-- Master Planner: Adds {0}% to this army's accuracy. -->
+		</skillTree>		
+		
+		<skillTree id="4" name="transporter" maxPoints="7">
+			<skillReference id="100" /> <!-- Logistics Apprentice: Increases unit capacity by {0}. -->
+			<skillReference id="101" /> <!-- Logistics Journeyman: Increases unit capacity by {0}. -->
+			<skillReference id="102" /> <!-- Logistics Master: Increases unit capacity by {0}. -->
+			<skillReference id="103" /> <!-- Navigation Journeyman: Adds {0}% to the General's travel speed. -->
+			<skillReference id="104" /> <!-- Navigation Apprentice: Adds {0}% to the General's travel speed. -->
+			<skillReference id="105" /> <!-- Navigation Master: Adds {0}% to the General's travel speed. -->
+		</skillTree>
+		
+		<skillTree id="5" name="admiral" maxPoints="0">
+		</skillTree>
+	</skillTrees>
+</scienceSystem>

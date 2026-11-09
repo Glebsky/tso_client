@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<Root>
+ 	<!-- ADVENTURE BONUS REWARD QUESTS -->
+
+ 	<!-- SOPHISTICATED PILLAGER Bonus Quests:
+			Complete Adventure {0} to receive a rare resource reward -->
+
+      <quest name="SophisticatedPillager_BanditNest" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="BanditNest" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="300" />
+				<reward type="Resource" name="Granite" amount="175" />
+				<reward type="Resource" name="TitaniumOre" amount="100" />
+         </posteffects>
+      </quest>
+
+      <quest name="SophisticatedPillager_BountyHunter" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="BountyHunter" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="Plank" amount="25" />
+				<reward type="Resource" name="Stone" amount="20" />
+				<reward type="Resource" name="RealPlank" amount="5" />
+				<reward type="Resource" name="Marble" amount="5" />
+         </posteffects>
+      </quest>
+
+      <quest name="SophisticatedPillager_Gunpowder" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="Gunpowder" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="100" />
+				<reward type="Resource" name="Granite" amount="75" />
+				<reward type="Resource" name="TitaniumOre" amount="25" />
+	          	<reward type="XP" amount="5000"/>       
+         </posteffects>
+      </quest>
+
+      <quest name="SophisticatedPillager_Horseback" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="Horseback" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="75" />
+				<reward type="Resource" name="Granite" amount="35" />
+	          	<reward type="XP" amount="1000"/>
+         </posteffects>
+      </quest>
+
+      <quest name="SophisticatedPillager_MadHenry" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="MadHenry" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="300" />
+				<reward type="Resource" name="Granite" amount="150" />
+				<reward type="Resource" name="TitaniumOre" amount="100" />
+         </posteffects>
+      </quest>
+
+      <quest name="SophisticatedPillager_MotherLove" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="MotherLove" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="500" />
+				<reward type="Resource" name="Granite" amount="350" />
+				<reward type="Resource" name="Salpeter" amount="125" />
+				<reward type="Resource" name="TitaniumOre" amount="100" />
+         </posteffects>
+      </quest>
+
+      <quest name="SophisticatedPillager_OldFriends" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="OldFriends" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="175" />
+				<reward type="Resource" name="Granite" amount="125" />
+				<reward type="Resource" name="Salpeter" amount="30" />
+				<reward type="Resource" name="TitaniumOre" amount="30" />
+         </posteffects>
+      </quest>
+
+      <quest name="SophisticatedPillager_Outlaws" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="Outlaws" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="325" />
+				<reward type="Resource" name="Granite" amount="210" />
+				<reward type="Resource" name="TitaniumOre" amount="110" />
+         </posteffects>
+      </quest>
+
+      <quest name="SophisticatedPillager_Pirates" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="Pirates" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="250" />
+				<reward type="Resource" name="Salpeter" amount="150" />
+				<reward type="Resource" name="TitaniumOre" amount="100" />
+         </posteffects>
+      </quest>
+
+      <quest name="SophisticatedPillager_RoaringBull" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="RoaringBull" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="500" />
+				<reward type="Resource" name="Granite" amount="410" />
+				<reward type="Resource" name="Salpeter" amount="175" />
+				<reward type="Resource" name="TitaniumOre" amount="150" />
+	          	<reward type="XP" amount="5000"/>
+         </posteffects>
+      </quest>
+
+      <quest name="SophisticatedPillager_SecludedExperiments" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="SecludedExperiments" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="375" />
+				<reward type="Resource" name="Granite" amount="300" />
+				<reward type="Resource" name="Salpeter" amount="125" />
+				<reward type="Resource" name="TitaniumOre" amount="100" />
+	          	<reward type="XP" amount="5000"/>
+         </posteffects>
+      </quest>
+
+      <quest name="SophisticatedPillager_SonsOfTheVeld" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="SonsOfTheVeld" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="110" />
+				<reward type="Resource" name="Granite" amount="100" />
+				<reward type="Resource" name="TitaniumOre" amount="60" />
+	          	<reward type="XP" amount="3750"/>
+         </posteffects>
+      </quest>
+
+      <quest name="SophisticatedPillager_StealingFromTheRich" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="StealingFromTheRich" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="45" />
+				<reward type="Resource" name="Granite" amount="55" />
+	          	<reward type="XP" amount="1500"/>
+         </posteffects>
+      </quest>
+
+      <quest name="SophisticatedPillager_SurpriseAttack" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="SurpriseAttack" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="100" />
+				<reward type="Resource" name="Granite" amount="80" />
+				<reward type="Resource" name="TitaniumOre" amount="20" />
+	          	<reward type="XP" amount="5000"/>
+         </posteffects>
+      </quest>
+
+      <quest name="SophisticatedPillager_TheBlackKnights" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="TheBlackKnights" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="375" />
+				<reward type="Resource" name="Granite" amount="300" />
+				<reward type="Resource" name="Salpeter" amount="100" />
+				<reward type="Resource" name="TitaniumOre" amount="60" />
+	          	<reward type="XP" amount="5000"/>
+         </posteffects>
+      </quest>
+
+      <quest name="SophisticatedPillager_TheDarkBrotherhood" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="TheDarkBrotherhood" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="450" />
+				<reward type="Resource" name="Granite" amount="350" />
+				<reward type="Resource" name="Salpeter" amount="125" />
+				<reward type="Resource" name="TitaniumOre" amount="100" />
+	          	<reward type="XP" amount="6250"/>
+         </posteffects>
+      </quest>
+
+      <quest name="SophisticatedPillager_TheDarkPriests" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="TheDarkPriests" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="40" />
+				<reward type="Resource" name="Granite" amount="30" />
+	          	<reward type="XP" amount="750"/>
+         </posteffects>
+      </quest>
+
+      <quest name="SophisticatedPillager_TheIslandOfThePirates" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="TheIslandOfThePirates" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="225" />
+				<reward type="Resource" name="Granite" amount="200" />
+         </posteffects>
+      </quest>
+
+      <quest name="SophisticatedPillager_TheNords" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="TheNords" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="135" />
+				<reward type="Resource" name="Salpeter" amount="100" />
+				<reward type="Resource" name="TitaniumOre" amount="30" />
+	          	<reward type="XP" amount="3750"/>
+         </posteffects>
+      </quest>
+
+      <quest name="SophisticatedPillager_Traitors" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="Traitors" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="80" />
+				<reward type="Resource" name="Granite" amount="70" />
+	          	<reward type="XP" amount="1125"/>
+         </posteffects>
+      </quest>
+
+      <quest name="SophisticatedPillager_VictorTheVicious" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="VictorTheVicious" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="250" />
+				<reward type="Resource" name="Salpeter" amount="210" />
+				<reward type="Resource" name="TitaniumOre" amount="85" />
+         </posteffects>
+      </quest>
+
+      <quest name="SophisticatedPillager_WitchOfTheSwamp" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="WitchOfTheSwamp" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="55" />
+				<reward type="Resource" name="Granite" amount="55" />
+	          	<reward type="XP" amount="685"/>
+         </posteffects>
+      </quest>
+
+	
+	<quest name="SophisticatedPillager_MiadTheLostSkull" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="MiadTheLostSkull" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="25" />
+				<reward type="Resource" name="Granite" amount="25" />
+	          	<reward type="XP" amount="250"/>
+         </posteffects>
+      </quest>
+	  
+	  
+	<quest name="SophisticatedPillager_TheSiege" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="TheSiege" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="50" />
+				<reward type="Resource" name="Granite" amount="50" />
+	          	<reward type="XP" amount="350"/>
+         </posteffects>
+      </quest>  
+	  
+	  <quest name="SophisticatedPillager_BuccaneerRoundup" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="BuccaneerRoundup" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="25" />
+				<reward type="Resource" name="Granite" amount="25" />
+	          	<reward type="XP" amount="250"/>
+         </posteffects>
+      </quest>
+	  
+	<quest name="SophisticatedPillager_MiadTheSleepingVolcano" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="MiadTheSleepingVolcano" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="25" />
+				<reward type="Resource" name="Granite" amount="25" />
+	          	<reward type="XP" amount="250"/>
+         </posteffects>
+      </quest>
+	  
+	<quest name="SophisticatedPillager_MiadTropicalSun" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="MiadTropicalSun" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="50" />
+				<reward type="Resource" name="Granite" amount="50" />
+	          	<reward type="XP" amount="350"/>
+         </posteffects>
+      </quest>
+	  
+	<quest name="SophisticatedPillager_MiadSleepyReef" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="MiadSleepyReef" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="25" />
+				<reward type="Resource" name="Granite" amount="25" />
+	          	<reward type="XP" amount="250"/>
+         </posteffects>
+      </quest>
+	  
+	<quest name="SophisticatedPillager_BuffAdventures_safeTheTowns_easy" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="BuffAdventures_safeTheTowns_easy" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="Marble" amount="100" />
+	          	<reward type="XP" amount="250"/>
+         </posteffects>
+      </quest>
+	  
+	<quest name="SophisticatedPillager_BuffAdventures_twins_easy" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="BuffAdventures_twins_easy" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="BronzeOre" amount="150" />
+	          	<reward type="XP" amount="250"/>
+         </posteffects>
+      </quest>
+	  
+	<quest name="SophisticatedPillager_LakesideTreasure" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="LakesideTreasure" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="100" />
+				<reward type="Resource" name="Granite" amount="75" />
+	          	<reward type="XP" amount="400"/>
+         </posteffects>
+      </quest>
+	  
+	<quest name="SophisticatedPillager_RaidingTheRaiders" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="RaidingTheRaiders" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="100" />
+				<reward type="Resource" name="Granite" amount="75" />
+				<reward type="Resource" name="Salpeter" amount="25" />
+	          	<reward type="XP" amount="450"/>
+         </posteffects>
+      </quest>
+	  
+	<quest name="SophisticatedPillager_TombRaiders" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="TombRaiders" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="100" />
+				<reward type="Resource" name="Granite" amount="75" />
+				<reward type="Resource" name="Salpeter" amount="25" />
+	          	<reward type="XP" amount="450"/>
+         </posteffects>
+      </quest>  
+	  
+	<quest name="SophisticatedPillager_MiadBastilleIsland" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="MiadBastilleIsland" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="25" />
+				<reward type="Resource" name="Granite" amount="25" />
+	          	<reward type="XP" amount="250"/>
+         </posteffects>
+      </quest>    
+	
+	<quest name="SophisticatedPillager_BuffAdventures_heartOfTheWood_medium" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="BuffAdventures_heartOfTheWood_medium" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="Marble" amount="150" />
+	          	<reward type="XP" amount="250"/>
+         </posteffects>
+      </quest>    
+	 
+	<quest name="SophisticatedPillager_MiadArcticExplosion" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="MiadArcticExplosion" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="50" />
+				<reward type="Resource" name="Granite" amount="50" />
+	          	<reward type="XP" amount="250"/>
+         </posteffects>
+      </quest>  
+	  
+	<quest name="SophisticatedPillager_TheValiantLittleTailor" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="TheValiantLittleTailor" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="300" />
+				<reward type="Resource" name="Granite" amount="350" />
+				<reward type="Resource" name="Salpeter" amount="100" />
+	          	<reward type="XP" amount="2500"/>
+         </posteffects>
+      </quest>   
+	
+	<quest name="SophisticatedPillager_Whirlwind" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="Whirlwind" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="ExoticWood" amount="100" />
+				<reward type="Resource" name="Granite" amount="100" />
+				<reward type="Resource" name="Salpeter" amount="50" />
+	          	<reward type="XP" amount="2000"/>
+         </posteffects>
+      </quest> 
+	  
+	<quest name="SophisticatedPillager_BuffAdventures_Riches_of_the_Mountain" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="BuffAdventures_Riches_of_the_Mountain" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="GoldOre" amount="100" />
+	          	<reward type="XP" amount="6000"/>
+         </posteffects>
+      </quest>   
+	
+	<quest name="SophisticatedPillager_1001NightsWoodcutter" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="1001NightsWoodcutter" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="MagicBean" amount="500" />
+				<reward type="Resource" name="Grout" amount="100" />
+	          	<reward type="XP" amount="6000"/>
+         </posteffects>
+      </quest> 
+	  
+	 <quest name="SophisticatedPillager_BuffAdventures_Storm_Recovery" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+           <trigger type="Adventure" name="BuffAdventures_Storm_Recovery" amount="1" condition="geDelta" />
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="StarCoin" amount="250" />
+				<reward type="Resource" name="PlatinumOre" amount="300" />
+				<reward type="Resource" name="MahoganyWood" amount="300" />
+	          	<reward type="XP" amount="6000"/>
+         </posteffects>
+      </quest>  
+
+ 	<!-- STREETWISE NEGOTIATOR Bonus Quests:
+			find rare resource {0} on next search to receive more of the same resource-->
+
+      <quest name="StreetwiseNegotiator_Salpeter" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+ 	         <trigger type="SpecialistTask" name="" condition="found" resourceType="Salpeter" amount="1"/>
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="Salpeter" amount="5" />
+         </posteffects>
+      </quest>
+
+      <quest name="StreetwiseNegotiator_Granite" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+ 	         <trigger type="SpecialistTask" name="" condition="found" resourceType="Granite" amount="1"/>
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="Granite" amount="10" />
+         </posteffects>
+      </quest>
+
+      <quest name="StreetwiseNegotiator_TitaniumOre" type="SkillBonus" icon="QuestMedium" showRewardWindow="true" repeatable="true">
+         <triggers>
+ 	         <trigger type="SpecialistTask" name="" condition="found" resourceType="TitaniumOre" amount="1"/>
+         </triggers>
+         <posteffects>
+				<reward type="Resource" name="TitaniumOre" amount="3" />
+         </posteffects>
+      </quest>
+
+</Root>
+
+
+
+

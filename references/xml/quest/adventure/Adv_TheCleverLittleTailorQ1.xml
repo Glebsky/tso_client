@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	 <quest name="Adv_TheCleverLittleTailorQ1" type="Story" icon="Military" npc="quest_character_tailor.png" specialType="firstQuest" >
+		<triggers>
+      <trigger type="Building" name="Banditsleader_Adventure" condition="l" amount="4" locaExtension="er1_a2_q1"/>
+		  </triggers>
+      <rewards/>
+		<postrequisits>
+         <postrequisite startQuest="Adv_TheCleverLittleTailorQ2" /> 
+		</postrequisits>
+    </quest>
+	<quest name="Adv_TheCleverLittleTailorQ2" type="Story" icon="Military" npc="quest_character_tailor.png">
+		<triggers>
+      <trigger type="Building" name="Banditsleader_Adventure" condition="l" amount="3" locaExtension="er1_a2_q2"/>
+		  </triggers>
+      <rewards/>
+		<postrequisits>
+         <postrequisite startQuest="Adv_TheCleverLittleTailorQ3" /> 
+		</postrequisits>    </quest>
+	<quest name="Adv_TheCleverLittleTailorQ3" type="Story" icon="Military" npc="quest_character_tailor.png">
+		<triggers>
+      <trigger type="Building" name="cave_wildlife_leader" condition="l" amount="4" locaExtension="er1_a2_q3"/>
+		  </triggers>
+      <rewards/>
+		<postrequisits>
+         <postrequisite startQuest="Adv_TheCleverLittleTailorQ4" /> 
+		</postrequisits>
+    </quest>
+	<quest name="Adv_TheCleverLittleTailorQ4" type="Story" icon="Military" npc="quest_character_tailor.png">
+		<triggers>
+      <trigger type="Building" name="cave_wildlife_leader" condition="l" amount="3" locaExtension="er1_a2_q4"/>
+		  </triggers>
+      <rewards/>
+		<postrequisits>
+         <postrequisite startQuest="Adv_TheCleverLittleTailorQ5" /> 
+		</postrequisits>
+    </quest>
+	<quest name="Adv_TheCleverLittleTailorQ5" type="Story" icon="Military" npc="quest_character_tailor.png">
+		<triggers>
+      <trigger type="Building" name="cave_wildlife_leader" condition="l" amount="2" locaExtension="er1_a2_q5"/>
+		  </triggers>
+      <rewards/>
+		<postrequisits>
+         <postrequisite startQuest="Adv_TheCleverLittleTailorQ6" /> 
+		</postrequisits>
+    </quest>
+	<quest name="Adv_TheCleverLittleTailorQ6" type="Story" icon="Military" npc="quest_character_tailor.png">
+		<triggers>
+      <trigger type="Building" name="cave_wildlife_leader" condition="l" amount="1" locaExtension="er1_a2_q6"/>
+		  </triggers>
+      <rewards/>
+		<postrequisits>
+         <postrequisite startQuest="Adv_TheCleverLittleTailorQ7" /> 
+		</postrequisits>
+    </quest>
+	<quest name="Adv_TheCleverLittleTailorQ7" type="Story" icon="Military" npc="quest_character_tailor.png">
+		<triggers>
+      <trigger type="Building" name="Banditsleader_Adventure" condition="l" amount="2" locaExtension="er1_a2_q7"/>
+		  </triggers>
+      <rewards/>
+		<postrequisits>
+         <postrequisite startQuest="Adv_TheCleverLittleTailorQ8" /> 
+		</postrequisits>
+    </quest>
+	 <quest name="Adv_TheCleverLittleTailorQ8" type="Story" icon="Military" npc="quest_character_tailor.png" specialType="lastQuest" >
+		<triggers>
+      <trigger type="Building" name="Banditsleader_Adventure" condition="l" amount="1" locaExtension="er1_a2_q8"/>
+		  </triggers>
+      <rewards/>
+    </quest>	
+</Root>

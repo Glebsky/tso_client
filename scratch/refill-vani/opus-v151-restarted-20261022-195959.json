@@ -1,0 +1,5 @@
+{
+  "status": "error",
+  "requested_model": "anthropic/claude-opus-5.5",
+  "error": "HTTP 503 (Service Unavailable): pool exhausted (all accounts dead or weekly-limited)"
+}

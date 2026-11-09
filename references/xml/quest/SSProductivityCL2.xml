@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<Root>
+    
+    	<!--
+    
+    	// name = Name of Quest
+    	// showQuestWindow="false"  = disable show Quest Window funktion
+    	// showRewardWindow="false"  = disable show Reward Window funktion
+	// colorSchema = use a colorschema could be "night" ,"oven","snow","colormod,radd,gadd,badd,rmul,gmul,bmul"
+	// specialType="firstQuest", this is the start of a quest series, will be aktivated when zone starts
+    	// active = false means quest is inactive
+    	
+    	<quests name="QuestName" colorSchema="night" specialType="firstQuest" active="true">
+    		// if all triggers true quest is finished 
+    		<triggers>
+    			// if Woodcutter exist onMap quest is finished (if amount is one, it could be ignored"
+    			<trigger type="Building" name="Woodcutter" condition="onMap" />
+    			// if Sawmill is created quest is finished
+    			<trigger type="Building" name="Sawmill" condition="created" />
+    			// if 2 Sawmill in map quest is finished
+    			<trigger type="Building" name="Sawmill" condition="ge" amount="2" />
+    			// if 100 Iron is created quest is finished ge means greater or equal
+    			<trigger type="Resource" name="Iron" condition="ge" amount="100" />
+    			// if 100 additional Iron is created quest is finished geDelta means greater or equal
+			// for example, if you have 120 iron at the start of the quest, you must have at least 220 to finish it
+    			<trigger type="Resource" name="Iron" condition="geDelta" amount="100" />
+				
+				//Trigger Events: If trigger completion shall trigger further events (besides quest progress) enter the "onComplete" property with these possible comma-seperated values (NO WHITESPACES!):
+				<trigger type="Building" condition="selected" onComplete="destroySelectedBuilding,doSomethingElse"/> //Destroys the current selected Building and is doint things:)
+    		</triggers>
+    		
+    		// Player Rewards
+    		<rewards>
+    			// Player gets 100 iron
+    			<reward type="Resource" name="Iron" amount="100" />
+    			// Player gets 200 XP
+    			<reward type="XP" amount="200" />
+    		</rewards>
+    		
+    		// postrequisits is called after player gets his rewards 
+    		// startQuest is the name of the quest to start
+    		// Delay is Delay in seconds before quest starts
+    		<postrequisits startQuest="Quest2" startDelay="10" />
+			
+			// Hints (Red bouncing arrow)
+			<hints>
+				// name:       not used yet, will be used as text identifier for hint texts
+				// pointTo:    UI Element which is pointed to
+				//   		   available values:
+				//                 ActionBarButton01
+				//                 ActionBarButton02
+				//                 ActionBarButton03
+				//                 ActionBarButton04
+				//                 ActionBarButton05
+				//                 ActionBarButton06
+				//                 ActionBarButton07
+				//                 ActionBarButton08
+				//                 ActionBarButton09
+				//                 QuestButton
+				// offsetX:    x-offset in pixels from the center of the ui element
+				// offsetY:    y-offset in pixels from the center of the ui element
+				// direction:  direction the arrow will point to
+				//             available values: N, NE, E, SE, S, SW, W, NW
+				<hint name="FirstBuildMenu" pointTo="ActionBarButton01" offsetX="0" offsetY="-40" direction="S" />
+			</hints>
+			
+    	</quests>
+    	
+    	-->
+ 	<!-- 	Level-up Quest : 
+			Unlock SS Buildings: CL2 -->
+      <quest name="SSProductivityCL2" type="Story" icon="Resources" npc="quest_character_scienceSystem01.png" showRewardWindow="true" >            
+        <startcondition>
+          <playerlevel min="14" />
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+        	<productionvalue item="Wood" min="24" />
+        	<productionvalue item="Water" min="15" />
+        	<productionvalue item="BronzeOre" min="15" />
+        </triggers>
+        <posteffects>
+    			<reward type="XP" amount="10" />      
+        </posteffects>
+      </quest> 		
+
+	<!-- CL2 MAIN QUEST-->
+
+      <quest name="SSMain1" type="Story" icon="QuestMedium" npc="quest_character_scienceSystem01.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="15" />
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <helpeffects>
+         </helpeffects>
+         <triggers>
+ 	<!-- <trigger type="QuestComplete" name="SSProductivityCL2" condition="questcompleted" amount="1"/>  -->
+           <trigger type="QuestComplete" name="SSBookbinder" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="SSFinesmith" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="SSPapermillSimple" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="SSManuscript" condition="questcompleted" amount="1"/>
+         </triggers>
+         <posteffects>   
+				<reward type="Resource" name="Population" amount="10" />     
+         </posteffects>
+      </quest>
+
+
+ 	<!-- Build SS Bronzepoint production chain -->
+
+      <quest name="SSBookbinder" type="Story" connectedToQuest="SSMain1" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true" >            
+        <startcondition>
+			<playerlevel min="15" />
+			<questcomplete item="SSProductivityCL2"/>    
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Building" name="Bookbinder" condition="ge" amount="1"/>
+        </triggers>
+        <posteffects>
+				<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_bookbinder_0" effectDelay="3"/>  
+          <reward type="Resource" name="Stone" amount="10" />      
+          <reward type="Resource" name="Fish" amount="20" />   
+        </posteffects>
+      </quest>
+  
+      <quest name="SSFinesmith" type="Story" connectedToQuest="SSMain1" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true" >            
+        <startcondition>
+           <playerlevel min="15" />
+			<questcomplete item="SSBookbinder"/>    
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Building" name="Finesmith" condition="ge" amount="1"/>
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="BronzeOre" amount="15" />  
+          <reward type="Resource" name="Plank" amount="20" />
+        </posteffects>
+      </quest>
+
+      <quest name="SSPapermillSimple" type="Story" connectedToQuest="SSMain1" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true" >            
+        <startcondition>
+			<playerlevel min="15" />
+			<questcomplete item="SSBookbinder"/>    
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+          	 <trigger type="Building" name="PapermillSimple" condition="ge" amount="1"/>
+        </triggers>
+        <posteffects>
+			<reward type="Resource" name="Corn" amount="30" />
+			<reward type="Resource" name="BronzeOre" amount="20" />
+        </posteffects>
+      </quest>
+
+ 	<!-- Produce Bronze Skillpoint -->
+
+      <quest name="SSManuscript" type="Story" connectedToQuest="SSMain1" icon="Resources" npc="quest_character_scienceSystem01.png" showRewardWindow="true" >            
+        <startcondition>
+         <questcomplete item="SSPapermillSimple"/>    
+         <questcomplete item="SSFinesmith"/> 
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Manuscript" amount="1" condition="produce"/>
+        </triggers>
+        <posteffects>
+				<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_skilltrees_0" effectDelay="3"/>  
+			<reward type="Resource" name="Coin" amount="40" />    
+        </posteffects>
+      </quest>
+
+ 	<!-- 	Level-up Quest: 
+			Unlock SS Buildings: CL3 -->
+
+      <quest name="SSProductivityCL3" type="Story" icon="Resources" npc="quest_character_scienceSystem01.png" showRewardWindow="true" >            
+        <startcondition>
+          <playerlevel min="24" />
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+        	<productionvalue item="RealWood" min="22" />
+        	<productionvalue item="Water" min="15" />
+        	<productionvalue item="IronOre" min="18" />
+        	<productionvalue item="Coal" min="15" />
+        </triggers>
+        <posteffects>
+    			<reward type="XP" amount="75" />      
+        </posteffects>
+      </quest>
+
+	<!-- CL3 MAIN QUEST-->
+
+      <quest name="SSMain2" type="Story" icon="QuestMedium" npc="quest_character_scienceSystem01.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="25" />
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <helpeffects>
+         </helpeffects>
+         <triggers>
+          	<!--  <trigger type="QuestComplete" name="SSProductivityCL3" condition="questcompleted" amount="1"/>-->
+           <trigger type="QuestComplete" name="SSLettersmith" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="SSPapermillIntermediate" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="SSTome" condition="questcompleted" amount="1"/>
+         </triggers>
+         <posteffects>  
+				<reward type="Resource" name="Population" amount="30" />      
+         </posteffects>
+      </quest>
+
+
+ 	<!-- Build SS Silverpoint production chain -->
+
+ 
+      <quest name="SSLettersmith" type="Story" connectedToQuest="SSMain2" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true" >            
+        <startcondition>
+			<playerlevel min="25" />
+			<questcomplete item="SSProductivityCL3"/>    
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<onmaplist item="Lettersmith,ImprovedLettersmith" min="1" locaExtension="lettersmiths" />
+        </triggers>
+        <posteffects>
+			<reward type="Resource" name="Coal" amount="30" />     
+			<reward type="Resource" name="RealPlank" amount="50" />    
+        </posteffects>
+      </quest>
+
+      <quest name="SSPapermillIntermediate" type="Story" connectedToQuest="SSMain2" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true" >            
+        <startcondition>
+			<playerlevel min="25" />
+			<questcomplete item="SSProductivityCL3"/>    
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+          	 <trigger type="Building" name="PapermillIntermediate" condition="ge" amount="1"/>
+        </triggers>
+        <posteffects>
+			<reward type="Resource" name="BronzeOre" amount="30" />     
+			<reward type="Resource" name="Bread" amount="50" />     
+        </posteffects>
+      </quest>
+
+ 	<!-- Produce Silver Skillpoint -->
+
+      <quest name="SSTome" type="Story" connectedToQuest="SSMain2" icon="Resources" npc="quest_character_scienceSystem01.png" showRewardWindow="true" >            
+        <startcondition>
+			<playerlevel min="25" />
+			<questcomplete item="SSPapermillIntermediate"/>    
+         <questcomplete item="SSLettersmith"/> 
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Tome" amount="1" condition="produce"/>
+        </triggers>
+        <posteffects>
+			<reward type="Resource" name="Coin" amount="80" />   
+        </posteffects>
+      </quest>
+
+ 	<!-- 	Level-up Quest Lvl39 to Lvl 40: 
+			Unlock SS Buildings: CL4 -->
+
+      <quest name="SSProductivityCL4" type="Story" icon="Resources" npc="quest_character_scienceSystem01.png" showRewardWindow="true" >            
+        <startcondition>
+          <playerlevel min="39" />
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+        	<productionvalue item="Water" min="15" />
+        	<productionvalue item="Coal" min="15" />
+        	<productionvalue item="GoldOre" min="5" />
+        </triggers>
+        <posteffects>
+    			<reward type="XP" amount="1040" />      
+        </posteffects>
+      </quest>
+
+
+	<!-- CL4 MAIN QUEST-->
+
+      <quest name="SSMain3" type="Story" icon="QuestMedium" npc="quest_character_scienceSystem01.png" showRewardWindow="true">            
+         <startcondition>
+			<playerlevel min="40" />
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <helpeffects>
+         </helpeffects>
+         <triggers>
+           <!-- <trigger type="QuestComplete" name="SSProductivityCL4" condition="questcompleted" amount="1"/>-->
+           <trigger type="QuestComplete" name="SSOrnamentalsmith" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="SSPapermillAdvanced" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="SSCodex" condition="questcompleted" amount="1"/>
+         </triggers>
+         <posteffects>   
+			<reward type="Resource" name="Population" amount="80" /> 
+         </posteffects>
+      </quest>
+
+
+ 	<!-- Build SS Goldpoint production chain -->
+
+ 
+      <quest name="SSOrnamentalsmith" type="Story" connectedToQuest="SSMain3" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true" >            
+        <startcondition>
+			<playerlevel min="40" />
+			<questcomplete item="SSProductivityCL4"/>    
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+          	 <trigger type="Building" name="Ornamentalsmith" condition="ge" amount="1"/>
+        </triggers>
+        <posteffects>
+			<reward type="Resource" name="Iron" amount="100" /> 
+			<reward type="Resource" name="Granite" amount="100" /> 
+        </posteffects>
+      </quest>
+
+      <quest name="SSPapermillAdvanced" type="Story" connectedToQuest="SSMain3" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true" >            
+        <startcondition>
+			<playerlevel min="40" />
+			<questcomplete item="SSProductivityCL4"/>    
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+          	 <trigger type="Building" name="PapermillAdvanced" condition="ge" amount="1"/>
+        </triggers>
+        <posteffects>
+			<reward type="Resource" name="GoldOre" amount="100" />    
+			<reward type="Resource" name="ExoticWood" amount="80" /> 
+        </posteffects>
+      </quest>
+
+ 	<!-- Produce Gold Skillpoint -->
+
+      <quest name="SSCodex" type="Story" connectedToQuest="SSMain3" icon="Resources" npc="quest_character_scienceSystem01.png" showRewardWindow="true" >            
+        <startcondition>
+			<playerlevel min="40" />
+			<questcomplete item="SSPapermillAdvanced"/>    
+			<questcomplete item="SSOrnamentalsmith"/> 
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Codex" amount="1" condition="produce"/>
+        </triggers>
+        <posteffects>
+			<reward type="Resource" name="Coin" amount="200" /> 
+			<reward type="Resource" name="Salpeter" amount="100" /> 
+        </posteffects>
+      </quest>
+
+
+
+</Root>

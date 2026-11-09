@@ -1,0 +1,23 @@
+PASS catalog contains separate resource and adventure Gunpowder
+PASS original reproduces missing adventure collision
+PASS original reproduces resource icon incorrectly taken from buff namespace
+PASS resource uses resource icon, never adventure icon
+PASS adventure uses buff icon with actual asset name
+PASS untyped legacy Gunpowder always remains warehouse resource
+PASS typed low-level cache cannot mix Gunpowder icons
+PASS 1000 warm lookups add zero bridge calls or PNG encodes
+PASS each icon size has its own cached encoding
+PASS missing resource icon does not use ambiguous BitmapData or adventure inventory
+PASS adventure icon can use typed star fallback
+PASS negative cache suppresses repeat misses for 60 seconds
+PASS warehouse and adventure stocks do not merge
+PASS no adventure inventory does not inherit warehouse stock
+PASS warehouse-only stock switch excludes adventure
+PASS catalog is built once and handles reentrant info lookup without recursion
+PASS loading guard recovers after bridge failure and invalidate
+PASS adventure offer is a buff VO, not a resource or prefixed server name
+PASS adventure cost uses actual resource name and Adventure buff type
+PASS adventure buff lookup rejects other buffs sharing resource name
+PASS reader distinguishes resource vs adventure server VO
+PASS unrelated icon ordering and init side effects unchanged
+TOTAL 22 focused tests passed; mocks only, no AIR/server access

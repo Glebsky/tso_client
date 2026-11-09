@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+      
+   <quest name="BuffAdv_OneStepAhead_Main" specialType="firstQuestlastQuest" icon="Military" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_ventures_0" showQuestWindow="false">
+		<triggers>
+			<questcomplete item="BuffAdv_OneStepAhead_Sub1"/> 	
+			<questcomplete item="BuffAdv_OneStepAhead_Sub2"/> 	
+			<questcomplete item="BuffAdv_OneStepAhead_Sub3"/> 	
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="35000"/>   
+		</rewards>
+		<postrequisits />
+    </quest>
+
+	<quest name="BuffAdv_OneStepAhead_Sub1" connectedToQuest="BuffAdv_OneStepAhead_Main" type="Story" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questactive item="BuffAdv_OneStepAhead_Main"/>
+		</startcondition>
+		  <triggers>
+			<trigger type="Building" name="OrientalSailorCamp_leader_cluedrops" condition="l" amount="5" locaExtension="defeat4" />
+		  </triggers>
+   </quest>
+
+    <quest name="BuffAdv_OneStepAhead_Sub2" connectedToQuest="BuffAdv_OneStepAhead_Main" type="Story" icon="EffectBuffTreasureFleetReportHigh" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0">
+		<startcondition>
+			<questactive item="BuffAdv_OneStepAhead_Main"/>
+		</startcondition>
+		<triggers>
+			<buildingdestroyed item="DummyBuildingCollectibleClue" min="2" locaExtension="OneStepAhead_Clues" />
+			<buffowned item="EffectBuffTreasureFleetReportHigh" min="1" />			
+		</triggers>
+	</quest>
+  
+    <quest name="BuffAdv_OneStepAhead_Sub3" connectedToQuest="BuffAdv_OneStepAhead_Main" type="Story" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0">
+		<startcondition>
+			<questcomplete item="BuffAdv_OneStepAhead_Sub2"/>
+		</startcondition>
+		<triggers>     
+			<questcomplete item="BuffAdv_OneStepAhead_SpawnShip1" locaExtension="SpawnOneTreasureShip" />
+			<buildingdestroyed item="TreasureShip" min="1" locaExtension="OneStepAhead_Ship" />	
+		</triggers>
+	</quest>
+	
+    <quest name="BuffAdv_OneStepAhead_Sub4" type="Side" icon="EffectBuffTreasureFleetReportHigh" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0">
+		<startcondition>
+           <buffappliedonadventure min="1" item="EffectBuffTreasureFleetReportHigh"/>	
+		</startcondition>
+		<triggers>
+			<trigger type="Building" name="OrientalSailorCamp_leader_cluedrops" condition="l" amount="1" locaExtension="defeatAll" />
+			<buffappliedonadventure min="3" item="EffectBuffTreasureFleetReportHigh" locaExtension="SpawnAllTreasureShips" />	
+			<buildingdestroyed item="TreasureShip" min="4" locaExtension="OneStepAhead_AllShips" />				
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="40000"/>   
+		</rewards>
+	</quest>
+	
+	<quest name="BuffAdv_OneStepAhead_SpawnShip1" showQuestWindow="false" showRewardWindow="false" >
+		<startcondition>
+		   <questactive item="BuffAdv_OneStepAhead_Main"/>
+		</startcondition>
+		<triggers>
+           <buffappliedonadventure min="1" item="EffectBuffTreasureFleetReportHigh"/>
+		</triggers>
+		<posteffects>
+			<startquest name="BuffAdv_OneStepAhead_Sub3" /> <!-- Failsafe in case players advance quicker than the quest structure-->
+			<spawnbuilding name="TreasureShip" mode="enemy" action="ignoreBlocking,spawnInstant,replace" x="32" y="30" units="OrientalSailorMilitia|150,OrientalSailorCanoneer|50,TreasureShipLoot|30" />
+		</posteffects>	
+	</quest>
+	<quest name="BuffAdv_OneStepAhead_SpawnShip2" showQuestWindow="false" showRewardWindow="false" >
+		<startcondition>
+		   <questactive item="BuffAdv_OneStepAhead_Main"/>
+		</startcondition>
+		<triggers>
+           <buffappliedonadventure min="2" item="EffectBuffTreasureFleetReportHigh"/>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TreasureShip" mode="enemy" action="ignoreBlocking,spawnInstant,replace" x="34" y="26" units="OrientalSailorMilitia|150,OrientalSailorCanoneer|125,TreasureShipLoot|40" />
+		</posteffects>	
+	</quest>
+	<quest name="BuffAdv_OneStepAhead_SpawnShip3" showQuestWindow="false" showRewardWindow="false" >
+		<startcondition>
+		   <questactive item="BuffAdv_OneStepAhead_Main"/>
+		</startcondition>
+		<triggers>
+           <buffappliedonadventure min="3" item="EffectBuffTreasureFleetReportHigh"/>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TreasureShip" mode="enemy" action="ignoreBlocking,spawnInstant,replace" x="32" y="10" units="OrientalSailorMilitia|150,OrientalSailorCanoneer|125,TreasureShipLoot|40" />
+		</posteffects>	
+	</quest>
+	<quest name="BuffAdv_OneStepAhead_SpawnShip4" showQuestWindow="false" showRewardWindow="false" >
+		<startcondition>
+		   <questactive item="BuffAdv_OneStepAhead_Main"/>
+		</startcondition>
+		<triggers>
+           <buffappliedonadventure min="4" item="EffectBuffTreasureFleetReportHigh"/>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TreasureShip" mode="enemy" action="ignoreBlocking,spawnInstant,replace" x="30" y="14" units="OrientalSailorMilitia|150,OrientalSailorCanoneer|125,TreasureShipLoot|40" />
+		</posteffects>	
+	</quest>	
+	
+	<quest name="BuffAdv_OneStepAhead_ShipAchievement" showQuestWindow="false" showRewardWindow="false" notifyHomeZone="true">
+		<startcondition>
+			<questcomplete item="BuffAdv_OneStepAhead_SpawnShip2"/>
+			<questcomplete item="BuffAdv_OneStepAhead_SpawnShip3"/>
+		   	<questcomplete item="BuffAdv_OneStepAhead_SpawnShip4"/>
+		</startcondition>
+		<triggers>
+           <onmap item="TreasureShip" min="0"/>
+		</triggers>
+		<posteffects>
+		</posteffects>	
+	</quest>	
+	
+</Root>
+
+    
+    
+      
+      
+      
+      
+
+

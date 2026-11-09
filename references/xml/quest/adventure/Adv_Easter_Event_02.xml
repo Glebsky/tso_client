@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+
+
+	 <quest name="Adv_Easter_Event_02" specialType="firstQuestlastQuest" icon="StripedEggs"  showQuestWindow="false">
+		<triggers>  
+<trigger type="QuestComplete" name="CollectAllCollectiblesAdventure" condition="questcompleted" amount="1"/>
+		  </triggers>
+      <rewards/>
+    		<postrequisits>
+
+    		</postrequisits>
+    </quest>
+
+
+</Root>

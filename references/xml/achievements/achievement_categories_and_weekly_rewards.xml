@@ -1,0 +1,851 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<categories>
+		<mainCategory id="1" name="TaskBuilding"/>	<!-- Name must match the corresponding building name, please use TaskBuilding_... for new buildings -->
+		 	<category id="2" name="Economic_short" parentId="1" />
+		 	<category id="3" name="Military_short" parentId="1" />
+		 	<category id="4" name="Social_short" parentId="1" />
+			<category id="5" name="Economic_medium" parentId="1" />
+		 	<category id="6" name="Military_medium" parentId="1" />
+		 	<category id="7" name="Social_medium" parentId="1" />
+			<category id="8" name="Economic_long" parentId="1" />
+		 	<category id="9" name="Military_long" parentId="1" />
+		 	<category id="10" name="Social_long" parentId="1" />
+	</categories>
+	<weekRewards>
+		<category id="1">
+			<rewards>
+				<reward type="Resource" name="Grout" amount="300"/>
+				<reward type="Resource" name="StarCoin" amount="2500"/>
+				<reward type="Resource" name="Crystal" amount="15"/>
+			</rewards>
+		</category>
+	</weekRewards>
+	<tasks>
+		<!--Economic (Short) tasks -->
+		<task id="1" name="EconomicShort1" categoryId="2">
+			<triggers>
+				<resourcegathered min="1000" type="Granite"/>
+			</triggers>
+			<rewards>
+				<reward type="XP" amount="2500"/>
+				<reward type="Resource" name="IronOre" amount="250"/>
+			</rewards>
+		</task>
+		<task id="2" name="EconomicShort2" categoryId="2">
+			<triggers>
+			   <buffproduced min="25" item="ProductivityBuffLvl1"/>
+			   <buffproduced min="25" item="ProductivityBuffLvl2"/> 
+			   <buffproduced min="25" item="ProductivityBuffLvl3"/> 		   
+			</triggers>
+			<rewards>
+			   <reward type="XP" amount="3400"/>
+			   <reward type="Resource" name="Corn" amount="500"/>
+			   <reward type="Resource" name="Marble" amount="250"/>	
+			</rewards>
+		</task>
+		<task id="3" name="EconomicShort3" categoryId="2">
+			<triggers>
+			   <countdeposittype item="Granite" amount="5"/> 
+			   <countdeposittype item="Marble" amount="9"/>
+			</triggers>
+			<rewards>
+			   <reward type="XP" amount="1500"/>
+			   <reward type="Resource" name="BronzeOre" amount="150"/>
+			   <reward type="Resource" name="PlatinumOre" amount="30"/>
+			</rewards>
+		</task>
+		<task id="4" name="EconomicShort4" categoryId="2">
+			<triggers>
+				<specialisttaskresulttype item="FindTreasureProlonged" type="PlatinumOre" amount="100" locaExtension="type"/> 
+			</triggers>
+			<rewards>
+			   <reward type="XP" amount="3000"/>
+			   <reward type="Resource" name="StarCoin" amount="20"/>
+			</rewards>
+		</task>
+		
+		<task id="37" name="EconomicShort5" categoryId="2">
+			<triggers>
+				<paytofinish item="Gold" amount="100" />
+				<paytofinish item="Titanium" amount="100" />
+			</triggers>
+			<rewards>
+			   <reward type="XP" amount="2700"/>			  
+			   <reward type="Resource" name="MahoganyWood" amount="10"/>
+			</rewards>
+		</task>
+		
+		<task id="38" name="EconomicShort6" categoryId="2">
+			<triggers>
+				<paytofinish item="Bread" amount="500" />
+				<paytofinish item="Sausage" amount="500" />
+			</triggers>
+			<rewards>
+			   <reward type="XP" amount="3450"/>
+			   <reward type="Buff" item="ProductivityBuffLvl18" amount="1"/>
+			</rewards>
+		</task>
+		
+		<task id="39" name="EconomicShort7" categoryId="2">
+			<triggers>
+				<buildinglistupgradelevel min="5" amount="3" item="TitaniumMine" name="EpicTitaniumMine" />
+			</triggers>
+			<rewards>
+			   <reward type="XP" amount="2650"/>			  
+			   <reward type="Resource" name="TitaniumOre" amount="100"/>
+			</rewards>
+		</task>
+		
+		<task id="40" name="EconomicShort8" categoryId="2">
+			<triggers>
+				<paytofinish item="Cloth" amount="250" />
+				<paytofinish item="Salpeter" amount="300" />
+			</triggers>
+			<rewards>
+			   <reward type="XP" amount="3400"/>			  
+			   <reward type="Resource" name="Bread" amount="250"/>
+			</rewards>
+		</task>
+		
+		<!-- Military (Short) tasks -->
+		<task id="5" name="MilitaryShort1" categoryId="3">
+			<triggers>
+				<completeadventurelist item="EoWEventAdventure,BonabertiBusiness,TheNords2,BountyHunterNew,MadHenryReloaded,OldFriends,BanditNest,TheIslandOfThePirates,Outlaws,Traitors,Horseback,WitchOfTheSwamp,Pirates,ANightToRemember,MadHenry,1001NightsPrincess,1001NightsTreasureWisdom,1001NightsThirdThief,1001NightsFirstThief,1001NightsWoodcutter" amount="1" locaExtension="singleplayer_NonMiniMission_1"/>
+			</triggers>
+			<rewards>
+			   <reward type="XP" amount="5000"/>
+			   <reward type="Resource" name="PlatinumOre" amount="50"/>
+			</rewards>
+		</task>
+		
+		<task id="6" name="MilitaryShort2" categoryId="3" isPvp="true">
+			<triggers>
+				<claimColony amount="1"/>
+			</triggers>
+			<rewards>
+			   <reward type="XP" amount="8500"/>
+			   <reward type="Resource" name="IronOre" amount="200"/>
+			   <reward type="Resource" name="Granite" amount="150"/>
+			</rewards>
+		</task>
+		
+		<task id="7" name="MilitaryShort3" categoryId="3">
+			<triggers>
+				<lootedresource amount="700" type="Granite"/>
+			</triggers>
+			<rewards>
+			   <reward type="XP" amount="11500"/>
+			   <reward type="Resource" name="PlatinumOre" amount="50"/>
+			   <reward type="Resource" name="ExoticWood" amount="250"/>
+			</rewards>
+		</task>
+		
+		<task id="8" name="MilitaryShort4" categoryId="3">
+			<triggers>
+				<produceditemlist amount="1000" item="Recruit" locaExtension="unit"/>
+				<produceditemlist amount="100" item="Soldier" locaExtension="unit"/>
+				<produceditemlist amount="100" item="Cavalry" locaExtension="unit"/>
+			</triggers>
+			<rewards>
+			   <reward type="XP" amount="7500"/>
+			   <reward type="Buff" item="RecruitingBuffLvl3" amount="1"/>
+			</rewards>
+		</task>
+		
+		<task id="41" name="MilitaryShort5" categoryId="3">
+			<triggers>
+				<battlewon amount="15"/>
+			</triggers>
+			<rewards>
+			   <reward type="XP" amount="4500"/>			  
+			   <reward type="Resource" name="IronSword" amount="100"/>
+			</rewards>
+		</task>
+		
+		<task id="42" name="MilitaryShort6" categoryId="3">
+			<triggers>
+				<battlewonwithoutcasualties amount="1"/>
+			</triggers>
+			<rewards>
+			   <reward type="XP" amount="1500"/>			  
+			   <reward type="Resource" name="Beer" amount="100"/>
+			</rewards>
+		</task>	
+		
+		<task id="43" name="MilitaryShort7" categoryId="3">
+			<triggers>
+				<produceditemlist amount="1000" item="Recruit" locaExtension="unit"/>
+				<produceditemlist amount="100" item="Longbowman" locaExtension="unit"/>
+				<produceditemlist amount="100" item="Militia" locaExtension="unit"/>
+			</triggers>
+			<rewards>
+			   <reward type="XP" amount="4000"/>			  
+			   <reward type="Resource" name="ExoticWood" amount="150"/>
+			</rewards>
+		</task>		
+				
+		<task id="44" name="MilitaryShort8" categoryId="3">
+			<triggers>
+				<completeadventurelist amount="1" item="Traitors" locaExtension="AdvTraitors"/>
+			</triggers>
+			<rewards>
+			   <reward type="XP" amount="4000"/>			  
+			   <reward type="Buff" item="ProductivityBuffLvl18" amount="1"/>
+			</rewards>
+		</task>
+		
+		<!--Social (short) tasks -->
+ 		
+		<task id="9" name="SocialShort1" categoryId="4">
+			<triggers>
+				<buffappliedonfriend amount="10" item="ProductivityBuffLvl3" locaExtension="item"/> 
+			</triggers>
+			<rewards>
+			   <reward type="XP" amount="2500"/>
+			   <reward type="Buff" item="SpeedUpPopulationGrowth2" amount="1"/>
+			   <reward type="Resource" name="MahoganyWood" amount="20"/>
+			</rewards>
+		</task>
+		
+		<task id="10" name="SocialShort2" categoryId="4">
+			<triggers>
+				<soldgoods amount="200" item="PlatinumOre" locaExtension="item" />	
+			</triggers>
+			<rewards>
+			   <reward type="XP" amount="6500"/>
+			   <reward type="Resource" name="IronOre" amount="200"/>
+			   <reward type="Resource" name="Coin" amount="50"/>
+			   <reward type="Resource" name="StarCoin" amount="25"/>
+			</rewards>
+		</task>
+		
+		<task id="11" name="SocialShort3" categoryId="4">
+			<triggers>
+				<dailylogin amount="3"/>		
+			</triggers>
+			<rewards>
+				<reward type="XP" amount="3500"/>
+				<reward type="Buff" item="ProductivityBuffLvl9" amount="1"/>
+			</rewards>
+		</task>
+		
+		<task id="12" name="SocialShort4" categoryId="4">
+			<triggers>
+				<buffreceivedfromfriend amount="5"/>		
+			</triggers>
+			<rewards>
+				<reward type="XP" amount="4500"/>
+				<reward type="Resource" name="Sausage" amount="100"/>
+				<reward type="Resource" name="Bread" amount="250"/>
+			</rewards>
+		</task>
+		
+		<task id="45" name="SocialShort5" categoryId="4">
+			<triggers>
+				<buffappliedonfriend amount="5" item="ProductivityBuffLvl2" locaExtension="item"/>	
+			</triggers>
+			<rewards>
+				<reward type="XP" amount="3000"/>
+				<reward type="Resource" name="Meat" amount="100"/>
+			</rewards>
+		</task>
+		
+		<task id="46" name="SocialShort6" categoryId="4">
+			<triggers>
+				<soldgoods amount="300" item="Nib" locaExtension="item" />		
+			</triggers>
+			<rewards>
+				<reward type="XP" amount="8000"/>
+				<reward type="Resource" name="PlatinumOre" amount="30"/>
+			</rewards>
+		</task>		
+				
+		<task id="47" name="SocialShort7" categoryId="4">
+			<triggers>
+				<boughtgoods amount="75" item="MagicBean" locaExtension="item" />		
+				<boughtgoods amount="5000" item="BronzeSword" locaExtension="item" />
+			</triggers>
+			<rewards>
+				<reward type="XP" amount="3000"/>
+				<reward type="Resource" name="Granite" amount="150"/>
+			</rewards>
+		</task>
+				
+		<task id="48" name="SocialShort8" categoryId="4">
+			<triggers>
+				<boughtgoods amount="35" item="Archebuse" locaExtension="item" />		
+			</triggers>
+			<rewards>
+				<reward type="XP" amount="4000"/>
+				<reward type="Resource" name="PlatinumOre" amount="250"/>
+			</rewards>
+		</task>
+		
+		<!--Economic (medium) tasks -->
+		
+		<task id="13" name="EconomicMedium1" categoryId="5">
+			<triggers>
+				<completeadventurelist type="Scenario" amount="1" locaExtension="Scenario_1"/>	
+			</triggers>
+			<rewards>
+			   <reward type="XP" amount="10000"/>
+			   <reward type="buff" item="ProductivityBuffLvl18" amount="1"/>
+			   <reward type="buff" item="ProductivityBuffLvl13" amount="1"/>
+			   <reward type="buff" item="SpeedUpPopulationGrowth2" amount="1"/>
+			</rewards>
+		</task>
+
+		<task id="14" name="EconomicMedium2" categoryId="5">
+			<triggers>
+				<resourcegathered min="50" type="Archebuse"/> 
+				<resourcegathered min="100" type="BattleHorse"/>
+			</triggers>
+			<rewards>
+				<reward type="XP" amount="7500"/>
+				<reward type="Resource" name="PlatinumOre" amount="75"/>
+				<reward type="Resource" name="ExoticWood" amount="150"/>
+			</rewards>
+		</task>
+		
+		<task id="15" name="EconomicMedium3" categoryId="5">
+			<triggers>
+				<buildinglistupgradelevel min="1" amount="8" item="GoldMine,GoldMineEndless" name="EpicGoldMine,ArcticGoldMine" locaExtension="GoldMine" />
+				<buildinglistupgradelevel min="5" amount="1" item="GoldMine,GoldMineEndless" name="EpicGoldMine,ArcticGoldMine" locaExtension="GoldMine" />
+				<onmap item="GoldSmelter" min="3"/>
+				<onmap item="Coinage" min="2"/>
+			</triggers>
+			<rewards>
+				<reward type="XP" amount="15000"/>
+				<reward type="Resource" name="Grout" amount="25"/>
+				<reward type="buff" item="ProductivityBuffLvl17" amount="1"/>
+			</rewards>
+		</task>		
+		
+		<task id="16" name="EconomicMedium4" categoryId="5">
+			<triggers>
+				<productionvalue min="25" item="Platinum"/>
+				<productionvalue min="8" item="PlatinumSword"/>
+			</triggers>
+			<rewards>
+			   <reward type="XP" amount="8750"/>
+			   <reward type="buff" item="ProductivityBuffLvl10" amount="1"/>
+			   <reward type="buff" item="RecruitingBuffLvl1" amount="1"/>
+			</rewards>
+		</task>		
+		
+		<task id="49" name="EconomicMedium5" categoryId="5">
+			<triggers>
+				<completeadventurelist amount="1" item="BuffAdventures_twins_easy" locaExtension="adv_twins" />
+			</triggers>
+			<rewards>
+			   <reward type="XP" amount="7500"/>
+				<reward type="buff" item="ProductivityBuffLvl17" amount="1"/>
+				<reward type="Resource" name="PlatinumOre" amount="100"/>
+			</rewards>
+		</task>	
+		
+		<task id="50" name="EconomicMedium6" categoryId="5">
+			<triggers>
+				<buildinglistupgradelevel min="6" amount="2" item="SalpeterMine" name="EpicSalpeterMine" />
+				<productionvalue min="40" item="Gunpowder"/>				
+			</triggers>
+			<rewards>
+			   <reward type="XP" amount="3700"/>
+			   <reward type="Resource" name="Sausage" amount="150"/>
+			   <reward type="Resource" name="Fish" amount="300"/>
+			</rewards>
+		</task>	
+		
+		<task id="51" name="EconomicMedium7" categoryId="5">
+			<triggers>
+				<buffproduced min="100" item="ProductivityBuffLvl3"/>
+			</triggers>
+			<rewards>
+			   <reward type="XP" amount="15000"/>
+			   <reward type="Resource" name="PlatinumOre" amount="50"/>
+			   <reward type="Resource" name="Salpeter" amount="100"/>
+			</rewards>
+		</task>	
+		
+		<task id="52" name="EconomicMedium8" categoryId="5">
+			<triggers>
+				<refilldeposits item="ExoticWood" amount="2500"/>
+			</triggers>
+			<rewards>
+			   <reward type="XP" amount="5000"/>
+			   <reward type="Resource" name="MahoganyWood" amount="25"/>
+			</rewards>
+		</task>			
+		
+		<!--Military (medium) tasks -->
+		
+		<task id="17" name="MilitaryMedium1" categoryId="6">
+			<triggers>
+				<completeadventurelist amount="1" type="Fairytale" locaExtension="Fairytale_1"/>
+			</triggers>
+			<rewards>
+			   <reward type="XP" amount="18000"/>
+			   <reward type="Resource" name="MagicBean" amount="250"/>
+			   <reward type="Resource" name="PlatinumOre" amount="100"/>
+			</rewards>
+		</task>		
+		
+		<task id="18" name="MilitaryMedium2" categoryId="6" isPvp="true">
+			<triggers>
+				<claimColony amount="2"/>
+			</triggers>
+			<rewards>
+				<reward type="XP" amount="20000"/>
+				<reward type="Resource" name="StarCoin" amount="20"/>
+			</rewards>
+		</task>		
+		
+		<task id="19" name="MilitaryMedium3" categoryId="6">
+			<triggers>
+				<lootedresource amount="2000" type="ExoticWood"/>
+			</triggers>
+			<rewards>
+				<reward type="XP" amount="15000"/>
+				<reward type="Resource" name="Granite" amount="350"/>
+				<reward type="Resource" name="PlatinumOre" amount="50"/>
+			</rewards>
+		</task>	
+		
+		<task id="20" name="MilitaryMedium4" categoryId="6">
+			<triggers>
+				<produceditemlist amount="100" item="EliteSoldier" locaExtension="unit"/>
+				<produceditemlist amount="100" item="Cannoneer" locaExtension="unit"/>
+				<produceditemlist amount="100" item="Crossbowman" locaExtension="unit"/>
+			</triggers>
+			<rewards>
+				<reward type="XP" amount="7500"/>
+				<reward type="Resource" name="ExoticWood" amount="200"/>
+				<reward type="Resource" name="MahoganyWood" amount="75"/>
+			</rewards>
+		</task>	
+		
+		<task id="53" name="MilitaryMedium5" categoryId="6">
+			<triggers>
+				<completeadventurelist amount="1" type="Mini" locaExtension="Mini_1"/>
+				<completeadventurelist amount="2" locaExtension="AnyAdventure_many"/>
+			</triggers>
+			<rewards>
+				<reward type="XP" amount="12500"/>
+				<reward type="Resource" name="IronOre" amount="500"/>
+				<reward type="Buff" item="RecruitingBuffLvl3" amount="1"/>
+			</rewards>
+		</task>
+		
+		<task id="54" name="MilitaryMedium6" categoryId="6">
+			<triggers>
+				<completeadventurelist amount="1" item="SecludedExperiments" locaExtension="secluded"/>
+			</triggers>
+			<rewards>
+				<reward type="XP" amount="15000"/>
+				<reward type="Resource" name="MagicBean" amount="150"/>
+				<reward type="Resource" name="Meat" amount="250"/>
+			</rewards>
+		</task>
+		
+		<task id="55" name="MilitaryMedium7" categoryId="6">
+			<triggers>
+				<completeadventurelist amount="1" item="TheNords" locaExtension="nords1" />
+			</triggers>
+			<rewards>
+				<reward type="XP" amount="15000"/>
+				<reward type="Resource" name="MagicBean" amount="150"/>
+				<reward type="Resource" name="Meat" amount="250"/>
+			</rewards>
+		</task>
+		
+		<task id="56" name="MilitaryMedium8" categoryId="6">
+			<triggers>
+				<lootedresource amount="300" type="Coin"/>
+			</triggers>
+			<rewards>
+				<reward type="XP" amount="17500"/>
+				<reward type="Resource" name="PlatinumOre" amount="70"/>
+			</rewards>
+		</task>
+		
+		<!--Social (medium) tasks -->
+		
+		<task id="21" name="SocialMedium1" categoryId="7">
+			<triggers>
+				<completeadventurelist type="Coop" amount="1" locaExtension="Coop_1"/>
+			</triggers>
+			<rewards>
+				<reward type="XP" amount="17500"/>
+				<reward type="buff" item="ProductivityBuffLvl8" amount="1"/>
+				<reward type="Resource" name="IronOre" amount="150"/>
+				<reward type="Resource" name="Marble" amount="200"/>
+			</rewards>
+		</task>	
+		
+		<task id="22" name="SocialMedium2" categoryId="7">
+			<triggers>
+				<buffreceivedfromfriend amount="10"/>
+			</triggers>
+			<rewards>
+				<reward type="XP" amount="10500"/>
+				<reward type="Resource" name="Sausage" amount="150"/>   
+				<reward type="Resource" name="Corn" amount="500"/>   
+				<reward type="Buff" item="FillDeposit" name="Fish" amount="3000"/>
+				<reward type="Buff" item="FillDeposit" name="Meat" amount="1500"/>
+			</rewards>
+		</task>	
+
+		<task id="23" name="SocialMedium3" categoryId="7">
+			<triggers>
+				<boughtgoods amount="500" item="Coin" locaExtension="item" /> 	
+				<soldgoods amount="100" item="PlatinumSword" locaExtension="item" />
+			</triggers>
+			<rewards>
+				<reward type="XP" amount="9500"/>
+				<reward type="Buff" item="ProductivityBuffLvl8" amount="1"/>
+				<reward type="Buff" item="FillDeposit" name="Granite" amount="100"/>
+				<reward type="Resource" name="Coal" amount="500"/>
+			</rewards>
+		</task>			
+		
+		<task id="24" name="SocialMedium4" categoryId="7">
+			<triggers>
+				<soldgoods amount="250" item="PlatinumOre" locaExtension="item" />	
+				<soldgoods amount="250" item="Granite" locaExtension="item" />	
+				<soldgoods amount="50" item="Grout" locaExtension="item" /> 
+			</triggers>
+			<rewards>
+				<reward type="XP" amount="15000"/>
+				<reward type="Resource" name="StarCoin" amount="60"/>
+				<reward type="Resource" name="GoldOre" amount="150"/>
+				<reward type="Buff" item="ProductivityBuffLvl13" amount="1"/>
+			</rewards>
+		</task>	
+		
+		<task id="57" name="SocialMedium5" categoryId="7">
+			<triggers>
+				<resourcegathered min="150" type="GuildCoins"/>	
+			</triggers>
+			<rewards>
+				<reward type="XP" amount="10000"/>
+				<reward type="Resource" name="MahoganyWood" amount="75"/>
+				<reward type="Resource" name="StarCoin" amount="50"/>
+			</rewards>
+		</task>
+		
+		<task id="58" name="SocialMedium6" categoryId="7">
+			<triggers>
+				<buffappliedonfriend amount="25" item="ProductivityBuffLvl3" locaExtension="item"/>
+			</triggers>
+			<rewards>
+				<reward type="XP" amount="8000"/>
+				<reward type="Resource" name="Beer" amount="500"/>
+			</rewards>
+		</task>
+		
+		<task id="59" name="SocialMedium7" categoryId="7">
+			<triggers>
+				<soldgoods amount="600" item="ExoticWood" locaExtension="item" />	
+				<boughtgoods amount="150" item="Granite" locaExtension="item" />	
+			</triggers>
+			<rewards>
+				<reward type="XP" amount="13500"/>
+				<reward type="Resource" name="StarCoin" amount="50"/>
+				<reward type="Resource" name="Coin" amount="150"/>
+			</rewards>
+		</task>
+		
+		<task id="60" name="SocialMedium8" categoryId="7">
+			<triggers>
+				<boughtgoods amount="100" item="PlatinumOre" locaExtension="item" />	
+				<boughtgoods amount="150" item="MahoganyWood" locaExtension="item" />	
+			</triggers>
+			<rewards>
+				<reward type="XP" amount="10000"/>
+				<reward type="Resource" name="PlatinumOre" amount="25"/>
+				<reward type="Resource" name="MahoganyWood" amount="25"/>
+			</rewards>
+		</task>
+		
+		<!--Economic (Long) tasks -->
+		
+		<task id="25" name="EconomicLong1" categoryId="8">
+			<triggers>
+				<completeadventurelist amount="1" item="BuffAdventures_Storm_Recovery" locaExtension="buff_adv_stormrecovery"/> 
+			</triggers>
+			<rewards>
+				<reward type="XP" amount="27500"/>
+				<reward type="Buff" item="FillDeposit" name="Salpeter" amount="700"/>
+			</rewards>
+		</task>	
+		
+		<task id="26" name="EconomicLong2" categoryId="8">
+			<triggers>
+				<buildinglistupgradelevel min="6" amount="2" item="TitaniumMine" name="EpicTitaniumMine" />
+				<buildinglistupgradelevel min="6" amount="5" item="CoalMine,CoalMineEndless" name="EpicCoalMine" />
+			</triggers>
+			<rewards>
+				<reward type="XP" amount="54000"/>
+				<reward type="Resource" name="PlatinumOre" amount="25"/>
+			</rewards>
+		</task>
+		
+		<task id="27" name="EconomicLong3" categoryId="8">
+			<triggers>
+				<paytofinish item="Archebuse" amount="50" />
+				<paytofinish item="PlatinumSword" amount="50" />
+				<paytofinish item="BattleHorse" amount="100" />
+			</triggers>
+			<rewards>
+			   <reward type="XP" amount="18500"/>
+			   <reward type="buff" item="ProductivityBuffLvl20" amount="2"/>
+			   <reward type="Resource" name="IronOre" amount="350"/>
+			   <reward type="Resource" name="PlatinumOre" amount="150"/>
+			</rewards>
+		</task>
+		
+		<task id="28" name="EconomicLong4" categoryId="8">
+			<triggers>
+				<buffproduced min="5" item="ProductivityBuffLvl102"/>
+				<buffapplied min="3" item="ProductivityBuffLvl102"/>
+			</triggers>
+			<rewards>
+			    <reward type="XP" amount="15500"/>
+				<reward type="resource" name="Sausage" amount="250"/>
+				<reward type="resource" name="StarCoin" amount="50"/>
+			</rewards>
+		</task>
+		
+		<task id="61" name="EconomicLong5" categoryId="8">
+			<triggers>
+				<collectedpickups amount="100" />
+			</triggers>
+			<rewards>
+			    <reward type="XP" amount="15000"/>
+				<reward type="Resource" name="Coin" amount="150"/>
+			</rewards>
+		</task>
+				
+		<task id="62" name="EconomicLong6" categoryId="8">
+			<triggers>
+				<paytofinish item="MahoganyPlank" amount="70" />
+				<paytofinish item="Grout" amount="50" />
+				<paytofinish item="Mortar" amount="25" />
+			</triggers>
+			<rewards>
+			    <reward type="XP" amount="17250"/>
+				<reward type="Resource" name="Cloth" amount="200"/>
+				<reward type="Resource" name="Salpeter" amount="300"/>
+			</rewards>
+		</task>
+				
+		<task id="63" name="EconomicLong7" categoryId="8">
+			<triggers>
+				<productionvalue min="9" item="Saddlecloth"/>
+				<productionvalue min="50" item="Wheel"/>
+				<productionvalue min="50" item="Gunpowder"/>
+			</triggers>
+			<rewards>
+			    <reward type="XP" amount="12500"/>
+				<reward type="Resource" name="TitaniumOre" amount="200"/>
+			</rewards>
+		</task>
+				
+		<task id="64" name="EconomicLong8" categoryId="8">
+			<triggers>
+				<countdeposittype item="IronOre" amount="17"/>
+				<countdeposittype item="Marble" amount="11"/>
+			</triggers>
+			<rewards>
+			    <reward type="XP" amount="25000"/>
+				<reward type="Resource" name="Codex" amount="1"/>
+			</rewards>
+		</task>
+		
+		<!--Military (Long) tasks-->
+		
+		<task id="29" name="MilitaryLong1" categoryId="9">
+			<triggers>
+				<completeadventurelist type="ArabianNights" amount="1" locaExtension="ArabianNights_1"/>
+			</triggers>
+			<rewards>
+			    <reward type="XP" amount="35000"/>
+				<reward type="Resource" name="StarCoin" amount="200"/>
+			</rewards>
+		</task>
+		
+		<task id="30" name="MilitaryLong2" categoryId="9" isPvp="true">
+			<triggers>
+				<claimColony amount="3"/>	
+			</triggers>
+			<rewards>
+			    <reward type="XP" amount="45000"/>
+				<reward type="Resource" name="Granite" amount="750"/>
+				<reward type="Resource" name="IronOre" amount="500"/>
+				<reward type="Resource" name="StarCoin" amount="50"/>
+			</rewards>
+		</task>
+		
+		<task id="31" name="MilitaryLong3" categoryId="9">
+			<triggers>
+				<lootedresource amount="2000" type="MagicBean" />	
+			</triggers>
+			<rewards>
+			    <reward type="XP" amount="50000"/>
+				<reward type="Buff" item="RecruitingBuffLvl3" amount="3"/>
+				<reward type="Resource" name="PlatinumOre" amount="100"/>
+			</rewards>
+		</task>
+
+		<task id="32" name="MilitaryLong4" categoryId="9" isPvp="true">
+			<triggers>
+				<colonyyield amount="3000" item="Granite" locaExtension="item" />	
+			</triggers>
+			<rewards>
+			    <reward type="XP" amount="35000"/>
+				<reward type="Buff" item="ProductivityBuffLvl10" amount="1"/>
+				<reward type="Resource" name="GoldOre" amount="200"/>
+				<reward type="Resource" name="MahoganyWood" amount="100"/>
+			</rewards>
+		</task>
+		
+		<task id="65" name="MilitaryLong5" categoryId="9">
+			<triggers>
+				<produceditemlist amount="100" item="Knight" locaExtension="unit"/>	
+				<produceditemlist amount="100" item="Besieger" locaExtension="unit"/>
+				<produceditemlist amount="100" item="ArmoredMarksman" locaExtension="unit"/>
+			</triggers>
+			<rewards>
+			    <reward type="XP" amount="15000"/>
+				<reward type="Adventure" name="1001NightsWoodcutter" amount="1"/>			
+			</rewards>
+		</task>
+		
+		<task id="66" name="MilitaryLong6" categoryId="9">
+			<triggers>
+				<completeadventurelist item="1001NightsSeaSnake" amount="1" locaExtension="adv_sea_snake"/>
+			</triggers>
+			<rewards>
+			    <reward type="XP" amount="25000"/>
+				<reward type="Resource" name="TitaniumOre" amount="300"/>
+				<reward type="Resource" name="Coin" amount="100"/>
+			</rewards>
+		</task>
+		
+		<task id="67" name="MilitaryLong7" categoryId="9" isPvp="true">
+			<triggers>
+				<claimColony amount="2"/>
+				<colonyyield amount="1000" item="Granite" locaExtension="item" />					
+			</triggers>
+			<rewards>
+			    <reward type="XP" amount="17000"/>
+				<reward type="Resource" name="Granite" amount="300"/>
+				<reward type="Resource" name="PlatinumOre" amount="100"/>
+			</rewards>
+		</task>
+		
+		<task id="68" name="MilitaryLong8" categoryId="9">
+			<triggers>
+				<completeadventurelist item="1001NightsBesiegedCity" amount="1" locaExtension="adv_besieged_city"/>
+			</triggers>
+			<rewards>
+			     <reward type="XP" amount="25000"/>
+				<reward type="Resource" name="TitaniumOre" amount="300"/>
+				<reward type="Resource" name="Coin" amount="100"/>
+			</rewards>
+		</task>
+		<!--Social (Long) tasks-->
+		
+		<task id="33" name="SocialLong1" categoryId="10">
+			<triggers>
+				<buffappliedonfriend item="ProvisionerBuffLvl3" amount="1" locaExtension="item"/> 
+			</triggers>
+			<rewards>
+			    <reward type="XP" amount="18500"/>
+				<reward type="Buff" item="ProvisionerBuffLvl3" amount="2"/>		   
+				<reward type="Resource" name="StarCoin" amount="100"/>
+			</rewards>
+		</task>
+		
+		<task id="34" name="SocialLong2" categoryId="10">
+			<triggers>
+				<dailylogin amount="7"/> 
+			</triggers>
+			<rewards>
+			    <reward type="XP" amount="15000"/>
+				<reward type="Resource" name="IronOre" amount="200"/>
+				<reward type="Resource" name="Bread" amount="250"/>
+				<reward type="Resource" name="StarCoin" amount="10"/>
+			</rewards>
+		</task>		
+		
+		<task id="35" name="SocialLong3" categoryId="10">
+			<triggers>
+				<buffreceivedfromfriend amount="30"/> 
+			</triggers>
+			<rewards>
+			    <reward type="XP" amount="15000"/>
+				<reward type="Buff" item="ProductivityBuffLvl14" amount="3"/>
+				<reward type="Buff" item="ProvisionerBuffLvl1" amount="1"/>
+			</rewards>
+		</task>
+
+		<task id="36" name="SocialLong4" categoryId="10">
+			<triggers>
+				<completeadventurelist type="Coop" amount="2" locaExtension="Coop_many"/>	 
+			</triggers>
+			<rewards>
+			    <reward type="XP" amount="25000"/>
+				<reward type="Buff" item="ProductivityBuffLvl12" amount="1"/>
+				<reward type="Resource" name="StarCoin" amount="150"/>
+			</rewards>
+		</task>
+
+		<task id="69" name="SocialLong5" categoryId="10">
+			<triggers>
+				<resourcegathered min="250" type="GuildCoins"/>
+			</triggers>
+			<rewards>
+			    <reward type="XP" amount="15000"/>
+				<reward type="Resource" name="MahoganyWood" amount="125"/>
+				<reward type="Resource" name="StarCoin" amount="75"/>
+			</rewards>
+		</task>
+		
+		<task id="70" name="SocialLong6" categoryId="10">
+			<triggers>
+				<soldgoods amount="1500" item="BookFitting" locaExtension="item" />	
+			</triggers>
+			<rewards>
+			    <reward type="XP" amount="30000"/>
+				<reward type="Resource" name="TitaniumOre" amount="100"/>
+				<reward type="Resource" name="ExoticWood" amount="250"/>
+			</rewards>
+		</task>
+		
+		<task id="71" name="SocialLong7" categoryId="10">
+			<triggers>
+				<buffappliedonfriend item="ProductivityBuffLvl3" amount="50" locaExtension="item" />
+			</triggers>
+			<rewards>
+			    <reward type="XP" amount="17000"/>
+				<reward type="Buff" item="ProductivityBuffLvl17" amount="1"/>
+				<reward type="Buff" item="ProductivityBuffLvl18" amount="1"/>
+			</rewards>
+		</task>
+		
+		<task id="72" name="SocialLong8" categoryId="10">
+			<triggers>
+				<soldgoods amount="500" item="Coin" locaExtension="item" />	
+				<boughtgoods amount="350" item="Gunpowder" locaExtension="item" />	
+			</triggers>
+			<rewards>
+			    <reward type="XP" amount="15000"/>
+				<reward type="Resource" name="TitaniumOre" amount="250"/>
+				<reward type="Resource" name="IronOre" amount="300"/>
+			</rewards>
+		</task>
+		
+	</tasks>
+</root>

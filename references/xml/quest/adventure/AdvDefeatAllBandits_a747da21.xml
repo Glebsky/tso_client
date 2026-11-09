@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+
+<!-- Main Quest -->
+
+	 <quest name="AdvDefeatAllBandits" specialType="firstQuestlastQuest" >
+		<triggers>
+      <trigger type="Building" name="tent_riders_00" condition="l" amount="1"/>
+      <trigger type="Building" name="Bandits_Adventure" condition="l" amount="1"/>
+      <trigger type="Building" name="BanditsLvl2_Adventure" condition="l" amount="1"/>
+      <trigger type="Building" name="BanditsLvl3_Adventure" condition="l" amount="1"/>
+      <trigger type="Building" name="Banditsleader_Adventure" condition="l" amount="1"/>
+		  </triggers>
+      <rewards/>
+		  <postrequisits />
+    </quest>
+
+<!-- Side Quest  1: Salesman-->
+
+	 <quest name="AdvMadHenryReloaded_SQ1_Salesman_1" specialType="firstQuest" showQuestWindow="false" >
+		<triggers>  
+    <trigger type="Building" name="Tavern" condition="selected" amount="1"/>
+		  </triggers>
+      <rewards/>
+    		<postrequisits>
+          <postrequisite startQuest="AdvMadHenryReloaded_SQ1_Salesman_2" />   
+    		</postrequisits>
+    </quest>
+
+	 <quest name="AdvMadHenryReloaded_SQ1_Salesman_2">
+		<triggers>   
+    <trigger type="Building" name="barrelTransporter" condition="selected" amount="1"/>
+		  </triggers>
+      <rewards/>
+    		<postrequisits>
+          <postrequisite startQuest="AdvMadHenryReloaded_SQ1_Salesman_3" />   
+    		</postrequisits>
+    </quest>
+
+	 <quest name="AdvMadHenryReloaded_SQ1_Salesman_3">
+		<triggers>   
+    <trigger type="Building" name="crates" condition="selected" amount="1"/>
+		  </triggers>
+      <rewards/>
+    		<postrequisits>
+          <postrequisite startQuest="AdvMadHenryReloaded_SQ1_Salesman_4" />   
+    		</postrequisits>
+    </quest>
+
+	 <quest name="AdvMadHenryReloaded_SQ1_Salesman_4">
+		<triggers>   
+    <trigger type="Building" name="vases" condition="selected" amount="1"/>
+		  </triggers>
+      <rewards/>
+    		<postrequisits>
+          <postrequisite startQuest="AdvMadHenryReloaded_SQ1_Salesman_5" />   
+    		</postrequisits>
+    </quest>
+
+	 <quest name="AdvMadHenryReloaded_SQ1_Salesman_5">
+		<triggers>   
+    <trigger type="Building" name="loadedCart" condition="selected" amount="1"/>
+		  </triggers>
+      <rewards/>
+      <postrequisits/>
+    </quest>
+
+	 <quest name="AdvMadHenryReloaded_SQ1_Salesman_6">
+		<triggers>   
+      <trigger type="Building" name="Banditsleader_cave" condition="l" amount="1"/>
+		  </triggers>
+      <rewards/>
+      <postrequisits/>
+    </quest>
+
+<!-- Side Quest  2: Spare our boys-->
+
+	 <quest name="AdvMadHenryReloaded_SQ2_SpareOurBoys_1" specialType="firstQuest" showQuestWindow="false">
+		<triggers>  
+    <trigger type="Building" name="Forester" condition="selected" amount="1"/>
+		  </triggers>
+      <rewards/>
+    		<postrequisits>
+          <postrequisite startQuest="AdvMadHenryReloaded_SQ2_SpareOurBoys_2" />   
+    		</postrequisits>
+    </quest>
+
+<!-- unlocks alternate condition to finish the MAIN quest without destroying "our boys"-->
+	 <quest name="AdvMadHenryReloaded_SQ2_SpareOurBoys_2" >
+		<triggers>  
+      <trigger type="Building" name="Bandits_Adventure" condition="l" amount="1"/>
+      <trigger type="Building" name="BanditsLvl2_Adventure" condition="l" amount="1"/>
+      <trigger type="Building" name="BanditsLvl3_Adventure" condition="l" amount="1"/>
+      <trigger type="Building" name="Banditsleader_Adventure" condition="l" amount="1"/>
+		  </triggers>
+        <rewards/>
+    		<postrequisits>
+          <postrequisite startQuest="AdvMadHenryReloaded_SQ2_SpareOurBoys_3" />   
+    		</postrequisits>
+    </quest>
+
+	 <quest name="AdvMadHenryReloaded_SQ2_SpareOurBoys_3"  specialType="lastQuest">
+		<triggers>  
+      <trigger type="Building" name="tent_riders_00" condition="onMap" amount="1"/>
+		  </triggers>
+        <rewards/>
+        <postrequisits/>
+    </quest>
+
+<!-- Side Quest  3: The trees have eyes-->
+
+	 <quest name="AdvMadHenryReloaded_SQ3_TheTreesHaveEyes_1" specialType="firstQuest" showQuestWindow="false">
+		<triggers>  
+    <trigger type="Building" name="Farm" condition="selected" amount="1"/>
+		  </triggers>
+      <rewards/>
+    		<postrequisits>
+          <postrequisite startQuest="AdvMadHenryReloaded_SQ3_TheTreesHaveEyes_2" />   
+    		</postrequisits>
+    </quest>
+
+	 <quest name="AdvMadHenryReloaded_SQ3_TheTreesHaveEyes_2">
+		<triggers>  
+      <trigger type="Building" name="Banditsleader_tree_1" condition="l" amount="1"/>
+      <trigger type="Building" name="Banditsleader_tree_2" condition="l" amount="1"/>
+		  </triggers>
+        <rewards/>
+        <postrequisits/>
+    </quest>
+
+</Root>

@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+
+	<quest name="Unity_Main" type="Event" icon="QuestShort" cancelable="false" npc="unityNPC.png" showQuestWindow="True" showRewardWindow="true" linkEventWindow="true">            
+        <helpeffects>
+        </helpeffects>
+        <triggers>
+			<questcomplete item="Unity_Main_Reach20"/>
+			<questcomplete item="Unity_Main_Part1" />
+			<questcomplete item="Unity_Main_Part2" />
+			<questcomplete item="Unity_Main_Part3" />
+			<questcomplete item="Unity_Main_Part4" />
+			<questcomplete item="Unity_Main_Part5" />
+			<questcomplete item="Unity_Main_Part6" />
+			<questcomplete item="Unity_Main_Part7" />
+		</triggers>
+        <posteffects>
+			<reward type="Buff" item="Loottable_UnityMysteryBox" name="265" amount="1">
+			</reward>
+			<sendmail name="The TSO Team" item="UnityLetter"/>
+        </posteffects>
+	</quest>
+	
+	<quest name="Unity_Main_Reach20" type="Event" icon="QuestShort" npc="unityNPC.png" showRewardWindow="true">
+		<startcondition>
+			<questactive item="Unity_Main" />
+		</startcondition>
+		<triggers>
+			<playerlevel min="20" /> 
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="300"/>   
+			<reward type="Buff" item="SpeedUpPopulationGrowth5" amount="1"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="Unity_Main_Part1" type="Event" icon="QuestShort" npc="unityNPC.png" showRewardWindow="true">
+		<startcondition>
+			<questactive item="Unity_Main" />
+			<questcomplete item="Unity_Main_Reach20" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="Unity_Main_Part1_Sub1" />
+			<questcomplete item="Unity_Main_Part1_Sub2" />
+			<questcomplete item="Unity_Main_Part1_Sub3" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="300"/>  
+			<reward type="Buff" item="BuildBuilding" name="UnityEvent_Residence" amount="1" recurringChance="100"/> 
+		</posteffects>
+	</quest>
+	
+	<quest name="Unity_Main_Part1_Sub1" questWinGemCosts="99" type="Event" connectedToQuest="Unity_Main_Part1" icon="QuestShort" npc="unityNPC.png" showRewardWindow="true">
+		<startcondition>
+			<questactive item="Unity_Main" />
+			<questcomplete item="Unity_Main_Reach20" />
+		</startcondition>
+		<triggers>
+			<trigger type="Building" name="SimpleResidence,NobleResidence,PumpkinMansion,S4RomanResidence,CursedCastle,FloatingResidence,Manor,EpicResidence,tent_traitors_leader_Deco,WitchTower_Deco,Dark_Castle_01_Deco,TheFrozenManor,PirateResidence,Settlers2HQDeco,Bonechurch_Pop,EasterEvent2015_Residence,SmallOrientalTower,OasisResidence,OrientalResidence,OrientalPalace,GingerbreadResidence,MayaResidence,TipiResidenceWhite1,TipiResidenceWhite2,TipiResidenceColor1,TipiResidenceColor2,EasterEvent2018_Residence,EasterEvent2022_Residence,NordsResidence,HauntedMansion_pop,ImprovedFloatingResidence,WatchTowerFinished,WatchTowerFinished_blue,Skyscraper_Residence,Skyscraper_Residence_Summer,Skyscraper_Residence_Anniversary,Skyscraper_Residence_Halloween,Skyscraper_Residence_Xmas,Skyscraper_Residence_Valentines,Skyscraper_Residence_Spring,TreeHouseResidence,Residence_Mini,Riverhouse,LargeRiverhouse1,LargeRiverhouse2,FlyingHouse,S4ThatchedCottage,IcePalaceEnchantedCastle,BunnyBurrows,Bungalow" condition="created" locaExtension="unityresidencies" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="300"/>  
+			<reward type="Buff" item="RevealCollectiblesBuff01" amount="1"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="Unity_Main_Part1_Sub2" questWinGemCosts="99" type="Event" connectedToQuest="Unity_Main_Part1" icon="QuestShort" npc="unityNPC.png" showRewardWindow="true">
+		<startcondition>
+			<questactive item="Unity_Main" />
+			<questcomplete item="Unity_Main_Part1_Sub1" />
+		</startcondition>
+		<triggers>
+           <trigger type="Movebuilding" name="SimpleResidence,NobleResidence,PumpkinMansion,S4RomanResidence,CursedCastle,FloatingResidence,Manor,EpicResidence,tent_traitors_leader_Deco,WitchTower_Deco,Dark_Castle_01_Deco,TheFrozenManor,PirateResidence,Settlers2HQDeco,Bonechurch_Pop,EasterEvent2015_Residence,SmallOrientalTower,OasisResidence,OrientalResidence,OrientalPalace,GingerbreadResidence,MayaResidence,TipiResidenceWhite1,TipiResidenceWhite2,TipiResidenceColor1,TipiResidenceColor2,EasterEvent2018_Residence,EasterEvent2022_Residence,NordsResidence,HauntedMansion_pop,ImprovedFloatingResidence,WatchTowerFinished,WatchTowerFinished_blue,Skyscraper_Residence,Skyscraper_Residence_Summer,Skyscraper_Residence_Anniversary,Skyscraper_Residence_Halloween,Skyscraper_Residence_Xmas,Skyscraper_Residence_Valentines,Skyscraper_Residence_Spring,TreeHouseResidence,Residence_Mini,Riverhouse,LargeRiverhouse1,LargeRiverhouse2,FlyingHouse,S4ThatchedCottage,IcePalaceEnchantedCastle,BunnyBurrows,Bungalow" condition="moved" amount="1" locaExtension="unityresidenciesmoved" />
+        </triggers>
+		<posteffects>
+			<reward type="XP" amount="300"/>  
+			<reward type="Buff" item="BuildBuilding" name="UnityEvent_Equipment_Deco" amount="3" recurringChance="100"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="Unity_Main_Part1_Sub3" questWinGemCosts="99" type="Event" connectedToQuest="Unity_Main_Part1" icon="QuestShort" npc="unityNPC.png" showRewardWindow="true">
+		<startcondition>
+			<questactive item="Unity_Main" />
+			<questcomplete item="Unity_Main_Part1_Sub2" />
+		</startcondition>
+		<triggers>
+			<onmap item="UnityEvent_Equipment_Deco" min="3"/>
+        </triggers>
+		<posteffects>
+			<reward type="XP" amount="300"/>  
+			<reward type="Resource" name="Coin" amount="150" />
+		</posteffects>
+	</quest>
+	
+	<quest name="Unity_Main_Part2" type="Event" icon="QuestShort" npc="unityNPC.png" showRewardWindow="true">
+		<startcondition>
+			<questactive item="Unity_Main" />
+			<questcomplete item="Unity_Main_Part1" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="Unity_Main_Part2_Sub1" />
+			<questcomplete item="Unity_Main_Part2_Sub2" />
+			<questcomplete item="Unity_Main_Part2_Sub3" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="300"/>  
+			<reward type="Buff" item="ProductivityAreaBuffLvl4" amount="2"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="Unity_Main_Part2_Sub1" questWinGemCosts="99" type="Event" connectedToQuest="Unity_Main_Part2" icon="QuestShort" npc="unityNPC.png" showRewardWindow="true">
+		<startcondition>
+			<questactive item="Unity_Main" />
+			<questactive item="Unity_Main_Part2" />
+			<questcomplete item="Unity_Main_Part1" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Fish" amount="2000" condition="produce"/>
+			<trigger type="PayForQuestFinish" name="Fish" amount="2000" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="300"/>  	
+			<reward type="Buff" item="ProductivityBuffLvl106" amount="1"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="Unity_Main_Part2_Sub2" questWinGemCosts="99" type="Event" connectedToQuest="Unity_Main_Part2" icon="QuestShort" npc="unityNPC.png" showRewardWindow="true">
+		<startcondition>
+			<questactive item="Unity_Main" />
+			<questactive item="Unity_Main_Part2" />
+			<questcomplete item="Unity_Main_Part2_Sub1" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Meat" amount="1000" condition="produce"/>
+			<trigger type="PayForQuestFinish" name="Meat" amount="1000" />
+			<trigger type="PayForQuestFinish" name="Horse" amount="500" />
+			<!-- must be lvl 22 by now-->
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="300"/>  
+			<reward type="Buff" item="AnimalBuff_unity_event_zombies" amount="1"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="Unity_Main_Part2_Sub3" questWinGemCosts="99" type="Event" connectedToQuest="Unity_Main_Part2" icon="QuestShort" npc="unityNPC.png" showRewardWindow="true">
+		<startcondition>
+			<questactive item="Unity_Main" />
+			<questactive item="Unity_Main_Part2" />
+			<questcomplete item="Unity_Main_Part2_Sub2" />
+		</startcondition>
+		<triggers>
+			<buffapplied item="AnimalBuff_unity_event_zombies" min="1" />	
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="300"/>  
+			<reward type="Buff" item="ProductivityBuffLvl9" amount="2"/>
+			<cancelquest name="Unity_Main_Part2_Sub3_Safe"/>  
+			<cancelquest name="Unity_Main_Part2_Sub3_Safe_Safe"/>  
+		</posteffects>
+	</quest>
+	
+	<quest name="Unity_Main_Part3" type="Event" icon="QuestShort" npc="unityNPC.png" showRewardWindow="true">
+		<startcondition>
+			<questactive item="Unity_Main" />
+			<questcomplete item="Unity_Main_Part2" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="Unity_Main_Part3_Sub1" />
+			<questcomplete item="Unity_Main_Part3_Sub2" />
+			<questcomplete item="Unity_Main_Part3_Sub3" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="300"/>  
+			<reward type="Adventure" name="adv_unity_00" amount="1"/> 
+		</posteffects>
+	</quest>
+	
+	<quest name="Unity_Main_Part3_Sub1" questWinGemCosts="99" type="Event" connectedToQuest="Unity_Main_Part3" icon="QuestShort" npc="unityNPC.png" showRewardWindow="true">
+		<startcondition>
+			<questactive item="Unity_Main" />
+			<questactive item="Unity_Main_Part3" />
+			<questcomplete item="Unity_Main_Part2" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Wood" amount="1000" condition="produce"/>
+			<trigger type="Resource" name="RealWood" amount="1000" condition="produce"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="300"/>  
+			<reward type="Buff" item="ProductivityBuffZoneWoodLvl1" amount="1"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="Unity_Main_Part3_Sub2" questWinGemCosts="99" type="Event" connectedToQuest="Unity_Main_Part3" icon="QuestShort" npc="unityNPC.png" showRewardWindow="true">
+		<startcondition>
+			<questactive item="Unity_Main" />
+			<questactive item="Unity_Main_Part3" />
+			<questcomplete item="Unity_Main_Part3_Sub1" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="IronOre" amount="500" condition="produce"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="300"/> 
+			<reward type="Buff" item="ProductivityBuffLvlIronMine" amount="2"/>			
+		</posteffects>
+	</quest>
+	
+	<quest name="Unity_Main_Part3_Sub3" questWinGemCosts="99" type="Event" connectedToQuest="Unity_Main_Part3" icon="QuestShort" npc="unityNPC.png" showRewardWindow="true">
+		<startcondition>
+			<questactive item="Unity_Main" />
+			<questactive item="Unity_Main_Part3" />
+			<questcomplete item="Unity_Main_Part3_Sub2" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Wood" amount="1000" />	
+			<trigger type="PayForQuestFinish" name="RealWood" amount="1000" />	
+			<trigger type="PayForQuestFinish" name="IronOre" amount="500" />	
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="300"/> 
+			<reward type="Buff" item="BookbinderBuffLvl2" amount="1"/>	
+		</posteffects>
+	</quest>
+	
+	<quest name="Unity_Main_Part4" type="Event" icon="QuestShort" npc="unityNPC.png" showRewardWindow="true">
+		<startcondition>
+			<questactive item="Unity_Main" />
+			<questcomplete item="Unity_Main_Part3" />
+		</startcondition>
+		<triggers>
+			<trigger type="Adventure" name="adv_unity_00" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="300"/>  
+			<reward type="Resource" name="MapPart" amount="150" />
+		</posteffects>
+	</quest>
+	
+	<quest name="Unity_Main_Part5" type="Event" icon="QuestShort" npc="unityNPC.png" showRewardWindow="true">
+		<startcondition>
+			<questactive item="Unity_Main" />
+			<questcomplete item="Unity_Main_Part4" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="Unity_Main_Part5_Sub1" />
+			<questcomplete item="Unity_Main_Part5_Sub2" />
+			<questcomplete item="Unity_Main_Part5_Sub3" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="300"/>  
+			<reward type="Resource" name="Manuscript" amount="10" />
+			<reward type="Resource" name="Tome" amount="6" />
+			<reward type="Resource" name="Codex" amount="3" />
+		</posteffects>
+	</quest>
+	
+	<quest name="Unity_Main_Part5_Sub1" questWinGemCosts="99" type="Event" connectedToQuest="Unity_Main_Part5" icon="QuestShort" npc="unityNPC.png" showRewardWindow="true">
+		<startcondition>
+			<questactive item="Unity_Main" />
+			<questactive item="Unity_Main_Part5" />
+			<questcomplete item="Unity_Main_Part2" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Bronze" amount="500" condition="produce"/>
+			<trigger type="Resource" name="Iron" amount="250" condition="produce"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="300"/>  
+			<reward type="Buff" item="ProductivityAreaBuffLvl6" amount="2"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="Unity_Main_Part5_Sub2" questWinGemCosts="99" type="Event" connectedToQuest="Unity_Main_Part5" icon="QuestShort" npc="unityNPC.png" showRewardWindow="true">
+		<startcondition>
+			<questactive item="Unity_Main" />
+			<questactive item="Unity_Main_Part5" />
+			<questcomplete item="Unity_Main_Part5_Sub1" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Corn" amount="1000" condition="produce"/>
+			<trigger type="PayForQuestFinish" name="Corn" amount="1000" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="300"/>  
+			<reward type="Resource" name="CollectibleGrainSacks" amount="100" />
+		</posteffects>
+	</quest>
+	
+	<quest name="Unity_Main_Part5_Sub3" questWinGemCosts="99" type="Event" connectedToQuest="Unity_Main_Part5" icon="QuestShort" npc="unityNPC.png" showRewardWindow="true">
+		<startcondition>
+			<questactive item="Unity_Main" />
+			<questactive item="Unity_Main_Part5" />
+			<questcomplete item="Unity_Main_Part5_Sub2" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Nib" amount="200" condition="produce"/>
+			<trigger type="PayForQuestFinish" name="Nib" amount="200" />
+			<trigger type="Resource" name="SimplePaper" amount="500" condition="produce"/>	
+			<trigger type="PayForQuestFinish" name="SimplePaper" amount="500" />			
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="300"/>  
+			<reward type="Buff" item="UnityBurning" amount="1"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="Unity_Main_Part6" questWinGemCosts="99" type="Event" connectedToQuest="Unity_Main" icon="QuestShort" npc="unityNPC.png" showRewardWindow="true">
+		<startcondition>
+			<questactive item="Unity_Main" />
+			<questcomplete item="Unity_Main_Part5" />
+		</startcondition>
+		<triggers>
+			<buffapplied item="UnityBurning" min="1" />		
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="300"/>  
+			<reward type="Buff" item="ProductivityBuffLvl8" amount="2"/>
+			<cancelquest name="Unity_Main_Part6_Safe"/> 
+			<cancelquest name="Unity_Main_Part6_Safe_Safe"/> 
+		</posteffects>
+	</quest>
+	
+	<quest name="Unity_Main_Part7" type="Event" icon="QuestShort" npc="unityNPC.png" showRewardWindow="true">
+		<startcondition>
+			<questactive item="Unity_Main" />
+			<questcomplete item="Unity_Main_Part6" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="Unity_Main_Part7_Sub1" />
+			<questcomplete item="Unity_Main_Part7_Sub2" />
+			<questcomplete item="Unity_Main_Part7_Sub3" />
+			<questcomplete item="Unity_Main_Part7_Sub4" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="300"/>  
+			<reward type="Buff" item="ProductivityBuffLvl103" amount="2"/>
+			<reward type="Buff" item="ProductivityBuffZoneScienceLvl1" amount="1"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="Unity_Main_Part7_Sub1" questWinGemCosts="99" type="Event" connectedToQuest="Unity_Main_Part7" icon="QuestShort" npc="unityNPC.png" showRewardWindow="true">
+		<startcondition>
+			<questactive item="Unity_Main" />
+			<questactive item="Unity_Main_Part7" />
+			<questcomplete item="Unity_Main_Part6" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Water" amount="2500" condition="produce"/>	
+			<trigger type="PayForQuestFinish" name="Water" amount="2500" />	
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="300"/>  
+			<reward type="Buff" item="ProductivityBuffLvl21" amount="2"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="Unity_Main_Part7_Sub2" questWinGemCosts="99" type="Event" connectedToQuest="Unity_Main_Part7" icon="QuestShort" npc="unityNPC.png" showRewardWindow="true">
+		<startcondition>
+			<questactive item="Unity_Main" />
+			<questactive item="Unity_Main_Part7" />
+			<questcomplete item="Unity_Main_Part7_Sub1" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Horse" amount="1000" condition="produce"/> 
+			<trigger type="PayForQuestFinish" name="Horse" amount="1000" />				
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="300"/>  
+			<reward type="Buff" item="GeneralSpeedBuff_Mystical" amount="2"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="Unity_Main_Part7_Sub3" questWinGemCosts="99" type="Event" connectedToQuest="Unity_Main_Part7" icon="QuestShort" npc="unityNPC.png" showRewardWindow="true">
+		<startcondition>
+			<questactive item="Unity_Main" />
+			<questactive item="Unity_Main_Part7" />
+			<questcomplete item="Unity_Main_Part7_Sub2" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Sausage" amount="1000" />
+			<trigger type="Resource" name="Sausage" amount="1000" condition="produce"/>
+			<trigger type="PayForQuestFinish" name="Flour" amount="1000" />	
+			<trigger type="Resource" name="Flour" amount="1000" condition="produce"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="300"/>  
+			<reward type="Buff" item="ProductivityBuffZoneFoodLvl1" amount="1"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="Unity_Main_Part7_Sub4" questWinGemCosts="99" type="Event" connectedToQuest="Unity_Main_Part7" icon="QuestShort" npc="unityNPC.png" showRewardWindow="true">
+		<startcondition>
+			<questactive item="Unity_Main" />
+			<questactive item="Unity_Main_Part7" />
+			<questcomplete item="Unity_Main_Part7_Sub3" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Recruit" amount="30" />	
+			<trigger type="PayForQuestFinish" name="Militia" amount="15" />	
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="300"/>  
+			<reward type="Buff" item="UnityZoneRefresh" amount="1"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="Unity_Final" type="Event" icon="QuestShort" npc="unityNPC.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="Unity_Main" />
+		</startcondition>
+		<triggers>
+			<buffapplied item="UnityZoneRefresh" min="1" />		
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="300"/>  
+			<reward type="Buff" item="RecruitingBuffLvl9" amount="1"/>
+			<cancelquest name="Unity_Final_Safe"/>  
+			<cancelquest name="Unity_Final_Safe_Safe"/>  
+		</posteffects>
+	</quest>
+	
+	<!--failsafes-->
+	<!--<quest name="Unity_Main_Part2_Sub3_Safe" showQuestWindow="false" showRewardWindow="false" repeatable="false" >
+		<startcondition>
+		     <questactive item="Unity_Main_Part2_Sub3"/>
+		</startcondition>
+		<triggers>
+			<buffowned item="AnimalBuff_unity_event_zombies" min="0" max="0" mode="explicit" />	
+		</triggers>
+		<posteffects>
+		</posteffects>
+   </quest>
+   <quest name="Unity_Main_Part2_Sub3_Safe_Safe" showQuestWindow="false" showRewardWindow="false" repeatable="false" >
+		<startcondition>
+		     <questcomplete item="Unity_Main_Part2_Sub3_Safe"/>
+		</startcondition>
+		<triggers>
+			<buffowned item="AnimalBuff_unity_event_zombies" min="0" max="0" mode="explicit" />	
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="AnimalBuff_unity_event_zombies" amount="1"/>
+		</posteffects>
+   </quest>
+   
+   <quest name="Unity_Main_Part6_Safe" showQuestWindow="false" showRewardWindow="false" repeatable="false" >
+		<startcondition>
+		     <questactive item="Unity_Main_Part6"/>
+		</startcondition>
+		<triggers>
+			<buffowned item="UnityBurning" min="0" max="0" mode="explicit" />	
+		</triggers>
+		<posteffects>
+		</posteffects>
+   </quest>
+   
+   <quest name="Unity_Main_Part6_Safe_Safe" showQuestWindow="false" showRewardWindow="false" repeatable="false" >
+		<startcondition>
+		     <questcomplete item="Unity_Main_Part6_Safe"/>
+		</startcondition>
+		<triggers>
+			<buffowned item="UnityBurning" min="0" max="0" mode="explicit" />	
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="UnityBurning" amount="1"/> 
+		</posteffects>
+   </quest>
+   
+	<quest name="Unity_Final_Safe" showQuestWindow="false" showRewardWindow="false" repeatable="false" >
+		<startcondition>
+		     <questactive item="Unity_Final"/>
+		</startcondition>
+		<triggers>
+			<buffowned item="UnityZoneRefresh" min="0" max="0" mode="explicit" />	
+		</triggers>
+		<posteffects>
+		</posteffects>
+   </quest>
+   
+   <quest name="Unity_Final_Safe_Safe" showQuestWindow="false" showRewardWindow="false" repeatable="false" >
+		<startcondition>
+		     <questcomplete item="Unity_Final_Safe"/>
+		</startcondition>
+		<triggers>
+			<buffowned item="UnityZoneRefresh" min="0" max="0" mode="explicit" />	
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="UnityZoneRefresh" amount="1"/>
+		</posteffects>
+   </quest>-->
+   
+	
+</Root>

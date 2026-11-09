@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	 <quest name="AdvDefeatAllBandits" type="Story" icon="Military" npc="quest_character_mentor03.png" specialType="firstQuestlastQuest" >
+		<triggers>
+      <trigger type="Building" name="tent_riders_00" condition="l" amount="1"/>
+      <trigger type="Building" name="tent_riders_01" condition="l" amount="1"/>
+      <trigger type="Building" name="tent_riders_leader" condition="l" amount="1"/>
+		  </triggers>
+      <rewards/>
+		  <postrequisits />
+    </quest>
+</Root>

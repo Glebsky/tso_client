@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<Root>
+    
+    	<!--
+    
+    	// name = Name of Quest
+    	// showQuestWindow="false"  = disable show Quest Window funktion
+    	// showRewardWindow="false"  = disable show Reward Window funktion
+	// colorSchema = use a colorschema could be "night" ,"oven","snow","colormod,radd,gadd,badd,rmul,gmul,bmul"
+	// specialType="firstQuest", this is the start of a quest series, will be aktivated when zone starts
+    	// active = false means quest is inactive
+    	
+    	<quests name="QuestName" colorSchema="night" specialType="firstQuest" active="true">
+    		// if all triggers true quest is finished 
+    		<triggers>
+    			// if Woodcutter exist onMap quest is finished (if amount is one, it could be ignored"
+    			<trigger type="Building" name="Woodcutter" condition="onMap" />
+    			// if Sawmill is created quest is finished
+    			<trigger type="Building" name="Sawmill" condition="created" />
+    			// if 2 Sawmill in map quest is finished
+    			<trigger type="Building" name="Sawmill" condition="ge" amount="2" />
+    			// if 100 Iron is created quest is finished ge means greater or equal
+    			<trigger type="Resource" name="Iron" condition="ge" amount="100" />
+    			// if 100 additional Iron is created quest is finished geDelta means greater or equal
+			// for example, if you have 120 iron at the start of the quest, you must have at least 220 to finish it
+    			<trigger type="Resource" name="Iron" condition="geDelta" amount="100" />
+				
+				//Trigger Events: If trigger completion shall trigger further events (besides quest progress) enter the "onComplete" property with these possible comma-seperated values (NO WHITESPACES!):
+				<trigger type="Building" condition="selected" onComplete="destroySelectedBuilding,doSomethingElse"/> //Destroys the current selected Building and is doint things:)
+    		</triggers>
+    		
+    		// Player Rewards
+    		<rewards>
+    			// Player gets 100 iron
+    			<reward type="Resource" name="Iron" amount="100" />
+    			// Player gets 200 XP
+    			<reward type="XP" amount="200" />
+    		</rewards>
+    		
+    		// postrequisits is called after player gets his rewards 
+    		// startQuest is the name of the quest to start
+    		// Delay is Delay in seconds before quest starts
+    		<postrequisits startQuest="Quest2" startDelay="10" />
+			
+			// Hints (Red bouncing arrow)
+			<hints>
+				// name:       not used yet, will be used as text identifier for hint texts
+				// pointTo:    UI Element which is pointed to
+				//   		   available values:
+				//                 ActionBarButton01
+				//                 ActionBarButton02
+				//                 ActionBarButton03
+				//                 ActionBarButton04
+				//                 ActionBarButton05
+				//                 ActionBarButton06
+				//                 ActionBarButton07
+				//                 ActionBarButton08
+				//                 ActionBarButton09
+				//                 QuestButton
+				// offsetX:    x-offset in pixels from the center of the ui element
+				// offsetY:    y-offset in pixels from the center of the ui element
+				// direction:  direction the arrow will point to
+				//             available values: N, NE, E, SE, S, SW, W, NW
+				<hint name="FirstBuildMenu" pointTo="ActionBarButton01" offsetX="0" offsetY="-40" direction="S" />
+			</hints>
+			
+    	</quests>
+    	
+    	-->
+    
+    <!-- Survey Migration Quest	
+    
+    <quest name="TutSurveyQuest" type="Story" icon="Building" npc="quest_character_mentor03.png" helpName="Help_window_place_building_0" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="1" max="50"/>
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <helpeffects>
+         </helpeffects>
+         <triggers>
+           <trigger type="Resource" name="Wood" amount="2" condition="produce" locaExtension="undefined"/>
+         </triggers>
+         <posteffects>
+           <reward type="Resource" name="Stone" amount="10"/>               
+         </posteffects>
+      </quest>	 -->
+       
+    <!-- Epic Raids Main -->
+    
+      <quest name="MainEpic" type="Story" icon="QuestLong" npc="quest_character_fin02.png" helpName="Help_window_epic_raids_0" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="42" />
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <helpeffects>
+         </helpeffects>
+         <triggers>
+           <trigger type="QuestComplete" name="MainEpicSub1" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="MainEpicSub2" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="MainEpicSub3" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="MainEpicSub4" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="MainEpicSub5" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="MainEpicSub6" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="MainEpicSub7" condition="questcompleted" amount="1"/>
+         </triggers>
+         <posteffects>
+           <reward type="Resource" name="HardCurrency" amount="500"/>
+           <reward type="Adventure" name="TheValiantLittleTailor" amount="1"/>              
+         </posteffects>
+      </quest>
+       
+      <quest name="MainEpicSub1" type="Story" connectedToQuest="MainEpic" icon="Military" npc="quest_character_fin02.png" showRewardWindow="true">            
+         <startcondition>
+           <questactive item="MainEpic"/>
+         </startcondition>
+         <preeffects>
+			     <openwindow name="GAMESTATE_ID_QUEST_BOOK" reactivate="true"/>
+         </preeffects>
+         <triggers>
+           <trigger type="CheckArmy" condition="ge" amount="3000"/> 
+           <trigger type="MilitaryUnit" name="Recruit" condition="ge" amount="1500"/>
+           <trigger type="MilitaryUnit" name="Crossbowman" condition="ge" amount="200"/>
+           <trigger type="MilitaryUnit" name="EliteSoldier" condition="ge" amount="200"/>
+         </triggers>
+         <posteffects>
+           <reward type="XP" amount="1000"/>
+           <reward type="Resource" name="ExoticWood" amount="500"/>               
+         </posteffects>
+      </quest>
+         
+      <quest name="MainEpicSub2" type="Story" connectedToQuest="MainEpic" icon="Military" npc="quest_character_fin02.png" showRewardWindow="true">            
+        <startcondition>
+          <questcomplete item="MainEpicSub1"/>   
+        </startcondition>
+        <preeffects>
+          <reward type="Adventure" name="TheValiantLittleTailor" amount="1"/>
+        </preeffects>
+        <triggers>
+          <trigger type="Adventure" name="TheValiantLittleTailor" condition="geDelta" amount="1"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="1000"/>
+          <reward type="Resource" name="Granite" amount="500"/>               
+        </posteffects>
+      </quest> 
+
+      <quest name="MainEpicSub3" type="Story" connectedToQuest="MainEpic" icon="Military" npc="quest_character_fin02.png" showRewardWindow="true">            
+        <startcondition>
+          <questcomplete item="MainEpicSub2"/>   
+        </startcondition>
+        <preeffects> 
+        </preeffects>
+        <triggers>
+           <completeadventurelist type="Fairytale" amount="2" locaExtension="Fairytale_many" />
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="1000"/>
+          <reward type="Resource" name="Granite" amount="500"/>               
+        </posteffects>
+      </quest>
+        
+      <quest name="MainEpicSub4" type="Story" connectedToQuest="MainEpic" icon="Military" npc="quest_character_fin02.png" showRewardWindow="true">            
+        <startcondition>
+          <questcomplete item="MainEpicSub3"/>    
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<lootedresource amount="1000" type="MagicBean" target="Fairytale" locaExtension="Fairytale" />
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="1000"/>
+          <reward type="Resource" name="TitaniumOre" amount="500"/>               
+        </posteffects>
+      </quest>
+      
+      <quest name="MainEpicSub5" type="Story" connectedToQuest="MainEpic" icon="Military" npc="quest_character_fin02.png" showRewardWindow="true">            
+         <startcondition>
+           <questcomplete item="MainEpicSub4"/>
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <helpeffects>
+         </helpeffects>
+         <triggers>
+           <trigger type="Resource" name="MagicBean" amount="2000" condition="geDelta"/> 
+         </triggers>
+         <posteffects>
+           <reward type="XP" amount="1000"/>
+           <reward type="Resource" name="Granite" amount="500"/>               
+         </posteffects>
+      </quest>
+            
+      <quest name="MainEpicSub6" type="Story" connectedToQuest="MainEpic" icon="Military" npc="quest_character_fin02.png" showRewardWindow="true">            
+        <startcondition>
+          <questcomplete item="MainEpicSub5"/>    
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+          <trigger type="Building" name="WhiteCastle" condition="ge" amount="1"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="1000"/>
+          <reward type="Resource" name="ExoticWood" amount="500"/>             
+        </posteffects>
+      </quest>
+                 
+     <quest name="MainEpicSub7" type="Story" connectedToQuest="MainEpic" icon="Military" npc="quest_character_fin02.png" showRewardWindow="true">            
+         <startcondition>
+           <questcomplete item="MainEpicSub6"/>
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <helpeffects>
+         </helpeffects>
+         <triggers>
+         	<productionvalue item="MagicBeanstalk" min="30" />
+           <trigger type="Building" name="WhiteCastle" buildingUpgradeLevel="5" condition="levelupgrade" amount="1"/>
+           <trigger type="Resource" name="MagicBeanstalk" amount="50" condition="produce"/>  
+         </triggers>
+         <posteffects> 
+           <reward type="XP" amount="1000"/>
+           <reward type="Resource" name="Granite" amount="1000"/>              
+         </posteffects>
+      </quest>
+      
+</Root>

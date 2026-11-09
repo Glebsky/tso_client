@@ -1,0 +1,1556 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 
+		numberOfDescriptionItems
+		- The number of items in the description list on the event window,
+			items are picked from Loca string format :
+				LAB/<eventname>_DescItem_<N> 
+				
+		
+		Priorities
+		10 Happy hours
+		20 Seasonal events
+		30 Major standard events (e.g. architecture or free move event)
+		40 Minor standard events (e.g. treasure and resource events)
+-->
+<root>
+	<event name="MoveEvent" icon="IconMoveBuilding" banner="move_event_widget_graphics" clickWindowName="GAMESTATE_ID_EVENT_INFO_PANEL" clickWindowItem="Timed" prio="30" widget="min_move_event" numberOfDescriptionItems="2">>
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<skillplayer id="60" value="1" type="temp" />
+		</preeffect>
+		<posteffect>
+			<removeplayerskill id="60" value="1" />
+		</posteffect>
+	</event>
+
+	<event name="BarracksWeek" icon="icon_expedition_barracks" prio="40" clickWindowName="GAMESTATE_ID_HELP_WINDOW" banner="barracks_week_widget_graphics"  clickWindowItem="Help_window_barracks_week_0" widget="min_barracks_week_widget" numberOfDescriptionItems="1">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<skillplayer id="61" value="1" type="temp"/>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_barracks_week_0" effectDelay="3"/>
+		</preeffect>
+		<posteffect>
+			<removeplayerskill id="61" value="1"/>
+		</posteffect>
+	</event>
+	
+	<event name="PVPBarracksWeek" icon="icon_expedition_barracks" prio="40" clickWindowName="GAMESTATE_ID_HELP_WINDOW" banner="barracks_week_widget_graphics"  clickWindowItem="Help_window_barracks_week_0" widget="min_barracks_week_widget" numberOfDescriptionItems="1">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<skillplayer id="69" value="1" type="temp"/>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_barracks_week_0" effectDelay="3"/>
+		</preeffect>
+		<posteffect>
+			<removeplayerskill id="69" value="1"/>
+		</posteffect>
+	</event>
+	
+	<event name="ProvisionHouseWeek" icon="icon_provisionhouse" prio="40" clickWindowName="GAMESTATE_ID_HELP_WINDOW" banner="provision_house_duration_event_graphics"  widget="provision_house_duration_event_widget" clickWindowItem="Help_window_barracks_week_0" numberOfDescriptionItems="1">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<skillplayer id="71" value="1" type="temp"/>
+		</preeffect>
+		<posteffect>
+			<removeplayerskill id="71" value="1"/>
+		</posteffect>
+	</event>
+	
+	<event name="ProductionWeek" icon="pay_productivity_buff_lvl3" clickWindowName="GAMESTATE_ID_HELP_WINDOW" clickWindowItem="Help_window_production_week_0" prio="40">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<skillplayer id="43" value="1" type="temp" />
+			<skillplayer id="63" value="1" type="temp" />
+		</preeffect>
+		<posteffect>
+			<removeplayerskill id="43" value="1" />
+			<removeplayerskill id="63" value="1" />
+		</posteffect>
+	</event>
+	
+	<event name="InstantCostDiscount" icon="pay_productivity_buff_lvl3" banner="instant_finish_widget_graphics" widget="instant_finish" prio="40" numberOfDescriptionItems="1">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<skillplayer id="68" value="1" type="temp" />
+			<resetproductionmodifiers/>
+		</preeffect>
+		<posteffect>
+			<removeplayerskill id="68" value="1" />
+			<resetproductionmodifiers/>
+		</posteffect>
+	</event>
+	
+	<event name="MiniAdventureMysterybox" icon="buff_mystery_box_mini_adventure" banner="mystery_box_week_widget_graphics" widget="min_mystery_box_week_widget" prio="30">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<startquest name="MiniAdventureMysterybox_StartEvent" />
+		</preeffect>
+		<posteffect>
+			<cancelquest name="MiniAdventureMysterybox_EventRunning" />
+			<cancelquest name="MiniAdventureMysterybox_StartEvent" />
+		</posteffect>
+		<cleanup>
+			<cleanupquest name="MiniAdventureMysterybox_EventRunning" />
+			<cleanupquest name="MiniAdventureMysterybox_StartEvent" />
+		</cleanup>
+	</event>
+  	<event name="MilitaryWeekII" icon="buff_recruiting_speedbuff" clickWindowName="GAMESTATE_ID_SHOP_WINDOW" clickWindowItem="Timed" widget="min_military_week_widget" prio="40">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<startquest name="MilitaryWeekII_EventRunning" />
+		</preeffect>
+		<posteffect>
+			<cancelquest name="MilitaryWeekII_EventRunning" />
+		</posteffect>
+		<cleanup>
+			<cleanupquest name="MilitaryWeekII_EventRunning" />
+		</cleanup>
+	</event>
+	
+	<event name="Summer2015" icon="icon_token" prio="20" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" />
+	
+	<!--event name="Halloween2015" icon="icon_token" prio="0" banner="halloween_widget_graphics" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" numberOfDescriptionItems="3" widget="min_halloween_widget"/-->
+
+	<event name="GeneralWeek" icon="specialist_master_general" prio="40" clickWindowName="GAMESTATE_ID_HELP_WINDOW" clickWindowItem="Help_window_specialist_week_0">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<skillspecialist id="62" value="1" item="general" type="temp"/>
+		</preeffect>
+		<reactors>
+			<newSpecialist item="general" >
+				<effect>
+					<skillspecialist id="62" value="1" item="general" type="temp"/>
+				</effect>
+			</newSpecialist>
+		</reactors>
+		<posteffect>
+			<removespecialistskill id="62" value="1" item="general"/>
+		</posteffect>
+	</event>
+
+	<event name="GeologistWeek" icon="specialist_master_geologist" banner="specialist_week2_widget_graphics" clickWindowName="GAMESTATE_ID_HELP_WINDOW" clickWindowItem="Help_window_specialist_week_0" prio="40" widget="min_specialist_week2_widget_graphics">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<skillspecialist id="56" value="1" item="geologist" type="temp"/>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_specialist_week_0" effectDelay="3"/>
+		</preeffect>
+		<reactors>
+			<newSpecialist item="geologist" >
+				<effect>
+					<skillspecialist id="56" value="1" item="geologist" type="temp"/>
+				</effect>
+			</newSpecialist>
+		</reactors>
+		<posteffect>
+			<removespecialistskill id="56" value="1" item="geologist" />
+		</posteffect>
+	</event>
+	
+	<event name="AprilFools" silent="true">
+		<preeffect>
+		</preeffect>
+		<posteffect>
+		</posteffect>
+	</event>
+	
+		
+	<event name="TheBlackKnightsOnline" icon="buff_black_knights" prio="15" banner="black_knights_widget_graphics" clickWindowName="GAMESTATE_ID_SHOP_WINDOW" numberOfDescriptionItems="3" widget="min_black_knights_widget">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="33" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+	</event>
+	
+	<event name="EpicMines" icon="buff_fill_deposit" banner="item_week_widget_graphics" clickWindowName="GAMESTATE_ID_SHOP_WINDOW" clickWindowItem="Timed" prio="30" widget="min_item_week_widget_graphics">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="18" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+	</event>
+	
+	<event name="MysteryBoxes" icon="buff_mystery_box_mini_adventure" banner="mystery_box_week_widget_graphics" clickWindowName="GAMESTATE_ID_SHOP_WINDOW" prio="30" clickWindowItem="Timed" widget="min_mystery_box_week_widget"/>
+	
+	<event name="RefillMysterybox" icon="buff_mystery_box_refill" clickWindowName="GAMESTATE_ID_SHOP_WINDOW" clickWindowItem="Timed" prio="40" widget="min_happy_hour_widget"/>
+
+	<event name="SalpeterTreasureEvent" icon="icon_explorer_treasure" banner="treasure_event_widget_graphics" clickWindowName="GAMESTATE_ID_EVENT_INFO_PANEL" prio="40" widget="min_treasure_event_widget_graphics" numberOfDescriptionItems="3">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<!--<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_halloween_widget" tooltip="eventpanelbutton_eventinfo"/-->
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<skillspecialist id="208" value="1" item="explorer" type="temp"/>
+		</preeffect>
+		<reactors>
+			<newSpecialist item="explorer" >
+				<effect>
+					<skillspecialist id="208" value="1" item="explorer" type="temp"/>
+				</effect>
+			</newSpecialist>
+		</reactors>
+		<posteffect>
+			<removespecialistskill id="208" value="1" item="explorer" />
+		</posteffect>
+	</event>	
+	<event name="TitaniumOreTreasureEvent" icon="icon_explorer_treasure" banner="treasure_event_widget_graphics" clickWindowName="GAMESTATE_ID_EVENT_INFO_PANEL" prio="40" widget="min_treasure_event_widget_graphics" numberOfDescriptionItems="3">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<!--<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_halloween_widget" tooltip="eventpanelbutton_eventinfo"/-->
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<skillspecialist id="209" value="1" item="explorer" type="temp"/>
+		</preeffect>
+		<reactors>
+			<newSpecialist item="explorer" >
+				<effect>
+					<skillspecialist id="209" value="1" item="explorer" type="temp"/>
+				</effect>
+			</newSpecialist>
+		</reactors>
+		<posteffect>
+			<removespecialistskill id="209" value="1" item="explorer" />
+		</posteffect>
+	</event>	
+	<event name="GoldOreTreasureEvent" icon="icon_explorer_treasure" banner="treasure_event_widget_graphics" clickWindowName="GAMESTATE_ID_EVENT_INFO_PANEL" prio="40" widget="min_treasure_event_widget_graphics" numberOfDescriptionItems="3">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<!--<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_halloween_widget" tooltip="eventpanelbutton_eventinfo"/-->
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<skillspecialist id="210" value="1" item="explorer" type="temp"/>
+		</preeffect>
+		<reactors>
+			<newSpecialist item="explorer" >
+				<effect>
+					<skillspecialist id="210" value="1" item="explorer" type="temp"/>
+				</effect>
+			</newSpecialist>
+		</reactors>
+		<posteffect>
+			<removespecialistskill id="210" value="1" item="explorer" />
+		</posteffect>
+	</event>		
+	<event name="IronOreTreasureEvent" icon="icon_explorer_treasure" banner="treasure_event_widget_graphics" clickWindowName="GAMESTATE_ID_EVENT_INFO_PANEL" prio="40" widget="min_treasure_event_widget_graphics" numberOfDescriptionItems="3">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<!--<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_halloween_widget" tooltip="eventpanelbutton_eventinfo"/-->
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<skillspecialist id="211" value="1" item="explorer" type="temp"/>
+		</preeffect>
+		<reactors>
+			<newSpecialist item="explorer" >
+				<effect>
+					<skillspecialist id="211" value="1" item="explorer" type="temp"/>
+				</effect>
+			</newSpecialist>
+		</reactors>
+		<posteffect>
+			<removespecialistskill id="211" value="1" item="explorer" />
+		</posteffect>
+	</event>		
+	<event name="MahoganyWoodTreasureEvent" icon="icon_explorer_treasure" banner="treasure_event_widget_graphics" clickWindowName="GAMESTATE_ID_EVENT_INFO_PANEL" prio="40" widget="min_treasure_event_widget_graphics" numberOfDescriptionItems="2">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<!--<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_halloween_widget" tooltip="eventpanelbutton_eventinfo"/-->
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<skillspecialist id="212" value="1" item="explorer" type="temp"/>
+		</preeffect>
+		<reactors>
+			<newSpecialist item="explorer" >
+				<effect>
+					<skillspecialist id="212" value="1" item="explorer" type="temp"/>
+				</effect>
+			</newSpecialist>
+		</reactors>
+		<posteffect>
+			<removespecialistskill id="212" value="1" item="explorer" />
+		</posteffect>
+	</event>	
+	<event name="ExoticWoodTreasureEvent" icon="icon_explorer_treasure" banner="treasure_event_widget_graphics" clickWindowName="GAMESTATE_ID_EVENT_INFO_PANEL" prio="40" widget="min_treasure_event_widget_graphics" numberOfDescriptionItems="3">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<!--<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_halloween_widget" tooltip="eventpanelbutton_eventinfo"/-->
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<skillspecialist id="213" value="1" item="explorer" type="temp"/>
+		</preeffect>
+		<reactors>
+			<newSpecialist item="explorer" >
+				<effect>
+					<skillspecialist id="213" value="1" item="explorer" type="temp"/>
+				</effect>
+			</newSpecialist>
+		</reactors>
+		<posteffect>
+			<removespecialistskill id="213" value="1" item="explorer" />
+		</posteffect>
+	</event>	
+	<event name="GroutTreasureEvent" icon="icon_explorer_treasure" banner="treasure_event_widget_graphics" clickWindowName="GAMESTATE_ID_EVENT_INFO_PANEL" prio="40" widget="min_treasure_event_widget_graphics" numberOfDescriptionItems="2">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<!--<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_halloween_widget" tooltip="eventpanelbutton_eventinfo"/-->
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<skillspecialist id="214" value="1" item="explorer" type="temp"/>
+		</preeffect>
+		<reactors>
+			<newSpecialist item="explorer" >
+				<effect>
+					<skillspecialist id="214" value="1" item="explorer" type="temp"/>
+				</effect>
+			</newSpecialist>
+		</reactors>
+		<posteffect>
+			<removespecialistskill id="214" value="1" item="explorer" />
+		</posteffect>
+	</event>	
+	<event name="GraniteTreasureEvent" icon="icon_explorer_treasure" banner="treasure_event_widget_graphics" clickWindowName="GAMESTATE_ID_EVENT_INFO_PANEL" prio="40" widget="min_treasure_event_widget_graphics" numberOfDescriptionItems="3">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<!--<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_halloween_widget" tooltip="eventpanelbutton_eventinfo"/-->
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<skillspecialist id="215" value="1" item="explorer" type="temp"/>
+		</preeffect>
+		<reactors>
+			<newSpecialist item="explorer" >
+				<effect>
+					<skillspecialist id="215" value="1" item="explorer" type="temp"/>
+				</effect>
+			</newSpecialist>
+		</reactors>
+		<posteffect>
+			<removespecialistskill id="215" value="1" item="explorer" />
+		</posteffect>
+	</event>
+	<event name="MarbleTreasureEvent" icon="icon_explorer_treasure" banner="treasure_event_widget_graphics" clickWindowName="GAMESTATE_ID_EVENT_INFO_PANEL" prio="40" widget="min_treasure_event_widget_graphics" numberOfDescriptionItems="3">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<!--<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_halloween_widget" tooltip="eventpanelbutton_eventinfo"/-->
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<skillspecialist id="216" value="1" item="explorer" type="temp"/>
+		</preeffect>
+		<reactors>
+			<newSpecialist item="explorer" >
+				<effect>
+					<skillspecialist id="216" value="1" item="explorer" type="temp"/>
+				</effect>
+			</newSpecialist>
+		</reactors>
+		<posteffect>
+			<removespecialistskill id="216" value="1" item="explorer" />
+		</posteffect>
+	</event>	
+	<event name="StoneTreasureEvent" icon="icon_explorer_treasure" banner="treasure_event_widget_graphics" clickWindowName="GAMESTATE_ID_EVENT_INFO_PANEL" prio="40" widget="min_treasure_event_widget_graphics" numberOfDescriptionItems="2">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<!--<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_halloween_widget" tooltip="eventpanelbutton_eventinfo"/-->
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<skillspecialist id="217" value="1" item="explorer" type="temp"/>
+		</preeffect>
+		<reactors>
+			<newSpecialist item="explorer" >
+				<effect>
+					<skillspecialist id="217" value="1" item="explorer" type="temp"/>
+				</effect>
+			</newSpecialist>
+		</reactors>
+		<posteffect>
+			<removespecialistskill id="217" value="1" item="explorer" />
+		</posteffect>
+	</event>	
+	<event name="PlatinumOreTreasureEvent" icon="icon_explorer_treasure" banner="treasure_event_widget_graphics" clickWindowName="GAMESTATE_ID_EVENT_INFO_PANEL" prio="40" widget="min_treasure_event_widget_graphics" numberOfDescriptionItems="2">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<!--<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_halloween_widget" tooltip="eventpanelbutton_eventinfo"/-->
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<skillspecialist id="218" value="1" item="explorer" type="temp"/>
+		</preeffect>
+		<reactors>
+			<newSpecialist item="explorer" >
+				<effect>
+					<skillspecialist id="218" value="1" item="explorer" type="temp"/>
+				</effect>
+			</newSpecialist>
+		</reactors>
+		<posteffect>
+			<removespecialistskill id="218" value="1" item="explorer" />
+		</posteffect>
+	</event>
+	
+	<event name="AllOreTreasureEvent" icon="icon_explorer_treasure" banner="treasure_event_widget_graphics" clickWindowName="GAMESTATE_ID_EVENT_INFO_PANEL" prio="40" widget="min_treasure_event_widget_graphics" numberOfDescriptionItems="2">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<!--<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_halloween_widget" tooltip="eventpanelbutton_eventinfo"/-->
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<skillspecialist id="219" value="1" item="explorer" type="temp"/>
+		</preeffect>
+		<reactors>
+			<newSpecialist item="explorer" >
+				<effect>
+					<skillspecialist id="219" value="1" item="explorer" type="temp"/>
+				</effect>
+			</newSpecialist>
+		</reactors>
+		<posteffect>
+			<removespecialistskill id="219" value="1" item="explorer" />
+		</posteffect>
+	</event>
+	<event name="AllWoodTreasureEvent" icon="icon_explorer_treasure" banner="treasure_event_widget_graphics" clickWindowName="GAMESTATE_ID_EVENT_INFO_PANEL" prio="40" widget="min_treasure_event_widget_graphics" numberOfDescriptionItems="2">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<!--<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_halloween_widget" tooltip="eventpanelbutton_eventinfo"/-->
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<skillspecialist id="220" value="1" item="explorer" type="temp"/>
+		</preeffect>
+		<reactors>
+			<newSpecialist item="explorer" >
+				<effect>
+					<skillspecialist id="220" value="1" item="explorer" type="temp"/>
+				</effect>
+			</newSpecialist>
+		</reactors>
+		<posteffect>
+			<removespecialistskill id="220" value="1" item="explorer" />
+		</posteffect>
+	</event>	
+	<event name="AllRockTreasureEvent" icon="icon_explorer_treasure" banner="treasure_event_widget_graphics" clickWindowName="GAMESTATE_ID_EVENT_INFO_PANEL" prio="40" widget="min_treasure_event_widget_graphics" numberOfDescriptionItems="2">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<!--<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_halloween_widget" tooltip="eventpanelbutton_eventinfo"/-->
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<skillspecialist id="221" value="1" item="explorer" type="temp"/>
+		</preeffect>
+		<reactors>
+			<newSpecialist item="explorer" >
+				<effect>
+					<skillspecialist id="221" value="1" item="explorer" type="temp"/>
+				</effect>
+			</newSpecialist>
+		</reactors>
+		<posteffect>
+			<removespecialistskill id="221" value="1" item="explorer" />
+		</posteffect>
+	</event>
+	
+	<event name="StoneResourceEvent" icon="icon_large_stonepack" banner="stone_recource_event_widget_graphics" clickWindowName="GAMESTATE_ID_SHOP_WINDOW" clickWindowItem="Timed" prio="40" widget="min_stone_recource_event_widget_graphics" numberOfDescriptionItems="2">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<!--<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_halloween_widget" tooltip="eventpanelbutton_eventinfo"/-->
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="23" tooltip="eventpanelbutton_shop"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>		
+	</event>	
+	<event name="WoodResourceEvent" icon="icon_large_plankpack" banner="wood_event_widget_graphics" clickWindowName="GAMESTATE_ID_SHOP_WINDOW" clickWindowItem="Timed" prio="40" widget="min_wood_recource_event_widget_graphics" numberOfDescriptionItems="2">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<!--<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_halloween_widget" tooltip="eventpanelbutton_eventinfo"/-->
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="24" tooltip="eventpanelbutton_shop"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>		
+	</event>
+	<event name="OreResourceEvent" icon="icon_shop_iron_ore" banner="ore_event_widget_graphics" clickWindowName="GAMESTATE_ID_SHOP_WINDOW" clickWindowItem="Timed" prio="40" widget="min_ore_recource_event_widget_graphics" numberOfDescriptionItems="3">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<!--<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_halloween_widget" tooltip="eventpanelbutton_eventinfo"/-->
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="25" tooltip="eventpanelbutton_shop"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>		
+	</event>	
+	<event name="ScienceResourceEvent" icon="icon_advanced_paper_wholesale" banner="scinece_research_recource_event_widget_graphics" clickWindowName="GAMESTATE_ID_SHOP_WINDOW" clickWindowItem="Timed" prio="40" widget="min_scinece_research_recource_event_widget_graphics" numberOfDescriptionItems="2">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<!--<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_halloween_widget" tooltip="eventpanelbutton_eventinfo"/-->
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="26" tooltip="eventpanelbutton_shop"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>		
+	</event>	
+	<event name="WeaponsResourceEvent" icon="icon_shop_damascene_sword" banner="weapons_event_widget_graphics" clickWindowName="GAMESTATE_ID_SHOP_WINDOW" clickWindowItem="Timed" prio="40" widget="min_weapons_recource_event_widget_graphics" numberOfDescriptionItems="3">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<!--<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_halloween_widget" tooltip="eventpanelbutton_eventinfo"/-->
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="28" tooltip="eventpanelbutton_shop"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>		
+	</event>
+	<event name="FoodResourceEvent" icon="icon_shop_sausage" banner="food_event_widget_graphics" clickWindowName="GAMESTATE_ID_SHOP_WINDOW" clickWindowItem="Timed" prio="40" widget="min_food_recource_event_widget_graphics" numberOfDescriptionItems="3">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<!--<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_halloween_widget" tooltip="eventpanelbutton_eventinfo"/-->
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="29" tooltip="eventpanelbutton_shop"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>		
+	</event>
+	<event name="ArchitectureEvent" icon="icon_oriental_palace" banner="item_week_widget_graphics" clickWindowName="GAMESTATE_ID_SHOP_WINDOW" clickWindowItem="Timed" prio="30" widget="min_item_week_widget_graphics" numberOfDescriptionItems="3">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<!--<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_halloween_widget" tooltip="eventpanelbutton_eventinfo"/-->
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="27" tooltip="eventpanelbutton_shop"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>		
+	</event>
+	<event name="MilitaryShopEvent" icon="buff_hire_swordsmen" banner="military_week_widget_graphics" clickWindowName="GAMESTATE_ID_SHOP_WINDOW" clickWindowItem="Timed" prio="40" widget="min_military_week_widget" numberOfDescriptionItems="3">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<!--<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_halloween_widget" tooltip="eventpanelbutton_eventinfo"/-->
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="30" tooltip="eventpanelbutton_shop"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>		
+	</event>
+	<event name="BeginnerShopEvent" icon="icon_shop_construction_pack1" banner="beginners_widget_graphics" clickWindowName="GAMESTATE_ID_SHOP_WINDOW" clickWindowItem="Timed" prio="40" widget="beginners_event" numberOfDescriptionItems="2">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<!--<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_halloween_widget" tooltip="eventpanelbutton_eventinfo"/-->
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="31" tooltip="eventpanelbutton_shop"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>		
+	</event>
+	<!-- Beginner Shop Event rework -->
+	<event name="BeginnerShopEvent2" icon="icon_shop_construction_pack1" banner="beginners_widget_graphics" clickWindowName="GAMESTATE_ID_SHOP_WINDOW" clickWindowItem="Timed" prio="40" widget="beginners_event" numberOfDescriptionItems="2">
+		<startconditions>
+			<playerlevel min="5" max="30"/>
+		</startconditions>
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<!--<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_halloween_widget" tooltip="eventpanelbutton_eventinfo"/-->
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="32" tooltip="eventpanelbutton_shop"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>		
+	</event>
+	<event name="HarbourMiniEvent" icon="icon_harbour" banner="harbour_event_widget_graphics" clickWindowName="GAMESTATE_ID_SHOP_WINDOW" clickWindowItem="Timed" prio="40" widget="harbour_widget" numberOfDescriptionItems="3">
+		<buttons>
+			<button icon="icon_go_link" name="externalsite" tooltip="eventpanelbutton_settlersalliance" url="https://ubi.li/7Iq1x"/>
+			<!--<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_halloween_widget" tooltip="eventpanelbutton_eventinfo"/-->
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="37" tooltip="eventpanelbutton_shop"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>	
+		<preeffect>
+			<skillspecialist id="42" value="1" item="explorer,geologist" type="temp"/>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_specialist_week_0" effectDelay="3"/>
+		</preeffect>
+		<reactors>
+			<newSpecialist item="explorer">
+				<effect>
+					<skillspecialist id="42" value="1" type="temp" item="explorer"/>
+				</effect>
+			</newSpecialist>
+			<newSpecialist item="geologist">
+				<effect>
+					<skillspecialist id="42" value="1" type="temp" item="geologist"/>
+				</effect>
+			</newSpecialist>
+		</reactors>
+		<posteffect>
+			<removespecialistskill id="42" value="1" item="explorer,geologist" />
+		</posteffect>		
+	</event>	
+	
+	
+	<!-- Speical Events -->
+	<event name="SpecialistTaskDurationEvent" icon="specialist_master_explorer" prio="40" banner="specialist_week3_widget_graphics" widget="min_specialist_week3_widget_graphics" clickWindowName="GAMESTATE_ID_HELP_WINDOW" clickWindowItem="Help_window_specialist_week_0" numberOfDescriptionItems="2">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<skillspecialist id="42" value="1" item="explorer,geologist" type="temp"/>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_specialist_week_0" effectDelay="3"/>
+		</preeffect>
+		<reactors>
+			<newSpecialist item="explorer">
+				<effect>
+					<skillspecialist id="42" value="1" type="temp" item="explorer"/>
+				</effect>
+			</newSpecialist>
+			<newSpecialist item="geologist">
+				<effect>
+					<skillspecialist id="42" value="1" type="temp" item="geologist"/>
+				</effect>
+			</newSpecialist>
+		</reactors>
+		<posteffect>
+			<removespecialistskill id="42" value="1" item="explorer,geologist" />
+		</posteffect>
+	</event>
+	
+	<event name="GeologistDepositSizeEvent" icon="specialist_master_geologist" banner="geologist_deposit_size_event_widget_graphics" clickWindowName="GAMESTATE_ID_HELP_WINDOW" clickWindowItem="Help_window_specialist_week_0" prio="40" widget="geologist_deposit_size_event_widget_graphics" numberOfDescriptionItems="1">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<skillspecialist id="56" value="1" item="geologist" type="temp"/>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_specialist_week_0" effectDelay="3"/>
+		</preeffect>
+		<reactors>
+			<newSpecialist item="geologist" >
+				<effect>
+					<skillspecialist id="56" value="1" item="geologist" type="temp"/>
+				</effect>
+			</newSpecialist>
+		</reactors>
+		<posteffect>
+			<removespecialistskill id="56" value="1" item="geologist" />
+		</posteffect>
+	</event>
+	
+	<!-- Standard event batch III -->
+	<event name="FoodProductionWeek" icon="pay_productivity_buff_lvl3" banner="food_production_week" clickWindowName="GAMESTATE_ID_HELP_WINDOW" clickWindowItem="Help_window_production_week_0" prio="40" widget="food_production_week_widget" numberOfDescriptionItems="2">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<skillplayer id="63" value="1" type="temp" />
+		</preeffect>
+		<posteffect>
+			<removeplayerskill id="63" value="1" />
+		</posteffect>
+	</event>
+	
+	<event name="BuildingMaterialProductionWeek" icon="pay_productivity_buff_lvl3" banner="building_materials_event_widget_graphics" clickWindowName="GAMESTATE_ID_HELP_WINDOW" clickWindowItem="Help_window_production_week_0" prio="40" widget="building_materials_event" numberOfDescriptionItems="2">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<skillplayer id="64" value="1" type="temp" />
+		</preeffect>
+		<posteffect>
+			<removeplayerskill id="64" value="1" />
+		</posteffect>
+	</event>
+	
+	<event name="ScienceProductionWeek" icon="pay_productivity_buff_lvl3" banner="science_production_week_widget_graphics" clickWindowName="GAMESTATE_ID_HELP_WINDOW" clickWindowItem="Help_window_production_week_0" prio="40" widget="science_production_week_widget_icon" numberOfDescriptionItems="2">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<skillplayer id="65" value="1" type="temp" />
+		</preeffect>
+		<posteffect>
+			<removeplayerskill id="65" value="1" />
+		</posteffect>
+	</event>
+	
+	<event name="PVEWeaponProductionWeek" icon="pay_productivity_buff_lvl3" banner="pve_weapon_production_week_widget_graphics" clickWindowName="GAMESTATE_ID_HELP_WINDOW" clickWindowItem="Help_window_production_week_0" prio="40" widget="pve_weapon_production_week_widget_icon" numberOfDescriptionItems="2">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<skillplayer id="66" value="1" type="temp" />
+		</preeffect>
+		<posteffect>
+			<removeplayerskill id="66" value="1" />
+		</posteffect>
+	</event>
+	
+	<event name="PVPWeaponProductionWeek" icon="pay_productivity_buff_lvl3" banner="pvp_weapon_production_week_widget_graphics" clickWindowName="GAMESTATE_ID_HELP_WINDOW" clickWindowItem="Help_window_production_week_0" prio="40" widget="pvp_weapon_production_week" numberOfDescriptionItems="2">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<skillplayer id="67" value="1" type="temp" />
+		</preeffect>
+		<posteffect>
+			<removeplayerskill id="67" value="1" />
+		</posteffect>
+	</event>
+	
+	<event name="BarracksProductionWeek" icon="pay_productivity_buff_lvl3" banner="barracks_week_widget_graphics" clickWindowName="GAMESTATE_ID_HELP_WINDOW" clickWindowItem="Help_window_production_week_0" prio="40" widget="min_barracks_week_widget" numberOfDescriptionItems="2">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+		</buttons>
+		<preeffect>
+			<skillplayer id="61" value="1" type="temp" />
+		</preeffect>
+		<posteffect>
+			<removeplayerskill id="61" value="1" />
+		</posteffect>
+	</event>
+		
+<!-- Christmas 2015 / 2016 / 2017plus-->	
+	<event name="XMAS2017plus_Shop" dependantEvent="XMAS2017plus_Content" icon="icon_large_present_package" prio="20" banner="xmas_widget_graphics" clickWindowName="GAMESTATE_ID_SHOP_WINDOW" numberOfDescriptionItems="3" widget="min_xmas_widget">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="12" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<posteffect>
+			<removebuilding x="21" y="52" name="Xmas_Island_Decoration"/>
+			<removebuilding x="21" y="54" name="EventMonster_EventMarket_Tutorial"/>
+			<removebuilding x="21" y="54" name="EventMonster_EventMarket_lvl1"/>
+			<removebuilding x="21" y="54" name="EventMonster_EventMarket_lvl2"/>
+			<removebuilding x="21" y="54" name="EventMonster_EventMarket_lvl3"/>
+			<removebuilding x="21" y="54" name="EventMarket_Tutorial_Deco"/>
+			<removebuilding x="21" y="54" name="EventMarket_lvl1_Deco"/>
+			<removebuilding x="21" y="54" name="EventMarket_lvl2_Deco"/>
+			<removebuilding x="21" y="54" name="EventMarket_lvl3_Deco"/>			
+		</posteffect>
+	</event>
+	
+	<event name="XMAS2017plus_Content" icon="icon_large_present_package" prio="20" banner="xmas_widget_graphics" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" numberOfDescriptionItems="3" widget="min_xmas_widget">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_xmas_widget" tooltip="eventpanelbutton_eventinfo"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="12" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<preeffect>
+			<startquest name="XMAS2017plus_Main1" />
+            <startquest name="XMAS2017plus_DailyQuestLevelRequirement" />
+            <startquest name="XMAS2017plus_Adv3_ObjectiveTracker" />
+			<startquest name="XmasMarket_ChainFilter" />
+			<skillplayer id="241" value="1" type="temp" />				
+		</preeffect>
+		<posteffect>
+			<cancelquest type="startsWith" name="XMAS2017plus_" />
+			<cancelquest type="startsWith" name="ChrDai" />
+			<cancelquest name="XmasMarket_ChainFilter" />
+			<removebuilding x="21" y="52" name="Xmas_Island_Decoration"/>
+			<removebuilding x="21" y="54" name="EventMonster_EventMarket_Tutorial"/>
+			<removebuilding x="21" y="54" name="EventMonster_EventMarket_lvl1"/>
+			<removebuilding x="21" y="54" name="EventMonster_EventMarket_lvl2"/>
+			<removebuilding x="21" y="54" name="EventMonster_EventMarket_lvl3"/>
+			<removebuilding x="21" y="54" name="EventMarket_Tutorial_Deco"/>
+			<removebuilding x="21" y="54" name="EventMarket_lvl1_Deco"/>
+			<removebuilding x="21" y="54" name="EventMarket_lvl2_Deco"/>
+			<removebuilding x="21" y="54" name="EventMarket_lvl3_Deco"/>
+			<removebuilding x="21" y="57" name="PartyCrashers_Bridge">
+				<conditions>
+					<eventrunning name="!CrisisQuestEvent4"/>
+					<eventrunning name="!Easter2018plus_Shop"/>
+				</conditions>
+			</removebuilding>
+			<removeplayerskill id="241" value="1" />			
+		</posteffect>
+		<cleanup>
+			<cleanupquest type="startsWith" name="XMAS2017plus_"/>
+			<cleanupquest type="startsWith" name="ChrDai" />
+			<cleanupquest name="XmasMarket_ChainFilter" />
+			<removeplayerskill id="241" value="1" />			
+		</cleanup>
+	</event>	
+
+	<!-- Easter 2018+ -->
+	<event name="Easter2018plus_Shop" dependantEvent="Easter2018plus_Content" icon="icon_large_StripedEggs" prio="20" banner="easter_widget_graphics" clickWindowName="GAMESTATE_ID_SHOP_WINDOW" numberOfDescriptionItems="3" widget="min_easter_widget">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="21" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<posteffect>
+		 	<!-- Delete the bridge -->
+			<removebuilding x="21" y="57" name="PartyCrashers_Bridge">
+				<conditions>
+					<eventrunning name="!CrisisQuestEvent4"/>
+					<eventrunning name="!Anniversary2018plus_Content"/>
+				</conditions>
+			</removebuilding>
+		</posteffect>
+	</event>
+
+	<event name="Easter2018plus_Content" icon="icon_large_StripedEggs" prio="20" banner="easter_widget_graphics" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" numberOfDescriptionItems="3" widget="min_easter_widget">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_easter_widget" tooltip="eventpanelbutton_eventinfo"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="21" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<preeffect>
+			<startquest name="Easter2018plus_TutChainFilter" />
+			<skillplayer id="222" value="1" type="temp" />			
+            <!-- Start of Guild quests -->						
+		</preeffect>
+		<posteffect>
+			<cancelquest type="startsWith" name="Easter2018plus_" />
+			<cancelquest type="startsWith" name="EasWeekly" />
+			<removebuilding x="21" y="54" name="PartyCrashers" /> <!-- Delete party crashers -->
+			<removebuilding x="21" y="54" name="PC_Ruins" /> <!-- Delete potential ruin graphics -->
+		</posteffect>
+		<cleanup>
+			<cleanupquest type="startsWith" name="Easter2018plus_" />
+			<cleanupquest type="startsWith" name="EasWeekly" />	
+			<removeplayerskill id="222" value="1" />			
+		</cleanup>
+	</event>	
+
+<!-- OLD easter seasonal adventures start, integrated in the event now see above <skillplayer id=222
+	<event name="AdventureSeasonEaster2018plus" silent="true">
+		<preeffect>
+			<skillplayer id="222" value="1" type="temp" />
+		</preeffect>
+		<posteffect>
+			<removeplayerskill id="222" value="1" />
+		</posteffect>
+	</event> -->
+	
+<!-- Old Easter -->
+	<event name="Easter_Old" icon="icon_large_StripedEggs"/>
+
+<!-- Crisis Quests -->	
+	<event name="CrisisQuestEvent3" icon="icon_crisis_quest" prio="20" banner="crisis_quest_week_widget_graphics" clickWindowName="GAMESTATE_ID_QUEST_BOOK" clickWindowItem="CQC3_GreatEvil_Main" numberOfDescriptionItems="1" widget="min_crisis_quest_week_widget_graphics">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_infopanel" name="GAMESTATE_ID_QUEST_BOOK_START_WITH" item="CQC3_GreatEvil_Main" tooltip="eventpanelbutton_eventinfo"/>
+		</buttons>
+		<preeffect>
+			<startquest name="CQC3_ChainFilter" />						
+		</preeffect>
+		<posteffect>
+			<cancelquest type="startsWith" name="CQC3" />
+		</posteffect>
+		<cleanup>
+			<cleanupquest type="startsWith" name="CQC3" />
+		</cleanup>
+	</event>
+	
+	<event name="CrisisQuestEvent4" icon="icon_crisis_quest" prio="20" banner="crisis_quest_week_widget_graphics" clickWindowName="GAMESTATE_ID_QUEST_BOOK" clickWindowItem="CQC3_GreatEvil_Main" numberOfDescriptionItems="2" widget="min_crisis_quest_week_widget_graphics">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_infopanel" name="GAMESTATE_ID_QUEST_BOOK_START_WITH" item="CQC4_Counterattack_Main" tooltip="eventpanelbutton_eventinfo"/>
+		</buttons>
+		<preeffect>
+			<startquest name="CQC4_ChainFilter" />			
+			<skillspecialist id="245" value="1" item="explorer" type="temp"/>				
+		</preeffect>
+		<reactors>
+			<newSpecialist item="explorer" >
+				<effect>
+					<skillspecialist id="245" value="1" item="explorer" type="temp"/>
+				</effect>
+			</newSpecialist>				
+		</reactors>		
+		<posteffect>
+			<removebuilding x="21" y="54" name="EventMonster_BanditFortressStage2" action="exactNameMatch"/>
+			<removebuilding x="21" y="54" name="EventMonster_WatchTowerStage"/>
+			<removebuilding x="21" y="54" name="EventMonster_Watch_Tower"/>		
+			<removebuilding x="21" y="54" name="WatchTower" />
+			<removebuilding x="21" y="54" name="BanditFortress" />
+			<!-- Delete the bridge -->
+			<removebuilding x="21" y="57" name="PartyCrashers_Bridge">
+				<conditions>
+					<eventrunning name="!Easter2018plus_Shop"/>
+					<eventrunning name="!Anniversary2018plus_Content"/>
+				</conditions>
+			</removebuilding>
+			<cancelquest type="startsWith" name="CQC4" />	
+			<removespecialistskill id="245" value="1" item="explorer" />
+		</posteffect>
+		<cleanup>
+			<cleanupquest type="startsWith" name="CQC4" />
+			<removebuilding x="21" y="54" name="EventMonster_BanditFortressStage2" action="exactNameMatch"/>
+			<removebuilding x="21" y="54" name="EventMonster_WatchTowerStage"/>
+			<removebuilding x="21" y="54" name="EventMonster_Watch_Tower"/>				
+			<removebuilding x="21" y="54" name="WatchTower" />
+			<removebuilding x="21" y="54" name="BanditFortress" />
+			<!-- Delete the bridge -->
+			<removebuilding x="21" y="57" name="PartyCrashers_Bridge">
+				<conditions>
+					<eventrunning name="!Easter2018plus_Shop"/>
+					<eventrunning name="!Anniversary2018plus_Content"/>
+				</conditions>
+			</removebuilding>
+			<removespecialistskill id="245" value="1" item="explorer" />		
+		</cleanup>
+	</event>
+
+<!-- Soccer-->
+	<event name="Soccer2018plus_Shop" icon="icon_cup_statue" dependantEvent="Soccer2018plus_Content" prio="20" banner="summerevent_widget" clickWindowName="GAMESTATE_ID_SHOP_WINDOW" numberOfDescriptionItems="3" widget="min_summerevent_widget">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="14" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+	</event>
+
+	<event name="Soccer2018plus_Content" icon="icon_cup_statue" prio="20" banner="summerevent_widget" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" numberOfDescriptionItems="3" widget="min_summerevent_widget">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_xmas_widget" tooltip="eventpanelbutton_eventinfo"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="14" tooltip="eventpanelbutton_shop"/>	
+		</buttons>
+		<preeffect>
+			<startquest name="EMDailyQuestLevelRequirement" />
+			<startquest name="Soccer2018plus_Main" />
+			<startquest name="Soccer2018plus_Sub01" />
+			<!--startquest name="Soccer2018plus_Sub04" /--> <!-- Deactivated the prevent error message. Quest was commented out. Most likely never implemented correctly -->
+			<startquest name="Soccer2018plus_Infrastructure_ChainFilter" />
+			<startquest name="Soccer2018plus_InvasiveSpecies_ChainFilter" />
+			<startquest name="Soccer2018plus_VictoryByDesign_ChainFilter" />
+			<startquest name="Soccer2018plus_questchain_levelrequirement">
+				<conditions>
+					<playerlevel max="25"/>
+				</conditions>
+			</startquest>
+			<skillplayer id="239" value="1" type="temp" />					
+		</preeffect>
+		<posteffect>
+			<cancelquest type="startsWith" name="EMDailyQuestLevelRequirement" />
+			<cancelquest type="startsWith" name="Soccer2018plus_Main" />
+			<cancelquest type="startsWith" name="Soccer2018plus_Sub" />
+			<cancelquest type="startsWith" name="Soccer2018plus_Infrastructure" />
+			<cancelquest type="startsWith" name="EMDailyQuest" />
+			<cancelquest type="startsWith" name="EMDai" />
+			<cancelquest type="startsWith" name="Soccer2018plus_InvasiveSpecies" />
+			<cancelquest type="startsWith" name="Soccer2018plus_VictoryByDesign" />
+			<cancelquest type="startsWith" name="Soccer2018plus_questchain_levelrequirement" />
+			<cancelzonebuff name="SpeedUpPopulationGrowth_Tourism1"/>
+			<cancelzonebuff name="SpeedUpPopulationGrowth_Tourism2"/>
+			<cancelzonebuff name="SpeedUpPopulationGrowth_Tourism3"/>
+			<cancelzonebuff name="SpeedUpPopulationGrowth_Tourism4"/>
+			<cancelzonebuff name="SpeedUpPopulationGrowth_Tourism5"/>
+			<removebuilding x="22" y="56" name="SnackStand_dummy" />
+			<removebuilding x="21" y="54" name="SoccerField_dummy" />		
+			<removeplayerskill id="239" value="1" />			
+		</posteffect>
+		<cleanup>
+			<cleanupquest type="startsWith" name="EMDailyQuestLevelRequirement" />
+			<cleanupquest type="startsWith" name="Soccer2018plus_Main" />
+			<cleanupquest type="startsWith" name="Soccer2018plus_Sub" />
+			<cleanupquest type="startsWith" name="Soccer2018plus_Infrastructure" />
+			<cleanupquest type="startsWith" name="EMDailyQuest" />
+			<cleanupquest type="startsWith" name="EMDai" />
+			<cleanupquest type="startsWith" name="Soccer2018plus_InvasiveSpecies" />
+			<cleanupquest type="startsWith" name="Soccer2018plus_VictoryByDesign" />
+			<cleanupquest type="startsWith" name="Soccer2018plus_questchain_levelrequirement" />
+			<removeplayerskill id="239" value="1" />				
+		</cleanup>
+	</event>
+	
+<!-- Halloween 2016 / 2017plus -->	
+	<event name="HW2017plus_Shop" dependantEvent="HW2017plus_Content" icon="pumpkin_halloween2015" prio="20" banner="halloween_widget_graphics" clickWindowName="GAMESTATE_ID_SHOP_WINDOW" numberOfDescriptionItems="3" widget="min_halloween_widget">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="11" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<posteffect>
+			<removebuilding x="21" y="54" name="EventMonster" action="exactNameMatch"/>
+			<removebuilding x="21" y="54" name="EventMonster_Tutorial" action="exactNameMatch"/>
+			<removebuilding x="21" y="54" name="EventMonster_Greater" action="exactNameMatch"/>
+			<removebuilding x="21" y="54" name="EventMonster_Ancient" action="exactNameMatch"/>
+			<removebuilding x="21" y="54" name="EventMonster_Supreme" action="exactNameMatch"/>
+			<removebuilding x="21" y="52" name="EventMonster" action="exactNameMatch"/>
+			<removebuilding x="21" y="52" name="EventMonster_Tutorial" action="exactNameMatch"/>
+			<removebuilding x="21" y="52" name="EventMonster_Greater" action="exactNameMatch"/>
+			<removebuilding x="21" y="52" name="EventMonster_Ancient" action="exactNameMatch"/>
+			<removebuilding x="21" y="52" name="EventMonster_Supreme" action="exactNameMatch"/>
+		</posteffect>
+	</event>
+	
+	<event name="HW2017plus_Content" icon="pumpkin_halloween2015" prio="20" banner="halloween_widget_graphics" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" numberOfDescriptionItems="3" widget="min_halloween_widget">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_halloween_widget" tooltip="eventpanelbutton_eventinfo"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="11" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<preeffect>
+			<startquest name="HW2017plus_EventMonster_Reach19" />
+			<skillplayer id="225" value="1" type="temp" />
+		</preeffect>
+		<posteffect>
+			<cancelquest type="startsWith" name="HW2017plus_" />
+			<removebuilding x="21" y="54" name="EventMonster" action="exactNameMatch"/>
+			<removebuilding x="21" y="54" name="EventMonster_Tutorial" action="exactNameMatch"/>
+			<removebuilding x="21" y="54" name="EventMonster_Greater" action="exactNameMatch"/>
+			<removebuilding x="21" y="54" name="EventMonster_Ancient" action="exactNameMatch"/>
+			<removebuilding x="21" y="54" name="EventMonster_Supreme" action="exactNameMatch"/>
+			<removebuilding x="21" y="52" name="EventMonster" action="exactNameMatch"/>
+			<removebuilding x="21" y="52" name="EventMonster_Tutorial" action="exactNameMatch"/>
+			<removebuilding x="21" y="52" name="EventMonster_Greater" action="exactNameMatch"/>
+			<removebuilding x="21" y="52" name="EventMonster_Ancient" action="exactNameMatch"/>
+			<removebuilding x="21" y="52" name="EventMonster_Supreme" action="exactNameMatch"/>
+			<removebuilding x="77" y="79" name="ZombieCrypt" action="exactNameMatch"/>
+			<removebuilding x="8" y="145" name="ZombieCrypt" action="exactNameMatch"/>
+			<removebuilding x="22" y="153" name="ZombieCrypt" action="exactNameMatch"/>
+			<removebuilding x="72" y="93" name="ZombieCrypt" action="exactNameMatch"/>
+			<removeplayerskill id="225" value="1" />
+		</posteffect>
+		<cleanup>
+			<cleanupquest type="startsWith" name="HW2017plus_" />
+			<removeplayerskill id="225" value="1" />
+		</cleanup>
+	</event>
+	
+	<!-- Anniversary 2018 plus-->		
+	<event name="Anniversary2018plus_Content" icon="anniversaryevent" prio="20" banner="event_widget_anniversary_event" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" numberOfDescriptionItems="3" widget="event_widget_small_presents">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="event_widget_small_presents" tooltip="eventpanelbutton_eventinfo"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="35" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<preeffect>
+			<startquest name="Birthday2018plusLevelFilter16" /> 
+			<skillplayer id="280" value="1" type="temp" />			
+		</preeffect>
+		<posteffect>
+			<cancelquest type="startsWith" name="Birthday2018plusPhaseOneDonation_Main" />
+			<cancelquest type="startsWith" name="Birthday2018plusPhaseTwoDonation_Main" />
+			<cancelquest type="startsWith" name="Birthday2018plus" />
+			<cancelquest type="startsWith" name="DaiBirthday2018plus" />
+			<cancelquest type="startsWith" name="UnlockEW_BalloonsFrom" />
+			<removebuilding x="21" y="54" name="EpicWorkyardBalloons" action="exactNameMatch"/>
+			<removebuilding x="21" y="57" name="PartyCrashers_Bridge">
+				<conditions>
+					<eventrunning name="!CrisisQuestEvent4"/>
+					<eventrunning name="!Easter2018plus_Shop"/>
+				</conditions>
+			</removebuilding>
+			<removeplayerskill id="280" value="1" />			
+		</posteffect>
+		<cleanup>
+			<cleanupquest type="startsWith" name="Birthday2018plusPhaseOneDonation_Main" />
+			<cleanupquest type="startsWith" name="Birthday2018plusPhaseTwoDonation_Main" />
+			<cleanupquest type="startsWith" name="Birthday2018plus" />
+			<cleanupquest type="startsWith" name="UnlockEW_BalloonsFrom" />
+			<cleanupquest type="startsWith" name="DaiBirthday2018plus" />
+			<cleanupquest type="startsWith" name="Birthday2018plus" />
+			<cleanupquest type="startsWith" name="UnlockEW_BalloonsFrom" />
+			<cleanupquest type="startsWith" name="DaiBirthday2018plus" />
+			<removebuilding x="21" y="54" name="EpicWorkyardBalloons" action="exactNameMatch"/>
+			<removebuilding x="21" y="57" name="PartyCrashers_Bridge">
+				<conditions>
+					<eventrunning name="!CrisisQuestEvent4"/>
+					<eventrunning name="!Easter2018plus_Shop"/>
+				</conditions>
+			</removebuilding>
+			<removeplayerskill id="280" value="1" />			
+		</cleanup>
+	</event>	
+	<event name="Anniversary2018plus_PhaseOne" dependantEvent="Anniversary2018plus_Content" icon="anniversaryevent" prio="20" banner="event_widget_anniversary_event" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" widget="event_widget_small_presents">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="event_widget_small_presents" tooltip="eventpanelbutton_eventinfo"/>
+		</buttons>
+		<preeffect>
+		   <startquest name="Birthday2018plusPhaseOneLevelRestriction"/>
+		</preeffect>
+		<posteffect>
+			<cancelquest type="startsWith" name="Birthday2018plusPhaseDelay" />
+		</posteffect>
+		<cleanup>
+			<cleanupquest type="startsWith" name="Birthday2018plusPhaseDelay" />
+		</cleanup>
+	</event>
+	<event name="Anniversary2018plus_PhaseTwo" dependantEvent="Anniversary2018plus_Content" icon="anniversaryevent" prio="20" banner="event_widget_anniversary_event" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" widget="event_widget_small_presents">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="event_widget_small_presents" tooltip="eventpanelbutton_eventinfo"/>
+		</buttons>
+		<preeffect>
+			<startquest name="Birthday2018plusPhaseTwoLevelRestriction"/> 
+		</preeffect>
+		<posteffect>
+			<cancelquest type="startsWith" name="Birthday2018plusPhaseDelay2" />
+		</posteffect>
+		<cleanup>
+			<cleanupquest type="startsWith" name="Birthday2018plusPhaseDelay2" />
+		</cleanup>
+	</event>
+	<event name="Anniversary2018plus_PhaseThree" dependantEvent="Anniversary2018plus_Content" icon="anniversaryevent" prio="20" banner="event_widget_anniversary_event" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" widget="event_widget_small_presents">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="event_widget_small_presents" tooltip="eventpanelbutton_eventinfo"/>
+		</buttons>
+		<preeffect>
+			<startquest name="Birthday2018plusPhaseThreeLevelRestriction"/> 
+		</preeffect>
+		<posteffect>
+		</posteffect>
+		<cleanup>
+		</cleanup>
+	</event>	
+	
+<!-- Valentines 2019 plus-->	
+	<event name="Valentines2019plus_Shop" dependantEvent="Valentines2019plus_Content" icon="icon_large_valentineheart" prio="20" banner="banner_valentine_day_2019" clickWindowName="GAMESTATE_ID_SHOP_WINDOW" numberOfDescriptionItems="3" widget="min_valentine_day_event_widget_graphics_std">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="35" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<posteffect>			
+		</posteffect>
+	</event>
+	
+	<event name="Valentines2019plus_Content" icon="icon_large_valentineheart" prio="20" banner="banner_valentine_day_2019" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" numberOfDescriptionItems="3" widget="min_valentine_day_event_widget_graphics_std">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_xmas_widget" tooltip="eventpanelbutton_eventinfo"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="35" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<preeffect>
+			<startquest name="Valentines2019plus_TutorialMain" />
+		</preeffect>
+		<posteffect>
+			<cancelquest type="startsWith" name="Valentines2019plus_" />
+		</posteffect>
+		<cleanup>
+			<cleanupquest type="startsWith" name="Valentines2019plus_"/>
+		</cleanup>
+	</event>	
+
+	
+<!-- Adventure Seasons -->
+	<event name="AdventureSeasonScenario" icon="am_scenario_adventure_season" prio="40" banner="scenarios_season_banner" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" numberOfDescriptionItems="2" widget="scenario_small_widget" >
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="40" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<preeffect>
+			<skillplayer id="236" value="1" type="temp" />
+		</preeffect>
+		<posteffect>
+			<removeplayerskill id="236" value="1" />
+		</posteffect>
+	</event>
+	
+	<event name="AdventureSeasonMini" icon="am_mini_adventure_season" prio="40" banner="mini_mission_season_banner" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" numberOfDescriptionItems="2" widget="mini_mission_small_widget" >
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="40" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<preeffect>
+			<skillplayer id="237" value="1" type="temp" />
+		</preeffect>
+		<posteffect>
+			<removeplayerskill id="237" value="1" />
+		</posteffect>
+	</event>
+	
+	<event name="AdventureSeasonVenture" icon="am_venture_adventure_season" prio="40" banner="venture_season_banner" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" numberOfDescriptionItems="2" widget="venture_small_widget" >
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="40" tooltip="eventpanelbutton_shop"/>			
+		</buttons>
+		<preeffect>
+			<skillplayer id="238" value="1" type="temp" />
+		</preeffect>
+		<posteffect>
+			<removeplayerskill id="238" value="1" />
+		</posteffect>
+	</event>
+		
+	<event name="AdventureSeasonSailor" icon="am_sailor_adventure_season" prio="40" banner="pirate_sailor_widget_graphics" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" numberOfDescriptionItems="2" widget="pirate_sailor_widget_graphics" >
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="40" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<preeffect>
+			<skillplayer id="223" value="1" type="temp" />
+		</preeffect>
+		<posteffect>
+			<removeplayerskill id="223" value="1" />
+		</posteffect>
+	</event>
+	
+	<event name="AdventureSeasonBandit" icon="am_bandit_adventure_season" prio="40" banner="bandit_season_banner" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" numberOfDescriptionItems="2" widget="bandits_small_widget" >
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="40" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<preeffect>
+			<skillplayer id="232" value="1" type="temp" />
+		</preeffect>
+		<posteffect>
+			<removeplayerskill id="232" value="1" />
+		</posteffect>
+	</event>
+	
+	<event name="AdventureSeasonCultist" icon="am_cultist_adventure_season" prio="40" banner="cultist_season_banner" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" numberOfDescriptionItems="2" widget="cultist_small_widget" >
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="40" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<preeffect>
+			<skillplayer id="233" value="1" type="temp" />
+		</preeffect>
+		<posteffect>
+			<removeplayerskill id="233" value="1" />
+		</posteffect>
+	</event>
+
+	 <event name="EoW2021" icon="am_eow2021" prio="40" banner="eow2021_season_banner" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" numberOfDescriptionItems="2" widget="eow_small_widget" >
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="40" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<preeffect>
+			<skillplayer id="285" value="1" type="temp" />
+		</preeffect>
+		<posteffect>
+			<removeplayerskill id="285" value="1" />
+		</posteffect>
+	</event> -->
+
+	<event name="AdventureSeasonCultist2" icon="am_cultist_adventure_season" prio="40" banner="cultist_season_banner" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" numberOfDescriptionItems="2" widget="cultist_small_widget" >
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="40" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<preeffect>
+			<skillplayer id="233" value="1" type="temp" />
+		</preeffect>
+		<posteffect>
+			<removeplayerskill id="233" value="1" />
+		</posteffect>
+	</event>
+	
+
+	<event name="AdventureSeasonBarbarian" icon="am_barbarian_adventure_season" prio="40" banner="barbarian_season_banner" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" numberOfDescriptionItems="2" widget="barbarian_small_widget" >
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="40" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<preeffect>
+			<skillplayer id="234" value="1" type="temp" />
+		</preeffect>
+		<posteffect>
+			<removeplayerskill id="234" value="1" />
+		</posteffect>
+	</event>
+	
+	<event name="AdventureSeasonMercenary" icon="am_mercenary_adventure_season" prio="40" banner="merchenaries_season_banner" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" numberOfDescriptionItems="2" widget="merchenaries_small_widget" >
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="40" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<preeffect>
+		       <startquest name="AdventureSeasonMercenary_LevelFilter26"/>
+			<skillplayer id="235" value="1" type="temp" />
+		</preeffect>
+		<posteffect>
+			<removeplayerskill id="235" value="1" />
+		</posteffect>
+	</event>
+	
+	<event name="AdventureSeasonCoop" icon="am_coop_adventure_season" prio="40" banner="coop_adventure_season_graphic" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" numberOfDescriptionItems="2" widget="coop_adventure_season_widget" >
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="40" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<preeffect>
+			<skillplayer id="224" value="1" type="temp" />
+		</preeffect>
+		<posteffect>
+			<removeplayerskill id="224" value="1" />
+		</posteffect>
+	</event>
+	
+	<event name="AdventureSeason2Players" icon="am_2player_adventure_season" prio="40" banner="2_player_season_banner" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" numberOfDescriptionItems="2" widget="2_player_small_widget" >
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="40" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<preeffect>
+			<skillplayer id="230" value="1" type="temp" />
+		</preeffect>
+		<posteffect>
+			<removeplayerskill id="230" value="1" />
+		</posteffect>
+	</event>
+	
+	<event name="AdventureSeason3Players" icon="am_3player_adventure_season" prio="40" banner="3_player_season_banner" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" numberOfDescriptionItems="2" widget="3_player_small_widget" >
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="40" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<preeffect>
+			<skillplayer id="231" value="1" type="temp" />
+		</preeffect>
+		<posteffect>
+			<removeplayerskill id="231" value="1" />
+		</posteffect>
+	</event>	
+	
+	<!-- Spring Surprise Adventure & Shop Season -->
+	<event name="AdventureSeasonSpringSurprise" icon="am_spring_adventure_season" prio="40" banner="springsurprise_season_banner" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" numberOfDescriptionItems="2" widget="springsurprise_small_widget" >
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="40" tooltip="eventpanelbutton_shop"/>			
+		</buttons>
+		<preeffect>
+			<skillplayer id="242" value="1" type="temp" />
+		</preeffect>
+		<posteffect>
+			<removeplayerskill id="242" value="1" />
+		</posteffect>
+	</event>	
+
+<!-- The Settlers History Edition Promotion -->
+	<event name="SettlersHistoryCollectionPromotion" icon="history_collection_icon" prio="10" banner="history_collection_banner" clickWindowName="GAMESTATE_ID_EVENT_INFO_PANEL" numberOfDescriptionItems="1" widget="history_collection_widget" >
+		<buttons>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_link" name="externalsite" tooltip="eventpanelbutton_historyedition" url="https://ubi.li/7b4gn"/>
+		</buttons>
+	</event>
+	
+<!-- Debug Shop (for testing) -->	
+	<event name="DebugShop" icon="buff_mystery_box_refill"/>
+
+<!-- PreStaging Event for hidden shop items -->	
+	<event name="PreStaging" icon="buff_mystery_box_mini_adventure" banner="item_week_widget_graphics" clickWindowName="GAMESTATE_ID_SHOP_WINDOW" clickWindowItem="Timed" numberOfDescriptionItems="1" widget="min_item_week_widget_graphics">
+		<buttons>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="23" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+	</event>
+	
+	<!-- Happy Hour Events. INI -->
+	<!-- Effects should not be configured for HappyHour events because several different ones might be running at the same time for different partners. -->	
+	<event name="HappyHour" widget="min_happy_hour_widget" prio="10" clickWindowItem="Timed" clickWindowName="WEB_SHOP" numberOfDescriptionItems="1" banner="happy_hour_widget_graphics" icon="icon_gem_package">
+		<buttons> 
+	 		<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/> 
+	 		<button icon="icon_get_gems" name="WEB_SHOP" tooltip="eventpanelbutton_webshop" item="min_happy_hour_widget"/> 
+ 		</buttons> 
+	</event>
+	
+	<!-- Effects should not be configured for HappyHour events because several different ones might be running at the same time for different partners. -->	
+	<event name="HappyHoursteam" widget="min_happy_hour_widget" prio="10" clickWindowItem="Timed" clickWindowName="WEB_SHOP" banner="happy_hour_widget_graphics" icon="icon_gem_package" partner="steam">
+		<buttons> 
+	 		<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/> 
+	 		<button icon="icon_get_gems" name="WEB_SHOP" tooltip="eventpanelbutton_webshop" item="min_happy_hour_widget"/> 
+ 		</buttons> 
+	</event>
+	
+	<!-- Effects should not be configured for HappyHour events because several different ones might be running at the same time for different partners. -->	
+	<event name="HappyHourkongregate" widget="min_happy_hour_widget" prio="10" clickWindowItem="Timed" clickWindowName="WEB_SHOP" banner="happy_hour_widget_graphics" icon="icon_gem_package" partner="kongregate">
+		<buttons> 
+	 		<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/> 
+	 		<button icon="icon_get_gems" name="WEB_SHOP" tooltip="eventpanelbutton_webshop" item="min_happy_hour_widget"/> 
+ 		</buttons> 
+	</event>
+	<!-- Happy Hour Events. END -->
+	
+	<event name="Easter_PrepaidPromotion" widget="easter_prepaid_widget" prio="10" clickWindowItem="Timed" clickWindowName="GAMESTATE_ID_EVENT_INFO_PANEL" numberOfDescriptionItems="1" banner="easter_prepaid_widget_graphics" icon="icon_gem_package" >
+		<buttons> 
+	 		<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/> 
+	 		<button icon="ChangeLogIcon" name="promocode" tooltip="eventpanelbutton_voucher"/> 
+ 		</buttons> 
+	</event>
+	
+	<!-- Black Market Auctions -->	
+	<event name="BlackMarketAuction" silent="true"/>
+	
+	<!-- Unity -->
+	<event name="Unity_Shop" dependantEvent="Unity_Content" icon="icon_large_unity" prio="20" banner="banner_unity_event" clickWindowName="GAMESTATE_ID_SHOP_WINDOW" numberOfDescriptionItems="3" widget="min_unity_event_widget_graphics_std">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="35" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<posteffect>			
+		</posteffect>
+	</event>
+	
+	<event name="Unity_Content" icon="icon_large_unity" prio="20" banner="banner_unity_event" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" numberOfDescriptionItems="3" widget="min_unity_event_widget_graphics_std">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_xmas_widget" tooltip="eventpanelbutton_eventinfo"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="35" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<preeffect>
+			<startquest name="Unity_Main" />
+		</preeffect>
+		<posteffect>
+			<cancelquest type="startsWith" name="Unity_" />
+		</posteffect>
+		<cleanup>
+			<cleanupquest type="startsWith" name="Unity_"/>
+		</cleanup>
+	</event>
+	
+	<!-- Last Chance! -->
+	
+	<event name="LastChance_Shop" dependantEvent="LastChance_Content" icon="am_last_chance" prio="40" banner="last_chance_banner_graphics" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" numberOfDescriptionItems="2" widget="last_chance_widget_graphics" >
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="41" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<preeffect>
+		</preeffect>
+		<posteffect>
+		</posteffect>
+	</event>
+	
+	<event name="LastChance_Content" icon="am_last_chance" prio="40" banner="last_chance_banner_graphics" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" numberOfDescriptionItems="2" widget="last_chance_widget_graphics" >
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="41" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<preeffect>
+		</preeffect>
+		<posteffect>
+		</posteffect>
+	</event>
+	<!-- New! -->
+	<event name="NewCategory_Shop" silent="true" dependantEvent="LastChance_Content" icon="am_last_chance" prio="40" banner="last_chance_banner_graphics" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" numberOfDescriptionItems="2" widget="last_chance_widget_graphics" >
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="42" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<preeffect>
+		</preeffect>
+		<posteffect>
+		</posteffect>
+	</event>
+	
+	<event name="NewCategory_Content" silent="true" icon="am_last_chance" prio="40" banner="last_chance_banner_graphics" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" numberOfDescriptionItems="2" widget="last_chance_widget_graphics" >
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="42" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<preeffect>
+		</preeffect>
+		<posteffect>
+		</posteffect>
+	</event>
+	<!-- Flash Sale! -->
+	
+	<event name="FlashSale_Shop" dependantEvent="FlashSale_Content" icon="am_last_chance" prio="40" banner="last_chance_banner_graphics" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" numberOfDescriptionItems="2" widget="last_chance_widget_graphics" >
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="43" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<preeffect>
+		</preeffect>
+		<posteffect>
+		</posteffect>
+	</event>
+	
+	<event name="FlashSale_Content" icon="am_last_chance" prio="43" banner="last_chance_banner_graphics" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" numberOfDescriptionItems="2" widget="last_chance_widget_graphics" >
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="40" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<preeffect>
+		</preeffect>
+		<posteffect>
+		</posteffect>
+	</event>
+	
+	<!-- Guild Fest -->
+	<event name="GuildFest_Shop" dependantEvent="GuildFest_Content" icon="guildfest_icon" prio="20" banner="min_guildfest_event_widget_graphics_std" clickWindowName="GAMESTATE_ID_SHOP_WINDOW" numberOfDescriptionItems="3" widget="min_guildest_widget_graphics">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="35" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<posteffect>
+			<cancelquest type="startsWith" name="GuildFest_" />
+			<cancelquest type="startsWith" name="FinalGuildFest_" />
+		</posteffect>
+		<cleanup>
+			<cleanupquest type="startsWith" name="GuildFest_"/>
+			<cancelquest type="startsWith" name="FinalGuildFest_" />
+		</cleanup>
+	</event>
+	
+	<event name="GuildFest_Content" icon="guildfest_icon" prio="20" banner="min_guildfest_event_widget_graphics_std" clickWindowName="GAMESTATE_ID_EVENT_WINDOW" numberOfDescriptionItems="3" widget="min_guildest_widget_graphics">
+		<buttons>
+			<button icon="ChangeLogIcon" name="changelog" tooltip="changelog"/>
+			<button icon="ButtonIconOK" name="CLOSE_WINDOW" tooltip="eventpanelbutton_closewindow"/>
+			<button icon="icon_infopanel" name="GAMESTATE_ID_EVENT_WINDOW" item="min_guildest_widget_graphics" tooltip="eventpanelbutton_eventinfo"/>
+			<button icon="icon_go_shop" name="GAMESTATE_ID_SHOP_WINDOW" item="35" tooltip="eventpanelbutton_shop"/>
+		</buttons>
+		<preeffect>
+			<startquest name="GuildFest_SpawnGuildFestGrounds" /> 
+			<startquest name="GuildFest_Tutorial_Main" />
+			<startquest name="GuildFest_Day10_Turnin_Delay" />	
+		</preeffect>
+		<posteffect>
+			<cancelquest type="startsWith" name="GuildFest_" />
+		</posteffect>
+		<cleanup>
+			<cleanupquest type="startsWith" name="GuildFest_"/>
+		</cleanup>
+	</event>
+	
+</root>

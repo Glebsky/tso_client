@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+
+  <quest name="Adv_Birthday2013_Military2_01" specialType="firstQuest" icon="Balloons" npc="quest_character_jester01.png" showQuestWindow="true" >
+		 <triggers>  
+      <trigger type="Building" name="s_dead_tree01_birthday" condition="selected" onComplete="destroySelectedBuilding" amount="1"/>
+      <trigger type="Building" name="s_dead_tree02_birthday" condition="selected" onComplete="destroySelectedBuilding" amount="1"/>
+      <trigger type="Building" name="s_dead_tree03_birthday" condition="selected" onComplete="destroySelectedBuilding" amount="1"/>
+      <trigger type="Building" name="s_cut_down_tree_birthday" condition="selected" onComplete="destroySelectedBuilding" amount="1"/>
+	   </triggers>
+    <rewards/>
+    <postrequisits>
+    </postrequisits>
+  </quest>	
+  
+  <quest name="Adv_Birthday2013_Military2_02" icon="Balloons" npc="quest_character_jester01.png" showQuestWindow="true" >
+     <startcondition>
+      <questcomplete item="Adv_Birthday2013_Military2_01"/>
+     </startcondition>
+		 <triggers>  
+      <trigger type="Building" name="Banditsleader_Adventure" condition="l" amount="1"/>
+      <trigger type="Building" name="Bandits_Adventure" condition="l" amount="1"/>
+	   </triggers>
+    <rewards/>
+    <postrequisits>
+    </postrequisits>
+  </quest>
+
+  <quest name="Adv_Birthday2013_Military2_03" icon="Balloons" npc="quest_character_jester01.png" showQuestWindow="true" >
+     <startcondition>
+      <questcomplete item="Adv_Birthday2013_Military2_02"/>
+     </startcondition>
+		 <triggers>  
+      <trigger type="Building" name="SimpleResidence" condition="selected" amount="1"/>
+      <trigger type="Building" name="Farm" condition="selected" amount="1"/>
+      <trigger type="Building" name="Forester" condition="selected" amount="1"/>
+	   </triggers>
+    <rewards/>
+    <postrequisits>
+    </postrequisits>
+  </quest>
+  
+  <quest name="Adv_Birthday2013_Military2_04" icon="Balloons" npc="quest_character_jester01.png" showQuestWindow="true" >
+     <startcondition>
+      <questcomplete item="Adv_Birthday2013_Military2_03"/>
+     </startcondition>
+		 <triggers>  
+      <trigger type="Building" name="Bandits_Wall-South" condition="l" amount="1"/>
+      <trigger type="Building" name="Banditsleader_cave" condition="l" amount="1"/>
+	   </triggers>
+    <rewards/>
+    <postrequisits>
+    </postrequisits>
+  </quest>
+  
+  <quest name="Adv_Birthday2013_Military2_05" specialType="lastQuest" icon="Balloons" npc="quest_character_jester01.png" showQuestWindow="true" >
+     <startcondition>
+      <questcomplete item="Adv_Birthday2013_Military2_04"/>
+     </startcondition>
+		 <triggers>  
+      <trigger type="Building" name="Banditsleader_Dark" condition="l" amount="1" locaExtension="Birthday2"/>
+      <trigger type="Building" name="BanditsLvl2_dark" condition="l" amount="1"/>
+      <trigger type="Building" name="BanditsLvl3_dark" condition="l" amount="1"/>
+	   </triggers>
+    <rewards/>
+    <posteffects>
+      <movecamera x="16" y="23"/>
+      <changeskin item="Forester" name="Forester"/>
+      <changeskin item="WoodCutter" name="WoodCutter"/>
+      <changeskin item="Mason" name="Mason"/>
+    </posteffects>
+  </quest>
+
+</Root>

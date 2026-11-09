@@ -1,0 +1,711 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+
+<!-- NOTE : Fix Icon Desc -->
+
+     <quest name="CQ2_ChainFilter" showQuestWindow="false" showRewardWindow="false">
+        <startcondition> 
+        </startcondition>
+        <postrequisits>
+	      <postrequisite filterQuest="LevelUnused" startQuest="CQ2_ChainFilter" startDelay="86400"/>	<!-- Level  1-15 -->
+          <postrequisite filterQuest="LevelUnused" startQuest="CQ2M1_TheFallenArmy_Tcl2" />				<!-- Level 16-25 -->
+          <postrequisite filterQuest="LevelUnused" startQuest="CQ2M1_TheFallenArmy_Tcl3" />				<!-- Level 26-35 -->
+          <postrequisite filterQuest="LevelUnused" startQuest="CQ2M1_TheFallenArmy_Tcl4" />				<!-- Level 36-45 -->
+          <postrequisite filterQuest="LevelUnused" startQuest="CQ2M1_TheFallenArmy_Tcl5" />				<!-- Level 46-50 -->
+        </postrequisits>
+     </quest>
+
+<!-- Tcl 1 REMOVED -->
+
+<!-- Tcl 2 -->
+
+       <quest name="CQ2M1_TheFallenArmy_Tcl2" type="Crisis" icon="QuestLonger" npc="quest_character_geologist01.png" showRewardWindow="true">            
+         <preeffects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_crisisquests_0" effectDelay="3"/>  
+			<sendmail name="CrisisInfo" item="CrisisQuestchainStarted"/>
+         </preeffects>
+         <helpeffects>
+         </helpeffects>
+         <triggers>
+           <trigger type="QuestComplete" name="CQ2S1_Reconstitution_Tcl2" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S2_Recovery_Tcl2" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S3_Sharing_Tcl2" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S4_Elitist_Tcl2" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S5_Equipment_Tcl2" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S6_StandingArmy_Tcl2" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S7_Scheming_Tcl2" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S8_Aquisition_Tcl2" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S9_Perseverance_Tcl2" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S10_Revelation_Tcl2" condition="questcompleted" amount="1"/>
+         </triggers>
+         <posteffects>
+          <reward type="Buff" item="RecoverGeneral" amount="1"/>
+           <reward type="Resource" name="HardCurrency" amount="250" />
+         </posteffects>
+      </quest>   
+      
+      <quest name="CQ2S1_Reconstitution_Tcl2" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl2" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >            
+        <startcondition>
+          <questactive item="CQ2M1_TheFallenArmy_Tcl2" />    
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Buff" name="ProductivityBuffLvl1" amount="400" condition="produce"/>
+           <trigger type="PayForQuestFinish" name="Coal" amount="500" />
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Bread" amount="200"/>               
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>    
+      
+      <quest name="CQ2S2_Recovery_Tcl2" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl2" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >            
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="SpecialistTask" name="FindTreasureShort" condition="found" resourceType="Stone" amount="25"/>
+           <trigger type="Resource" name="" condition="sell" amount="1000"/>
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Coin" amount="20"/>               
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>   
+      
+      <quest name="CQ2S3_Sharing_Tcl2" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl2" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >            
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Fish" amount="800" condition="produce"/>
+           <trigger type="BuffOnFriend" name="ProductivityBuffLvl1" condition="geDelta" amount="200"/>
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Bronze" amount="50"/>                
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>   
+      
+      <quest name="CQ2S4_Elitist_Tcl2" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl2" icon="Social" npc="quest_character_geologist01.png" showRewardWindow="true" >            
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="WinBattlewithUnits" name="Recruit" condition="winbattlewithunits" amount="100"/> 
+           <trigger type="Resource" name="" condition="buy" amount="1000" />
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="BronzeOre" amount="100"/>                   
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>   
+      
+      <quest name="CQ2S5_Equipment_Tcl2" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl2" icon="Trade" npc="quest_character_geologist01.png" showRewardWindow="true" >            
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="BronzeSword" amount="100" condition="produce"/>     
+           <trigger type="BuffByFriend" name="" condition="geDelta" amount="50"/>
+        </triggers>
+        <posteffects>
+           <reward type="Resource" name="Beer" amount="300"/>  
+           <reward type="Resource" name="Coin" amount="20"/>  
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest> 
+      
+      <quest name="CQ2S6_StandingArmy_Tcl2" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl2" icon="Military" npc="quest_character_geologist01.png" showRewardWindow="true" >           
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="MilitaryUnit" name="Recruit" condition="ge" amount="200"/>
+           <trigger type="WinBattlewithUnits" name="Recruit" condition="winbattlewithunits" amount="50"/>              
+        </triggers>
+        <posteffects>
+           <reward type="Resource" name="Bow" amount="50"/>          
+           <reward type="Resource" name="Coin" amount="20"/> 
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>   
+      
+      <quest name="CQ2S7_Scheming_Tcl2" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl2" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >            
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="WinBattlewithUnits" name="Bowman" condition="winbattlewithunits" amount="50"/>                         
+           <trigger type="Resource" name="Beer" amount="500" condition="ge"/>
+        </triggers>
+        <posteffects>
+           <reward type="Resource" name="Plank" amount="500"/>    
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>    
+      
+      <quest name="CQ2S8_Aquisition_Tcl2" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl2" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >           
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Population" amount="100" condition="produce"/>             
+           <trigger type="CheckArmy" condition="ge" amount="100"/>
+        </triggers>
+        <posteffects>
+           <reward type="Resource" name="Corn" amount="100"/>              
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>     
+      
+      <quest name="CQ2S9_Perseverance_Tcl2" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl2" icon="Trade" npc="quest_character_geologist01.png" showRewardWindow="true" >           
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Beer" amount="200" condition="produce"/>           
+           <trigger type="PayForQuestFinish" name="Water" amount="1000" />    
+        </triggers>
+        <posteffects>
+           <reward type="Resource" name="Wood" amount="200"/>      
+			<reward type="Resource" name="Population" amount="20"/>  
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>    
+      
+      <quest name="CQ2S10_Revelation_Tcl2" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl2" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >           
+        <preeffects>
+        </preeffects>
+        <triggers>                         
+           <trigger type="Resource" name="Stone" amount="400" condition="produce"/> 
+           <trigger type="PayForQuestFinish" name="Wood" amount="500" />        
+        </triggers>
+        <posteffects>
+           <reward type="Resource" name="Marble" amount="1000"/>         
+        </posteffects>
+      </quest>   
+
+<!-- Tcl 3 -->
+
+       <quest name="CQ2M1_TheFallenArmy_Tcl3" type="Crisis" icon="QuestLonger" npc="quest_character_geologist01.png" showRewardWindow="true">            
+         <preeffects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_crisisquests_0" effectDelay="3"/>  
+			<sendmail name="CrisisInfo" item="CrisisQuestchainStarted"/>
+         </preeffects>
+         <helpeffects>
+         </helpeffects>
+         <triggers>
+           <trigger type="QuestComplete" name="CQ2S1_Reconstitution_Tcl3" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S2_Recovery_Tcl3" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S3_Sharing_Tcl3" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S4_Elitist_Tcl3" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S5_Equipment_Tcl3" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S6_StandingArmy_Tcl3" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S7_Scheming_Tcl3" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S8_Aquisition_Tcl3" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S9_Perseverance_Tcl3" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S10_Revelation_Tcl3" condition="questcompleted" amount="1"/>
+         </triggers>
+         <posteffects>
+          <reward type="Buff" item="RecoverGeneral" amount="1"/>
+          <reward type="Buff" item="RecoverGeneral" amount="1"/>
+           <reward type="Resource" name="HardCurrency" amount="250" />  
+         </posteffects>
+      </quest>   
+      
+      <quest name="CQ2S1_Reconstitution_Tcl3" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl3" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >            
+        <startcondition>
+          <questactive item="CQ2M1_TheFallenArmy_Tcl3" />          
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Buff" name="ProductivityBuffLvl2" amount="150" condition="produce"/>
+           <trigger type="PayForQuestFinish" name="Bread" amount="1000" />
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Iron" amount="200"/>               
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>
+      
+      <quest name="CQ2S2_Recovery_Tcl3" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl3" icon="Military" npc="quest_character_geologist01.png" showRewardWindow="true" >           
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="SpecialistTask" name="FindTreasureMedium" condition="found" resourceType="Marble" amount="200"/>
+           <trigger type="Resource" name="" condition="sell" amount="5000"/>
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Coin" amount="50"/>               
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>
+      
+      <quest name="CQ2S3_Sharing_Tcl3" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl3" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >           
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Bread" amount="1500" condition="produce"/>
+           <trigger type="BuffOnFriend" name="ProductivityBuffLvl2" condition="geDelta" amount="150"/>
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="MapPart" amount="50"/>            
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>
+      
+      <quest name="CQ2S4_Elitist_Tcl3" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl3" icon="Social" npc="quest_character_geologist01.png" showRewardWindow="true" >           
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<completeadventurelist type="Mission,Coop,Mini" amount="1" locaExtension="AnyMission_1" />
+           <trigger type="Resource" name="" condition="buy" amount="5000" />
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="IronOre" amount="300"/>           
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>
+      
+      <quest name="CQ2S5_Equipment_Tcl3" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl3" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >           
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="IronSword" amount="100" condition="produce"/>     
+           <trigger type="BuffByFriend" name="" condition="geDelta" amount="100"/>
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Beer" amount="500"/>         
+          <reward type="Resource" name="Coin" amount="50"/>  
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>
+      
+      <quest name="CQ2S6_StandingArmy_Tcl3" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl3" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >           
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="MilitaryUnit" name="Recruit" condition="ge" amount="450"/>
+           <trigger type="PayForQuestFinish" name="Coal" amount="5000" />             
+        </triggers>
+        <posteffects>
+           <reward type="Resource" name="MapPart" amount="50"/>            
+           <reward type="Resource" name="Coin" amount="50"/>
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>
+      
+      <quest name="CQ2S7_Scheming_Tcl3" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl3" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >            
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Adventure" name="StealingFromTheRich" condition="geDelta" amount="1" />                       
+           <trigger type="Resource" name="Marble" amount="1000" condition="ge"/>
+        </triggers>
+        <posteffects>
+           <reward type="Resource" name="Tool" amount="500"/>           
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>
+      
+      <quest name="CQ2S8_Aquisition_Tcl3" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl3" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >           
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Population" amount="200" condition="produce"/>            
+           <trigger type="CheckArmy" condition="ge" amount="500"/>
+        </triggers>
+        <posteffects>
+           <reward type="Resource" name="Sausage" amount="300"/>              
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>
+      
+      <quest name="CQ2S9_Perseverance_Tcl3" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl3" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >           
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Meat" amount="300" condition="produce"/>                    
+           <trigger type="Adventure" name="" condition="ge" amount="5" /> 
+        </triggers>
+        <posteffects>
+           <reward type="Resource" name="BronzeSword" amount="100"/>         
+           <reward type="Resource" name="Population" amount="30"/> 
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>
+      
+      <quest name="CQ2S10_Revelation_Tcl3" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl3" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >           
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<trigger type="Adventure" name="" condition="geDelta" amount="3" />  
+			<trigger type="PayForQuestFinish" name="Tool" amount="3000" />         
+        </triggers>
+        <posteffects>
+           <reward type="Resource" name="Steel" amount="500"/>             
+        </posteffects>
+      </quest>
+
+<!-- Tcl 4 -->
+
+       <quest name="CQ2M1_TheFallenArmy_Tcl4" type="Crisis" icon="QuestLonger" npc="quest_character_geologist01.png" showRewardWindow="true">            
+         <preeffects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_crisisquests_0" effectDelay="3"/>  
+			<sendmail name="CrisisInfo" item="CrisisQuestchainStarted"/>
+         </preeffects>
+         <helpeffects>
+         </helpeffects>
+         <triggers>
+           <trigger type="QuestComplete" name="CQ2S1_Reconstitution_Tcl4" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S2_Recovery_Tcl4" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S3_Sharing_Tcl4" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S4_Elitist_Tcl4" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S5_Equipment_Tcl4" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S6_StandingArmy_Tcl4" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S7_Scheming_Tcl4" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S8_Aquisition_Tcl4" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S9_Perseverance_Tcl4" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S10_Revelation_Tcl4" condition="questcompleted" amount="1"/>
+         </triggers>
+         <posteffects>
+          <reward type="Buff" item="RecoverGeneral" amount="1"/>
+          <reward type="Buff" item="RecoverGeneral" amount="1"/>
+          <reward type="Buff" item="RecoverGeneral" amount="1"/>
+           <reward type="Resource" name="HardCurrency" amount="250" />            
+         </posteffects>
+      </quest>   
+      
+      <quest name="CQ2S1_Reconstitution_Tcl4" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl4" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >            
+        <startcondition>
+          <questactive item="CQ2M1_TheFallenArmy_Tcl4" />        
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Buff" name="ProductivityBuffLvl3" amount="100" condition="produce"/>
+           <trigger type="PayForQuestFinish" name="RealPlank" amount="5000" />
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="ExoticWood" amount="200"/>               
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>
+      
+      <quest name="CQ2S2_Recovery_Tcl4" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl4" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >           
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="SpecialistTask" name="FindTreasureLong" condition="found" resourceType="ExoticWood" amount="20"/>
+           <trigger type="Resource" name="" condition="sell" amount="10000"/>
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Coin" amount="100"/>               
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>
+      
+      <quest name="CQ2S3_Sharing_Tcl4" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl4" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >           
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Sausage" amount="350" condition="produce"/>
+           <trigger type="BuffOnFriend" name="ProductivityBuffLvl3" condition="geDelta" amount="100"/>
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="MapPart" amount="100"/>              
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>
+      
+      <quest name="CQ2S4_Elitist_Tcl4" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl4" icon="Social" npc="quest_character_geologist01.png" showRewardWindow="true" >            
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<completeadventurelist type="Mission,Coop,Mini" amount="2" locaExtension="AnyMission_many" />
+           <trigger type="Resource" name="" condition="buy" amount="10000" />
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="IronOre" amount="500"/>                  
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>
+      
+      <quest name="CQ2S5_Equipment_Tcl4" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl4" icon="Military" npc="quest_character_geologist01.png" showRewardWindow="true" >           
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="SteelSword" amount="100" condition="produce"/>     
+           <trigger type="BuffByFriend" name="" condition="geDelta" amount="150"/>
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Beer" amount="1000"/>             
+          <reward type="Resource" name="Coin" amount="100"/>    
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>
+      
+      <quest name="CQ2S6_StandingArmy_Tcl4" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl4" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >           
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="MilitaryUnit" name="Cavalry" condition="ge" amount="200"/>
+           <trigger type="PayForQuestFinish" name="Marble" amount="8000" />             
+        </triggers>
+        <posteffects>
+           <reward type="Resource" name="MapPart" amount="80"/>     
+           <reward type="Resource" name="Coin" amount="80"/>            
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>
+      
+      <quest name="CQ2S7_Scheming_Tcl4" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl4" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >           
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Adventure" name="SonsOfTheVeld" condition="geDelta" amount="1" />                       
+           <trigger type="Resource" name="Horse" amount="1000" condition="ge"/>
+        </triggers>
+        <posteffects>
+           <reward type="Resource" name="Sausage" amount="500"/>          
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>
+      
+      <quest name="CQ2S8_Aquisition_Tcl4" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl4" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >           
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Population" amount="230" condition="produce"/>             
+           <trigger type="CheckArmy" condition="ge" amount="1000"/>
+        </triggers>
+        <posteffects>
+           <reward type="Resource" name="IronOre" amount="300"/>            
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>
+      
+      <quest name="CQ2S9_Perseverance_Tcl4" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl4" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >           
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Iron" amount="200" condition="produce"/>           
+           <trigger type="Adventure" name="" condition="ge" amount="8" /> 
+        </triggers>
+        <posteffects>
+           <reward type="Resource" name="BronzeSword" amount="200"/>           
+           <reward type="Resource" name="Population" amount="40"/>           
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>
+      
+      <quest name="CQ2S10_Revelation_Tcl4" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl4" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >           
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<trigger type="Adventure" name="" condition="geDelta" amount="4" />  
+			<trigger type="PayForQuestFinish" name="Coal" amount="8000" />  
+        </triggers>
+        <posteffects>
+           <reward type="Resource" name="Granite" amount="500"/>   
+        </posteffects>
+      </quest>
+
+<!-- Tcl 5 -->
+
+       <quest name="CQ2M1_TheFallenArmy_Tcl5" type="Crisis" icon="QuestLonger" npc="quest_character_geologist01.png" showRewardWindow="true">            
+         <preeffects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_crisisquests_0" effectDelay="3"/>  
+			<sendmail name="CrisisInfo" item="CrisisQuestchainStarted"/>
+         </preeffects>
+         <helpeffects>
+         </helpeffects>
+         <triggers>
+           <trigger type="QuestComplete" name="CQ2S1_Reconstitution_Tcl5" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S2_Recovery_Tcl5" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S3_Sharing_Tcl5" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S4_Elitist_Tcl5" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S5_Equipment_Tcl5" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S6_StandingArmy_Tcl5" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S7_Scheming_Tcl5" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S8_Aquisition_Tcl5" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S9_Perseverance_Tcl5" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="CQ2S10_Revelation_Tcl5" condition="questcompleted" amount="1"/>
+         </triggers>
+         <posteffects>
+          <reward type="Buff" item="RecoverGeneral" amount="1"/>
+          <reward type="Buff" item="RecoverGeneral" amount="1"/>
+          <reward type="Buff" item="RecoverGeneral" amount="1"/>
+          <reward type="Buff" item="RecoverGeneral" amount="1"/>
+           <reward type="Resource" name="HardCurrency" amount="250" />     
+         </posteffects>
+      </quest>   
+      
+      <quest name="CQ2S1_Reconstitution_Tcl5" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl5" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >            
+        <startcondition>
+          <questactive item="CQ2M1_TheFallenArmy_Tcl5" />        
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Buff" name="ProductivityBuffLvl3" amount="150" condition="produce"/>
+           <trigger type="PayForQuestFinish" name="Salpeter" amount="5000" />
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="ExoticPlank" amount="400"/>               
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>
+      
+      <quest name="CQ2S2_Recovery_Tcl5" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl5" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >           
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="SpecialistTask" name="FindTreasureEvenLonger" condition="found" resourceType="Granite" amount="30"/>
+           <trigger type="Resource" name="" condition="sell" amount="20000"/>
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Coin" amount="150"/>               
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>
+      
+      <quest name="CQ2S3_Sharing_Tcl5" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl5" icon="Social" npc="quest_character_geologist01.png" showRewardWindow="true" >           
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Sausage" amount="500" condition="produce"/>
+           <trigger type="BuffOnFriend" name="ProductivityBuffLvl3" condition="geDelta" amount="200"/>
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="MapPart" amount="150"/>          
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>
+      
+      <quest name="CQ2S4_Elitist_Tcl5" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl5" icon="Social" npc="quest_character_geologist01.png" showRewardWindow="true" >           
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<completeadventurelist type="Mission,Coop,Mini" tier="6" amount="1" locaExtension="AnyMission_Dif6_1" />
+           <trigger type="Resource" name="" condition="buy" amount="20000" />
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="TitaniumOre" amount="300"/>              
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>
+      
+      <quest name="CQ2S5_Equipment_Tcl5" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl5" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >           
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="TitaniumSword" amount="50" condition="produce"/>     
+           <trigger type="BuffByFriend" name="" condition="geDelta" amount="200"/>
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Beer" amount="1000"/>               
+          <reward type="Resource" name="Coin" amount="100"/>               
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>
+      
+      <quest name="CQ2S6_StandingArmy_Tcl5" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl5" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >           
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="MilitaryUnit" name="Cavalry" condition="ge" amount="250"/>
+           <trigger type="PayForQuestFinish" name="ExoticWood" amount="10000" />       
+        </triggers>
+        <posteffects>
+           <reward type="Resource" name="MapPart" amount="100"/>              
+           <reward type="Resource" name="Coin" amount="100"/>              
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>
+      
+      <quest name="CQ2S7_Scheming_Tcl5" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl5" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >           
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Adventure" name="SecludedExperiments" condition="geDelta" amount="1" />                       
+           <trigger type="Resource" name="Sausage" amount="2000" condition="ge"/>
+        </triggers>
+        <posteffects>
+           <reward type="Resource" name="Granite" amount="400"/>      
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>
+      
+      <quest name="CQ2S8_Aquisition_Tcl5" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl5" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >           
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Population" amount="250" condition="produce"/>             
+           <trigger type="CheckArmy" condition="ge" amount="1800"/>
+        </triggers>
+        <posteffects>
+           <reward type="Resource" name="ExoticWood" amount="100"/> 
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>
+      
+      <quest name="CQ2S9_Perseverance_Tcl5" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl5" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >           
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="ExoticPlank" amount="300" condition="produce"/>           
+           <trigger type="Adventure" name="" condition="ge" amount="12" /> 
+        </triggers>
+        <posteffects>
+           <reward type="Resource" name="BronzeSword" amount="300"/>       
+           <reward type="Resource" name="Population" amount="50"/>       
+        </posteffects>
+        <postrequisits>
+        </postrequisits>
+      </quest>
+      
+      <quest name="CQ2S10_Revelation_Tcl5" type="Crisis" connectedToQuest="CQ2M1_TheFallenArmy_Tcl5" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >           
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<trigger type="Adventure" name="" condition="geDelta" amount="5" />  
+			<trigger type="PayForQuestFinish" name="Steel" amount="5000" />  
+        </triggers>
+        <posteffects>
+           <reward type="Resource" name="Granite" amount="700"/> 
+        </posteffects>
+      </quest>
+
+</root>

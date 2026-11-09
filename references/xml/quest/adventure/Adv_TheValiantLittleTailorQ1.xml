@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	 <quest name="Adv_TheValiantLittleTailorQ1" type="Story" icon="Military" npc="quest_character_tailor.png" specialType="firstQuest" >
+		<triggers>
+      <trigger type="Building" name="cave_wildlife_leader" condition="l" amount="3" locaExtension="er1_a1_q1"/>
+		  </triggers>
+      <rewards/>
+		<postrequisits>
+         <postrequisite startQuest="Adv_TheValiantLittleTailorQ2" /> 
+		</postrequisits>
+    </quest>
+	<quest name="Adv_TheValiantLittleTailorQ2" type="Story" icon="Military" npc="quest_character_tailor.png">
+		<triggers>
+      <trigger type="Building" name="cave_wildlife_leader" condition="l" amount="2" locaExtension="er1_a1_q2"/>
+		  </triggers>
+      <rewards/>
+		<postrequisits>
+         <postrequisite startQuest="Adv_TheValiantLittleTailorQ3" /> 
+		</postrequisits>    </quest>
+	<quest name="Adv_TheValiantLittleTailorQ3" type="Story" icon="Military" npc="quest_character_tailor.png">
+		<triggers>
+      <trigger type="Building" name="cave_wildlife_leader" condition="l" amount="1" locaExtension="er1_a1_q3"/>
+		  </triggers>
+      <rewards/>
+		<postrequisits>
+         <postrequisite startQuest="Adv_TheValiantLittleTailorQ4" /> 
+		</postrequisits>
+    </quest>
+	 <quest name="Adv_TheValiantLittleTailorQ4" type="Story" icon="Military" npc="quest_character_tailor.png" specialType="lastQuest" >
+		<triggers>
+      <trigger type="Building" name="Banditsleader_RoyalResidence" condition="l" amount="1" locaExtension="er1_a1_q4"/>
+		  </triggers>
+      <rewards/>
+    </quest>	
+</Root>

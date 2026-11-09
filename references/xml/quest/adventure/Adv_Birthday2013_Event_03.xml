@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+
+	<quest name="Adv_Birthday2013_Event_03" specialType="firstQuestlastQuest" icon="Balloons" npc="quest_character_jester01.png" showQuestWindow="false" >
+		<triggers>  
+			<trigger type="Building" name="s_wheelBroken_birthday" condition="selected" onComplete="destroySelectedBuilding" amount="1"/>
+			<trigger type="Building" name="s_stoneFlowered_birthday" condition="selected" onComplete="destroySelectedBuilding" amount="1"/>
+			<trigger type="Building" name="s_loadedCart_birthday" condition="selected" onComplete="destroySelectedBuilding" amount="1"/>
+			<trigger type="Building" name="s_signpost_01_birthday" condition="selected" onComplete="destroySelectedBuilding" amount="1"/>
+			<trigger type="Building" name="s_benchIron_birthday" condition="selected" onComplete="destroySelectedBuilding" amount="1"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="100"/>  	
+		</rewards>
+		<postrequisits>
+		</postrequisits>
+    </quest>
+
+</Root>

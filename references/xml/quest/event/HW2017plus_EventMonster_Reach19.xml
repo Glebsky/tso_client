@@ -1,0 +1,1531 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+
+
+	<!-- HALLOWEEN 2016 EVENT MONSTER QUESTS -->
+	<!-- HALLOWEEN 2016 EVENT MONSTER QUESTS (LEVEL REQUIREMENT) -->
+	<quest name="HW2017plus_EventMonster_Reach19" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" >
+		<triggers>
+			<trigger type="PlayerLevel" name="" condition="ge" amount="19" locaExtension="Halloween"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="10" />
+			<startquest name="HW2017plus_EventMonster_Tut1" />
+			<startquest name="HW2017plus_ThePumpkinMasterMain" />
+			<startquest name="HW2017plus_TheForgotten_Start" />
+			<startquest name="HW2017plus_TerrorizedTownMain" />
+			<startquest name="HW2017plus_DarkhoodMain" />		
+			<startquest name="HW2017plus_ZombieInvaders_Reach50" />
+		</posteffects>
+	</quest>
+
+	 <quest name="HW2017plus_EventMonster_Reach19_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="HW2017plus_EventMonster_Reach19"/>
+		</startcondition>
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<!--spawnbuilding name="EventMonster_Tutorial" x="21" y="54" units="EpicMonsterHeart1|100" action="replace"/-->
+			<startquest name="HW2017plus_CheckWeek2" />
+			<startquest name="HW2017plus_CheckWeek3" />
+		</posteffects>
+     </quest>
+
+	<!-- HALLOWEEN 2020 NEW EVENT QUESTS (Darkhood) -->
+	<quest name="HW2017plus_DarkhoodMain" type="Event" icon="HalloweenResource" npc="quest_character_darkhood.png" linkEventWindow="true" cancelable="false">		
+		<triggers>
+			<questcomplete item="HW2017plus_DarkhoodSub1" />
+			<questcomplete item="HW2017plus_DarkhoodSub2" />
+			<questcomplete item="HW2017plus_DarkhoodSub3" />
+			<questcomplete item="HW2017plus_DarkhoodSub4" />
+			<questcomplete item="HW2017plus_DarkhoodSub5" />
+			<questcomplete item="HW2017plus_DarkhoodSub6" />
+			<questcomplete item="HW2017plus_DarkhoodSub7" />
+			<questcomplete item="HW2017plus_DarkhoodSub8" />
+			<questcomplete item="HW2017plus_DarkhoodSub9" />
+			<questcomplete item="HW2017plus_DarkhoodSub10" />		
+			<questcomplete item="HW2017plus_DarkhoodSub11" />
+			<questcomplete item="HW2017plus_DarkhoodSub12" />
+			<questcomplete item="HW2017plus_DarkhoodSub13" />	
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="1000" />
+			<reward type="Buff" item="BuildBuilding" name="BlackTree_Purple" amount="1" recurringChance="100" />
+			<reward type="Resource" name="HalloweenResource" amount="120" />	
+			<startquest name="HW2017plus_DarkhoodSub14" />				
+		</posteffects>
+	</quest>	
+
+	<quest name="HW2017plus_DarkhoodSub1" connectedToQuest="HW2017plus_DarkhoodMain" type="Event" icon="HalloweenResource" npc="quest_character_darkhood.png" linkEventWindow="true" cancelable="false">
+		<startcondition>
+			<questactive item="HW2017plus_DarkhoodMain"/>
+		</startcondition>
+		<triggers>
+			<specialisttaskfinished item="FindTreasureShort" amount="150"/>			
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="100" />		
+			<reward type="Resource" name="HalloweenResource" amount="10" />			
+		</posteffects>
+	</quest>	
+	
+	<quest name="HW2017plus_DarkhoodSub2" connectedToQuest="HW2017plus_DarkhoodMain" type="Event" icon="HalloweenResource" npc="quest_character_darkhood.png" linkEventWindow="true" cancelable="false">
+		<startcondition>
+			<questactive item="HW2017plus_DarkhoodMain"/>
+		</startcondition>
+		<triggers>
+			<buffappliedonfriend amount="150"/>	
+			<buffappliedonfriend item="ProductivityBuffLvl2" amount="25" locaExtension="item" />	
+			<buffappliedonfriend item="HalloweenEvent_Horror" amount="50" locaExtension="item" />			
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="100" />		
+			<reward type="Resource" name="HalloweenResource" amount="10" />			
+		</posteffects>
+	</quest>	
+
+	<quest name="HW2017plus_DarkhoodSub3" connectedToQuest="HW2017plus_DarkhoodMain" type="Event" icon="HalloweenResource" npc="quest_character_darkhood.png" linkEventWindow="true" cancelable="false">
+		<startcondition>
+			<questactive item="HW2017plus_DarkhoodMain"/>
+		</startcondition>
+		<triggers>
+			<buffreceivedfromfriend amount="50" item="HalloweenEvent_Horror" locaExtension="pc_receive"/>			
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="100" />		
+			<reward type="Resource" name="HalloweenResource" amount="10" />			
+		</posteffects>
+	</quest>		
+
+	<quest name="HW2017plus_DarkhoodSub4" connectedToQuest="HW2017plus_DarkhoodMain" type="Event" icon="HalloweenResource" npc="quest_character_darkhood.png" linkEventWindow="true" cancelable="false">
+		<startcondition>
+			<questactive item="HW2017plus_DarkhoodMain"/>
+		</startcondition>
+		<triggers>	
+			<buildingselected item="Tavern" min="1" />
+			<buildingselected item="Barracks" min="1" />
+			<buildingselected item="ProvisionHouse" min="1"/>
+			<buildingselected min="1" item="WoodCutter"/>			
+			<buildingselected min="1" item="SimpleResidence"/>			
+			<buildingselected min="1" item="Logistics"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="100" />		
+			<reward type="Resource" name="HalloweenResource" amount="10" />			
+		</posteffects>
+	</quest>		
+
+	<quest name="HW2017plus_DarkhoodSub5" connectedToQuest="HW2017plus_DarkhoodMain" type="Event" icon="HalloweenResource" npc="quest_character_darkhood.png" linkEventWindow="true" cancelable="false">
+		<startcondition>
+			<questactive item="HW2017plus_DarkhoodMain"/>
+		</startcondition>
+		<triggers>
+			<buffapplied item="FillDeposit" type="Fish" min="100000" locaExtension="filldeposit"/>		
+			<buffapplied item="FillDeposit" type="Meat" min="20000" locaExtension="filldeposit"/>			
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="100" />		
+			<reward type="Resource" name="HalloweenResource" amount="10" />			
+		</posteffects>
+	</quest>		
+
+	<quest name="HW2017plus_DarkhoodSub6" connectedToQuest="HW2017plus_DarkhoodMain" type="Event" icon="HalloweenResource" npc="quest_character_darkhood.png" linkEventWindow="true" cancelable="false">
+		<startcondition>
+			<questactive item="HW2017plus_DarkhoodMain"/>
+		</startcondition>
+		<triggers>
+			<completeadventurelist type="Mini" amount="4" locaExtension="Mini_many"/>		
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="100" />		
+			<reward type="Resource" name="HalloweenResource" amount="10" />			
+		</posteffects>
+	</quest>		
+
+	<quest name="HW2017plus_DarkhoodSub7" connectedToQuest="HW2017plus_DarkhoodMain" type="Event" icon="HalloweenResource" npc="quest_character_darkhood.png" linkEventWindow="true" cancelable="false">
+		<startcondition>
+			<questactive item="HW2017plus_DarkhoodMain"/>
+		</startcondition>
+		<triggers>
+			<lootedresource amount="15000" target="Mission,Mini,Coop,Venture,Scenario" locaExtension="AnyMission" />	
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="100" />		
+			<reward type="Resource" name="HalloweenResource" amount="10" />			
+		</posteffects>
+	</quest>	
+
+	<quest name="HW2017plus_DarkhoodSub8" connectedToQuest="HW2017plus_DarkhoodMain" type="Event" icon="HalloweenResource" npc="quest_character_darkhood.png" linkEventWindow="true" cancelable="false">
+		<startcondition>
+			<questactive item="HW2017plus_DarkhoodMain"/>
+		</startcondition>
+		<triggers>
+			<completeadventurelist amount="10"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="100" />		
+			<reward type="Resource" name="HalloweenResource" amount="10" />			
+		</posteffects>
+	</quest>	
+	
+	<quest name="HW2017plus_DarkhoodSub9" connectedToQuest="HW2017plus_DarkhoodMain" type="Event" icon="HalloweenResource" npc="quest_character_darkhood.png" linkEventWindow="true" cancelable="false">
+		<startcondition>
+			<questactive item="HW2017plus_DarkhoodMain"/>
+		</startcondition>
+		<triggers>
+			<completeadventurelist type="Mission,Coop,Scenario,Venture" amount="5" locaExtension="NonMiniMission_many" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="100" />		
+			<reward type="Resource" name="HalloweenResource" amount="10" />			
+		</posteffects>
+	</quest>		
+
+	<quest name="HW2017plus_DarkhoodSub10" connectedToQuest="HW2017plus_DarkhoodMain" type="Event" icon="HalloweenResource" npc="quest_character_darkhood.png" linkEventWindow="true" cancelable="false">
+		<startcondition>
+			<questactive item="HW2017plus_DarkhoodMain"/>
+		</startcondition>
+		<triggers>
+			<completeadventurelist type="Coop" amount="2" locaExtension="Coop_many"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="100" />		
+			<reward type="Resource" name="HalloweenResource" amount="10" />			
+		</posteffects>
+	</quest>		
+	
+	<quest name="HW2017plus_DarkhoodSub11" connectedToQuest="HW2017plus_DarkhoodMain" type="Event" icon="HalloweenResource" npc="quest_character_darkhood.png" linkEventWindow="true" cancelable="false">
+		<startcondition>
+			<questactive item="HW2017plus_DarkhoodMain"/>
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Fish" amount="8128" />	
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="100" />		
+			<reward type="Resource" name="HalloweenResource" amount="10" />			
+		</posteffects>
+	</quest>		
+
+	<quest name="HW2017plus_DarkhoodSub12" connectedToQuest="HW2017plus_DarkhoodMain" type="Event" icon="HalloweenResource" npc="quest_character_darkhood.png" linkEventWindow="true" cancelable="false">
+		<startcondition>
+			<questactive item="HW2017plus_DarkhoodMain"/>
+		</startcondition>
+		<triggers>
+			<produceditemlist item="Recruit" amount="150" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Recruit" amount="150" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="100" />		
+			<reward type="Resource" name="HalloweenResource" amount="10" />			
+		</posteffects>
+	</quest>	
+
+	<quest name="HW2017plus_DarkhoodSub13" connectedToQuest="HW2017plus_DarkhoodMain" type="Event" icon="HalloweenResource" npc="quest_character_darkhood.png" linkEventWindow="true" cancelable="false">
+		<startcondition>
+			<questactive item="HW2017plus_DarkhoodMain"/>
+		</startcondition>
+		<triggers>
+			<resourcegathered min="1729" type="Coal"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="100" />		
+			<reward type="Resource" name="HalloweenResource" amount="10" />			
+		</posteffects>
+	</quest>	
+
+	<quest name="HW2017plus_DarkhoodSub14" type="Event" icon="HalloweenResource" npc="quest_character_darkhood_reveal.png" linkEventWindow="true" cancelable="false">
+		<triggers>
+			<onmap item="BlackTree_Purple" min="1" />
+			<buildingselected min="1" item="BlackTree_Purple"/>			
+			<trigger type="PayForQuestFinish" name="Water" amount="1313" />	
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="100" />		
+			<reward type="Resource" name="HalloweenResource" amount="25" />			
+		</posteffects>
+	</quest>					
+
+
+	<!-- HALLOWEEN 2016 EVENT MONSTER QUESTS (TUTORIAL) -->
+	<quest name="HW2017plus_EventMonster_Tut1" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="30">
+	<!--	<preeffects>
+			   spawnbuilding name="EventMonster_Tutorial" x="21" y="54" units="EpicMonsterHeart1|100"/
+		</preeffects> -->
+		<triggers>
+			<buffproduced item="EventMonsterBuff2014Heart1" min="4" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="5" />
+			<startquest name="HW2017plus_EventMonster_Tut2" />
+		</posteffects>
+	</quest>
+
+	 <quest name="HW2017plus_EventMonster_Tut2_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="HW2017plus_EventMonster_Tut2"/>
+		</startcondition>
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<movecamera x="21" y="54" />
+			<spawnbuilding name="EventMonster_Tutorial" x="21" y="54" units="EpicMonsterHeart1|100" action="ignoreBlocking,spawnConstructing,replace" mode="enemy"/>
+		</posteffects>
+     </quest>
+
+	<quest name="HW2017plus_EventMonster_Tut2" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="30">
+		<triggers>
+			<trigger type="Buff" name="EventMonster_Tutorial" actionName="" amount="1" condition="geDelta"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="10" />
+			<startquest name="HW2017plus_EventMonster1" />
+		</posteffects>
+	</quest>
+	
+	 <quest name="HW2017plus_EventMonster1_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="HW2017plus_EventMonster1"/>
+		</startcondition>
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_Tutorial" x="21" y="54" units="EpicMonsterHeart1|100" action="ignoreBlocking,spawnConstructing" mode="enemy"/>
+		</posteffects>
+     </quest>	
+	
+	<!-- HALLOWEEN 2016 EVENT MONSTER QUESTS (19-26 LEVEL MONSTER) -->
+	<quest name="HW2017plus_EventMonster1" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png">
+		<triggers>
+			<trigger type="Building" name="EventMonster_Tutorial" condition="destroyed" amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="10" />
+			<startquest name="HW2017plus_EventMonster2" startDelay="57600" />
+			<spawnbuilding name="EventMonster" x="21" y="54" units="EpicMonsterHeart1|120" action="ignoreBlocking,spawnConstructing,replace" mode="enemy"/>
+		</posteffects>
+	</quest>
+	<quest name="HW2017plus_EventMonster2" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png">
+		<triggers>
+			<trigger type="Building" name="EventMonster" condition="destroyed" amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="10" />
+			<startquest name="HW2017plus_EventMonster3" startDelay="57600" />
+			<spawnbuilding name="EventMonster" x="21" y="54" units="EpicMonsterHeart1|140" action="ignoreBlocking,spawnConstructing,replace" mode="enemy"/>
+		</posteffects>
+	</quest>
+	<quest name="HW2017plus_EventMonster3" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png">
+		<triggers>
+			<trigger type="Building" name="EventMonster" condition="destroyed" amount="1"/>
+		</triggers>
+		<posteffects>
+ 			<reward type="Resource" name="HalloweenResource" amount="10" />
+			<startquest name="HW2017plus_EventMonster4" startDelay="57600" />
+			<spawnbuilding name="EventMonster" x="21" y="54" units="EpicMonsterHeart1|160" action="ignoreBlocking,spawnConstructing,replace" mode="enemy"/>
+		</posteffects>
+	</quest>
+	<quest name="HW2017plus_EventMonster4" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png">
+		<triggers>
+			<trigger type="Building" name="EventMonster" condition="destroyed" amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="10" />
+			<startquest name="HW2017plus_EventMonster_Looped" startDelay="57600" />
+			<spawnbuilding name="EventMonster" x="21" y="54" units="EpicMonsterHeart1|200" action="ignoreBlocking,spawnConstructing,replace" mode="enemy"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_EventMonster_Looped" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png">
+		<triggers>
+			<trigger type="Building" name="EventMonster" condition="destroyed" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="15" />
+			<resetquest name="HW2017plus_EventMonster_Looped" startDelay="57600">
+				<conditions>
+					<playerlevel min="19" max="25"/>
+				</conditions>
+			</resetquest>
+			<spawnbuilding name="EventMonster" x="21" y="54" units="EpicMonsterHeart1|200" action="ignoreBlocking,spawnConstructing,replace" mode="enemy">
+				<conditions>
+					<playerlevel min="19" max="25"/>
+				</conditions>
+			</spawnbuilding>
+			<startquest name="HW2017plus_EventMonster_Greater1" startDelay="57600">
+				<conditions>
+					<playerlevel min="26" />
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_Greater" x="21" y="54" units="EpicMonsterHeart2|200" action="ignoreBlocking,spawnConstructing,replace" mode="enemy">
+				<conditions>
+					<playerlevel min="26" />
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<!-- HALLOWEEN 2016 EVENT MONSTER QUESTS (26-36 LEVEL MONSTER) -->
+	<quest name="HW2017plus_EventMonster_Greater1" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png">
+		<triggers>
+			<trigger type="Building" name="EventMonster_Greater" condition="destroyed" amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="25" />
+			<startquest name="HW2017plus_EventMonster_Greater2" startDelay="57600" />
+			<spawnbuilding name="EventMonster_Greater" x="21" y="54" units="EpicMonsterHeart2|230" action="ignoreBlocking,spawnConstructing,replace" mode="enemy"/>
+		</posteffects>
+	</quest>
+	<quest name="HW2017plus_EventMonster_Greater2" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png">
+		<triggers>
+			<trigger type="Building" name="EventMonster_Greater" condition="destroyed" amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="25" />
+			<startquest name="HW2017plus_EventMonster_Greater3" startDelay="57600" />
+			<spawnbuilding name="EventMonster_Greater" x="21" y="54" units="EpicMonsterHeart2|260" action="ignoreBlocking,spawnConstructing,replace" mode="enemy"/>
+		</posteffects>
+	</quest>
+	<quest name="HW2017plus_EventMonster_Greater3" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png">
+		<triggers>
+			<trigger type="Building" name="EventMonster_Greater" condition="destroyed" amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="25" />
+			<startquest name="HW2017plus_EventMonster_Greater4" startDelay="57600" />
+			<spawnbuilding name="EventMonster_Greater" x="21" y="54" units="EpicMonsterHeart2|290" action="ignoreBlocking,spawnConstructing,replace" mode="enemy"/>
+		</posteffects>
+	</quest>
+	<quest name="HW2017plus_EventMonster_Greater4" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png">
+		<triggers>
+			<trigger type="Building" name="EventMonster_Greater" condition="destroyed" amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="30" />
+			<startquest name="HW2017plus_EventMonster_Greater_Looped" startDelay="57600" />
+			<spawnbuilding name="EventMonster_Greater" x="21" y="54" units="EpicMonsterHeart2|350" action="ignoreBlocking,spawnConstructing,replace" mode="enemy"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_EventMonster_Greater_Looped" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png">
+		<triggers>
+			<trigger type="Building" name="EventMonster_Greater" condition="destroyed" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="40" />
+			<resetquest name="HW2017plus_EventMonster_Greater_Looped" startDelay="57600">
+				<conditions>
+					<playerlevel min="26" max="40"/>
+				</conditions>
+			</resetquest>
+			<spawnbuilding name="EventMonster_Greater" x="21" y="54" units="EpicMonsterHeart2|350" action="ignoreBlocking,spawnConstructing,replace" mode="enemy">
+				<conditions>
+					<playerlevel min="26" max="40"/>
+				</conditions>
+			</spawnbuilding>
+			<startquest name="HW2017plus_EventMonster_Ancient1" startDelay="57600">
+				<conditions>
+					<playerlevel min="41" />
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_Ancient" x="21" y="52" units="EpicMonsterHeart3|300" action="ignoreBlocking,spawnConstructing,replace" mode="enemy">
+				<conditions>
+					<playerlevel min="41" />
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<!-- HALLOWEEN 2016 EVENT MONSTER QUESTS (36+ LEVEL MONSTER) -->
+	<quest name="HW2017plus_EventMonster_Ancient1" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png">
+		<triggers>
+			<trigger type="Building" name="EventMonster_Ancient" condition="destroyed" amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="50" />
+			<startquest name="HW2017plus_EventMonster_Ancient2" startDelay="57600" />
+			<spawnbuilding name="EventMonster_Ancient" x="21" y="52" units="EpicMonsterHeart3|350" action="ignoreBlocking,spawnConstructing,replace" mode="enemy"/>
+		</posteffects>
+	</quest>
+	<quest name="HW2017plus_EventMonster_Ancient2" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png">
+		<triggers>
+			<trigger type="Building" name="EventMonster_Ancient" condition="destroyed" amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="50" />
+			<startquest name="HW2017plus_EventMonster_Ancient3" startDelay="57600" />
+			<spawnbuilding name="EventMonster_Ancient" x="21" y="52" units="EpicMonsterHeart3|400" action="ignoreBlocking,spawnConstructing,replace" mode="enemy"/>
+		</posteffects>
+	</quest>
+	<quest name="HW2017plus_EventMonster_Ancient3" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png">
+		<triggers>
+			<trigger type="Building" name="EventMonster_Ancient" condition="destroyed" amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="60" />
+			<startquest name="HW2017plus_EventMonster_Ancient4" startDelay="57600" />
+			<spawnbuilding name="EventMonster_Ancient" x="21" y="52" units="EpicMonsterHeart3|450" action="ignoreBlocking,spawnConstructing,replace" mode="enemy"/>
+		</posteffects>
+	</quest>
+	<quest name="HW2017plus_EventMonster_Ancient4" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png">
+		<triggers>
+			<trigger type="Building" name="EventMonster_Ancient" condition="destroyed" amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="60" />
+			<startquest name="HW2017plus_EventMonster_Ancient_Looped" startDelay="57600" />
+			<spawnbuilding name="EventMonster_Ancient" x="21" y="52" units="EpicMonsterHeart3|550" action="ignoreBlocking,spawnConstructing,replace" mode="enemy"/>
+		</posteffects>
+	</quest>
+		
+	<quest name="HW2017plus_EventMonster_Ancient_Looped" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png">
+		<triggers>
+			<trigger type="Building" name="EventMonster_Ancient" condition="destroyed" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="70" />
+			<resetquest name="HW2017plus_EventMonster_Ancient_Looped" startDelay="57600">
+				<conditions>
+					<playerlevel min="41" max="55"/>
+				</conditions>
+			</resetquest>
+			<spawnbuilding name="EventMonster_Ancient" x="21" y="52" units="EpicMonsterHeart3|550" action="ignoreBlocking,spawnConstructing,replace" mode="enemy">
+				<conditions>
+					<playerlevel min="41" max="55"/>
+				</conditions>
+			</spawnbuilding>			
+			<startquest name="HW2017plus_EventMonster_Supreme1" startDelay="57600">
+				<conditions>
+					<playerlevel min="56" />
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_Supreme" x="21" y="54" units="EpicMonsterHeart4|600" action="ignoreBlocking,spawnConstructing,replace" mode="enemy">
+				<conditions>
+					<playerlevel min="56" />
+				</conditions>
+			</spawnbuilding>
+		</posteffects>		
+		
+	</quest>
+
+	<!-- HALLOWEEN 2016 EVENT MONSTER QUESTS (56+ LEVEL MONSTER) -->
+	<quest name="HW2017plus_EventMonster_Supreme1" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png">
+		<triggers>
+			<trigger type="Building" name="EventMonster_Supreme" condition="destroyed" amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="90" />
+			<startquest name="HW2017plus_EventMonster_Supreme2" startDelay="57600" />
+			<spawnbuilding name="EventMonster_Supreme" x="21" y="54" units="EpicMonsterHeart4|680" action="ignoreBlocking,spawnConstructing,replace" mode="enemy"/>
+		</posteffects>
+	</quest>
+	<quest name="HW2017plus_EventMonster_Supreme2" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png">
+		<triggers>
+			<trigger type="Building" name="EventMonster_Supreme" condition="destroyed" amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="90" />
+			<startquest name="HW2017plus_EventMonster_Supreme3" startDelay="57600" />
+			<spawnbuilding name="EventMonster_Supreme" x="21" y="54" units="EpicMonsterHeart4|760" action="ignoreBlocking,spawnConstructing,replace" mode="enemy"/>
+		</posteffects>
+	</quest>
+	<quest name="HW2017plus_EventMonster_Supreme3" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png">
+		<triggers>
+			<trigger type="Building" name="EventMonster_Supreme" condition="destroyed" amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="110" />
+			<startquest name="HW2017plus_EventMonster_Supreme4" startDelay="57600" />
+			<spawnbuilding name="EventMonster_Supreme" x="21" y="54" units="EpicMonsterHeart4|840" action="ignoreBlocking,spawnConstructing,replace" mode="enemy"/>
+		</posteffects>
+	</quest>
+	<quest name="HW2017plus_EventMonster_Supreme4" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png">
+		<triggers>
+			<trigger type="Building" name="EventMonster_Supreme" condition="destroyed" amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="110" />
+			<startquest name="HW2017plus_EventMonster_Supreme_Looped" startDelay="57600" />
+			<spawnbuilding name="EventMonster_Supreme" x="21" y="54" units="EpicMonsterHeart4|1000" action="ignoreBlocking,spawnConstructing,replace" mode="enemy"/>
+		</posteffects>
+	</quest>
+		
+	<quest name="HW2017plus_EventMonster_Supreme_Looped" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png">
+		<triggers>
+			<trigger type="Building" name="EventMonster_Supreme" condition="destroyed" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="130" />
+			<resetquest name="HW2017plus_EventMonster_Supreme_Looped" startDelay="57600" />
+			<spawnbuilding name="EventMonster_Supreme" x="21" y="54" units="EpicMonsterHeart4|1000" action="ignoreBlocking,spawnConstructing,replace" mode="enemy"/>
+		</posteffects>
+	</quest>
+	
+		
+	<!-- ORIGINAL HALLOWEEN STORY QUESTS "PUMPKIN MASTER" -->
+	<quest name="HW2017plus_ThePumpkinMasterMain" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true">
+		<triggers>
+			<questcomplete item="HW2017plus_ThePumpkinMasterSub1" />
+			<questcomplete item="HW2017plus_ThePumpkinMasterSub2" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	<quest name="HW2017plus_ThePumpkinMasterSub1" type="Event" connectedToQuest="HW2017plus_ThePumpkinMasterMain" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" questWinGemCosts="30" linkEventWindow="true">
+		<startcondition>
+			<questactive item="HW2017plus_ThePumpkinMasterMain" />
+		</startcondition>
+		<triggers>
+			<trigger type="Building" name="pumpkinfield_01" condition="ge" amount="1" />
+			<trigger type="Building" name="pumpkinfield_02" condition="ge" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="5" />
+		</posteffects>
+	</quest>
+
+	<quest name="HW2017plus_ThePumpkinMasterSub2" type="Event" connectedToQuest="HW2017plus_ThePumpkinMasterMain" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" questWinGemCosts="30" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="HW2017plus_ThePumpkinMasterSub1" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="HalloweenResource" condition="geDelta" amount="200" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="5" />
+		</posteffects>
+	</quest>
+
+	
+	<!-- HALLOWEEN 2016 STORY QUESTS "THE FORGOTTEN" -->
+
+	<quest name="HW2017plus_TheForgotten_Start" showQuestWindow="false" showRewardWindow="false" cancelable="true" linkEventWindow="false" >
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite filterQuest="Level19-25" startQuest="HW2017plus_TheForgotten_MainLvl19" />
+				<postrequisite filterQuest="Level26-35" startQuest="HW2017plus_TheForgotten_MainLvl26" />
+				<postrequisite filterQuest="Level36-45" startQuest="HW2017plus_TheForgotten_MainLvl36" />
+				<postrequisite filterQuest="Level46-55" startQuest="HW2017plus_TheForgotten_MainLvl46" />
+				<postrequisite filterQuest="Level56-65" startQuest="HW2017plus_TheForgotten_MainLvl56" />
+				<postrequisite filterQuest="Level66-80" startQuest="HW2017plus_TheForgotten_MainLvl66" />
+			</postrequisite>
+		</postrequisits>
+	</quest>
+	
+		
+	<!-- Main quest -->
+	<quest name="HW2017plus_TheForgotten_MainLvl19" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true">		
+		<triggers>
+			<completequestlist item="HW2017plus_TheForgotten_Sub1_Lvl19,HW2017plus_TheForgotten_Sub2_Lvl19,HW2017plus_TheForgotten_Sub3_Lvl19,HW2017plus_TheForgotten_Sub4_Lvl19,HW2017plus_TheForgotten_Sub5_Lvl19,HW2017plus_TheForgotten_Sub6_Lvl19,HW2017plus_TheForgotten_Sub7_Lvl19" amount="7" locaExtension="TheForgotten" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="100" />
+			<reward type="Buff" item="BuildBuilding" name="PumpkinFieldDeco" amount="1" recurringChance="100"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_MainLvl26" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true">
+		<triggers>
+			<completequestlist item="HW2017plus_TheForgotten_Sub1_Lvl26,HW2017plus_TheForgotten_Sub2_Lvl26,HW2017plus_TheForgotten_Sub3_Lvl26,HW2017plus_TheForgotten_Sub4_Lvl26,HW2017plus_TheForgotten_Sub5_Lvl26,HW2017plus_TheForgotten_Sub6_Lvl26,HW2017plus_TheForgotten_Sub7_Lvl26" amount="7" locaExtension="TheForgotten" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="100" />
+			<reward type="Buff" item="BuildBuilding" name="PumpkinFieldDeco" amount="1" recurringChance="100"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_MainLvl36" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true">
+		<triggers>
+			<completequestlist item="HW2017plus_TheForgotten_Sub1_Lvl36,HW2017plus_TheForgotten_Sub2_Lvl36,HW2017plus_TheForgotten_Sub3_Lvl36,HW2017plus_TheForgotten_Sub4_Lvl36,HW2017plus_TheForgotten_Sub5_Lvl36,HW2017plus_TheForgotten_Sub6_Lvl36,HW2017plus_TheForgotten_Sub7_Lvl36" amount="7" locaExtension="TheForgotten" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="100" />
+			<reward type="Buff" item="BuildBuilding" name="PumpkinFieldDeco" amount="1" recurringChance="100"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_MainLvl46" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true">
+		<triggers>
+			<completequestlist item="HW2017plus_TheForgotten_Sub1_Lvl46,HW2017plus_TheForgotten_Sub2_Lvl46,HW2017plus_TheForgotten_Sub3_Lvl46,HW2017plus_TheForgotten_Sub4_Lvl46,HW2017plus_TheForgotten_Sub5_Lvl46,HW2017plus_TheForgotten_Sub6_Lvl46,HW2017plus_TheForgotten_Sub7_Lvl46" amount="7" locaExtension="TheForgotten" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="100" />
+			<reward type="Buff" item="BuildBuilding" name="PumpkinFieldDeco" amount="1" recurringChance="100"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_MainLvl56" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true">
+		<triggers>
+			<completequestlist item="HW2017plus_TheForgotten_Sub1_Lvl56,HW2017plus_TheForgotten_Sub2_Lvl56,HW2017plus_TheForgotten_Sub3_Lvl56,HW2017plus_TheForgotten_Sub4_Lvl56,HW2017plus_TheForgotten_Sub5_Lvl56,HW2017plus_TheForgotten_Sub6_Lvl56,HW2017plus_TheForgotten_Sub7_Lvl56" amount="7" locaExtension="TheForgotten" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="100" />
+			<reward type="Buff" item="BuildBuilding" name="PumpkinFieldDeco" amount="1" recurringChance="100"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_MainLvl66" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true">
+		<triggers>
+			<completequestlist item="HW2017plus_TheForgotten_Sub1_Lvl66,HW2017plus_TheForgotten_Sub2_Lvl66,HW2017plus_TheForgotten_Sub3_Lvl66,HW2017plus_TheForgotten_Sub4_Lvl66,HW2017plus_TheForgotten_Sub5_Lvl66,HW2017plus_TheForgotten_Sub6_Lvl66,HW2017plus_TheForgotten_Sub7_Lvl66" amount="7" locaExtension="TheForgotten" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="100" />
+			<reward type="Buff" item="BuildBuilding" name="PumpkinFieldDeco" amount="1" recurringChance="100"/>
+		</posteffects>
+	</quest>
+	
+	<!-- The Forgotten: Sub-Quest 1 -->
+	<quest name="HW2017plus_TheForgotten_Sub1_Lvl19" connectedToQuest="HW2017plus_TheForgotten_MainLvl19" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="60" cancelable="false">
+		<startcondition>
+			<questactive item="HW2017plus_TheForgotten_MainLvl19"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Beer" amount="100" condition="produce" />
+			<trigger type="Resource" name="Bread" amount="100" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="100" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="100" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="200" />
+			<reward type="Resource" name="HalloweenResource" amount="20" />
+			
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub1_Lvl26" connectedToQuest="HW2017plus_TheForgotten_MainLvl26" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="160" cancelable="false">
+		<startcondition>
+			<questactive item="HW2017plus_TheForgotten_MainLvl26"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Beer" amount="500" condition="produce" />
+			<trigger type="Resource" name="Bread" amount="500" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="500" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="500" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="900" />
+			<reward type="Resource" name="HalloweenResource" amount="20" />
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub1_Lvl36" connectedToQuest="HW2017plus_TheForgotten_MainLvl36" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="324" cancelable="false">
+		<startcondition>
+			<questactive item="HW2017plus_TheForgotten_MainLvl36"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Beer" amount="1000" condition="produce" />
+			<trigger type="Resource" name="Bread" amount="1000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="1000" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="1000" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="1800" />
+			<reward type="Resource" name="HalloweenResource" amount="20" />
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub1_Lvl46" connectedToQuest="HW2017plus_TheForgotten_MainLvl46" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="525" cancelable="false">
+		<startcondition>
+			<questactive item="HW2017plus_TheForgotten_MainLvl46"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Beer" amount="2000" condition="produce" />
+			<trigger type="Resource" name="Bread" amount="2000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="2000" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="2000" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="3600" />
+			<reward type="Resource" name="HalloweenResource" amount="20" />
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub1_Lvl56" connectedToQuest="HW2017plus_TheForgotten_MainLvl56" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="750" cancelable="false">
+		<startcondition>
+			<questactive item="HW2017plus_TheForgotten_MainLvl56"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Beer" amount="5000" condition="produce" />
+			<trigger type="Resource" name="Bread" amount="5000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="5000" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="5000" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="9000" />
+			<reward type="Resource" name="HalloweenResource" amount="20" />
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub1_Lvl66" connectedToQuest="HW2017plus_TheForgotten_MainLvl66" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="850" cancelable="false">
+		<startcondition>
+			<questactive item="HW2017plus_TheForgotten_MainLvl66"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Beer" amount="5000" condition="produce" />
+			<trigger type="Resource" name="Bread" amount="5000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="15000" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="15000" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="27000" />
+			<reward type="Resource" name="HalloweenResource" amount="20" />
+		</posteffects>
+	</quest>
+	
+	<!-- The Forgotten: Sub-Quest 2 -->
+	<quest name="HW2017plus_TheForgotten_Sub2_Lvl19" connectedToQuest="HW2017plus_TheForgotten_MainLvl19" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="46" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub1_Lvl19"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Fish" amount="500" condition="produce" />
+			<trigger type="Resource" name="Bread" amount="200" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Fish" amount="500" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="200" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="200" />
+			<reward type="Resource" name="HalloweenResource" amount="30" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub2_Lvl26" connectedToQuest="HW2017plus_TheForgotten_MainLvl26" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="243" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub1_Lvl26"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Sausage" amount="300" condition="produce" />
+			<trigger type="Resource" name="Fish" amount="1000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Sausage" amount="300" />
+			<trigger type="PayForQuestFinish" name="Fish" amount="1000" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="1900" />
+			<reward type="Resource" name="HalloweenResource" amount="30" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub2_Lvl36" connectedToQuest="HW2017plus_TheForgotten_MainLvl36" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="486" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub1_Lvl36"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Sausage" amount="600" condition="produce" />
+			<trigger type="Resource" name="Fish" amount="2000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Sausage" amount="600" />
+			<trigger type="PayForQuestFinish" name="Fish" amount="2000" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="3750" />
+			<reward type="Resource" name="HalloweenResource" amount="30" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub2_Lvl46" connectedToQuest="HW2017plus_TheForgotten_MainLvl46" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="761" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub1_Lvl46"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Meat" amount="1500" condition="produce" />
+			<trigger type="Resource" name="Fish" amount="5000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Meat" amount="1500" />
+			<trigger type="PayForQuestFinish" name="Fish" amount="5000" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="4150" />
+			<reward type="Resource" name="HalloweenResource" amount="30" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub2_Lvl56" connectedToQuest="HW2017plus_TheForgotten_MainLvl56" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="1073" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub1_Lvl56"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Meat" amount="2500" condition="produce" />
+			<trigger type="Resource" name="Fish" amount="5000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Meat" amount="2500" />
+			<trigger type="PayForQuestFinish" name="Fish" amount="10000" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="4500" />
+			<reward type="Resource" name="HalloweenResource" amount="30" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub2_Lvl66" connectedToQuest="HW2017plus_TheForgotten_MainLvl66" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="1262" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub1_Lvl66"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Meat" amount="3000" condition="produce" />
+			<trigger type="Resource" name="Fish" amount="5000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Meat" amount="6000" />
+			<trigger type="PayForQuestFinish" name="Fish" amount="20000" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="10500" />
+			<reward type="Resource" name="HalloweenResource" amount="30" />			
+		</posteffects>
+	</quest>
+	
+	<!-- The Forgotten: Sub-Quest 3 -->
+	<quest name="HW2017plus_TheForgotten_Sub3_Lvl19" connectedToQuest="HW2017plus_TheForgotten_MainLvl19" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="103" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub2_Lvl19"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Tool" amount="200" condition="produce" />
+			<trigger type="Resource" name="RealPlank" amount="200" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Tool" amount="200" />
+			<trigger type="PayForQuestFinish" name="RealPlank" amount="200" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="250" />
+			<reward type="Resource" name="HalloweenResource" amount="25" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub3_Lvl26" connectedToQuest="HW2017plus_TheForgotten_MainLvl26" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="249" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub2_Lvl26"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Coin" amount="50" condition="produce" />
+			<trigger type="Resource" name="Meat" amount="500" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Coin" amount="50" />
+			<trigger type="PayForQuestFinish" name="Meat" amount="500" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="3500" />
+			<reward type="Resource" name="HalloweenResource" amount="25" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub3_Lvl36" connectedToQuest="HW2017plus_TheForgotten_MainLvl36" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="285" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub2_Lvl36"/>
+		</startcondition>
+		<triggers>
+			<resourcegathered min="300" type="ExoticPlank"/> 
+			<resourcegathered min="150" type="Titanium"/> 
+			<trigger type="PayForQuestFinish" name="ExoticPlank" amount="300" />
+			<trigger type="PayForQuestFinish" name="Titanium" amount="150" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="3800" />
+			<reward type="Resource" name="HalloweenResource" amount="25" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub3_Lvl46" connectedToQuest="HW2017plus_TheForgotten_MainLvl46" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="464" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub2_Lvl46"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="ExoticPlank" amount="500" condition="produce" />
+			<resourcegathered min="350" type="Granite"/> 
+			<trigger type="PayForQuestFinish" name="ExoticPlank" amount="500" />
+			<trigger type="PayForQuestFinish" name="Granite" amount="350" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="4500" />
+			<reward type="Resource" name="HalloweenResource" amount="25" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub3_Lvl56" connectedToQuest="HW2017plus_TheForgotten_MainLvl56" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="642" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub2_Lvl56"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="MahoganyPlank" amount="600" condition="produce" />
+			<trigger type="Resource" name="Platinum" amount="450" condition="produce" />
+			<trigger type="PayForQuestFinish" name="MahoganyPlank" amount="100" />
+			<trigger type="PayForQuestFinish" name="Platinum" amount="50" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="15750" />
+			<reward type="Resource" name="HalloweenResource" amount="25" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub3_Lvl66" connectedToQuest="HW2017plus_TheForgotten_MainLvl66" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="895" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub2_Lvl66"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="MahoganyPlank" amount="600" condition="produce" />
+			<trigger type="Resource" name="Platinum" amount="450" condition="produce" />
+			<trigger type="PayForQuestFinish" name="MahoganyPlank" amount="500" />
+			<trigger type="PayForQuestFinish" name="Platinum" amount="250" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="21350" />
+			<reward type="Resource" name="HalloweenResource" amount="25" />			
+		</posteffects>
+	</quest>
+	
+	<!-- The Forgotten: Sub-Quest 4 -->
+	<quest name="HW2017plus_TheForgotten_Sub4_Lvl19" connectedToQuest="HW2017plus_TheForgotten_MainLvl19" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="46" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub3_Lvl19"/>
+		</startcondition>
+		<triggers>
+			<trigger type="MilitaryUnit" name="Recruit" condition="ge" amount="50"/>
+			<trigger type="MilitaryUnit" name="Bowman" condition="ge" amount="50"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="350" />
+			<reward type="Resource" name="HalloweenResource" amount="20" />			
+		</posteffects>
+	</quest>
+
+	<quest name="HW2017plus_TheForgotten_Sub4_Lvl26" connectedToQuest="HW2017plus_TheForgotten_MainLvl26" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="84" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub3_Lvl26"/>
+		</startcondition>
+		<triggers>
+			<trigger type="MilitaryUnit" name="Militia" condition="ge" amount="50"/>
+			<trigger type="MilitaryUnit" name="Cavalry" condition="ge" amount="50"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="500" />
+			<reward type="Resource" name="HalloweenResource" amount="20" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub4_Lvl36" connectedToQuest="HW2017plus_TheForgotten_MainLvl36" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="102" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub3_Lvl36"/>
+		</startcondition>
+		<triggers>
+			<trigger type="MilitaryUnit" name="Soldier" condition="ge" amount="50"/>
+			<trigger type="MilitaryUnit" name="Crossbowman" condition="ge" amount="50"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="650" />
+			<reward type="Resource" name="HalloweenResource" amount="20" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub4_Lvl46" connectedToQuest="HW2017plus_TheForgotten_MainLvl46" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="146" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub3_Lvl46"/>
+		</startcondition>
+		<triggers>
+			<trigger type="MilitaryUnit" name="Crossbowman" condition="ge" amount="50"/>
+			<trigger type="MilitaryUnit" name="EliteSoldier" condition="ge" amount="50"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="1250" />
+			<reward type="Resource" name="HalloweenResource" amount="20" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub4_Lvl56" connectedToQuest="HW2017plus_TheForgotten_MainLvl56" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="240" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub3_Lvl56"/>
+		</startcondition>
+		<triggers>
+			<trigger type="MilitaryUnit" name="Knight" condition="ge" amount="50"/>
+			<trigger type="MilitaryUnit" name="Swordsman" condition="ge" amount="100"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="3500" />
+			<reward type="Resource" name="HalloweenResource" amount="20" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub4_Lvl66" connectedToQuest="HW2017plus_TheForgotten_MainLvl66" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="365" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub3_Lvl66"/>
+		</startcondition>
+		<triggers>
+			<trigger type="MilitaryUnit" name="MountedMarksman" condition="ge" amount="50"/>
+			<trigger type="MilitaryUnit" name="MountedSwordsman" condition="ge" amount="100"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="8750" />
+			<reward type="Resource" name="HalloweenResource" amount="20" />			
+		</posteffects>
+	</quest>
+	
+	<!-- The Forgotten: Sub-Quest 5 -->
+	<quest name="HW2017plus_TheForgotten_Sub5_Lvl19" connectedToQuest="HW2017plus_TheForgotten_MainLvl19" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="112" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub4_Lvl19"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Fish" amount="250" condition="produce" />
+			<trigger type="Resource" name="Bread" amount="150" condition="produce" />
+			<trigger type="Resource" name="Beer" amount="100" condition="produce" />
+			<buffproduced min="10" item="ProductivityBuffLvl2"/>
+			<trigger type="PayForQuestFinish" name="Coin" amount="20" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="1250" />
+			<reward type="Resource" name="HalloweenResource" amount="25" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub5_Lvl26" connectedToQuest="HW2017plus_TheForgotten_MainLvl26" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="254" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub4_Lvl26"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Fish" amount="1500" condition="produce" />
+			<trigger type="Resource" name="Bread" amount="600" condition="produce" />
+			<trigger type="Resource" name="Beer" amount="500" condition="produce" />
+			<buffproduced min="10" item="ProductivityBuffLvl3"/>
+			<trigger type="PayForQuestFinish" name="Coin" amount="100" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="6150" />
+			<reward type="Resource" name="HalloweenResource" amount="25" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub5_Lvl36" connectedToQuest="HW2017plus_TheForgotten_MainLvl36" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="342" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub4_Lvl36"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Sausage" amount="1000" condition="produce" />
+			<trigger type="Resource" name="Bread" amount="1000" condition="produce" />
+			<trigger type="Resource" name="Beer" amount="700" condition="produce" />
+			<buffproduced min="25" item="ProductivityBuffLvl3"/>
+			<trigger type="PayForQuestFinish" name="Coin" amount="200" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="11750" />
+			<reward type="Resource" name="HalloweenResource" amount="25" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub5_Lvl46" connectedToQuest="HW2017plus_TheForgotten_MainLvl46" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="485" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub4_Lvl46"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Carriage" amount="100" condition="produce" />
+			<trigger type="Resource" name="Coin" amount="1000" condition="produce" />
+			<trigger type="Resource" name="Beer" amount="2500" condition="produce" />
+			<buffproduced min="50" item="ProductivityBuffLvl3"/>
+			<trigger type="PayForQuestFinish" name="Coin" amount="500" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="30550" />
+			<reward type="Resource" name="HalloweenResource" amount="25" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub5_Lvl56" connectedToQuest="HW2017plus_TheForgotten_MainLvl56" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="695" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub4_Lvl56"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Carriage" amount="300" condition="produce" />
+			<trigger type="Resource" name="Wool" amount="1000" condition="produce" />
+			<trigger type="Resource" name="Meat" amount="2500" condition="produce" />
+			<buffproduced min="75" item="ProductivityBuffLvl3"/>
+			<trigger type="PayForQuestFinish" name="Coin" amount="750" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="65500" />
+			<reward type="Resource" name="HalloweenResource" amount="25" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub5_Lvl66" connectedToQuest="HW2017plus_TheForgotten_MainLvl66" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="812" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub4_Lvl66"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Salpeter" amount="1000" condition="produce" />
+			<trigger type="Resource" name="Wool" amount="2000" condition="produce" />
+			<trigger type="Resource" name="Meat" amount="3000" condition="produce" />
+			<buffproduced min="100" item="ProductivityBuffLvl3"/>
+			<trigger type="PayForQuestFinish" name="Coin" amount="1000" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="68800" />
+			<reward type="Resource" name="HalloweenResource" amount="25" />			
+		</posteffects>
+	</quest>
+	
+	<!-- The Forgotten: Sub-Quest 6 -->
+	<quest name="HW2017plus_TheForgotten_Sub6_Lvl19" connectedToQuest="HW2017plus_TheForgotten_MainLvl19" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="82" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub5_Lvl19"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="SimplePaper" amount="150" condition="produce" />
+			<trigger type="PayForQuestFinish" name="SimplePaper" amount="150" />
+			<buffappliedonfriend amount="25" item="ProductivityBuffLvl2" locaExtension="item"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="400" />
+			<reward type="Resource" name="HalloweenResource" amount="50" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub6_Lvl26" connectedToQuest="HW2017plus_TheForgotten_MainLvl26" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="213" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub5_Lvl26"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="IntermediatePaper" amount="200" condition="produce" />
+			<trigger type="PayForQuestFinish" name="IntermediatePaper" amount="200" />
+			<completeadventurelist amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="850" />
+			<reward type="Resource" name="HalloweenResource" amount="50" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub6_Lvl36" connectedToQuest="HW2017plus_TheForgotten_MainLvl36" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="303" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub5_Lvl36"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="IntermediatePaper" amount="300" condition="produce" />
+			<trigger type="PayForQuestFinish" name="IntermediatePaper" amount="300" />
+			<completeadventurelist amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="1250" />
+			<reward type="Resource" name="HalloweenResource" amount="50" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub6_Lvl46" connectedToQuest="HW2017plus_TheForgotten_MainLvl46" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="489" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub5_Lvl46"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="AdvancedPaper" amount="100" condition="produce" />
+			<trigger type="PayForQuestFinish" name="AdvancedPaper" amount="100" />
+			<completeadventurelist amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="2500" />
+			<reward type="Resource" name="HalloweenResource" amount="50" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub6_Lvl56" connectedToQuest="HW2017plus_TheForgotten_MainLvl56" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="690" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub5_Lvl56"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="AdvancedPaper" amount="300" condition="produce" />
+			<trigger type="PayForQuestFinish" name="AdvancedPaper" amount="300" />
+			<completeadventurelist amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="7150" />
+			<reward type="Resource" name="HalloweenResource" amount="50" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub6_Lvl66" connectedToQuest="HW2017plus_TheForgotten_MainLvl66" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="944" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub5_Lvl66"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="AdvancedPaper" amount="700" condition="produce" />
+			<trigger type="PayForQuestFinish" name="AdvancedPaper" amount="700" />
+			<completeadventurelist amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="17950" />
+			<reward type="Resource" name="HalloweenResource" amount="50" />			
+		</posteffects>
+	</quest>
+	
+	<!-- The Forgotten: Sub-Quest 7 -->
+	<quest name="HW2017plus_TheForgotten_Sub7_Lvl19" connectedToQuest="HW2017plus_TheForgotten_MainLvl19" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="164" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub6_Lvl19"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Coal" amount="300" condition="produce" />
+			<trigger type="Resource" name="RealPlank" amount="500" condition="produce" />
+			<trigger type="Resource" name="Marble" amount="500" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Water" amount="1000" />
+			<buffappliedonfriend amount="5"/>
+			<buildingupgraded item="SimpleResidence"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="2600" />
+			<reward type="Resource" name="HalloweenResource" amount="40" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub7_Lvl26" connectedToQuest="HW2017plus_TheForgotten_MainLvl26" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="285" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub6_Lvl26"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Coin" amount="300" condition="produce" />
+			<trigger type="Resource" name="Coal" amount="1500" condition="produce" />
+			<trigger type="Resource" name="Iron" amount="500" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Corn" amount="2000" />
+			<buffappliedonfriend amount="10"/>
+			<buildingupgraded item="NobleResidence"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="12600" />
+			<reward type="Resource" name="HalloweenResource" amount="40" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub7_Lvl36" connectedToQuest="HW2017plus_TheForgotten_MainLvl36" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="412" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub6_Lvl36"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Coin" amount="350" condition="produce" />
+			<trigger type="Resource" name="Coal" amount="2500" condition="produce" />
+			<trigger type="Resource" name="Steel" amount="200" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Granite" amount="100" />
+			<buffappliedonfriend amount="25"/>
+			<buildingupgraded item="NobleResidence"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="14450" />
+			<reward type="Resource" name="HalloweenResource" amount="40" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub7_Lvl46" connectedToQuest="HW2017plus_TheForgotten_MainLvl46" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="654" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub6_Lvl46"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Coin" amount="500" condition="produce" />
+			<trigger type="Resource" name="ExoticPlank" amount="2500" condition="produce" />
+			<trigger type="Resource" name="Titanium" amount="300" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Granite" amount="300" />
+			<buffappliedonfriend amount="50"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="33100" />
+			<reward type="Resource" name="HalloweenResource" amount="40" />			
+		</posteffects>
+	</quest>	
+	
+	<quest name="HW2017plus_TheForgotten_Sub7_Lvl56" connectedToQuest="HW2017plus_TheForgotten_MainLvl56" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="842" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub6_Lvl56"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Coin" amount="1000" condition="produce" />
+			<trigger type="Resource" name="MahoganyPlank" amount="500" condition="produce" />
+			<trigger type="Resource" name="Titanium" amount="750" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Granite" amount="1000" />
+			<buffappliedonfriend amount="75"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="52650" />
+			<reward type="Resource" name="HalloweenResource" amount="40" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_TheForgotten_Sub7_Lvl66" connectedToQuest="HW2017plus_TheForgotten_MainLvl66" type="Event" icon="HalloweenResource" npc="quest_character_eliot_pumpkin01.png" linkEventWindow="true" questWinGemCosts="1078" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TheForgotten_Sub6_Lvl66"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Coin" amount="1500" condition="produce" />
+			<trigger type="Resource" name="MahoganyPlank" amount="750" condition="produce" />
+			<trigger type="Resource" name="Titanium" amount="1250" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Salpeter" amount="1000" />
+			<buffappliedonfriend amount="100"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="79000" />
+			<reward type="Resource" name="HalloweenResource" amount="40" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="HW2017plus_CheckWeek2" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<hourselapsed amount="168" />
+		</triggers>
+	</quest>
+	<quest name="HW2017plus_CheckWeek3" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<hourselapsed amount="336" />
+		</triggers>
+	</quest>
+	
+	<quest name="HW2017plus_TerrorizedTownMain" type="Event" icon="HalloweenResource" npc="quest_character_fin02.png" linkEventWindow="true" cancelable="false">		
+		<triggers>
+			<questcomplete item="HW2017plus_TerrorizedTownSub0" />
+			<questcomplete item="HW2017plus_TerrorizedTownSub1" />
+			<questcomplete item="HW2017plus_TerrorizedTownSub2" />
+			<questcomplete item="HW2017plus_TerrorizedTownSub3" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="1000" />
+			<reward type="Buff" item="BuildBuilding" name="HauntedMansion_pop" amount="1" recurringChance="100" />
+			<reward type="Buff" item="BuildBuilding" name="VillageSchool" amount="1" recurringChance="100" />			
+		</posteffects>
+	</quest>	
+	<quest name="HW2017plus_TerrorizedTownSub0" connectedToQuest="HW2017plus_TerrorizedTownMain" type="Event" icon="HalloweenResource" npc="quest_character_fin02.png" linkEventWindow="true" cancelable="false">
+		<startcondition>
+			<questactive item="HW2017plus_TerrorizedTownMain"/>
+		</startcondition>
+		<triggers>
+			<specialisttaskfinished item="FindTreasureMedium" amount="6"/>			
+			<playerlevel min="28" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="100" />			
+		</posteffects>
+	</quest>	
+	
+	 <quest name="HW2017plus_TerrorizedTownSub1_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="HW2017plus_TerrorizedTownSub1"/>
+		</startcondition>
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<reward type="Adventure" name="HWCampaign1_Adv1" amount="1" />
+		</posteffects>
+     </quest>		
+	
+	<quest name="HW2017plus_TerrorizedTownSub1" connectedToQuest="HW2017plus_TerrorizedTownMain" type="Event" icon="HalloweenResource" npc="quest_character_fin02.png" linkEventWindow="true" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TerrorizedTownSub0"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Adventure" name="HWCampaign1_Adv1" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="200" />
+			
+			<startquest name="HW2017plus_TerrorizedTownDelay1"/>		
+		</posteffects>
+	</quest>
+	<quest name="HW2017plus_TerrorizedTownDelay1" connectedToQuest="HW2017plus_TerrorizedTownMain" type="Event" icon="HalloweenResource" npc="quest_character_fin02.png" linkEventWindow="true" cancelable="false">
+		<triggers>
+			<completequestlist amount="1" item="HW2017plus_CheckWeek2" locaExtension="WaitForSecondWeek" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="300" />		
+		</posteffects>
+	</quest>
+	
+	 <quest name="HW2017plus_TerrorizedTownSub2_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="HW2017plus_TerrorizedTownSub2"/>
+		</startcondition>
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<reward type="Adventure" name="HWCampaign1_Adv2" amount="1"/>
+		</posteffects>
+     </quest>			
+	
+	<quest name="HW2017plus_TerrorizedTownSub2" connectedToQuest="HW2017plus_TerrorizedTownMain" type="Event" icon="HalloweenResource" npc="quest_character_fin02.png" linkEventWindow="true" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TerrorizedTownDelay1"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Adventure" name="HWCampaign1_Adv2" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="400" />			
+			<startquest name="HW2017plus_TerrorizedTownDelay2"/>		
+		</posteffects>
+	</quest>
+	<quest name="HW2017plus_TerrorizedTownDelay2" connectedToQuest="HW2017plus_TerrorizedTownMain" type="Event" icon="HalloweenResource" npc="quest_character_fin02.png" linkEventWindow="true" cancelable="false">
+		<triggers>
+			<completequestlist amount="1" item="HW2017plus_CheckWeek3" locaExtension="WaitForThirdWeek" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="500" />		
+		</posteffects>
+	</quest>
+	
+	 <quest name="HW2017plus_TerrorizedTownSub3_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="HW2017plus_TerrorizedTownSub3"/>
+		</startcondition>
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<reward type="Adventure" name="HWCampaign1_Adv3" amount="1"/>
+		</posteffects>
+     </quest>		
+	
+	<quest name="HW2017plus_TerrorizedTownSub3" connectedToQuest="HW2017plus_TerrorizedTownMain" type="Event" icon="HalloweenResource" npc="quest_character_fin02.png" linkEventWindow="true" cancelable="false">
+		<startcondition>
+			<questcomplete item="HW2017plus_TerrorizedTownDelay2"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Adventure" name="HWCampaign1_Adv3" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="600" />		
+		</posteffects>
+	</quest>
+	
+	<!--Halloween 2025-->
+	<quest name="HW2017plus_ZombieInvaders_Reach50" type="Event" icon="HalloweenResource" npc="quest_character_general02.png" linkEventWindow="true" >
+		<triggers>
+			<playerlevel min="50" />
+			<sectorexplored min="19" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="10" />
+			<startquest name="HW2017plus_ZombieInvaders_Intro1" />			
+		</posteffects>
+	</quest>
+	<quest name="HW2017plus_ZombieInvaders_Intro1" type="Event" icon="HalloweenResource" npc="quest_character_general02.png" showQuestWindow="true" showRewardWindow="true" linkEventWindow="true" >	
+		<preeffects>
+			<spawnbuilding name="ZombieCrypt" x="77" y="79" action="ignoreBlocking,spawnInstant,replace" units="HalloweenZombieInvader|100" mode="enemy"/>
+			<spawnbuilding name="ZombieCrypt" x="8" y="145" action="ignoreBlocking,spawnInstant,replace" units="HalloweenZombieInvader|100" mode="enemy"/>
+			<spawnbuilding name="ZombieCrypt" x="22" y="153" action="ignoreBlocking,spawnInstant,replace" units="HalloweenZombieInvader|100" mode="enemy"/>
+			<spawnbuilding name="ZombieCrypt" x="72" y="93" action="ignoreBlocking,spawnInstant,replace" units="HalloweenZombieInvader|100" mode="enemy"/>
+		</preeffects>
+		<triggers>
+			<buildingdestroyed item="ZombieCrypt" min="4" />	
+		</triggers>		
+		<posteffects>
+			<reward type="Resource" name="HalloweenResource" amount="5" />
+			<startquest name="HW2017plus_ZombieInvaders_Repeatable_Timer"/>	
+		</posteffects>
+	</quest> 
+	<quest name="HW2017plus_ZombieInvaders_Repeatable_Timer" type="Event" icon="HalloweenResource" npc="quest_character_general02.png" showQuestWindow="true" showRewardWindow="false" cancelable="false" repeatable="true">
+		<triggers>
+			<hourselapsed amount="6" />
+		</triggers>
+		<posteffects>				
+			<startquest name="HW2017plus_ZombieInvaders_Repeatable"/>			
+		</posteffects>
+	</quest>
+	<quest name="HW2017plus_ZombieInvaders_Repeatable" type="Event" repeatable="true" icon="HalloweenResource" npc="quest_character_general02.png" showQuestWindow="true" cancelable="false" showRewardWindow="true" linkEventWindow="true" >
+		<preeffects>
+			<spawnbuilding name="ZombieCrypt" x="77" y="79" action="ignoreBlocking,spawnInstant,replace" units="HalloweenZombieInvader|100" mode="enemy"/>
+			<spawnbuilding name="ZombieCrypt" x="8" y="145" action="ignoreBlocking,spawnInstant,replace" units="HalloweenZombieInvader|100" mode="enemy"/>
+			<spawnbuilding name="ZombieCrypt" x="22" y="153" action="ignoreBlocking,spawnInstant,replace" units="HalloweenZombieInvader|100" mode="enemy"/>
+			<spawnbuilding name="ZombieCrypt" x="72" y="93" action="ignoreBlocking,spawnInstant,replace" units="HalloweenZombieInvader|100" mode="enemy"/>
+		</preeffects>
+		<triggers>
+			<buildingdestroyed item="ZombieCrypt" min="4" />	
+		</triggers>		
+		<posteffects>
+			<startquest name="HW2017plus_ZombieInvaders_Repeatable_Timer" />
+			<reward type="Resource" name="HalloweenResource" amount="5" />
+		</posteffects>
+	</quest> 
+</Root>

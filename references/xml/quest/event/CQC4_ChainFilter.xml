@@ -1,0 +1,2551 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+
+	<!-- CRISIS QUEST 4 EVENT CONTROL QUESTS -->
+
+	<quest name="CQC4_ChainFilter" showQuestWindow="false" showRewardWindow="false" cancelable="true" linkEventWindow="false">
+		<postrequisits>
+			<postrequisite filterQuest="Level1-15" startQuest="CQC4_ChainFilter" startDelay="60" />
+			<postrequisite filterQuest="Level16-25" startQuest="CQC4_Counterattack_Main_lvl16" />
+			<postrequisite filterQuest="Level26-35" startQuest="CQC4_Counterattack_Main_lvl26" />
+			<postrequisite filterQuest="Level36-45" startQuest="CQC4_Counterattack_Main_lvl36" />
+			<postrequisite filterQuest="Level46-55" startQuest="CQC4_Counterattack_Main_lvl46" />
+			<postrequisite filterQuest="Level56-65" startQuest="CQC4_Counterattack_Main_lvl56" />
+			<postrequisite filterQuest="Level66-80" startQuest="CQC4_Counterattack_Main_lvl66" />
+		</postrequisits>
+	</quest>
+
+
+	<!-- lvl 16 quests -->
+
+	<quest name="CQC4_Counterattack_Main_lvl16" type="Crisis" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" icon="AdvancedPaper" >
+		<preeffects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_crisisquests_0" delay="3" reactivate="false" />
+		</preeffects>
+		<triggers>
+			<questcomplete item="CQC4M1_Counterattack_stage1_lvl16"/> 
+			<questcomplete item="CQC4M2_Counterattack_stage2_lvl16"/> 
+			<questcomplete item="CQC4M3_Counterattack_stage3_lvl16"/>
+			<questcomplete item="CQC4M4_Counterattack_stage4_lvl16"/>		
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="750" />
+			<reward type="Buff" item="BuildBuilding" name="Bookbinder_Mini_Gold" amount="1" recurringChance="100" />
+			<reward type="Buff" item="ProductivityBuffLvl6" amount="3" />
+		</posteffects>
+	</quest>
+
+
+	<!-- lvl 16 stage 1 -->
+
+	<quest name="CQC4M1_Counterattack_stage1_lvl16" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" showRewardWindow="true" cancelable="false" showQuestWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questactive item="CQC4_Counterattack_Main_lvl16" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC4M1Q1_DiplomacyFirst_lvl16"/> 
+			<questcomplete item="CQC4M1Q2_TheStowaway_lvl16"/> 
+			<questcomplete item="CQC4M1Q3_HiddenTreasure_lvl16"/>
+			<questcomplete item="CQC4M1Q4_FollowTheLeads_lvl16"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="50" />
+			<reward type="XP" amount="250" />		
+		</posteffects>
+	</quest>
+
+	 <quest name="CQC4M1Q1_DiplomacyFirst_lvl16_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="CQC4M1_Counterattack_stage1_lvl16" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="BanditFortressStage1" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Fortress -->
+		</posteffects>
+     </quest>	
+
+	<quest name="CQC4M1Q1_DiplomacyFirst_lvl16" type="Crisis" icon="QuestShort" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="634" connectedToQuest="CQC4M1_Counterattack_stage1_lvl16" >	
+		<startcondition>
+			<questactive item="CQC4M1_Counterattack_stage1_lvl16" />
+		</startcondition>
+		<triggers>
+			<buffapplied item="EffectBuff_DiplomaticPaperwork_Lvl16" min="100" target="BanditFortressStage1"/> <!-- Diplomatic Paperwork Lv 16 -->
+			<buffapplied item="EffectBuff_LousyDistraction_Lvl16" min="100" target="BanditFortressStage1"/> <!-- Lousy Distraction Lv 16 -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="50" />
+			<reward type="XP" amount="165" />
+			<spawnbuilding name="BanditFortressStageEmpty" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Empty Fortress -->
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M1Q2_TheStowaway_lvl16" type="Crisis" icon="QuestShort" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="486" connectedToQuest="CQC4M1_Counterattack_stage1_lvl16" >
+		<startcondition>
+			<questactive item="CQC4M1_Counterattack_stage1_lvl16" />
+		</startcondition>
+		<triggers>	
+			<trigger type="Resource" name="Fish" amount="700" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="750" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Marble" amount="200" />
+			<reward type="XP" amount="250" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M1Q3_HiddenTreasure_lvl16" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="125" connectedToQuest="CQC4M1_Counterattack_stage1_lvl16" >
+		<startcondition>
+			<questcomplete item="CQC4M1Q2_TheStowaway_lvl16" />
+		</startcondition>
+		<triggers>
+			<ownresourcelist item="MapPart" amount="200" locaExtension="item"/>
+			<boughtgoods amount="500"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="BronzeSword" amount="50" />
+			<reward type="XP" amount="90" />
+		</posteffects>
+	</quest>
+	
+	<quest name="CQC4M1Q4_FollowTheLeads_lvl16" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="132" connectedToQuest="CQC4M1_Counterattack_stage1_lvl16" >
+		<startcondition>
+			<questcomplete item="CQC4M1Q3_HiddenTreasure_lvl16" />
+		</startcondition>
+		<triggers>
+			<specialisttaskfinished item="FindDepositBronzeOre" amount="3"/>
+			<buildinglistupgradelevel amount="3" min="3" item="BronzeMine,BronzeMineEndless" name="EpicBronzeMine,SpookyBronzeMine" locaExtension="BronzeMine" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Tool" amount="100" />
+			<reward type="XP" amount="65" />
+		</posteffects>
+	</quest>
+
+
+	<!-- lvl 16 stage 2 -->
+
+	<quest name="CQC4M2_Counterattack_stage2_lvl16" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" type="Crisis" icon="QuestLonger" npc="quest_character_mentor03.png" >
+		<startcondition>
+			<questcomplete item="CQC4M1_Counterattack_stage1_lvl16" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC4M2Q1_SchoolsOut_lvl16"/> 
+			<questcomplete item="CQC4M2Q2_CuttingTheMessages_lvl16"/> 
+			<questcomplete item="CQC4M2Q3_Eavesdropping_lvl16"/>
+			<questcomplete item="CQC4M2Q4_TailingTheSpy_lvl16"/>			
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="50" />
+			<reward type="Buff" item="ProductivityBuffLvl4" amount="2" />
+			<reward type="XP" amount="200" />
+		</posteffects>
+	</quest>
+
+	 <quest name="CQC4M2Q1_SchoolsOut_lvl16_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="CQC4M2_Counterattack_stage2_lvl16" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_BanditFortressStage2" x="21" y="54" units="BanditStudent|50" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Fortress -->
+		</posteffects>
+     </quest>	
+
+	<quest name="CQC4M2Q1_SchoolsOut_lvl16" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="750" connectedToQuest="CQC4M2_Counterattack_stage2_lvl16" >
+		<startcondition>
+			<questactive item="CQC4M2_Counterattack_stage2_lvl16" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed item="EventMonster_BanditFortressStage2" min="1"/> 
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="175" />
+			<reward type="Resource" name="Beer" amount="500" />
+			<spawnbuilding name="BanditFortressStageEmpty" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Empty Fortress -->
+		</posteffects>
+	</quest>
+	
+	<quest name="CQC4M2Q2_CuttingTheMessages_lvl16" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="325" connectedToQuest="CQC4M2_Counterattack_stage2_lvl16" >
+		<startcondition>
+			<questactive item="CQC4M2_Counterattack_stage2_lvl16" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Wood" amount="1500" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="75" />
+			<reward type="Resource" name="Coin" amount="50" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M2Q3_Eavesdropping_lvl16" type="Crisis" icon="QuestShort" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="120" connectedToQuest="CQC4M2_Counterattack_stage2_lvl16" >
+		<startcondition>
+			<questcomplete item="CQC4M2Q2_CuttingTheMessages_lvl16" />
+		</startcondition>
+		<triggers>
+			<produceditemlist item="Recruit" amount="75" locaExtension="unit"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Bow" amount="100" />
+			<reward type="XP" amount="75" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M2Q4_TailingTheSpy_lvl16" type="Crisis" icon="QuestShort" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="147" connectedToQuest="CQC4M2_Counterattack_stage2_lvl16" >
+		<startcondition>
+			<questcomplete item="CQC4M2Q3_Eavesdropping_lvl16" />
+		</startcondition>
+		<triggers>
+			<specialisttaskfinished item="FindTreasureShort" amount="1"/>
+			<trigger type="Resource" name="Corn" amount="750" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl13" amount="1" />
+			<reward type="XP" amount="100" />
+		</posteffects>
+	</quest>
+
+	<!-- lvl 16 stage 3 -->
+
+	<quest name="CQC4M3_Counterattack_stage3_lvl16" type="Crisis" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questcomplete item="CQC4M2_Counterattack_stage2_lvl16" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC4M3Q1_CounterOffensive_lvl16"/> 
+			<questcomplete item="CQC4M3Q2_Barricades_lvl16"/> 
+			<questcomplete item="CQC4M3Q3_PreparingTheDefense_lvl16"/>
+			<questcomplete item="CQC4M3Q3_BetterSafeThanSorry_lvl16"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="75" />
+			<reward type="XP" amount="250" />
+		</posteffects>
+	</quest>
+
+	 <quest name="CQC4M3Q1_CounterOffensive_lvl16_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="CQC4M3_Counterattack_stage3_lvl16" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="PartyCrashers_Bridge" x="21" y="57" action="ignoreBlocking,spawnInstant,replace" mode="free" />
+			<spawnbuilding name="BanditFortressStage3" x="21" y="54" units="BanditRecruit|75,BanditMilitia|50,BanditBowman|50" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Fortress -->
+		</posteffects>
+     </quest>	
+
+
+	<quest name="CQC4M3Q1_CounterOffensive_lvl16" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="665" connectedToQuest="CQC4M3_Counterattack_stage3_lvl16" >	
+		<startcondition>
+			<questactive item="CQC4M3_Counterattack_stage3_lvl16" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="1" item="BanditFortressStage3"/> <!-- Fortress -->
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="100" />
+			<reward type="Buff" item="RecoverGeneral" amount="1" />
+			<removebuilding name="PartyCrashers_Bridge" x="21" y="57" />
+			<removebuilding name="BanditFortressStage3" x="21" y="54" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M3Q2_Barricades_lvl16" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="318" connectedToQuest="CQC4M3_Counterattack_stage3_lvl16" >
+		<startcondition>
+			<questactive item="CQC4M3_Counterattack_stage3_lvl16" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Stone" amount="900" />
+			<trigger type="PayForQuestFinish" name="Plank" amount="1500" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl4" amount="1" />
+			<reward type="XP" amount="180" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M3Q3_PreparingTheDefense_lvl16" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="225" connectedToQuest="CQC4M3_Counterattack_stage3_lvl16" >
+		<startcondition>
+			<questcomplete item="CQC4M3Q2_Barricades_lvl16" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="BronzeSword" amount="450" condition="produce" />
+			<produceditemlist item="Recruit" amount="75" locaExtension="unit"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="RecruitingBuffLvl1" amount="1" />
+			<reward type="XP" amount="400" />
+		</posteffects>
+	</quest>
+	
+	<quest name="CQC4M3Q3_BetterSafeThanSorry_lvl16" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="165" connectedToQuest="CQC4M3_Counterattack_stage3_lvl16" >
+		<startcondition>
+			<questcomplete item="CQC4M3Q3_PreparingTheDefense_lvl16" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="BronzeSword" amount="500" condition="produce" />
+			<produceditemlist item="Recruit" amount="75" locaExtension="unit"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Bread" amount="300" />
+			<reward type="XP" amount="275" />
+		</posteffects>
+	</quest>
+
+
+	<!-- lvl 16 stage 4 -->
+
+	<quest name="CQC4M4_Counterattack_stage4_lvl16" type="Crisis" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questcomplete item="CQC4M3_Counterattack_stage3_lvl16" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC4M4Q1_WatchTower01_lvl16"/> 
+			<questcomplete item="CQC4M4Q2_WatchTower02_lvl16"/> 
+			<questcomplete item="CQC4M4Q3_WatchTower03_lvl16"/>
+			<questcomplete item="CQC4M4Q4_WatchTower04_lvl16"/>
+		</triggers>
+		<posteffects>
+			<removebuilding x="21" y="54" name="WatchTowerStage4_blue" />
+			<reward type="Resource" name="HardCurrency" amount="75" />
+			<reward type="XP" amount="350" />
+			<reward type="Buff" item="BuildBuilding" name="WatchTowerFinished_blue" amount="1" recurringChance="100" />
+		</posteffects>
+	</quest>
+
+	 <quest name="CQC4M4Q1_WatchTower01_lvl16_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="CQC4M4_Counterattack_stage4_lvl16" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_WatchTowerStage1" x="21" y="54" units="UnemployedBuilder|25" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+		</posteffects>
+     </quest>	
+
+	<quest name="CQC4M4Q1_WatchTower01_lvl16" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="375" connectedToQuest="CQC4M4_Counterattack_stage4_lvl16" >
+		<startcondition>
+			<questactive item="CQC4M4_Counterattack_stage4_lvl16" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WatchTowerStage1" locaExtension="construction"/>
+			<produceditemlist item="Recruit" amount="25" locaExtension="unit"/>
+			<trigger type="Resource" name="BronzeSword" amount="250" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl21" amount="1" /> 
+			<reward type="XP" amount="100" />	
+			<spawnbuilding name="WatchTowerStage1" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Watchtower empty stage -->		
+		</posteffects>
+	</quest>
+
+	 <quest name="CQC4M4Q2_WatchTower02_lvl16_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="CQC4M4Q1_WatchTower01_lvl16" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_Watch_Tower_Stage2_blue" x="21" y="54" units="UnemployedBuilder|50" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+		</posteffects>
+     </quest>	
+
+	<quest name="CQC4M4Q2_WatchTower02_lvl16" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="495" connectedToQuest="CQC4M4_Counterattack_stage4_lvl16" >
+		<startcondition>
+			<questcomplete item="CQC4M4Q1_WatchTower01_lvl16" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_Watch_Tower_Stage2_blue" locaExtension="construction"/>
+			<trigger type="PayForQuestFinish" name="BronzeSword" amount="350" />
+			<trigger type="PayForQuestFinish" name="Bow" amount="250" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="50" />
+			<reward type="XP" amount="200" />
+			<spawnbuilding name="WatchTowerStage2_blue" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Watchtower empty stage -->		
+		</posteffects>
+	</quest>
+
+	 <quest name="CQC4M4Q3_WatchTower03_lvl16_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="CQC4M4Q2_WatchTower02_lvl16" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_Watch_Tower_Stage3_blue" x="21" y="54" units="UnemployedBuilder|60" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+		</posteffects>
+     </quest>	
+
+	<quest name="CQC4M4Q3_WatchTower03_lvl16" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="458" connectedToQuest="CQC4M4_Counterattack_stage4_lvl16" >
+		<startcondition>
+			<questcomplete item="CQC4M4Q2_WatchTower02_lvl16" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_Watch_Tower_Stage3_blue" locaExtension="construction"/>
+			<trigger type="PayForQuestFinish" name="Marble" amount="750" />
+			<trigger type="PayForQuestFinish" name="Coin" amount="200" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="PremiumAccount1Day" amount="1"/>		
+			<reward type="XP" amount="190" />
+			<spawnbuilding name="WatchTowerStage3_blue" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Watchtower empty stage -->		
+		</posteffects>
+	</quest>
+	
+	 <quest name="CQC4M4Q4_WatchTower04_lvl16_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="CQC4M4Q3_WatchTower03_lvl16" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_Watch_Tower_Stage4_blue" x="21" y="54" units="UnemployedBuilder|75" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+		</posteffects>
+     </quest>	
+	
+	<quest name="CQC4M4Q4_WatchTower04_lvl16" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="325" connectedToQuest="CQC4M4_Counterattack_stage4_lvl16" >
+		<startcondition>
+			<questcomplete item="CQC4M4Q3_WatchTower03_lvl16" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_Watch_Tower_Stage4_blue" locaExtension="construction"/>
+			<specialisttaskfinished item="FindTreasureShort" amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="MountainDemolition_S" amount="1"/>
+			<reward type="XP" amount="80" />
+			<spawnbuilding name="WatchTowerStage4_blue" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Watchtower empty stage -->		
+		</posteffects>
+	</quest>
+
+	
+	<!-- lvl 26 quests -->
+
+	<quest name="CQC4_Counterattack_Main_lvl26" type="Crisis" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" icon="AdvancedPaper" >
+		<preeffects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_crisisquests_0" delay="3" reactivate="false" />
+		</preeffects>
+		<triggers>
+			<questcomplete item="CQC4M1_Counterattack_stage1_lvl26"/> 
+			<questcomplete item="CQC4M2_Counterattack_stage2_lvl26"/> 
+			<questcomplete item="CQC4M3_Counterattack_stage3_lvl26"/>
+			<questcomplete item="CQC4M4_Counterattack_stage4_lvl26"/> 
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="BuildBuilding" name="Bookbinder_Mini_Gold" amount="1" recurringChance="100" />	
+			<reward type="Buff" item="ProductivityBuffLvl6" amount="3" />				
+			<reward type="XP" amount="1550" />
+		</posteffects>
+	</quest>
+
+
+	<!-- lvl 26 stage 1 -->
+
+	<quest name="CQC4M1_Counterattack_stage1_lvl26" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" showRewardWindow="true" cancelable="false" showQuestWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questactive item="CQC4_Counterattack_Main_lvl26" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC4M1Q1_DiplomacyFirst_lvl26"/> 
+			<questcomplete item="CQC4M1Q2_TheStowaway_lvl26"/> 
+			<questcomplete item="CQC4M1Q3_HiddenTreasure_lvl26"/>
+			<questcomplete item="CQC4M1Q4_FollowTheLeads_lvl26"/>			
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="25" />
+			<reward type="XP" amount="375" />
+		</posteffects>
+	</quest>
+
+	 <quest name="CQC4M1Q1_DiplomacyFirst_lvl26_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="CQC4M1_Counterattack_stage1_lvl26" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="BanditFortressStage1" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Fortress -->
+		</posteffects>
+     </quest>	
+
+	<quest name="CQC4M1Q1_DiplomacyFirst_lvl26" type="Crisis" icon="QuestShort" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="634" connectedToQuest="CQC4M1_Counterattack_stage1_lvl26" >
+		<startcondition>
+			<questactive item="CQC4M1_Counterattack_stage1_lvl26" />
+		</startcondition>
+		<triggers>
+			<buffapplied item="EffectBuff_DiplomaticPaperwork_Lvl26" min="100" target="BanditFortressStage1"/> <!-- Diplomatic Paperwork Lv 26 -->
+			<buffapplied item="EffectBuff_LousyDistraction_Lvl26" min="100" target="BanditFortressStage1"/> <!-- Lousy Distraction Lv 26 -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="75" />
+			<reward type="XP" amount="450" />
+			<spawnbuilding name="BanditFortressStageEmpty" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Empty Fortress -->
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M1Q2_TheStowaway_lvl26" type="Crisis" icon="QuestShort" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="486" connectedToQuest="CQC4M1_Counterattack_stage1_lvl26" >
+		<startcondition>
+			<questactive item="CQC4M1_Counterattack_stage1_lvl26" />
+		</startcondition>
+		<triggers>	
+			<trigger type="Resource" name="Meat" amount="1250" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Sausage" amount="1000" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="2000" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="IronOre" amount="100" />
+			<reward type="XP" amount="650" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M1Q3_HiddenTreasure_lvl26" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="125" connectedToQuest="CQC4M1_Counterattack_stage1_lvl26" >
+		<startcondition>
+			<questcomplete item="CQC4M1Q2_TheStowaway_lvl26" />
+		</startcondition>
+		<triggers>
+			<ownresourcelist item="MapPart" amount="250" locaExtension="item"/>
+			<boughtgoods amount="750"/>
+			<trigger type="Resource" name="SimplePaper" amount="500" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Longbow" amount="100" />
+			<reward type="XP" amount="450" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M1Q4_FollowTheLeads_lvl26" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="132" connectedToQuest="CQC4M1_Counterattack_stage1_lvl26" >
+		<startcondition>
+			<questcomplete item="CQC4M1Q3_HiddenTreasure_lvl26" />
+		</startcondition>
+		<triggers>
+			<specialisttaskfinished item="FindDepositBronzeOre" amount="6"/>
+			<specialisttaskfinished item="FindDepositIronOre" amount="5"/>
+			<buildinglistupgradelevel amount="3" min="5" item="BronzeMine,BronzeMineEndless" name="EpicBronzeMine,SpookyBronzeMine" locaExtension="BronzeMine" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Marble" amount="500" />
+			<reward type="XP" amount="225" />
+		</posteffects>
+	</quest>
+	
+
+	<!-- lvl 26 stage 2 -->
+
+	<quest name="CQC4M2_Counterattack_stage2_lvl26" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" type="Crisis" icon="QuestLonger" npc="quest_character_mentor03.png" >
+		<startcondition>
+			<questcomplete item="CQC4M1_Counterattack_stage1_lvl26" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC4M2Q1_SchoolsOut_lvl26"/> 
+			<questcomplete item="CQC4M2Q2_CuttingTheMessages_lvl26"/> 
+			<questcomplete item="CQC4M2Q3_Eavesdropping_lvl26"/>
+			<questcomplete item="CQC4M2Q4_TailingTheSpy_lvl26"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="75" />
+			<reward type="Buff" item="ProductivityBuffLvl4" amount="2" />
+			<reward type="XP" amount="450" />
+		</posteffects>
+	</quest>
+	
+	 <quest name="CQC4M2Q1_SchoolsOut_lvl26_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="CQC4M2_Counterattack_stage2_lvl26" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_BanditFortressStage2" x="21" y="54" units="BanditStudent|150" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Fortress -->
+		</posteffects>
+     </quest>		
+
+	<quest name="CQC4M2Q1_SchoolsOut_lvl26" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="750" connectedToQuest="CQC4M2_Counterattack_stage2_lvl26" >	
+		<startcondition>
+			<questactive item="CQC4M2_Counterattack_stage2_lvl26" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed item="EventMonster_BanditFortressStage2" min="1"/> 
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="600" />
+			<reward type="Resource" name="Granite" amount="50" />
+			<spawnbuilding name="BanditFortressStageEmpty" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Empty Fortress -->
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M2Q2_CuttingTheMessages_lvl26" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="325" connectedToQuest="CQC4M2_Counterattack_stage2_lvl26" >		
+		<startcondition>
+			<questactive item="CQC4M2_Counterattack_stage2_lvl26" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="SimplePaper" amount="300" condition="produce" />
+			<buffapplied item="ProductivityBuffLvl2" min="1" target="PapermillSimple,PapermillSimpleColored"  />
+			<buffproduced min="25" item="ProductivityBuffLvl2"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="200" />
+			<reward type="Buff" item="SpeedUpPopulationGrowth2" amount="1" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M2Q3_Eavesdropping_lvl26" type="Crisis" icon="QuestShort" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="120" connectedToQuest="CQC4M2_Counterattack_stage2_lvl26" >
+		<startcondition>
+			<questcomplete item="CQC4M2Q2_CuttingTheMessages_lvl26" />
+		</startcondition>
+		<triggers>
+			<produceditemlist item="Cavalry" amount="50" locaExtension="unit"/> 
+			<produceditemlist item="Militia" amount="50" locaExtension="unit"/> 
+			<produceditemlist item="Longbowman" amount="50" locaExtension="unit"/> 
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="IronSword" amount="100" />
+			<reward type="XP" amount="125" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M2Q4_TailingTheSpy_lvl26" type="Crisis" icon="QuestShort" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="147" connectedToQuest="CQC4M2_Counterattack_stage2_lvl26" >
+		<startcondition>
+			<questcomplete item="CQC4M2Q3_Eavesdropping_lvl26" />
+		</startcondition>
+		<triggers>
+			<specialisttaskfinished item="FindTreasureShort" amount="1"/>
+			<trigger type="Resource" name="Iron" amount="600" condition="produce" />
+			<trigger type="Resource" name="Marble" amount="800" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl14" amount="1" />
+			<reward type="XP" amount="950" />
+		</posteffects>
+	</quest>
+
+	<!-- lvl 26 stage 3 -->
+
+	<quest name="CQC4M3_Counterattack_stage3_lvl26" type="Crisis" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questcomplete item="CQC4M2_Counterattack_stage2_lvl26" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC4M3Q1_CounterOffensive_lvl26"/> 
+			<questcomplete item="CQC4M3Q2_Barricades_lvl26"/> 
+			<questcomplete item="CQC4M3Q3_PreparingTheDefense_lvl26"/>
+			<questcomplete item="CQC4M3Q3_BetterSafeThanSorry_lvl26"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="100" />
+			<reward type="XP" amount="350" />
+		</posteffects>
+	</quest>
+
+	 <quest name="CQC4M3Q1_CounterOffensive_lvl26_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="CQC4M3_Counterattack_stage3_lvl26" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="PartyCrashers_Bridge" x="21" y="57" action="ignoreBlocking,spawnInstant,replace" mode="free" />
+			<spawnbuilding name="BanditFortressStage3" x="21" y="54" units="BanditRecruit|125,BanditMilitia|50,BanditBowman|100,BanditCavalry|50,BanditSoldier|25,BanditLongbowman|50" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Fortress -->
+		</posteffects>
+     </quest>	
+
+	<quest name="CQC4M3Q1_CounterOffensive_lvl26" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="665" connectedToQuest="CQC4M3_Counterattack_stage3_lvl26" >
+		<startcondition>
+			<questactive item="CQC4M3_Counterattack_stage3_lvl26" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="1" item="BanditFortressStage3"/> <!-- Fortress -->
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="450" />
+			<reward type="Buff" item="RecoverGeneral" amount="1" />
+			<removebuilding name="PartyCrashers_Bridge" x="21" y="57" />
+			<removebuilding name="BanditFortressStage3" x="21" y="54" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M3Q2_Barricades_lvl26" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="318" connectedToQuest="CQC4M3_Counterattack_stage3_lvl26" >
+		<startcondition>
+			<questactive item="CQC4M3_Counterattack_stage3_lvl26" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="RealPlank" amount="1250" />
+			<trigger type="PayForQuestFinish" name="Plank" amount="3000" />
+			<trigger type="Resource" name="RealPlank" amount="850" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl14" amount="1" />
+			<reward type="XP" amount="375" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M3Q3_PreparingTheDefense_lvl26" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="225" connectedToQuest="CQC4M3_Counterattack_stage3_lvl26" >
+		<startcondition>
+			<questcomplete item="CQC4M3Q2_Barricades_lvl26" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="IronSword" amount="250" condition="produce" />
+			<trigger type="Resource" name="Bow" amount="400" condition="produce" />
+			<trigger type="Resource" name="Horse" amount="500" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="RecruitingBuffLvl100" amount="1" />
+			<reward type="XP" amount="825" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M3Q3_BetterSafeThanSorry_lvl26" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="165" connectedToQuest="CQC4M3_Counterattack_stage3_lvl26" >
+		<startcondition>
+			<questcomplete item="CQC4M3Q3_PreparingTheDefense_lvl26" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="IronSword" amount="100" condition="produce" />
+			<produceditemlist item="Militia" amount="50" locaExtension="unit"/>
+			<produceditemlist item="Cavalry" amount="50" locaExtension="unit"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="100" />
+			<reward type="XP" amount="450" />
+		</posteffects>
+	</quest>
+
+	<!-- lvl 26 stage 4 -->
+
+	<quest name="CQC4M4_Counterattack_stage4_lvl26" type="Crisis" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questcomplete item="CQC4M3_Counterattack_stage3_lvl26" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC4M4Q1_WatchTower01_lvl26"/> 
+			<questcomplete item="CQC4M4Q2_WatchTower02_lvl26"/> 
+			<questcomplete item="CQC4M4Q3_WatchTower03_lvl26"/>
+			<questcomplete item="CQC4M4Q4_WatchTower04_lvl26"/>
+		</triggers>
+		<posteffects>
+			<removebuilding x="21" y="54" name="WatchTowerStage4_blue"/>
+			<removebuilding x="21" y="54" name="EventMonster_Watch_Tower_Stage4_blue" />
+			<reward type="Resource" name="HardCurrency" amount="150" />
+			<reward type="XP" amount="540" />
+			<reward type="Buff" item="BuildBuilding" name="WatchTowerFinished_blue" amount="1" recurringChance="100" />
+		</posteffects>
+	</quest>
+	
+	 <quest name="CQC4M4Q1_WatchTower01_lvl26_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="CQC4M4_Counterattack_stage4_lvl26" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_WatchTowerStage1" x="21" y="54" units="UnemployedBuilder|30" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+		</posteffects>
+     </quest>		
+
+	<quest name="CQC4M4Q1_WatchTower01_lvl26" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="375" connectedToQuest="CQC4M4_Counterattack_stage4_lvl26" >
+		<startcondition>
+			<questactive item="CQC4M4_Counterattack_stage4_lvl26" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WatchTowerStage1" locaExtension="construction"/>
+			<trigger type="PayForQuestFinish" name="Meat" amount="750" />
+			<trigger type="PayForQuestFinish" name="Coin" amount="100" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="1000" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl21" amount="1" /> 
+			<reward type="XP" amount="850" />
+			<spawnbuilding name="WatchTowerStage1" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Watchtower empty stage -->		
+		</posteffects>
+	</quest>
+
+	 <quest name="CQC4M4Q2_WatchTower02_lvl26_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="CQC4M4Q1_WatchTower01_lvl26" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_Watch_Tower_Stage2_blue" x="21" y="54" units="StrongBuilder|30" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+		</posteffects>
+     </quest>	
+
+	<quest name="CQC4M4Q2_WatchTower02_lvl26" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="495" connectedToQuest="CQC4M4_Counterattack_stage4_lvl26" >
+		<startcondition>
+			<questcomplete item="CQC4M4Q1_WatchTower01_lvl26" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_Watch_Tower_Stage2_blue" locaExtension="construction"/>
+			<produceditemlist item="Militia" amount="30" locaExtension="unit"/>
+			<produceditemlist item="Cavalry" amount="50" locaExtension="unit"/>
+			<produceditemlist item="Recruit" amount="125" locaExtension="unit"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ExoticWood" amount="75" />
+			<reward type="XP" amount="425" />
+			<spawnbuilding name="WatchTowerStage2_blue" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Watchtower empty stage -->		
+		</posteffects>
+	</quest>
+	
+	 <quest name="CQC4M4Q3_WatchTower03_lvl26_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="CQC4M4Q2_WatchTower02_lvl26" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_Watch_Tower_Stage3_blue" x="21" y="54" units="UnemployedBuilder|75" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+		</posteffects>
+     </quest>		
+
+	<quest name="CQC4M4Q3_WatchTower03_lvl26" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="458" connectedToQuest="CQC4M4_Counterattack_stage4_lvl26" >
+		<startcondition>
+			<questcomplete item="CQC4M4Q2_WatchTower02_lvl26" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_Watch_Tower_Stage3_blue" locaExtension="construction"/>
+			<trigger type="PayForQuestFinish" name="IronSword" amount="50" />
+			<trigger type="PayForQuestFinish" name="Longbow" amount="100" />
+			<trigger type="PayForQuestFinish" name="Horse" amount="300" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="PremiumAccount1Day" amount="1"/>		
+			<reward type="XP" amount="750" />
+			<spawnbuilding name="WatchTowerStage3_blue" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Watchtower empty stage -->		
+		</posteffects>
+	</quest>
+	
+	 <quest name="CQC4M4Q4_WatchTower04_lvl26_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="CQC4M4Q3_WatchTower03_lvl26" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_Watch_Tower_Stage4_blue" x="21" y="54" units="StrongBuilder|75" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+		</posteffects>
+     </quest>		
+	
+	<quest name="CQC4M4Q4_WatchTower04_lvl26" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="325" connectedToQuest="CQC4M4_Counterattack_stage4_lvl26" >
+		<startcondition>
+			<questcomplete item="CQC4M4Q3_WatchTower03_lvl26" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_Watch_Tower_Stage4_blue" locaExtension="construction"/>
+			<completeadventurelist amount="1"/>
+			<specialisttaskfinished item="FindAdventureZoneShort" amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="MountainDemolition_S" amount="1"/>
+			<reward type="XP" amount="375" />
+			<spawnbuilding name="WatchTowerStage4_blue" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Watchtower empty stage -->		
+		</posteffects>
+	</quest>
+
+	<!-- lvl 36 quests -->
+
+	<quest name="CQC4_Counterattack_Main_lvl36" type="Crisis" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" icon="AdvancedPaper" >
+		<preeffects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_crisisquests_0" delay="3" reactivate="false" />
+		</preeffects>
+		<triggers>
+			<questcomplete item="CQC4M1_Counterattack_stage1_lvl36"/> 
+			<questcomplete item="CQC4M2_Counterattack_stage2_lvl36"/> 
+			<questcomplete item="CQC4M3_Counterattack_stage3_lvl36"/>
+			<questcomplete item="CQC4M4_Counterattack_stage4_lvl36"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="BuildBuilding" name="Bookbinder_Mini_Gold" amount="1" recurringChance="100" />
+			<reward type="XP" amount="9000" />
+			<reward type="Buff" item="ProductivityBuffLvl10" amount="3" />
+		</posteffects>
+	</quest>
+
+
+	<!-- lvl 36 stage 1 -->
+
+	<quest name="CQC4M1_Counterattack_stage1_lvl36" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" showRewardWindow="true" cancelable="false" showQuestWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questactive item="CQC4_Counterattack_Main_lvl36" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC4M1Q1_DiplomacyFirst_lvl36"/> 
+			<questcomplete item="CQC4M1Q2_TheStowaway_lvl36"/> 
+			<questcomplete item="CQC4M1Q3_HiddenTreasure_lvl36"/>
+			<questcomplete item="CQC4M1Q4_FollowTheLeads_lvl36"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="25" />
+			<reward type="XP" amount="1250" />
+		</posteffects>
+	</quest>
+
+	 <quest name="CQC4M1Q1_DiplomacyFirst_lvl36_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="CQC4M1_Counterattack_stage1_lvl36" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="BanditFortressStage1" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Fortress -->
+		</posteffects>
+     </quest>
+
+	<quest name="CQC4M1Q1_DiplomacyFirst_lvl36" type="Crisis" icon="QuestShort" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="634" connectedToQuest="CQC4M1_Counterattack_stage1_lvl36" >	
+		<startcondition>
+			<questactive item="CQC4M1_Counterattack_stage1_lvl36" />
+		</startcondition>
+		<triggers>
+			<buffapplied item="EffectBuff_DiplomaticPaperwork_Lvl36" min="100" target="BanditFortressStage1"/> <!-- Diplomatic Paperwork Lv 36 -->
+			<buffapplied item="EffectBuff_LousyDistraction_Lvl36" min="100" target="BanditFortressStage1"/> <!-- Lousy Distraction Lv 36 -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ExoticWood" amount="150" />
+			<reward type="XP" amount="1100" />
+			<spawnbuilding name="BanditFortressStageEmpty" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Empty Fortress -->
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M1Q2_TheStowaway_lvl36" type="Crisis" icon="QuestShort" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="486" connectedToQuest="CQC4M1_Counterattack_stage1_lvl36" >
+		<startcondition>
+			<questactive item="CQC4M1_Counterattack_stage1_lvl36" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Bread" amount="2500" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="1750" />
+			<trigger type="PayForQuestFinish" name="Sausage" amount="700" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="SteelSword" amount="50" />
+			<reward type="XP" amount="2700" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M1Q3_HiddenTreasure_lvl36" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="125" connectedToQuest="CQC4M1_Counterattack_stage1_lvl36" >
+		<startcondition>
+			<questcomplete item="CQC4M1Q2_TheStowaway_lvl36" />
+		</startcondition>
+		<triggers>
+			<ownresourcelist item="MapPart" amount="500"  locaExtension="item"/>
+			<boughtgoods amount="1500"/>
+			<trigger type="Resource" name="IntermediatePaper" amount="500" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="75" />
+			<reward type="XP" amount="985" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M1Q4_FollowTheLeads_lvl36" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="132" connectedToQuest="CQC4M1_Counterattack_stage1_lvl36" >
+		<startcondition>
+			<questcomplete item="CQC4M1Q3_HiddenTreasure_lvl36" />
+		</startcondition>
+		<triggers>
+			<specialisttaskfinished item="FindDepositGoldOre" amount="5"/>
+			<specialisttaskfinished item="FindDepositIronOre" amount="5"/>
+			<buildinglistupgradelevel amount="5" min="3" item="IronMine,IronMineEndless" name="ArcticIronMine,EpicIronMine" locaExtension="IronMine" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Horse" amount="300" />
+			<reward type="XP" amount="450" />
+		</posteffects>
+	</quest>
+
+	<!-- lvl 36 stage 2 -->
+
+	<quest name="CQC4M2_Counterattack_stage2_lvl36" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" type="Crisis" icon="QuestLonger" npc="quest_character_mentor03.png" >
+		<startcondition>
+			<questcomplete item="CQC4M1_Counterattack_stage1_lvl36" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC4M2Q1_SchoolsOut_lvl36"/> 
+			<questcomplete item="CQC4M2Q2_CuttingTheMessages_lvl36"/> 
+			<questcomplete item="CQC4M2Q3_Eavesdropping_lvl36"/>
+			<questcomplete item="CQC4M2Q4_TailingTheSpy_lvl36"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="125" />
+			<reward type="Buff" item="ProductivityBuffLvl4" amount="2" />
+			<reward type="XP" amount="2400" />
+		</posteffects>
+	</quest>
+	
+	 <quest name="CQC4M2Q1_SchoolsOut_lvl36_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="CQC4M2_Counterattack_stage2_lvl36" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_BanditFortressStage2" x="21" y="54" units="BanditStudent|300" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Fortress -->
+		</posteffects>
+     </quest>	
+
+	<quest name="CQC4M2Q1_SchoolsOut_lvl36" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="750" connectedToQuest="CQC4M2_Counterattack_stage2_lvl36" >
+		<startcondition>
+			<questactive item="CQC4M2_Counterattack_stage2_lvl36" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed item="EventMonster_BanditFortressStage2" min="1"/> 
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="1200" />
+			<reward type="Resource" name="Granite" amount="150" />
+			<spawnbuilding name="BanditFortressStageEmpty" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Empty Fortress -->
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M2Q2_CuttingTheMessages_lvl36" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="325" connectedToQuest="CQC4M2_Counterattack_stage2_lvl36" >
+		<startcondition>
+			<questactive item="CQC4M2_Counterattack_stage2_lvl36" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="IntermediatePaper" amount="500" condition="produce" />
+			<buffapplied item="ProductivityBuffLvl3" min="1" target="PapermillSimple,PapermillSimpleColored"  />
+			<buffapplied item="ProductivityBuffLvl3" min="1" target="PapermillIntermediate"  />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="850" />
+			<reward type="Buff" item="SpeedUpPopulationGrowth2" amount="1" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M2Q3_Eavesdropping_lvl36" type="Crisis" icon="QuestShort" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="120" connectedToQuest="CQC4M2_Counterattack_stage2_lvl36" >
+		<startcondition>
+			<questcomplete item="CQC4M2Q2_CuttingTheMessages_lvl36" />
+		</startcondition>
+		<triggers>
+			<produceditemlist item="Crossbowman" amount="50" locaExtension="unit"/>
+			<produceditemlist item="Longbowman" amount="150" locaExtension="unit"/>
+			<produceditemlist item="Militia" amount="150" locaExtension="unit"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Longbow" amount="100" />
+			<reward type="XP" amount="550" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M2Q4_TailingTheSpy_lvl36" type="Crisis" icon="QuestShort" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="147" connectedToQuest="CQC4M2_Counterattack_stage2_lvl36" >
+		<startcondition>
+			<questcomplete item="CQC4M2Q3_Eavesdropping_lvl36" />
+		</startcondition>
+		<triggers>
+			<specialisttaskfinished item="FindTreasureMedium" amount="1"/>
+			<trigger type="Resource" name="Iron" amount="1500" condition="produce" />
+			<trigger type="Resource" name="Meat" amount="2500" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl14" amount="2" />
+			<reward type="XP" amount="3750" />
+		</posteffects>
+	</quest>
+
+	<!-- lvl 36 stage 3 -->
+
+	<quest name="CQC4M3_Counterattack_stage3_lvl36" type="Crisis" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questcomplete item="CQC4M2_Counterattack_stage2_lvl36" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC4M3Q1_CounterOffensive_lvl36"/> 
+			<questcomplete item="CQC4M3Q2_Barricades_lvl36"/> 
+			<questcomplete item="CQC4M3Q3_PreparingTheDefense_lvl36"/>
+			<questcomplete item="CQC4M3Q3_BetterSafeThanSorry_lvl36"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="100" />
+			<reward type="XP" amount="425" />
+		</posteffects>
+	</quest>
+
+	 <quest name="CQC4M3Q1_CounterOffensive_lvl36_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="CQC4M3_Counterattack_stage3_lvl36" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="PartyCrashers_Bridge" x="21" y="57" action="ignoreBlocking,spawnInstant,replace" mode="free" />
+			<spawnbuilding name="BanditFortressStage3" x="21" y="54" units="BanditRecruit|175,BanditMilitia|100,BanditBowman|125,BanditCavalry|75,BanditSoldier|50,BanditLongbowman|50" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Fortress -->
+		</posteffects>
+     </quest>	
+
+	<quest name="CQC4M3Q1_CounterOffensive_lvl36" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="665" connectedToQuest="CQC4M3_Counterattack_stage3_lvl36" >
+		<startcondition>
+			<questactive item="CQC4M3_Counterattack_stage3_lvl36" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="1" item="BanditFortressStage3"/> 
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="1100" />
+			<reward type="Buff" item="RecoverGeneral" amount="1"/>
+			<removebuilding name="PartyCrashers_Bridge" x="21" y="57" />
+			<removebuilding name="BanditFortressStage3" x="21" y="54" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M3Q2_Barricades_lvl36" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="318" connectedToQuest="CQC4M3_Counterattack_stage3_lvl36" >
+		<startcondition>
+			<questactive item="CQC4M3_Counterattack_stage3_lvl36" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="RealPlank" amount="5000" />
+			<trigger type="PayForQuestFinish" name="Plank" amount="10000" />
+			<trigger type="Resource" name="ExoticPlank" amount="250" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl4" amount="2"/>
+			<reward type="XP" amount="1350" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M3Q3_PreparingTheDefense_lvl36" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="225" connectedToQuest="CQC4M3_Counterattack_stage3_lvl36" >
+		<startcondition>
+			<questcomplete item="CQC4M3Q2_Barricades_lvl36" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Longbow" amount="500" condition="produce" />
+			<trigger type="Resource" name="Crossbow" amount="75" condition="produce" />
+			<trigger type="Resource" name="SteelSword" amount="350" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="RecruitingBuffLvl3" amount="1"/>
+			<reward type="XP" amount="2425" />
+		</posteffects>
+	</quest>
+
+	
+	<quest name="CQC4M3Q3_BetterSafeThanSorry_lvl36" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="165" connectedToQuest="CQC4M3_Counterattack_stage3_lvl36" >
+		<startcondition>
+			<questcomplete item="CQC4M3Q3_PreparingTheDefense_lvl36" />
+		</startcondition>
+		<triggers>
+			<produceditemlist item="Cavalry" amount="150" locaExtension="unit"/>
+			<produceditemlist item="Militia" amount="150" locaExtension="unit"/>
+			<produceditemlist item="Longbowman" amount="150" locaExtension="unit"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ExoticWood" amount="70" />
+			<reward type="XP" amount="450" />
+		</posteffects>
+	</quest>
+
+	<!-- lvl 36 stage 4 -->
+
+	<quest name="CQC4M4_Counterattack_stage4_lvl36" type="Crisis" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questcomplete item="CQC4M3_Counterattack_stage3_lvl36" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC4M4Q1_WatchTower01_lvl36"/> 
+			<questcomplete item="CQC4M4Q2_WatchTower02_lvl36"/> 
+			<questcomplete item="CQC4M4Q3_WatchTower03_lvl36"/>
+			<questcomplete item="CQC4M4Q4_WatchTower04_lvl36"/>
+		</triggers>
+		<posteffects>
+			<removebuilding x="21" y="54" name="WatchTowerStage4_blue" />
+			<removebuilding x="21" y="54" name="EventMonster_Watch_Tower_Stage4_blue" />
+			<reward type="Resource" name="HardCurrency" amount="250" />
+			<reward type="XP" amount="350" />
+			<reward type="Buff" item="BuildBuilding" name="WatchTowerFinished_blue" amount="1" recurringChance="100" />
+		</posteffects>
+	</quest>
+
+	 <quest name="CQC4M4Q1_WatchTower01_lvl36_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="CQC4M4_Counterattack_stage4_lvl36" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_WatchTowerStage1" x="21" y="54" units="UnemployedBuilder|75" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+		</posteffects>
+     </quest>		
+
+	<quest name="CQC4M4Q1_WatchTower01_lvl36" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="375" connectedToQuest="CQC4M4_Counterattack_stage4_lvl36" >
+		<startcondition>
+			<questactive item="CQC4M4_Counterattack_stage4_lvl36" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WatchTowerStage1" locaExtension="construction"/>
+			<trigger type="PayForQuestFinish" name="Sausage" amount="2000" />
+			<trigger type="PayForQuestFinish" name="Coin" amount="200" />
+			<trigger type="PayForQuestFinish" name="Steel" amount="750" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl21" amount="1"/>
+			<reward type="XP" amount="3750" />
+			<spawnbuilding name="WatchTowerStage1" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Watchtower empty stage -->		
+		</posteffects>
+	</quest>
+	
+	 <quest name="CQC4M4Q2_WatchTower02_lvl36_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="CQC4M4Q1_WatchTower01_lvl36" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_Watch_Tower_Stage2_blue" x="21" y="54" units="StrongBuilder|50" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+		</posteffects>
+     </quest>		
+
+	<quest name="CQC4M4Q2_WatchTower02_lvl36" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="495" connectedToQuest="CQC4M4_Counterattack_stage4_lvl36" >
+		<startcondition>
+			<questcomplete item="CQC4M4Q1_WatchTower01_lvl36" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_Watch_Tower_Stage2_blue" locaExtension="construction"/>
+			<produceditemlist item="Longbowman" amount="50" locaExtension="unit"/>
+			<produceditemlist item="Bowman" amount="150" locaExtension="unit"/>
+			<produceditemlist item="Recruit" amount="400" locaExtension="unit"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="TitaniumOre" amount="50" />
+			<reward type="XP" amount="650" />
+			<spawnbuilding name="WatchTowerStage2_blue" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Watchtower empty stage -->		
+		</posteffects>
+	</quest>
+
+	 <quest name="CQC4M4Q3_WatchTower03_lvl36_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="CQC4M4Q2_WatchTower02_lvl36" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_Watch_Tower_Stage3_blue" x="21" y="54" units="StrongBuilder|75" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+		</posteffects>
+     </quest>	
+
+	<quest name="CQC4M4Q3_WatchTower03_lvl36" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="458" connectedToQuest="CQC4M4_Counterattack_stage4_lvl36" >
+		<startcondition>
+			<questcomplete item="CQC4M4Q2_WatchTower02_lvl36" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_Watch_Tower_Stage3_blue" locaExtension="construction"/>
+			<trigger type="PayForQuestFinish" name="SteelSword" amount="250" />
+			<trigger type="PayForQuestFinish" name="Longbow" amount="500" />
+			<trigger type="PayForQuestFinish" name="BronzeSword" amount="1250" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="PremiumAccount1Day" amount="1" /> 
+			<reward type="XP" amount="3400" />
+			<spawnbuilding name="WatchTowerStage3_blue" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Watchtower empty stage -->		
+		</posteffects>
+	</quest>
+	
+	 <quest name="CQC4M4Q4_WatchTower04_lvl36_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="CQC4M4Q3_WatchTower03_lvl36" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_Watch_Tower_Stage4_blue" x="21" y="54" units="Artisan|25" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+		</posteffects>
+     </quest>		
+	
+	<quest name="CQC4M4Q4_WatchTower04_lvl36" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="325" connectedToQuest="CQC4M4_Counterattack_stage4_lvl36" >
+		<startcondition>
+			<questcomplete item="CQC4M4Q3_WatchTower03_lvl36" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_Watch_Tower_Stage4_blue" locaExtension="construction"/>
+			<completeadventurelist amount="1"/>
+			<specialisttaskfinished item="FindAdventureZoneMedium" amount="1"/>
+			<specialisttaskresulttype item="FindTreasureLong" type="ExoticWood" amount="50" locaExtension="type"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="MountainDemolition_M" amount="1"/>
+			<reward type="XP" amount="550" />
+			<spawnbuilding name="WatchTowerStage4_blue" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Watchtower empty stage -->		
+		</posteffects>
+	</quest>
+
+	<!-- lvl 46 quests -->
+
+	<quest name="CQC4_Counterattack_Main_lvl46" type="Crisis" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" icon="AdvancedPaper" >
+		<preeffects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_crisisquests_0" delay="3" reactivate="false" />
+		</preeffects>
+		<triggers>
+			<questcomplete item="CQC4M1_Counterattack_stage1_lvl46"/> 
+			<questcomplete item="CQC4M2_Counterattack_stage2_lvl46"/> 
+			<questcomplete item="CQC4M3_Counterattack_stage3_lvl46"/>
+			<questcomplete item="CQC4M4_Counterattack_stage4_lvl46"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="BuildBuilding" name="Bookbinder_Mini_Gold" amount="1" recurringChance="100" />
+			<reward type="Buff" item="ProductivityBuffLvl12" amount="2"/>
+			<reward type="XP" amount="21800" />
+		</posteffects>
+	</quest>
+
+
+	<!-- lvl 46 stage 1 -->
+
+	<quest name="CQC4M1_Counterattack_stage1_lvl46" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" showRewardWindow="true" cancelable="false" showQuestWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questactive item="CQC4_Counterattack_Main_lvl46" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC4M1Q1_DiplomacyFirst_lvl46"/> 
+			<questcomplete item="CQC4M1Q2_TheStowaway_lvl46"/> 
+			<questcomplete item="CQC4M1Q3_HiddenTreasure_lvl46"/>
+			<questcomplete item="CQC4M1Q4_FollowTheLeads_lvl46"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="100" />
+			<reward type="XP" amount="6700" />
+		</posteffects>
+	</quest>
+
+	 <quest name="CQC4M1Q1_DiplomacyFirst_lvl46_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="CQC4M1_Counterattack_stage1_lvl46" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="BanditFortressStage1" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Fortress -->
+		</posteffects>
+     </quest>
+
+	<quest name="CQC4M1Q1_DiplomacyFirst_lvl46" type="Crisis" icon="QuestShort" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="634" connectedToQuest="CQC4M1_Counterattack_stage1_lvl46" >	
+		<startcondition>
+			<questactive item="CQC4M1_Counterattack_stage1_lvl46" />
+		</startcondition>
+		<triggers>
+			<buffapplied item="EffectBuff_DiplomaticPaperwork_Lvl46" min="100" target="BanditFortressStage1"/> <!-- Diplomatic Paperwork Lv 46 -->
+			<buffapplied item="EffectBuff_LousyDistraction_Lvl46" min="100" target="BanditFortressStage1"/> <!-- Lousy Distraction Lv 46 -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Granite" amount="300" />
+			<reward type="XP" amount="7550" />
+			<spawnbuilding name="BanditFortressStageEmpty" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Empty Fortress -->
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M1Q2_TheStowaway_lvl46" type="Crisis" icon="QuestShort" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="486" connectedToQuest="CQC4M1_Counterattack_stage1_lvl46" >
+		<startcondition>
+			<questactive item="CQC4M1_Counterattack_stage1_lvl46" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Meat" amount="5000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="7000" />
+			<trigger type="PayForQuestFinish" name="Sausage" amount="3500" />			
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ExoticWood" amount="150" />
+			<reward type="XP" amount="11600" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M1Q3_HiddenTreasure_lvl46" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="125" connectedToQuest="CQC4M1_Counterattack_stage1_lvl46" >
+		<startcondition>
+			<questcomplete item="CQC4M1Q2_TheStowaway_lvl46" />
+		</startcondition>
+		<triggers>
+			<ownresourcelist item="MapPart" amount="5000" locaExtension="item"/>
+			<boughtgoods amount="2500"/>
+			<trigger type="Resource" name="IntermediatePaper" amount="750" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Crossbow" amount="30" />
+			<reward type="XP" amount="5785" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M1Q4_FollowTheLeads_lvl46" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="132" connectedToQuest="CQC4M1_Counterattack_stage1_lvl46" >
+		<startcondition>
+			<questcomplete item="CQC4M1Q3_HiddenTreasure_lvl46" />
+		</startcondition>
+		<triggers>
+			<specialisttaskfinished item="FindDepositGoldOre" amount="6"/>
+			<specialisttaskfinished item="FindDepositIronOre" amount="6"/>
+			<buildinglistupgradelevel amount="3" min="4" item="GoldMine,GoldMineEndless" name="ArcticGoldMine,EpicGoldMine" locaExtension="GoldMine" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="100" />
+			<reward type="XP" amount="4950" />
+		</posteffects>
+	</quest>
+	
+	<!-- lvl 46 stage 2 -->
+
+	<quest name="CQC4M2_Counterattack_stage2_lvl46" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" type="Crisis" icon="QuestLonger" npc="quest_character_mentor03.png" >
+		<startcondition>
+			<questcomplete item="CQC4M1_Counterattack_stage1_lvl46" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC4M2Q1_SchoolsOut_lvl46"/> 
+			<questcomplete item="CQC4M2Q2_CuttingTheMessages_lvl46"/> 
+			<questcomplete item="CQC4M2Q3_Eavesdropping_lvl46"/>
+			<questcomplete item="CQC4M2Q4_TailingTheSpy_lvl46"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="200" />
+			<reward type="Buff" item="ProductivityBuffLvl4" amount="2" />
+			<reward type="XP" amount="6500" />
+		</posteffects>
+	</quest>
+
+	 <quest name="CQC4M2Q1_SchoolsOut_lvl46_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="CQC4M2_Counterattack_stage2_lvl46" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_BanditFortressStage2" x="21" y="54" units="BanditStudent|450" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Fortress -->
+		</posteffects>
+     </quest>	
+
+	<quest name="CQC4M2Q1_SchoolsOut_lvl46" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="750" connectedToQuest="CQC4M2_Counterattack_stage2_lvl46" >
+		<startcondition>
+			<questactive item="CQC4M2_Counterattack_stage2_lvl46" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed item="EventMonster_BanditFortressStage2" min="1"/> 
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="6250" />
+			<reward type="Resource" name="Grout" amount="50" />
+			<spawnbuilding name="BanditFortressStageEmpty" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Empty Fortress -->
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M2Q2_CuttingTheMessages_lvl46" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="325" connectedToQuest="CQC4M2_Counterattack_stage2_lvl46" >
+		<startcondition>
+			<questactive item="CQC4M2_Counterattack_stage2_lvl46" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="IntermediatePaper" amount="500" condition="produce" />
+			<buffapplied item="ProductivityBuffLvl3" min="1" target="PapermillSimple,PapermillSimpleColored"  />
+			<buffapplied item="ProductivityBuffLvl3" min="1" target="PapermillIntermediate"  />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="2450" />
+			<reward type="Buff" item="SpeedUpPopulationGrowth2" amount="2" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M2Q3_Eavesdropping_lvl46" type="Crisis" icon="QuestShort" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="120" connectedToQuest="CQC4M2_Counterattack_stage2_lvl46" >
+		<startcondition>
+			<questcomplete item="CQC4M2Q2_CuttingTheMessages_lvl46" />
+		</startcondition>
+		<triggers>
+			<produceditemlist item="Crossbowman" amount="50" locaExtension="unit"/>
+			<produceditemlist item="Cavalry" amount="250" locaExtension="unit"/>
+			<produceditemlist item="EliteSoldier" amount="50" locaExtension="unit"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Crossbow" amount="50" />
+			<reward type="XP" amount="2800" />
+		</posteffects>
+	</quest>
+	
+	<quest name="CQC4M2Q4_TailingTheSpy_lvl46" type="Crisis" icon="QuestShort" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="147" connectedToQuest="CQC4M2_Counterattack_stage2_lvl46" >
+		<startcondition>
+			<questcomplete item="CQC4M2Q3_Eavesdropping_lvl46" />
+		</startcondition>
+		<triggers>
+			<specialisttaskfinished item="FindTreasureMedium" amount="1"/>
+			<specialisttaskfinished item="FindTreasureShort" amount="1"/>
+			<trigger type="Resource" name="Coin" amount="500" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl14" amount="3" />
+			<reward type="XP" amount="8400" />
+		</posteffects>
+	</quest>
+
+
+	<!-- lvl 46 stage 3 -->
+
+	<quest name="CQC4M3_Counterattack_stage3_lvl46" type="Crisis" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questcomplete item="CQC4M2_Counterattack_stage2_lvl46" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC4M3Q1_CounterOffensive_lvl46"/> 
+			<questcomplete item="CQC4M3Q2_Barricades_lvl46"/> 
+			<questcomplete item="CQC4M3Q3_PreparingTheDefense_lvl46"/>
+			<questcomplete item="CQC4M3Q3_BetterSafeThanSorry_lvl46"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="250" />
+			<reward type="XP" amount="6870" />
+		</posteffects>
+	</quest>
+
+	 <quest name="CQC4M3Q1_CounterOffensive_lvl46_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="CQC4M3_Counterattack_stage3_lvl46" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="PartyCrashers_Bridge" x="21" y="57" action="ignoreBlocking,spawnInstant,replace" mode="free" />
+			<spawnbuilding name="BanditFortressStage3" x="21" y="54" units="BanditRecruit|200,BanditMilitia|100,BanditBowman|125,BanditCavalry|100,BanditSoldier|60,BanditLongbowman|55" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Fortress -->
+		</posteffects>
+     </quest>	
+
+	<quest name="CQC4M3Q1_CounterOffensive_lvl46" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="665" connectedToQuest="CQC4M3_Counterattack_stage3_lvl46" >
+		<startcondition>
+			<questactive item="CQC4M3_Counterattack_stage3_lvl46" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="1" item="BanditFortressStage3"/> 
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="4950" />
+			<reward type="Buff" item="RecoverGeneral" amount="1"/>
+			<removebuilding name="PartyCrashers_Bridge" x="21" y="57" />
+			<removebuilding name="BanditFortressStage3" x="21" y="54" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M3Q2_Barricades_lvl46" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="318" connectedToQuest="CQC4M3_Counterattack_stage3_lvl46" >
+		<startcondition>
+			<questactive item="CQC4M3_Counterattack_stage3_lvl46" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="ExoticPlank" amount="500" />
+			<trigger type="PayForQuestFinish" name="RealPlank" amount="12500" />
+			<trigger type="PayForQuestFinish" name="Plank" amount="35000" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl5" amount="1"/>
+			<reward type="XP" amount="4850" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M3Q3_PreparingTheDefense_lvl46" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="225" connectedToQuest="CQC4M3_Counterattack_stage3_lvl46" >
+		<startcondition>
+			<questcomplete item="CQC4M3Q2_Barricades_lvl46" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Crossbow" amount="150" condition="produce" />
+			<trigger type="Resource" name="TitaniumSword" amount="100" condition="produce" />
+			<trigger type="Resource" name="Longbow" amount="500" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="RecruitingBuffLvl3" amount="2"/>
+			<reward type="XP" amount="9600" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M3Q3_BetterSafeThanSorry_lvl46" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="165" connectedToQuest="CQC4M3_Counterattack_stage3_lvl46" >
+		<startcondition>
+			<questcomplete item="CQC4M3Q3_PreparingTheDefense_lvl46" />
+		</startcondition>
+		<triggers>
+			<produceditemlist item="Soldier" amount="100" locaExtension="unit"/>
+			<produceditemlist item="Crossbowman" amount="75" locaExtension="unit"/>
+			<produceditemlist item="Recruit" amount="1000" locaExtension="unit"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Granite" amount="100" />
+			<reward type="XP" amount="5325" />
+		</posteffects>
+	</quest>
+
+	<!-- lvl 46 stage 4 -->
+
+	<quest name="CQC4M4_Counterattack_stage4_lvl46" type="Crisis" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questcomplete item="CQC4M3_Counterattack_stage3_lvl46" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC4M4Q1_WatchTower01_lvl46"/> 
+			<questcomplete item="CQC4M4Q2_WatchTower02_lvl46"/> 
+			<questcomplete item="CQC4M4Q3_WatchTower03_lvl46"/>
+			<questcomplete item="CQC4M4Q4_WatchTower04_lvl46"/>
+		</triggers>
+		<posteffects>
+			<removebuilding x="21" y="54" name="WatchTowerStage4_blue" />
+			<removebuilding x="21" y="54" name="EventMonster_Watch_Tower_Stage4_blue" />
+			<reward type="Resource" name="HardCurrency" amount="300" />
+			<reward type="XP" amount="8575" />
+			<reward type="Buff" item="BuildBuilding" name="WatchTowerFinished_blue" amount="1" recurringChance="100" />
+		</posteffects>
+	</quest>
+	
+	 <quest name="CQC4M4Q1_WatchTower01_lvl46_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="CQC4M4_Counterattack_stage4_lvl46" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_WatchTowerStage1" x="21" y="54" units="UnemployedBuilder|100" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+		</posteffects>
+     </quest>			
+
+	<quest name="CQC4M4Q1_WatchTower01_lvl46" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="375" connectedToQuest="CQC4M4_Counterattack_stage4_lvl46" >
+		<startcondition>
+			<questactive item="CQC4M4_Counterattack_stage4_lvl46" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WatchTowerStage1" locaExtension="construction"/>
+			<trigger type="PayForQuestFinish" name="Sausage" amount="5000" />
+			<trigger type="PayForQuestFinish" name="Coin" amount="500" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="10000" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl21" amount="2"/>
+			<reward type="XP" amount="12450" />
+			<spawnbuilding name="WatchTowerStage1" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Watchtower empty stage -->		
+		</posteffects>
+	</quest>
+
+	 <quest name="CQC4M4Q2_WatchTower02_lvl46_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="CQC4M4Q1_WatchTower01_lvl46" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_Watch_Tower_Stage2_blue" x="21" y="54" units="StrongBuilder|75" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+		</posteffects>
+     </quest>		
+
+	<quest name="CQC4M4Q2_WatchTower02_lvl46" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="495" connectedToQuest="CQC4M4_Counterattack_stage4_lvl46" >
+		<startcondition>
+			<questcomplete item="CQC4M4Q1_WatchTower01_lvl46" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_Watch_Tower_Stage2_blue" locaExtension="construction"/>
+			<produceditemlist item="Crossbowman" amount="30" locaExtension="unit"/>
+			<produceditemlist item="Longbowman" amount="150" locaExtension="unit"/>
+			<produceditemlist item="Bowman" amount="250" locaExtension="unit"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Salpeter" amount="100" />
+			<reward type="XP" amount="4700" />
+			<spawnbuilding name="WatchTowerStage2_blue" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Watchtower empty stage -->		
+		</posteffects>
+	</quest>
+
+	 <quest name="CQC4M4Q3_WatchTower03_lvl46_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="CQC4M4Q2_WatchTower02_lvl46" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_Watch_Tower_Stage3_blue" x="21" y="54" units="Artisan|25" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+		</posteffects>
+     </quest>		
+
+	<quest name="CQC4M4Q3_WatchTower03_lvl46" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="458" connectedToQuest="CQC4M4_Counterattack_stage4_lvl46" >
+		<startcondition>
+			<questcomplete item="CQC4M4Q2_WatchTower02_lvl46" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_Watch_Tower_Stage3_blue" locaExtension="construction"/>
+			<trigger type="PayForQuestFinish" name="Longbow" amount="3500" />
+			<trigger type="PayForQuestFinish" name="IronSword" amount="2500" />
+			<trigger type="PayForQuestFinish" name="SteelSword" amount="1500" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="PremiumAccount1Day" amount="1" /> 
+			<reward type="XP" amount="15450" />
+			<spawnbuilding name="WatchTowerStage3_blue" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Watchtower empty stage -->		
+		</posteffects>
+	</quest>
+	
+	 <quest name="CQC4M4Q4_WatchTower04_lvl46_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="CQC4M4Q3_WatchTower03_lvl46" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_Watch_Tower_Stage4_blue" x="21" y="54" units="Artisan|50" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+		</posteffects>
+     </quest>			
+
+	<quest name="CQC4M4Q4_WatchTower04_lvl46" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="325" connectedToQuest="CQC4M4_Counterattack_stage4_lvl46" >
+		<startcondition>
+			<questcomplete item="CQC4M4Q3_WatchTower03_lvl46" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_Watch_Tower_Stage4_blue" locaExtension="construction"/>
+			<completeadventurelist amount="1"/>
+			<specialisttaskfinished item="FindAdventureZoneMedium" amount="2"/>
+			<specialisttaskresulttype item="FindTreasureEvenLonger" type="Granite" amount="50" locaExtension="type"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="MountainDemolition_M" amount="1"/>
+			<reward type="XP" amount="6750" />
+			<spawnbuilding name="WatchTowerStage4_blue" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Watchtower empty stage -->		
+		</posteffects>
+	</quest>
+
+	<!-- lvl 56 quests -->	
+
+	<quest name="CQC4_Counterattack_Main_lvl56" type="Crisis" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" icon="AdvancedPaper" >
+		<preeffects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_crisisquests_0" delay="3" reactivate="false" />
+		</preeffects>
+		<triggers>
+			<questcomplete item="CQC4M1_Counterattack_stage1_lvl56"/> 
+			<questcomplete item="CQC4M2_Counterattack_stage2_lvl56"/> 
+			<questcomplete item="CQC4M3_Counterattack_stage3_lvl56"/>
+			<questcomplete item="CQC4M4_Counterattack_stage4_lvl56"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="BuildBuilding" name="Bookbinder_Mini_Gold" amount="1" recurringChance="100" />
+			<reward type="Buff" item="ProductivityBuffLvl12" amount="3" />
+			<reward type="XP" amount="59450" />
+		</posteffects>
+	</quest>
+	
+	
+	<!-- lvl 56 stage 1 -->
+
+	<quest name="CQC4M1_Counterattack_stage1_lvl56" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" showRewardWindow="true" cancelable="false" showQuestWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questactive item="CQC4_Counterattack_Main_lvl56" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC4M1Q1_DiplomacyFirst_lvl56"/> 
+			<questcomplete item="CQC4M1Q2_TheStowaway_lvl56"/> 
+			<questcomplete item="CQC4M1Q3_HiddenTreasure_lvl56"/>
+			<questcomplete item="CQC4M1Q4_FollowTheLeads_lvl56"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="125" />			
+			<reward type="XP" amount="19500" />
+		</posteffects>
+	</quest>
+	
+	 <quest name="CQC4M1Q1_DiplomacyFirst_lvl56_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="CQC4M1_Counterattack_stage1_lvl56" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="BanditFortressStage1" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Fortress -->
+		</posteffects>
+     </quest>	
+	
+	<quest name="CQC4M1Q1_DiplomacyFirst_lvl56" type="Crisis" icon="QuestShort" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="634" connectedToQuest="CQC4M1_Counterattack_stage1_lvl56" >
+		<startcondition>
+			<questactive item="CQC4M1_Counterattack_stage1_lvl56" />
+		</startcondition>
+		<triggers>
+			<buffapplied item="EffectBuff_DiplomaticPaperwork_Lvl56" min="100" target="BanditFortressStage1"/> <!-- Diplomatic Paperwork Lv 56 -->
+			<buffapplied item="EffectBuff_LousyDistraction_Lvl56" min="100" target="BanditFortressStage1"/> <!-- Lousy Distraction Lv 56 -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StarCoin" amount="500" />
+			<reward type="XP" amount="28875" />
+			<spawnbuilding name="BanditFortressStageEmpty" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Empty Fortress -->
+		</posteffects>
+	</quest>
+	
+		<quest name="CQC4M1Q2_TheStowaway_lvl56" type="Crisis" icon="QuestShort" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="486" connectedToQuest="CQC4M1_Counterattack_stage1_lvl56" >
+		<startcondition>
+			<questactive item="CQC4M1_Counterattack_stage1_lvl56" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Beer" amount="7500" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="12500" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="15000" />
+			<trigger type="PayForQuestFinish" name="Sausage" amount="6000" />			
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Granite" amount="75" />
+			<reward type="XP" amount="22500" />
+		</posteffects>
+	</quest>
+	
+	<quest name="CQC4M1Q3_HiddenTreasure_lvl56" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="125" connectedToQuest="CQC4M1_Counterattack_stage1_lvl56" >
+		<startcondition>
+			<questcomplete item="CQC4M1Q2_TheStowaway_lvl56" />
+		</startcondition>
+		<triggers>
+			<ownresourcelist item="MapPart" amount="7500"  locaExtension="item"/>
+			<boughtgoods amount="2000"/>
+			<trigger type="Resource" name="AdvancedPaper" amount="750" condition="produce" />
+			<soldgoods amount="2000"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="PlatinumOre" amount="30" />
+			<reward type="XP" amount="12550" />
+		</posteffects>
+	</quest>
+		
+	<quest name="CQC4M1Q4_FollowTheLeads_lvl56" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="132" connectedToQuest="CQC4M1_Counterattack_stage1_lvl56" >
+		<startcondition>
+			<questcomplete item="CQC4M1Q3_HiddenTreasure_lvl56" />
+		</startcondition>
+		<triggers>
+			<specialisttaskfinished item="FindDepositGoldOre" amount="6"/>
+			<specialisttaskfinished item="FindDepositIronOre" amount="9"/>
+			<buildinglistupgradelevel amount="7" min="5" item="IronMine,IronMineEndless" name="ArcticIronMine,EpicIronMine" locaExtension="IronMine" />
+			<buildinglistupgradelevel amount="5" min="5" item="GoldMine,GoldMineEndless" name="ArcticGoldMine,EpicGoldMine" locaExtension="GoldMine" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="TitaniumOre" amount="100" />
+			<reward type="XP" amount="15800" />
+		</posteffects>
+	</quest>
+	
+	<!-- lvl 56 stage 2 -->
+
+	<quest name="CQC4M2_Counterattack_stage2_lvl56" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" type="Crisis" icon="QuestLonger" npc="quest_character_mentor03.png" >
+		<startcondition>
+			<questcomplete item="CQC4M1_Counterattack_stage1_lvl56" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC4M2Q1_SchoolsOut_lvl56"/> 
+			<questcomplete item="CQC4M2Q2_CuttingTheMessages_lvl56"/> 
+			<questcomplete item="CQC4M2Q3_Eavesdropping_lvl56"/>
+			<questcomplete item="CQC4M2Q4_TailingTheSpy_lvl56"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="250" />
+			<reward type="Buff" item="ProductivityBuffLvl4" amount="2" />
+			<reward type="XP" amount="24500" />
+		</posteffects>
+	</quest>
+	
+	 <quest name="CQC4M2Q1_SchoolsOut_lvl56_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="CQC4M2_Counterattack_stage2_lvl56" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_BanditFortressStage2" x="21" y="54" units="BanditStudent|700" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Fortress -->
+		</posteffects>
+     </quest>		
+
+	<quest name="CQC4M2Q1_SchoolsOut_lvl56" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="750" connectedToQuest="CQC4M2_Counterattack_stage2_lvl56" >	
+		<startcondition>
+			<questactive item="CQC4M2_Counterattack_stage2_lvl56" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed item="EventMonster_BanditFortressStage2" min="1"/> 
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="32500" />
+			<reward type="Resource" name="Grout" amount="100" />
+			<spawnbuilding name="BanditFortressStageEmpty" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Empty Fortress -->
+		</posteffects>
+	</quest>	
+	
+	<quest name="CQC4M2Q2_CuttingTheMessages_lvl56" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="325" connectedToQuest="CQC4M2_Counterattack_stage2_lvl56" >
+		<startcondition>
+			<questactive item="CQC4M2_Counterattack_stage2_lvl56" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="AdvancedPaper" amount="500" condition="produce" />
+			<buffapplied item="ProductivityBuffLvl3" min="1" target="PapermillSimple,PapermillSimpleColored"  />
+			<buffapplied item="ProductivityBuffLvl3" min="1" target="PapermillIntermediate"  />
+			<buffapplied item="ProductivityBuffLvl3" min="1" target="PapermillAdvanced"  />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="SpeedUpPopulationGrowth2" amount="2" />
+			<reward type="XP" amount="11600" />
+		</posteffects>
+	</quest>
+	
+	<quest name="CQC4M2Q3_Eavesdropping_lvl56" type="Crisis" icon="QuestShort" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="120" connectedToQuest="CQC4M2_Counterattack_stage2_lvl56" >
+		<startcondition>
+			<questcomplete item="CQC4M2Q2_CuttingTheMessages_lvl56" />
+		</startcondition>
+		<triggers>
+			<produceditemlist item="Recruit" amount="2500" locaExtension="unit"/>
+			<produceditemlist item="Soldier" amount="150" locaExtension="unit"/>
+			<produceditemlist item="EliteSoldier" amount="100" locaExtension="unit"/>
+			<produceditemlist item="Cannoneer" amount="50" locaExtension="unit"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="TitaniumSword" amount="50" />
+			<reward type="XP" amount="17325" />
+		</posteffects>
+	</quest>
+	
+		<quest name="CQC4M2Q4_TailingTheSpy_lvl56" type="Crisis" icon="QuestShort" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="147" connectedToQuest="CQC4M2_Counterattack_stage2_lvl56" >
+		<startcondition>
+			<questcomplete item="CQC4M2Q3_Eavesdropping_lvl56" />
+		</startcondition>
+		<triggers>
+			<specialisttaskfinished item="FindTreasureLong" amount="3"/>
+			<specialisttaskfinished item="FindTreasureShort" amount="3"/>
+			<trigger type="Resource" name="Coal" amount="20000" condition="produce" />
+			<trigger type="Resource" name="Meat" amount="25000" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl16" amount="1" />
+			<reward type="XP" amount="15500" />
+		</posteffects>
+	</quest>
+	
+	<!-- lvl 56 stage 3 -->
+
+	<quest name="CQC4M3_Counterattack_stage3_lvl56" type="Crisis" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questcomplete item="CQC4M2_Counterattack_stage2_lvl56" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC4M3Q1_CounterOffensive_lvl56"/> 
+			<questcomplete item="CQC4M3Q2_Barricades_lvl56"/> 
+			<questcomplete item="CQC4M3Q3_PreparingTheDefense_lvl56"/>
+			<questcomplete item="CQC4M3Q3_BetterSafeThanSorry_lvl56"/>			
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="300" />
+			<reward type="XP" amount="19450" />
+		</posteffects>
+	</quest>
+	
+	 <quest name="CQC4M3Q1_CounterOffensive_lvl56_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="CQC4M3_Counterattack_stage3_lvl56" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="PartyCrashers_Bridge" x="21" y="57" action="ignoreBlocking,spawnInstant,replace" mode="free" />
+			<spawnbuilding name="BanditFortressStage3" x="21" y="54" units="BanditRecruit|500,BanditMilitia|250,BanditBowman|250,BanditCavalry|300,BanditSoldier|150,BanditLongbowman|150" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Fortress -->
+		</posteffects>
+     </quest>		
+	
+	<quest name="CQC4M3Q1_CounterOffensive_lvl56" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="665" connectedToQuest="CQC4M3_Counterattack_stage3_lvl56" >
+		<startcondition>
+			<questactive item="CQC4M3_Counterattack_stage3_lvl56" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="1" item="BanditFortressStage3"/> 
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="RecoverGeneral" amount="1" />
+			<reward type="XP" amount="21700" />
+			<removebuilding name="PartyCrashers_Bridge" x="21" y="57" />
+			<removebuilding name="BanditFortressStage3" x="21" y="54" />
+		</posteffects>
+	</quest>
+	
+	<quest name="CQC4M3Q2_Barricades_lvl56" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="318" connectedToQuest="CQC4M3_Counterattack_stage3_lvl56" >
+		<startcondition>
+			<questactive item="CQC4M3_Counterattack_stage3_lvl56" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="MahoganyPlank" amount="500" condition="produce" />
+			<trigger type="PayForQuestFinish" name="ExoticPlank" amount="1000" />
+			<trigger type="PayForQuestFinish" name="RealPlank" amount="20000" />
+			<trigger type="PayForQuestFinish" name="Plank" amount="45000" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl5" amount="2" />
+			<reward type="XP" amount="17150" />
+		</posteffects>
+	</quest>	
+
+	<quest name="CQC4M3Q3_PreparingTheDefense_lvl56" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="225" connectedToQuest="CQC4M3_Counterattack_stage3_lvl56" >
+		<startcondition>
+			<questcomplete item="CQC4M3Q2_Barricades_lvl56" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Cannon" amount="75" condition="produce" />
+			<trigger type="Resource" name="TitaniumSword" amount="100" condition="produce" />
+			<trigger type="Resource" name="SteelSword" amount="500" condition="produce" />
+			<trigger type="Resource" name="Crossbow" amount="150" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="RecruitingBuffLvl3" amount="3" />
+			<reward type="XP" amount="27700" />
+		</posteffects>
+	</quest>
+	
+	<quest name="CQC4M3Q3_BetterSafeThanSorry_lvl56" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="165" connectedToQuest="CQC4M3_Counterattack_stage3_lvl56" >
+		<startcondition>
+			<questcomplete item="CQC4M3Q3_PreparingTheDefense_lvl56" />
+		</startcondition>
+		<triggers>
+			<produceditemlist item="Militia" amount="200" locaExtension="unit"/>
+			<produceditemlist item="Longbowman" amount="300" locaExtension="unit"/>
+			<produceditemlist item="Crossbowman" amount="150" locaExtension="unit"/>
+			<produceditemlist item="EliteSoldier" amount="75" locaExtension="unit"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="PlatinumOre" amount="50" />
+			<reward type="XP" amount="19350" />
+		</posteffects>
+	</quest>
+
+
+	<!-- lvl 56 stage 4 -->
+
+	<quest name="CQC4M4_Counterattack_stage4_lvl56" type="Crisis" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questcomplete item="CQC4M3_Counterattack_stage3_lvl56" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC4M4Q1_WatchTower01_lvl56"/> 
+			<questcomplete item="CQC4M4Q2_WatchTower02_lvl56"/> 
+			<questcomplete item="CQC4M4Q3_WatchTower03_lvl56"/>
+			<questcomplete item="CQC4M4Q4_WatchTower04_lvl56"/>
+		</triggers>
+		<posteffects>
+			<removebuilding x="21" y="54" name="WatchTowerStage4_blue" />
+			<removebuilding x="21" y="54" name="EventMonster_Watch_Tower_Stage4_blue" />
+			<reward type="Resource" name="HardCurrency" amount="350" />
+			<reward type="XP" amount="27500" />
+			<reward type="Buff" item="BuildBuilding" name="WatchTowerFinished_blue" amount="1" recurringChance="100" />
+		</posteffects>
+	</quest>	
+	
+	 <quest name="CQC4M4Q1_WatchTower01_lvl56_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="CQC4M4_Counterattack_stage4_lvl56" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_WatchTowerStage1" x="21" y="54" units="StrongBuilder|50" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+		</posteffects>
+     </quest>		
+	
+	<quest name="CQC4M4Q1_WatchTower01_lvl56" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="375" connectedToQuest="CQC4M4_Counterattack_stage4_lvl56" >
+		<startcondition>
+			<questactive item="CQC4M4_Counterattack_stage4_lvl56" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WatchTowerStage1" locaExtension="construction"/>
+			<trigger type="PayForQuestFinish" name="PlatinumOre" amount="1500" />
+			<trigger type="PayForQuestFinish" name="Coin" amount="1000" />
+			<trigger type="PayForQuestFinish" name="MahoganyWood" amount="1000" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl21" amount="2" />
+			<reward type="XP" amount="22050" />
+			<spawnbuilding name="WatchTowerStage1" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Watchtower empty stage -->		
+		</posteffects>
+	</quest>
+
+	 <quest name="CQC4M4Q2_WatchTower02_lvl56_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="CQC4M4Q1_WatchTower01_lvl56" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_Watch_Tower_Stage2_blue" x="21" y="54" units="Artisan|50" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+		</posteffects>
+     </quest>	
+
+	<quest name="CQC4M4Q2_WatchTower02_lvl56" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="495" connectedToQuest="CQC4M4_Counterattack_stage4_lvl56" >
+		<startcondition>
+			<questcomplete item="CQC4M4Q1_WatchTower01_lvl56" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_Watch_Tower_Stage2_blue" locaExtension="construction"/>
+			<produceditemlist item="Cannoneer" amount="100" locaExtension="unit"/>
+			<produceditemlist item="EliteSoldier" amount="50" locaExtension="unit"/>
+			<produceditemlist item="Crossbowman" amount="150" locaExtension="unit"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="PlatinumOre" amount="150" />
+			<reward type="XP" amount="20150" />
+			<spawnbuilding name="WatchTowerStage2_blue" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Watchtower empty stage -->		
+		</posteffects>
+	</quest>
+	
+	 <quest name="CQC4M4Q3_WatchTower03_lvl56_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="CQC4M4Q2_WatchTower02_lvl56" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_Watch_Tower_Stage3_blue" x="21" y="54" units="Artisan|75" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+		</posteffects>
+     </quest>		
+	
+	<quest name="CQC4M4Q3_WatchTower03_lvl56" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="458" connectedToQuest="CQC4M4_Counterattack_stage4_lvl56" >
+		<startcondition>
+			<questcomplete item="CQC4M4Q2_WatchTower02_lvl56" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_Watch_Tower_Stage3_blue" locaExtension="construction"/>
+			<trigger type="PayForQuestFinish" name="Crossbow" amount="500" />
+			<trigger type="PayForQuestFinish" name="SteelSword" amount="750" />
+			<trigger type="PayForQuestFinish" name="Horse" amount="5000" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="PremiumAccount1Day" amount="1" /> 
+			<reward type="XP" amount="35100" />
+			<spawnbuilding name="WatchTowerStage3_blue" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Watchtower empty stage -->		
+		</posteffects>
+	</quest>
+	
+	 <quest name="CQC4M4Q4_WatchTower04_lvl56_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="CQC4M4Q3_WatchTower03_lvl56" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_Watch_Tower_Stage4_blue" x="21" y="54" units="Professional|25" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+		</posteffects>
+     </quest>			
+	
+	<quest name="CQC4M4Q4_WatchTower04_lvl56" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="325" connectedToQuest="CQC4M4_Counterattack_stage4_lvl56" >
+		<startcondition>
+			<questcomplete item="CQC4M4Q3_WatchTower03_lvl56" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_Watch_Tower_Stage4_blue" locaExtension="construction"/>
+			<completeadventurelist amount="1"/>
+			<specialisttaskfinished item="FindAdventureZoneLong" amount="1"/>
+			<specialisttaskresulttype item="FindTreasureProlonged" type="PlatinumOre" amount="50" locaExtension="type"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="MountainDemolition_L" amount="1"/>
+			<reward type="XP" amount="38120" />
+			<spawnbuilding name="WatchTowerStage4_blue" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Watchtower empty stage -->		
+		</posteffects>
+	</quest>
+	
+	<!-- lvl 66 quests -->	
+
+	<quest name="CQC4_Counterattack_Main_lvl66" type="Crisis" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" icon="AdvancedPaper" >
+		<preeffects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_crisisquests_0" delay="3" reactivate="false" />
+		</preeffects>
+		<triggers>
+			<questcomplete item="CQC4M1_Counterattack_stage1_lvl66"/> 
+			<questcomplete item="CQC4M2_Counterattack_stage2_lvl66"/> 
+			<questcomplete item="CQC4M3_Counterattack_stage3_lvl66"/>
+			<questcomplete item="CQC4M4_Counterattack_stage4_lvl66"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="BuildBuilding" name="Bookbinder_Mini_Gold" amount="1" recurringChance="100" />
+			<reward type="Buff" item="ProductivityBuffLvl12" amount="4"/>
+			<reward type="XP" amount="78950" />
+		</posteffects>
+	</quest>
+		
+	<!-- lvl 66 stage 1 -->
+
+	<quest name="CQC4M1_Counterattack_stage1_lvl66" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" showRewardWindow="true" cancelable="false" showQuestWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questactive item="CQC4_Counterattack_Main_lvl66" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC4M1Q1_DiplomacyFirst_lvl66"/> 
+			<questcomplete item="CQC4M1Q2_TheStowaway_lvl66"/> 
+			<questcomplete item="CQC4M1Q3_HiddenTreasure_lvl66"/>
+			<questcomplete item="CQC4M1Q4_FollowTheLeads_lvl66"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="225" />
+			<reward type="XP" amount="39750" />
+		</posteffects>
+	</quest>
+		
+	 <quest name="CQC4M1Q1_DiplomacyFirst_lvl66_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="CQC4M1_Counterattack_stage1_lvl66" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="BanditFortressStage1" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Fortress -->
+		</posteffects>
+     </quest>			
+		
+	<quest name="CQC4M1Q1_DiplomacyFirst_lvl66" type="Crisis" icon="QuestShort" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="634" connectedToQuest="CQC4M1_Counterattack_stage1_lvl66" >		
+		<startcondition>
+			<questactive item="CQC4M1_Counterattack_stage1_lvl66" />
+		</startcondition>
+		<triggers>
+			<buffapplied item="EffectBuff_DiplomaticPaperwork_Lvl66" min="100" target="BanditFortressStage1"/> <!-- Diplomatic Paperwork Lv 66 -->
+			<buffapplied item="EffectBuff_LousyDistraction_Lvl66" min="100" target="BanditFortressStage1"/> <!-- Lousy Distraction Lv 66 -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StarCoin" amount="750" />
+			<reward type="XP" amount="42750" />
+			<spawnbuilding name="BanditFortressStageEmpty" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Empty Fortress -->
+		</posteffects>
+	</quest>
+	
+	<quest name="CQC4M1Q2_TheStowaway_lvl66" type="Crisis" icon="QuestShort" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="486" connectedToQuest="CQC4M1_Counterattack_stage1_lvl66" >
+		<startcondition>
+			<questactive item="CQC4M1_Counterattack_stage1_lvl66" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Fish" amount="50000" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="20000" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="30000" />
+			<trigger type="PayForQuestFinish" name="Sausage" amount="12500" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="PlatinumOre" amount="150" />
+			<reward type="XP" amount="41250" />
+		</posteffects>
+	</quest>
+		
+	<quest name="CQC4M1Q3_HiddenTreasure_lvl66" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="125" connectedToQuest="CQC4M1_Counterattack_stage1_lvl66" >
+		<startcondition>
+			<questcomplete item="CQC4M1Q2_TheStowaway_lvl66" />
+		</startcondition>
+		<triggers>
+			<ownresourcelist item="MapPart" amount="10000" locaExtension="item"/>
+			<boughtgoods amount="5000"/>
+			<trigger type="Resource" name="AdvancedPaper" amount="1000" condition="produce" />
+			<soldgoods amount="5000"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="MahoganyWood" amount="30"/>
+			<reward type="XP" amount="38000" />
+		</posteffects>
+	</quest>
+		
+	<quest name="CQC4M1Q4_FollowTheLeads_lvl66" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="132" connectedToQuest="CQC4M1_Counterattack_stage1_lvl66" >
+		<startcondition>
+			<questcomplete item="CQC4M1Q3_HiddenTreasure_lvl66" />
+		</startcondition>
+		<triggers>
+			<specialisttaskfinished item="FindDepositGoldOre" amount="6"/>
+			<specialisttaskfinished item="FindDepositTitaniumOre" amount="5"/>
+			<buildinglistupgradelevel amount="6" min="5" item="GoldMine,GoldMineEndless" name="ArcticGoldMine,EpicGoldMine" locaExtension="GoldMine" />
+			<buildinglistupgradelevel amount="2" min="5" item="TitaniumMine" name="EpicTitaniumMine" locaExtension="TitaniumMine" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ExoticWood" amount="500" />
+			<reward type="XP" amount="34200" />
+		</posteffects>
+	</quest>		
+	<!-- lvl 66 stage 2 -->
+
+	<quest name="CQC4M2_Counterattack_stage2_lvl66" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" type="Crisis" icon="QuestLonger" npc="quest_character_mentor03.png" >
+		<startcondition>
+			<questcomplete item="CQC4M1_Counterattack_stage1_lvl66" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC4M2Q1_SchoolsOut_lvl66"/> 
+			<questcomplete item="CQC4M2Q2_CuttingTheMessages_lvl66"/> 
+			<questcomplete item="CQC4M2Q3_Eavesdropping_lvl66"/>
+			<questcomplete item="CQC4M2Q4_TailingTheSpy_lvl66"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="275" />
+			<reward type="Buff" item="ProductivityBuffLvl4" amount="2" />
+			<reward type="XP" amount="52700" />
+		</posteffects>
+	</quest>
+	
+	 <quest name="CQC4M2Q1_SchoolsOut_lvl66_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="CQC4M2_Counterattack_stage2_lvl66" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_BanditFortressStage2" x="21" y="54" units="BanditStudent|1000" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Fortress -->
+		</posteffects>
+     </quest>			
+	
+	<quest name="CQC4M2Q1_SchoolsOut_lvl66" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="750" connectedToQuest="CQC4M2_Counterattack_stage2_lvl66" >
+		<startcondition>
+			<questactive item="CQC4M2_Counterattack_stage2_lvl66" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed item="EventMonster_BanditFortressStage2" min="1"/> 
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="40100" />
+			<reward type="Resource" name="Grout" amount="250" />
+			<spawnbuilding name="BanditFortressStageEmpty" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Empty Fortress -->
+		</posteffects>
+	</quest>	
+		
+	<quest name="CQC4M2Q2_CuttingTheMessages_lvl66" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="325" connectedToQuest="CQC4M2_Counterattack_stage2_lvl66" >
+		<startcondition>
+			<questactive item="CQC4M2_Counterattack_stage2_lvl66" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="AdvancedPaper" amount="750" condition="produce" />
+			<buffapplied item="ProductivityBuffLvl3" min="1" target="PapermillSimple,PapermillSimpleColored"  />
+			<buffapplied item="ProductivityBuffLvl3" min="1" target="PapermillIntermediate"  />			
+			<buffapplied item="ProductivityBuffLvl3" min="1" target="PapermillAdvanced"  />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="SpeedUpPopulationGrowth2" amount="2" />
+			<reward type="XP" amount="27800" />
+		</posteffects>
+	</quest>
+		
+	<quest name="CQC4M2Q3_Eavesdropping_lvl66" type="Crisis" icon="QuestShort" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="120" connectedToQuest="CQC4M2_Counterattack_stage2_lvl66" >
+		<startcondition>
+			<questcomplete item="CQC4M2Q2_CuttingTheMessages_lvl66" />
+		</startcondition>
+		<triggers>
+			<produceditemlist item="EliteSoldier" amount="50" locaExtension="unit"/>
+			<produceditemlist item="Knight" amount="30" locaExtension="unit"/>
+			<produceditemlist item="Marksman" amount="30" locaExtension="unit"/>
+			<produceditemlist item="MountedSwordsman" amount="20" locaExtension="unit"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="BattleHorse" amount="50" />
+			<reward type="XP" amount="41750" />
+		</posteffects>
+	</quest>
+	
+	<quest name="CQC4M2Q4_TailingTheSpy_lvl66" type="Crisis" icon="QuestShort" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="147" connectedToQuest="CQC4M2_Counterattack_stage2_lvl66" >
+		<startcondition>
+			<questcomplete item="CQC4M2Q3_Eavesdropping_lvl66" />
+		</startcondition>
+		<triggers>
+			<specialisttaskfinished item="FindTreasureLong" amount="5"/>
+			<specialisttaskfinished item="FindTreasureEvenLonger" amount="3"/>
+			<trigger type="Resource" name="ExoticWood" amount="1000" condition="produce" />
+			<trigger type="Resource" name="TitaniumOre" amount="750" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl16" amount="2" />
+			<reward type="XP" amount="35400" />
+		</posteffects>
+	</quest>	
+	<!-- lvl 66 stage 3 -->
+
+	<quest name="CQC4M3_Counterattack_stage3_lvl66" type="Crisis" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questcomplete item="CQC4M2_Counterattack_stage2_lvl66" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC4M3Q1_CounterOffensive_lvl66"/> 
+			<questcomplete item="CQC4M3Q2_Barricades_lvl66"/> 
+			<questcomplete item="CQC4M3Q3_PreparingTheDefense_lvl66"/>
+			<questcomplete item="CQC4M3Q3_BetterSafeThanSorry_lvl66"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="325" />
+			<reward type="XP" amount="54960" />
+		</posteffects>
+	</quest>
+		
+	 <quest name="CQC4M3Q1_CounterOffensive_lvl66_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="CQC4M3_Counterattack_stage3_lvl66" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="PartyCrashers_Bridge" x="21" y="57" action="ignoreBlocking,spawnInstant,replace" mode="free" />
+			<spawnbuilding name="BanditFortressStage3" x="21" y="54" units="BanditRecruit|650,BanditMilitia|375,BanditBowman|375,BanditCavalry|350,BanditSoldier|225,BanditLongbowman|200" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Fortress -->
+		</posteffects>
+     </quest>			
+		
+	<quest name="CQC4M3Q1_CounterOffensive_lvl66" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="665" connectedToQuest="CQC4M3_Counterattack_stage3_lvl66" >
+		<startcondition>
+			<questactive item="CQC4M3_Counterattack_stage3_lvl66" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="1" item="BanditFortressStage3"/> 
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="RecoverGeneral" amount="1" />
+			<reward type="XP" amount="49500" />
+			<removebuilding name="PartyCrashers_Bridge" x="21" y="57" />
+			<removebuilding name="BanditFortressStage3" x="21" y="54" />
+		</posteffects>
+	</quest>
+		
+	<quest name="CQC4M3Q2_Barricades_lvl66" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="318" connectedToQuest="CQC4M3_Counterattack_stage3_lvl66" >
+		<startcondition>
+			<questactive item="CQC4M3_Counterattack_stage3_lvl66" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="MahoganyPlank" amount="750" condition="produce" />
+			<trigger type="PayForQuestFinish" name="ExoticPlank" amount="2500" />
+			<trigger type="PayForQuestFinish" name="RealPlank" amount="40000" />
+			<trigger type="PayForQuestFinish" name="Plank" amount="75000" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl5" amount="2" />
+			<reward type="XP" amount="32900" />
+		</posteffects>
+	</quest>	
+
+	<quest name="CQC4M3Q3_PreparingTheDefense_lvl66" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="225" connectedToQuest="CQC4M3_Counterattack_stage3_lvl66" >
+		<startcondition>
+			<questcomplete item="CQC4M3Q2_Barricades_lvl66" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="PlatinumSword" amount="250" condition="produce" />
+			<trigger type="Resource" name="Mortar" amount="50" condition="produce" />
+			<trigger type="Resource" name="Archebuse" amount="200" condition="produce" />
+			<trigger type="Resource" name="Crossbow" amount="500" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="RecruitingBuffLvl3" amount="3" />
+			<reward type="XP" amount="53300" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC4M3Q3_BetterSafeThanSorry_lvl66" type="Crisis" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="165" connectedToQuest="CQC4M3_Counterattack_stage3_lvl66" >
+		<startcondition>
+			<questcomplete item="CQC4M3Q3_PreparingTheDefense_lvl66" />
+		</startcondition>
+		<triggers>
+			<produceditemlist item="Knight" amount="400" locaExtension="unit"/>
+			<produceditemlist item="Swordsman" amount="200" locaExtension="unit"/>
+			<produceditemlist item="Marksman" amount="200" locaExtension="unit"/>
+			<produceditemlist item="Besieger" amount="100" locaExtension="unit"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="MahoganyWood" amount="100" />
+			<reward type="XP" amount="44150" />
+		</posteffects>
+	</quest>
+	
+	<!-- lvl 66 stage 4 -->
+
+	<quest name="CQC4M4_Counterattack_stage4_lvl66" type="Crisis" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questcomplete item="CQC4M3_Counterattack_stage3_lvl66" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC4M4Q1_WatchTower01_lvl66"/> 
+			<questcomplete item="CQC4M4Q2_WatchTower02_lvl66"/> 
+			<questcomplete item="CQC4M4Q3_WatchTower03_lvl66"/>
+			<questcomplete item="CQC4M4Q4_WatchTower04_lvl66"/>			
+		</triggers>
+		<posteffects>
+			<removebuilding x="21" y="54" name="WatchTowerStage4_blue" />
+			<removebuilding x="21" y="54" name="EventMonster_Watch_Tower_Stage4_blue" />
+			<reward type="Resource" name="HardCurrency" amount="375" />
+			<reward type="XP" amount="55060" />
+			<reward type="Buff" item="BuildBuilding" name="WatchTowerFinished_blue" amount="1" recurringChance="100" />
+		</posteffects>
+	</quest>	
+	
+	 <quest name="CQC4M4Q1_WatchTower01_lvl66_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="CQC4M4_Counterattack_stage4_lvl66" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_WatchTowerStage1" x="21" y="54" units="StrongBuilder|100" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+		</posteffects>
+     </quest>			
+	
+	<quest name="CQC4M4Q1_WatchTower01_lvl66" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="375" connectedToQuest="CQC4M4_Counterattack_stage4_lvl66" >
+		<startcondition>
+			<questactive item="CQC4M4_Counterattack_stage4_lvl66" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WatchTowerStage1" locaExtension="construction"/>
+			<trigger type="PayForQuestFinish" name="PlatinumOre" amount="1000" />
+			<trigger type="PayForQuestFinish" name="Cloth" amount="4000" />
+			<trigger type="PayForQuestFinish" name="MahoganyWood" amount="750" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl21" amount="3" />
+			<reward type="XP" amount="21600" />
+			<spawnbuilding name="WatchTowerStage1" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Watchtower empty stage -->		
+		</posteffects>
+	</quest>
+	
+	 <quest name="CQC4M4Q2_WatchTower02_lvl66_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="CQC4M4Q1_WatchTower01_lvl66" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_Watch_Tower_Stage2_blue" x="21" y="54" units="Artisan|75" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+		</posteffects>
+     </quest>			
+	
+	<quest name="CQC4M4Q2_WatchTower02_lvl66" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="495" connectedToQuest="CQC4M4_Counterattack_stage4_lvl66" >
+		<startcondition>
+			<questcomplete item="CQC4M4Q1_WatchTower01_lvl66" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_Watch_Tower_Stage2_blue" locaExtension="construction"/>
+			<produceditemlist item="MountedSwordsman" amount="100" locaExtension="unit"/>
+			<produceditemlist item="MountedMarksman" amount="100" locaExtension="unit"/>
+			<produceditemlist item="Knight" amount="300" locaExtension="unit"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="MahoganyWood" amount="100" />
+			<reward type="XP" amount="35400" />
+			<spawnbuilding name="WatchTowerStage2_blue" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Watchtower empty stage -->		
+		</posteffects>
+	</quest>
+	
+	 <quest name="CQC4M4Q3_WatchTower03_lvl66_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="CQC4M4Q2_WatchTower02_lvl66" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_Watch_Tower_Stage3_blue" x="21" y="54" units="Artisan|100" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+		</posteffects>
+     </quest>		
+	
+	<quest name="CQC4M4Q3_WatchTower03_lvl66" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="458" connectedToQuest="CQC4M4_Counterattack_stage4_lvl66" >
+		<startcondition>
+			<questcomplete item="CQC4M4Q2_WatchTower02_lvl66" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_Watch_Tower_Stage3_blue" locaExtension="construction"/>
+			<trigger type="PayForQuestFinish" name="PlatinumSword" amount="150" />
+			<trigger type="PayForQuestFinish" name="Archebuse" amount="150" />
+			<trigger type="PayForQuestFinish" name="Mortar" amount="50" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="PremiumAccount1Day" amount="1" /> 
+			<reward type="XP" amount="44300" />
+			<spawnbuilding name="WatchTowerStage3_blue" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Watchtower empty stage -->		
+		</posteffects>
+	</quest>
+	
+	 <quest name="CQC4M4Q4_WatchTower04_lvl66_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="CQC4M4Q3_WatchTower03_lvl66" />
+		</startcondition>	 
+		<triggers>
+		</triggers>	 
+		<posteffects>
+			<spawnbuilding name="EventMonster_Watch_Tower_Stage4_blue" x="21" y="54" units="Professional|50" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+		</posteffects>
+     </quest>			
+	
+	<quest name="CQC4M4Q4_WatchTower04_lvl66" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="325" connectedToQuest="CQC4M4_Counterattack_stage4_lvl66" >
+		<startcondition>
+			<questcomplete item="CQC4M4Q3_WatchTower03_lvl66" />
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_Watch_Tower_Stage4_blue" locaExtension="construction"/>
+			<completeadventurelist amount="2"/>
+			<specialisttaskfinished item="FindAdventureZoneVeryLong" amount="1"/>
+			<resourcegathered type="Salpeter" min="500"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="MountainDemolition_L" amount="1"/>
+			<reward type="XP" amount="38950" />
+			<spawnbuilding name="WatchTowerStage4_blue" x="21" y="54" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> <!-- Watchtower empty stage -->		
+		</posteffects>
+	</quest>
+
+
+</Root>

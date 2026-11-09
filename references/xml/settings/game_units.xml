@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameUnit>
+	<UnitData>
+		<Unit Type="ExpeditionCuirassier" ArmorType="Heavy" HP="180" BaseDamage="30" XP="1" PvPXP="1" Tier="3" CombatBatchSize="20" group="AttackUnits" >
+			<Costs>
+				<Cost Type="Population" Amount="1" />
+				<Cost Type="Horse" Amount="5" />
+				<Cost Type="Saber" Amount="6" />
+			</Costs>
+			<Abilities>
+				<!-- Bonus damage against Ranged -->
+				<Ability Type="DamageBonusPercentMediumArmor" Value="35" />
+			</Abilities>
+			<Properties>
+				<Property Type="IsProducible" Value="1" />
+				<Property Type="AttackPriority" Value="70" />
+				<Property Type="ProductionTime" Value="360" />
+				<Property Type="UIPriority" Value="3" />
+				<Property Type="Id" Value="101" />
+	     	<Property Type="UnitCategory" Value="2" />
+	     	<Property Type="InstantBuildCost" Value="10"/>
+			</Properties>
+		</Unit>
+	
+	<Unit Type="ExpeditionArcher" ArmorType="Medium" HP="180" BaseDamage="30" XP="1" PvPXP="1" Tier="3" CombatBatchSize="20" group="AttackUnits">
+	   <Costs>
+	     <Cost Type="Population" Amount="1" />
+		 <Cost Type="Beer" Amount="10" />
+		 <Cost Type="CompositeBow" Amount="6" />
+	   </Costs>
+	   <Abilities>
+				<!-- Bonus damage against Melee -->
+	     <Ability Type="DamageBonusPercentLightArmor" Value="35" />
+	   </Abilities>
+	   <Properties>
+			<Property Type="IsProducible" Value="1" />
+			<Property Type="AttackPriority" Value="40" />
+			<Property Type="ProductionTime" Value="360" />
+			<Property Type="UIPriority" Value="2" />
+			<Property Type="Id" Value="102" />
+			<Property Type="UnitCategory" Value="2" />
+			<Property Type="InstantBuildCost" Value="10"/>
+	   </Properties>
+	 </Unit>
+	 
+	 <Unit Type="ExpeditionPikeman" ArmorType="Light" HP="180" BaseDamage="30" XP="1" PvPXP="1" Tier="3" CombatBatchSize="20" group="AttackUnits">
+	   <Costs>
+	     <Cost Type="Population" Amount="1" />
+		 <Cost Type="Beer" Amount="10" />
+		 <Cost Type="Pike" Amount="6" />
+	   </Costs>
+	   <Abilities>
+	   	<!-- Bonus damage against Cavalry -->
+	     <Ability Type="DamageBonusPercentHeavyArmor" Value="35" />
+	   </Abilities>
+	   <Properties>
+	     <Property Type="IsProducible" Value="1" />
+	     <Property Type="AttackPriority" Value="20" />
+	     <Property Type="ProductionTime" Value="360" />
+		   <Property Type="UIPriority" Value="1" />
+	     <Property Type="Id" Value="103" />
+	     <Property Type="UnitCategory" Value="2" />
+	     <Property Type="InstantBuildCost" Value="2"/>
+	   </Properties>
+	 </Unit>
+	 
+	 <Unit Type="ExpeditionSwordsman" ArmorType="Light" HP="400" BaseDamage="5" XP="1" PvPXP="1" Tier="3" CombatBatchSize="10" group="TankUnits">
+	   <Costs>
+	     <Cost Type="Population" Amount="1" />
+		 <Cost Type="Beer" Amount="10" />
+		 <Cost Type="SpikedMace" Amount="3" />
+	   </Costs>
+	   <Abilities>
+	   </Abilities>
+	   <Properties>
+	     <Property Type="IsProducible" Value="1" />
+	     <Property Type="AttackPriority" Value="20" />
+	     <Property Type="ProductionTime" Value="360" />
+		   <Property Type="UIPriority" Value="4" />
+	     <Property Type="Id" Value="104" />
+	     <Property Type="UnitCategory" Value="2" />
+	     <Property Type="InstantBuildCost" Value="10"/>
+	   </Properties>
+	 </Unit>
+	 
+	 <Unit Type="ExpeditionCrossbowman" ArmorType="Medium" HP="400" BaseDamage="5" XP="1" PvPXP="1" Tier="3" CombatBatchSize="10" group="TankUnits">
+	   <Costs>
+	     <Cost Type="Population" Amount="1" />
+		 <Cost Type="Beer" Amount="10" />
+		 <Cost Type="ExpeditionCrossbow" Amount="3" />
+	   </Costs>
+	   <Abilities>
+	   </Abilities>
+	   <Properties>
+	     <Property Type="IsProducible" Value="1" />
+	     <Property Type="AttackPriority" Value="20" />
+	     <Property Type="ProductionTime" Value="360" />
+		   <Property Type="UIPriority" Value="5" />
+	     <Property Type="Id" Value="105" />
+	     <Property Type="UnitCategory" Value="2" />
+	     <Property Type="InstantBuildCost" Value="10"/>
+	   </Properties>
+	 </Unit>
+	 
+	 <Unit Type="ExpeditionKnight" ArmorType="Heavy" HP="400" BaseDamage="5" XP="1" PvPXP="1" Tier="3" CombatBatchSize="10" group="TankUnits">
+	 	<Costs>
+	     <Cost Type="Population" Amount="1" />
+		 <Cost Type="Horse" Amount="5" />
+		 <Cost Type="BattleLance" Amount="3" />
+	   </Costs>
+	   <Abilities>
+	   </Abilities>
+	   <Properties>
+	     <Property Type="IsProducible" Value="1" />
+	     <Property Type="AttackPriority" Value="70" />
+	     <Property Type="ProductionTime" Value="360" />
+		   <Property Type="UIPriority" Value="6" />
+	     <Property Type="Id" Value="106" />
+	     <Property Type="UnitCategory" Value="2" />
+	     <Property Type="InstantBuildCost" Value="10"/>
+	   </Properties>
+	 </Unit>
+	 
+	 <Unit Type="ExpeditionTank" ArmorType="Tank" HP="400" BaseDamage="10" XP="1" PvPXP="1" Tier="3" CombatBatchSize="10" group="EliteUnits">
+	   <Costs>
+	     <Cost Type="Population" Amount="1" />
+		 <Cost Type="ValorPoint" Amount="4" />
+	   </Costs>
+	   <Abilities>
+	   </Abilities>
+	   <Properties>
+	     <Property Type="IsProducible" Value="1" />
+	     <Property Type="AttackPriority" Value="80" />
+	     <Property Type="ProductionTime" Value="360" />
+		   <Property Type="UIPriority" Value="7" />
+	     <Property Type="Id" Value="107" />
+		   <Property Type="UnitCategory" Value="2" />
+		   <Property Type="InstantBuildCost" Value="10"/>
+	   </Properties>
+	 </Unit>
+	 
+	 <!-- PvP Defense Units -->
+	<Unit Type="DefenderCavalry1" ArmorType="Heavy" HP="180" BaseDamage="35" XP="2" PvPXP="2" Tier="3" group="0">
+		<Costs>
+			<Cost Type="DefensePoint" Amount="1" />
+		</Costs>
+		<Abilities>
+		</Abilities>
+		<Properties>
+			<Property Type="AttackPriority" Value="70" />
+			<Property Type="UIPriority" Value="3" />
+			<Property Type="Id" Value="201" />
+			<Property Type="UnitCategory" Value="1" />
+			<Property Type="InstantBuildCost" Value="10"/>
+		</Properties>
+	</Unit>
+	
+	<Unit Type="DefenderCavalry2" ArmorType="Heavy" HP="180" BaseDamage="25" XP="2" PvPXP="2" Tier="3" group="0">
+		<Costs>
+			<Cost Type="DefensePoint" Amount="1" />
+		</Costs>
+		<Abilities>
+			<Ability Type="DamageBonusPercentMediumArmor" Value="75" />
+		</Abilities>
+		<Properties>
+			<Property Type="AttackPriority" Value="70" />
+			<Property Type="UIPriority" Value="3" />
+			<Property Type="Id" Value="202" />
+			<Property Type="UnitCategory" Value="1" />
+			<Property Type="InstantBuildCost" Value="10"/>
+		</Properties>
+	</Unit>
+	
+	<Unit Type="DefenderArcher1" ArmorType="Medium" HP="180" BaseDamage="35" XP="2" PvPXP="2" Tier="3" group="0">
+		<Costs>
+			<Cost Type="DefensePoint" Amount="1" />
+		</Costs>
+		<Abilities>
+		</Abilities>
+		<Properties>
+			<Property Type="AttackPriority" Value="40" />
+			<Property Type="UIPriority" Value="2" />
+			<Property Type="Id" Value="203" />
+			<Property Type="UnitCategory" Value="1" />
+			<Property Type="InstantBuildCost" Value="10"/>
+		</Properties>
+	</Unit>
+	
+	<Unit Type="DefenderArcher2" ArmorType="Medium" HP="180" BaseDamage="25" XP="2" PvPXP="2" Tier="3" group="0">
+		<Costs>
+			<Cost Type="DefensePoint" Amount="1" />
+		</Costs>
+		<Abilities>
+			<Ability Type="DamageBonusPercentLightArmor" Value="75" />
+		</Abilities>
+		<Properties>
+			<Property Type="AttackPriority" Value="70" />
+			<Property Type="UIPriority" Value="3" />
+			<Property Type="Id" Value="204" />
+			<Property Type="UnitCategory" Value="1" />
+			<Property Type="InstantBuildCost" Value="10"/>
+		</Properties>
+	</Unit>
+	
+	<Unit Type="DefenderMelee1" ArmorType="Light" HP="180" BaseDamage="35" XP="2" PvPXP="2" Tier="3" group="0">
+		<Costs>
+			<Cost Type="DefensePoint" Amount="1" />
+		</Costs>
+		<Abilities>
+		</Abilities>
+		<Properties>
+			<Property Type="AttackPriority" Value="20" />
+			<Property Type="UIPriority" Value="1" />
+			<Property Type="Id" Value="205" />
+			<Property Type="UnitCategory" Value="1" />
+			<Property Type="InstantBuildCost" Value="10"/>
+		</Properties>
+	</Unit>
+	
+	<Unit Type="DefenderMelee2" ArmorType="Light" HP="180" BaseDamage="25" XP="2" PvPXP="2" Tier="3" group="0">
+		<Costs>
+			<Cost Type="DefensePoint" Amount="1" />
+		</Costs>
+		<Abilities>
+			<Ability Type="DamageBonusPercentHeavyArmor" Value="75" />
+		</Abilities>
+		<Properties>
+			<Property Type="AttackPriority" Value="20" />
+			<Property Type="UIPriority" Value="1" />
+			<Property Type="Id" Value="206" />
+			<Property Type="UnitCategory" Value="1" />
+			<Property Type="InstantBuildCost" Value="10"/>
+		</Properties>
+	</Unit>
+
+	 <!-- NPC Units -->
+	 
+	 <!-- NPC Faction: The Bandits. -->
+
+	 <Unit Type="BanditRecruitTier1" ArmorType="Light" HP="130" BaseDamage="25" XP="1" PvPXP="1" Tier="1">
+	   <Abilities>
+	     <Ability Type="DamageBonusPercentHeavyArmor" Value="25" />
+	   </Abilities>
+	   <Properties>
+	     <Property Type="Initiative" Value="50" />
+		 <Property Type="DefensePriority" Value="3" />
+	   </Properties>
+	 </Unit>
+
+	 <Unit Type="BanditMilitiaTier2" ArmorType="Light" HP="150" BaseDamage="30" XP="2" PvPXP="2" Tier="2">
+	   <Abilities>
+	     <Ability Type="DamageBonusPercentHeavyArmor" Value="35" />
+	   </Abilities>
+	   <Properties>
+	     <Property Type="Initiative" Value="50" />
+		 <Property Type="DefensePriority" Value="2" />
+	   </Properties>
+	 </Unit>
+	 
+	 <Unit Type="BanditSoldierTier3" ArmorType="Light" HP="220" BaseDamage="25" XP="3" PvPXP="3" Tier="3">
+	   <Abilities>
+	     <Ability Type="DamageBonusPercentHeavyArmor" Value="35" />
+	   </Abilities>
+	   <Properties>
+	     <Property Type="Initiative" Value="50" />
+	     <Property Type="DefensePriority" Value="1" />
+	   </Properties>
+	 </Unit>
+
+	 <Unit Type="BanditBowmanTier2" ArmorType="Medium" HP="130" BaseDamage="35" XP="2" PvPXP="2" Tier="1">
+	   <Abilities>
+	     <Ability Type="DamageBonusPercentLightArmor" Value="35" />
+	   </Abilities>
+	   <Properties>
+	     <Property Type="Initiative" Value="50" />
+		 <Property Type="DefensePriority" Value="5" />
+	   </Properties>
+	 </Unit>
+	 
+	 <Unit Type="BanditLongbowmanTier3" ArmorType="Medium" HP="140" BaseDamage="40" XP="3" PvPXP="3" Tier="2">
+	   <Abilities>
+	     <Ability Type="DamageBonusPercentLightArmor" Value="50" />
+	   </Abilities>
+	   <Properties>
+	     <Property Type="Initiative" Value="50" />
+		 <Property Type="DefensePriority" Value="4" />
+	   </Properties>
+	 </Unit>
+
+	 <Unit Type="BanditCavalryTier2" ArmorType="Heavy" HP="150" BaseDamage="30" XP="2" PvPXP="2" Tier="2">
+	   <Abilities>
+	     <Ability Type="DamageBonusPercentMediumArmor" Value="35" />
+	   </Abilities>
+	   <Properties>
+	     <Property Type="Initiative" Value="75" />
+		 <Property Type="DefensePriority" Value="8" />
+	   </Properties>
+	 </Unit>
+	 
+	 <Unit Type="BanditWardogTier3" ArmorType="Tank" HP="10" BaseDamage="160" XP="3" PvPXP="3" Tier="3">
+	   <Abilities>
+	   </Abilities>
+	   <Properties>
+	     <Property Type="Initiative" Value="50" />
+	     <Property Type="DefensePriority" Value="9" />
+	   </Properties>
+	 </Unit>
+
+	 <!-- Bandit Bosses -->
+	 <Unit Type="BanditBoss1X" ArmorType="Light" HP="4000" BaseDamage="300" XP="50" PvPXP="50" Tier="3">
+	   <Abilities>
+	     <Ability Type="DamageBonusPercentHeavyArmor" Value="40" />
+	   </Abilities>
+	   <Properties>
+	     <Property Type="Initiative" Value="50" />
+	     <Property Type="IsBoss" Value="1" />
+	   </Properties>
+	 </Unit>
+	 <Unit Type="BanditBoss2X" ArmorType="Medium" HP="4000" BaseDamage="300" XP="50" PvPXP="50" Tier="3">
+	   <Abilities>
+	     <Ability Type="DamageBonusPercentLightArmor" Value="40" />
+	   </Abilities>
+	   <Properties>
+	     <Property Type="Initiative" Value="50" />
+	     <Property Type="IsBoss" Value="1" />
+	   </Properties>
+	 </Unit>
+	 <Unit Type="BanditBoss3X" ArmorType="Heavy" HP="4000" BaseDamage="300" XP="50" PvPXP="50" Tier="3">
+	   <Abilities>
+	     <Ability Type="DamageBonusPercentMediumArmor" Value="40" />
+	   </Abilities>
+	   <Properties>
+	     <Property Type="Initiative" Value="50" />
+	     <Property Type="IsBoss" Value="1" />
+	   </Properties>
+	 </Unit>
+	 <Unit Type="BanditBoss4X" ArmorType="Light" HP="2000" BaseDamage="150" XP="50" PvPXP="50" Tier="3">
+	   <Abilities>
+		<Ability Type="DamageBonusPercentMediumArmor" Value="35" />
+	   </Abilities>
+	   <Properties>
+	     <Property Type="Initiative" Value="50" />
+	     <Property Type="IsBoss" Value="1" />
+	   </Properties>
+	 </Unit>
+	 <Unit Type="BanditBoss5X" ArmorType="Light" HP="2500" BaseDamage="200" XP="50" PvPXP="50" Tier="3">
+	   <Abilities>
+		 <Ability Type="DamageBonusPercentHeavyArmor" Value="35" />
+	   </Abilities>
+	   <Properties>
+	     <Property Type="Initiative" Value="50" />
+	     <Property Type="IsBoss" Value="1" />
+	   </Properties>
+	 </Unit>
+	<Unit Type="bandit_map_boss1" ArmorType="Tank" HP="4000" BaseDamage="720" XP="450" PvPXP="450" Tier="3">
+	   <Abilities>
+	   </Abilities>
+	   <Properties>
+	     <Property Type="Initiative" Value="50" />
+	     <Property Type="IsBoss" Value="1" />
+	   </Properties>
+	 </Unit>
+	 <Unit Type="bandit_map_boss2" ArmorType="Heavy" HP="5000" BaseDamage="360" XP="200" PvPXP="200" Tier="3">
+	   <Abilities>
+	     <Ability Type="DamageBonusPercentMediumArmor" Value="50" />
+	   </Abilities>
+	   <Properties>
+	     <Property Type="Initiative" Value="50" />
+	     <Property Type="IsBoss" Value="1" />
+	   </Properties>
+	 </Unit>
+	 <Unit Type="bandit_map_boss3" ArmorType="Medium" HP="3600" BaseDamage="650" XP="200" PvPXP="200" Tier="3">
+	   <Abilities>
+	     <Ability Type="DamageBonusPercentLightArmor" Value="50" />
+	   </Abilities>
+	   <Properties>
+	     <Property Type="Initiative" Value="50" />
+	     <Property Type="IsBoss" Value="1" />
+	   </Properties>
+	 </Unit>
+	 <Unit Type="bandit_map_boss4" ArmorType="Light" HP="8500" BaseDamage="250" XP="200" PvPXP="200" Tier="3">
+	   <Abilities>
+		<Ability Type="DamageBonusPercentHeavyArmor" Value="50" />
+	   </Abilities>
+	   <Properties>
+	     <Property Type="Initiative" Value="50" />
+	     <Property Type="IsBoss" Value="1" />
+	   </Properties>
+	 </Unit>
+	</UnitData>
+</GameUnit>

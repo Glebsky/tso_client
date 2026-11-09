@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+
+
+	 <quest name="WMEventAdvQ4" specialType="firstQuestlastQuest" icon="EMEventResource" npc="quest_character_soccer.png">
+		<triggers>
+      <trigger type="Building" name="WM_striker_orange_d" condition="l" amount="1"/>
+      <trigger type="Building" name="WM_midfielder_orange_d" condition="l" amount="1"/>
+      <trigger type="Building" name="WM_back_orange_d" condition="l" amount="1"/>
+      <trigger type="Building" name="s_soocergate_orange_d" condition="l" amount="1"/>
+		  </triggers>
+      <rewards>
+         <reward type="XP" amount="650"/>        
+      </rewards>
+		  <postrequisits />
+    </quest>
+
+	 <!--quest name="WMEventAdvQ4Sub1" type="Side" icon="EMEventResource" npc="quest_character_soccer.png">
+		 <startcondition>
+         </startcondition>
+		<triggers>
+			<trigger type="Buff" name="BattleBuffHurtWMPenaltyKick" condition="consume" amount="2" locaExtension="WMEventAdvQ2Sub1_tutorial"/>
+ 		  </triggers>
+      <rewards>
+         <reward type="XP" amount="50"/>        
+      </rewards>
+    </quest-->
+
+</Root>

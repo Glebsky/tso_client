@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	
+	<quest name="HWCampaign1_Adv1_Main" specialType="firstQuestlastQuest" icon="Venture" npc="quest_character_fin02.png"  helpName="Help_window_ventures_0" showQuestWindow="false">
+		<triggers>
+			<questcomplete item="HWCampaign1_Adv1_Sub1"/> 
+			<questcomplete item="HWCampaign1_Adv1_Sub2"/> 
+			<questcomplete item="HWCampaign1_Adv1_Sub3"/>
+			<questcomplete item="HWCampaign1_Adv1_Sub4"/>						
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="150"/>
+		</posteffects>      
+    </quest>
+		
+	<quest name="HWCampaign1_Adv1_Sub1" connectedToQuest="HWCampaign1_Adv1_Main" icon="Military" npc="quest_character_fin02.png"  helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questactive item="HWCampaign1_Adv1_Main"/>
+		</startcondition>
+		<triggers>
+			<onmap item="RuinedResidence_leader" max="0" locaExtension="defeatAllRuinedResidences" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="50" />
+		</posteffects>      
+    </quest>
+	
+	<quest name="HWCampaign1_Adv1_Sub2" connectedToQuest="HWCampaign1_Adv1_Main" icon="Military" npc="quest_character_fin02.png"  helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="HWCampaign1_Adv1_Sub1"/>
+		</startcondition>
+		<preeffects>
+			<Spawnbuilding name="tt_buffad_BarrierLot" action="ignoreBlocking,spawnInstant,replace" x="17" y="30"/>
+		</preeffects>
+		<triggers>
+           <buffappliedonadventure min="1" item="BattleBuffDestroy_TT_Barrier" locaExtension="barrierkit" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="50" />
+		</posteffects>      
+    </quest>
+	
+	<quest name="HWCampaign1_Adv1_Sub3" connectedToQuest="HWCampaign1_Adv1_Main" icon="Military" npc="quest_character_fin02.png"  helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="HWCampaign1_Adv1_Sub2"/>
+		</startcondition>
+		<preeffects>
+			<Spawnbuilding name="tt_buffad_Firebow3_extinguished" action="ignoreBlocking,spawnInstant,replace" x="18" y="27"/>
+		</preeffects>
+		<triggers>
+           <buffappliedonadventure min="2" item="BattleBuffDestroy_TT_Torch" locaExtension="torches" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="50" />
+		</posteffects>      
+    </quest>
+	
+	<quest name="HWCampaign1_Adv1_Sub4" connectedToQuest="HWCampaign1_Adv1_Main" icon="Military" npc="quest_character_fin02.png"  helpName="Help_window_ventures_0">
+		<startcondition>
+			<questcomplete item="HWCampaign1_Adv1_Sub3"/>
+		</startcondition>
+		<triggers>
+			<onmap item="Laboratory_leader" max="0" locaExtension="defeatLaboratory" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="50" />
+		</posteffects>      
+    </quest>
+	
+	<quest name="HWCampaign1_Adv1_RevealSector1" showQuestWindow="false" showRewardWindow="false" >
+		<startcondition>
+		   <questrunning item="HWCampaign1_Adv1_Main"/>
+		</startcondition>
+		<triggers>
+           <buffappliedonadventure min="1" item="BattleBuffDestroy_TT_Torch" />
+		</triggers>
+		<posteffects>
+			<exploresector id="8"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="HWCampaign1_Adv1_RevealSector2" showQuestWindow="false" showRewardWindow="false" >
+		<startcondition>
+		   <questrunning item="HWCampaign1_Adv1_Main"/>
+		</startcondition>
+		<triggers>
+           <buffappliedonadventure min="2" item="BattleBuffDestroy_TT_Torch" />
+		</triggers>
+		<posteffects>
+			<exploresector id="4"/>
+		</posteffects>
+	</quest>
+</Root>

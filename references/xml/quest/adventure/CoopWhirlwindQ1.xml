@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	 <quest name="CoopWhirlwindQ1" type="Story" icon="Military" npc="quest_character_general02.png" specialType="firstQuest" >
+		<triggers>
+		  <trigger type="Building" name="Banditsleader_Adventure" condition="l" amount="1" locaExtension="wwind"/>
+ 	      </triggers>
+             <rewards/>
+		<postrequisits>
+                 <postrequisite startQuest="CoopWhirlwindQ2" /> 
+		</postrequisits>
+      </quest>
+
+	 <quest name="CoopWhirlwindQ2" type="Story" icon="Military" npc="quest_character_general02.png" >
+		<triggers>
+		  <trigger type="Building" name="ForwardGuard_leader" condition="l" amount="1" />
+ 	      </triggers>
+             <rewards/>
+		<postrequisits>
+                 <postrequisite startQuest="CoopWhirlwindQ3" /> 
+		</postrequisits>
+      </quest>
+
+	 <quest name="CoopWhirlwindQ3" type="Story" icon="Military" npc="quest_character_general02.png" >
+		<triggers>
+		  <trigger type="Building" name="InnerFort_leader" condition="l" amount="3" />
+ 	      </triggers>
+             <rewards/>
+		<postrequisits>
+                 <postrequisite startQuest="CoopWhirlwindQ4" /> 
+		</postrequisits>
+      </quest>
+
+	 <quest name="CoopWhirlwindQ4" type="Story" icon="Military" npc="quest_character_general02.png" >
+		<triggers>
+		  <trigger type="Building" name="InnerFort_leader" condition="l" amount="1"  locaExtension="wwind"/>
+ 	      </triggers>
+             <rewards/>
+		<postrequisits>
+                 <postrequisite startQuest="CoopWhirlwindQ5" /> 
+		</postrequisits>
+      </quest>
+
+
+	 <quest name="CoopWhirlwindQ5" type="Story" icon="Military" npc="quest_character_general02.png" specialType="lastQuest">
+		<triggers>
+		  <trigger type="Building" name="FortifiedWarehouse_leader" condition="l" amount="1" />
+ 	      </triggers>
+             <rewards/>
+		<postrequisits>
+		</postrequisits>
+      </quest>
+</Root>

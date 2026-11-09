@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Root>
+    	
+	<quest name="TutMainPvPStage01" type="Story" icon="QuestPvP" npc="quest_character_black_marshal.png" helpName="Help_window_PvP_0" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="30"/>
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <triggers>
+		   <questcomplete item="TutMainPvPStage01_Help"/>
+		   <questcomplete item="TutMainPvPStage01_Production"/>
+		   <questcomplete item="TutMainPvPStage01_Weapons"/>
+		   <questcomplete item="TutMainPvPStage01_Troops"/>
+		   <questcomplete item="TutMainPvPStage01_Generals"/>
+		   <questcomplete item="TutMainPvPStage01_Recovery"/>
+         </triggers>
+         <posteffects>
+			<reward type="Adventure" name="$ExpeditionAdventure_01_01_01" amount="1"/>
+			<reward type="XP" amount="100"/>			
+         </posteffects>
+      </quest>
+
+	  <quest name="TutMainPvPStage01_Help" type="Story" connectedToQuest="TutMainPvPStage01" icon="QuestShort" npc="quest_character_black_marshal.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="30"/>
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <helpeffects>
+			<hint pointTo="GAMESTATE_ID_AVATAR.options.options.btnHelp" type="Glow"/>
+         </helpeffects>
+         <triggers>
+			<click item="GAMESTATE_ID_AVATAR.options.options.btnHelp"/>
+         </triggers>
+         <posteffects>
+           <reward type="Resource" name="SpikedMace" amount="50"/>
+			<reward type="Resource" name="Pike" amount="50"/>
+         </posteffects>
+      </quest>      
+
+      <quest name="TutMainPvPStage01_Production" type="Story" connectedToQuest="TutMainPvPStage01" icon="Building" npc="quest_character_black_marshal.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="30"/>
+         </startcondition>
+         <helpeffects>
+           <hint pointTo="GAMESTATE_ID_ACTIONBAR.actionBarLeft.btnActionBar01" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.Barracks3.image" type="Glow"/>
+		   <hint pointTo="GAMESTATE_ID_TOOLBOX_PANEL.ExpeditionWeaponSmith.image" type="Glow"/>
+         </helpeffects>
+         <triggers>
+			<onmap item="Barracks3" min="1"/>
+			<onmap item="ExpeditionWeaponSmith" min="1"/>
+         </triggers>
+         <posteffects>
+           <reward type="Buff" item="RecruitingBuffLvl301" amount="1"/>
+		   <reward type="Buff" item="ProvisionerBuffLvl301" amount="1"/>
+         </posteffects>
+      </quest>
+	  
+	 <quest name="TutMainPvPStage01_Generals" type="Story" connectedToQuest="TutMainPvPStage01" icon="Building" npc="quest_character_black_marshal.png" helpName="Help_window_exp_troops_0" showRewardWindow="true">            
+         <startcondition>
+		   <questcomplete item="TutMainPvPStage01_Production"/> 
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <helpeffects>
+         </helpeffects>
+         <triggers>
+			<trigger type="Specialist" name="Admiral" condition="ge" amount="3"/>
+         </triggers>
+         <posteffects>
+			<reward type="Resource" name="SpikedMace" amount="75"/>
+		   <reward type="Resource" name="Pike" amount="150"/>
+		   <reward type="Resource" name="CompositeBow" amount="150"/>
+         </posteffects>
+      </quest>
+	  
+	    <quest name="TutMainPvPStage01_Weapons" type="Story" connectedToQuest="TutMainPvPStage01" icon="Building" npc="quest_character_black_marshal.png" helpName="Help_window_exp_troops_0" showRewardWindow="true">            
+         <startcondition>
+		   <questcomplete item="TutMainPvPStage01_Generals"/> 
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <helpeffects>
+         </helpeffects>
+         <triggers>
+			<buffproduced item="AddResource_Combat3WeaponSpikedMace" min="75" />
+			<buffproduced item="AddResource_Combat3WeaponPike" min="150" />
+			<buffproduced item="AddResource_Combat3WeaponCompositeBow" min="150" />
+         </triggers>
+         <posteffects>
+           <reward type="Resource" name="Iron" amount="50"/>
+         </posteffects>
+      </quest>
+	  
+	  <quest name="TutMainPvPStage01_Troops" type="Story" connectedToQuest="TutMainPvPStage01" icon="Building" npc="quest_character_black_marshal.png" helpName="Help_window_exp_troops_0" showRewardWindow="true">            
+         <startcondition>
+		   <questcomplete item="TutMainPvPStage01_Generals"/> 
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <helpeffects>
+         </helpeffects>
+         <triggers>
+			<trigger type="MilitaryUnit" name="ExpeditionSwordsman" condition="ge" amount="50"/>
+			<trigger type="MilitaryUnit" name="ExpeditionPikeman" condition="ge" amount="50"/>
+			<trigger type="MilitaryUnit" name="ExpeditionArcher" condition="ge" amount="50"/>
+         </triggers>
+         <posteffects>
+			<reward type="Resource" name="Coal" amount="100"/>
+         </posteffects>
+      </quest>
+	  
+	 <quest name="TutMainPvPStage01_Recovery" type="Story" connectedToQuest="TutMainPvPStage01" icon="Building" npc="quest_character_black_marshal.png" helpName="Help_window_exp_troops_0" showRewardWindow="true">            
+         <startcondition>
+		   <questcomplete item="TutMainPvPStage01_Generals"/> 
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <helpeffects>
+         </helpeffects>
+         <triggers>
+			<buffproduced item="RecoverAdmiral" min="3" />
+         </triggers>
+         <posteffects>
+           <reward type="Resource" name="Iron" amount="50"/> 
+         </posteffects>
+      </quest>
+	  
+	  <quest name="TutMainPvPStage02" type="Story" icon="QuestPvP" npc="quest_character_black_marshal.png" showRewardWindow="true">            
+         <startcondition>
+           <questcomplete item="TutMainPvPStage01"/>
+         </startcondition>
+         <helpeffects>
+         </helpeffects>
+         <triggers>		
+			<questcomplete item="TutMainPvPStage02_SendArmy"/>
+			<questcomplete item="TutMainPvPStage02_Exp"/>
+         </triggers>
+         <posteffects>
+           <reward type="XP" amount="100"/>		   
+         </posteffects>
+      </quest>
+	  
+	  <quest name="TutMainPvPStage02_SendArmy" type="Story" connectedToQuest="TutMainPvPStage02" icon="QuestShort" npc="quest_character_black_marshal.png" showRewardWindow="true">            
+         <startcondition>
+           <questcomplete item="TutMainPvPStage01"/>
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <helpeffects>
+         </helpeffects>
+         <triggers>
+         		<admiralTravel amount="3" />
+         </triggers>
+         <posteffects>
+           <reward type="Resource" name="SpikedMace" amount="50"/>
+			<reward type="Resource" name="Pike" amount="50"/>
+         </posteffects>
+      </quest>
+	  
+	<quest name="TutMainPvPStage02_Exp" type="Story" connectedToQuest="TutMainPvPStage02" icon="QuestShort" npc="quest_character_black_marshal.png" showRewardWindow="true">            
+         <startcondition>
+           <questcomplete item="TutMainPvPStage01"/>
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <helpeffects>
+         </helpeffects>
+         <triggers>
+			<completeexpeditionlist item="%Exped" amount="1" locaExtension="TrainingExp"/>
+         </triggers>
+         <posteffects>
+			<reward type="Resource" name="CompositeBow" amount="50"/>
+			<reward type="Resource" name="Saber" amount="50"/>
+			<reward type="Resource" name="ExpeditionCrossbow" amount="50"/>
+			<reward type="Resource" name="BattleLance" amount="50"/>
+		
+         </posteffects>
+      </quest>  
+	  
+	<quest name="TutMainPvPStage02_Progression" type="Story" icon="QuestShort"  npc="quest_character_black_marshal.png" helpName="Help_window_pvp_prog_0" showRewardWindow="true">            
+         <startcondition>
+           <questcomplete item="TutMainPvPStage02_Exp"/>
+         </startcondition>
+         <preeffects>
+           <reward type="pvpXp" amount="6000"/>    	
+         </preeffects>
+         <helpeffects>
+           <hint pointTo="GAMESTATE_ID_AVATAR.pvpRankButton" type="Glow"/>
+         </helpeffects>
+         <triggers>
+			<click item="GAMESTATE_ID_AVATAR.pvpRankButton"/>
+			<click item="GAMESTATE_ID_PVP_LEVEL_REWARDS.buttonCanvas.null.null.btnClaimRewards"/>
+         </triggers>
+         <posteffects>
+         </posteffects>
+      </quest>
+
+	<quest name="TutMainPvPStage02_WaterCastle" type="Story" icon="Building" npc="quest_character_black_marshal.png" helpName="Help_window_water_castle_0" showRewardWindow="true">            
+         <startcondition>
+           <questcomplete item="TutMainPvPStage02_Progression"/>
+         </startcondition>
+         <helpeffects>
+           <hint pointTo="GAMESTATE_ID_ACTIONBAR.actionBarCenter.btnActionBar04" type="Glow"/>
+         </helpeffects>
+         <triggers>
+			<onmap item="pvp_progression_building" locaExtension="watercastle" min="1"/>
+         </triggers>
+         <posteffects>
+         </posteffects>
+      </quest>
+	  
+	<quest name="TutMainPvPstage03" type="Story" icon="QuestPvP" npc="quest_character_black_marshal.png" showRewardWindow="true">            
+         <startcondition>
+           <questcomplete item="TutMainPvPStage02"/> 
+         </startcondition>
+         <helpeffects>
+         </helpeffects>
+         <triggers>
+           <questcomplete item="TutMainPvPstage03_Troops"/>
+		   <questcomplete item="TutMainPvPstage03_Explorers"/>
+		   <questcomplete item="TutMainPvPstage03_SendArmy"/>
+		   <questcomplete item="TutMainPvPstage03_Conquer"/>
+         </triggers>
+         <posteffects>
+           <reward type="XP" amount="100"/>               
+         </posteffects>
+      </quest> 
+
+	  <quest name="TutMainPvPstage03_Troops" type="Story" connectedToQuest="TutMainPvPstage03" icon="QuestShort" npc="quest_character_black_marshal.png" showRewardWindow="true">            
+         <startcondition>
+           <questcomplete item="TutMainPvPStage02"/> 
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <helpeffects>
+         </helpeffects>
+         <triggers>
+			<trigger type="MilitaryUnit" name="ExpeditionSwordsman" condition="ge" amount="80"/>
+			<trigger type="MilitaryUnit" name="ExpeditionPikeman" condition="ge" amount="80"/>
+			<trigger type="MilitaryUnit" name="ExpeditionArcher" condition="ge" amount="80"/>
+			<trigger type="MilitaryUnit" name="ExpeditionCuirassier" condition="ge" amount="80"/>
+			<trigger type="MilitaryUnit" name="ExpeditionCrossbowman" condition="ge" amount="80"/>
+			<trigger type="MilitaryUnit" name="ExpeditionKnight" condition="ge" amount="80"/>
+         </triggers>
+         <posteffects>
+			<reward type="Resource" name="Sausage" amount="50"/>
+			<reward type="Resource" name="Coin" amount="50"/>  
+         </posteffects>
+      </quest>	
+	  
+	<quest name="TutMainPvPstage03_Explorers" type="Story" connectedToQuest="TutMainPvPstage03" icon="QuestShort" npc="quest_character_black_marshal.png" showRewardWindow="true">            
+         <startcondition>
+		   <questcomplete item="TutMainPvPstage03_Troops"/>
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <helpeffects>
+         </helpeffects>
+         <triggers>
+			<trigger type="Specialist" name="AllExplorers" condition="ge" amount="1"/>
+			<click item="GAMESTATE_ID_SPECIALIST_PANEL.(GUIList).subContentFindExpedition.btnFindExpeditionPvPSmall"/>
+			<click item="GAMESTATE_ID_PVPCOLONIES_WINDOW.(GUIList).mainBg.btnStartConquering"/>
+         </triggers>
+         <posteffects>
+           <reward type="XP" amount="10"/>               
+         </posteffects>
+		 </quest>
+	
+	<quest name="TutMainPvPstage03_SendArmy" type="Story" connectedToQuest="TutMainPvPstage03" icon="QuestShort" npc="quest_character_black_marshal.png" showRewardWindow="true">            
+         <startcondition>
+		   <questcomplete item="TutMainPvPstage03_Explorers"/> 
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <helpeffects>
+         </helpeffects>
+         <triggers>
+			<click item="GAMESTATE_ID_SPECIALIST_TRAVEL_PANEL.content.confirmFooter.null.null.btnOK"/>
+         </triggers>
+         <posteffects>
+			<reward type="XP" amount="10"/>  
+         </posteffects>
+      </quest>
+	  
+	<quest name="TutMainPvPstage03_Conquer" type="Story" connectedToQuest="TutMainPvPstage03" icon="QuestShort" npc="quest_character_black_marshal.png" showRewardWindow="true">            
+         <startcondition>
+		   <questcomplete item="TutMainPvPstage03_Explorers"/> 
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <helpeffects>
+         </helpeffects>
+         <triggers>
+			<completeexpeditionlist item="%PvP" amount="1" locaExtension="PvPExp" />
+         </triggers>
+         <posteffects>
+			<reward type="Resource" name="CompositeBow" amount="50"/>
+			<reward type="Resource" name="Saber" amount="50"/>
+			<reward type="Resource" name="Pike" amount="50"/>
+         </posteffects>
+      </quest>
+
+	<quest name="TutMainPvPstage04" type="Story" icon="QuestPvP" npc="quest_character_black_marshal.png" showRewardWindow="true">            
+         <startcondition>
+           <questcomplete item="TutMainPvPstage03"/> 
+         </startcondition>
+         <helpeffects>
+         </helpeffects>
+         <triggers>
+         	<questcomplete item="TutMainPvPstage04_ClaimColony"/>
+           	<questcomplete item="TutMainPvPstage04_Defence_Mode"/>
+         </triggers>
+         <posteffects>
+           <reward type="XP" amount="50"/>              
+         </posteffects>
+      </quest> 	  
+	  
+	  <quest name="TutMainPvPstage04_Defence_Mode" type="Story" connectedToQuest="TutMainPvPstage04" icon="QuestShort" npc="quest_character_black_marshal.png" helpName="Help_window_defense_mode_0" showRewardWindow="true">            
+         <startcondition>
+           <questactive item="TutMainPvPstage04"/> 
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <helpeffects>
+         </helpeffects>
+         <triggers>
+			<click item="GAMESTATE_ID_COLONY_WINDOW.(GUIList).mainBg.null.null.current.null.btnBuildDefenses"/>
+         </triggers>
+         <posteffects> 
+			<reward type="XP" amount="10"/> 
+         </posteffects>
+      </quest>
+	  
+	  <quest name="TutMainPvPstage04_ClaimColony" type="Story" connectedToQuest="TutMainPvPstage04" icon="QuestShort" npc="quest_character_black_marshal.png" showRewardWindow="true">            
+         <startcondition>
+		   <questactive item="TutMainPvPstage04"/> 
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <helpeffects>
+         </helpeffects>
+         <triggers>
+			<claimColony amount="1"/>
+         </triggers>
+         <posteffects>
+           <reward type="XP" amount="10"/>               
+         </posteffects>
+      </quest>
+	  
+</Root>

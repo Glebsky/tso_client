@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Root>
+
+   <quest name="GarrunQ1" type="Story" icon="Military" npc="quest_character_mentor03.png" specialType="firstQuest" >
+		  <triggers>
+         <trigger type="Building" name="Hunting_Camp_leader" condition="l" amount="1" />
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="500"/>        
+      </rewards>
+      <postrequisits>
+         <postrequisite startQuest="GarrunQ2" />
+       </postrequisits> 
+   </quest>
+   
+      <quest name="GarrunQ2" type="Story" icon="Military" npc="quest_character_mentor03.png" specialType="lastQuest" >
+		  <triggers>
+         <trigger type="Building" name="Garrun_camp_leader" condition="l" amount="1" />
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="1000"/>        
+      </rewards>
+      <postrequisits>
+      
+       </postrequisits> 
+   </quest>
+  
+	
+
+</Root>
+
+    
+    
+      
+      
+      
+      
+
+

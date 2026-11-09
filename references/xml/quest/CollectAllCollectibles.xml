@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+
+    <!--
+		Collectibles quests
+		The structure is the same as for all other quests
+    -->
+
+    <!-- Remaining pickups quest -->
+
+    <quest name="CollectAllCollectibles" type="Collectibles" icon="Resources" npc="quest_character_mentor03.png" showRewardWindow="true">
+        <startcondition>
+			<pickups min="1" id="0"/>
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+            <trigger type="Collections" name="Pickups" condition="le" amount="0"/>
+        </triggers>
+        <rewards>
+        	<reward type="Resource" name="CrystalShard" amount="4" />
+          </rewards>
+        <posteffects>
+        </posteffects>
+    </quest>
+
+    <quest name="CollectAllEasterCollectibles" type="Collectibles" icon="Resources" npc="quest_character_mentor03.png" showRewardWindow="true">
+        <startcondition>
+            <pickups min="1" id="1"/>
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+            <trigger type="EventCollections" name="Pickups" condition="le" amount="0"/>
+        </triggers>
+        <posteffects>
+        </posteffects>
+    </quest>
+
+</Root>

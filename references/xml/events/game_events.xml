@@ -1,0 +1,817 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+		<!--
+		trigger: playerlevel onmap resource questcomplete sectorexplored click 
+		Effects: reward sendmail hint 
+		Preeffects: openwindow startquest shopitem
+
+		-->
+	<!--<gameevent>
+		<trigger>
+			<click item="GAMESTATE_ID_ACTIONBAR.actionBarLeft.btnActionBar02" />
+		</trigger>
+		<effects>
+			<hint name="GAMESTATE_ID_LIST_BASE_BUILDINGS.WoodCutter" type="Glow"/>
+
+		</effects>
+	</gameevent> -->
+
+	<gameevent>
+		<trigger>
+			<click item="GAMESTATE_ID_ACTIONBAR.actionBarCenter.btnActionBar04" />
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_star_menu_0"/>
+		</effects>
+	</gameevent>
+	
+	<gameevent>
+		<trigger>
+			<general item="lost" />
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_general_defeated_0"/>
+		</effects>
+	</gameevent>
+	
+	<gameevent>
+		<trigger>
+			<buildingqueue min="3" />
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_building_queue_0"/>
+		</effects>
+	</gameevent>
+
+	<gameevent>
+		<trigger>
+			<click item="GAMESTATE_ID_ACTIONBAR.actionBarLeft.btnActionBar01" />
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_building_menu_0"/>
+		</effects>
+	</gameevent>
+
+	<gameevent>
+		<trigger>
+			<click item="GAMESTATE_ID_TOOLBOX_PANEL.WoodCutter" />
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_place_building_0"/>
+		</effects>
+	</gameevent>
+	
+	<!--<gameevent>
+		<trigger>
+			<questcomplete item="TutSawmillNew"/>
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_storage_0"/>
+		</effects>
+	</gameevent>-->
+
+	<gameevent>
+		<trigger>
+			<click item="GAMESTATE_ID_ACTIONBAR.actionBarRight.btnActionBar05" />
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_make_new_guild_0"/>
+		</effects>
+	</gameevent>
+
+
+	<gameevent>
+		<trigger>
+			<click item="GAMESTATE_ID_TOOLBOX_PANEL.BronzeMine" />
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_mines_0"/>
+		</effects>
+	</gameevent>
+
+	<!--<gameevent>
+		<trigger>
+			<onmap item="WoodCutter" min="1"/>
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_workyard_menu_0"/>
+		</effects>
+	</gameevent>-->
+
+	<gameevent>
+		<trigger>
+			<click item="GAMESTATE_ID_TOOLBOX_PANEL.Warehouse" />
+			<questactive item="TutWarehouseNew"/>
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_claim_sector_0"/>
+		</effects>
+	</gameevent>
+
+	<gameevent>
+		<trigger>
+			<click item="GAMESTATE_ID_ACTIONBAR.actionBarLeft.btnActionBar02" />
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_economy_overview_0"/>
+		</effects>
+	</gameevent>
+
+	<gameevent>
+		<trigger>
+			<windowopen item="GAMESTATE_ID_ENEMY_BUILDING_INFO_PANEL"/>
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_enemy_camps_0"/>
+		</effects>
+	</gameevent>
+
+	<gameevent>
+		<trigger>
+		  <questactive item="TutFarm"/>
+			<click item="GAMESTATE_ID_TOOLBOX_PANEL.Farm"/>
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_farm_and_farmfield_0"/>
+		</effects>
+	</gameevent>
+
+
+
+	<gameevent>
+		<trigger>
+			<click item="GAMESTATE_ID_FRIENDS_LIST.(GUIList)" />
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_invite_a_friend_0"/>
+		</effects>
+	</gameevent>
+
+
+	<gameevent>
+		<trigger>
+			<click item="GAMESTATE_ID_INFO_BAR.infoBarLeft.population.resourceLabelPopulation" />
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_population_0"/>
+		</effects>
+	</gameevent>
+
+	<gameevent>
+		<trigger>
+			<windowopen item="GAMESTATE_ID_RESIDENCE_INFO_PANEL"/>
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_population_0"/>
+		</effects>
+	</gameevent>
+
+	<gameevent>
+		<trigger>
+			<windowopen item="GAMESTATE_ID_TIMED_PRODUCTION_INFO_PANEL|ProvisionHouse"/>
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_provision_house_0"/>
+		</effects>
+	</gameevent>
+
+
+
+	<gameevent>
+		<trigger>
+			<click item="GAMESTATE_ID_ACTIONBAR.actionBarRight.btnActionBar07" />
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_shop_0"/>
+		</effects>
+	</gameevent>
+
+	<gameevent>
+		<trigger>
+			<click item="GAMESTATE_ID_AVATAR.options.options.btnExpandCollapse" />
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_sound_and_music_0"/>
+		</effects>
+	</gameevent>
+
+	<gameevent>
+		<trigger>
+			<click item="GAMESTATE_ID_QUEST_BOOK.btnClose" />
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_avatar_panel_0"/>
+		</effects>
+	</gameevent>
+
+	<gameevent>
+		<trigger>
+			<questactive item="TutAdventure"/>
+			<click item="GAMESTATE_ID_STAR_MENU.bufficon" />
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_start_adventure_0"/>
+		</effects>
+	</gameevent>
+
+
+	<gameevent>
+		<trigger>
+			<windowopen item="GAMESTATE_ID_WAREHOUSE_INFO_PANEL"/>
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_storage_0"/>
+		</effects>
+	</gameevent>
+
+
+
+	<gameevent>
+		<trigger>
+			<windowopen item="GAMESTATE_ID_BUILDING_INFO_PANEL"/>
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_workyard_menu_0"/>
+		</effects>
+	</gameevent>
+
+	<gameevent>
+		<trigger>
+			<windowopen item="GAMESTATE_ID_TAVERN_INFO_PANEL"/>
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_taverne_0"/>
+		</effects>
+	</gameevent>
+
+
+	<gameevent>
+		<trigger>			
+			<playerlevel min="5"/> 
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_chat_0"/>
+		</effects>
+	</gameevent>
+
+	<gameevent>
+		<trigger>
+			<windowopen item="GAMESTATE_ID_TRADE_WINDOW" />
+			<questactive item="TutTrade"/>
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_trade_make_offer_0"/>
+		</effects>
+	</gameevent>
+
+	<gameevent>
+		<trigger>
+			<questactive item="TutUpgradeNew"/>
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_upgrade_0"/>
+		</effects>
+	</gameevent>
+
+<!--close help windows -->
+
+	<gameevent>
+		<trigger>
+			<questcomplete item="TutWoodCutterNew"/>
+		</trigger>
+		<effects>
+			<closewindow name="GAMESTATE_ID_HELP_WINDOW" />
+		</effects>
+	</gameevent>
+
+	<gameevent>
+		<trigger>
+			<questcomplete item="TutSawmillNew"/>
+		</trigger>
+		<effects>
+			<closewindow name="GAMESTATE_ID_HELP_WINDOW"/>
+		</effects>
+	</gameevent>
+
+	<gameevent>
+		<trigger>
+			<questcomplete item="TutUseControls"/>
+		</trigger>
+		<effects>
+			<closewindow name="GAMESTATE_ID_HELP_WINDOW" />
+		</effects>
+	</gameevent>
+
+	<gameevent>
+		<trigger>
+			<questcomplete item="TutEconomyOverview"/>
+		</trigger>
+		<effects>
+			<closewindow name="GAMESTATE_ID_HELP_WINDOW"/>
+		</effects>
+	</gameevent>
+
+	<gameevent>
+		<trigger>
+			<windowclose item="GAMESTATE_ID_SHOP_WINDOW"/>
+		</trigger>
+		<effects>
+			<closewindow name="GAMESTATE_ID_HELP_WINDOW"/>
+		</effects>
+	</gameevent>
+
+	<gameevent>
+		<trigger>
+			<questcomplete item="TutSelectMayorhouseNew"/>
+		</trigger>
+		<effects>
+			<closewindow name="GAMESTATE_ID_HELP_WINDOW"/>
+		</effects>
+	</gameevent>
+  
+	<gameevent>
+		<trigger>
+			<questcomplete item="TutGeologistNew"/>
+		</trigger>
+		<effects>
+			<closewindow name="GAMESTATE_ID_HELP_WINDOW" />
+		</effects>
+	</gameevent>
+
+	<gameevent>
+		<trigger>
+			<questcomplete item="TutUseBuffNew"/>
+		</trigger>
+		<effects>
+			<closewindow name="GAMESTATE_ID_HELP_WINDOW"/>
+		</effects>
+	</gameevent>
+
+	<gameevent>
+		<trigger>
+			<questcomplete item="TutBronzeMineNew"/>
+		</trigger>
+		<effects>
+			<closewindow name="GAMESTATE_ID_HELP_WINDOW"/>
+		</effects>
+	</gameevent>
+
+	<gameevent>
+		<trigger>
+			<questcomplete item="TutUseFishRefill"/>
+		</trigger>
+		<effects>
+			<closewindow name="GAMESTATE_ID_HELP_WINDOW"/>
+		</effects>
+	</gameevent>
+
+	<gameevent>
+		<trigger>
+			<questcomplete item="TutBonusAddFriend"/>
+		</trigger>
+		<effects>
+			<closewindow name="GAMESTATE_ID_HELP_WINDOW" />
+		</effects>
+	</gameevent>
+
+	<gameevent>
+		<trigger>
+			<questcomplete item="TutCreateBuffNew"/>
+		</trigger>
+		<effects>
+			<closewindow name="GAMESTATE_ID_HELP_WINDOW" />
+		</effects>
+	</gameevent>
+
+	<gameevent>
+		<trigger>
+			<questcomplete item="TutFarm"/>
+		</trigger>
+		<effects>
+			<closewindow name="GAMESTATE_ID_HELP_WINDOW"/>
+		</effects>
+	</gameevent>
+
+	<gameevent>
+		<trigger>
+			<questcomplete item="TutUpgradeNew"/>
+		</trigger>
+		<effects>
+			<closewindow name="GAMESTATE_ID_HELP_WINDOW"/>
+		</effects>
+	</gameevent>
+
+	<gameevent>
+		<trigger>
+			<questcomplete item="TutGeneralNew"/>
+		</trigger>
+		<effects>
+			<closewindow name="GAMESTATE_ID_HELP_WINDOW" />
+		</effects>
+	</gameevent>
+ 
+	<gameevent>
+		<trigger>
+			<questcomplete item="TutWarehouseNew"/>
+		</trigger>
+		<effects>
+			<closewindow name="GAMESTATE_ID_HELP_WINDOW" />
+		</effects>
+	</gameevent>
+
+	<gameevent>
+		<trigger>
+			<questcomplete item="TutMoveBuilding"/>
+		</trigger>
+		<effects>
+			<closewindow name="GAMESTATE_ID_HELP_WINDOW" />
+		</effects>
+	</gameevent>
+	
+	<gameevent>
+		<trigger>
+			<windowclose item="GAMESTATE_ID_TAVERN_INFO_PANEL"/>
+		</trigger>
+		<effects>
+			<closewindow name="GAMESTATE_ID_HELP_WINDOW"/>
+		</effects>
+	</gameevent>
+	
+	<gameevent>
+		<trigger>
+			<questcomplete item="TutTrade" />
+		</trigger>
+		<effects>
+			<closewindow name="GAMESTATE_ID_HELP_WINDOW"/>
+		</effects>
+	</gameevent>
+	
+	<gameevent>
+		<trigger>
+			<garrisonOnMap min="1"/>
+		</trigger>
+		<effects>
+			<closewindow name="GAMESTATE_ID_HELP_WINDOW"/>
+		</effects>
+	</gameevent>
+	
+	<gameevent>
+		<trigger>
+			<windowclose item="GAMESTATE_ID_SPECIALIST_PANEL" />
+		</trigger>
+		<effects>
+			<closewindow name="GAMESTATE_ID_HELP_WINDOW"/>
+		</effects>
+	</gameevent>
+	
+	<gameevent>
+		<trigger>
+			<windowclose item="GAMESTATE_ID_TIMED_PRODUCTION_INFO_PANEL|ProvisionHouse" />
+		</trigger>
+		<effects>
+			<closewindow name="GAMESTATE_ID_HELP_WINDOW"/>
+		</effects>
+	</gameevent>
+	
+	<gameevent>
+		<trigger>
+			<questcomplete item="TutBuildingLicenze" />
+		</trigger>
+		<effects>
+			<closewindow name="GAMESTATE_ID_HELP_WINDOW"/>
+		</effects>
+	</gameevent>
+	
+	<gameevent>
+		<trigger>
+			<questcomplete item="TutAdditionalForester" />
+		</trigger>
+		<effects>
+			<closewindow name="GAMESTATE_ID_HELP_WINDOW"/>
+		</effects>
+	</gameevent>
+
+  <gameevent>
+		<trigger>
+			<questcomplete item="TutArmiesNew" />
+		</trigger>
+		<effects>
+			<closewindow name="GAMESTATE_ID_HELP_WINDOW"/>
+		</effects>
+	</gameevent>
+	
+	<gameevent>
+		<trigger>
+			<questcomplete item="TutCreateBuffNew" />
+		</trigger>
+		<effects>
+			<closewindow name="GAMESTATE_ID_HELP_WINDOW"/>
+		</effects>
+	</gameevent>
+	
+	<gameevent>
+		<trigger>
+			<click item="GAMESTATE_ID_BUILDING_INFO_PANEL.upgradeColumn.btnUpgrade" />
+		</trigger>
+		<effects>
+			<closewindow name="GAMESTATE_ID_HELP_WINDOW"/>
+		</effects>
+	</gameevent>
+	
+	<gameevent>
+		<trigger>
+			<questcomplete item="TutBanditsNew" />
+		</trigger>
+		<effects>
+			<closewindow name="GAMESTATE_ID_HELP_WINDOW"/>
+		</effects>
+	</gameevent>
+	
+	<gameevent>
+		<trigger>
+			<questcomplete item="TutBanditLeader" />
+		</trigger>
+		<effects>
+			<closewindow name="GAMESTATE_ID_HELP_WINDOW"/>
+		</effects>
+	</gameevent>
+	
+	<gameevent>
+		<trigger>
+			<questactive item="SpecialistWeek_EventRunning" />
+		</trigger>
+		<effects>
+			<avatarmessage action="ExplorerWeek" name="ExplorerWeek" item="IconExplorer" startDelay="180"/>
+		</effects>
+	</gameevent>
+
+	<gameevent> 
+		<trigger> 
+			<questactive item="Valentines2019plus_TutorialFlowerBouquet" />
+		</trigger> 
+		<effects> 
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_conditionalbuffs_0"/> 
+		</effects> 
+	</gameevent>
+	
+	<gameevent> 
+		<trigger> 
+			<playerlevel min="75"/> 
+			<windowopen item="GAMESTATE_ID_QUEST_BOOK" /> 
+		</trigger> 
+		<effects> 
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_XP_conversion_0"/> 
+		</effects> 
+	</gameevent>
+	
+	<gameevent> 
+		<trigger> 
+			<playerlevel min="30"/>
+			<click item="GAMESTATE_ID_LEVELUP_WINDOW.detailsHeader.btnCloseQuest" /> 			
+		</trigger> 
+		<effects> 
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_PvP_0"/> 
+		</effects> 
+	</gameevent>	
+	
+	<gameevent> 
+		<trigger> 
+			<questcomplete item="TutMainPvPStage01_Production" />			
+		</trigger> 
+		<effects> 
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_exp_troops_0"/> 
+		</effects> 
+	</gameevent>
+	
+	<gameevent> 
+		<trigger> 
+			<visitadventure item="%Expedition" />			
+		</trigger> 
+		<effects> 
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_combat3_0"/>
+			<!-- <openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_combat3_1"/>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_combat3_2"/> --> 			
+		</effects> 
+	</gameevent>
+	
+	<gameevent> 
+		<trigger> 
+			<questcomplete item="ExpDefeatMeleeCamp" />			
+		</trigger> 
+		<effects> 
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_combat3_1"/> 
+		</effects> 
+	</gameevent>
+	
+	<gameevent> 
+		<trigger> 
+			<questcomplete item="ExpDefeatSectorBoss" />			
+		</trigger> 
+		<effects> 
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_combat3_2"/> 
+		</effects> 
+	</gameevent>
+
+	<gameevent> 
+		<trigger> 
+			<visitadventure item="%PvP" state="7"/>			
+		</trigger> 
+		<effects> 
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_defense_mode_0"/> 
+		</effects> 
+	</gameevent>
+
+	<gameevent> 
+		<trigger> 
+			<general item="lost" type="Admiral"/> 			
+		</trigger> 
+		<effects> 
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_recovery_admiral_0"/> 
+		</effects> 
+	</gameevent>	
+	
+	<gameevent> 
+		<trigger> 
+           <buffowned item="MountainDemolition_M" min="1"/>
+		</trigger> 
+		<effects> 
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_destroyable_mountains_0"/> 
+		</effects> 
+	</gameevent>
+
+	<gameevent> 
+		<trigger> 
+           <questcomplete item="TutMainPvPStage02_Exp" />
+		</trigger> 
+		<effects> 
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_pvp_prog_0"/> 
+		</effects> 
+	</gameevent>
+	
+	<gameevent> 
+		<trigger> 
+           <questcomplete item="TutMainPvPStage02_Progression" />
+		</trigger> 
+		<effects> 
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_water_castle_0"/> 
+		</effects> 
+	</gameevent>
+	<gameevent> 
+		<trigger> 
+			<visitadventure item="%PvP" />			
+		</trigger> 
+		<effects> 
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_Path_Tracking_Tool_0"/> 
+		</effects> 
+	</gameevent>
+
+	<gameevent> 
+		<trigger> 
+			<click item="GAMESTATE_ID_ACTIONBAR.actionBarRight.btnActionBar09" />
+		</trigger> 
+		<effects> 
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_rankings_0"/> 
+		</effects> 
+	</gameevent>
+
+	<gameevent> 
+		<trigger> 
+			<click item="GAMESTATE_ID_INFO_BAR.infoBarBuffs.zoneBuffs" />
+		</trigger> 
+		<effects> 
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_zonebuffs_0"/> 
+		</effects> 
+	</gameevent>
+
+	<gameevent>
+		<trigger>
+			<windowopen item="GAMESTATE_ID_CULTURE_BUILDING_PANEL" />
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_culturebuildings_0"/>
+		</effects>
+	</gameevent>
+
+	<gameevent>
+		<trigger>
+			<playerlevel min="21"/> 
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_excelsior_0"/>
+		</effects>
+	</gameevent>
+	
+	<gameevent>
+		<trigger>
+			<onmap item="ChristmasMarket_Player" min="1" />
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_publicbuildings_0"/> 
+		</effects>
+	</gameevent>
+	
+	<gameevent>
+		<trigger>
+			<onmap item="LoveGarden" min="1" />
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_publicbuildings_0"/> 
+		</effects>
+	</gameevent>
+
+	<gameevent>
+		<trigger>
+			<playerlevel min="42"/> 
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_excelsior_0"/>
+		</effects>
+	</gameevent>
+	
+<!-- adventure types and properties -->
+	<gameevent>
+		<trigger>
+			<playerlevel min="27"/> 
+			<ownStarMenuItemTypeList amount="1" type="Adventure" />
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_adventure_types_0"/>
+		</effects>
+	</gameevent>
+	
+	<gameevent>
+		<trigger>
+			<playerlevel min="27"/> 
+			<ownStarMenuItemTypeList amount="1" type="Adventure" target="Mission,Mini,Coop"/>
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_missions_0"/>
+		</effects>
+	</gameevent>
+	
+	<gameevent>
+		<trigger>
+			<ownStarMenuItemTypeList amount="1" type="Adventure" target="Venture"/>
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_ventures_0"/>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_buff_adventure_ui_0"/>
+		</effects>
+	</gameevent>
+	
+	<gameevent>
+		<trigger>
+			<ownStarMenuItemTypeList amount="1" type="Adventure" target="Fairytale"/>
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_fairytales_0"/>
+		</effects>
+	</gameevent>
+	
+	<gameevent>
+		<trigger>
+			<ownStarMenuItemTypeList amount="1" type="Adventure" target="TheLittleTailor,ArabianNights,TheEvilQueen,TheMountainClan"/>
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_campaigns_0"/>
+		</effects>
+	</gameevent>
+	
+	<gameevent>
+		<trigger>
+			<ownStarMenuItemTypeList amount="1" type="Adventure" target="Scenario"/>
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_buff_adventure_0"/>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_buff_adventure_ui_0"/>
+		</effects>
+	</gameevent>
+		
+	<gameevent>
+		<trigger>
+			<onmap item="Barracks" min="1"/>
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_attributes_0"/>
+		</effects>
+	</gameevent>
+	
+	<gameevent>
+		<trigger>
+			<questcomplete item="TutCavalry" /> 
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_combatant_types_0"/>
+		</effects>
+	</gameevent>
+	
+	<gameevent>
+		<trigger>
+			<questcomplete item="TutBowmanNew" /> 
+		</trigger>
+		<effects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_target_order_0"/>
+		</effects>
+	</gameevent>
+</root>
+

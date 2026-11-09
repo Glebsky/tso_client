@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	 <quest name="CoopLakesideTreasureQ1" type="Story" icon="Military" npc="quest_character_mentor03.png" specialType="firstQuest" >
+		<triggers>
+		  <trigger type="Building" name="Bonechurch_leader" condition="l" amount="1" locaExtension="tls1"/>
+ 	      </triggers>
+             <rewards/>
+		<postrequisits>
+                 <postrequisite startQuest="CoopLakesideTreasureQ2" /> 
+		</postrequisits>
+      </quest>
+
+	 <quest name="CoopLakesideTreasureQ2" type="Story" icon="Military" npc="quest_character_mentor03.png" >
+		<triggers>
+		  <trigger type="Building" name="Witchtower_leader" condition="l" amount="1" locaExtension="tls1"/>
+ 	      </triggers>
+             <rewards/>
+		<postrequisits>
+                 <postrequisite startQuest="CoopLakesideTreasureQ3" /> 
+		</postrequisits>
+      </quest>
+
+	 <quest name="CoopLakesideTreasureQ3" type="Story" icon="Military" npc="quest_character_mentor03.png" specialType="lastQuest">
+		<triggers>
+		  <trigger type="Building" name="coop_ruinAncientLibrary_01" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="tls1"/>
+ 	      </triggers>
+             <rewards/>
+		<postrequisits>
+             
+		</postrequisits>
+      </quest>
+</Root>

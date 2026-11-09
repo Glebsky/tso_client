@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	 <quest name="TombRaidersQ1" type="Story" icon="Military" npc="quest_character_general01.png" specialType="firstQuest" >
+		<triggers>
+
+			<trigger type="Building" name="Cult_leader" condition="l" amount="1" locaExtension="CoTR"/>
+     
+		  </triggers>
+      <rewards/>
+		<postrequisits>
+                 <postrequisite startQuest="TombRaidersQ2" /> 
+		</postrequisits>
+    </quest>
+	
+	 <quest name="TombRaidersQ2" type="Story" icon="Military" npc="quest_character_mentor03.png" specialType="lastQuest">
+		<triggers>
+		  <trigger type="Building" name="ancient_tomb" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="CoTR"/>
+ 	    </triggers>
+        <rewards/>
+      </quest>
+</Root>

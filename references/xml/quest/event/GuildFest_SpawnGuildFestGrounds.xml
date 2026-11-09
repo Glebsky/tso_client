@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	
+	<!-- Fake quest for spawning the Guild Fest Grounds -->
+	<quest name="GuildFest_SpawnGuildFestGrounds" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<spawnbuilding name="PartyCrashers_Bridge" x="21" y="57" action="ignoreBlocking,spawnInstant,replace" mode="free" />
+			<spawnbuilding name="GuildFestGrounds" x="21" y="56" action="ignoreBlocking,spawnInstant,replace"/>
+			<spawnbuilding name="GuildBanner_Event" x="20" y="56" action="ignoreBlocking,spawnInstant,replace"/>
+			<spawnbuilding name="GuildBanner_Event" x="22" y="59" action="ignoreBlocking,spawnInstant,replace"/>
+			<spawnbuilding name="GuildBanner_Event" x="21" y="52" action="ignoreBlocking,spawnInstant,replace"/>
+		</posteffects>
+	</quest>
+
+	<!--Tutorial Quests -->
+        <quest name="GuildFest_Tutorial_Main" showQuestWindow="true" type="Event" icon="GuildFestToken" npc="guild_fest.png" showRewardWindow="true" >
+		<triggers>
+		   <questcomplete item="GuildFest_GuildSize2"/>
+		   <questcomplete item="GuildFest_OpenPanel"/>
+		</triggers>
+		<postrequisits>	
+			<postrequisite startQuest="GuildFest_ExtraBuilding" />
+			<postrequisite startQuest="GuildFest_ExtraBuilding2" />
+			<postrequisite startQuest="GuildFest_Adventures_Turnin" />
+			<postrequisite startQuest="GuildFest_ChainFilter" />
+			<!--<postrequisite startQuest="GuildFest_Day10_Turnin_Delay" />-->
+		</postrequisits>
+		<posteffects>
+			<reward type="Buff" item="Loottable_GuildFest_MysteryBox1" name="291" amount="1" /> 
+			<reward type="contestpoints" name="GuildFest" item="Guildfestpoints" amount="50"/>
+		</posteffects>
+	</quest>
+
+	<quest name="GuildFest_GuildSize2" showQuestWindow="true" showRewardWindow="true" connectedToQuest="GuildFest_Tutorial_Main" type="Event" icon="GuildFestToken" npc="guild_fest.png" repeatable="false">
+		<startcondition>
+			<questactive item="GuildFest_Tutorial_Main"/>
+		</startcondition>
+          <triggers>
+                <trigger type="GuildSize" name="" condition="ge" amount="2"/>            
+          </triggers>
+		<postrequisits>
+			<postrequisite startQuest="GuildFest_OpenPanel" />
+		</postrequisits>
+		<posteffects>
+			<reward type="Buff" item="ProvisionerBuffLvlGuildFestGrounds1" amount="1" /> 
+		</posteffects>
+     </quest>
+
+	<quest name="GuildFest_OpenPanel" showQuestWindow="true" showRewardWindow="true" connectedToQuest="GuildFest_Tutorial_Main" type="Event" icon="GuildFestToken" npc="guild_fest.png" repeatable="false">
+		<startcondition>
+			<eventrunning name="GuildFest_Content"/>
+			<zoneevent item="ZONE_LOADED"/>
+			<questcomplete item="GuildFest_GuildSize2"/>
+		</startcondition>
+		<triggers>
+			<click item="GAMESTATE_ID_AVATAR.btnContest"/>
+			<buildingselected item="GuildFestGrounds" min="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProvisionerBuffLvlGuildFestGrounds1" amount="1" /> 
+		</posteffects>
+		<hints>
+			<hint pointTo="GAMESTATE_ID_AVATAR.btnContest" type="Glow"/> 
+		</hints>
+	</quest>
+
+	
+
+	<quest name="GuildFest_ChainFilter" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<eventrunning name="GuildFest_Content"/>
+			<zoneevent item="ZONE_LOADED"/>
+			<questactive item="GuildFest_Day10_Turnin_Delay" />	
+			<questcomplete item="GuildFest_Tutorial_Main" />
+			<!--<questcomplete item="GuildSize10" />-->
+		</startcondition>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="GuildFest_Day1_Turnin" />
+				<postrequisite startQuest="GuildFest_Day2_Turnin" />
+				<postrequisite startQuest="GuildFest_Day3_Turnin" />
+				<postrequisite startQuest="GuildFest_Day4_Turnin" />
+				<postrequisite startQuest="GuildFest_Day5_Turnin" />
+				<postrequisite startQuest="GuildFest_Day6_Turnin" />
+				<postrequisite startQuest="GuildFest_Day7_Turnin" />
+				<postrequisite startQuest="GuildFest_Day8_Turnin" />
+				<postrequisite startQuest="GuildFest_Day9_Turnin" />
+				<!--<postrequisite startQuest="GuildFest_Day10_Turnin" />-->
+			</postrequisite>
+		</postrequisits>
+	</quest>
+	<!--Timers-->
+		
+	<quest name="GuildFest_Day10_Turnin_Delay" type="Event" showQuestWindow="false" showRewardWindow="false">      
+		<triggers>
+			<hourselapsed amount="240" />
+		</triggers>
+		<posteffects>
+			<cancelquest type="startsWith" name="GuildFest_Day" />
+			<cancelquest type="startsWith" name="GuildFest_Adventures_" />
+		</posteffects>
+		<cleanup>
+			<cleanupquest type="startsWith" name="GuildFest_Day"/>
+			<cleanupquest type="startsWith" name="GuildFest_Adventures_" />
+		</cleanup>
+	</quest>
+
+	<!--Award extra building-->
+	<quest name="GuildFest_ExtraBuilding" showQuestWindow="true" showRewardWindow="true" type="Event" icon="GuildFestToken" npc="guild_fest.png" repeatable="false">
+		<startcondition>
+			<eventrunning name="GuildFest_Content"/>
+			<zoneevent item="ZONE_LOADED"/>
+			<questactive item="GuildFest_Day10_Turnin_Delay" />	
+			<questcomplete item="GuildFest_Tutorial_Main" />
+		</startcondition>
+		<triggers>
+			<contestpointcount item="GuildFest" amount="2500"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProvisionerBuffLvlGuildFestGrounds2" amount="1" /> 
+			<reward type="Buff" item="BuildBuilding" name="GuildFestTentII" amount="1" recurringChance="0"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="GuildFest_ExtraBuilding2" showQuestWindow="true" showRewardWindow="true" type="Event" icon="GuildFestToken" npc="guild_fest.png" repeatable="false">
+		<startcondition>
+			<eventrunning name="GuildFest_Content"/>
+			<zoneevent item="ZONE_LOADED"/>
+			<questactive item="GuildFest_Day10_Turnin_Delay" />	
+			<questcomplete item="GuildFest_Tutorial_Main" />
+		</startcondition>
+		<triggers>
+			<completeadventurelist item="BuccaneerRoundup,TheSiege,SplitCity,LakesideTreasure,RaidingTheRaiders,TombRaiders,Whirlwind,SplitCityFall" amount="3" locaExtension="item"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProvisionerBuffLvlGuildFestGrounds2" amount="1" /> 
+			<reward type="Buff" item="BuildBuilding" name="GuildFestTentIII" amount="1" recurringChance="0"/>
+		</posteffects>
+	</quest>
+
+<!-- Repeatable quests -->
+	<quest name="GuildFest_Day1_Turnin" showQuestWindow="true" showRewardWindow="true" type="Event" icon="GuildFestToken" npc="guild_fest.png" repeatable="true">	
+		<triggers>
+			<contestpointcount item="GuildFest" amount="1000"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="Loottable_GuildFest_MysteryBox1" name="291" amount="1" /> 
+			<reward type="contestpoints" name="GuildFest" item="Guildfestpoints" amount="25"/>
+			<resetquest name="GuildFest_ChainFilter"/>
+		</posteffects>
+	</quest>
+	<quest name="GuildFest_Day2_Turnin" showQuestWindow="true" showRewardWindow="true" type="Event" icon="GuildFestToken" npc="guild_fest.png" repeatable="true">
+		<triggers>
+			<contestpointcount item="GuildFest" amount="1000"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="Loottable_GuildFest_MysteryBox1" name="291" amount="1" /> 
+			<reward type="contestpoints" name="GuildFest" item="Guildfestpoints" amount="25"/>
+			<resetquest name="GuildFest_ChainFilter"/>
+		</posteffects>
+	</quest>
+	<quest name="GuildFest_Day3_Turnin" showQuestWindow="true" showRewardWindow="true" type="Event" icon="GuildFestToken" npc="guild_fest.png" repeatable="true">
+		<triggers>
+			<contestpointcount item="GuildFest" amount="1000"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="Loottable_GuildFest_MysteryBox1" name="291" amount="1" /> 
+			<reward type="contestpoints" name="GuildFest" item="Guildfestpoints" amount="25"/>
+			<resetquest name="GuildFest_ChainFilter"/>
+		</posteffects>
+	</quest>
+	<quest name="GuildFest_Day4_Turnin" showQuestWindow="true" showRewardWindow="true" type="Event" icon="GuildFestToken" npc="guild_fest.png" repeatable="true">
+		<triggers>
+			<contestpointcount item="GuildFest" amount="1000"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="Loottable_GuildFest_MysteryBox1" name="291" amount="1" /> 
+			<reward type="contestpoints" name="GuildFest" item="Guildfestpoints" amount="25"/>
+			<resetquest name="GuildFest_ChainFilter"/>
+		</posteffects>
+	</quest>
+	<quest name="GuildFest_Day5_Turnin" showQuestWindow="true" showRewardWindow="true" type="Event" icon="GuildFestToken" npc="guild_fest.png" repeatable="true">
+		<triggers>
+			<contestpointcount item="GuildFest" amount="1000"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="Loottable_GuildFest_MysteryBox1" name="291" amount="1" /> 
+			<reward type="contestpoints" name="GuildFest" item="Guildfestpoints" amount="25"/>
+			<resetquest name="GuildFest_ChainFilter"/>
+		</posteffects>
+	</quest>
+	<quest name="GuildFest_Day6_Turnin" showQuestWindow="true" showRewardWindow="true" type="Event" icon="GuildFestToken" npc="guild_fest.png" repeatable="true">
+		<triggers>
+			<contestpointcount item="GuildFest" amount="1000"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="Loottable_GuildFest_MysteryBox1" name="291" amount="1" /> 
+			<reward type="contestpoints" name="GuildFest" item="Guildfestpoints" amount="25"/>
+			<resetquest name="GuildFest_ChainFilter"/>
+		</posteffects>
+	</quest>
+	<quest name="GuildFest_Day7_Turnin" showQuestWindow="true" showRewardWindow="true" type="Event" icon="GuildFestToken" npc="guild_fest.png" repeatable="true">
+		<triggers>
+			<contestpointcount item="GuildFest" amount="1000"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="Loottable_GuildFest_MysteryBox1" name="291" amount="1" /> 
+			<reward type="contestpoints" name="GuildFest" item="Guildfestpoints" amount="25"/>
+			<resetquest name="GuildFest_ChainFilter"/>
+		</posteffects>
+	</quest>
+	<quest name="GuildFest_Day8_Turnin" showQuestWindow="true" showRewardWindow="true" type="Event" icon="GuildFestToken" npc="guild_fest.png" repeatable="true">
+		<triggers>
+			<contestpointcount item="GuildFest" amount="1000"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="Loottable_GuildFest_MysteryBox1" name="291" amount="1" /> 
+			<reward type="contestpoints" name="GuildFest" item="Guildfestpoints" amount="25"/>
+			<resetquest name="GuildFest_ChainFilter"/>
+		</posteffects>
+	</quest>
+	<quest name="GuildFest_Day9_Turnin" showQuestWindow="true" showRewardWindow="true" type="Event" icon="GuildFestToken" npc="guild_fest.png" repeatable="true">
+		<triggers>
+			<contestpointcount item="GuildFest" amount="1000"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="Loottable_GuildFest_MysteryBox1" name="291" amount="1" /> 
+			<reward type="contestpoints" name="GuildFest" item="Guildfestpoints" amount="25"/>
+			<resetquest name="GuildFest_ChainFilter"/>
+		</posteffects>
+	</quest>
+	<!--<quest name="GuildFest_Day10_Turnin" showQuestWindow="true" showRewardWindow="true" type="Event" icon="Balloons" npc="guild_fest.png" repeatable="true">
+		<triggers>
+			<contestpointcount item="GuildFest" amount="1000"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="Loottable_GuildFest_MysteryBox1" name="291" amount="1" /> 
+			<reward type="contestpoints" name="GuildFest" item="Guildfestpoints" amount="25"/>
+			<resetquest name="GuildFest_ChainFilter"/>
+		</posteffects>
+	</quest>-->
+
+	<quest name="GuildFest_Adventures_Turnin" showQuestWindow="true" showRewardWindow="true" type="Event" icon="GuildFestToken" npc="guild_fest.png" repeatable="true">
+		<startcondition>
+			<eventrunning name="GuildFest_Content"/>
+			<zoneevent item="ZONE_LOADED"/>
+			<questactive item="GuildFest_Day10_Turnin_Delay" />	
+			<questcomplete item="GuildFest_Tutorial_Main" />
+		</startcondition>
+		<triggers>
+			<completeadventurelist item="BuccaneerRoundup,TheSiege,SplitCity,LakesideTreasure,RaidingTheRaiders,TombRaiders,Whirlwind,SplitCityFall" amount="1" locaExtension="item"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="Loottable_GuildFest_MysteryBox1" name="291" amount="1" /> 
+			<reward type="contestpoints" name="GuildFest" item="Guildfestpoints" amount="25"/>
+			<resetquest name="GuildFest_Adventures_Turnin"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="FinalGuildFest_OpenPanel2" showQuestWindow="true" showRewardWindow="true" connectedToQuest="GuildFest_Tutorial_Main" type="Event" icon="GuildFestToken" npc="guild_fest.png" repeatable="false">
+		<startcondition>
+			<eventrunning name="GuildFest_Shop"/>
+			<zoneevent item="ZONE_LOADED"/>
+			<questcomplete item="GuildFest_Tutorial_Main" />
+			<questcomplete item="GuildFest_Day10_Turnin_Delay" />
+		</startcondition>
+		<triggers>
+			<click item="GAMESTATE_ID_AVATAR.btnContest"/>
+			<click item="GAMESTATE_ID_CONTESTS_PANEL.claimRewardsButton"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProvisionerBuffLvlGuildFestGrounds1" amount="1" /> 
+		</posteffects>
+		<hints>
+			<hint pointTo="GAMESTATE_ID_AVATAR.btnContest" type="Glow"/> 
+		</hints>
+	</quest>
+	<!--Tower-->
+	
+	<quest name="Towerofbraging2" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<zoneevent item="ZONE_LOADED"/>
+		</startcondition>
+		<triggers>
+			<buffapplied item="AddRecipe_Tower_Unlock_Upgrade2" min="1"/> 
+		</triggers>
+		<posteffects>
+			
+		</posteffects>
+	</quest>
+	<quest name="Towerofbraging3" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<zoneevent item="ZONE_LOADED"/>
+		</startcondition>
+		<triggers>
+			<completeadventurelist item="BuccaneerRoundup" amount="1"/>
+			<completeadventurelist item="TheSiege" amount="1"/>
+			<completeadventurelist item="SplitCity" amount="1"/>
+			<completeadventurelist item="LakesideTreasure" amount="1"/>
+			<completeadventurelist item="RaidingTheRaiders" amount="1"/>
+			<completeadventurelist item="TombRaiders" amount="1"/>
+			<completeadventurelist item="Whirlwind" amount="1"/>
+			<completeadventurelist item="SplitCityFall" amount="1"/>
+		</triggers>
+		<posteffects>
+			
+		</posteffects>
+	</quest>
+	<quest name="Towerofbraging4" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<zoneevent item="ZONE_LOADED"/>
+		</startcondition>
+		<triggers>
+			<buffapplied item="ProvisionerBuffLvlGuildFestGrounds1" min="1000"/> 
+			<buffapplied item="ProvisionerBuffLvlGuildFestGrounds2" min="1000"/> 
+		</triggers>
+		<posteffects>
+			
+		</posteffects>
+	</quest>
+	<quest name="Towerofbraging5" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<zoneevent item="ZONE_LOADED"/>
+		</startcondition>
+		<triggers>
+			<contestpointcount item="GuildFest" amount="75000"/>
+		</triggers>
+		<posteffects>
+			
+		</posteffects>
+	</quest>
+	<quest name="Towerofbraging6" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<zoneevent item="ZONE_LOADED"/>
+		</startcondition>
+		<triggers>
+			<contestrewardtier item="GuildFest" type="ContestBest10Percent"/>
+		</triggers>
+		<posteffects>
+			
+		</posteffects>
+	</quest>
+	<quest name="Towerofbraging7" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<zoneevent item="ZONE_LOADED"/>
+		</startcondition>
+		<triggers>
+			<contestrewardtier item="GuildFest" type="ContestWinner"/>
+		</triggers>
+		<posteffects>
+			
+		</posteffects>
+	</quest>
+	
+	
+</Root>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	 <quest name="Adv_TheBetrayedLittleTailorQ1" type="Story" icon="Military" npc="quest_character_tailor.png" specialType="firstQuest" >
+		<triggers>
+      <trigger type="Building" name="cave_wildlife_leader" condition="l" amount="2" locaExtension="er1_a5_q1"/>
+		  </triggers>
+      <rewards/>
+		<postrequisits>
+         <postrequisite startQuest="Adv_TheBetrayedLittleTailorQ2" /> 
+		</postrequisits>
+    </quest>
+	<quest name="Adv_TheBetrayedLittleTailorQ2" type="Story" icon="Military" npc="quest_character_tailor.png">
+		<triggers>
+      <trigger type="Building" name="Banditsleader_Adventure" condition="l" amount="2" locaExtension="er1_a5_q2"/>
+		  </triggers>
+      <rewards/>
+		<postrequisits>
+         <postrequisite startQuest="Adv_TheBetrayedLittleTailorQ3" /> 
+		</postrequisits>    </quest>
+	<quest name="Adv_TheBetrayedLittleTailorQ3" type="Story" icon="Military" npc="quest_character_tailor.png">
+		<triggers>
+      <trigger type="Building" name="cave_wildlife_leader" condition="l" amount="1" locaExtension="er1_a5_q3"/>
+		  </triggers>
+      <rewards/>
+		<postrequisits>
+         <postrequisite startQuest="Adv_TheBetrayedLittleTailorQ4" /> 
+		</postrequisits>
+    </quest>
+	<quest name="Adv_TheBetrayedLittleTailorQ4" type="Story" icon="Military" npc="quest_character_tailor.png">
+		<triggers>
+      <trigger type="Building" name="Banditsleader_Tavern" condition="l" amount="1" locaExtension="er1_a5_q4"/>
+		  </triggers>
+      <rewards/>
+		<postrequisits>
+         <postrequisite startQuest="Adv_TheBetrayedLittleTailorQ5" /> 
+		</postrequisits>
+    </quest>
+	<quest name="Adv_TheBetrayedLittleTailorQ5" type="Story" icon="Military" npc="quest_character_tailor.png">
+		<triggers>
+      <trigger type="Building" name="Banditsleader_Adventure" condition="l" amount="1" locaExtension="er1_a5_q5"/>
+		  </triggers>
+      <rewards/>
+		<postrequisits>
+         <postrequisite startQuest="Adv_TheBetrayedLittleTailorQ6" /> 
+		</postrequisits>
+    </quest>
+	 <quest name="Adv_TheBetrayedLittleTailorQ6" type="Story" icon="Military" npc="quest_character_tailor.png" specialType="lastQuest" >
+		<triggers>
+      <trigger type="Building" name="Banditsleader_Residence" condition="l" amount="1" locaExtension="er1_a5_q6"/>
+		  </triggers>
+      <rewards/>
+    </quest>	
+</Root>

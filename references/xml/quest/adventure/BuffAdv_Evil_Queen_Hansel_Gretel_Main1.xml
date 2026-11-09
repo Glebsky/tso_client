@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+      
+   <quest name="BuffAdv_Evil_Queen_Hansel_Gretel_Main1" specialType="firstQuestlastQuest" icon="Military" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_ventures_0" showQuestWindow="false">
+		<triggers>
+			<questcomplete item="BuffAdv_Evil_Queen_Hansel_Gretel_Sub1"/> 
+			<questcomplete item="BuffAdv_Evil_Queen_Hansel_Gretel_Sub2"/> 
+			<questcomplete item="BuffAdv_Evil_Queen_Hansel_Gretel_Sub3"/> 
+			<questcomplete item="BuffAdv_Evil_Queen_Hansel_Gretel_Sub4"/> 
+			<questcomplete item="BuffAdv_Evil_Queen_Hansel_Gretel_Sub5"/> 
+			<questcomplete item="BuffAdv_Evil_Queen_Hansel_Gretel_Sub6"/> 
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="7000"/>   
+		</rewards>
+		<postrequisits />
+    </quest>
+
+	<quest name="BuffAdv_Evil_Queen_Hansel_Gretel_Sub1" type="Story" connectedToQuest="BuffAdv_Evil_Queen_Hansel_Gretel_Main1" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questactive item="BuffAdv_Evil_Queen_Hansel_Gretel_Main1"/>
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="BuffAd_Evil_Queen_Hansel_Gretel_Quest1" />
+        </preeffects>
+		  <triggers>
+			<buildingdestroyed item="BuildingGlowingHerbs" min="7" locaExtension="pickup" />
+			<buffappliedonadventure item="BattleBuffHurt_BuffAd_WhiteStoneDetector" min="7" locaExtension="hiddenway"/>
+		  </triggers>
+   </quest>
+   
+   <quest name="BuffAdv_Evil_Queen_Hansel_Gretel_Sub2" type="Story" connectedToQuest="BuffAdv_Evil_Queen_Hansel_Gretel_Main1" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questactive item="BuffAdv_Evil_Queen_Hansel_Gretel_Main1"/>
+		</startcondition>
+		<preeffects>
+        </preeffects>
+		  <triggers>
+			<onmap max="0"  item="cave_wildlife_leader" locaExtension="DefeatAll"/>
+			<!--trigger type="Building" name="cave_wildlife_leader" condition="l" amount="1" locaExtension="animalshg"/-->
+		  </triggers>
+   </quest>
+   
+    <quest name="BuffAdv_Evil_Queen_Hansel_Gretel_Sub3" type="Story" connectedToQuest="BuffAdv_Evil_Queen_Hansel_Gretel_Main1" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAdv_Evil_Queen_Hansel_Gretel_Sub2"/>
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="BuffAd_Evil_Queen_Hansel_Gretel_Quest2" />
+        </preeffects>
+		  <triggers>			
+			<buildingdestroyed item="BuildingStinkyMushroom" min="1" locaExtension="pickup" />
+			<buffappliedonadventure item="BattleBuffHurt_BuffAd_WitchSleeper" min="1" locaExtension="witchsleeper"/>
+		  </triggers>
+   </quest>
+   
+   <quest name="BuffAdv_Evil_Queen_Hansel_Gretel_Sub4" type="Story" connectedToQuest="BuffAdv_Evil_Queen_Hansel_Gretel_Main1" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAdv_Evil_Queen_Hansel_Gretel_Sub3"/>
+		</startcondition>
+		<preeffects>
+        </preeffects>
+		  <triggers>
+			<onmap max="0"  item="Banditsleader_Dark" locaExtension="DefeatAll"/>
+			<!--trigger type="Building" name="Banditsleader_Dark" condition="l" amount="1" locaExtension="darkcult"/-->
+		  </triggers>
+   </quest>
+  
+     <quest name="BuffAdv_Evil_Queen_Hansel_Gretel_Sub5" type="Story" connectedToQuest="BuffAdv_Evil_Queen_Hansel_Gretel_Main1" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAdv_Evil_Queen_Hansel_Gretel_Sub3"/>
+		</startcondition>
+		<preeffects>
+        </preeffects>
+		  <triggers>
+			<trigger type="Building" name="Deer_Cave" condition="l" amount="1" locaExtension="hgfood"/>
+		  </triggers>
+   </quest>
+   
+   <quest name="BuffAdv_Evil_Queen_Hansel_Gretel_Sub6" type="Story" connectedToQuest="BuffAdv_Evil_Queen_Hansel_Gretel_Main1" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAdv_Evil_Queen_Hansel_Gretel_Sub4"/>
+		</startcondition>
+		<preeffects>
+        </preeffects>
+		  <triggers>
+			
+			<trigger type="Building" name="Evil_Queen_leader" condition="l" amount="1" locaExtension="evilqueen"/>
+		  </triggers>
+   </quest>
+  
+</Root>
+
+    
+    
+      
+      
+      
+      
+
+

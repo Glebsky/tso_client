@@ -1,0 +1,790 @@
+
+=== source lines 466690-466930 ===
+466690                                 _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WAITS_FOR_POPULATION);
+466691                                 _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_ERROR_WAITING_FOR_SETTLER);
+466692                             };
+466693                         };
+466694                         break;
+466695                     case cBuilding.BUILDING_MODE_QUEUED:
+466696                         break;
+466697                     case cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_STOREHOUSE_TO_RESOURCECREATIONHOUSE:
+466698                         this.mGeneralInterface.mCurrentPlayer.notifyPropertyObserver(cResourceCreation.RESOURCE_CREATION, _arg_1);
+466699                         this.mGeneralInterface.mCurrentPlayer.notifyPropertyObserver(cResourceCreation.RESOURCE_CREATION_APPLY_MODIFIERS, _arg_1);
+466700                         this.mGeneralInterface.channels.PRODUCTION.send(PRODUCTION_VALUES, _arg_1.GetResourceCreationHouse());
+466701                         if (_local_7 == null)
+466702                         {
+466703                             return (INCREASE_RESOURCE_RESULT_OK);
+466704                         };
+466705                         _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_RESOURCE_PATH);
+466706                         _arg_1.pathPos = (_arg_1.pathPos + (_arg_2 * SETTLER_WALK_SPEED_INT));
+466707                         if (_arg_1.pathPos >= _arg_1.GetPath().pathLenX10000)
+466708                         {
+466709                             if (_arg_1.GetStoreHouse() == null)
+466710                             {
+466711                                 return (INCREASE_RESOURCE_SET_SETTLER_TO_IDLE);
+466712                             };
+466713                             _local_4 = int(((_arg_1.pathPos - _arg_1.GetPath().pathLenX10000) / SETTLER_WALK_SPEED_INT));
+466714                             _local_11 = _arg_1.pathPos;
+466715                             _arg_1.pathPos = _arg_1.GetPath().pathLenX10000;
+466716                             _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_RESOURCE_CREATION_HOUSE);
+466717                             _local_8.mStartWorkCounter = _local_4;
+466718                             _local_8.notifyPropertyObserver(DEPOSIT_WORK_BEGIN, _local_8);
+466719                             if (_local_7.externalResource_string != "")
+466720                             {
+466721                                 _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_WORKYARD_EXTERNAL_WORKYARD_SYSTEM_ACTIVE);
+466722                             }
+466723                             else
+466724                             {
+466725                                 _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_WORKYARD_LOCAL_WORKYARD_SYSTEM);
+466726                             };
+466727                         };
+466728                         break;
+466729                     case cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_WORKYARD_LOCAL_WORKYARD_SYSTEM:
+466730                         _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_RESOURCE_CREATION_HOUSE);
+466731                         _local_8.mStartWorkCounter = (_local_8.mStartWorkCounter + _arg_2);
+466732                         _local_5 = int(((_arg_1.GetPath().pathLenX20000 / SETTLER_WALK_SPEED_INT) + (_arg_1.GetWorkTime() * 1000)));
+466733                         if (_local_8.mStartWorkCounter >= _local_5)
+466734                         {
+466735                             if (((!(_local_8.IsProductionActive())) || (_local_8.IsProductionLevelTooLow())))
+466736                             {
+466737                                 _local_8.mStartWorkCounter = (_local_5 - defines.PRODUCTION_STOP_WAITTIME);
+466738                                 if (_local_8.IsProductionLevelTooLow())
+466739                                 {
+466740                                     _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_UPGRADELEVEL_TOO_LOW);
+466741                                 }
+466742                                 else
+466743                                 {
+466744                                     _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_STOPPED_PRODUCTION);
+466745                                 };
+466746                                 break;
+466747                             };
+466748                             if (_local_8.IsUpgradeInProgress())
+466749                             {
+466750                                 _local_8.mStartWorkCounter = (_local_5 - defines.PRODUCTION_STOP_WAITTIME);
+466751                                 break;
+466752                             };
+466753                             _local_4 = (_local_8.mStartWorkCounter - _local_5);
+466754                             _arg_1.pathPos = (_arg_1.GetPath().pathLenX10000 + (_local_4 * SETTLER_WALK_SPEED_INT));
+466755                             _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_RESOURCE_PATH);
+466756                             _arg_1.SetGatheredResource(_local_7.amountRemoved);
+466757                             _arg_1.SetWorkingSettlerCarries();
+466758                             _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_RESOURCECREATIONHOUSE_TO_STOREHOUSE);
+466759                         };
+466760                         break;
+466761                     case cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_WORKYARD_EXTERNAL_WORKYARD_SYSTEM_ACTIVE:
+466762                         _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_RESOURCE_CREATION_HOUSE);
+466763                         _local_8.mStartWorkCounter = (_local_8.mStartWorkCounter + _arg_2);
+466764                         if (_local_8.mStartWorkCounter >= 0)
+466765                         {
+466766                             if (((!(_local_8.IsProductionActive())) || (_local_8.IsProductionLevelTooLow())))
+466767                             {
+466768                                 _local_8.mStartWorkCounter = -(defines.PRODUCTION_STOP_WAITTIME);
+466769                                 if (_local_8.IsProductionLevelTooLow())
+466770                                 {
+466771                                     _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_UPGRADELEVEL_TOO_LOW);
+466772                                 }
+466773                                 else
+466774                                 {
+466775                                     _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_STOPPED_PRODUCTION);
+466776                                 };
+466777                                 break;
+466778                             };
+466779                             if (_local_8.IsUpgradeInProgress())
+466780                             {
+466781                                 _local_8.mStartWorkCounter = -(defines.PRODUCTION_STOP_WAITTIME);
+466782                                 break;
+466783                             };
+466784                             _local_4 = _local_8.mStartWorkCounter;
+466785                             if (this.SearchForNearestDepositFast(_arg_1))
+466786                             {
+466787                                 _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_WORKING);
+466788                                 _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_RESOURCECREATIONHOUSE_TO_EXTERNAL_RESOURCE);
+466789                                 _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_DEPOSIT_PATH);
+466790                                 _arg_1.pathPos = (_local_4 * SETTLER_WALK_SPEED_INT);
+466791                             }
+466792                             else
+466793                             {
+466794                                 _local_8.mStartWorkCounter = -(defines.PRODUCTION_STOP_WAITTIME);
+466795                                 if (_local_8.GetGOContainer().mShowMissingResources)
+466796                                 {
+466797                                     this.TrackMissingResources(_arg_1, 0);
+466798                                     _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_ERROR_NECESSARY_RESOURCE_MISSING);
+466799                                 };
+466800                                 break;
+466801                             };
+466802                         };
+466803                         break;
+466804                     case cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_RESOURCECREATIONHOUSE_TO_EXTERNAL_RESOURCE:
+466805                         if (_local_7 == null)
+466806                         {
+466807                             return (INCREASE_RESOURCE_RESULT_OK);
+466808                         };
+466809                         _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_DEPOSIT_PATH);
+466810                         _arg_1.pathPos = (_arg_1.pathPos + (_arg_2 * SETTLER_WALK_SPEED_INT));
+466811                         if (_arg_1.GetDepositPath() == null)
+466812                         {
+466813                             cLog.warning(("Deposit path is null ! " + _arg_1));
+466814                             mComputeResourceCreationLogZone = true;
+466815                             this.ErrorResetResourceCreation(_arg_1);
+466816                             break;
+466817                         };
+466818                         if (_arg_1.pathPos >= _arg_1.GetDepositPath().pathLenX10000)
+466819                         {
+466820                             if (_arg_1.GetStoreHouse() == null)
+466821                             {
+466822                                 return (INCREASE_RESOURCE_SET_SETTLER_TO_IDLE);
+466823                             };
+466824                             _local_4 = int(((_arg_1.pathPos - _arg_1.GetDepositPath().pathLenX10000) / SETTLER_WALK_SPEED_INT));
+466825                             _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_EXTERNAL_DEPOSIT);
+466826                             _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_EXTERNAL_WORKYARD);
+466827                             _local_8.mStartWorkCounter = _local_4;
+466828                             _local_3 = this.mGeneralInterface.mCurrentPlayerZone.mStreetDataMap.mDepositContainer.get(_arg_1.GetDepositBuildingGridPos());
+466829                             if (_local_3 != null)
+466830                             {
+466831                                 _local_3.notifyPropertyObserver(DEPOSIT_WORK_BEGIN, _local_8);
+466832                             };
+466833                         };
+466834                         break;
+466835                     case cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_EXTERNAL_DEPOSIT:
+466836                         _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_EXTERNAL_WORKYARD);
+466837                         _local_8.mStartWorkCounter = (_local_8.mStartWorkCounter + _arg_2);
+466838                         _local_5 = (_arg_1.GetWorkTime() * 1000);
+466839                         if (_local_8.mStartWorkCounter >= _local_5)
+466840                         {
+466841                             if (((!(_local_8.IsProductionActive())) || (_local_8.IsProductionLevelTooLow())))
+466842                             {
+466843                                 _local_8.mStartWorkCounter = (_local_5 - defines.PRODUCTION_STOP_WAITTIME);
+466844                                 if (_local_8.IsProductionLevelTooLow())
+466845                                 {
+466846                                     _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_UPGRADELEVEL_TOO_LOW);
+466847                                 }
+466848                                 else
+466849                                 {
+466850                                     _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_STOPPED_PRODUCTION);
+466851                                 };
+466852                                 break;
+466853                             };
+466854                             if (_local_8.IsUpgradeInProgress())
+466855                             {
+466856                                 _local_8.mStartWorkCounter = (_local_5 - defines.PRODUCTION_STOP_WAITTIME);
+466857                                 break;
+466858                             };
+466859                             _local_4 = (_local_8.mStartWorkCounter - _local_5);
+466860                             if (_arg_1.GetDepositBuildingGridPos() != -1)
+466861                             {
+466862                                 if (_arg_1.GetDepositPath() == null)
+466863                                 {
+466864                                     cLog.warning(("Deposit path is null ! " + _arg_1));
+466865                                     mComputeResourceCreationLogZone = true;
+466866                                     this.ErrorResetResourceCreation(_arg_1);
+466867                                     break;
+466868                                 };
+466869                                 _arg_1.pathPos = (_arg_1.GetDepositPath().pathLenX10000 + (_local_4 * SETTLER_WALK_SPEED_INT));
+466870                                 _local_3 = this.mGeneralInterface.mCurrentPlayerZone.mStreetDataMap.mDepositContainer.get(_arg_1.GetDepositBuildingGridPos());
+466871                                 _arg_1.SetGatheredResource(0);
+466872                                 if (_local_3 != null)
+466873                                 {
+466874                                     if (((_local_3.GetAmount() > 0) || (_arg_1.GetResourceCreationDefinition().amountRemoved < 0)))
+466875                                     {
+466876                                         if (_local_3.mDepositGfx != null)
+466877                                         {
+466878                                             _local_3.mDepositGfx.SetValue(_local_3.GetAmount());
+466879                                         };
+466880                                         _local_12 = this.HasBlockingProductivityInputBuff(_local_8);
+466881                                         if (((_local_8.GetResourceOutputFactor() == 0) || ((_local_8.GetResourceInputFactor() == 0) && (_local_12))))
+466882                                         {
+466883                                             _local_8.mStartWorkCounter = (_local_5 - defines.PRODUCTION_STOP_WAITTIME);
+466884                                             _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_BUFF_STOPPED_PRODUCTION);
+466885                                             break;
+466886                                         };
+466887                                         _local_13 = _local_7.amountRemoved;
+466888                                         if (_local_13 < 0)
+466889                                         {
+466890                                             _local_13 = (_local_13 * _local_8.GetResourceOutputFactor());
+466891                                         }
+466892                                         else
+466893                                         {
+466894                                             _local_13 = (_local_13 * _local_8.GetResourceInputFactor());
+466895                                         };
+466896                                         if (DEPOSIT_CREATION_INFO)
+466897                                         {
+466898                                             cLog.info(((((((this.mCurrentResourceNr + "Reached deposit: ") + _local_3.GetName_string()) + " Amount: ") + _local_3.GetAmount()) + " removed: ") + _local_7.amountRemoved));
+466899                                         };
+466900                                         if (((_local_3.GetAmount() >= _local_3.GetMaxAmount()) && ((_local_3.GetAmount() - _local_13) < _local_3.GetMaxAmount())))
+466901                                         {
+466902                                             this.mGeneralInterface.mPathFinder.InvalidateDepositMatrix(_local_8.getPlayerID(), _local_3.GetName_string(), cPathFinder.AMOUNT_TYPE_BELOW_MAX);
+466903                                         };
+466904                                         if (((_local_3.GetAmount() <= 0) && ((_local_3.GetAmount() - _local_13) > 0)))
+466905                                         {
+466906                                             this.mGeneralInterface.mPathFinder.InvalidateDepositMatrix(_local_8.getPlayerID(), _local_3.GetName_string(), cPathFinder.AMOUNT_TYPE_ABOVE_ZERO);
+466907                                         };
+466908                                         if (((_local_3.GetAmount() < _local_3.GetMaxAmount()) && ((_local_3.GetAmount() - _local_13) >= _local_3.GetMaxAmount())))
+466909                                         {
+466910                                             this.mGeneralInterface.mPathFinder.InvalidateDepositMatrix(_local_8.getPlayerID(), _local_3.GetName_string(), cPathFinder.AMOUNT_TYPE_BELOW_MAX);
+466911                                         };
+466912                                         _local_3.ChangeAmount(-(_local_13));
+466913                                         _arg_1.SetGatheredResource(_local_7.amountRemoved);
+466914                                         if (_local_3.GetAmount() <= 0)
+466915                                         {
+466916                                             if (((_local_3.GetName_string().indexOf("Wood") == -1) && (!(_local_3.GetName_string() == "Fish"))))
+466917                                             {
+466918                                                 globalFlash.gui.mAvatarMessageList.AddMessage(AVATAR_MESSAGE_TYPE.DEPOSIT_DEPLETED, _local_3);
+466919                                             };
+466920                                             _arg_1.SetGatheredResource((_arg_1.GetGatheredResource() + _local_3.GetAmount()));
+466921                                             _local_3.EmptyDeposit();
+466922                                             if (_local_3.GetDepositGroupID() != -1)
+466923                                             {
+466924                                                 _local_3.IncEmptied();
+466925                                                 _local_3.SetAccessibleType(DEPOSIT_ACCESSIBLE_TYPES.NOT_ACCESSIBLE);
+466926                                             };
+466927                                             this.mGeneralInterface.mPathFinder.InvalidateDepositMatrix(_local_8.getPlayerID(), _local_3.GetName_string(), cPathFinder.AMOUNT_TYPE_ABOVE_ZERO);
+466928                                             for each (_local_14 in this.mResourceCreation_vector)
+466929                                             {
+466930                                                 if (_local_14.GetDepositBuildingGridPos() == _arg_1.GetDepositBuildingGridPos())
+
+=== source lines 469989-470045 ===
+469989         public static const PRODUCTIONSTATE_WORKING:int = 0;
+469990         public static const PRODUCTIONSTATE_ERROR_NECESSARY_RESOURCE_MISSING:int = 1;
+469991         public static const PRODUCTIONSTATE_ERROR_WAREHOUSE_FULL:int = 2;
+469992         public static const PRODUCTIONSTATE_ERROR_WAITING_FOR_SETTLER:int = 3;
+469993         public static const PRODUCTIONSTATE_ERROR_WAITING_FOR_TOOL:int = 4;
+469994         public static const PRODUCTIONSTATE_STOPPED_PRODUCTION:int = 5;
+469995         public static const PRODUCTIONSTATE_MISSING_STREET:int = 6;
+469996         public static const BUILDINGUPGRADE_PRODUCTIONSTATE_UPDATE_IN_PROGRESS:int = 7;
+469997         public static const PRODUCTIONSTATE_BUFF_STOPPED_PRODUCTION:int = 8;
+469998         public static const DIFFICULT_BANDIT_STATE:int = 9;
+469999         public static const LEADER_BANDIT_STATE:int = 10;
+470000         public static const DIFFICULT_LEADER_BANDIT_STATE:int = 11;
+470001         public static const SKILLED_OBJECT:int = 12;
+470002         public static const SKILLPOINT_FINISHED:int = 13;
+470003         public static const PRODUCTIONSTATE_UPGRADELEVEL_TOO_LOW:int = 14;
+470004         public static const MOUNTAIN_DESTRUCTION_PREPARATION:int = 15;
+470005         public static const BUILDINGUPGRADE_TRIGGERS_FULFILLED:int = 16;
+470006 
+470007         private var settler:cSettler;
+470008         private var gatheredResource:int;
+470009         private var resourceCreationHouse:cBuilding;
+470010         public var settlerWithoutGoods:String = "";
+470011         private var removeFlag:Boolean;
+470012         private var path:cPathObject;
+470013         public var mDirtyIndicator:int;
+470014         private var playerID:int;
+470015         private var storeHouse:cBuilding;
+470016         private var resourceCreationDefinition:dResourceCreationDefinition;
+470017         private var modifiedProductionMultiplier:Number = 1;
+470018         private var mUniqueID:dUniqueID;
+470019         private var modified:Boolean;
+470020         private var modifiedProductionAdder:int = 0;
+470021         private var assignedSettler:Boolean;
+470022         private var depositBuildingGridPos:int = -1;
+470023         private var productionState:int;
+470024         private var depositPath:cPathObject;
+470025         public var settlerWithGoods:String = "";
+470026         private var settlerKIState:int;
+470027         public var pathPos:int;
+470028         private var invalidatePaths:Boolean = false;
+470029 
+470030         public function cResourceCreation(_arg_1:int, _arg_2:dResourceCreationDefinition, _arg_3:cBuilding)
+470031         {
+470032             super();
+470033             this.resourceCreationDefinition = _arg_2;
+470034             this.playerID = _arg_1;
+470035             this.resourceCreationHouse = _arg_3;
+470036             if (this.resourceCreationHouse != null)
+470037             {
+470038                 this.depositBuildingGridPos = this.resourceCreationHouse.GetGrid();
+470039                 this.resourceCreationHouse.mGeneralInterface.mCurrentPlayer.notifyPropertyObserver(cResourceCreation.RESOURCE_CREATION, this);
+470040                 this.resourceCreationHouse.mGeneralInterface.mCurrentPlayer.notifyPropertyObserver(cResourceCreation.RESOURCE_CREATION_APPLY_MODIFIERS, this);
+470041             };
+470042         }
+470043 
+470044         public function GetWorkTime():int
+470045         {
+
+=== source lines 337690-337755 ===
+337690 //------------------------------------------------------------
+337691 //Modifier.Modifiers.Productions.ProductionTimes
+337692 
+337693 package Modifier.Modifiers.Productions
+337694 {
+337695     import Modifier.Modifier;
+337696     import TimedProduction.cAbstractTimedProductionOrder;
+337697     import Modifier.ModifierVO;
+337698     import Interface.cGeneralInterface;
+337699 
+337700     public class ProductionTimes extends Modifier 
+337701     {
+337702 
+337703         public static const xml_string:String = "productiontimes";
+337704 
+337705 
+337706         override public function init(_arg_1:ModifierVO, _arg_2:cGeneralInterface):void
+337707         {
+337708             super.init(_arg_1, _arg_2);
+337709             registerPropertySignal(cAbstractTimedProductionOrder.PRODUCTION_START);
+337710         }
+337711 
+337712         override public function modify(_arg_1:Object):Object
+337713         {
+337714             var _local_2:cAbstractTimedProductionOrder = (_arg_1 as cAbstractTimedProductionOrder);
+337715             _local_2.SetProductionTimeModifiers(modifierVO.multiplier, (modifierVO.adder * 1000));
+337716             setModified(this);
+337717             return (_local_2);
+337718         }
+337719 
+337720 
+337721     }
+337722 }//package Modifier.Modifiers.Productions
+337723 
+337724 //------------------------------------------------------------
+337725 //Modifier.Modifiers.Productions.ResourceProductionSpeedUp
+337726 
+337727 package Modifier.Modifiers.Productions
+337728 {
+337729     import Modifier.Modifier;
+337730     import ServerState.cResourceCreation;
+337731     import Modifier.ModifierVO;
+337732     import Interface.cGeneralInterface;
+337733 
+337734     public final class ResourceProductionSpeedUp extends Modifier 
+337735     {
+337736 
+337737         public static const xml_string:String = "productionspeedup";
+337738 
+337739 
+337740         override public function init(_arg_1:ModifierVO, _arg_2:cGeneralInterface):void
+337741         {
+337742             super.init(_arg_1, _arg_2);
+337743             registerPropertySignal(cResourceCreation.RESOURCE_CREATION_APPLY_MODIFIERS);
+337744         }
+337745 
+337746         override public function modify(_arg_1:Object):Object
+337747         {
+337748             var _local_2:cResourceCreation = (_arg_1 as cResourceCreation);
+337749             _local_2.SetProductionTimeModifiers(modifierVO.multiplier, (modifierVO.adder * 1000));
+337750             setModified(this);
+337751             return (_local_2);
+337752         }
+337753 
+337754 
+337755     }
+
+=== class SpeedUp extends ===
+337591     import Interface.cGeneralInterface;
+337592     import GO.cBuilding;
+337593 
+337594     public final class SpeedUp extends Modifier 
+337595     {
+337596 
+337597         public static const xml_string:String = "depositspeedup";
+337598 
+337599 
+337600         override public function init(_arg_1:ModifierVO, _arg_2:cGeneralInterface):void
+337601         {
+337602             super.init(_arg_1, _arg_2);
+337603             registerPropertySignal(cComputeResourceCreation.DEPOSIT_WORK_BEGIN);
+337604         }
+337605 
+337606         override public function modify(_arg_1:Object):Object
+337607         {
+337608             var _local_2:cBuilding = (_arg_1 as cBuilding);
+337609             if (modifierVO.multiplier != 0)
+337610             {
+337611                 _local_2.mStartWorkCounter = (_local_2.mStartWorkCounter + ((_local_2.GetResourceCreation().GetWorkTime() * 1000) * (1 - (1 / modifierVO.multiplier))));
+337612             };
+337613             _local_2.mStartWorkCounter = (_local_2.mStartWorkCounter - modifierVO.adder);
+337614             setModified(this);
+337615             return (_local_2);
+337616         }
+337617 
+337618 
+337619     }
+337620 }//package Modifier.Modifiers.Deposit
+337621 
+337622 //------------------------------------------------------------
+337623 //Modifier.Modifiers.Productions.CollectionBuyFinishCost
+337624 
+337625 package Modifier.Modifiers.Productions
+337626 {
+337627     import Modifier.Modifier;
+337628     import Communication.VO.collectibles.CollectionVO;
+337629     import Modifier.ModifierVO;
+337630     import Interface.cGeneralInterface;
+337631 
+337632     public class CollectionBuyFinishCost extends Modifier 
+337633     {
+337634 
+337635         public static const xml_string:String = "collectionbuyfinishcost";
+337636 
+337637 
+337638         override public function init(_arg_1:ModifierVO, _arg_2:cGeneralInterface):void
+337639         {
+337640             super.init(_arg_1, _arg_2);
+337641             registerPropertySignal(CollectionVO.UPDATING_HARD_CURRENCY_PRICE);
+337642         }
+337643 
+337644         override public function modify(_arg_1:Object):Object
+337645         {
+337646             var _local_2:CollectionVO = (_arg_1 as CollectionVO);
+337647             _local_2.setInstantBuildCostModifiers(modifierVO.multiplier, modifierVO.adder);
+337648             _local_2.setModified(this);
+
+=== function GetClientTime() ===
+322850             return (this._1484268286mCurrentPlayerGuildBank);
+322851         }
+322852 
+322853         public function GetClientTime():Number
+322854         {
+322855             return (this.mGameClientTime);
+322856         }
+322857 
+322858         protected function InitStreaming():void
+322859         {
+322860             this.mStreamingParallelCntr = 0;
+322861             this.mStreamingPhase = 0;
+322862             this.mBlackScreenTimeout = (gMisc.GetTimeSinceStartup() + 10000);
+322863             if (defines.STREAMING_SET_SCREEN_TO_BLACK_UNTIL_BACKGROUND_IS_STREAMED)
+322864             {
+322865                 this.mRenderScreen = false;
+322866                 this.mFadeInCntr = 0;
+322867             }
+322868             else
+322869             {
+322870                 this.mRenderScreen = true;
+322871                 this.mFadeInCntr = defines.FADEIN_TIME;
+322872             };
+322873             this.mBackGroundIsStreamed = false;
+322874         }
+322875 
+322876         [Bindable(event="propertyChange")]
+322877         public function get mIsDefenseMode():Boolean
+322878         {
+322879             return (this._625721612mIsDefenseMode);
+322880         }
+322881 
+322882         public function CacheBackgroundScroll():void
+322883         {
+322884             if (this.mCurrentPlayerZone != null)
+322885             {
+322886                 this.mCurrentPlayerZone.CacheBackgroundScroll();
+322887             };
+322888         }
+322889 
+322890         public function FindPlayerFromId(_arg_1:int):cPlayerData
+322891         {
+322892             var _local_2:cPlayerData;
+322893             for each (_local_2 in this.mPlayersOnMap_vector)
+322894             {
+322895                 if (_local_2.GetPlayerId() == _arg_1)
+322896                 {
+322897                     return (_local_2);
+322898                 };
+322899             };
+322900             return (null);
+322901         }
+322902 
+322903         public function AddNewPlayer(_arg_1:cPlayerData):void
+322904         {
+322905             this.mPlayersOnMap_vector.push(_arg_1);
+322906         }
+322907 
+
+=== function getDuration( ===
+7502             return (this.GetBuffType() == BUFF_TYPE.COMBAT_INSTANT);
+7503         }
+7504 
+7505         public function getDuration(_arg_1:int):int
+7506         {
+7507             var _local_2:int;
+7508             var _local_3:Number;
+7509             if (_arg_1 == BUFF_APPLIANCE_MODE.FRIEND_OR_GUILD_MEMBER_PREMIUM)
+7510             {
+7511                 _local_3 = (1 + (global.premiumAccount.GetFriendZoneBuffTimeBonus() / 100));
+7512                 _local_2 = (Math.round((this.durations_vector[BUFF_APPLIANCE_MODE.FRIEND] * _local_3)) as int);
+7513             }
+7514             else
+7515             {
+7516                 if (_arg_1 < this.durations_vector.length)
+7517                 {
+7518                     _local_2 = this.durations_vector[_arg_1];
+7519                 }
+7520                 else
+7521                 {
+7522                     _local_2 = -1;
+7523                 };
+7524             };
+7525             return (_local_2);
+7526         }
+7527 
+7528         public function GetParameter(_arg_1:int):Number
+7529         {
+7530             var _local_2:Number = this.mParameter[_arg_1];
+7531             if (isNaN(_local_2))
+7532             {
+7533                 _local_2 = 0;
+7534             };
+7535             return (_local_2);
+7536         }
+7537 
+7538         public function getBuffUI():int
+7539         {
+7540             return (this.buffUI);
+7541         }
+7542 
+7543         public function GetAdventureTargets():AdventureTargetListVO
+7544         {
+7545             return (this.adventureTargets);
+7546         }
+7547 
+7548         public function IsChangeSkinBuff():Boolean
+7549         {
+7550             return ((!(this.applyEffects == null)) && (this.applyEffects.contains(ChangeSkin.XML_string)));
+7551         }
+7552 
+7553         public function GetAmount():int
+7554         {
+7555             return (this.mAmount);
+7556         }
+7557 
+7558         public function GetName_string():String
+7559         {
+
+=== class EffectList ===
+60158     import nLib.cXML;
+60159     import Utils.StringUtils;
+60160 
+60161     public class EffectListVO 
+60162     {
+60163 
+60164         public var list:ArrayCollection = null;
+60165 
+60166 
+60167         public static function fromVector(_arg_1:Vector.<EffectVO>):EffectListVO
+60168         {
+60169             var _local_3:EffectVO;
+60170             if (((_arg_1 == null) || (_arg_1.length == 0)))
+60171             {
+60172                 return (null);
+60173             };
+60174             var _local_2:EffectListVO = new (EffectListVO)();
+60175             for each (_local_3 in _arg_1)
+60176             {
+60177                 _local_2.list.addItem(_local_3);
+60178             };
+60179             return (_local_2);
+60180         }
+60181 
+60182         public static function fromXML(_arg_1:cXML, _arg_2:String):EffectListVO
+60183         {
+60184             var _local_4:cXML;
+60185             var _local_3:EffectListVO = new (EffectListVO)();
+60186             for each (_local_4 in _arg_1.MoveToSubNode(_arg_2).CreateChildrenArray())
+60187             {
+60188                 if (_local_3.list == null)
+60189                 {
+60190                     _local_3.initList();
+60191                 };
+60192                 _local_3.list.addItem(EffectVO.CreateFromXML(_local_4));
+60193             };
+60194             if (_local_3.list == null)
+60195             {
+60196                 return (null);
+60197             };
+60198             return (_local_3);
+60199         }
+60200 
+60201 
+60202         public function getEffectByName(_arg_1:String):EffectVO
+60203         {
+60204             var _local_2:EffectVO;
+60205             for each (_local_2 in this.list)
+60206             {
+60207                 if (StringUtils.equalsIgnoreCase(_local_2.effect_string, _arg_1))
+60208                 {
+60209                     return (_local_2);
+60210                 };
+60211             };
+60212             return (null);
+60213         }
+60214 
+60215         public function clone():EffectListVO
+
+=== class EffectList ===
+67546     import Communication.VO.EffectListVO;
+67547     import Interface.cGeneralInterface;
+67548 
+67549     public class EffectList 
+67550     {
+67551 
+67552 
+67553         public static function applyWithGrid(_arg_1:EffectListVO, _arg_2:cGeneralInterface, _arg_3:int):void
+67554         {
+67555             var _local_5:EffectVO;
+67556             var _local_6:EffectVO;
+67557             if (_arg_1 == null)
+67558             {
+67559                 return;
+67560             };
+67561             var _local_4:EffectFactory = (_arg_2 as cGameInterface).effectFactory;
+67562             for each (_local_5 in _arg_1.list)
+67563             {
+67564                 _local_6 = _local_5.clone();
+67565                 if (_local_5.targetGridPos == 0)
+67566                 {
+67567                     _local_6.targetGridPos = _arg_3;
+67568                 };
+67569                 _local_4.createEffect(_local_6).apply();
+67570             };
+67571         }
+67572 
+67573         public static function applyWith(_arg_1:EffectListVO, _arg_2:cGeneralInterface, _arg_3:Function):void
+67574         {
+67575             var _local_5:EffectVO;
+67576             var _local_6:EffectVO;
+67577             if (_arg_1 == null)
+67578             {
+67579                 return;
+67580             };
+67581             var _local_4:EffectFactory = (_arg_2 as cGameInterface).effectFactory;
+67582             for each (_local_5 in _arg_1.list)
+67583             {
+67584                 _local_6 = _local_5.clone();
+67585                 (_arg_3(_local_6));
+67586                 _local_4.createEffect(_local_6).apply();
+67587             };
+67588         }
+67589 
+67590         public static function applyWithXY(_arg_1:EffectListVO, _arg_2:cGeneralInterface, _arg_3:int, _arg_4:int):void
+67591         {
+67592             var _local_6:EffectVO;
+67593             var _local_7:EffectVO;
+67594             if (_arg_1 == null)
+67595             {
+67596                 return;
+67597             };
+67598             var _local_5:EffectFactory = (_arg_2 as cGameInterface).effectFactory;
+67599             for each (_local_6 in _arg_1.list)
+67600             {
+67601                 _local_7 = _local_6.clone();
+67602                 if (((_local_6.targetX == -1) && (_local_6.targetY == -1)))
+67603                 {
+
+=== class ZoneBuffManager ===
+497460     import Enums.FILTER;
+497461     import __AS3__.vec.*;
+497462 
+497463     public class ZoneBuffManager extends Notifier 
+497464     {
+497465 
+497466         public static const PROPERTY_ZONE_BUFF_ADDED:String = "ZoneBuffAdded";
+497467         public static const PROPERTY_ZONE_BUFF_REMOVED:String = "ZoneBuffRemoved";
+497468 
+497469         private var activeBuffs:ArrayCollection;
+497470         private var gi:cGeneralInterface;
+497471         private var guiDirtyFlag:Boolean = true;
+497472         private var extraBuildingBuffs:HashMapWrapper;
+497473 
+497474         public function ZoneBuffManager(_arg_1:cGeneralInterface)
+497475         {
+497476             super();
+497477             this.gi = _arg_1;
+497478             this.activeBuffs = new ArrayCollection();
+497479             this.extraBuildingBuffs = new HashMapWrapper();
+497480         }
+497481 
+497482         public function resetExtraBuildingBuff():void
+497483         {
+497484             this.extraBuildingBuffs.clear();
+497485         }
+497486 
+497487         public function applyRepeatingEffect():void
+497488         {
+497489             var _local_1:dBuffApplianceVO;
+497490             var _local_2:cBuffDefinition;
+497491             for each (_local_1 in this.activeBuffs)
+497492             {
+497493                 _local_2 = cBuffDefinition.GetById(_local_1.buffID);
+497494                 if (_local_2 != null)
+497495                 {
+497496                     if (_local_2.GetName_string().indexOf(ZONE_BUFF_TYPE.ANIMAL_BUFF_string) >= 0)
+497497                     {
+497498                         global.ui.mCurrentPlayerZone.mSettlerKIManager.clearAnimals(true);
+497499                     };
+497500                     if (_local_2.GetName_string().indexOf(ZONE_BUFF_TYPE.CHANGE_COLOR_SCHEME_string) >= 0)
+497501                     {
+497502                         gGfxResource.applyFilter(_local_1.resourceName_string, this.gi);
+497503                     };
+497504                     EffectList.apply(_local_2.GetRepeatingEffects(), this.gi);
+497505                 };
+497506             };
+497507         }
+497508 
+497509         public function getBuffAppliancesForBuilding(_arg_1:String):ArrayCollection
+497510         {
+497511             var _local_3:dPersistedBuffApplianceVO;
+497512             var _local_5:cBuffDefinition;
+497513             var _local_6:String;
+497514             var _local_7:dPersistedBuffApplianceVO;
+497515             var _local_2:ArrayCollection = new ArrayCollection();
+497516             for each (_local_3 in this.activeBuffs)
+497517             {
+
+=== function getBuffAppliancesForBuilding ===
+497506             };
+497507         }
+497508 
+497509         public function getBuffAppliancesForBuilding(_arg_1:String):ArrayCollection
+497510         {
+497511             var _local_3:dPersistedBuffApplianceVO;
+497512             var _local_5:cBuffDefinition;
+497513             var _local_6:String;
+497514             var _local_7:dPersistedBuffApplianceVO;
+497515             var _local_2:ArrayCollection = new ArrayCollection();
+497516             for each (_local_3 in this.activeBuffs)
+497517             {
+497518                 _local_5 = cBuffDefinition.GetById(_local_3.buffID);
+497519                 for each (_local_6 in _local_5.GetTargetDescription_string().split(","))
+497520                 {
+497521                     if (((_local_6 == "Workyard") || (_local_6 == _arg_1)))
+497522                     {
+497523                         _local_2.addItem(_local_3);
+497524                     };
+497525                 };
+497526             };
+497527             if (EpicWorkyardsManager.getInstance().getIsEpicSubBuilding(_arg_1))
+497528             {
+497529                 _local_2.addAll(this.getBuffAppliancesForBuilding(EpicWorkyardsManager.getInstance().getMasterBuildingBySubBuilding_string(_arg_1)));
+497530             };
+497531             var _local_4:Vector.<dPersistedBuffApplianceVO> = this.getExtraBuildingBuffs_vector(_arg_1);
+497532             if (_local_4 != null)
+497533             {
+497534                 for each (_local_7 in _local_4)
+497535                 {
+497536                     _local_2.addItem(_local_7);
+497537                 };
+497538             };
+497539             return (_local_2);
+497540         }
+497541 
+497542         public function getBuffAppliancesForMilitaryUnit_vector(_arg_1:cMilitaryUnitDescription):Vector.<dPersistedBuffApplianceVO>
+497543         {
+497544             var _local_3:dPersistedBuffApplianceVO;
+497545             var _local_4:cBuffDefinition;
+497546             var _local_5:Boolean;
+497547             var _local_6:String;
+497548             var _local_7:ModifierVO;
+497549             var _local_2:Vector.<dPersistedBuffApplianceVO> = new Vector.<dPersistedBuffApplianceVO>();
+497550             for each (_local_3 in this.activeBuffs)
+497551             {
+497552                 _local_4 = cBuffDefinition.GetById(_local_3.buffID);
+497553                 _local_5 = false;
+497554                 for each (_local_6 in _local_4.GetTargetDescription_string().split(","))
+497555                 {
+497556                     if (_local_6 == _arg_1.GetType())
+497557                     {
+497558                         _local_2.push(_local_3);
+497559                         _local_5 = true;
+497560                         break;
+497561                     };
+497562                 };
+497563                 if (((!(_local_5)) && (!(_local_4.GetCombatModifiers() == null))))

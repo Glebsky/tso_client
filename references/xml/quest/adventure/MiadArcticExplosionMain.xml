@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+                                          
+
+<Root>
+
+   <quest name="MiadArcticExplosionMain" type="Story" specialType="firstQuestlastQuest" icon="Military" npc="quest_character_mentor03.png">
+	   	<preeffects>
+        </preeffects>
+	   	<triggers>
+	   		<questcomplete item="MiadArcticExplosionQ1"/>
+         	<questcomplete item="MiadArcticExplosionQ2"/>
+         	<questcomplete item="MiadArcticExplosionQ3"/>
+         	<questcomplete item="MiadArcticExplosionQ4"/>
+         	<questcomplete item="MiadArcticExplosionQ5"/>
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="380"/>        
+      </rewards>
+    </quest> 
+   
+   <quest name="MiadArcticExplosionQ1" type="Story" icon="Military" connectedToQuest="MiadArcticExplosionMain" npc="quest_character_mentor03.png" >
+		<startcondition>
+		   <questactive item="MiadArcticExplosionMain"/>
+		</startcondition>
+		  <triggers>
+         <trigger type="Building" name="tent_nords_01" condition="l" amount="1" locaExtension="ae1" />
+  	  </triggers>
+      <rewards>     
+      </rewards>
+      <postrequisits>
+      <postrequisite startQuest="MiadArcticExplosionQ3" />
+       </postrequisits> 
+   </quest>
+   
+   <quest name="MiadArcticExplosionQ2" type="Story" icon="Military" connectedToQuest="MiadArcticExplosionMain" npc="quest_character_mentor03.png" >
+		<startcondition>
+		   <questactive item="MiadArcticExplosionMain"/>
+		</startcondition>
+		  <triggers>
+         <trigger type="Building" name="tent_nords_02" condition="l" amount="1" locaExtension="ae2" />
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="300"/>        
+      </rewards>
+      <postrequisits>
+      <postrequisite startQuest="MiadArcticExplosionQ4" />
+       </postrequisits> 
+   </quest>
+   
+   <quest name="MiadArcticExplosionQ3" type="Story" icon="Military" connectedToQuest="MiadArcticExplosionMain" npc="quest_character_mentor03.png" >
+		  <triggers>
+         <trigger type="Building" name="barrelTransporter" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="ae3" />
+         <trigger type="Building" name="barrelTransporter" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="ae3" />
+         <trigger type="Building" name="barrelTransporter" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="ae3" />
+         <trigger type="Building" name="barrelTransporter" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="ae3" />
+         <trigger type="Building" name="barrelTransporter" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="ae3" />
+         <trigger type="Building" name="barrelTransporter" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="ae3" />
+  	  </triggers>
+      <rewards>       
+      </rewards>
+      <postrequisits>
+       </postrequisits> 
+   </quest>
+   
+   <quest name="MiadArcticExplosionQ4" type="Story" icon="Military" connectedToQuest="MiadArcticExplosionMain" npc="quest_character_mentor03.png" >
+		  <triggers>
+         <trigger type="Building" name="crates" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="ae5" />
+         <trigger type="Building" name="crates" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="ae5" />
+         <trigger type="Building" name="crates" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="ae5" />
+         <trigger type="Building" name="crates" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="ae5" />
+         <trigger type="Building" name="crates" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="ae5" />
+         <trigger type="Building" name="crates" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="ae5" />
+  	  </triggers>
+      <rewards>       
+      </rewards>
+      <postrequisits>
+       </postrequisits> 
+   </quest>
+   
+   <quest name="MiadArcticExplosionQ5" type="Story" icon="Military" connectedToQuest="MiadArcticExplosionMain" npc="quest_character_mentor03.png" >	 
+      <startcondition>
+		   <questactive item="MiadArcticExplosionMain"/>
+		</startcondition>
+      <triggers>
+         <trigger type="Building" name="tent_nords_leader" condition="l" amount="1" locaExtension="ae4" />       
+  	  </triggers>
+      <rewards>        
+      </rewards>
+      <postrequisits> 
+       </postrequisits> 
+    </quest>
+
+</Root>
+
+    
+    
+      
+      
+      
+      
+
+

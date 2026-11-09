@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- If a pool is not needed for the next vote round it has to have disabled="true"  -->
+<Votes>
+	<VoteDefinition name="GuildMarket" costGems="89" altShopGroup="GuildMarketAlt" >
+		<pool id="1" name="DefaultItems" votesAmount="8" choicesAmount="12"/>
+		<pool id="2" name="UniqueItems" votesAmount="1" choicesAmount="3"/>
+	</VoteDefinition>
+</Votes>

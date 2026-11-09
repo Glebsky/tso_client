@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<Root>
+ 	
+	<quest name="LoveGarden_FirstStart" showQuestWindow="false" showRewardWindow="false"> 
+		<startcondition></startcondition>           
+		<triggers></triggers>
+		<posteffects>
+			<startquest name="LoveGarden_OnMapFirst"/> 
+		</posteffects>
+	</quest>
+	
+	<quest name="LoveGarden_OnMapFirst" showQuestWindow="false" showRewardWindow="false">            
+		<triggers>
+			<onmap item="LoveGarden" min="1" />
+		</triggers>
+		<posteffects>
+			<startquest name="LoveGarden_ChainFilter"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="LoveGarden_OnMap" showQuestWindow="false" showRewardWindow="false" repeatable="true">            
+		<triggers>
+			<onmap item="LoveGarden" min="1" />
+		</triggers>
+		<posteffects>
+			<resetquest name="LoveGarden_ChainFilter"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="LoveGarden_ChainFilter" type="LoveGarden" icon="QuestShort" npc="quest_character_flora.png" showQuestWindow="true" showRewardWindow="true" cancelable="false">
+		<triggers>
+			<hourselapsed amount="1" />
+			<buffactive name="AreaBuffLoveGardenLvl1" min="20" locaExtension="item"/>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite filterQuest="Level26-80" startQuest="LoveGarden_CompleteMission"/>
+				<postrequisite filterQuest="Level26-80" startQuest="LoveGarden_CompleteMiniMission"/>
+				<postrequisite filterQuest="Level26-80" startQuest="LoveGarden_CompleteCoopMission"/>
+				<postrequisite filterQuest="Level26-80" startQuest="LoveGarden_CompleteScenario"/>
+				<postrequisite filterQuest="Level28-80" startQuest="LoveGarden_CompleteVenture"/>
+				
+				<postrequisite filterQuest="Level4-80" startQuest="LoveGarden_CompleteFindDepositStone"/>
+				<postrequisite filterQuest="Level9-80" startQuest="LoveGarden_CompleteFindDepositBronzeOre"/>
+				<postrequisite filterQuest="Level19-80" startQuest="LoveGarden_CompleteFindDepositMarble"/>
+				<postrequisite filterQuest="Level20-80" startQuest="LoveGarden_CompleteFindDepositIronOre"/>
+				<postrequisite filterQuest="Level23-80" startQuest="LoveGarden_CompleteFindDepositCoal"/>
+				<postrequisite filterQuest="Level24-80" startQuest="LoveGarden_CompleteFindDepositGoldOre"/>
+				<postrequisite filterQuest="Level60-80" startQuest="LoveGarden_CompleteFindDepositGranite"/>
+				<postrequisite filterQuest="Level61-80" startQuest="LoveGarden_CompleteFindDepositTitaniumOre"/>
+				<postrequisite filterQuest="Level62-80" startQuest="LoveGarden_CompleteFindDepositSalpeter"/>
+				
+				<postrequisite filterQuest="Level16-80" startQuest="LoveGarden_CompleteFindTreasureShort"/>
+				<postrequisite filterQuest="Level20-80" startQuest="LoveGarden_CompleteFindTreasureMedium"/>
+				<postrequisite filterQuest="Level32-80" startQuest="LoveGarden_CompleteFindTreasureLong"/>
+				<postrequisite filterQuest="Level40-80" startQuest="LoveGarden_CompleteFindTreasureEvenLonger"/>
+				<postrequisite filterQuest="Level54-80" startQuest="LoveGarden_CompleteFindTreasureProlonged"/>
+				
+				<postrequisite filterQuest="Level26-80" startQuest="LoveGarden_CompleteFindAdventureShort"/>
+				<postrequisite filterQuest="Level36-80" startQuest="LoveGarden_CompleteFindAdventureMedium"/>
+				<postrequisite filterQuest="Level42-80" startQuest="LoveGarden_CompleteFindAdventureLong"/>
+				<postrequisite filterQuest="Level56-80" startQuest="LoveGarden_CompleteFindAdventureVeryLong"/>
+			</postrequisite>
+		</postrequisits>
+	</quest>
+	
+
+<!-- Complete Adventure Tasks -->    
+	<quest name="LoveGarden_CompleteMission" type="LoveGarden" icon="Military" npc="quest_character_fin02.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" repeatable="true">            
+		<triggers>
+			<completeadventurelist type="Mission,Mini,Coop,Venture" amount="1" locaExtension="NonScenario_many"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="RecruitingBuffLvl1" amount="1" />
+						<startquest name="LoveGarden_OnMap"/>	
+		</posteffects>
+	</quest>
+	
+	<quest name="LoveGarden_CompleteMiniMission" type="LoveGarden" icon="Military" npc="quest_character_fin02.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" repeatable="true">            
+		<triggers>
+			<completeadventurelist type="Mini" amount="1" locaExtension="Mini_1"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="RecruitingBuffLvl4" amount="1" />
+									<startquest name="LoveGarden_OnMap"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="LoveGarden_CompleteCoopMission" type="LoveGarden" icon="Military" npc="quest_character_fin02.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" repeatable="true">            
+		<triggers>
+			<completeadventurelist type="Coop" amount="1" locaExtension="Coop_1"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="RecruitingBuffLvl3" amount="1" />
+									<startquest name="LoveGarden_OnMap"/>   
+		</posteffects>
+	</quest>
+	
+	<quest name="LoveGarden_CompleteScenario" type="LoveGarden" icon="QuestShort" npc="quest_character_fin02.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" repeatable="true">            
+		<triggers>
+			<completeadventurelist type="Scenario" amount="1" locaExtension="Scenario_many" />			
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="RecruitingBuffLvl1" amount="1" />
+									<startquest name="LoveGarden_OnMap"/>    
+		</posteffects>
+	</quest>
+	
+	<quest name="LoveGarden_CompleteVenture" type="LoveGarden" icon="Military" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" repeatable="true">            
+		<triggers>
+			<completeadventurelist type="Venture" amount="1" locaExtension="Venture_many"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="RecruitingBuffLvl301" amount="1" />
+									<startquest name="LoveGarden_OnMap"/>       
+		</posteffects>
+	</quest>
+
+
+<!-- Find Deposit Tasks -->	
+	<quest name="LoveGarden_CompleteFindDepositStone" type="LoveGarden" icon="QuestShort" npc="quest_character_mentor03.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" repeatable="true">            
+		<triggers>
+			<specialisttaskfinished item="FindDepositStone" amount="10"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl13" amount="1" />
+			<startquest name="LoveGarden_OnMap"/>  
+		</posteffects>
+	</quest>
+	
+	<quest name="LoveGarden_CompleteFindDepositBronzeOre" type="LoveGarden" icon="QuestShort" npc="quest_character_mentor03.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" repeatable="true">            
+		<triggers>
+			<specialisttaskfinished item="FindDepositBronzeOre" amount="10"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl103" amount="1" />
+			<startquest name="LoveGarden_OnMap"/> 
+		</posteffects>
+	</quest>
+	
+	<quest name="LoveGarden_CompleteFindDepositMarble" type="LoveGarden" icon="QuestShort" npc="quest_character_mentor03.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" repeatable="true">            
+		<triggers>
+			<specialisttaskfinished item="FindDepositMarble" amount="8"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl14" amount="1" />
+			<startquest name="LoveGarden_OnMap"/>  
+		</posteffects>
+	</quest>
+	
+	<quest name="LoveGarden_CompleteFindDepositIronOre" type="LoveGarden" icon="QuestShort" npc="quest_character_mentor03.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" repeatable="true">            
+		<triggers>
+			<specialisttaskfinished item="FindDepositIronOre" amount="6"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl104" amount="1" />
+			<startquest name="LoveGarden_OnMap"/>  
+		</posteffects>
+	</quest>
+	
+	<quest name="LoveGarden_CompleteFindDepositCoal" type="LoveGarden" icon="QuestShort" npc="quest_character_mentor03.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" repeatable="true">            
+		<triggers>
+			<specialisttaskfinished item="FindDepositCoal" amount="2"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl4" amount="1" />
+			<startquest name="LoveGarden_OnMap"/>  
+		</posteffects>
+	</quest>
+	
+	<quest name="LoveGarden_CompleteFindDepositGoldOre" type="LoveGarden" icon="QuestShort" npc="quest_character_mentor03.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" repeatable="true">            
+		<triggers>
+			<specialisttaskfinished item="FindDepositGoldOre" amount="2"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl17" amount="1" />
+			<startquest name="LoveGarden_OnMap"/>  
+		</posteffects>
+	</quest>
+	
+	<quest name="LoveGarden_CompleteFindDepositGranite" type="LoveGarden" icon="QuestShort" npc="quest_character_mentor03.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" repeatable="true">            
+		<triggers>
+			<specialisttaskfinished item="FindDepositGranite" amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl24" amount="1" />
+			<startquest name="LoveGarden_OnMap"/>  
+		</posteffects>
+	</quest>
+	
+	<quest name="LoveGarden_CompleteFindDepositTitaniumOre" type="LoveGarden" icon="QuestShort" npc="quest_character_mentor03.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" repeatable="true">            
+		<triggers>
+			<specialisttaskfinished item="FindDepositTitaniumOre" amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl18" amount="1" />
+			<startquest name="LoveGarden_OnMap"/> 
+		</posteffects>
+	</quest>
+	
+	<quest name="LoveGarden_CompleteFindDepositSalpeter" type="LoveGarden" icon="QuestShort" npc="quest_character_mentor03.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" repeatable="true">            
+		<triggers>
+			<specialisttaskfinished item="FindDepositSalpeter" amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl7" amount="1" />
+			<startquest name="LoveGarden_OnMap"/> 
+		</posteffects>
+	</quest>
+	
+	
+<!-- Find Treasure Tasks -->
+	<quest name="LoveGarden_CompleteFindTreasureShort" type="LoveGarden" icon="QuestShort" npc="quest_character_mentor03.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" repeatable="true">            
+		<triggers>
+			<specialisttaskfinished item="FindTreasureShort" amount="6"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl5" amount="1" />
+			<startquest name="LoveGarden_OnMap"/> 
+		</posteffects>
+	</quest>
+	
+	<quest name="LoveGarden_CompleteFindTreasureMedium" type="LoveGarden" icon="QuestShort" npc="quest_character_mentor03.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" repeatable="true">            
+		<triggers>
+			<specialisttaskfinished item="FindTreasureMedium" amount="4"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="SpeedUpPopulationGrowth3" amount="1" />
+			<startquest name="LoveGarden_OnMap"/>  
+		</posteffects>
+	</quest>
+	
+	<quest name="LoveGarden_CompleteFindTreasureLong" type="LoveGarden" icon="QuestShort" npc="quest_character_mentor03.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" repeatable="true">            
+		<triggers>
+			<specialisttaskfinished item="FindTreasureLong" amount="2"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="SpeedUpPopulationGrowth" amount="1" />
+			<startquest name="LoveGarden_OnMap"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="LoveGarden_CompleteFindTreasureEvenLonger" type="LoveGarden" icon="QuestShort" npc="quest_character_mentor03.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" repeatable="true">            
+		<triggers>
+			<specialisttaskfinished item="FindTreasureEvenLonger" amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl19" amount="1" />
+			<startquest name="LoveGarden_OnMap"/> 
+		</posteffects>
+	</quest>
+	
+	<quest name="LoveGarden_CompleteFindTreasureProlonged" type="LoveGarden" icon="QuestShort" npc="quest_character_mentor03.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" repeatable="true">            
+		<triggers>
+			<specialisttaskfinished item="FindTreasureProlonged" amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="SpeedUpPopulationGrowth5" amount="1" />
+			<startquest name="LoveGarden_OnMap"/> 
+		</posteffects>
+	</quest>	
+
+
+
+<!-- Find Adventure Tasks -->
+	<quest name="LoveGarden_CompleteFindAdventureShort" type="LoveGarden" icon="QuestShort" npc="quest_character_mentor03.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" repeatable="true">            
+		<triggers>
+			<specialisttaskfinished item="FindAdventureZoneShort" amount="3"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProvisionerBuffLvl1" amount="1" />
+			<startquest name="LoveGarden_OnMap"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="LoveGarden_CompleteFindAdventureMedium" type="LoveGarden" icon="QuestShort" npc="quest_character_mentor03.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" repeatable="true">            
+		<triggers>
+			<specialisttaskfinished item="FindAdventureZoneMedium" amount="2"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="BookbinderBuffLvl1" amount="1" />
+			<reward type="Resource" name="MapPart" amount="2" />			
+			<startquest name="LoveGarden_OnMap"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="LoveGarden_CompleteFindAdventureLong" type="LoveGarden" icon="QuestShort" npc="quest_character_mentor03.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" repeatable="true">            
+		<triggers>
+			<specialisttaskfinished item="FindAdventureZoneLong" amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProvisionerBuffLvl2" amount="1" />
+			<startquest name="LoveGarden_OnMap"/>  
+		</posteffects>
+	</quest>
+	
+	<quest name="LoveGarden_CompleteFindAdventureVeryLong" type="LoveGarden" icon="QuestShort" npc="quest_character_mentor03.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" repeatable="true">            
+		<triggers>
+			<specialisttaskfinished item="FindAdventureZoneVeryLong" amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="BookbinderBuffLvl2" amount="1" />
+			<startquest name="LoveGarden_OnMap"/>
+		</posteffects>
+	</quest>
+ </Root>   	

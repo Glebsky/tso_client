@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Root>
+
+   <quest name="MiadTropicalSunMain" type="Story" specialType="firstQuestlastQuest" icon="Military" npc="quest_character_mentor03.png" showQuestWindow="false">
+	   	<preeffects>
+        </preeffects>
+	   	<triggers>
+	   		<questcomplete item="MiadTropicalSunQ1"/>
+         	<questcomplete item="MiadTropicalSunQ2"/>
+         	<questcomplete item="MiadTropicalSunQ3"/>
+         	<questcomplete item="MiadTropicalSunQ4"/>
+         	<questcomplete item="MiadTropicalSunQ5"/>
+         	<questcomplete item="MiadTropicalSunQ6"/>
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="100"/>        
+      </rewards>
+    </quest> 
+    
+   <quest name="MiadTropicalSunQ1" type="Story" icon="Military" connectedToQuest="MiadTropicalSunMain" npc="quest_character_mentor03.png" >
+		  <startcondition>
+		   <questactive item="MiadTropicalSunMain"/>
+		</startcondition>
+		  <triggers>
+         <trigger type="Building" name="BanditsLvl2_Adventure" condition="l" amount="4" locaExtension="tls1" />
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="100"/>        
+      </rewards>
+      <postrequisits>
+         <postrequisite startQuest="MiadTropicalSunQ2" />
+       </postrequisits> 
+   </quest>
+  
+	 <quest name="MiadTropicalSunQ2" type="Story" icon="Military" connectedToQuest="MiadTropicalSunMain" npc="quest_character_mentor03.png" >
+	  	<triggers>
+         <trigger type="Building" name="FortifiedWarehouse" condition="l" amount="1" locaExtension="tls2" />
+  	   </triggers>
+      <rewards>
+         <reward type="XP" amount="200"/>        
+      </rewards>
+		  <postrequisits>
+         <postrequisite startQuest="MiadTropicalSunQ3" /> 
+         <postrequisite startQuest="MiadTropicalSunQ4" /> 
+      </postrequisits>       
+    </quest>
+   
+    
+   <quest name="MiadTropicalSunQ3" type="Story" icon="Military" connectedToQuest="MiadTropicalSunMain" npc="quest_character_mentor03.png" >
+		  <triggers>
+         <trigger type="Building" name="BanditsLvl3_Adventure" condition="l" amount="1" locaExtension="tls6" />         
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="100"/>        
+      </rewards>
+      <postrequisits>
+         <postrequisite startQuest="MiadTropicalSunQ5" />
+         <postrequisite startQuest="MiadTropicalSunQ6" />
+       </postrequisits> 
+    </quest>
+
+   <quest name="MiadTropicalSunQ4" type="Story" icon="Military" connectedToQuest="MiadTropicalSunMain" npc="quest_character_mentor03.png" >
+	   	<triggers>
+         <trigger type="Building" name="Pirate-Ship_BIG" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="tls3" />
+         <trigger type="Building" name="Pirate-Ship_BIG" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="tls4" />
+         <trigger type="Building" name="Pirate-Ship_BIG" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="tls5" />
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="50"/>        
+      </rewards>
+		  <postrequisits>
+      </postrequisits>     
+    </quest>     
+    
+   <quest name="MiadTropicalSunQ5" type="Story" icon="Military" connectedToQuest="MiadTropicalSunMain" npc="quest_character_mentor03.png" >
+	   	<triggers>
+         <trigger type="Building" name="BanditsLvl2_Adventure" condition="l" amount="1" locaExtension="tls7" />
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="100"/>        
+      </rewards>
+		  <postrequisits>          
+      </postrequisits>         
+    </quest> 
+
+
+   <quest name="MiadTropicalSunQ6" type="Story" icon="Military" connectedToQuest="MiadTropicalSunMain" npc="quest_character_mentor03.png" >
+	   	<triggers>
+         <trigger type="Building" name="Banditsleader_Adventure" condition="l" amount="1" locaExtension="tls8" />
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="100"/>        
+      </rewards>
+      <postrequisits> 
+		  </postrequisits>     
+    </quest>  
+
+
+</Root>
+
+    
+    
+      
+      
+      
+      
+
+

@@ -1,0 +1,317 @@
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+
+<title>The Settlers Онлайн - Эвеланс [Realm 2]</title>
+
+<style> 
+	html, body  { height: 100%; }
+	body { margin: 0px; overflow:hidden; } 
+</style>
+<script language="JavaScript" type="text/javascript">
+	var loginTime = 1783970674;
+	var requiredMajorVersion = 11;
+	var requiredMinorVersion = 2;
+	var requiredRevision = 202;
+	
+	var userCustomTrackingVariables = {};
+	var territoryIdent = 'RU';
+    var trackingPageIdents = [];
+	var loggedInUserId = '2425303';
+	var loggedInUserName = 'digital_cloud';
+	var loggedInUserCountry = 'RU';
+    var languageIdentIso = 'ru-RU';
+    var userId = '2425303';
+    var commonErrorMessageTitle = 'Ошибка';
+    var commonErrorMessage = 'Произошла общая ошибка. Обновите страницу и попробуйте еще раз.';
+    var languagePath = 'ru';
+    var cookieDomain = '.thesettlersonline.ru';
+    var isCdn = false;
+	    var trackingPid = '';
+</script>
+<script type="text/javascript">
+  var connectV3Debug = false;
+  var connectV3Activated = false;
+  var connectV3Connected = false;
+  var connectV3LoginUrl = '/oauth/start';
+</script>
+<link type="text/css" rel="stylesheet" media="all" href="/sites/default/themes/siedler/css/build/main.min.css" />
+    <style type="text/css">
+        body { overflow: hidden; }
+        #scrollBlocker { position: absolute; width: 100%; height: 100%; top: 0; left: 0; }
+        #gameContainer { width: 100%; height: 100%; position: absolute; top: 0; left: 0; pointer-events: none; }
+		#gameContainer * { pointer-events: auto; }
+        #unityContainer { width: 100vw; height: 100vh;        }
+		canvas { width: 100%; height: 100%; display: block; }
+		.progress { margin: 1.5em; border: 1px solid #8a5745; width: 50vw; }
+		.progress .full { margin: 2px; background: #8a5745; height: 1em; transform-origin: top left; }
+		#loader { position: absolute; left: 0; top: 0; width: 100vw; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #FEF3EA; }
+    </style>
+    </head>
+<body>
+    <script type="text/javascript">
+  var consentData = {"translations":{"dso_page_consent_flow_service_title":"\u041e\u0431\u044f\u0437\u0430\u0442\u0435\u043b\u044c\u043d\u044b\u0435 \u0444\u0430\u0439\u043b\u044b cookie","dso_page_consent_flow_service_description":"\u0422\u0430\u043a\u0438\u0435 \u0444\u0430\u0439\u043b\u044b cookie \u043d\u0435\u0432\u043e\u0437\u043c\u043e\u0436\u043d\u043e \u043e\u0442\u043a\u043b\u044e\u0447\u0438\u0442\u044c, \u043f\u043e\u0441\u043a\u043e\u043b\u044c\u043a\u0443 \u043e\u043d\u0438 \u043d\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u044b \u0434\u043b\u044f \u0440\u0430\u0431\u043e\u0442\u044b \u0441\u0430\u0439\u0442\u0430 (\u043e\u043d\u0438 \u0432\u0441\u0435\u0433\u0434\u0430 \u0432\u043a\u043b\u044e\u0447\u0435\u043d\u044b).","dso_page_consent_flow_multimedia_player_title":"\u041c\u0443\u043b\u044c\u0442\u0438\u043c\u0435\u0434\u0438\u0439\u043d\u044b\u0439 \u043f\u0440\u043e\u0438\u0433\u0440\u044b\u0432\u0430\u0442\u0435\u043b\u044c","dso_page_consent_flow_multimedia_player_description":"\u041f\u0440\u0438\u043d\u0438\u043c\u0430\u0435\u0442\u0435 \u043b\u0438 \u0432\u044b \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u0435 cookie? \u042d\u0442\u043e \u043d\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u043e \u0434\u043b\u044f \u043f\u0440\u043e\u0441\u043c\u043e\u0442\u0440\u0430 \u0432\u0438\u0434\u0435\u043e\u043a\u043e\u043d\u0442\u0435\u043d\u0442\u0430 \u043e\u0442 \u043d\u0430\u0448\u0438\u0445 \u043f\u0430\u0440\u0442\u043d\u0435\u0440\u043e\u0432 (YouTube \u0438 \u0434\u0440.)","dso_page_consent_flow_banner_headline":"\u0414\u043e\u0431\u0440\u043e \u043f\u043e\u0436\u0430\u043b\u043e\u0432\u0430\u0442\u044c!","dso_page_consent_flow_banner_description":"<p>\u041c\u044b \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c \u0444\u0430\u0439\u043b\u044b cookie \u0438 \u0442\u0435\u0445\u043d\u043e\u043b\u043e\u0433\u0438\u0447\u0435\u0441\u043a\u0438\u0435 \u0441\u0440\u0435\u0434\u0441\u0442\u0432\u0430 \u0434\u043b\u044f \u0430\u043d\u0430\u043b\u0438\u0437\u0430 \u0442\u0440\u0430\u0444\u0438\u043a\u0430 \u0441\u0430\u0439\u0442\u0430, \u0447\u0442\u043e\u0431\u044b \u0443\u043b\u0443\u0447\u0448\u0438\u0442\u044c \u0435\u0433\u043e \u0438 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0438\u0442\u044c \u0440\u0435\u043a\u043b\u0430\u043c\u043d\u044b\u0435 \u043e\u0431\u044a\u044f\u0432\u043b\u0435\u043d\u0438\u044f, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u043c\u043e\u0433\u0443\u0442 \u0432\u0430\u0441 \u0437\u0430\u0438\u043d\u0442\u0435\u0440\u0435\u0441\u043e\u0432\u0430\u0442\u044c.<\/p>\n<p>\u0421\u043e\u0433\u043b\u0430\u0448\u0430\u044f\u0441\u044c \u043d\u0430 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u0435 \u0444\u0430\u0439\u043b\u043e\u0432 cookie, \u0432\u044b \u043e\u0441\u0443\u0449\u0435\u0441\u0442\u0432\u043b\u044f\u0435\u0442\u0435 \u043a\u043e\u043d\u0442\u0440\u043e\u043b\u044c \u0437\u0430 \u0441\u0432\u043e\u0438\u043c\u0438 \u0434\u0430\u043d\u043d\u044b\u043c\u0438 \u0438 \u043c\u043e\u0436\u0435\u0442\u0435 \u0432 \u043b\u044e\u0431\u043e\u0439 \u043c\u043e\u043c\u0435\u043d\u0442 \u0438\u0437\u043c\u0435\u043d\u0438\u0442\u044c \u0438\u043b\u0438 \u043e\u0442\u043e\u0437\u0432\u0430\u0442\u044c \u0441\u0432\u043e\u0435 \u0441\u043e\u0433\u043b\u0430\u0441\u0438\u0435. \u0415\u0441\u043b\u0438 \u0432\u044b \u043e\u0442\u043a\u0430\u0436\u0435\u0442\u0435\u0441\u044c \u043e\u0442 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u044f \u0444\u0430\u0439\u043b\u043e\u0432 cookie, \u044d\u0442\u043e \u043d\u0435 \u043f\u043e\u0432\u043b\u0438\u044f\u0435\u0442 \u043d\u0430 \u0440\u0430\u0431\u043e\u0442\u0443 \u0441\u0430\u0439\u0442\u0430, \u043d\u043e \u0432\u044b \u043d\u0435 \u0441\u043c\u043e\u0436\u0435\u0442\u0435 \u0432\u043e\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u044c\u0441\u044f \u0432\u0441\u0435\u043c\u0438 \u0435\u0433\u043e \u0432\u043e\u0437\u043c\u043e\u0436\u043d\u043e\u0441\u0442\u044f\u043c\u0438. \u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0435 \u0441\u0432\u0435\u0434\u0435\u043d\u0438\u044f \u043f\u0440\u0438\u0432\u0435\u0434\u0435\u043d\u044b \u0432 \u043d\u0430\u0448\u0435\u0439 <a href=\"https:\/\/www.thesettlersonline.ru\/ru\/%D0%BF%D0%BE%D0%BB%D0%B8%D1%82%D0%B8%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%84%D0%B8%D0%B4%D0%B5%D0%BD%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8\" target=\"_blank\" referrerpolicy=\"no-referrer\">\u043f\u043e\u043b\u0438\u0442\u0438\u043a\u0435 \u043a\u043e\u043d\u0444\u0438\u0434\u0435\u043d\u0446\u0438\u0430\u043b\u044c\u043d\u043e\u0441\u0442\u0438<\/a>.<\/p>","dso_page_consent_flow_banner_button_edit":"\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0430 \u0444\u0430\u0439\u043b\u043e\u0432 cookie","dso_page_consent_flow_banner_button_deny":"\u042f \u043e\u0442\u043a\u0430\u0437\u044b\u0432\u0430\u044e\u0441\u044c \u043e\u0442 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u044f \u0444\u0430\u0439\u043b\u043e\u0432 cookie","dso_page_consent_flow_banner_button_accept":"\u042f \u0441\u043e\u0433\u043b\u0430\u0448\u0430\u044e\u0441\u044c \u043d\u0430 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u0435 \u0444\u0430\u0439\u043b\u043e\u0432 cookie","dso_page_consent_flow_settings_headline":"\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0430 \u0444\u0430\u0439\u043b\u043e\u0432 cookie.","dso_page_consent_flow_settings_description":"\u0412\u044b \u043c\u043e\u0436\u0435\u0442\u0435 \u0432\u043a\u043b\u044e\u0447\u0430\u0442\u044c \u0438 \u043e\u0442\u043a\u043b\u044e\u0447\u0430\u0442\u044c \u0440\u0430\u0437\u043d\u044b\u0435 \u0442\u0438\u043f\u044b \u0444\u0430\u0439\u043b\u043e\u0432 cookie \u043d\u0430 \u0441\u0432\u043e\u0435 \u0443\u0441\u043c\u043e\u0442\u0440\u0435\u043d\u0438\u0435. \u041e\u0431\u0440\u0430\u0442\u0438\u0442\u0435 \u0432\u043d\u0438\u043c\u0430\u043d\u0438\u0435, \u0447\u0442\u043e \u043e\u0442\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u0435 \u043d\u0435\u043a\u043e\u0442\u043e\u0440\u044b\u0445 \u0444\u0430\u0439\u043b\u043e\u0432 cookie \u043c\u043e\u0436\u0435\u0442 \u043f\u043e\u0432\u043b\u0438\u044f\u0442\u044c \u043d\u0430 \u0440\u0430\u0431\u043e\u0442\u0443 \u0441\u0435\u0440\u0432\u0438\u0441\u043e\u0432 \u043d\u0430 \u043d\u0430\u0448\u0438\u0445 \u0441\u0430\u0439\u0442\u0430\u0445 (\u043d\u0430\u043f\u0440\u0438\u043c\u0435\u0440, \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u0439, \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u0438\u0437\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u043e\u0439 \u0440\u0435\u043a\u043b\u0430\u043c\u044b \u0438 \u0442. \u0434.).","dso_page_consent_flow_settings_save":"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c","dso_page_consent_flow_multimedia_header":"\u041f\u043b\u0430\u0442\u0444\u043e\u0440\u043c\u0430 %s \u043e\u0442\u043a\u043b\u044e\u0447\u0435\u043d\u0430.","dso_page_consent_flow_multimedia_description":"\u041f\u0440\u0438\u043d\u0438\u043c\u0430\u0435\u0442\u0435 \u043b\u0438 \u0432\u044b \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u0435 cookie? \u042d\u0442\u043e \u043d\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u043e \u0434\u043b\u044f \u043f\u0440\u043e\u0441\u043c\u043e\u0442\u0440\u0430 \u0432\u0438\u0434\u0435\u043e\u043a\u043e\u043d\u0442\u0435\u043d\u0442\u0430.","dso_page_consent_flow_multimedia_button_accept":"\u042f \u0441\u043e\u0433\u043b\u0430\u0448\u0430\u044e\u0441\u044c \u043d\u0430 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u0435 \u0444\u0430\u0439\u043b\u043e\u0432 cookie","dso_page_consent_flow_multimedia_button_manage":"\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0430 \u0444\u0430\u0439\u043b\u043e\u0432 cookie","dso_page_consent_flow_footer_open_settings_link":"Manage Cookie Settings"},"services":[{"name":"service","value":true,"readonly":true},{"name":"multimedia_player","value":false,"readonly":false}],"cookieDescriptions":{"service":[{"name":"SESS*","description":"Login session","partner":false,"partnerLink":null,"expiration":"23 days"},{"name":"pseudo_standaloneuplay","description":"Standalone client display format","partner":false,"partnerLink":null,"expiration":"1 year"},{"name":"mktgvl","description":"Marketing link promotion","partner":false,"partnerLink":null,"expiration":"Session"},{"name":"cmktv","description":"Marketing voucher promotion","partner":false,"partnerLink":null,"expiration":"7 days"},{"name":"cookie_check","description":"Kongregate\/Armor cookie check","partner":false,"partnerLink":null,"expiration":"1 year"},{"name":"l","description":"Preferred user language","partner":false,"partnerLink":null,"expiration":"1 year"},{"name":"c","description":"Preferred cluster","partner":false,"partnerLink":null,"expiration":"1 year"},{"name":"dso_rec_token","description":"Recruitment reward promotion","partner":false,"partnerLink":null,"expiration":"1 year"},{"name":"dsoLogin","description":"Session marked as active","partner":false,"partnerLink":null,"expiration":"2h\/8h"},{"name":"bb_*","description":"vBulletin session cookies","partner":false,"partnerLink":null,"expiration":"Session"},{"name":"showBetterTerritory","description":"Hide modal to change the territory","partner":false,"partnerLink":null,"expiration":"6 months"}]},"prefix":"consent_","expected":"accepted","duration":"184","TYPE_SERVICE":"service","TYPE_MULTIMEDIA_PLAYER":"multimedia_player","TYPE_DEVELOPER":"developer"};
+</script>
+<section id="consentNotification" class="hide">
+    <div class="modal" v-if="display" @click.self="onClickFade">
+        <div class="modal-inner">
+            <div class="modal-content">
+                <template v-if="!edit">
+                    <h2>{{ t.dso_page_consent_flow_banner_headline }}</h2>
+                    <div v-html="t.dso_page_consent_flow_banner_description"></div>
+                    <div class="button-container">
+                        <button @click="onEdit" class="dark">{{ t.dso_page_consent_flow_banner_button_edit }}</button>
+                        <button @click="onDeny" class="light">{{ t.dso_page_consent_flow_banner_button_deny }}</button>
+                        <button @click="onAccept" class="light">{{ t.dso_page_consent_flow_banner_button_accept }}</button>
+                    </div>
+                </template>
+                <template v-else>
+                    <h2><span class="back" @click="onBack">&lt;</span> {{ t.dso_page_consent_flow_settings_headline }}</h2>
+                    <p>{{ t.dso_page_consent_flow_settings_description }}</p>
+                    <div class="settings-container">
+                        <div class="service" v-for="(service, index) in stateCopy" :key="service.name">
+                            <div>
+                                <div>
+                                    <h3>{{ t['dso_page_consent_flow_' + service.name + '_title' ]}}</h3>
+                                    <p>{{ t['dso_page_consent_flow_' + service.name + '_description' ]}}</p>
+                                </div>
+                                <div>
+                                    <div class="switch" @click="onToggleSelection(index)" :class="{'active': service.value, 'readonly': service.readonly}">
+                                        <span class="slider round"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <template v-if="cookieDescriptions[service.name]">
+                                <div class="details">
+                                    <span v-if="detail !== index" @click="onToggleDetails(index)">Show details</span>
+                                    <span v-else @click="onToggleDetails(index)">Hide details</span>
+                                </div>
+                                <div v-if="detail === index" class="description">
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>Tracker name</th>
+                                            <th>Description</th>
+                                            <th>Provider by a partner</th>
+                                            <th>Partner link</th>
+                                            <th>Expiration by default</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr v-for="cookie in cookieDescriptions[service.name]" :key="cookie.name">
+                                            <td>{{ cookie.name }}</td>
+                                            <td>{{ cookie.description || 'N/A' }}</td>
+                                            <td>{{ cookie.partner ? 'Yes' : 'No' }}</td>
+                                            <td>{{ cookie.partnerLink || 'N/A' }}</td>
+                                            <td>{{ cookie.expiration || 'N/A' }}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                    <div class="button-container">
+                        <button class="contrast" @click="onSave">{{ t.dso_page_consent_flow_settings_save }}</button>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+</section>    <div id="scrollBlocker"></div>
+    <div id="gameContainer">
+        <div id="unityContainer" class="unity-desktop">
+            <canvas id="unity-canvas"></canvas>
+        </div>
+        <div id="loader">
+            <div id="unity-progress-bar-empty" class="progress">
+                <div id="unity-progress-bar-full" class="full"></div>
+            </div>
+        </div>
+
+		<script src="https://www.thesettlersonline.ru/frontend/debug/unity/SWMMO/Build/76f034cff49013ce85bd6945ebf32347.js"></script>
+        <script language="JavaScript" type="text/javascript">
+            const container = document.querySelector('#unityContainer')
+            const canvas = document.querySelector('#unity-canvas')
+            const loader = document.querySelector('#loader')
+            const progress = document.querySelector("#loader .progress")
+            const full = document.querySelector("#loader .progress .full")
+            let unityInstance = null
+  
+            const config = {
+              dataUrl: 'https://www.thesettlersonline.ru/frontend/debug/unity/SWMMO/Build/4671a1f47c673ad13d996473ffab9e0d.data',
+              frameworkUrl: 'https://www.thesettlersonline.ru/frontend/debug/unity/SWMMO/Build/dfe3344422790f31bbe3eec1e7de85d4.js',
+              codeUrl: 'https://www.thesettlersonline.ru/frontend/debug/unity/SWMMO/Build/505a049e7133442c47a4adea170f5202.wasm'
+            }
+
+            createUnityInstance(canvas, config, ((percent) => {
+              progress.style.display = 'block'
+              full.style.transform = 'scaleX(' + (100 * percent) + '%)'
+            })).then((instance) => {
+              unityInstance = instance
+              loader.style.display = 'none'
+            }).catch((message) => {
+              new Promise((resolve, reject) => {
+                let timeout
+                let timeoutFallback
+                const callback = function () {
+                  if (typeof gm_dialog_Plain !== 'undefined') {
+                    resolve()
+                    clearTimeout(timeoutFallback)
+                    return
+                  }
+                  timeout = setTimeout(callback, 50)
+                }
+
+                callback()
+                timeoutFallback = setTimeout(function () {
+                  clearTimeout(timeout)
+                  reject()
+                }, 5000)
+              }).then(function () {
+                const errorDialog = new gm_dialog_Plain(commonErrorMessageTitle, message, { closeOnClose: false })
+                errorDialog.addEvent('okay', () => {
+                  Waitingoverlay.show()
+                  new URI('/').go()
+                })
+                gm_DialogHandler.add(errorDialog)
+              }).catch(function (e) {
+                alert(message)
+                window.location.href = '/'
+              })
+            })
+            
+            function gmGameVars() {
+                return "lang=ru-ru&e=true&ubb=true&bb=https%3A%2F%2Fr02-ls.thesettlersonline.ru%2F&s=https%3A%2F%2Fwww.thesettlersonline.ru%2Ffrontend%7Chttps%3A%2F%2Fwww.thesettlersonline.ru%2Ffrontend&chatS=http%3A%2F%2Fr02-chat.thesettlersonline.ru%3A80&chatB=http%3A%2F%2Fr02-chat.thesettlersonline.ru%3A80&realmBeta=false&realmLang=ru&dsoAuthUser=2425303&dsoAuthToken=4JT10BXNQ0GZZQIW6clQv6VfiYbj549t";
+            }
+
+            function openShop(partnerName) {
+                switch (partnerName.toLowerCase()) {
+                    case "steam":
+                    case "standaloneuplay":
+                    case "kongregate":
+                        window.parent.postMessage('{"method": "openShopFromGame"}', "*");
+                        break;
+                }
+            }
+            function openSupport(partnerName) {
+                switch (partnerName.toLowerCase()) {
+                    case "steam":
+                    case "standaloneuplay":
+                    case "kongregate":
+                        window.parent.postMessage('{"method": "openSupportFromGame"}', "*");
+                        break;
+                }
+            }
+            function openForum(partnerName) {
+                switch (partnerName.toLowerCase()) {
+                    case "steam":
+                    case "standaloneuplay":
+                    case "kongregate":
+                        window.parent.postMessage('{"method": "openForumFromGame"}', "*");
+                        break;
+                }
+            }
+            function openChangelog(partnerName) {
+                switch (partnerName.toLowerCase()) {
+                    case "steam":
+                    case "standaloneuplay":
+                    case "kongregate":
+                        window.parent.postMessage('{"method": "openChangelogFromGame"}', "*");
+                        break;
+                }
+            }
+            function openRankings(partnerName) {
+                switch (partnerName.toLowerCase()) {
+                    case "steam":
+                    case "standaloneuplay":
+                    case "kongregate":
+                        window.parent.postMessage('{"method": "openRankingsFromGame"}', "*");
+                        break;
+                }
+            }
+
+          function requestUbiSession () {
+          }
+        </script>
+
+        <noscript>
+            <center>Для игры в The Settlers Онлайн в вашем браузере должны быть включены JavaScript и Куки (Cookies).<br />
+Пожалуйста, проверьте настройки вашего браузера и попробуйте снова. Нажмите <a href="https://www.thesettlersonline.ru/ru">здесь</a>, чтобы вернуться на главную станицу.</center>
+        </noscript>
+        <script>
+
+            function preventDefault(e) {
+                e = e || window.event;
+                if (e.preventDefault) {
+                    e.preventDefault();
+                }
+                e.returnValue = false;
+            }
+
+            if (navigator.userAgent.toLowerCase().indexOf('chrome') === -1 &&   // not chrome
+                navigator.userAgent.toLowerCase().indexOf('safari') === -1 &&   // not safari
+                navigator.userAgent.toLowerCase().indexOf('edge') === -1 &&     // not edge
+                !(!(window.ActiveXObject) && "ActiveXObject" in window))        // not ie 11
+            {
+                var s = document.getElementById('scrollBlocker');
+                if (s.addEventListener) // older FF
+                    s.addEventListener('DOMMouseScroll', preventDefault, false);
+                s.onwheel = preventDefault; // modern standard
+                s.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
+            } else {
+                window.setTimeout(fixScrollingForChrome, 100);
+            }
+
+            function fixScrollingForChrome() {
+                var f = document.getElementsByTagName("EMBED");
+                if (f.length) {
+                    f[0].style.pointerEvents = 'auto';
+                } else {
+                    window.setTimeout(fixScrollingForChrome, 100);
+                }
+            }
+
+        </script>
+
+    </div>
+    <div id="dialogContainer" class="hide">
+	<div class="top"></div>
+	<div class="center">
+		<div class="innerTop">
+			<h1></h1>
+			<a class="closeButton event:close event:cancel" href="#"></a>
+		</div>
+		<div class="innerCenter">
+			<div class="spacer"></div>
+			<div class="icon hide"></div>
+			<p></p>
+		</div>
+		<div class="innerBottom one-button">
+			<div class="spacer"></div>
+			<a href="#" class="okay hide submit event:okay event:close">
+				<img src="/sites/default/themes/siedler/images/common/dialog/text/ru-ru/okay.png" width="121" height="43" alt="ОК" />
+			</a>
+			<a href="#" class="cancel hide submit event:cancel event:close">
+				<img src="/sites/default/themes/siedler/images/common/dialog/text/ru-ru/cancel.png" width="121" height="43" alt="Отмена" />
+			</a>
+		</div>
+	</div>
+	<div class="bottom"></div>
+</div>
+<div id="waitingOverlay" class="hide">
+	<img class="top" src="/sites/default/themes/siedler/images/common/register/wait/top.gif" width="118" height="93" alt="" />
+	<img class="bottom" src="/sites/default/themes/siedler/images/common/register/wait/bottom-without-button.png" width="118" height="37" alt="" />
+	<div class="bottom">Ожидайте...</div>
+</div>
+<div id="dialogOverlay" class="hide"></div>
+
+    <script type="text/javascript" src="/sites/default/themes/siedler/js/gameclientpage.js?v=163219731"></script>
+
+</body>
+</html>

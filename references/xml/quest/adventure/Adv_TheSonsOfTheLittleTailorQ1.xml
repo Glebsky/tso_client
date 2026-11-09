@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	 <quest name="Adv_TheSonsOfTheLittleTailorQ1" type="Story" icon="Military" npc="quest_character_tailor.png" specialType="firstQuest" >
+		<triggers>
+      <trigger type="Building" name="Banditsleader_Tavern" condition="l" amount="1" locaExtension="er1_a4_q1"/>
+		  </triggers>
+      <rewards/>
+  		<postrequisits>
+         <postrequisite startQuest="Adv_TheSonsOfTheLittleTailorQ2a" /> 
+         <postrequisite startQuest="Adv_TheSonsOfTheLittleTailorQ3a" /> 
+         <postrequisite startQuest="Adv_TheSonsOfTheLittleTailorQ4a" /> 
+		</postrequisits> 
+    </quest>
+	<quest name="Adv_TheSonsOfTheLittleTailorQ2a" type="Story" icon="Military" npc="quest_character_tailor.png">
+		<triggers>
+      <trigger type="Building" name="cave_wildlife_leader" condition="l" amount="3" locaExtension="er1_a4_q2a"/>
+		  </triggers>
+      <rewards/>
+		<postrequisits>
+         <postrequisite startQuest="Adv_TheSonsOfTheLittleTailorQ2b" /> 
+		</postrequisits> 
+	</quest>
+	<quest name="Adv_TheSonsOfTheLittleTailorQ3a" type="Story" icon="Military" npc="quest_character_tailor.png">
+		<triggers>
+      <trigger type="Building" name="Banditsleader_cave" condition="l" amount="2" locaExtension="er1_a4_q3a"/>
+		  </triggers>
+      <rewards/>
+		<postrequisits>
+         <postrequisite startQuest="Adv_TheSonsOfTheLittleTailorQ3b" /> 
+		</postrequisits>
+    </quest>
+	<quest name="Adv_TheSonsOfTheLittleTailorQ4a" type="Story" icon="Military" npc="quest_character_tailor.png">
+		<triggers>
+      <trigger type="Building" name="Banditsleader_Adventure" condition="l" amount="3" locaExtension="er1_a4_q4a"/>
+		  </triggers>
+      <rewards/>
+		<postrequisits>
+         <postrequisite startQuest="Adv_TheSonsOfTheLittleTailorQ4b" /> 
+		</postrequisits>
+    </quest>
+	<quest name="Adv_TheSonsOfTheLittleTailorQ2b" type="Story" icon="Military" npc="quest_character_tailor.png">
+		<triggers>
+      <trigger type="Building" name="cave_wildlife_leader" condition="l" amount="2" locaExtension="er1_a4_q2b"/>
+		  </triggers>
+      <rewards/>
+		<postrequisits>
+         <postrequisite startQuest="Adv_TheSonsOfTheLittleTailorQ2c" /> 
+		</postrequisits>
+	</quest>
+	<quest name="Adv_TheSonsOfTheLittleTailorQ4b" type="Story" icon="Military" npc="quest_character_tailor.png">
+		<triggers>
+      <trigger type="Building" name="Banditsleader_Adventure" condition="l" amount="2" locaExtension="er1_a4_q4b"/>
+		  </triggers>
+      <rewards/>
+		<postrequisits>
+         <postrequisite startQuest="Adv_TheSonsOfTheLittleTailorQ4c" /> 
+		</postrequisits>
+    </quest>
+	 <quest name="Adv_TheSonsOfTheLittleTailorQ2c" type="Story" icon="Military" npc="quest_character_tailor.png" >
+		<triggers>
+      <trigger type="Building" name="cave_wildlife_leader" condition="l" amount="1" locaExtension="er1_a4_q2c"/>
+		  </triggers>
+      <rewards/>
+    </quest>	
+	<quest name="Adv_TheSonsOfTheLittleTailorQ3b" type="Story" icon="Military" npc="quest_character_tailor.png" >
+		<triggers>
+      <trigger type="Building" name="Banditsleader_cave" condition="l" amount="1" locaExtension="er1_a4_q3b"/>
+		  </triggers>
+      <rewards/>
+    </quest>	
+	 <quest name="Adv_TheSonsOfTheLittleTailorQ4c" type="Story" icon="Military" npc="quest_character_tailor.png" >
+		<triggers>
+      <trigger type="Building" name="Banditsleader_Adventure" condition="l" amount="1" locaExtension="er1_a4_q4c"/>
+		  </triggers>
+      <rewards/>
+    </quest>	
+	
+    <quest name="Adv_TheSonsOfTheLittleTailorQ5" type="Story" icon="Military" npc="quest_character_tailor.png" specialType="lastQuest" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		<questcomplete item="Adv_TheSonsOfTheLittleTailorQ1"/> 
+      <questcomplete item="Adv_TheSonsOfTheLittleTailorQ2c"/> 
+      <questcomplete item="Adv_TheSonsOfTheLittleTailorQ3b"/> 
+	<questcomplete item="Adv_TheSonsOfTheLittleTailorQ4c"/> 
+        </startcondition>
+
+	<triggers>
+      <trigger type="Building" name="cave_wildlife_leader" condition="l" amount="1" locaExtension="er1_a4_q2c"/>
+      <trigger type="Building" name="Banditsleader_cave" condition="l" amount="1" locaExtension="er1_a4_q3b"/>
+      <trigger type="Building" name="Banditsleader_Adventure" condition="l" amount="1" locaExtension="er1_a4_q4c"/>
+		  </triggers>
+      <rewards/>
+    </quest>	
+
+</Root>

@@ -1,0 +1,12 @@
+v1.5.1 source-based audit
+Source: C:/OSPanel/home/admin/docs/references/client_scripts.txt
+- 337606-337615 SpeedUp.modify: additive signed-int counter shifts at DEPOSIT_WORK_BEGIN; zero multiplier skips ratio branch, adder is used directly.
+- 466824-466839: entering external deposit sets work counter, then deposit observers modify it. Completion threshold remains raw GetWorkTime()*1000.
+- 475552-475600: applied skills attach level modifiers to their owner notifier; 79423-79430 building type applicability is read-only.
+- 81179-81280 CalculateWays: cached route times/UI cycle, not authoritative current counter threshold.
+- 497608-497691 persisted zone buff clocks, expiration; 497876 persistence getter returns live activeBuffs collection. We only read it.
+- 80745-80764 input factor is distinct from output; per-buff integer truncation preserved.
+Changes: raw current threshold fixes double speed-up; future external work emulates deterministic deposit speed counter shifts; complete route retained; unreadable buff/skill collections cannot become empty lists. Complex/repeating effects conservatively bound forecasts, including zone post effects at expiry.
+Vani DeepSeek consulted twice. Suggestions were independently checked against AS. Rejected incorrect suggestions to skip adder for multiplier=0 or drop time-scale normalization. No game mutators/server commands added.
+Validation: ES5 parser, Node syntax, 1056 discrete reference cases, six ordinary and six accelerated worker phases, input/output separation, shared deposits, speedup integer/adder/multiplier edge cases, zone expiry and repeating limits, game clocks, scale=2 mocks. UI mock tests: RU/EN in-game labels, menus/keyboard/portal, duration parsing, reload/dispose.
+LIMITS: AIR/in-game runtime not tested. Fixed-route/unchanged-state forecast; not a full simulation of future events, future player actions or all arbitrary modifiers. Unsupported or probabilistic effects can yield N/A. Timed repeating effects are not extrapolated without a verified schedule.

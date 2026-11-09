@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+
+	<quest name="BAUMP1" specialType="firstQuestlastQuest" icon="QuestShort" npc="unityNPC.png" >
+		<triggers>  
+			<questcomplete item="BAUMP1_Sub1" />
+			<questcomplete item="BAUMP1_Sub2" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="600"/>  	
+		</rewards>
+		<postrequisits>
+		</postrequisits>
+    </quest>
+	<quest name="BAUMP1_Sub1" connectedToQuest="BAUMP1" icon="QuestShort" npc="unityNPC.png" >
+		<startcondition>
+		     <questactive item="BAUMP1"/>
+		</startcondition>
+		<triggers>
+			<buffowned item="BattleBuffHurt_Unity_Event_Floater_Buff" min="8"/>	
+		</triggers>
+		<rewards>	
+		</rewards>
+   </quest>
+   <quest name="BAUMP1_Sub2" connectedToQuest="BAUMP1" icon="QuestShort" npc="unityNPC.png">
+		<startcondition>
+			<questactive item="BAUMP1"/>
+		    <questcomplete item="BAUMP1_Sub1"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Building" name="UnityEvent_DrowningSettler" condition="l" amount="1" locaExtension="unityadventure"/>
+		</triggers>
+		<rewards>	
+		</rewards>
+   </quest>
+   
+
+</Root>

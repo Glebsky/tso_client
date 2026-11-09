@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	 <quest name="RaidingtheRaidersQ1" type="Story" icon="Military" npc="quest_character_general01.png" specialType="firstQuest" >
+		<triggers>
+
+			<trigger type="Building" name="harbor_master_leader" condition="l" amount="1"/>
+     
+		  </triggers>
+      <rewards/>
+		<postrequisits>
+                 <postrequisite startQuest="RaidingtheRaidersQ2" /> 
+		</postrequisits>
+    </quest>
+	
+	<quest name="RaidingtheRaidersQ2" type="Story" icon="Military" npc="quest_character_general01.png" >
+		<triggers>
+
+			<trigger type="Building" name="raider_chief_leader" condition="l" amount="1"/>
+     
+		  </triggers>
+      <rewards/>
+		<postrequisits>
+                 <postrequisite startQuest="RaidingtheRaidersQ3" /> 
+		</postrequisits>
+    </quest>
+	
+	<quest name="RaidingtheRaidersQ3" type="Story" icon="Military" npc="quest_character_general01.png" specialType="lastQuest">
+		<triggers>
+		  <trigger type="Building" name="RaiderStash" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="RTR"/>
+ 	      </triggers>
+             <rewards/>
+		<postrequisits>
+             
+		</postrequisits>
+      </quest>
+</Root>

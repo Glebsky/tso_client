@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+
+
+	 <quest name="XMASEventAdv" specialType="firstQuestlastQuest" icon="ChristmasResource" npc="quest_character_santaclaus.png">
+		<triggers>
+			<buildingdestroyed min="5" item="xmas_camp_a" locaExtension="xmas" />
+			<buildingdestroyed min="2" item="xmas_camp_b" locaExtension="xmas" />
+			<buildingdestroyed min="1" item="xmas_camp_c" locaExtension="xmas" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="100"/>        
+		</rewards>
+		<posteffects>
+			<cancelquest name="XMASEventAdv_Filter"/>
+		</posteffects>
+		<postrequisits />
+    </quest>
+	
+	<quest name="XMASEventAdv_Filter" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<buildingdestroyed min="5" item="xmas_camp_a" locaExtension="xmas" />
+			<buildingdestroyed min="2" item="xmas_camp_b" locaExtension="xmas" />
+			<buildingdestroyed min="1" item="xmas_camp_c" locaExtension="xmas" />
+		</startcondition>
+		<triggers>
+			<questcomplete name="XMASEventAdv" />
+		</triggers>
+		<preeffects>
+			<filter type="snownowater" reactivate="true"/>
+		</preeffects>
+	</quest>
+
+</Root>

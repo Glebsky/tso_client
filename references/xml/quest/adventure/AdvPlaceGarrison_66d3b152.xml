@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="windows-1250"?>
+<Root>
+
+  <quest name="AdvPlaceGarrison" specialType="firstQuest">
+    <triggers>
+      <garrisonOnMap min="1"/>
+    </triggers>
+    <rewards/>
+    <postrequisits>
+		 	<postrequisite startQuest="AdvDefeatOneBanditleader" startDelay="10" />
+	  </postrequisits>
+	</quest>
+	
+	<quest name="AdvDefeatOneBanditleader"> 
+    <triggers>
+      <trigger type="Building" name="Banditsleader_Adventure" condition="l" amount="2" locaExtension="tut"/>
+    </triggers>
+    <rewards/>
+    <postrequisits>
+		 	<postrequisite startQuest="AdvDefeatAllBandits" startDelay="10" />
+	  </postrequisits>
+	</quest>
+	
+	<quest name="AdvDefeatAllBandits" specialType="lastQuest">
+    <triggers>
+      <trigger type="Building" name="Bandits_Adventure" condition="l" amount="1" locaExtension="tut"/>
+      <trigger type="Building" name="Banditsleader_Adventure" condition="l" amount="1"/>
+    </triggers>
+    <rewards/>
+    <postrequisits/>
+	</quest>
+	
+</Root>

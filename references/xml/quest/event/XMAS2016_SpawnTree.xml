@@ -1,0 +1,862 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+<!-- 2016 -->	
+
+   	<!-- Fake quest for spawning the Christmas Tree -->
+	<quest name="XMAS2016_SpawnTree" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<spawnbuilding name="Xmas_Island_Decoration" x="21" y="52" mode="free" action="ignoreBlocking, spawnInstant, replace"/>
+		</posteffects>
+	</quest>
+	
+	<!-- XMAS EVENT 2015 Quest Chain -->
+	
+	<quest name="XMAS2016_Main1" type="Event" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<triggers>
+			<questcomplete item="XMAS2016_Reach16"/>
+			<questcomplete item="XMAS2016_Sub1"/>
+			<questcomplete item="XMAS2016_Sub2"/>
+			<questcomplete item="XMAS2016_Sub2a"/>
+			<questcomplete item="XMAS2016_Sub3"/>
+			<questcomplete item="XMAS2016_Sub4"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="80" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2016_Main2" type="Event" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2016_Main1" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="XMAS2016_Reach23" />
+			<questcomplete item="XMAS2016_Sub5" />
+			<questcomplete item="XMAS2016_Sub6" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="80" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2016_ChainFilter" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="XMAS2016_Main2" />
+		</startcondition>
+		<postrequisits>
+			<postrequisite filterQuest="Level1-22" startQuest="XMAS2016_ChainFilter" startDelay="86400" />		<!-- Level 1-22;	This line should not be required since a previous quest already requires level 23 I'll keep it in as a failsave anyway -Denis -->
+			<postrequisite filterQuest="Level23-35" startQuest="XMAS2016_Main3_Easy"  />		
+			<postrequisite filterQuest="Level36-47" startQuest="XMAS2016_Main3_Medium" />	
+			<postrequisite filterQuest="Level48-80" startQuest="XMAS2016_Main3_Hard" />		
+		</postrequisits>
+	</quest>
+
+	<quest name="XMAS2016_Main3_Easy" type="Event" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<triggers>
+			<questcomplete item="XMAS2016_Reach26" />
+			<questcomplete item="XMAS2016_Sub7_Easy" />
+			<questcomplete item="XMAS2016_Sub8_Easy" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="80" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2016_Main3_Medium" type="Event" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<triggers>
+			<questcomplete item="XMAS2016_Sub7_Medium" />
+			<questcomplete item="XMAS2016_Sub8_Medium" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="80" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2016_Main3_Hard" type="Event" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<triggers>
+			<questcomplete item="XMAS2016_Sub7_Hard" />
+			<questcomplete item="XMAS2016_Sub8_Hard" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="80" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2016_Reach16" type="Event" connectedToQuest="XMAS2016_Main1" icon="XP" npc="quest_character_santaclaus.png" cancelable="false" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questactive item="XMAS2016_Main1" />
+		</startcondition>
+		<triggers>   
+			<playerlevel min="16" /> 
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2016_Sub1" type="Event" connectedToQuest="XMAS2016_Main1" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2016_Reach16" />
+		</startcondition>
+		<triggers>
+			<click item="GAMESTATE_ID_ADVENT_WINDOW" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+		<hints>
+			<hint pointTo="GAMESTATE_ID_AVATAR.btnAdvent" type="Glow" />
+		</hints>
+	</quest>
+	
+	<quest name="XMAS2016_Sub2" type="Event" connectedToQuest="XMAS2016_Main1" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2016_Sub1" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="CollectibleChristmasBells" condition="ge" amount="25" />
+			<trigger type="Resource" name="CollectibleChristmasCandy" condition="ge" amount="25" />
+			<trigger type="Resource" name="CollectibleChristmasGingerbread" condition="ge" amount="25" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2016_Sub2a" type="Event" connectedToQuest="XMAS2016_Main1" icon="ChristmasResource" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2016_Sub1" />
+		</startcondition>
+		<triggers>
+			<trigger type="WindowOpen" name="GAMESTATE_ID_AVATAR.options" amount="1" />
+			<trigger type="WindowOpen" name="GAMESTATE_ID_EVENT_WINDOW" amount="1" />
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</rewards>
+		<hints>
+			<hint pointTo="GAMESTATE_ID_AVATAR.options" type="Glow" />
+		</hints>
+	</quest>
+
+	<quest name="XMAS2016_Sub3" type="Event" connectedToQuest="XMAS2016_Main1" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2016_Sub2" />
+		</startcondition>
+		<triggers>			
+			<trigger type="Buff" name="AddResource_ChristmasResourceCollection" amount="1" condition="produce" icon="buildings:Mayorhouse" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2016_Sub4" type="Event" connectedToQuest="XMAS2016_Main1" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2016_Sub3" />
+		</startcondition>
+		<triggers>
+			<trigger type="SpecialistTask" name="FindTreasureShort" condition="found" resourceType="ChristmasResource" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>	
+	
+	<quest name="XMAS2016_Adv1" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2016_Sub2a" />
+		</startcondition>
+		<triggers>
+			<!--<click item="GAMESTATE_ID_ADVENTURE_PANEL.btnStart" locaExtension="XMAS2016_Adv1" />-->
+			<calendarDoorOpened item="XMAS_door1"/>
+		</triggers>
+		<rewards>
+		</rewards>
+		<hints>
+		</hints>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="20" />
+			<startquest name="XMAS2016_Adv2_easy">
+				<conditions>
+					<playerlevel min="16" max="25"/>
+				</conditions>
+			</startquest>
+			<startquest name="XMAS2016_Adv2_medium">
+				<conditions>
+					<playerlevel min="26" max="35"/>
+				</conditions>
+			</startquest>
+			<startquest name="XMAS2016_Adv2_hard">
+				<conditions>
+					<playerlevel min="36"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2016_Adv2_easy" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" showRewardWindow="true">
+		<triggers>
+			<buffproduced item="BattleBuffHurtXMAS_GiftBuff_easy1" min="1" />
+			<buffproduced item="BattleBuffHurtXMAS_GiftBuff_easy2" min="1" />
+		</triggers>
+		<rewards>
+		</rewards>
+		<hints>
+		</hints>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="20" />
+			<startquest name="XMAS2016_Adv3" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2016_Adv2_medium" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" showRewardWindow="true">
+		<triggers>
+			<buffproduced item="BattleBuffHurtXMAS_GiftBuff_medium1" min="1" />
+			<buffproduced item="BattleBuffHurtXMAS_GiftBuff_medium2" min="1" />
+		</triggers>
+		<rewards>
+		</rewards>
+		<hints>
+		</hints>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="20" />
+			<startquest name="XMAS2016_Adv3" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2016_Adv2_hard" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" showRewardWindow="true">
+		<triggers>
+			<buffproduced item="BattleBuffHurtXMAS_GiftBuff_hard1" min="1" />
+			<buffproduced item="BattleBuffHurtXMAS_GiftBuff_hard3" min="1" />
+		</triggers>
+		<rewards>
+		</rewards>
+		<hints>
+		</hints>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="20" />
+			<startquest name="XMAS2016_Adv3" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2016_Adv3" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" showRewardWindow="true">
+		<triggers>
+			<questcomplete item="XMAS2016_Adv3_ObjectiveTracker" locaExtension="CompleteOneXmasScenario"/>
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="ChristmasResource" amount="20" />
+		</rewards>
+		<hints>
+		</hints>
+	</quest>
+	
+	<quest name="XMAS2016_Adv3_ObjectiveTracker" type="Event" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questactive item="XMAS2016_Main1" />
+		</startcondition>
+		<triggers>
+			<completeadventurelist item="XMAS_Map_Easy_1,XMAS_Map_Easy_2,XMAS_Map_Medium_1,XMAS_Map_Medium_2,XMAS_Map_Hard_1,XMAS_Map_Hard_2" amount="1"/>
+		</triggers>
+		<rewards>
+		</rewards>
+		<hints>
+		</hints>
+	</quest>
+		
+	<quest name="XMAS2016_Reach23" type="Event" connectedToQuest="XMAS2016_Main2" icon="XP" npc="quest_character_santaclaus.png" cancelable="false" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questactive item="XMAS2016_Main2" />
+		</startcondition>
+		<triggers>
+			<trigger type="PlayerLevel" name="" condition="ge" amount="23" locaExtension="XMAS_lvl23" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2016_Sub5" type="Event" connectedToQuest="XMAS2016_Main2" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2016_Reach23" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Horse" amount="200" />
+			<trigger type="PayForQuestFinish" name="Wood" amount="600" />
+			<trigger type="Resource" name="Horse" condition="produce" amount="200" />
+			<trigger type="Resource" name="Wood" condition="produce" amount="600" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2016_Sub6" type="Event" connectedToQuest="XMAS2016_Main2" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2016_Sub5" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="CollectibleHerbs" amount="20" />
+			<trigger type="PayForQuestFinish" name="CollectibleKettle" amount="1" />
+			<trigger type="PayForQuestFinish" name="Water" amount="300" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="200" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2016_Reach26" type="Event" connectedToQuest="XMAS2016_Main3_Easy" icon="XP" npc="quest_character_santaclaus.png" cancelable="false" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questactive item="XMAS2016_Main3_Easy" />
+		</startcondition>
+		<triggers>
+			<trigger type="PlayerLevel" name="" condition="ge" amount="26" locaExtension="XMAS_lvl26" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="5" />
+		</posteffects>
+	</quest>
+
+
+	<quest name="XMAS2016_Sub7_Easy" type="Event" connectedToQuest="XMAS2016_Main3_Easy" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2016_Reach26" />
+		</startcondition>
+		<triggers>
+			<completeadventurelist type="Mission,Mini,Coop" amount="1" locaExtension="AnyMission_1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2016_Sub7_Medium" type="Event" connectedToQuest="XMAS2016_Main3_Medium" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questactive item="XMAS2016_Main3_Medium" />
+		</startcondition>
+		<triggers>
+			<completeadventurelist type="Mission,Mini,Coop" tier="3" amount="1" locaExtension="AnyMission_Dif3_1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2016_Sub7_Hard" type="Event" connectedToQuest="XMAS2016_Main3_Hard" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questactive item="XMAS2016_Main3_Hard" />
+		</startcondition>
+		<triggers>
+			<completeadventurelist type="Mission,Mini,Coop" tier="5" amount="1" locaExtension="AnyMission_Dif5_1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2016_Sub8_Easy" type="Event" connectedToQuest="XMAS2016_Main3_Easy" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2016_Sub7_Easy" />
+		</startcondition>
+		<triggers>
+			<trigger type="MilitaryUnit" name="Recruit" condition="ge" amount="100" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2016_Sub8_Medium" type="Event" connectedToQuest="XMAS2016_Main3_Medium" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2016_Sub7_Medium" />
+		</startcondition>
+		<triggers>
+			<trigger type="MilitaryUnit" name="Recruit" condition="ge" amount="250" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2016_Sub8_Hard" type="Event" connectedToQuest="XMAS2016_Main3_Hard" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2016_Sub7_Hard" />
+		</startcondition>
+		<triggers>
+			<trigger type="MilitaryUnit" name="Recruit" condition="ge" amount="500" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	<!-- <XMAS (Christmas)) EVENT 2015 Daily Quests> -->
+	<quest name="XMAS2016_DailyQuestLevelRequirement" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="PlayerLevel" name="" condition="ge" amount="10" />
+		</triggers>
+		<rewards>
+		</rewards>
+		<postrequisits>
+			<postrequisite startQuest="XMAS2016_DailyQuest" />
+		</postrequisits>
+	</quest>
+	
+		<quest name="XMAS2016_DailyQuest" showQuestWindow="false" showRewardWindow="false" specialType="regularDailyQuestList">
+		<triggers>
+			<trigger type="DailyTime" amount="1" />
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite filterQuest="Level10-17" startQuest="ChrDaiTheToyMaker" />
+				<postrequisite filterQuest="Level10-17" startQuest="ChrDaiSnowflakeTea" />
+				<postrequisite filterQuest="Level10-17" startQuest="ChrDaiColoredFish" />
+				<postrequisite filterQuest="Level18-25" startQuest="ChrDaiWarmBrew" />
+				<postrequisite filterQuest="Level18-25" startQuest="ChrDaiTheSnowyPretzel" />
+				<postrequisite filterQuest="Level18-25" startQuest="ChrDaiTallTree" />
+				<postrequisite filterQuest="Level26-35" startQuest="ChrDaiLateDinner" />
+				<postrequisite filterQuest="Level26-35" startQuest="ChrDaiYellowStar" />
+				<postrequisite filterQuest="Level26-35" startQuest="ChrDaiMerryMaintenance" />
+				<postrequisite filterQuest="Level36-80" startQuest="ChrDaiHeavyGifts" />
+				<postrequisite filterQuest="Level36-80" startQuest="ChrDaiChristmasPostcard" />
+				<postrequisite filterQuest="Level36-80" startQuest="ChrDaiTheNaughtyAndTheNice" />
+				<postrequisite filterQuest="Level10-17" startQuest="ChrDaiSavingOfChristmasEve" />
+				<postrequisite filterQuest="Level10-17" startQuest="ChrDaiCozyChristmasEve" />
+				<postrequisite filterQuest="Level10-17" startQuest="ChrDaiANewShelter" />
+				<postrequisite filterQuest="Level18-25" startQuest="ChrDaiSantasLittleHelper" />
+				<postrequisite filterQuest="Level18-25" startQuest="ChrDaiTheChristmasBakery" />
+				<postrequisite filterQuest="Level26-35" startQuest="ChrDaiAHugeChristmasTree" />
+				<postrequisite filterQuest="Level26-35" startQuest="ChrDaiTheNewMantelshelf" />
+				<postrequisite filterQuest="Level36-80" startQuest="ChrDaiHelpForMotherHolle" />
+				<postrequisite filterQuest="Level36-80" startQuest="ChrDaiImportantWood" />
+			</postrequisite>
+		</postrequisits>
+	</quest>
+	
+<!-- 2015 -->	
+
+   	<!-- Fake quest for spawning the Christmas Tree -->
+	<quest name="XMAS2015_SpawnTree" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<spawnbuilding name="Xmas_Island_Decoration" x="21" y="52" mode="free" action="ignoreBlocking, spawnInstant, replace"/>
+		</posteffects>
+	</quest>
+	
+	<!-- XMAS EVENT 2015 Quest Chain -->
+	
+	<quest name="XMAS2015_Main1" type="Event" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<triggers>
+			<questcomplete item="XMAS2015_Reach16"/>
+			<questcomplete item="XMAS2015_Sub1"/>
+			<questcomplete item="XMAS2015_Sub2"/>
+			<questcomplete item="XMAS2015_Sub2a"/>
+			<questcomplete item="XMAS2015_Sub3"/>
+			<questcomplete item="XMAS2015_Sub4"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="80" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2015_Main2" type="Event" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2015_Main1" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="XMAS2015_Reach23" />
+			<questcomplete item="XMAS2015_Sub5" />
+			<questcomplete item="XMAS2015_Sub6" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="80" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2015_ChainFilter" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="XMAS2015_Main2" />
+		</startcondition>
+		<postrequisits>
+			<postrequisite filterQuest="Level1-22" startQuest="XMAS2015_ChainFilter" startDelay="86400" />		<!-- Level 1-22;	This line should not be required since a previous quest already requires level 23 I'll keep it in as a failsave anyway -Denis -->
+			<postrequisite filterQuest="Level23-35" startQuest="XMAS2015_Main3_Easy"  />		
+			<postrequisite filterQuest="Level36-43" startQuest="XMAS2015_Main3_Medium" />	
+			<postrequisite filterQuest="Level44-80" startQuest="XMAS2015_Main3_Hard" />		
+		</postrequisits>
+	</quest>
+
+	<quest name="XMAS2015_Main3_Easy" type="Event" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<triggers>
+			<questcomplete item="XMAS2015_Reach26" />
+			<questcomplete item="XMAS2015_Sub7_Easy" />
+			<questcomplete item="XMAS2015_Sub8_Easy" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="80" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2015_Main3_Medium" type="Event" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<triggers>
+			<questcomplete item="XMAS2015_Sub7_Medium" />
+			<questcomplete item="XMAS2015_Sub8_Medium" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="80" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2015_Main3_Hard" type="Event" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<triggers>
+			<questcomplete item="XMAS2015_Sub7_Hard" />
+			<questcomplete item="XMAS2015_Sub8_Hard" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="80" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2015_Reach16" type="Event" connectedToQuest="XMAS2015_Main1" icon="XP" npc="quest_character_santaclaus.png" cancelable="false" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questactive item="XMAS2015_Main1" />
+		</startcondition>
+		<triggers>   
+			<playerlevel min="16" /> 
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2015_Sub1" type="Event" connectedToQuest="XMAS2015_Main1" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2015_Reach16" />
+		</startcondition>
+		<triggers>
+			<click item="GAMESTATE_ID_ADVENT_WINDOW" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+		<hints>
+			<hint pointTo="GAMESTATE_ID_AVATAR.btnAdvent" type="Glow" />
+		</hints>
+	</quest>
+	
+	<quest name="XMAS2015_Sub2" type="Event" connectedToQuest="XMAS2015_Main1" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2015_Sub1" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="CollectibleChristmasBells" condition="ge" amount="30" />
+			<trigger type="Resource" name="CollectibleChristmasCandy" condition="ge" amount="30" />
+			<trigger type="Resource" name="CollectibleChristmasGingerbread" condition="ge" amount="30" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2015_Sub2a" type="Event" connectedToQuest="XMAS2015_Main1" icon="ChristmasResource" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2015_Sub1" />
+		</startcondition>
+		<triggers>
+			<trigger type="WindowOpen" name="GAMESTATE_ID_AVATAR.options" amount="1" />
+			<trigger type="WindowOpen" name="GAMESTATE_ID_EVENT_WINDOW" amount="1" />
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</rewards>
+		<hints>
+			<hint pointTo="GAMESTATE_ID_AVATAR.options" type="Glow" />
+		</hints>
+	</quest>
+
+	<quest name="XMAS2015_Sub3" type="Event" connectedToQuest="XMAS2015_Main1" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2015_Sub2" />
+		</startcondition>
+		<triggers>			
+			<trigger type="Buff" name="AddResource_ChristmasResourceCollection" amount="1" condition="produce" icon="buildings:Mayorhouse" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2015_Sub4" type="Event" connectedToQuest="XMAS2015_Main1" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2015_Sub3" />
+		</startcondition>
+		<triggers>
+			<trigger type="SpecialistTask" name="FindTreasureShort" condition="found" resourceType="ChristmasResource" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>	
+	
+	<quest name="XMAS2015_Adv1" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2015_Sub2a" />
+		</startcondition>
+		<triggers>
+			<!--<click item="GAMESTATE_ID_ADVENTURE_PANEL.btnStart" locaExtension="XMAS2015_Adv1" />-->
+			<calendarDoorOpened item="XMAS2015_door1"/>
+		</triggers>
+		<rewards>
+		</rewards>
+		<hints>
+		</hints>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="20" />
+			<startquest name="XMAS2015_Adv2_easy">
+				<conditions>
+					<playerlevel min="16" max="25"/>
+				</conditions>
+			</startquest>
+			<startquest name="XMAS2015_Adv2_medium">
+				<conditions>
+					<playerlevel min="26" max="35"/>
+				</conditions>
+			</startquest>
+			<startquest name="XMAS2015_Adv2_hard">
+				<conditions>
+					<playerlevel min="36"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2015_Adv2_easy" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" showRewardWindow="true">
+		<triggers>
+			<buffproduced item="BattleBuffHurtXMAS_GiftBuff_easy1" min="1" />
+			<buffproduced item="BattleBuffHurtXMAS_GiftBuff_easy2" min="1" />
+		</triggers>
+		<rewards>
+		</rewards>
+		<hints>
+		</hints>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="20" />
+			<startquest name="XMAS2015_Adv3" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2015_Adv2_medium" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" showRewardWindow="true">
+		<triggers>
+			<buffproduced item="BattleBuffHurtXMAS_GiftBuff_medium1" min="1" />
+			<buffproduced item="BattleBuffHurtXMAS_GiftBuff_medium2" min="1" />
+		</triggers>
+		<rewards>
+		</rewards>
+		<hints>
+		</hints>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="20" />
+			<startquest name="XMAS2015_Adv3" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2015_Adv2_hard" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" showRewardWindow="true">
+		<triggers>
+			<buffproduced item="BattleBuffHurtXMAS_GiftBuff_hard1" min="1" />
+			<buffproduced item="BattleBuffHurtXMAS_GiftBuff_hard3" min="1" />
+		</triggers>
+		<rewards>
+		</rewards>
+		<hints>
+		</hints>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="20" />
+			<startquest name="XMAS2015_Adv3" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2015_Adv3" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" showRewardWindow="true">
+		<triggers>
+			<completeadventurelist item="XMAS_Map_Easy_1,XMAS_Map_Easy_2,XMAS_Map_Medium_1,XMAS_Map_Medium_2,XMAS_Map_Hard_1,XMAS_Map_Hard_2" amount="1" locaExtension="xmas" mode="classic"/>
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="ChristmasResource" amount="20" />
+		</rewards>
+		<hints>
+		</hints>
+	</quest>
+		
+	<quest name="XMAS2015_Reach23" type="Event" connectedToQuest="XMAS2015_Main2" icon="XP" npc="quest_character_santaclaus.png" cancelable="false" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questactive item="XMAS2015_Main2" />
+		</startcondition>
+		<triggers>
+			<trigger type="PlayerLevel" name="" condition="ge" amount="23" locaExtension="XMAS_lvl23" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2015_Sub5" type="Event" connectedToQuest="XMAS2015_Main2" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2015_Reach23" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Horse" amount="200" />
+			<trigger type="PayForQuestFinish" name="Wood" amount="600" />
+			<trigger type="Resource" name="Horse" condition="produce" amount="200" />
+			<trigger type="Resource" name="Wood" condition="produce" amount="600" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2015_Sub6" type="Event" connectedToQuest="XMAS2015_Main2" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2015_Sub5" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="CollectibleHerbs" amount="20" />
+			<trigger type="PayForQuestFinish" name="CollectibleKettle" amount="1" />
+			<trigger type="PayForQuestFinish" name="Water" amount="300" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="200" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2015_Reach26" type="Event" connectedToQuest="XMAS2015_Main3_Easy" icon="XP" npc="quest_character_santaclaus.png" cancelable="false" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questactive item="XMAS2015_Main3_Easy" />
+		</startcondition>
+		<triggers>
+			<trigger type="PlayerLevel" name="" condition="ge" amount="26" locaExtension="XMAS_lvl26" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="5" />
+		</posteffects>
+	</quest>
+
+
+	<quest name="XMAS2015_Sub7_Easy" type="Event" connectedToQuest="XMAS2015_Main3_Easy" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2015_Reach26" />
+		</startcondition>
+		<triggers>
+			<completeadventurelist type="Mission,Mini,Coop" amount="1" locaExtension="AnyMission_1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2015_Sub7_Medium" type="Event" connectedToQuest="XMAS2015_Main3_Medium" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questactive item="XMAS2015_Main3_Medium" />
+		</startcondition>
+		<triggers>
+			<completeadventurelist type="Mission,Mini,Coop" tier="4" amount="1" locaExtension="Mission_Dif4_1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2015_Sub7_Hard" type="Event" connectedToQuest="XMAS2015_Main3_Hard" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questactive item="XMAS2015_Main3_Hard" />
+		</startcondition>
+		<triggers>
+			<completeadventurelist type="Mission,Mini,Coop" tier="9" amount="1" locaExtension="Mission_Dif9_1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2015_Sub8_Easy" type="Event" connectedToQuest="XMAS2015_Main3_Easy" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2015_Sub7_Easy" />
+		</startcondition>
+		<triggers>
+			<trigger type="MilitaryUnit" name="Recruit" condition="ge" amount="100" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2015_Sub8_Medium" type="Event" connectedToQuest="XMAS2015_Main3_Medium" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2015_Sub7_Medium" />
+		</startcondition>
+		<triggers>
+			<trigger type="MilitaryUnit" name="Recruit" condition="ge" amount="250" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2015_Sub8_Hard" type="Event" connectedToQuest="XMAS2015_Main3_Hard" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2015_Sub7_Hard" />
+		</startcondition>
+		<triggers>
+			<trigger type="MilitaryUnit" name="Recruit" condition="ge" amount="500" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	
+	<!-- <XMAS (Christmas)) EVENT 2015 Daily Quests> -->
+
+
+	<quest name="XMAS2015_DailyQuestLevelRequirement" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="PlayerLevel" name="" condition="ge" amount="10" />
+		</triggers>
+		<rewards>
+		</rewards>
+		<postrequisits>
+			<postrequisite startQuest="XMAS2015_DailyQuest" />
+		</postrequisits>
+	</quest>
+
+
+	<quest name="XMAS2015_DailyQuest" showQuestWindow="false" showRewardWindow="false" specialType="regularDailyQuestList">
+		<triggers>
+			<trigger type="DailyTime" amount="1" />
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite filterQuest="Level10-17" startQuest="ChrDaiTheToyMaker" />
+				<postrequisite filterQuest="Level10-17" startQuest="ChrDaiSnowflakeTea" />
+				<postrequisite filterQuest="Level10-17" startQuest="ChrDaiColoredFish" />
+				<postrequisite filterQuest="Level18-25" startQuest="ChrDaiWarmBrew" />
+				<postrequisite filterQuest="Level18-25" startQuest="ChrDaiTheSnowyPretzel" />
+				<postrequisite filterQuest="Level18-25" startQuest="ChrDaiTallTree" />
+				<postrequisite filterQuest="Level26-35" startQuest="ChrDaiLateDinner" />
+				<postrequisite filterQuest="Level26-35" startQuest="ChrDaiYellowStar" />
+				<postrequisite filterQuest="Level26-35" startQuest="ChrDaiMerryMaintenance" />
+				<postrequisite filterQuest="Level36-80" startQuest="ChrDaiHeavyGifts" />
+				<postrequisite filterQuest="Level36-80" startQuest="ChrDaiChristmasPostcard" />
+				<postrequisite filterQuest="Level36-80" startQuest="ChrDaiTheNaughtyAndTheNice" />
+				<postrequisite filterQuest="Level10-17" startQuest="ChrDaiSavingOfChristmasEve" />
+				<postrequisite filterQuest="Level10-17" startQuest="ChrDaiCozyChristmasEve" />
+				<postrequisite filterQuest="Level10-17" startQuest="ChrDaiANewShelter" />
+				<postrequisite filterQuest="Level18-25" startQuest="ChrDaiSantasLittleHelper" />
+				<postrequisite filterQuest="Level18-25" startQuest="ChrDaiTheChristmasBakery" />
+				<postrequisite filterQuest="Level26-35" startQuest="ChrDaiAHugeChristmasTree" />
+				<postrequisite filterQuest="Level26-35" startQuest="ChrDaiTheNewMantelshelf" />
+				<postrequisite filterQuest="Level36-80" startQuest="ChrDaiHelpForMotherHolle" />
+				<postrequisite filterQuest="Level36-80" startQuest="ChrDaiImportantWood" />
+			</postrequisite>
+		</postrequisits>
+	</quest>
+
+</Root>

@@ -1,0 +1,1801 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+
+	<!-- CRISIS QUEST 3 EVENT CONTROL QUESTS -->
+
+	<quest name="CQC3_ChainFilter" showQuestWindow="false" showRewardWindow="false" cancelable="true" linkEventWindow="false">
+		<postrequisits>
+			<postrequisite filterQuest="Level1-15" startQuest="CQC3_ChainFilter" startDelay="60" />
+			<postrequisite filterQuest="Level16-25" startQuest="CQC3_GreatEvil_Main_lvl16" />
+			<postrequisite filterQuest="Level26-35" startQuest="CQC3_GreatEvil_Main_lvl26" />
+			<postrequisite filterQuest="Level36-45" startQuest="CQC3_GreatEvil_Main_lvl36" />
+			<postrequisite filterQuest="Level46-55" startQuest="CQC3_GreatEvil_Main_lvl46" />
+			<postrequisite filterQuest="Level56-65" startQuest="CQC3_GreatEvil_Main_lvl51" />
+			<postrequisite filterQuest="Level66-80" startQuest="CQC3_GreatEvil_Main_lvl66" />
+		</postrequisits>
+	</quest>
+
+
+	<!-- lvl 16 quests -->
+
+	<quest name="CQC3_GreatEvil_Main_lvl16" type="Crisis" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" icon="AdvancedPaper" >
+		<preeffects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_crisisquests_0" delay="3" reactivate="false" />
+			<sendmail name="CrisisInfo" item="CrisisQuestchainStarted" />
+		</preeffects>
+		<triggers>
+			<questcomplete item="CQC3M1_GreatEvil_stage1_lvl16"/> 
+			<questcomplete item="CQC3M2_GreatEvil_stage2_lvl16"/> 
+			<questcomplete item="CQC3M3_GreatEvil_stage3_lvl16"/>
+			<questcomplete item="CQC3M4_GreatEvil_stage4_lvl16"/>
+			<!--
+			<trigger type="QuestComplete" name="CQC3M1_GreatEvil_stage1_lvl16" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M2_GreatEvil_stage2_lvl16" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M3_GreatEvil_stage3_lvl16" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M4_GreatEvil_stage4_lvl16" amount="1" condition="questcompleted" /> -->
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="700" />
+			<reward type="Buff" item="BuildBuilding" name="Watermill" amount="1" recurringChance="100" />			
+		</posteffects>
+	</quest>
+
+
+	<!-- lvl 16 stage 1 -->
+
+	<quest name="CQC3M1_GreatEvil_stage1_lvl16" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" showRewardWindow="true" cancelable="false" showQuestWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questactive item="CQC3_GreatEvil_Main_lvl16" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC3M1Q1_SomethingEvil_lvl16"/> 
+			<questcomplete item="CQC3M1Q2_FindingHelp_lvl16"/> 
+			<questcomplete item="CQC3M1Q3_ProofOfCharacter_lvl16"/>
+			<!--
+			<trigger type="QuestComplete" name="CQC3M1Q1_SomethingEvil_lvl16" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M1Q2_FindingHelp_lvl16" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M1Q3_ProofOfCharacter_lvl16" amount="1" condition="questcompleted" /> -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="40" />
+			<reward type="XP" amount="40" />		
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M1Q1_SomethingEvil_lvl16" type="Crisis" icon="QuestShort" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="142" connectedToQuest="CQC3M1_GreatEvil_stage1_lvl16" >
+		<startcondition>
+			<questactive item="CQC3M1_GreatEvil_stage1_lvl16" />
+		</startcondition>
+		<triggers>
+			<buffapplied item="ProductivityBuffLvl1" min="4" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Bread" amount="20" />
+			<reward type="XP" amount="40" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M1Q2_FindingHelp_lvl16" type="Crisis" icon="QuestShort" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="142" connectedToQuest="CQC3M1_GreatEvil_stage1_lvl16" >
+		<startcondition>
+			<questcomplete item="CQC3M1Q1_SomethingEvil_lvl16" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="CollectibleHerbs" amount="7" condition="geDelta" />
+			<trigger type="Resource" name="Fish" amount="460" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="FillDeposit" name="Fish" amount="110" />
+			<reward type="XP" amount="50" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M1Q3_ProofOfCharacter_lvl16" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="142" connectedToQuest="CQC3M1_GreatEvil_stage1_lvl16" >
+		<startcondition>
+			<questcomplete item="CQC3M1Q2_FindingHelp_lvl16" />
+		</startcondition>
+		<triggers>
+			<trigger type="BuffOnFriend" name="ProductivityBuffLvl1" amount="6" condition="geDelta" />
+			<buffproduced item="ProductivityBuffLvl1" min="160" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="20" />
+			<reward type="XP" amount="30" />
+		</posteffects>
+	</quest>
+
+
+	<!-- lvl 16 stage 2 -->
+
+	<quest name="CQC3M2_GreatEvil_stage2_lvl16" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" type="Crisis" icon="QuestLonger" npc="quest_no_character01.png" >
+		<startcondition>
+			<questcomplete item="CQC3M1_GreatEvil_stage1_lvl16" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC3M2Q1_GettingParaphernalia_lvl16"/> 
+			<questcomplete item="CQC3M2Q2_PreparingTheRitual_lvl16"/> 
+			<questcomplete item="CQC3M2Q3_TheRitual_lvl16"/>
+			<!--			
+			<trigger type="QuestComplete" name="CQC3M2Q1_GettingParaphernalia_lvl16" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M2Q2_PreparingTheRitual_lvl16" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M2Q3_TheRitual_lvl16" amount="1" condition="questcompleted" /> -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="40" />
+			<reward type="Buff" item="ProductivityBuffLvl4" amount="4" />
+			<reward type="XP" amount="70" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M2Q2_PreparingTheRitual_lvl16" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="142" connectedToQuest="CQC3M2_GreatEvil_stage2_lvl16" >
+		<startcondition>
+			<questcomplete item="CQC3M2Q1_GettingParaphernalia_lvl16" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Bread" amount="180" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="180" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Corn" amount="210" />
+			<reward type="XP" amount="50" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M2Q1_GettingParaphernalia_lvl16" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="142" connectedToQuest="CQC3M2_GreatEvil_stage2_lvl16" >
+		<startcondition>
+			<questactive item="CQC3M2_GreatEvil_stage2_lvl16" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Corn" amount="330" condition="produce" />
+			<trigger type="Resource" name="Water" amount="270" condition="geDelta" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="30" />
+			<reward type="XP" amount="30" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M2Q3_TheRitual_lvl16" type="Crisis" icon="QuestShort" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="142" connectedToQuest="CQC3M2_GreatEvil_stage2_lvl16" >
+		<startcondition>
+			<questcomplete item="CQC3M2Q2_PreparingTheRitual_lvl16" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Bread" amount="110" />
+			<trigger type="Resource" name="Beer" amount="210" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="20" />
+			<reward type="XP" amount="40" />
+		</posteffects>
+	</quest>
+
+
+	<!-- lvl 16 stage 3 -->
+
+	<quest name="CQC3M3_GreatEvil_stage3_lvl16" type="Crisis" icon="QuestLonger" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questcomplete item="CQC3M2_GreatEvil_stage2_lvl16" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC3M3Q1_SomethingOdd_lvl16"/> 
+			<questcomplete item="CQC3M3Q2_Hunch_lvl16"/> 
+			<questcomplete item="CQC3M3Q3_FinalClue_lvl16"/>
+			<!--
+			<trigger type="QuestComplete" name="CQC3M3Q1_SomethingOdd_lvl16" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M3Q2_Hunch_lvl16" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M3Q3_FinalClue_lvl16" amount="1" condition="questcompleted" /> -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="50" />
+			<reward type="XP" amount="110" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M3Q1_SomethingOdd_lvl16" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="142" connectedToQuest="CQC3M3_GreatEvil_stage3_lvl16" >
+		<startcondition>
+			<questactive item="CQC3M3_GreatEvil_stage3_lvl16" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Wood" amount="2400" condition="produce" />
+			<trigger type="Deposit" name="Fish" amount="210" condition="geDelta" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Bread" amount="70" />
+			<reward type="Resource" name="Coin" amount="20" />
+			<reward type="XP" amount="20" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M3Q2_Hunch_lvl16" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="142" connectedToQuest="CQC3M3_GreatEvil_stage3_lvl16" >
+		<startcondition>
+			<questcomplete item="CQC3M3Q1_SomethingOdd_lvl16" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Stone" amount="690" condition="produce" />
+			<trigger type="Resource" name="Marble" amount="170" condition="geDelta" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Plank" amount="70" />
+			<reward type="Resource" name="Coin" amount="10" />
+			<reward type="XP" amount="30" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M3Q3_FinalClue_lvl16" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="142" connectedToQuest="CQC3M3_GreatEvil_stage3_lvl16" >
+		<startcondition>
+			<questcomplete item="CQC3M3Q2_Hunch_lvl16" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="BronzeOre" amount="470" condition="produce" />
+			<trigger type="Resource" name="IronOre" amount="160" condition="buy" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Bronze" amount="40" />
+			<reward type="XP" amount="40" />
+		</posteffects>
+	</quest>
+
+
+	<!-- lvl 16 stage 4 -->
+
+	<quest name="CQC3M4_GreatEvil_stage4_lvl16" type="Crisis" icon="QuestLonger" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questcomplete item="CQC3M3_GreatEvil_stage3_lvl16" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC3M4Q1_SignOfGoodFaith_lvl16"/> 
+			<questcomplete item="CQC3M4Q2_SomethingExtraordinary_lvl16"/> 
+			<questcomplete item="CQC3M4Q3_CherryOnTop_lvl16"/>
+			<questcomplete item="CQC3M4Q4_ApeasementPolicy_lvl16"/>
+			<!--
+			<trigger type="QuestComplete" name="CQC3M4Q1_SignOfGoodFaith_lvl16" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M4Q2_SomethingExtraordinary_lvl16" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M4Q3_CherryOnTop_lvl16" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M4Q4_ApeasementPolicy_lvl16" amount="1" condition="questcompleted" /> -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="50" />
+			<reward type="XP" amount="150" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M4Q1_SignOfGoodFaith_lvl16" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="142" connectedToQuest="CQC3M4_GreatEvil_stage4_lvl16" >
+		<startcondition>
+			<questactive item="CQC3M4_GreatEvil_stage4_lvl16" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="BronzeSword" amount="200" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Beer" amount="30" />
+			<reward type="XP" amount="50" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M4Q2_SomethingExtraordinary_lvl16" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="142" connectedToQuest="CQC3M4_GreatEvil_stage4_lvl16" >
+		<startcondition>
+			<questcomplete item="CQC3M4Q1_SignOfGoodFaith_lvl16" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Beer" amount="160" condition="geDelta" />
+			<trigger type="Resource" name="Plank" amount="940" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Bronze" amount="30" />
+			<reward type="XP" amount="70" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M4Q4_ApeasementPolicy_lvl16" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="142" connectedToQuest="CQC3M4_GreatEvil_stage4_lvl16" >
+		<startcondition>
+			<questcomplete item="CQC3M4Q3_CherryOnTop_lvl16" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="BronzeSword" amount="190" />
+			<trigger type="PayForQuestFinish" name="Tool" amount="190" />
+			<trigger type="PayForQuestFinish" name="Plank" amount="190" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="110" />
+			<reward type="XP" amount="110" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M4Q3_CherryOnTop_lvl16" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="142" connectedToQuest="CQC3M4_GreatEvil_stage4_lvl16" >
+		<startcondition>
+			<questcomplete item="CQC3M4Q2_SomethingExtraordinary_lvl16" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Tool" amount="350" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Wood" amount="140" />
+			<reward type="XP" amount="40" />
+		</posteffects>
+	</quest>
+
+
+	<!-- lvl 26 quests -->
+
+	<quest name="CQC3_GreatEvil_Main_lvl26" type="Crisis" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" icon="AdvancedPaper" >
+		<preeffects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_crisisquests_0" delay="3" reactivate="false" />
+			<sendmail name="CrisisInfo" item="CrisisQuestchainStarted" />
+		</preeffects>
+		<triggers>
+			<questcomplete item="CQC3M1_GreatEvil_stage1_lvl26"/> 
+			<questcomplete item="CQC3M2_GreatEvil_stage2_lvl26"/> 
+			<questcomplete item="CQC3M3_GreatEvil_stage3_lvl26"/>
+			<questcomplete item="CQC3M4_GreatEvil_stage4_lvl26"/> 
+			<!--
+			<trigger type="QuestComplete" name="CQC3M1_GreatEvil_stage1_lvl26" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M2_GreatEvil_stage2_lvl26" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M3_GreatEvil_stage3_lvl26" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M4_GreatEvil_stage4_lvl26" amount="1" condition="questcompleted" /> -->
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="BuildBuilding" name="ImprovedWarehouse" amount="1" recurringChance="100" />			
+			<reward type="XP" amount="2400" />
+		</posteffects>
+	</quest>
+
+
+	<!-- lvl 26 stage 1 -->
+
+	<quest name="CQC3M1_GreatEvil_stage1_lvl26" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" showRewardWindow="true" cancelable="false" showQuestWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questactive item="CQC3_GreatEvil_Main_lvl26" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC3M1Q1_SomethingEvil_lvl26"/> 
+			<questcomplete item="CQC3M1Q2_FindingHelp_lvl26"/> 
+			<questcomplete item="CQC3M1Q3_ProofOfCharacter_lvl26"/>
+			<!--
+			<trigger type="QuestComplete" name="CQC3M1Q1_SomethingEvil_lvl26" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M1Q2_FindingHelp_lvl26" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M1Q3_ProofOfCharacter_lvl26" amount="1" condition="questcompleted" /> -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="30" />
+			<reward type="XP" amount="100" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M1Q1_SomethingEvil_lvl26" type="Crisis" icon="QuestShort" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="143" connectedToQuest="CQC3M1_GreatEvil_stage1_lvl26" >
+		<startcondition>
+			<questactive item="CQC3M1_GreatEvil_stage1_lvl26" />
+		</startcondition>
+		<triggers>
+			<buffapplied item="ProductivityBuffLvl2" min="10" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Bread" amount="150" />
+			<reward type="XP" amount="80" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M1Q2_FindingHelp_lvl26" type="Crisis" icon="QuestShort" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="143" connectedToQuest="CQC3M1_GreatEvil_stage1_lvl26" >
+		<startcondition>
+			<questcomplete item="CQC3M1Q1_SomethingEvil_lvl26" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="CollectibleHerbs" amount="8" condition="geDelta" />
+			<trigger type="Resource" name="Corn" amount="1400" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Fish" amount="160" />
+			<reward type="Resource" name="Coin" amount="80" />
+			<reward type="XP" amount="130" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M1Q3_ProofOfCharacter_lvl26" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="143" connectedToQuest="CQC3M1_GreatEvil_stage1_lvl26" >
+		<startcondition>
+			<questcomplete item="CQC3M1Q2_FindingHelp_lvl26" />
+		</startcondition>
+		<triggers>
+			<trigger type="BuffOnFriend" name="ProductivityBuffLvl2" amount="10" condition="geDelta" />
+			<buffproduced item="ProductivityBuffLvl2" min="150" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="110" />
+			<reward type="XP" amount="160" />
+		</posteffects>
+	</quest>
+
+
+	<!-- lvl 26 stage 2 -->
+
+	<quest name="CQC3M2_GreatEvil_stage2_lvl26" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" type="Crisis" icon="QuestLonger" npc="quest_no_character01.png" >
+		<startcondition>
+			<questcomplete item="CQC3M1_GreatEvil_stage1_lvl26" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC3M2Q1_GettingParaphernalia_lvl26"/> 
+			<questcomplete item="CQC3M2Q2_PreparingTheRitual_lvl26"/> 
+			<questcomplete item="CQC3M2Q3_TheRitual_lvl26"/>
+			<!--
+			<trigger type="QuestComplete" name="CQC3M2Q1_GettingParaphernalia_lvl26" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M2Q2_PreparingTheRitual_lvl26" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M2Q3_TheRitual_lvl26" amount="1" condition="questcompleted" /> -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="70" />
+			<reward type="Buff" item="ProductivityBuffLvl4" amount="2" />
+			<reward type="XP" amount="190" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M2Q1_GettingParaphernalia_lvl26" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="143" connectedToQuest="CQC3M2_GreatEvil_stage2_lvl26" >
+		<startcondition>
+			<questactive item="CQC3M2_GreatEvil_stage2_lvl26" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Water" amount="4300" condition="produce" />
+			<trigger type="PayForQuestFinish" name="CollectibleHerbs" amount="90" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Corn" amount="170" />
+			<reward type="Resource" name="Coin" amount="40" />
+			<reward type="XP" amount="140" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M2Q2_PreparingTheRitual_lvl26" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="143" connectedToQuest="CQC3M2_GreatEvil_stage2_lvl26" >
+		<startcondition>
+			<questcomplete item="CQC3M2Q1_GettingParaphernalia_lvl26" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Bread" amount="1300" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="260" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="70" />
+			<reward type="XP" amount="140" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M2Q3_TheRitual_lvl26" type="Crisis" icon="QuestShort" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="143" connectedToQuest="CQC3M2_GreatEvil_stage2_lvl26" >
+		<startcondition>
+			<questcomplete item="CQC3M2Q2_PreparingTheRitual_lvl26" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Bread" amount="270" />
+			<trigger type="Resource" name="Beer" amount="890" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="70" />
+			<reward type="XP" amount="150" />
+		</posteffects>
+	</quest>
+
+
+	<!-- lvl 26 stage 3 -->
+
+	<quest name="CQC3M3_GreatEvil_stage3_lvl26" type="Crisis" icon="QuestLonger" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questcomplete item="CQC3M2_GreatEvil_stage2_lvl26" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC3M3Q1_SomethingOdd_lvl26"/> 
+			<questcomplete item="CQC3M3Q2_Hunch_lvl26"/> 
+			<questcomplete item="CQC3M3Q3_FinalClue_lvl26"/>
+			<!--
+			<trigger type="QuestComplete" name="CQC3M3Q1_SomethingOdd_lvl26" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M3Q2_Hunch_lvl26" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M3Q3_FinalClue_lvl26" amount="1" condition="questcompleted" /> -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="70" />
+			<reward type="Buff" item="FillDeposit" amount="300" />
+			<reward type="XP" amount="480" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M3Q1_SomethingOdd_lvl26" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="143" connectedToQuest="CQC3M3_GreatEvil_stage3_lvl26" >
+		<startcondition>
+			<questactive item="CQC3M3_GreatEvil_stage3_lvl26" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="RealWood" amount="2100" condition="produce" />
+			<!--refilldeposits item="RealWood" amount="1500"/-->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="IronOre" amount="80" />
+			<reward type="XP" amount="90" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M3Q2_Hunch_lvl26" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="143" connectedToQuest="CQC3M3_GreatEvil_stage3_lvl26" >
+		<startcondition>
+			<questcomplete item="CQC3M3Q1_SomethingOdd_lvl26" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Marble" amount="1000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="IronOre" amount="220" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="130" />
+			<reward type="XP" amount="190" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M3Q3_FinalClue_lvl26" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="143" connectedToQuest="CQC3M3_GreatEvil_stage3_lvl26" >
+		<startcondition>
+			<questcomplete item="CQC3M3Q2_Hunch_lvl26" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="IronOre" amount="670" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Marble" amount="290" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Corn" amount="240" />
+			<reward type="Resource" name="Coin" amount="100" />
+			<reward type="XP" amount="210" />
+		</posteffects>
+	</quest>
+
+
+	<!-- lvl 26 stage 4 -->
+
+	<quest name="CQC3M4_GreatEvil_stage4_lvl26" type="Crisis" icon="QuestLonger" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questcomplete item="CQC3M3_GreatEvil_stage3_lvl26" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC3M4Q1_SignOfGoodFaith_lvl26"/> 
+			<questcomplete item="CQC3M4Q2_SomethingExtraordinary_lvl26"/> 
+			<questcomplete item="CQC3M4Q3_CherryOnTop_lvl26"/>
+			<questcomplete item="CQC3M4Q4_ApeasementPolicy_lvl26"/>
+			<!--
+			<trigger type="QuestComplete" name="CQC3M4Q1_SignOfGoodFaith_lvl26" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M4Q2_SomethingExtraordinary_lvl26" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M4Q3_CherryOnTop_lvl26" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M4Q4_ApeasementPolicy_lvl26" amount="1" condition="questcompleted" /> -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="100" />
+			<reward type="XP" amount="770" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M4Q1_SignOfGoodFaith_lvl26" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="143" connectedToQuest="CQC3M4_GreatEvil_stage4_lvl26" >
+		<startcondition>
+			<questactive item="CQC3M4_GreatEvil_stage4_lvl26" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Horse" amount="680" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Beer" amount="230" />
+			<reward type="XP" amount="100"/>
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M4Q2_SomethingExtraordinary_lvl26" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="143" connectedToQuest="CQC3M4_GreatEvil_stage4_lvl26" >
+		<startcondition>
+			<questcomplete item="CQC3M4Q1_SignOfGoodFaith_lvl26" />
+		</startcondition>
+		<triggers>
+			<completeadventurelist type="Mission,Coop,Venture,Scenario" amount="1" locaExtension="NonMini_1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ExoticWood" amount="210" />
+			<reward type="XP" amount="230"/>
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M4Q4_ApeasementPolicy_lvl26" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="143" connectedToQuest="CQC3M4_GreatEvil_stage4_lvl26" >
+		<startcondition>
+			<questcomplete item="CQC3M4Q3_CherryOnTop_lvl26" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Horse" amount="1600" />
+			<trigger type="PayForQuestFinish" name="Marble" amount="1600" />
+			<trigger type="PayForQuestFinish" name="RealPlank" amount="1600" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="210" />
+			<reward type="XP" amount="170"/>
+			
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M4Q3_CherryOnTop_lvl26" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="143" connectedToQuest="CQC3M4_GreatEvil_stage4_lvl26" >
+		<startcondition>
+			<questcomplete item="CQC3M4Q2_SomethingExtraordinary_lvl26" />
+		</startcondition>
+		<triggers>
+			<completeadventurelist type="Mission,Coop,Venture,Scenario" amount="1" locaExtension="NonMini_1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Granite" amount="240" />
+			<reward type="XP" amount="260"/>
+		</posteffects>
+	</quest>
+
+
+	<!-- lvl 36 quests -->
+
+	<quest name="CQC3_GreatEvil_Main_lvl36" type="Crisis" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" icon="AdvancedPaper" >
+		<preeffects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_crisisquests_0" delay="3" reactivate="false" />
+			<sendmail name="CrisisInfo" item="CrisisQuestchainStarted" />
+		</preeffects>
+		<triggers>
+			<questcomplete item="CQC3M1_GreatEvil_stage1_lvl36"/> 
+			<questcomplete item="CQC3M2_GreatEvil_stage2_lvl36"/> 
+			<questcomplete item="CQC3M3_GreatEvil_stage3_lvl36"/>
+			<questcomplete item="CQC3M4_GreatEvil_stage4_lvl36"/>
+			<!--
+			<trigger type="QuestComplete" name="CQC3M1_GreatEvil_stage1_lvl36" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M2_GreatEvil_stage2_lvl36" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M3_GreatEvil_stage3_lvl36" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M4_GreatEvil_stage4_lvl36" amount="1" condition="questcompleted" /> -->
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="BuildBuilding" name="coal_workyard" amount="1" recurringChance="100" />
+			<reward type="XP" amount="4900" />
+		</posteffects>
+	</quest>
+
+
+	<!-- lvl 36 stage 1 -->
+
+	<quest name="CQC3M1_GreatEvil_stage1_lvl36" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" showRewardWindow="true" cancelable="false" showQuestWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questactive item="CQC3_GreatEvil_Main_lvl36" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC3M1Q1_SomethingEvil_lvl36"/> 
+			<questcomplete item="CQC3M1Q2_FindingHelp_lvl36"/> 
+			<questcomplete item="CQC3M1Q3_ProofOfCharacter_lvl36"/>
+			<!--
+			<trigger type="QuestComplete" name="CQC3M1Q1_SomethingEvil_lvl36" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M1Q2_FindingHelp_lvl36" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M1Q3_ProofOfCharacter_lvl36" amount="1" condition="questcompleted" /> -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="195" />
+			<reward type="XP" amount="1900" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M1Q1_SomethingEvil_lvl36" type="Crisis" icon="QuestShort" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="258" connectedToQuest="CQC3M1_GreatEvil_stage1_lvl36" >
+		<startcondition>
+			<questactive item="CQC3M1_GreatEvil_stage1_lvl36" />
+		</startcondition>
+		<triggers>
+			<buffapplied item="ProductivityBuffLvl3" min="30" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="90" />
+			<reward type="XP" amount="790" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M1Q2_FindingHelp_lvl36" type="Crisis" icon="QuestShort" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="258" connectedToQuest="CQC3M1_GreatEvil_stage1_lvl36" >
+		<startcondition>
+			<questcomplete item="CQC3M1Q1_SomethingEvil_lvl36" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="CollectibleHerbs" amount="9" condition="geDelta" />
+			<trigger type="Resource" name="Corn" amount="7400" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Sausage" amount="230" />
+			<reward type="XP" amount="600" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M1Q3_ProofOfCharacter_lvl36" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="258" connectedToQuest="CQC3M1_GreatEvil_stage1_lvl36" >
+		<startcondition>
+			<questcomplete item="CQC3M1Q2_FindingHelp_lvl36" />
+		</startcondition>
+		<triggers>
+			<trigger type="BuffOnFriend" name="ProductivityBuffLvl3" amount="30" condition="geDelta" />
+			<buffproduced item="ProductivityBuffLvl3" min="120" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="240" />
+			<reward type="XP" amount="530" />
+		</posteffects>
+	</quest>
+
+
+	<!-- lvl 36 stage 2 -->
+
+	<quest name="CQC3M2_GreatEvil_stage2_lvl36" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" type="Crisis" icon="QuestLonger" npc="quest_no_character01.png" >
+		<startcondition>
+			<questcomplete item="CQC3M1_GreatEvil_stage1_lvl36" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC3M2Q1_GettingParaphernalia_lvl36"/> 
+			<questcomplete item="CQC3M2Q2_PreparingTheRitual_lvl36"/> 
+			<questcomplete item="CQC3M2Q3_TheRitual_lvl36"/>
+			<!--
+			<trigger type="QuestComplete" name="CQC3M2Q1_GettingParaphernalia_lvl36" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M2Q2_PreparingTheRitual_lvl36" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M2Q3_TheRitual_lvl36" amount="1" condition="questcompleted" /> -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="255" />
+			<reward type="Buff" item="FillDeposit" amount="1000" />
+			<reward type="XP" amount="2400" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M2Q1_GettingParaphernalia_lvl36" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="258" connectedToQuest="CQC3M2_GreatEvil_stage2_lvl36" >
+		<startcondition>
+			<questactive item="CQC3M2_GreatEvil_stage2_lvl36" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Water" amount="7500" condition="produce" />
+			<trigger type="PayForQuestFinish" name="CollectibleHerbs" amount="310" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Corn" amount="510" />
+			<reward type="XP" amount="1800" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M2Q2_PreparingTheRitual_lvl36" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="258" connectedToQuest="CQC3M2_GreatEvil_stage2_lvl36" >
+		<startcondition>
+			<questcomplete item="CQC3M2Q1_GettingParaphernalia_lvl36" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Bread" amount="3600" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="520" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="310" />
+			<reward type="XP" amount="1100" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M2Q3_TheRitual_lvl36" type="Crisis" icon="QuestShort" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="258" connectedToQuest="CQC3M2_GreatEvil_stage2_lvl36" >
+		<startcondition>
+			<questcomplete item="CQC3M2Q2_PreparingTheRitual_lvl36" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Bread" amount="590" />
+			<trigger type="Resource" name="Beer" amount="1100" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="380" />
+			<reward type="XP" amount="1500" />
+		</posteffects>
+	</quest>
+
+
+	<!-- lvl 36 stage 3 -->
+
+	<quest name="CQC3M3_GreatEvil_stage3_lvl36" type="Crisis" icon="QuestLonger" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questcomplete item="CQC3M2_GreatEvil_stage2_lvl36" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC3M3Q1_SomethingOdd_lvl36"/> 
+			<questcomplete item="CQC3M3Q2_Hunch_lvl36"/> 
+			<questcomplete item="CQC3M3Q3_FinalClue_lvl36"/>
+			<!--
+			<trigger type="QuestComplete" name="CQC3M3Q1_SomethingOdd_lvl36" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M3Q2_Hunch_lvl36" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M3Q3_FinalClue_lvl36" amount="1" condition="questcompleted" /> -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="255" />
+			<reward type="Buff" item="BookbinderBuffLvl1" amount="5" />
+			<reward type="XP" amount="2600" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M3Q1_SomethingOdd_lvl36" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="258" connectedToQuest="CQC3M3_GreatEvil_stage3_lvl36" >
+		<startcondition>
+			<questactive item="CQC3M3_GreatEvil_stage3_lvl36" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="RealWood" amount="4300" condition="produce" />
+			<!--refilldeposits item="RealWood" amount="5000"/-->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ExoticWood" amount="240" />
+			<reward type="XP" amount="520" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M3Q2_Hunch_lvl36" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="258" connectedToQuest="CQC3M3_GreatEvil_stage3_lvl36" >
+		<startcondition>
+			<questcomplete item="CQC3M3Q1_SomethingOdd_lvl36" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Marble" amount="2500" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="200" />
+			<reward type="XP" amount="1800" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M3Q3_FinalClue_lvl36" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="258" connectedToQuest="CQC3M3_GreatEvil_stage3_lvl36" >
+		<startcondition>
+			<questcomplete item="CQC3M3Q2_Hunch_lvl36" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Granite" amount="1200" condition="geDelta" />
+			<trigger type="Resource" name="Coal" amount="19000" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Corn" amount="300" />
+			<reward type="Resource" name="Coin" amount="350" />
+			<reward type="XP" amount="1700" />
+		</posteffects>
+	</quest>
+
+
+	<!-- lvl 36 stage 4 -->
+
+	<quest name="CQC3M4_GreatEvil_stage4_lvl36" type="Crisis" icon="QuestLonger" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questcomplete item="CQC3M3_GreatEvil_stage3_lvl36" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC3M4Q1_SignOfGoodFaith_lvl36"/> 
+			<questcomplete item="CQC3M4Q2_SomethingExtraordinary_lvl36"/> 
+			<questcomplete item="CQC3M4Q3_CherryOnTop_lvl36"/>
+			<questcomplete item="CQC3M4Q4_ApeasementPolicy_lvl36"/>
+			<!--
+			<trigger type="QuestComplete" name="CQC3M4Q1_SignOfGoodFaith_lvl36" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M4Q2_SomethingExtraordinary_lvl36" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M4Q3_CherryOnTop_lvl36" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M4Q4_ApeasementPolicy_lvl36" amount="1" condition="questcompleted" /> -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="295" />
+			<reward type="XP" amount="3600" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M4Q1_SignOfGoodFaith_lvl36" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="258" connectedToQuest="CQC3M4_GreatEvil_stage4_lvl36" >
+		<startcondition>
+			<questactive item="CQC3M4_GreatEvil_stage4_lvl36" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Horse" amount="1200" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="260" />
+			<reward type="XP" amount="730" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M4Q2_SomethingExtraordinary_lvl36" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="258" connectedToQuest="CQC3M4_GreatEvil_stage4_lvl36" >
+		<startcondition>
+			<questcomplete item="CQC3M4Q1_SignOfGoodFaith_lvl36" />
+		</startcondition>
+		<triggers>
+			<completeadventurelist type="Mission,Coop,Venture,Scenario" amount="1" locaExtension="NonMini_1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ExoticWood" amount="430" />
+			<reward type="XP" amount="1200" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M4Q4_ApeasementPolicy_lvl36" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="258" connectedToQuest="CQC3M4_GreatEvil_stage4_lvl36" >
+		<startcondition>
+			<questcomplete item="CQC3M4Q3_CherryOnTop_lvl36" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Horse" amount="1800" />
+			<trigger type="PayForQuestFinish" name="Marble" amount="1800" />
+			<trigger type="PayForQuestFinish" name="RealPlank" amount="1800" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="300" />
+			<reward type="XP" amount="2100" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M4Q3_CherryOnTop_lvl36" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="258" connectedToQuest="CQC3M4_GreatEvil_stage4_lvl36" >
+		<startcondition>
+			<questcomplete item="CQC3M4Q2_SomethingExtraordinary_lvl36" />
+		</startcondition>
+		<triggers>
+			<completeadventurelist type="Mission,Coop,Venture,Scenario" amount="1" locaExtension="NonMini_1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Granite" amount="450" />
+			<reward type="XP" amount="1500" />
+		</posteffects>
+	</quest>
+
+
+	<!-- lvl 46 quests -->
+
+	<quest name="CQC3_GreatEvil_Main_lvl46" type="Crisis" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" icon="AdvancedPaper" >
+		<preeffects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_crisisquests_0" delay="3" reactivate="false" />
+			<sendmail name="CrisisInfo" item="CrisisQuestchainStarted" />
+		</preeffects>
+		<triggers>
+			<questcomplete item="CQC3M1_GreatEvil_stage1_lvl46"/> 
+			<questcomplete item="CQC3M2_GreatEvil_stage2_lvl46"/> 
+			<questcomplete item="CQC3M3_GreatEvil_stage3_lvl46"/>
+			<questcomplete item="CQC3M4_GreatEvil_stage4_lvl46"/>
+			<!--
+			<trigger type="QuestComplete" name="CQC3M1_GreatEvil_stage1_lvl46" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M2_GreatEvil_stage2_lvl46" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M3_GreatEvil_stage3_lvl46" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M4_GreatEvil_stage4_lvl46" amount="1" condition="questcompleted" /> -->
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="BuildBuilding" name="ImprovedSilo" amount="1" recurringChance="100" />
+			<reward type="XP" amount="15000" />
+		</posteffects>
+	</quest>
+
+
+	<!-- lvl 46 stage 1 -->
+
+	<quest name="CQC3M1_GreatEvil_stage1_lvl46" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" showRewardWindow="true" cancelable="false" showQuestWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questactive item="CQC3_GreatEvil_Main_lvl46" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC3M1Q1_SomethingEvil_lvl46"/> 
+			<questcomplete item="CQC3M1Q2_FindingHelp_lvl46"/> 
+			<questcomplete item="CQC3M1Q3_ProofOfCharacter_lvl46"/>
+			<!--
+			<trigger type="QuestComplete" name="CQC3M1Q1_SomethingEvil_lvl46" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M1Q2_FindingHelp_lvl46" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M1Q3_ProofOfCharacter_lvl46" amount="1" condition="questcompleted" /> -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="140" />
+			<reward type="XP" amount="4700" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M1Q1_SomethingEvil_lvl46" type="Crisis" icon="QuestShort" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="268" connectedToQuest="CQC3M1_GreatEvil_stage1_lvl46" >
+		<startcondition>
+			<questactive item="CQC3M1_GreatEvil_stage1_lvl46" />
+		</startcondition>
+		<triggers>
+			<buffapplied item="ProductivityBuffLvl3" min="50" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="300" />
+			<reward type="XP" amount="3600" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M1Q2_FindingHelp_lvl46" type="Crisis" icon="QuestShort" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="268" connectedToQuest="CQC3M1_GreatEvil_stage1_lvl46" >
+		<startcondition>
+			<questcomplete item="CQC3M1Q1_SomethingEvil_lvl46" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="CollectibleHerbs" amount="10" condition="geDelta" />
+			<trigger type="Resource" name="Sausage" amount="780" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ExoticWood" amount="360" />
+			<reward type="XP" amount="3100" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M1Q3_ProofOfCharacter_lvl46" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="268" connectedToQuest="CQC3M1_GreatEvil_stage1_lvl46" >
+		<startcondition>
+			<questcomplete item="CQC3M1Q2_FindingHelp_lvl46" />
+		</startcondition>
+		<triggers>
+			<trigger type="BuffOnFriend" name="ProductivityBuffLvl3" amount="50" condition="geDelta" />
+			<buffproduced item="ProductivityBuffLvl3" min="190" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ExoticWood" amount="370" />
+			<reward type="XP" amount="2900" />
+		</posteffects>
+	</quest>
+
+
+	<!-- lvl 46 stage 2 -->
+
+	<quest name="CQC3M2_GreatEvil_stage2_lvl46" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" type="Crisis" icon="QuestLonger" npc="quest_no_character01.png" >
+		<startcondition>
+			<questcomplete item="CQC3M1_GreatEvil_stage1_lvl46" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC3M2Q1_GettingParaphernalia_lvl46"/> 
+			<questcomplete item="CQC3M2Q2_PreparingTheRitual_lvl46"/> 
+			<questcomplete item="CQC3M2Q3_TheRitual_lvl46"/>
+			<!--
+			<trigger type="QuestComplete" name="CQC3M2Q1_GettingParaphernalia_lvl46" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M2Q2_PreparingTheRitual_lvl46" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M2Q3_TheRitual_lvl46" amount="1" condition="questcompleted" /> -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="200" />
+			<reward type="Buff" item="FillDeposit" amount="1250" />
+			<reward type="XP" amount="6400" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M2Q1_GettingParaphernalia_lvl46" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="268" connectedToQuest="CQC3M2_GreatEvil_stage2_lvl46" >
+		<startcondition>
+			<questactive item="CQC3M2_GreatEvil_stage2_lvl46" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="ExoticPlank" amount="810" condition="produce" />
+			<trigger type="PayForQuestFinish" name="CollectibleHerbs" amount="540" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Corn" amount="490" />
+			<reward type="Resource" name="Coin" amount="220" />
+			<reward type="XP" amount="3000" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M2Q2_PreparingTheRitual_lvl46" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="268" connectedToQuest="CQC3M2_GreatEvil_stage2_lvl46" >
+		<startcondition>
+			<questcomplete item="CQC3M2Q1_GettingParaphernalia_lvl46" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Bread" amount="9500" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="840" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="390" />
+			<reward type="XP" amount="5000" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M2Q3_TheRitual_lvl46" type="Crisis" icon="QuestShort" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="268" connectedToQuest="CQC3M2_GreatEvil_stage2_lvl46" >
+		<startcondition>
+			<questcomplete item="CQC3M2Q2_PreparingTheRitual_lvl46" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Bread" amount="910" />
+			<trigger type="Resource" name="Beer" amount="5100" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="450" />
+			<reward type="XP" amount="4800" />
+		</posteffects>
+	</quest>
+
+
+	<!-- lvl 46 stage 3 -->
+
+	<quest name="CQC3M3_GreatEvil_stage3_lvl46" type="Crisis" icon="QuestLonger" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questcomplete item="CQC3M2_GreatEvil_stage2_lvl46" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC3M3Q1_SomethingOdd_lvl46"/> 
+			<questcomplete item="CQC3M3Q2_Hunch_lvl46"/> 
+			<questcomplete item="CQC3M3Q3_FinalClue_lvl46"/>
+			<!--
+			<trigger type="QuestComplete" name="CQC3M3Q1_SomethingOdd_lvl46" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M3Q2_Hunch_lvl46" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M3Q3_FinalClue_lvl46" amount="1" condition="questcompleted" /> -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="220" />
+			<reward type="Buff" item="BookbinderBuffLvl1" amount="4" />
+			<reward type="XP" amount="7600" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M3Q1_SomethingOdd_lvl46" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="268" connectedToQuest="CQC3M3_GreatEvil_stage3_lvl46" >
+		<startcondition>
+			<questactive item="CQC3M3_GreatEvil_stage3_lvl46" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="GoldOre" amount="1600" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="560" />
+			<reward type="XP" amount="4800" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M3Q2_Hunch_lvl46" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="268" connectedToQuest="CQC3M3_GreatEvil_stage3_lvl46" >
+		<startcondition>
+			<questcomplete item="CQC3M3Q1_SomethingOdd_lvl46" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Marble" amount="5000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Coal" amount="17000" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ExoticWood" amount="550" />
+			<reward type="XP" amount="5900" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M3Q3_FinalClue_lvl46" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="268" connectedToQuest="CQC3M3_GreatEvil_stage3_lvl46" >
+		<startcondition>
+			<questcomplete item="CQC3M3Q2_Hunch_lvl46" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Granite" amount="1700" condition="geDelta" />
+			<trigger type="Resource" name="Coal" amount="33000" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="TitaniumOre" amount="330" />
+			<reward type="XP" amount="7000" />
+		</posteffects>
+	</quest>
+
+
+	<!-- lvl 46 stage 4 -->
+
+	<quest name="CQC3M4_GreatEvil_stage4_lvl46" type="Crisis" icon="QuestLonger" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questcomplete item="CQC3M3_GreatEvil_stage3_lvl46" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC3M4Q1_SignOfGoodFaith_lvl46"/> 
+			<questcomplete item="CQC3M4Q2_SomethingExtraordinary_lvl46"/> 
+			<questcomplete item="CQC3M4Q3_CherryOnTop_lvl46"/>
+			<questcomplete item="CQC3M4Q4_ApeasementPolicy_lvl46"/>
+			<!--
+			<trigger type="QuestComplete" name="CQC3M4Q1_SignOfGoodFaith_lvl46" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M4Q2_SomethingExtraordinary_lvl46" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M4Q3_CherryOnTop_lvl46" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M4Q4_ApeasementPolicy_lvl46" amount="1" condition="questcompleted" /> -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="280" />
+			<reward type="XP" amount="8400" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M4Q1_SignOfGoodFaith_lvl46" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="268" connectedToQuest="CQC3M4_GreatEvil_stage4_lvl46" >
+		<startcondition>
+			<questactive item="CQC3M4_GreatEvil_stage4_lvl46" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Horse" amount="3400" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Granite" amount="440" />
+			<reward type="XP" amount="3400" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M4Q2_SomethingExtraordinary_lvl46" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="268" connectedToQuest="CQC3M4_GreatEvil_stage4_lvl46" >
+		<startcondition>
+			<questcomplete item="CQC3M4Q1_SignOfGoodFaith_lvl46" />
+		</startcondition>
+		<triggers>
+			<completeadventurelist type="Mission,Coop,Venture,Scenario" amount="1" locaExtension="NonMini_1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="MagicBean" amount="120" />
+			<reward type="XP" amount="3000" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M4Q3_CherryOnTop_lvl46" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="268" connectedToQuest="CQC3M4_GreatEvil_stage4_lvl46" >
+		<startcondition>
+			<questcomplete item="CQC3M4Q2_SomethingExtraordinary_lvl46" />
+		</startcondition>
+		<triggers>
+			<completeadventurelist tier="6" amount="1" locaExtension="Dif6_1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="MagicBean" amount="120" />
+			<reward type="XP" amount="4700" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M4Q4_ApeasementPolicy_lvl46" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="268" connectedToQuest="CQC3M4_GreatEvil_stage4_lvl46" >
+		<startcondition>
+			<questcomplete item="CQC3M4Q3_CherryOnTop_lvl46" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Horse" amount="3700" />
+			<trigger type="PayForQuestFinish" name="ExoticWood" amount="3700" />
+			<trigger type="PayForQuestFinish" name="Granite" amount="2500" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="440" />
+			<reward type="XP" amount="8400" />
+		</posteffects>
+	</quest>
+
+	<!-- lvl 51 quests -->	
+
+	<quest name="CQC3_GreatEvil_Main_lvl51" type="Crisis" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" icon="AdvancedPaper" >
+		<preeffects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_crisisquests_0" delay="3" reactivate="false" />
+			<sendmail name="CrisisInfo" item="CrisisQuestchainStarted" />
+		</preeffects>ag
+		<triggers>
+			<questcomplete item="CQC3M1_GreatEvil_stage1_lvl51"/> 
+			<questcomplete item="CQC3M2_GreatEvil_stage2_lvl51"/> 
+			<questcomplete item="CQC3M3_GreatEvil_stage3_lvl51"/>
+			<questcomplete item="CQC3M4_GreatEvil_stage4_lvl51"/>
+			<!--
+			<trigger type="QuestComplete" name="CQC3M1_GreatEvil_stage1_lvl51" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M2_GreatEvil_stage2_lvl51" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M3_GreatEvil_stage3_lvl51" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M4_GreatEvil_stage4_lvl51" amount="1" condition="questcompleted" /> -->
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="BuildBuilding" name="ImprovedWatermill" amount="1" recurringChance="100" />
+			<reward type="Resource" name="StarCoin" amount="1750" />
+			<reward type="XP" amount="33000" />
+		</posteffects>
+	</quest>
+	
+	
+	<!-- lvl 51 stage 1 -->
+
+	<quest name="CQC3M1_GreatEvil_stage1_lvl51" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" showRewardWindow="true" cancelable="false" showQuestWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questactive item="CQC3_GreatEvil_Main_lvl51" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC3M1Q1_SomethingEvil_lvl51"/> 
+			<questcomplete item="CQC3M1Q2_FindingHelp_lvl51"/> 
+			<questcomplete item="CQC3M1Q3_ProofOfCharacter_lvl51"/>
+			<!--
+			<trigger type="QuestComplete" name="CQC3M1Q1_SomethingEvil_lvl51" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M1Q2_FindingHelp_lvl51" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M1Q3_ProofOfCharacter_lvl51" amount="1" condition="questcompleted" /> -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="220" />
+			<reward type="XP" amount="9300" />
+		</posteffects>
+	</quest>
+	
+	<quest name="CQC3M1Q1_SomethingEvil_lvl51" type="Crisis" icon="QuestShort" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="285" connectedToQuest="CQC3M1_GreatEvil_stage1_lvl51" >
+		<startcondition>
+			<questactive item="CQC3M1_GreatEvil_stage1_lvl51" />
+		</startcondition>
+		<triggers>
+			<buffapplied item="ProductivityBuffLvl3" min="90" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="540" />
+			<reward type="XP" amount="6600" />
+		</posteffects>
+	</quest>
+	
+		<quest name="CQC3M1Q2_FindingHelp_lvl51" type="Crisis" icon="QuestShort" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="285" connectedToQuest="CQC3M1_GreatEvil_stage1_lvl51" >
+		<startcondition>
+			<questcomplete item="CQC3M1Q1_SomethingEvil_lvl51" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="CollectibleHerbs" amount="20" condition="geDelta" />
+			<trigger type="Resource" name="Sausage" amount="1600" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Granite" amount="400" />
+			<reward type="XP" amount="6400" />
+		</posteffects>
+	</quest>
+	
+	<quest name="CQC3M1Q3_ProofOfCharacter_lvl51" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="285" connectedToQuest="CQC3M1_GreatEvil_stage1_lvl51" >
+		<startcondition>
+			<questcomplete item="CQC3M1Q2_FindingHelp_lvl51" />
+		</startcondition>
+		<triggers>
+			<trigger type="BuffOnFriend" name="ProductivityBuffLvl3" amount="80" condition="geDelta" />
+			<buffproduced item="ProductivityBuffLvl3" min="330" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="MahoganyWood" amount="80" />
+			<reward type="XP" amount="5400" />
+		</posteffects>
+	</quest>
+	
+	
+	<!-- lvl 51 stage 2 -->
+
+	<quest name="CQC3M2_GreatEvil_stage2_lvl51" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" type="Crisis" icon="QuestLonger" npc="quest_no_character01.png" >
+		<startcondition>
+			<questcomplete item="CQC3M1_GreatEvil_stage1_lvl51" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC3M2Q1_GettingParaphernalia_lvl51"/> 
+			<questcomplete item="CQC3M2Q2_PreparingTheRitual_lvl51"/> 
+			<questcomplete item="CQC3M2Q3_TheRitual_lvl51"/>
+			<!--
+			<trigger type="QuestComplete" name="CQC3M2Q1_GettingParaphernalia_lvl51" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M2Q2_PreparingTheRitual_lvl51" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M2Q3_TheRitual_lvl51" amount="1" condition="questcompleted" /> -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="310" />
+			<reward type="Buff" item="FillDeposit" amount="1500" />
+			<reward type="XP" amount="9700" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M2Q1_GettingParaphernalia_lvl51" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="285" connectedToQuest="CQC3M2_GreatEvil_stage2_lvl51" >
+		<startcondition>
+			<questactive item="CQC3M2_GreatEvil_stage2_lvl51" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="ExoticPlank" amount="1400" condition="produce" />
+			<trigger type="PayForQuestFinish" name="CollectibleHerbs" amount="860" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Granite" amount="260" />
+			<reward type="Resource" name="Coin" amount="350" />
+			<reward type="XP" amount="5400" />
+		</posteffects>
+	</quest>	
+	
+	<quest name="CQC3M2Q2_PreparingTheRitual_lvl51" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="285" connectedToQuest="CQC3M2_GreatEvil_stage2_lvl51" >
+		<startcondition>
+			<questcomplete item="CQC3M2Q1_GettingParaphernalia_lvl51" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Bread" amount="18000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="1300" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="620" />
+			<reward type="XP" amount="8800" />
+		</posteffects>
+	</quest>
+	
+	<quest name="CQC3M2Q3_TheRitual_lvl51" type="Crisis" icon="QuestShort" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="285" connectedToQuest="CQC3M2_GreatEvil_stage2_lvl51" >
+		<startcondition>
+			<questcomplete item="CQC3M2Q2_PreparingTheRitual_lvl51" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Bread" amount="1400" />
+			<trigger type="Resource" name="Beer" amount="9900" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="720" />
+			<reward type="XP" amount="8900" />
+		</posteffects>
+	</quest>
+	
+	
+	<!-- lvl 51 stage 3 -->
+
+	<quest name="CQC3M3_GreatEvil_stage3_lvl51" type="Crisis" icon="QuestLonger" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questcomplete item="CQC3M2_GreatEvil_stage2_lvl51" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC3M3Q1_SomethingOdd_lvl51"/> 
+			<questcomplete item="CQC3M3Q2_Hunch_lvl51"/> 
+			<questcomplete item="CQC3M3Q3_FinalClue_lvl51"/>
+			<!--
+			<trigger type="QuestComplete" name="CQC3M3Q1_SomethingOdd_lvl51" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M3Q2_Hunch_lvl51" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M3Q3_FinalClue_lvl51" amount="1" condition="questcompleted" /> -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="350" />
+			<reward type="Buff" item="BookbinderBuffLvl1" amount="3" />
+			<reward type="XP" amount="11000" />
+		</posteffects>
+	</quest>
+	
+	
+	<quest name="CQC3M3Q1_SomethingOdd_lvl51" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="285" connectedToQuest="CQC3M3_GreatEvil_stage3_lvl51" >
+		<startcondition>
+			<questactive item="CQC3M3_GreatEvil_stage3_lvl51" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="GoldOre" amount="2600" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="900" />
+			<reward type="XP" amount="7800" />
+		</posteffects>
+	</quest>
+	
+	<quest name="CQC3M3Q2_Hunch_lvl51" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="285" connectedToQuest="CQC3M3_GreatEvil_stage3_lvl51" >
+		<startcondition>
+			<questcomplete item="CQC3M3Q1_SomethingOdd_lvl51" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Marble" amount="9000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Coal" amount="27000" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ExoticWood" amount="900" />
+			<reward type="XP" amount="11000" />
+		</posteffects>
+	</quest>	
+
+	<quest name="CQC3M3Q3_FinalClue_lvl51" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="285" connectedToQuest="CQC3M3_GreatEvil_stage3_lvl51" >
+		<startcondition>
+			<questcomplete item="CQC3M3Q2_Hunch_lvl51" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Granite" amount="2700" condition="geDelta" />
+			<trigger type="Resource" name="Coal" amount="55000" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="TitaniumOre" amount="550" />
+			<reward type="XP" amount="12000" />
+		</posteffects>
+	</quest>
+
+
+	<!-- lvl 51 stage 4 -->
+
+	<quest name="CQC3M4_GreatEvil_stage4_lvl51" type="Crisis" icon="QuestLonger" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questcomplete item="CQC3M3_GreatEvil_stage3_lvl51" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC3M4Q1_SignOfGoodFaith_lvl51"/> 
+			<questcomplete item="CQC3M4Q2_SomethingExtraordinary_lvl51"/> 
+			<questcomplete item="CQC3M4Q3_CherryOnTop_lvl51"/>
+			<questcomplete item="CQC3M4Q4_ApeasementPolicy_lvl51"/>
+			<!--
+			<trigger type="QuestComplete" name="CQC3M4Q1_SignOfGoodFaith_lvl51" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M4Q2_SomethingExtraordinary_lvl51" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M4Q3_CherryOnTop_lvl51" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M4Q4_ApeasementPolicy_lvl51" amount="1" condition="questcompleted" /> -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="350" />
+			<reward type="Resource" name="StarCoin" amount="875" />
+			<reward type="XP" amount="13000" />
+		</posteffects>
+	</quest>	
+	
+	
+	<quest name="CQC3M4Q1_SignOfGoodFaith_lvl51" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="285" connectedToQuest="CQC3M4_GreatEvil_stage4_lvl51" >
+		<startcondition>
+			<questactive item="CQC3M4_GreatEvil_stage4_lvl51" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Horse" amount="7200" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Granite" amount="720" />
+			<reward type="XP" amount="7200" />
+		</posteffects>
+	</quest>
+
+	<quest name="CQC3M4Q2_SomethingExtraordinary_lvl51" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="285" connectedToQuest="CQC3M4_GreatEvil_stage4_lvl51" >
+		<startcondition>
+			<questcomplete item="CQC3M4Q1_SignOfGoodFaith_lvl51" />
+		</startcondition>
+		<triggers>
+			<completeadventurelist type="Mission,Coop,Venture,Scenario" amount="2" locaExtension="NonMini_many" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="MagicBean" amount="280" />
+			<reward type="XP" amount="4600" />
+		</posteffects>
+	</quest>
+	
+	<quest name="CQC3M4Q3_CherryOnTop_lvl51" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="285" connectedToQuest="CQC3M4_GreatEvil_stage4_lvl51" >
+		<startcondition>
+			<questcomplete item="CQC3M4Q2_SomethingExtraordinary_lvl51" />
+		</startcondition>
+		<triggers>
+			<completeadventurelist tier="6" amount="2" locaExtension="Dif6_many" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="MagicBean" amount="280" />
+			<reward type="XP" amount="7400" />
+		</posteffects>
+	</quest>
+	
+	<quest name="CQC3M4Q4_ApeasementPolicy_lvl51" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="285" connectedToQuest="CQC3M4_GreatEvil_stage4_lvl51" >
+		<startcondition>
+			<questcomplete item="CQC3M4Q3_CherryOnTop_lvl51" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Horse" amount="8400" />
+			<trigger type="PayForQuestFinish" name="ExoticWood" amount="7000" />
+			<trigger type="PayForQuestFinish" name="Granite" amount="4000" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="660" />
+			<reward type="XP" amount="15000" />
+		</posteffects>
+	</quest>
+	
+	<!-- lvl 66 quests -->	
+
+	<quest name="CQC3_GreatEvil_Main_lvl66" type="Crisis" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" icon="AdvancedPaper" >
+		<preeffects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_crisisquests_0" delay="3" reactivate="false" />
+			<sendmail name="CrisisInfo" item="CrisisQuestchainStarted" />
+		</preeffects>
+		<triggers>
+			<questcomplete item="CQC3M1_GreatEvil_stage1_lvl66"/> 
+			<questcomplete item="CQC3M2_GreatEvil_stage2_lvl66"/> 
+			<questcomplete item="CQC3M3_GreatEvil_stage3_lvl66"/>
+			<questcomplete item="CQC3M4_GreatEvil_stage4_lvl66"/>
+			<!--
+			<trigger type="QuestComplete" name="CQC3M1_GreatEvil_stage1_lvl66" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M2_GreatEvil_stage2_lvl66" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M3_GreatEvil_stage3_lvl66" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M4_GreatEvil_stage4_lvl66" amount="1" condition="questcompleted" /> -->
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="BuildBuilding" name="ImprovedDeerstalker" amount="1" recurringChance="100" />
+			<reward type="Resource" name="StarCoin" amount="2400" />
+			<reward type="XP" amount="72000" />
+		</posteffects>
+	</quest>
+		
+	<!-- lvl 66 stage 1 -->
+
+	<quest name="CQC3M1_GreatEvil_stage1_lvl66" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" showRewardWindow="true" cancelable="false" showQuestWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questactive item="CQC3_GreatEvil_Main_lvl66" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC3M1Q1_SomethingEvil_lvl66"/> 
+			<questcomplete item="CQC3M1Q2_FindingHelp_lvl66"/> 
+			<questcomplete item="CQC3M1Q3_ProofOfCharacter_lvl66"/>
+			<!--
+			<trigger type="QuestComplete" name="CQC3M1Q1_SomethingEvil_lvl66" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M1Q2_FindingHelp_lvl66" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M1Q3_ProofOfCharacter_lvl66" amount="1" condition="questcompleted" /> -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="300" />
+			<reward type="XP" amount="15000" />
+		</posteffects>
+	</quest>
+		
+	<quest name="CQC3M1Q1_SomethingEvil_lvl66" type="Crisis" icon="QuestShort" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="308" connectedToQuest="CQC3M1_GreatEvil_stage1_lvl66" >
+		<startcondition>
+			<questactive item="CQC3M1_GreatEvil_stage1_lvl66" />
+		</startcondition>
+		<triggers>
+			<buffapplied item="ProductivityBuffLvl3" min="160" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="780" />
+			<reward type="XP" amount="11000" />
+		</posteffects>
+	</quest>
+	
+	<quest name="CQC3M1Q2_FindingHelp_lvl66" type="Crisis" icon="QuestShort" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="308" connectedToQuest="CQC3M1_GreatEvil_stage1_lvl66" >
+		<startcondition>
+			<questcomplete item="CQC3M1Q1_SomethingEvil_lvl66" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="CollectibleHerbs" amount="20" condition="geDelta" />
+			<trigger type="Resource" name="Sausage" amount="2700" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ExoticWood" amount="1600" />
+			<reward type="XP" amount="11000" />
+		</posteffects>
+	</quest>
+		
+	<quest name="CQC3M1Q3_ProofOfCharacter_lvl66" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="308" connectedToQuest="CQC3M1_GreatEvil_stage1_lvl66" >
+		<startcondition>
+			<questcomplete item="CQC3M1Q2_FindingHelp_lvl66" />
+		</startcondition>
+		<triggers>
+			<trigger type="BuffOnFriend" name="ProductivityBuffLvl3" amount="110" condition="geDelta" />
+			<buffproduced item="ProductivityBuffLvl3" min="450" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="MahoganyWood" amount="560"/>
+			<reward type="XP" amount="7300" />
+		</posteffects>
+	</quest>
+		
+	<!-- lvl 66 stage 2 -->
+
+	<quest name="CQC3M2_GreatEvil_stage2_lvl66" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" type="Crisis" icon="QuestLonger" npc="quest_no_character01.png" >
+		<startcondition>
+			<questcomplete item="CQC3M1_GreatEvil_stage1_lvl66" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC3M2Q1_GettingParaphernalia_lvl66"/> 
+			<questcomplete item="CQC3M2Q2_PreparingTheRitual_lvl66"/> 
+			<questcomplete item="CQC3M2Q3_TheRitual_lvl66"/>
+			<!--
+			<trigger type="QuestComplete" name="CQC3M2Q1_GettingParaphernalia_lvl66" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M2Q2_PreparingTheRitual_lvl66" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M2Q3_TheRitual_lvl66" amount="1" condition="questcompleted" /> -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="400" />
+			<reward type="Buff" item="FillDeposit" amount="2000" />
+			<reward type="XP" amount="15000" />
+		</posteffects>
+	</quest>
+	
+	<quest name="CQC3M2Q1_GettingParaphernalia_lvl66" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="308" connectedToQuest="CQC3M2_GreatEvil_stage2_lvl66" >
+		<startcondition>
+			<questactive item="CQC3M2_GreatEvil_stage2_lvl66" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="ExoticPlank" amount="1900" condition="produce" />
+			<trigger type="PayForQuestFinish" name="CollectibleHerbs" amount="1200" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Wool" amount="1000" />
+			<reward type="Resource" name="Granite" amount="460" />
+			<reward type="XP" amount="7200" />
+		</posteffects>
+	</quest>	
+		
+	<quest name="CQC3M2Q2_PreparingTheRitual_lvl66" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="308" connectedToQuest="CQC3M2_GreatEvil_stage2_lvl66" >
+		<startcondition>
+			<questcomplete item="CQC3M2Q1_GettingParaphernalia_lvl66" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Bread" amount="24000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="1800" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="830" />
+			<reward type="XP" amount="12000" />
+		</posteffects>
+	</quest>
+		
+	<quest name="CQC3M2Q3_TheRitual_lvl66" type="Crisis" icon="QuestShort" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="308" connectedToQuest="CQC3M2_GreatEvil_stage2_lvl66" >
+		<startcondition>
+			<questcomplete item="CQC3M2Q2_PreparingTheRitual_lvl66" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Bread" amount="1900" />
+			<trigger type="Resource" name="Beer" amount="14000" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="PlatinumOre" amount="970" />
+			<reward type="XP" amount="13000" />
+		</posteffects>
+	</quest>
+		
+	<!-- lvl 66 stage 3 -->
+
+	<quest name="CQC3M3_GreatEvil_stage3_lvl66" type="Crisis" icon="QuestLonger" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questcomplete item="CQC3M2_GreatEvil_stage2_lvl66" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC3M3Q1_SomethingOdd_lvl66"/> 
+			<questcomplete item="CQC3M3Q2_Hunch_lvl66"/> 
+			<questcomplete item="CQC3M3Q3_FinalClue_lvl66"/>
+			<!--
+			<trigger type="QuestComplete" name="CQC3M3Q1_SomethingOdd_lvl66" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M3Q2_Hunch_lvl66" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M3Q3_FinalClue_lvl66" amount="1" condition="questcompleted" /> -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="500" />
+			<reward type="Buff" item="BookbinderBuffLvl1" amount="4" />
+			<reward type="XP" amount="18000" />
+		</posteffects>
+	</quest>
+		
+	<quest name="CQC3M3Q1_SomethingOdd_lvl66" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="308" connectedToQuest="CQC3M3_GreatEvil_stage3_lvl66" >
+		<startcondition>
+			<questactive item="CQC3M3_GreatEvil_stage3_lvl66" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="GoldOre" amount="3500" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="PlatinumOre" amount="860" />
+			<reward type="XP" amount="11000" />
+		</posteffects>
+	</quest>
+		
+	<quest name="CQC3M3Q2_Hunch_lvl66" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="308" connectedToQuest="CQC3M3_GreatEvil_stage3_lvl66" >
+		<startcondition>
+			<questcomplete item="CQC3M3Q1_SomethingOdd_lvl66" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Granite" amount="2500" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Coal" amount="37000" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ExoticWood" amount="1500" />
+			<reward type="XP" amount="15000" />
+		</posteffects>
+	</quest>	
+
+	<quest name="CQC3M3Q3_FinalClue_lvl66" type="Crisis" icon="QuestLong" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="308" connectedToQuest="CQC3M3_GreatEvil_stage3_lvl66" >
+		<startcondition>
+			<questcomplete item="CQC3M3Q2_Hunch_lvl66" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Platinum" amount="3700" condition="geDelta" />
+			<trigger type="Resource" name="Coal" amount="37000" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="TitaniumOre" amount="750" />
+			<reward type="XP" amount="16000" />
+		</posteffects>
+	</quest>
+
+	<!-- lvl 66 stage 4 -->
+
+	<quest name="CQC3M4_GreatEvil_stage4_lvl66" type="Crisis" icon="QuestLonger" npc="quest_no_character01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" >
+		<startcondition>
+			<questcomplete item="CQC3M3_GreatEvil_stage3_lvl66" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="CQC3M4Q1_SignOfGoodFaith_lvl66"/> 
+			<questcomplete item="CQC3M4Q2_SomethingExtraordinary_lvl66"/> 
+			<questcomplete item="CQC3M4Q3_CherryOnTop_lvl66"/>
+			<questcomplete item="CQC3M4Q4_ApeasementPolicy_lvl66"/>
+			<!--
+			<trigger type="QuestComplete" name="CQC3M4Q1_SignOfGoodFaith_lvl66" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M4Q2_SomethingExtraordinary_lvl66" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M4Q3_CherryOnTop_lvl66" amount="1" condition="questcompleted" />
+			<trigger type="QuestComplete" name="CQC3M4Q4_ApeasementPolicy_lvl66" amount="1" condition="questcompleted" /> -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="700" />
+			<reward type="Resource" name="StarCoin" amount="1200" />
+			<reward type="XP" amount="32000" />
+		</posteffects>
+	</quest>	
+	
+	<quest name="CQC3M4Q1_SignOfGoodFaith_lvl66" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="308" connectedToQuest="CQC3M4_GreatEvil_stage4_lvl66" >
+		<startcondition>
+			<questactive item="CQC3M4_GreatEvil_stage4_lvl66" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="BattleHorse" amount="500" condition="produce" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Granite" amount="1000" />
+			<reward type="XP" amount="10000" />
+		</posteffects>
+	</quest>
+	
+	<quest name="CQC3M4Q2_SomethingExtraordinary_lvl66" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="308" connectedToQuest="CQC3M4_GreatEvil_stage4_lvl66" >
+		<startcondition>
+			<questcomplete item="CQC3M4Q1_SignOfGoodFaith_lvl66" />
+		</startcondition>
+		<triggers>
+			<completeadventurelist type="Mission,Coop,Venture,Scenario" amount="3" locaExtension="NonMini_many" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="PlatinumOre" amount="630" />
+			<reward type="XP" amount="6300" />
+		</posteffects>
+	</quest>
+	
+	<quest name="CQC3M4Q3_CherryOnTop_lvl66" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="308" connectedToQuest="CQC3M4_GreatEvil_stage4_lvl66" >
+		<startcondition>
+			<questcomplete item="CQC3M4Q2_SomethingExtraordinary_lvl66" />
+		</startcondition>
+		<triggers>
+			<completeadventurelist tier="6" amount="3" locaExtension="Dif6_many" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="MahoganyWood" amount="750" />
+			<reward type="XP" amount="10000" />
+		</posteffects>
+	</quest>
+	
+	<quest name="CQC3M4Q4_ApeasementPolicy_lvl66" type="Crisis" icon="QuestLong" npc="quest_character_mentor01.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="308" connectedToQuest="CQC3M4_GreatEvil_stage4_lvl66" >
+		<startcondition>
+			<questcomplete item="CQC3M4Q3_CherryOnTop_lvl66" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="BattleHorse" amount="250" />
+			<trigger type="PayForQuestFinish" name="MahoganyWood" amount="1300" />
+			<trigger type="PayForQuestFinish" name="Salpeter" amount="7000" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StarCoin" amount="880" />
+			<reward type="XP" amount="20000" />
+		</posteffects>
+	</quest>
+
+
+</Root>

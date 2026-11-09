@@ -1,0 +1,1871 @@
+
+cResourceCreation.GetWorkTime
+function GetWorkTime():int
+        {
+            return (int(((this.GetResourceCreationDefinition().workTime * this.modifiedProductionMultiplier) + this.modifiedProductionAdder)));
+        }
+
+cResourceCreation.SetProductionTimeModifiers
+function SetProductionTimeModifiers(_arg_1:Number, _arg_2:int):void
+        {
+            this.modifiedProductionMultiplier = _arg_1;
+            this.modifiedProductionAdder = _arg_2;
+        }
+
+cResourceCreation.CreateResourceCreationVOFromResourceCreation
+function CreateResourceCreationVOFromResourceCreation():dResourceCreationVO
+        {
+            var _local_2:dPathObjectItem;
+            var _local_1:dResourceCreationVO = new dResourceCreationVO();
+            if (this.GetResourceCreationDefinition() != null)
+            {
+                _local_1.resourceDefinitionID = this.GetResourceCreationDefinition().id;
+            }
+            else
+            {
+                _local_1.resourceDefinitionID = -1;
+            };
+            _local_1.depositBuildingGridPos = this.GetDepositBuildingGridPos();
+            _local_1.pathPos = this.pathPos;
+            _local_1.playerId = this.GetPlayerID();
+            _local_1.assignedSettler = this.GetAssignedSettler();
+            _local_1.settlerKIState = this.GetSettlerKIState();
+            _local_1.gatheredResource = this.GetGatheredResource();
+            _local_1.productionState = this.GetProductionState();
+            _local_1.remove = this.GetRemove();
+            if (this.GetDepositPath() != null)
+            {
+                _local_1.pathVO = new dPathVO();
+                for each (_local_2 in this.GetDepositPath().dest_vector)
+                {
+                    _local_1.pathVO.mPath.addItem(_local_2.streetGridIdx);
+                };
+            }
+            else
+            {
+                _local_1.pathVO = null;
+            };
+            if (this.GetResourceCreationHouse() != null)
+            {
+                _local_1.uniqueID = this.GetResourceCreationHouse().GetUniqueId();
+            }
+            else
+            {
+                _local_1.uniqueID = new dUniqueID();
+            };
+            return (_local_1);
+        }
+
+BuffAppliance.IsActive
+function IsActive(_arg_1:Number):Boolean
+        {
+            if ((((_arg_1 - this.startTime) >= this.buffDefinition.getDuration(this.applianceMode)) && (!(this.buffDefinition.GetBuffType() == BUFF_TYPE.PERMANENT))))
+            {
+                return (false);
+            };
+            return (true);
+        }
+
+BuffAppliance.GetApplicanceMode
+function GetApplicanceMode():int
+        {
+            return (this.applianceMode);
+        }
+
+BuffAppliance.GetStartTime
+function GetStartTime():Number
+        {
+            return (this.startTime);
+        }
+
+BuffAppliance.CreateBuffApplianceFromVO
+function CreateBuffApplianceFromVO(_arg_1:cBuilding, _arg_2:dBuffApplianceVO):BuffAppliance
+        {
+            var _local_3:BuffAppliance = new BuffAppliance(_arg_1, _arg_2.uniqueId, cBuffDefinition.GetById(_arg_2.buffID), _arg_2.applianceMode, _arg_2.resourceName_string, _arg_2.sourceZoneId, _arg_2.nextTickTime);
+            _local_3.startTime = _arg_2.startTime;
+            _local_3.applianceMode = _arg_2.applianceMode;
+            return (_local_3);
+        }
+        public function BuffAppliance(_arg_1:cBuilding, _arg_2:dUniqueID, _arg_3:cBuffDefinition, _arg_4:int, _arg_5:String, _arg_6:int, _arg_7:Number)
+        public static function CreateBuffApplianceFromVO(_arg_1:cBuilding, _arg_2:dBuffApplianceVO):BuffAppliance
+        public function GetResourceName_string():String
+        public function GetApplicanceMode():int
+        public function GetBuffDefinition():cBuffDefinition
+        public function CreateBuffApplianceVO():dBuffApplianceVO
+        public function GetUniqueId():dUniqueID
+        public function toString():String
+        public function BuffRemoved(_arg_1:cGeneralInterface):void
+        public function IsActive(_arg_1:Number):Boolean
+        public function GetSourceZoneId():int
+        public function GetStartTime():Number
+        public function GetNextTickTime():Number
+        public function SetStartTime(_arg_1:Number):void
+        public function SetNextTickTime(_arg_1:Number):void
+
+cBuilding.CalculateWays
+function CalculateWays():Number
+        {
+            var _local_2:cPathObject;
+            var _local_3:Number;
+            var _local_4:String;
+            var _local_5:cDeposit;
+            var _local_6:cSkill;
+            var _local_7:ModifierVO;
+            var _local_8:String;
+            var _local_9:cSkill;
+            var _local_10:ModifierVO;
+            var _local_11:String;
+            var _local_1:Number = mGeneralInterface.mGlobalTimeScale;
+            this.mWayWarehouseToWorkyard = 0;
+            this.mWayWorkyardToDeposit = 0;
+            this.mProductionTime = 0;
+            this.mOverallTime = 0;
+            this.mWayWarehouseToWorkyard = this.calculateWarehouseTransporttime();
+            this.mWayWorkyardToDeposit = -1;
+            if (((!(this.mResourceCreation == null)) && (!(this.mResourceCreation.GetDepositPath() == null))))
+            {
+                this.mWayWorkyardToDeposit = ((this.mResourceCreation.GetDepositPath().pathLenX10000 / cComputeResourceCreation.SETTLER_WALK_SPEED_INT) / _local_1);
+            }
+            else
+            {
+                if (((((!(this.mResourceCreation == null)) && (!(this.mResourceCreation.GetPath() == null))) && (!(this.mResourceCreation.GetResourceCreationDefinition() == null))) && (this.mResourceCreation.GetResourceCreationDefinition().externalResource_string == "")))
+                {
+                    this.mWayWorkyardToDeposit = this.mWayWarehouseToWorkyard;
+                }
+                else
+                {
+                    if (((((!(this.mResourceCreation == null)) && (this.mResourceCreation.GetDepositPath() == null)) && (!(this.mResourceCreation.GetResourceCreationDefinition() == null))) && (this.mResourceCreation.GetResourceCreationDefinition().amountRemoved < 0)))
+                    {
+                        _local_2 = mGeneralInterface.mPathFinder.CalculatePathForDeposit(this.mResourceCreation.GetResourceCreationDefinition().externalResource_string, this.mStreetGridEntry, this.mResourceCreation.GetPlayerID(), cPathFinder.AMOUNT_TYPE_ABOVE_ZERO);
+                        if (_local_2 != null)
+                        {
+                            this.mWayWorkyardToDeposit = ((_local_2.pathLenX10000 / cComputeResourceCreation.SETTLER_WALK_SPEED_INT) / _local_1);
+                        };
+                    };
+                };
+            };
+            if (((!(this.mResourceCreation == null)) && (!(this.mResourceCreation.GetResourceCreationDefinition() == null))))
+            {
+                _local_3 = this.mResourceCreation.GetWorkTime();
+                _local_4 = this.mResourceCreation.GetResourceCreationDefinition().externalResource_string;
+                if (((!(_local_4 == "")) && (!(this.mResourceCreation.GetDepositBuildingGridPos() == -1))))
+                {
+                    _local_5 = mGeneralInterface.mCurrentPlayerZone.mStreetDataMap.mDepositContainer.get(this.mResourceCreation.GetDepositBuildingGridPos());
+                    if (_local_5 != null)
+                    {
+                        for each (_local_6 in _local_5.skills.getItems_vector())
+                        {
+                            if (_local_6.getLevel() > 0)
+                            {
+                                for each (_local_7 in _local_6.getDefinition().level_vector[(_local_6.getLevel() - 1)])
+                                {
+                                    _local_8 = _local_7.modifier_string.toLowerCase();
+                                    if (_local_8 == SpeedUp.xml_string)
+                                    {
+                                        if (_local_7.multiplier == 0)
+                                        {
+                                            _local_3 = 0;
+                                        }
+                                        else
+                                        {
+                                            _local_3 = (_local_3 / _local_7.multiplier);
+                                        };
+                                        _local_3 = (_local_3 + _local_7.adder);
+                                    };
+                                };
+                            };
+                        };
+                    }
+                    else
+                    {
+                        for each (_local_9 in this.mPlayerData.getSkills().getItems_vector())
+                        {
+                            for each (_local_10 in _local_9.getDefinition().level_vector[(_local_9.getLevel() - 1)])
+                            {
+                                _local_11 = _local_10.modifier_string.toLowerCase();
+                                if (_local_11 == ResourceProductionSpeedUp.xml_string)
+                                {
+                                    _local_3 = ((_local_3 * _local_10.multiplier) + _local_10.adder);
+                                };
+                            };
+                        };
+                    };
+                };
+                this.mProductionTime = ((_local_3 * 1000) / _local_1);
+            }
+            else
+            {
+                this.mProductionTime = -1;
+            };
+            if (((((this.mWayWarehouseToWorkyard < 0) || (this.mWayWorkyardToDeposit < 0)) || (this.mProductionTime < 0)) || (this.IsUpgradeInProgress())))
+            {
+                this.mOverallTime = -1;
+            }
+            else
+            {
+                this.mOverallTime = (((2 * this.mWayWarehouseToWorkyard) + (2 * this.mWayWorkyardToDeposit)) + this.mProductionTime);
+            };
+            return (this.mOverallTime);
+        }
+
+cBuilding.GetResourceInputFactor
+function GetResourceInputFactor():int
+        {
+            var _local_4:BuffAppliance;
+            var _local_1:cBuffDefinition = this.GetUpgradeLevelBonuses();
+            if (_local_1 == null)
+            {
+                gMisc.Assert(false, ((((((("GetUpgradeLevelBonuses() not found for " + this.mBuildingName_string) + " (") + this.mUpgradeLevel) + ") at ") + GetGrid()) + " with GetGOContainer().buildingUpgradeBonuses_vector: ") + this.GetGOContainer().buildingUpgradeBonuses_vector));
+            };
+            var _local_2:int = int((_local_1.getProductivityInputPercent() / 100));
+            var _local_3:int;
+            while (_local_3 < this.mBuffs_vector.length)
+            {
+                _local_4 = this.mBuffs_vector[_local_3];
+                if (((_local_4.GetBuffDefinition().GetBuffType() == BUFF_TYPE.TIMED) || (_local_4.GetBuffDefinition().GetBuffType() == BUFF_TYPE.ZONE)))
+                {
+                    _local_2 = int((_local_2 * (_local_4.GetBuffDefinition().getProductivityInputPercent() / 100)));
+                };
+                _local_3++;
+            };
+            return (_local_2);
+        }
+
+cBuilding.GetBuffs
+function GetBuffs():Vector.<BuffAppliance>
+        {
+            return (this.mBuffs_vector);
+        }
+
+cBuilding.AddBuff
+function AddBuff(_arg_1:cBuff, _arg_2:int, _arg_3:int, _arg_4:int):void
+        {
+            var _local_9:BuffAppliance;
+            var _local_10:EffectVO;
+            var _local_11:Boolean;
+            var _local_12:Boolean;
+            var _local_5:cBuffDefinition = _arg_1.GetBuffDefinition();
+            var _local_6:String = _local_5.GetName_string();
+            if (_local_5.GetBuffType() != BUFF_TYPE.TIMED_HIDDEN)
+            {
+                if (_local_6.indexOf(defines.CHANGE_COLOR_SCHEME_BUFF) > -1)
+                {
+                    if (((!(this.productionBuff == null)) && (this.productionBuff.GetBuffDefinition().GetName_string().indexOf("ChangeColorScheme") > -1)))
+                    {
+                        this.removeBuff(this.productionBuff);
+                    };
+                }
+                else
+                {
+                    if (_local_6.indexOf(HALLOWEEN_EVENT.BUFF_GHOSTBUSTER) > -1)
+                    {
+                        if (((!(this.productionBuff == null)) && ((this.productionBuff.GetBuffDefinition().GetName_string().indexOf(HALLOWEEN_EVENT.BUFF_DARKNESS) > -1) || (this.productionBuff.GetBuffDefinition().GetName_string().indexOf(HALLOWEEN_EVENT.BUFF_HORROR) > -1))))
+                        {
+                            this.removeBuff(this.productionBuff);
+                        };
+                    }
+                    else
+                    {
+                        if (((_local_6.indexOf(CollectionsConsts.REVEAL_FRIENDS_COLLECTIBLES_BUFF) > -1) && (this.canHandleCollectibleBuff())))
+                        {
+                            this.handleCollectibleBuffAdded(_local_6);
+                        }
+                        else
+                        {
+                            if (_local_5.IsTypeCombatTimed())
+                            {
+                                if (_local_5.GetParameter(BUFF_PARAMETER_NAME.TIME_STACKING) > 0)
+                                {
+                                    for each (_local_9 in this.GetBuffs())
+                                    {
+                                        if (_local_9.GetBuffDefinition().GetId() == _local_5.GetId())
+                                        {
+                                            _local_9.SetStartTime((_local_9.GetStartTime() + _local_5.getDuration(_arg_2)));
+                                            _local_9.mDirtyIndicator = (_local_9.mDirtyIndicator | DIRTY_INDICATOR.MODIFIED_BIT);
+                                            return;
+                                        };
+                                    };
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+            var _local_7:Boolean;
+            if (_local_5.GetApplyEffects() != null)
+            {
+                for each (_local_10 in _local_5.GetApplyEffects().list)
+                {
+                    if (StringUtils.equalsIgnoreCase(_local_10.effect_string, AvatarMessage.XML_string))
+                    {
+                        _local_7 = true;
+                        break;
+                    };
+                };
+            };
+            if (!_local_7)
+            {
+                if (_local_6.indexOf(defines.CHANGE_COLOR_SCHEME_BUFF) > -1)
+                {
+                    globalFlash.gui.mAvatarMessageList.AddMessage(AVATAR_MESSAGE_TYPE.FILTER_ACTIVE, _arg_1.GetResourceName_string(), _local_5.isPreventDefaultAvatarMessage());
+                }
+                else
+                {
+                    if (_local_6.indexOf(HALLOWEEN_EVENT.BUFF_GHOSTBUSTER) > -1)
+                    {
+                        globalFlash.gui.mAvatarMessageList.AddMessage(AVATAR_MESSAGE_TYPE.HALLOWEEN_BRIGHT_LIGHT, _arg_1, _local_5.isPreventDefaultAvatarMessage());
+                    }
+                    else
+                    {
+                        if (((_local_6.indexOf(CollectionsConsts.REVEAL_FRIENDS_COLLECTIBLES_BUFF) > -1) && (this.canHandleCollectibleBuff())))
+                        {
+                            globalFlash.gui.mAvatarMessageList.AddMessage(AVATAR_MESSAGE_TYPE.REVEAL_FRIEND_COLLECTIBLES, _arg_1, _local_5.isPreventDefaultAvatarMessage());
+                        }
+                        else
+                        {
+                            if (((!(mGeneralInterface.mCurrentPlayer.mIsPlayerZone)) && (!(_local_5.IsTypeCombatTimed()))))
+                            {
+                                _local_11 = false;
+                                if ((((_local_5.getProductivityOutputPercent() == 0) && (_local_5.getRecruitingTime() < 100)) || ((_local_5.getRecruitingTime() == 0) && (_local_5.getProductivityOutputPercent() < 100))))
+                                {
+                                    _local_11 = true;
+                                };
+                                globalFlash.gui.mAvatarMessageList.AddMessage(((_local_11) ? AVATAR_MESSAGE_TYPE.PLACED_BUFF_ON_FRIEND_NEGATIVE : AVATAR_MESSAGE_TYPE.PLACED_BUFF_ON_FRIEND), this, _local_5.isPreventDefaultAvatarMessage());
+                            }
+                            else
+                            {
+                                if (_local_6.indexOf(defines.ADD_RECIPE_BUFF) > -1)
+                                {
+                                    globalFlash.gui.mAvatarMessageList.AddMessage(AVATAR_MESSAGE_TYPE.ADDED_RECIPE, _local_6, _local_5.isPreventDefaultAvatarMessage());
+                                }
+                                else
+                                {
+                                    if (_local_6.indexOf("BuffAd_") > -1)
+                                    {
+                                        globalFlash.gui.mAvatarMessageList.AddMessage(AVATAR_MESSAGE_TYPE.BUFF_ADVENTURE_APPLIED, _local_5, _local_5.isPreventDefaultAvatarMessage());
+                                    }
+                                    else
+                                    {
+                                        if (_local_6.indexOf(defines.REMOVE_BUFF_BUFF) > -1)
+                                        {
+                                            globalFlash.gui.mAvatarMessageList.AddMessage(AVATAR_MESSAGE_TYPE.REMOVED_BUFF, this, _local_5.isPreventDefaultAvatarMessage());
+                                        }
+                                        else
+                                        {
+                                            if (_local_5.IsChangeSkinBuff())
+                                            {
+                                                globalFlash.gui.mAvatarMessageList.AddMessage(AVATAR_MESSAGE_TYPE.CHANGE_SKIN_BUFF_APPLIED, this, _local_5.isPreventDefaultAvatarMessage());
+                                            }
+                                            else
+                                            {
+                                                if (((StringUtils.startsWith(_local_6, "MountainDemolition")) || (_local_5.GetBuffType() == BUFF_TYPE.WAIT_FOR_ACTION)))
+                                                {
+                                                    globalFlash.gui.mAvatarMessageList.AddMessage(AVATAR_MESSAGE_TYPE.PLACED_DESTROY_MOUNTAIN_BUFF, [this, _arg_1], _local_5.isPreventDefaultAvatarMessage());
+                                                }
+                                                else
+                                                {
+                                                    if (_local_6.indexOf("QuestStart_") <= -1)
+                                                    {
+                                                        if ((((_arg_2 == BUFF_APPLIANCE_MODE.FRIEND) || (_arg_2 == BUFF_APPLIANCE_MODE.GUILD_MEMBER)) || (_arg_2 == BUFF_APPLIANCE_MODE.FRIEND_OR_GUILD_MEMBER_PREMIUM)))
+                                                        {
+                                                            _local_12 = false;
+                                                            if ((((_local_5.getProductivityOutputPercent() == 0) && (_local_5.getRecruitingTime() < 100)) || ((_local_5.getRecruitingTime() == 0) && (_local_5.getProductivityOutputPercent() < 100))))
+                                                            {
+                                                                _local_12 = true;
+                                                            };
+                                                            globalFlash.gui.mAvatarMessageList.AddMessage(((_local_12) ? AVATAR_MESSAGE_TYPE.PLACED_BUFF_BY_FRIEND_NEGATIVE : AVATAR_MESSAGE_TYPE.PLACED_BUFF_BY_FRIEND), this, _local_5.isPreventDefaultAvatarMessage());
+                                                        }
+                                                        else
+                                                        {
+                                                            globalFlash.gui.mAvatarMessageList.AddMessage(AVATAR_MESSAGE_TYPE.PLACED_BUFF, this, _local_5.isPreventDefaultAvatarMessage());
+                                                        };
+                                                    };
+                                                };
+                                            };
+                                        };
+                                    };
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+            if (_local_5.GetBuffType() == BUFF_TYPE.INSTANT)
+            {
+                return;
+            };
+            var _local_8:BuffAppliance = new BuffAppliance(this, this.GetUniqueId(), _local_5, _arg_2, _arg_1.GetResourceName_string(), _arg_4, _arg_1.GetNextTickTime());
+            _local_8.SetStartTime(mGeneralInterface.GetClientTime());
+            this.mBuffs_vector.push(_local_8);
+            if (((this.productionBuff == null) && (((_local_8.GetBuffDefinition().GetBuffType() == BUFF_TYPE.TIMED) || (_local_8.GetBuffDefinition().GetBuffType() == BUFF_TYPE.ZONE)) || (_local_8.GetBuffDefinition().GetBuffType() == BUFF_TYPE.WAIT_FOR_ACTION))))
+            {
+                this.productionBuff = _local_8;
+            };
+            _local_8.mDirtyIndicator = (_local_8.mDirtyIndicator | DIRTY_INDICATOR.CREATED_BIT);
+            mGeneralInterface.channels.PRODUCTION.send(cComputeResourceCreation.PRODUCTION_TIMES_CHANGED, this);
+            mGeneralInterface.channels.PRODUCTION.send(cComputeResourceCreation.PRODUCTION_VALUES, this);
+            this.mBuffTwinkleEffectSet = null;
+        }
+
+cBuilding.getProdutionTime
+function getProdutionTime():Number
+        {
+            return (this.mProductionTime);
+        }
+
+cBuilding.getWorkyardToDepositTime
+function getWorkyardToDepositTime():Number
+        {
+            return (this.mWayWorkyardToDeposit);
+        }
+
+cBuilding.getWarehouseToWorkyardTime
+function getWarehouseToWorkyardTime():Number
+        {
+            return (this.mWayWarehouseToWorkyard);
+        }
+
+cBuilding.IsBuildingInProduction
+function IsBuildingInProduction():Boolean
+        {
+            if (this.mBuildingMode >= BUILDING_MODE_BUILDING_IS_IN_PRODUCTION_MIN)
+            {
+                return (true);
+            };
+            return (false);
+        }
+
+cComputeResourceCreation.IncreaseResource
+function IncreaseResource(_arg_1:cResourceCreation, _arg_2:int):int
+        {
+            var _local_3:cDeposit;
+            var _local_4:int;
+            var _local_5:int;
+            var _local_6:cBuff;
+            var _local_8:cBuilding;
+            var _local_9:cBuilding;
+            var _local_10:int;
+            var _local_11:int;
+            var _local_12:Boolean;
+            var _local_13:int;
+            var _local_14:cResourceCreation;
+            var _local_15:int;
+            var _local_16:String;
+            var _local_17:cBuilding;
+            var _local_18:cBuilding;
+            var _local_19:cBuilding;
+            var _local_20:cBuilding;
+            var _local_21:int;
+            var _local_22:int;
+            var _local_23:int;
+            var _local_24:int;
+            var _local_25:Boolean;
+            var _local_26:int;
+            var _local_27:Boolean;
+            var _local_28:cBuilding;
+            var _local_29:Vector.<BuffAppliance>;
+            var _local_30:BuffAppliance;
+            var _local_31:dPersistedBuffApplianceVO;
+            var _local_32:int;
+            var _local_33:cBuffDefinition;
+            var _local_7:dResourceCreationDefinition = _arg_1.GetResourceCreationDefinition();
+            if (((_local_7 == null) || (_local_7.typeEnumResourceType == RESOURCE_TYPE.CREATED_BY_BUILDING)))
+            {
+                _local_8 = _arg_1.GetResourceCreationHouse();
+                if (_local_8 == null)
+                {
+                    cLog.info(("Building is null " + _arg_1));
+                    mComputeResourceCreationLogZone = true;
+                    _arg_1.SetRemove(true);
+                    return (INCREASE_RESOURCE_RESULT_OK);
+                };
+                switch (_local_8.GetBuildingMode())
+                {
+                    case cBuilding.BUILDING_MODE_SET_BUILDING_GROUND_PLACE:
+                        if (!_local_8.GetGOContainer().mConstructBuildingWithoutSettler)
+                        {
+                            _local_4 = int((this.mCurrentTime - _local_8.mBuildingCreationTime));
+                            _arg_1.pathPos = (_local_4 * SETTLER_WALK_SPEED_INT);
+                            if (((_local_8.IsBuildOnWater()) || (_local_8.IgnoreWarehousePath())))
+                            {
+                                _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_CONSTRUCTION);
+                            }
+                            else
+                            {
+                                _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_RESOURCE_PATH);
+                                _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_SETTLER_WALKS_TO_BUILDING_GROUND_PLACE);
+                            };
+                        }
+                        else
+                        {
+                            if (((_local_8.IsBuildOnWater()) || (_local_8.IgnoreWarehousePath())))
+                            {
+                                _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_CONSTRUCTION);
+                            }
+                            else
+                            {
+                                if (_local_8.GetBuildingName_string() == defines.SPECIAL_WAREHOUSES_NAME_string)
+                                {
+                                    _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_CONSTRUCTION);
+                                };
+                            };
+                        };
+                        break;
+                    case cBuilding.BUILDING_MODE_SETTLER_WALKS_TO_BUILDING_GROUND_PLACE:
+                        _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_RESOURCE_PATH);
+                        _arg_1.pathPos = (_arg_1.pathPos + (_arg_2 * SETTLER_WALK_SPEED_INT));
+                        if (((null == _arg_1.GetPath()) || (_arg_1.pathPos >= _arg_1.GetPath().pathLenX10000)))
+                        {
+                            if (null != _arg_1.GetPath())
+                            {
+                                _local_4 = int(((_arg_1.pathPos - _arg_1.GetPath().pathLenX10000) / SETTLER_WALK_SPEED_INT));
+                            }
+                            else
+                            {
+                                _local_4 = 10;
+                            };
+                            _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_RESOURCE_CREATION_HOUSE);
+                            _local_8.mBuildingProgress = ((_local_4 * 1000) / _local_8.GetGOContainer().mConstructionDuration);
+                            _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_CONSTRUCTION);
+                        };
+                        break;
+                    case cBuilding.BUILDING_MODE_CONSTRUCTION:
+                        _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_RESOURCE_CREATION_HOUSE);
+                        _local_8.mBuildingProgress = (_local_8.mBuildingProgress + ((_arg_2 * 1000) / _local_8.GetGOContainer().mConstructionDuration));
+                        if (_local_8.mBuildingProgress >= (100 * defines.BUILDING_PROGRESS_SCALE_FACTOR))
+                        {
+                            _local_4 = int((int(((_local_8.mBuildingProgress - (100 * defines.BUILDING_PROGRESS_SCALE_FACTOR)) * _local_8.GetGOContainer().mConstructionDuration)) / 1000));
+                            _local_8.mBuildingProgress = (100 * defines.BUILDING_PROGRESS_SCALE_FACTOR);
+                            if (!this.mGeneralInterface.mRefreshZoneIsActive)
+                            {
+                                this.mGeneralInterface.mCurrentPlayerZone.SetWatchArea(OBJECTTYPE.BUILDING, _local_8.GetBuildingName_string(), _local_8);
+                            };
+                            if (_local_8.IsWarehouseType())
+                            {
+                                _local_10 = this.mGeneralInterface.mCurrentPlayerZone.mStreetDataMap.mAdditionalData.get(_local_8.GetGrid(), AdditionalDataTSO.Sector);
+                                if (this.mGeneralInterface.mCurrentPlayerZone.GetSectorOwnerPlayerID(_local_10) == 0)
+                                {
+                                    this.mGeneralInterface.mCurrentPlayerZone.SetPlayerForSector(_local_10, _local_8.getPlayerID());
+                                    this.mGeneralInterface.mCurrentPlayerZone.mStreetDataMap.CalculateBorders();
+                                    globalFlash.gui.mAvatarMessageList.AddMessage(AVATAR_MESSAGE_TYPE.CLAIMED_SECTOR);
+                                };
+                            };
+                            if (_local_8.GetBuildingName_string() == defines.LOGISTICS_NAME_string)
+                            {
+                                this.mGeneralInterface.mCurrentPlayerZone.mStreetDataMap.SetLogisticsHouse(_local_8);
+                            }
+                            else
+                            {
+                                if (_local_8.GetBuildingName_string() == defines.GUILDHOUSE_NAME_string)
+                                {
+                                    this.mGeneralInterface.mCurrentPlayerZone.mStreetDataMap.SetGuildHouse(_local_8);
+                                }
+                                else
+                                {
+                                    if (_local_8.GetBuildingName_string() == defines.GUILDBANK_NAME_string)
+                                    {
+                                        this.mGeneralInterface.mCurrentPlayerZone.mStreetDataMap.SetGuildBankHouse(_local_8);
+                                    };
+                                };
+                            };
+                            if (_local_8.GetGOContainer().mAddDepositAmount != -1)
+                            {
+                                _local_3 = this.mGeneralInterface.mSetBuildings.SetDepositMode(this.mGeneralInterface, this.mGeneralInterface.mCurrentPlayerZone, this.mResourceCreationPlayer, null, null, _local_8.GetGOContainer().mAddDepositName, OBJECTTYPE.DEPOSIT, _local_8.GetGOContainer().mAddDepositAmount, _local_8.GetGrid(), _local_8.GetGOContainer().mAddDepositRefillable);
+                                this.mGeneralInterface.mPathFinder.InvalidateDepositMatrix(_local_8.getPlayerID(), _local_3.GetName_string(), cPathFinder.AMOUNT_TYPE_ABOVE_ZERO);
+                            };
+                            this.mGeneralInterface.mCurrentPlayerZone.mStreetDataMap.CalculateBorders();
+                            if (((!(_local_8.GetGOContainer().mConstructBuildingWithoutSettler)) && (!(_local_8.IsBuildOnWater()))))
+                            {
+                                _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_BUILDER_WALKS_FROM_RESOURCECREATIONHOUSE_TO_STOREHOUSE);
+                                _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_RESOURCE_PATH);
+                                if (null != _arg_1.GetPath())
+                                {
+                                    _arg_1.pathPos = (_arg_1.GetPath().pathLenX10000 + (_local_4 * SETTLER_WALK_SPEED_INT));
+                                };
+                            }
+                            else
+                            {
+                                if (_local_7 != null)
+                                {
+                                    _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_STOREHOUSE_TO_RESOURCECREATIONHOUSE);
+                                    _arg_1.pathPos = (_local_4 * SETTLER_WALK_SPEED_INT);
+                                }
+                                else
+                                {
+                                    _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_PRODUCES_NO_RESOURCES);
+                                    _arg_1.SetRemove(true);
+                                };
+                            };
+                            if (this.mResourceCreationResources != null)
+                            {
+                                this.mResourceCreationResources.CalculateMaxLimitsForResources(this.mResourceCreationPlayer.GetPlayerId());
+                            };
+                            _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_WORKING);
+                            this.mGeneralInterface.mPathFinder.InvalidateAll(this.mResourceCreationPlayer.GetPlayerId());
+                            for each (_local_9 in this.mGeneralInterface.mCurrentPlayerZone.mStreetDataMap.GetBuildings_vector())
+                            {
+                                if (((!(null == _local_9)) && (!(_local_9.GetResourceCreation() == null))))
+                                {
+                                    _local_9.GetResourceCreation().SetInvalidatePaths(true);
+                                };
+                            };
+                            this.mResourceCreationPlayer.IncBuildingCount(_local_8);
+                            this.mGeneralInterface.mDataTracking.AddTrackingValue(cDataTracking.DATA_TRACKING_BUILDING_BUILT, 1);
+                            _local_8.mBuildingCreationTime = (this.mCurrentTime - _local_4);
+                            this.mResourceCreationPlayer.AddXP(_local_8.GetGOContainer().mXP);
+                            this.mGeneralInterface.mQuestClientCallbacks.BuildingCreated(_local_8.GetBuildingName_string());
+                            cSoundManager.getInstance().playEffect("BuildingReady");
+                        };
+                        break;
+                    case cBuilding.BUILDING_MODE_BUILDER_WALKS_FROM_RESOURCECREATIONHOUSE_TO_STOREHOUSE:
+                        _arg_1.pathPos = (_arg_1.pathPos + (_arg_2 * SETTLER_WALK_SPEED_INT));
+                        if (((null == _arg_1.GetPath()) || (_arg_1.pathPos >= _arg_1.GetPath().pathLenX20000)))
+                        {
+                            if (((null == _arg_1.GetPath()) || (_local_7 == null)))
+                            {
+                                _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_PRODUCES_NO_RESOURCES);
+                                _arg_1.SetRemove(true);
+                                return (INCREASE_RESOURCE_RESULT_OK);
+                            };
+                            if (this.mResourceCreationResources.AssignWorkers(1))
+                            {
+                                this.mGeneralInterface.channels.PRODUCTION.send(PRODUCTION_TIMES_CHANGED, _local_8);
+                                _arg_1.pathPos = (_arg_1.pathPos - _arg_1.GetPath().pathLenX20000);
+                                _arg_1.SetWorkingSettler();
+                                _arg_1.SetAssignedSettler(true);
+                                _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_STOREHOUSE_TO_RESOURCECREATIONHOUSE);
+                                _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_RESOURCE_PATH);
+                                _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_WORKING);
+                            }
+                            else
+                            {
+                                _arg_1.pathPos = (_arg_1.GetPath().pathLenX20000 - defines.POPULATION_WAIT_TIME);
+                                _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WAITS_FOR_POPULATION);
+                                _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_ERROR_WAITING_FOR_SETTLER);
+                            };
+                        };
+                        break;
+                    case cBuilding.BUILDING_MODE_QUEUED:
+                        break;
+                    case cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_STOREHOUSE_TO_RESOURCECREATIONHOUSE:
+                        this.mGeneralInterface.mCurrentPlayer.notifyPropertyObserver(cResourceCreation.RESOURCE_CREATION, _arg_1);
+                        this.mGeneralInterface.mCurrentPlayer.notifyPropertyObserver(cResourceCreation.RESOURCE_CREATION_APPLY_MODIFIERS, _arg_1);
+                        this.mGeneralInterface.channels.PRODUCTION.send(PRODUCTION_VALUES, _arg_1.GetResourceCreationHouse());
+                        if (_local_7 == null)
+                        {
+                            return (INCREASE_RESOURCE_RESULT_OK);
+                        };
+                        _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_RESOURCE_PATH);
+                        _arg_1.pathPos = (_arg_1.pathPos + (_arg_2 * SETTLER_WALK_SPEED_INT));
+                        if (_arg_1.pathPos >= _arg_1.GetPath().pathLenX10000)
+                        {
+                            if (_arg_1.GetStoreHouse() == null)
+                            {
+                                return (INCREASE_RESOURCE_SET_SETTLER_TO_IDLE);
+                            };
+                            _local_4 = int(((_arg_1.pathPos - _arg_1.GetPath().pathLenX10000) / SETTLER_WALK_SPEED_INT));
+                            _local_11 = _arg_1.pathPos;
+                            _arg_1.pathPos = _arg_1.GetPath().pathLenX10000;
+                            _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_RESOURCE_CREATION_HOUSE);
+                            _local_8.mStartWorkCounter = _local_4;
+                            _local_8.notifyPropertyObserver(DEPOSIT_WORK_BEGIN, _local_8);
+                            if (_local_7.externalResource_string != "")
+                            {
+                                _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_WORKYARD_EXTERNAL_WORKYARD_SYSTEM_ACTIVE);
+                            }
+                            else
+                            {
+                                _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_WORKYARD_LOCAL_WORKYARD_SYSTEM);
+                            };
+                        };
+                        break;
+                    case cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_WORKYARD_LOCAL_WORKYARD_SYSTEM:
+                        _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_RESOURCE_CREATION_HOUSE);
+                        _local_8.mStartWorkCounter = (_local_8.mStartWorkCounter + _arg_2);
+                        _local_5 = int(((_arg_1.GetPath().pathLenX20000 / SETTLER_WALK_SPEED_INT) + (_arg_1.GetWorkTime() * 1000)));
+                        if (_local_8.mStartWorkCounter >= _local_5)
+                        {
+                            if (((!(_local_8.IsProductionActive())) || (_local_8.IsProductionLevelTooLow())))
+                            {
+                                _local_8.mStartWorkCounter = (_local_5 - defines.PRODUCTION_STOP_WAITTIME);
+                                if (_local_8.IsProductionLevelTooLow())
+                                {
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_UPGRADELEVEL_TOO_LOW);
+                                }
+                                else
+                                {
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_STOPPED_PRODUCTION);
+                                };
+                                break;
+                            };
+                            if (_local_8.IsUpgradeInProgress())
+                            {
+                                _local_8.mStartWorkCounter = (_local_5 - defines.PRODUCTION_STOP_WAITTIME);
+                                break;
+                            };
+                            _local_4 = (_local_8.mStartWorkCounter - _local_5);
+                            _arg_1.pathPos = (_arg_1.GetPath().pathLenX10000 + (_local_4 * SETTLER_WALK_SPEED_INT));
+                            _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_RESOURCE_PATH);
+                            _arg_1.SetGatheredResource(_local_7.amountRemoved);
+                            _arg_1.SetWorkingSettlerCarries();
+                            _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_RESOURCECREATIONHOUSE_TO_STOREHOUSE);
+                        };
+                        break;
+                    case cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_WORKYARD_EXTERNAL_WORKYARD_SYSTEM_ACTIVE:
+                        _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_RESOURCE_CREATION_HOUSE);
+                        _local_8.mStartWorkCounter = (_local_8.mStartWorkCounter + _arg_2);
+                        if (_local_8.mStartWorkCounter >= 0)
+                        {
+                            if (((!(_local_8.IsProductionActive())) || (_local_8.IsProductionLevelTooLow())))
+                            {
+                                _local_8.mStartWorkCounter = -(defines.PRODUCTION_STOP_WAITTIME);
+                                if (_local_8.IsProductionLevelTooLow())
+                                {
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_UPGRADELEVEL_TOO_LOW);
+                                }
+                                else
+                                {
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_STOPPED_PRODUCTION);
+                                };
+                                break;
+                            };
+                            if (_local_8.IsUpgradeInProgress())
+                            {
+                                _local_8.mStartWorkCounter = -(defines.PRODUCTION_STOP_WAITTIME);
+                                break;
+                            };
+                            _local_4 = _local_8.mStartWorkCounter;
+                            if (this.SearchForNearestDepositFast(_arg_1))
+                            {
+                                _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_WORKING);
+                                _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_RESOURCECREATIONHOUSE_TO_EXTERNAL_RESOURCE);
+                                _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_DEPOSIT_PATH);
+                                _arg_1.pathPos = (_local_4 * SETTLER_WALK_SPEED_INT);
+                            }
+                            else
+                            {
+                                _local_8.mStartWorkCounter = -(defines.PRODUCTION_STOP_WAITTIME);
+                                if (_local_8.GetGOContainer().mShowMissingResources)
+                                {
+                                    this.TrackMissingResources(_arg_1, 0);
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_ERROR_NECESSARY_RESOURCE_MISSING);
+                                };
+                                break;
+                            };
+                        };
+                        break;
+                    case cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_RESOURCECREATIONHOUSE_TO_EXTERNAL_RESOURCE:
+                        if (_local_7 == null)
+                        {
+                            return (INCREASE_RESOURCE_RESULT_OK);
+                        };
+                        _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_DEPOSIT_PATH);
+                        _arg_1.pathPos = (_arg_1.pathPos + (_arg_2 * SETTLER_WALK_SPEED_INT));
+                        if (_arg_1.GetDepositPath() == null)
+                        {
+                            cLog.warning(("Deposit path is null ! " + _arg_1));
+                            mComputeResourceCreationLogZone = true;
+                            this.ErrorResetResourceCreation(_arg_1);
+                            break;
+                        };
+                        if (_arg_1.pathPos >= _arg_1.GetDepositPath().pathLenX10000)
+                        {
+                            if (_arg_1.GetStoreHouse() == null)
+                            {
+                                return (INCREASE_RESOURCE_SET_SETTLER_TO_IDLE);
+                            };
+                            _local_4 = int(((_arg_1.pathPos - _arg_1.GetDepositPath().pathLenX10000) / SETTLER_WALK_SPEED_INT));
+                            _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_EXTERNAL_DEPOSIT);
+                            _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_EXTERNAL_WORKYARD);
+                            _local_8.mStartWorkCounter = _local_4;
+                            _local_3 = this.mGeneralInterface.mCurrentPlayerZone.mStreetDataMap.mDepositContainer.get(_arg_1.GetDepositBuildingGridPos());
+                            if (_local_3 != null)
+                            {
+                                _local_3.notifyPropertyObserver(DEPOSIT_WORK_BEGIN, _local_8);
+                            };
+                        };
+                        break;
+                    case cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_EXTERNAL_DEPOSIT:
+                        _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_EXTERNAL_WORKYARD);
+                        _local_8.mStartWorkCounter = (_local_8.mStartWorkCounter + _arg_2);
+                        _local_5 = (_arg_1.GetWorkTime() * 1000);
+                        if (_local_8.mStartWorkCounter >= _local_5)
+                        {
+                            if (((!(_local_8.IsProductionActive())) || (_local_8.IsProductionLevelTooLow())))
+                            {
+                                _local_8.mStartWorkCounter = (_local_5 - defines.PRODUCTION_STOP_WAITTIME);
+                                if (_local_8.IsProductionLevelTooLow())
+                                {
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_UPGRADELEVEL_TOO_LOW);
+                                }
+                                else
+                                {
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_STOPPED_PRODUCTION);
+                                };
+                                break;
+                            };
+                            if (_local_8.IsUpgradeInProgress())
+                            {
+                                _local_8.mStartWorkCounter = (_local_5 - defines.PRODUCTION_STOP_WAITTIME);
+                                break;
+                            };
+                            _local_4 = (_local_8.mStartWorkCounter - _local_5);
+                            if (_arg_1.GetDepositBuildingGridPos() != -1)
+                            {
+                                if (_arg_1.GetDepositPath() == null)
+                                {
+                                    cLog.warning(("Deposit path is null ! " + _arg_1));
+                                    mComputeResourceCreationLogZone = true;
+                                    this.ErrorResetResourceCreation(_arg_1);
+                                    break;
+                                };
+                                _arg_1.pathPos = (_arg_1.GetDepositPath().pathLenX10000 + (_local_4 * SETTLER_WALK_SPEED_INT));
+                                _local_3 = this.mGeneralInterface.mCurrentPlayerZone.mStreetDataMap.mDepositContainer.get(_arg_1.GetDepositBuildingGridPos());
+                                _arg_1.SetGatheredResource(0);
+                                if (_local_3 != null)
+                                {
+                                    if (((_local_3.GetAmount() > 0) || (_arg_1.GetResourceCreationDefinition().amountRemoved < 0)))
+                                    {
+                                        if (_local_3.mDepositGfx != null)
+                                        {
+                                            _local_3.mDepositGfx.SetValue(_local_3.GetAmount());
+                                        };
+                                        _local_12 = this.HasBlockingProductivityInputBuff(_local_8);
+                                        if (((_local_8.GetResourceOutputFactor() == 0) || ((_local_8.GetResourceInputFactor() == 0) && (_local_12))))
+                                        {
+                                            _local_8.mStartWorkCounter = (_local_5 - defines.PRODUCTION_STOP_WAITTIME);
+                                            _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_BUFF_STOPPED_PRODUCTION);
+                                            break;
+                                        };
+                                        _local_13 = _local_7.amountRemoved;
+                                        if (_local_13 < 0)
+                                        {
+                                            _local_13 = (_local_13 * _local_8.GetResourceOutputFactor());
+                                        }
+                                        else
+                                        {
+                                            _local_13 = (_local_13 * _local_8.GetResourceInputFactor());
+                                        };
+                                        if (DEPOSIT_CREATION_INFO)
+                                        {
+                                            cLog.info(((((((this.mCurrentResourceNr + "Reached deposit: ") + _local_3.GetName_string()) + " Amount: ") + _local_3.GetAmount()) + " removed: ") + _local_7.amountRemoved));
+                                        };
+                                        if (((_local_3.GetAmount() >= _local_3.GetMaxAmount()) && ((_local_3.GetAmount() - _local_13) < _local_3.GetMaxAmount())))
+                                        {
+                                            this.mGeneralInterface.mPathFinder.InvalidateDepositMatrix(_local_8.getPlayerID(), _local_3.GetName_string(), cPathFinder.AMOUNT_TYPE_BELOW_MAX);
+                                        };
+                                        if (((_local_3.GetAmount() <= 0) && ((_local_3.GetAmount() - _local_13) > 0)))
+                                        {
+                                            this.mGeneralInterface.mPathFinder.InvalidateDepositMatrix(_local_8.getPlayerID(), _local_3.GetName_string(), cPathFinder.AMOUNT_TYPE_ABOVE_ZERO);
+                                        };
+                                        if (((_local_3.GetAmount() < _local_3.GetMaxAmount()) && ((_local_3.GetAmount() - _local_13) >= _local_3.GetMaxAmount())))
+                                        {
+                                            this.mGeneralInterface.mPathFinder.InvalidateDepositMatrix(_local_8.getPlayerID(), _local_3.GetName_string(), cPathFinder.AMOUNT_TYPE_BELOW_MAX);
+                                        };
+                                        _local_3.ChangeAmount(-(_local_13));
+                                        _arg_1.SetGatheredResource(_local_7.amountRemoved);
+                                        if (_local_3.GetAmount() <= 0)
+                                        {
+                                            if (((_local_3.GetName_string().indexOf("Wood") == -1) && (!(_local_3.GetName_string() == "Fish"))))
+                                            {
+                                                globalFlash.gui.mAvatarMessageList.AddMessage(AVATAR_MESSAGE_TYPE.DEPOSIT_DEPLETED, _local_3);
+                                            };
+                                            _arg_1.SetGatheredResource((_arg_1.GetGatheredResource() + _local_3.GetAmount()));
+                                            _local_3.EmptyDeposit();
+                                            if (_local_3.GetDepositGroupID() != -1)
+                                            {
+                                                _local_3.IncEmptied();
+                                                _local_3.SetAccessibleType(DEPOSIT_ACCESSIBLE_TYPES.NOT_ACCESSIBLE);
+                                            };
+                                            this.mGeneralInterface.mPathFinder.InvalidateDepositMatrix(_local_8.getPlayerID(), _local_3.GetName_string(), cPathFinder.AMOUNT_TYPE_ABOVE_ZERO);
+                                            for each (_local_14 in this.mResourceCreation_vector)
+                                            {
+                                                if (_local_14.GetDepositBuildingGridPos() == _arg_1.GetDepositBuildingGridPos())
+                                                {
+                                                    if (_local_14 != _arg_1)
+                                                    {
+                                                        _local_17 = _local_14.GetResourceCreationHouse();
+                                                        if (((!(_local_14.GetRemove())) && (!(_local_17 == null))))
+                                                        {
+                                                            if (((!(_local_14.GetResourceCreationDefinition() == null)) && (_local_14.GetResourceCreationDefinition().amountRemoved > 0)))
+                                                            {
+                                                                if (_local_17.GetBuildingMode() == cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_EXTERNAL_DEPOSIT)
+                                                                {
+                                                                    _local_17.SetBuildingMode(cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_EXTERNAL_RESOURCE_TO_RESOURCECREATIONHOUSE);
+                                                                    _local_14.pathPos = _arg_1.GetDepositPath().pathLenX10000;
+                                                                    _local_14.SetWorkingSettler();
+                                                                    _local_14.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_DEPOSIT_PATH);
+                                                                }
+                                                                else
+                                                                {
+                                                                    if (_local_17.GetBuildingMode() == cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_RESOURCECREATIONHOUSE_TO_EXTERNAL_RESOURCE)
+                                                                    {
+                                                                        _local_17.SetBuildingMode(cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_EXTERNAL_RESOURCE_TO_RESOURCECREATIONHOUSE);
+                                                                        _local_14.pathPos = (_arg_1.GetDepositPath().pathLenX20000 - _local_14.pathPos);
+                                                                        _local_14.SetWorkingSettler();
+                                                                        _local_14.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_DEPOSIT_PATH);
+                                                                    };
+                                                                };
+                                                            };
+                                                        };
+                                                    };
+                                                };
+                                            };
+                                            _local_16 = _local_3.GetContainerName_string();
+                                            if (_local_3.GetDepositGroupID() != -1)
+                                            {
+                                                _local_15 = _local_3.GetGrid();
+                                                this.mGeneralInterface.mCurrentPlayerZone.RemoveDepositIcon(_local_15);
+                                                _local_18 = this.mGeneralInterface.mCurrentPlayerZone.mStreetDataMap.mBuildingContainer.get(_local_15);
+                                                if (_local_18 != null)
+                                                {
+                                                    this.mGeneralInterface.mCurrentPlayerZone.mStreetDataMap.RemoveBuildingGridPos(_local_18.GetGrid(), true);
+                                                    this.mGeneralInterface.mCurrentPlayerZone.mStreetDataMap.RemoveBuildingFromGameLogicKeepResourceCreation(_local_18);
+                                                    if (!StringUtils.isEmpty(_local_18.depletedMineExtension))
+                                                    {
+                                                        _local_16 = _local_18.depletedMineExtension;
+                                                    };
+                                                };
+                                                TrackManager.getInstance().trackDepositDepleted(this.mGeneralInterface.mCurrentPlayer, _local_3, _local_18);
+                                                this.mGeneralInterface.mCurrentPlayerZone.DepositWasDepleted(this.mGeneralInterface.mCurrentPlayer, _local_15, _local_16);
+                                                this.mGeneralInterface.mCurrentPlayerZone.mStreetDataMap.mDepositContainer.remove(_arg_1.GetDepositBuildingGridPos());
+                                                this.mGeneralInterface.mDataTracking.AddTrackingValue(cDataTracking.DATA_TRACKING_MINES_EMPTIED, 1);
+                                            }
+                                            else
+                                            {
+                                                if (_local_3 != null)
+                                                {
+                                                    _local_15 = _local_3.GetGrid();
+                                                    this.mGeneralInterface.mCurrentPlayerZone.RemoveDepositIcon(_local_15);
+                                                    _local_19 = this.mGeneralInterface.mCurrentPlayerZone.mStreetDataMap.mBuildingContainer.get(_local_15);
+                                                    if (_local_19 != null)
+                                                    {
+                                                        if (_local_19.GetGOContainer().mAddDepositAmount != -1)
+                                                        {
+                                                            this.mGeneralInterface.mCurrentPlayerZone.mStreetDataMap.RemoveDepositGridPos(_local_15, true);
+                                                            _local_20 = this.mGeneralInterface.mCurrentPlayerZone.mStreetDataMap.mBuildingContainer.get(_local_15);
+                                                            if (_local_20 != null)
+                                                            {
+                                                                this.mGeneralInterface.mCurrentPlayerZone.mStreetDataMap.RemoveBuildingGridPos(_local_20.GetGrid(), true);
+                                                                this.mGeneralInterface.mCurrentPlayerZone.mStreetDataMap.RemoveBuildingFromGameLogicKeepResourceCreation(_local_20);
+                                                                if (!StringUtils.isEmpty(_local_20.depletedMineExtension))
+                                                                {
+                                                                    _local_16 = _local_20.depletedMineExtension;
+                                                                };
+                                                            };
+                                                            TrackManager.getInstance().trackDepositDepleted(this.mGeneralInterface.mCurrentPlayer, _local_3, _local_20);
+                                                            this.mGeneralInterface.mCurrentPlayerZone.DepositWasDepleted(this.mResourceCreationPlayer, _local_15, _local_16);
+                                                        };
+                                                    };
+                                                };
+                                            };
+                                        };
+                                    };
+                                };
+                            }
+                            else
+                            {
+                                cLog.warning(("Deposit path! " + _arg_1));
+                                mComputeResourceCreationLogZone = true;
+                                this.ErrorResetResourceCreation(_arg_1);
+                                break;
+                            };
+                            _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_EXTERNAL_RESOURCE_TO_RESOURCECREATIONHOUSE);
+                            _arg_1.SetWorkingSettlerCarries();
+                            _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_DEPOSIT_PATH);
+                        };
+                        break;
+                    case cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_EXTERNAL_RESOURCE_TO_RESOURCECREATIONHOUSE:
+                        _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_DEPOSIT_PATH);
+                        _arg_1.pathPos = (_arg_1.pathPos + (_arg_2 * SETTLER_WALK_SPEED_INT));
+                        _local_21 = 0;
+                        if (_arg_1.GetDepositPath() != null)
+                        {
+                            _local_21 = _arg_1.GetDepositPath().pathLenX20000;
+                        };
+                        if (_arg_1.pathPos >= _local_21)
+                        {
+                            _local_4 = int(((_arg_1.pathPos - _local_21) / SETTLER_WALK_SPEED_INT));
+                            _arg_1.pathPos = (_arg_1.GetPath().pathLenX10000 + (_local_4 * SETTLER_WALK_SPEED_INT));
+                            _arg_1.SetWorkingSettlerCarries();
+                            _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_RESOURCECREATIONHOUSE_TO_STOREHOUSE);
+                            _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_RESOURCE_PATH);
+                        };
+                        break;
+                    case cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_RESOURCECREATIONHOUSE_TO_STOREHOUSE:
+                        if (_local_7 == null)
+                        {
+                            return (INCREASE_RESOURCE_RESULT_OK);
+                        };
+                        _arg_1.pathPos = (_arg_1.pathPos + (_arg_2 * SETTLER_WALK_SPEED_INT));
+                        if (_arg_1.pathPos >= _arg_1.GetPath().pathLenX20000)
+                        {
+                            _local_22 = 0;
+                            _local_23 = 0;
+                            _local_24 = 0;
+                            if (((_arg_1.GetGatheredResource() > 0) || (_local_7.amountRemoved == 0)))
+                            {
+                                _local_22 = ((_local_7.amountRemoved == 0) ? 1 : _local_7.amountRemoved);
+                                _local_23 = _local_8.GetResourceInputFactor();
+                                _local_24 = _local_8.GetResourceOutputFactor();
+                            }
+                            else
+                            {
+                                if (_arg_1.GetGatheredResource() == 0)
+                                {
+                                    if (!((!(_arg_1.GetResourceCreationDefinition().externalResource_string == null)) && (_arg_1.GetResourceCreationDefinition().externalResource_string.length > 0)))
+                                    {
+                                        _arg_1.SetGatheredResource(1);
+                                        _local_22 = _local_7.amountRemoved;
+                                        _local_23 = _local_8.GetResourceInputFactor();
+                                        _local_24 = _local_8.GetResourceOutputFactor();
+                                    };
+                                };
+                            };
+                            _local_22 = (_local_22 * _local_24);
+                            if (_local_7.necessaryResources_vector.length > 0)
+                            {
+                                if (this.mResourceCreationResources.HasPlayerResourcesInList(_local_7.necessaryResources_vector, _local_23))
+                                {
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_WORKING);
+                                    _local_25 = this.mResourceCreationResources.AddResource(_local_7.defaultSetting.resourceName_string, _local_22, ModifyReason.RESOURCE_CREATION, null);
+                                    if (_local_25)
+                                    {
+                                        this.mResourceCreationResources.RemovePlayerResourcesFromResourcesInList(_local_7.necessaryResources_vector, _local_23, ModifyReason.RESOURCE_CREATION);
+                                    }
+                                    else
+                                    {
+                                        _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WAITS_BECAUSE_WAREHOUSE_IS_FULL);
+                                        _arg_1.pathPos = (_arg_1.GetPath().pathLenX20000 - defines.WAREHOUSE_FULL_WAIT_TIME);
+                                        _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_ERROR_WAREHOUSE_FULL);
+                                        break;
+                                    };
+                                }
+                                else
+                                {
+                                    if (_local_8.GetGOContainer().mShowMissingResources)
+                                    {
+                                        this.TrackMissingResources(_arg_1, _local_23);
+                                        _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_ERROR_NECESSARY_RESOURCE_MISSING);
+                                    };
+                                    _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WAITS_BECAUSE_WAREHOUSE_IS_FULL);
+                                    _arg_1.pathPos = (_arg_1.GetPath().pathLenX20000 - defines.WAREHOUSE_FULL_WAIT_TIME);
+                                    break;
+                                };
+                            }
+                            else
+                            {
+                                if (_local_22 > 0)
+                                {
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_WORKING);
+                                    if (!this.mResourceCreationResources.AddResource(_local_7.defaultSetting.resourceName_string, _local_22, ModifyReason.RESOURCE_CREATION, null))
+                                    {
+                                        _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WAITS_BECAUSE_WAREHOUSE_IS_FULL);
+                                        _arg_1.pathPos = (_arg_1.GetPath().pathLenX20000 - defines.WAREHOUSE_FULL_WAIT_TIME);
+                                        _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_ERROR_WAREHOUSE_FULL);
+                                        break;
+                                    };
+                                    if (_arg_1.GetResourceCreationDefinition().defaultSetting.resourceName_string == defines.HARD_CURRENCY_RESOURCE_NAME_string)
+                                    {
+                                        TrackManager.getInstance().trackGemsProduction(this.mResourceCreationPlayer, defines.CURRENCY_GEMS_GEMPIT, _local_22, this.mGeneralInterface.mCurrentPlayerZone.GetResources(this.mResourceCreationPlayer).GetPlayerResource(defines.HARD_CURRENCY_RESOURCE_NAME_string).amount, "GemPit");
+                                    };
+                                };
+                            };
+                            _arg_1.pathPos = (_arg_1.pathPos - _arg_1.GetPath().pathLenX20000);
+                            if (this.mGeneralInterface.mCurrentPlayerZone.mStreetDataMap.mBuildingContainer.get(_arg_1.GetResourceCreationHouse().GetGrid()) != _arg_1.GetResourceCreationHouse())
+                            {
+                                _arg_1.SetRemove(true);
+                            };
+                            if (_local_8 == null)
+                            {
+                                return (INCREASE_RESOURCE_SET_SETTLER_TO_IDLE);
+                            };
+                            _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_RESOURCE_PATH);
+                            _arg_1.SetWorkingSettler();
+                            _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_STOREHOUSE_TO_RESOURCECREATIONHOUSE);
+                        };
+                        break;
+                };
+            }
+            else
+            {
+                if (this.mGeneralInterface.mCurrentViewedZoneID > 0)
+                {
+                    _local_26 = 1;
+                    _local_27 = false;
+                    _local_28 = this.mGeneralInterface.mCurrentPlayerZone.mStreetDataMap.GetMayorHouse();
+                    if (_local_28 != null)
+                    {
+                        _local_29 = _local_28.mBuffs_vector;
+                        for each (_local_30 in _local_29)
+                        {
+                            if (CollectionsManager.getInstance().getBuffIsCollectibleLootBuff(_local_30.GetBuffDefinition().GetName_string()))
+                            {
+                                _local_26 = 1;
+                            }
+                            else
+                            {
+                                _local_26 = int((_local_26 * (_local_30.GetBuffDefinition().getRecruitingTime() / 100)));
+                                _local_27 = true;
+                            };
+                        };
+                        for each (_local_31 in this.mGeneralInterface.mZoneBuffManager.getBuffAppliancesForBuilding(_local_28.GetBuildingName_string()))
+                        {
+                            _local_33 = cBuffDefinition.GetById(_local_31.buffID);
+                            if (_local_33 != null)
+                            {
+                                _local_26 = int((_local_26 + ((_local_33.getRecruitingTime() - 100) / 100)));
+                            };
+                        };
+                        _local_26 = Math.max(_local_26, 1);
+                        _arg_1.pathPos = (_arg_1.pathPos + (_arg_2 * _local_26));
+                        _local_32 = (_local_7.amountRemoved * 1000);
+                        if (_arg_1.pathPos >= _local_32)
+                        {
+                            _arg_1.pathPos = (_arg_1.pathPos - _local_32);
+                            this.mResourceCreationResources.AddResource(_local_7.defaultSetting.resourceName_string, 1, ModifyReason.RESOURCE_CREATION, null);
+                            _arg_1.mDirtyIndicator = (_arg_1.mDirtyIndicator | DIRTY_INDICATOR.MODIFIED_BIT);
+                        };
+                    };
+                };
+            };
+            return (INCREASE_RESOURCE_RESULT_OK);
+        }
+        public static const PRODUCTION_VALUES:String = "PRODUCTION_VALUES";
+        private static const INCREASE_RESOURCE_RESULT_OK:int = 0;
+        private static const INCREASE_RESOURCE_SET_SETTLER_TO_IDLE:int = 1;
+        private static const DEPOSIT_CREATION_INFO:Boolean = false;
+        private static var mComputeResourceCreationLogZone:Boolean = false;
+
+        private var mCurrentTime:Number;
+        public var mResourceCreation_vector:Vector.<cResourceCreation> = new Vector.<cResourceCreation>();
+        private var mResourceCreationPlayer:cPlayerData;
+        private var mCurrentResourceNr:int;
+        private var mResourceCreationResources:cResources;
+        private var mTempPoint:cPosInt = new cPosInt();
+        private var mGeneralInterface:cGeneralInterface;
+
+        public function cComputeResourceCreation(_arg_1:cGeneralInterface)
+        {
+            super();
+            this.mGeneralInterface = _arg_1;
+                {
+                    if (_local_2.IsUpgradeInProgress())
+                    {
+                        _local_2.mBuildingUpgradeProgress = int((((this.mGeneralInterface.GetClientTime() - _local_2.GetUpgradeStartTime()) * 100) / _local_2.GetUpgradeDuration()));
+                        if (_local_2.mBuildingUpgradeProgress >= 100)
+                        {
+                            _local_3 = (this.mCurrentTime - _local_2.GetUpgradeStartTime());
+                            _local_4 = _local_2.GetUpgradeDuration();
+                            _local_5 = ((_local_3 * 100) / _local_4);
+                            _local_2.mBuildingUpgradeProgress = int(_local_5);
+                            if (_local_2.mBuildingUpgradeProgress >= 100)
+                            {
+                                this.UpgradeBuilding(_local_2);
+                            };
+                        };
+                        if ((((_local_2.IsBuildingActive()) && (_local_2.GetRecoveringHitPoints() > 0)) && (!(_local_2.IsEngagedInCombat()))))
+                        {
+                            if (_local_2.CheckForRepairRound())
+            var _local_4:int;
+            var _local_5:dResourceCreationDefinition;
+            var _local_6:cBuilding;
+            var _local_7:int;
+            var _local_8:String;
+            var _local_9:cResourceCreation;
+            this.mCurrentTime = this.mGeneralInterface.GetClientTime();
+            this.ComputeBuildingProcesses();
+            var _local_2:int;
+            while (_local_2 < this.mResourceCreation_vector.length)
+            {
+                _local_3 = this.mResourceCreation_vector[_local_2];
+                this.mCurrentResourceNr = _local_2;
+                if (_local_3.GetPlayerID() == this.mGeneralInterface.mCurrentPlayer.GetPlayerId())
+                {
+                    this.mResourceCreationPlayer = this.mGeneralInterface.mCurrentPlayer;
+                }
+                else
+                    _arg_1.pathPos = 0;
+                    return (true);
+                };
+                _local_4 = _arg_1.GetResourceCreationHouse().getPlayerID();
+            };
+            var _local_5:int = _arg_1.GetResourceCreationHouse().GetStreetGridEntry();
+            if (_arg_1.GetResourceCreationDefinition().amountRemoved >= 0)
+            {
+                _local_6 = cPathFinder.AMOUNT_TYPE_ABOVE_ZERO;
+            }
+            else
+            {
+                _local_6 = cPathFinder.AMOUNT_TYPE_BELOW_MAX;
+            };
+            _local_3 = this.mGeneralInterface.mPathFinder.CalculatePathForDeposit(_local_2, _local_5, _local_4, _local_6);
+            if (((!(_local_3 == null)) && (_local_3.dest_vector.length > 0)))
+            {
+                _local_8 = _local_3.dest_vector[(_local_3.dest_vector.length - 1)];
+                };
+                switch (_local_8.GetBuildingMode())
+                {
+                    case cBuilding.BUILDING_MODE_SET_BUILDING_GROUND_PLACE:
+                        if (!_local_8.GetGOContainer().mConstructBuildingWithoutSettler)
+                        {
+                            _local_4 = int((this.mCurrentTime - _local_8.mBuildingCreationTime));
+                            _arg_1.pathPos = (_local_4 * SETTLER_WALK_SPEED_INT);
+                            if (((_local_8.IsBuildOnWater()) || (_local_8.IgnoreWarehousePath())))
+                            {
+                                _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_CONSTRUCTION);
+                            }
+                            else
+                            {
+                                _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_RESOURCE_PATH);
+                                _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_SETTLER_WALKS_TO_BUILDING_GROUND_PLACE);
+                            };
+                        }
+                                {
+                                    _local_9.GetResourceCreation().SetInvalidatePaths(true);
+                                };
+                            };
+                            this.mResourceCreationPlayer.IncBuildingCount(_local_8);
+                            this.mGeneralInterface.mDataTracking.AddTrackingValue(cDataTracking.DATA_TRACKING_BUILDING_BUILT, 1);
+                            _local_8.mBuildingCreationTime = (this.mCurrentTime - _local_4);
+                            this.mResourceCreationPlayer.AddXP(_local_8.GetGOContainer().mXP);
+                            this.mGeneralInterface.mQuestClientCallbacks.BuildingCreated(_local_8.GetBuildingName_string());
+                            cSoundManager.getInstance().playEffect("BuildingReady");
+                        };
+                        break;
+                    case cBuilding.BUILDING_MODE_BUILDER_WALKS_FROM_RESOURCECREATIONHOUSE_TO_STOREHOUSE:
+                        _arg_1.pathPos = (_arg_1.pathPos + (_arg_2 * SETTLER_WALK_SPEED_INT));
+                        if (((null == _arg_1.GetPath()) || (_arg_1.pathPos >= _arg_1.GetPath().pathLenX20000)))
+                        {
+                            if (((null == _arg_1.GetPath()) || (_local_7 == null)))
+                            {
+                                return (INCREASE_RESOURCE_SET_SETTLER_TO_IDLE);
+                            };
+                            _local_4 = int(((_arg_1.pathPos - _arg_1.GetPath().pathLenX10000) / SETTLER_WALK_SPEED_INT));
+                            _local_11 = _arg_1.pathPos;
+                            _arg_1.pathPos = _arg_1.GetPath().pathLenX10000;
+                            _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_RESOURCE_CREATION_HOUSE);
+                            _local_8.mStartWorkCounter = _local_4;
+                            _local_8.notifyPropertyObserver(DEPOSIT_WORK_BEGIN, _local_8);
+                            if (_local_7.externalResource_string != "")
+                            {
+                                _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_WORKYARD_EXTERNAL_WORKYARD_SYSTEM_ACTIVE);
+                            }
+                            else
+                            {
+                                _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_WORKYARD_LOCAL_WORKYARD_SYSTEM);
+                            };
+                        };
+                        break;
+                                _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_WORKYARD_LOCAL_WORKYARD_SYSTEM);
+                            };
+                        };
+                        break;
+                    case cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_WORKYARD_LOCAL_WORKYARD_SYSTEM:
+                        _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_RESOURCE_CREATION_HOUSE);
+                        _local_8.mStartWorkCounter = (_local_8.mStartWorkCounter + _arg_2);
+                        _local_5 = int(((_arg_1.GetPath().pathLenX20000 / SETTLER_WALK_SPEED_INT) + (_arg_1.GetWorkTime() * 1000)));
+                        if (_local_8.mStartWorkCounter >= _local_5)
+                        {
+                            if (((!(_local_8.IsProductionActive())) || (_local_8.IsProductionLevelTooLow())))
+                            {
+                                _local_8.mStartWorkCounter = (_local_5 - defines.PRODUCTION_STOP_WAITTIME);
+                                if (_local_8.IsProductionLevelTooLow())
+                                {
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_UPGRADELEVEL_TOO_LOW);
+                                }
+                                else
+                            };
+                        };
+                        break;
+                    case cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_WORKYARD_LOCAL_WORKYARD_SYSTEM:
+                        _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_RESOURCE_CREATION_HOUSE);
+                        _local_8.mStartWorkCounter = (_local_8.mStartWorkCounter + _arg_2);
+                        _local_5 = int(((_arg_1.GetPath().pathLenX20000 / SETTLER_WALK_SPEED_INT) + (_arg_1.GetWorkTime() * 1000)));
+                        if (_local_8.mStartWorkCounter >= _local_5)
+                        {
+                            if (((!(_local_8.IsProductionActive())) || (_local_8.IsProductionLevelTooLow())))
+                            {
+                                _local_8.mStartWorkCounter = (_local_5 - defines.PRODUCTION_STOP_WAITTIME);
+                                if (_local_8.IsProductionLevelTooLow())
+                                {
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_UPGRADELEVEL_TOO_LOW);
+                                }
+                                else
+                                {
+                        };
+                        break;
+                    case cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_WORKYARD_LOCAL_WORKYARD_SYSTEM:
+                        _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_RESOURCE_CREATION_HOUSE);
+                        _local_8.mStartWorkCounter = (_local_8.mStartWorkCounter + _arg_2);
+                        _local_5 = int(((_arg_1.GetPath().pathLenX20000 / SETTLER_WALK_SPEED_INT) + (_arg_1.GetWorkTime() * 1000)));
+                        if (_local_8.mStartWorkCounter >= _local_5)
+                        {
+                            if (((!(_local_8.IsProductionActive())) || (_local_8.IsProductionLevelTooLow())))
+                            {
+                                _local_8.mStartWorkCounter = (_local_5 - defines.PRODUCTION_STOP_WAITTIME);
+                                if (_local_8.IsProductionLevelTooLow())
+                                {
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_UPGRADELEVEL_TOO_LOW);
+                                }
+                                else
+                                {
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_STOPPED_PRODUCTION);
+                        _local_8.mStartWorkCounter = (_local_8.mStartWorkCounter + _arg_2);
+                        _local_5 = int(((_arg_1.GetPath().pathLenX20000 / SETTLER_WALK_SPEED_INT) + (_arg_1.GetWorkTime() * 1000)));
+                        if (_local_8.mStartWorkCounter >= _local_5)
+                        {
+                            if (((!(_local_8.IsProductionActive())) || (_local_8.IsProductionLevelTooLow())))
+                            {
+                                _local_8.mStartWorkCounter = (_local_5 - defines.PRODUCTION_STOP_WAITTIME);
+                                if (_local_8.IsProductionLevelTooLow())
+                                {
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_UPGRADELEVEL_TOO_LOW);
+                                }
+                                else
+                                {
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_STOPPED_PRODUCTION);
+                                };
+                                break;
+                            };
+                            if (_local_8.IsUpgradeInProgress())
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_STOPPED_PRODUCTION);
+                                };
+                                break;
+                            };
+                            if (_local_8.IsUpgradeInProgress())
+                            {
+                                _local_8.mStartWorkCounter = (_local_5 - defines.PRODUCTION_STOP_WAITTIME);
+                                break;
+                            };
+                            _local_4 = (_local_8.mStartWorkCounter - _local_5);
+                            _arg_1.pathPos = (_arg_1.GetPath().pathLenX10000 + (_local_4 * SETTLER_WALK_SPEED_INT));
+                            _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_RESOURCE_PATH);
+                            _arg_1.SetGatheredResource(_local_7.amountRemoved);
+                            _arg_1.SetWorkingSettlerCarries();
+                            _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_RESOURCECREATIONHOUSE_TO_STOREHOUSE);
+                        };
+                        break;
+                    case cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_WORKYARD_EXTERNAL_WORKYARD_SYSTEM_ACTIVE:
+                            };
+                            if (_local_8.IsUpgradeInProgress())
+                            {
+                                _local_8.mStartWorkCounter = (_local_5 - defines.PRODUCTION_STOP_WAITTIME);
+                                break;
+                            };
+                            _local_4 = (_local_8.mStartWorkCounter - _local_5);
+                            _arg_1.pathPos = (_arg_1.GetPath().pathLenX10000 + (_local_4 * SETTLER_WALK_SPEED_INT));
+                            _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_RESOURCE_PATH);
+                            _arg_1.SetGatheredResource(_local_7.amountRemoved);
+                            _arg_1.SetWorkingSettlerCarries();
+                            _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_RESOURCECREATIONHOUSE_TO_STOREHOUSE);
+                        };
+                        break;
+                    case cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_WORKYARD_EXTERNAL_WORKYARD_SYSTEM_ACTIVE:
+                        _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_RESOURCE_CREATION_HOUSE);
+                        _local_8.mStartWorkCounter = (_local_8.mStartWorkCounter + _arg_2);
+                        if (_local_8.mStartWorkCounter >= 0)
+                                _local_8.mStartWorkCounter = (_local_5 - defines.PRODUCTION_STOP_WAITTIME);
+                                break;
+                            };
+                            _local_4 = (_local_8.mStartWorkCounter - _local_5);
+                            _arg_1.pathPos = (_arg_1.GetPath().pathLenX10000 + (_local_4 * SETTLER_WALK_SPEED_INT));
+                            _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_RESOURCE_PATH);
+                            _arg_1.SetGatheredResource(_local_7.amountRemoved);
+                            _arg_1.SetWorkingSettlerCarries();
+                            _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_RESOURCECREATIONHOUSE_TO_STOREHOUSE);
+                        };
+                        break;
+                    case cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_WORKYARD_EXTERNAL_WORKYARD_SYSTEM_ACTIVE:
+                        _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_RESOURCE_CREATION_HOUSE);
+                        _local_8.mStartWorkCounter = (_local_8.mStartWorkCounter + _arg_2);
+                        if (_local_8.mStartWorkCounter >= 0)
+                        {
+                            if (((!(_local_8.IsProductionActive())) || (_local_8.IsProductionLevelTooLow())))
+                            {
+                            _arg_1.SetWorkingSettlerCarries();
+                            _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_RESOURCECREATIONHOUSE_TO_STOREHOUSE);
+                        };
+                        break;
+                    case cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_WORKYARD_EXTERNAL_WORKYARD_SYSTEM_ACTIVE:
+                        _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_RESOURCE_CREATION_HOUSE);
+                        _local_8.mStartWorkCounter = (_local_8.mStartWorkCounter + _arg_2);
+                        if (_local_8.mStartWorkCounter >= 0)
+                        {
+                            if (((!(_local_8.IsProductionActive())) || (_local_8.IsProductionLevelTooLow())))
+                            {
+                                _local_8.mStartWorkCounter = -(defines.PRODUCTION_STOP_WAITTIME);
+                                if (_local_8.IsProductionLevelTooLow())
+                                {
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_UPGRADELEVEL_TOO_LOW);
+                                }
+                                else
+                                {
+                            _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_RESOURCECREATIONHOUSE_TO_STOREHOUSE);
+                        };
+                        break;
+                    case cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_WORKYARD_EXTERNAL_WORKYARD_SYSTEM_ACTIVE:
+                        _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_RESOURCE_CREATION_HOUSE);
+                        _local_8.mStartWorkCounter = (_local_8.mStartWorkCounter + _arg_2);
+                        if (_local_8.mStartWorkCounter >= 0)
+                        {
+                            if (((!(_local_8.IsProductionActive())) || (_local_8.IsProductionLevelTooLow())))
+                            {
+                                _local_8.mStartWorkCounter = -(defines.PRODUCTION_STOP_WAITTIME);
+                                if (_local_8.IsProductionLevelTooLow())
+                                {
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_UPGRADELEVEL_TOO_LOW);
+                                }
+                                else
+                                {
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_STOPPED_PRODUCTION);
+                        _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_RESOURCE_CREATION_HOUSE);
+                        _local_8.mStartWorkCounter = (_local_8.mStartWorkCounter + _arg_2);
+                        if (_local_8.mStartWorkCounter >= 0)
+                        {
+                            if (((!(_local_8.IsProductionActive())) || (_local_8.IsProductionLevelTooLow())))
+                            {
+                                _local_8.mStartWorkCounter = -(defines.PRODUCTION_STOP_WAITTIME);
+                                if (_local_8.IsProductionLevelTooLow())
+                                {
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_UPGRADELEVEL_TOO_LOW);
+                                }
+                                else
+                                {
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_STOPPED_PRODUCTION);
+                                };
+                                break;
+                            };
+                            if (_local_8.IsUpgradeInProgress())
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_STOPPED_PRODUCTION);
+                                };
+                                break;
+                            };
+                            if (_local_8.IsUpgradeInProgress())
+                            {
+                                _local_8.mStartWorkCounter = -(defines.PRODUCTION_STOP_WAITTIME);
+                                break;
+                            };
+                            _local_4 = _local_8.mStartWorkCounter;
+                            if (this.SearchForNearestDepositFast(_arg_1))
+                            {
+                                _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_WORKING);
+                                _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_RESOURCECREATIONHOUSE_TO_EXTERNAL_RESOURCE);
+                                _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_DEPOSIT_PATH);
+                                _arg_1.pathPos = (_local_4 * SETTLER_WALK_SPEED_INT);
+                            }
+                            else
+                            };
+                            if (_local_8.IsUpgradeInProgress())
+                            {
+                                _local_8.mStartWorkCounter = -(defines.PRODUCTION_STOP_WAITTIME);
+                                break;
+                            };
+                            _local_4 = _local_8.mStartWorkCounter;
+                            if (this.SearchForNearestDepositFast(_arg_1))
+                            {
+                                _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_WORKING);
+                                _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_RESOURCECREATIONHOUSE_TO_EXTERNAL_RESOURCE);
+                                _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_DEPOSIT_PATH);
+                                _arg_1.pathPos = (_local_4 * SETTLER_WALK_SPEED_INT);
+                            }
+                            else
+                            {
+                                _local_8.mStartWorkCounter = -(defines.PRODUCTION_STOP_WAITTIME);
+                                if (_local_8.GetGOContainer().mShowMissingResources)
+                                _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_RESOURCECREATIONHOUSE_TO_EXTERNAL_RESOURCE);
+                                _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_DEPOSIT_PATH);
+                                _arg_1.pathPos = (_local_4 * SETTLER_WALK_SPEED_INT);
+                            }
+                            else
+                            {
+                                _local_8.mStartWorkCounter = -(defines.PRODUCTION_STOP_WAITTIME);
+                                if (_local_8.GetGOContainer().mShowMissingResources)
+                                {
+                                    this.TrackMissingResources(_arg_1, 0);
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_ERROR_NECESSARY_RESOURCE_MISSING);
+                                };
+                                break;
+                            };
+                        };
+                        break;
+                    case cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_RESOURCECREATIONHOUSE_TO_EXTERNAL_RESOURCE:
+                        if (_local_7 == null)
+                            {
+                                return (INCREASE_RESOURCE_SET_SETTLER_TO_IDLE);
+                            };
+                            _local_4 = int(((_arg_1.pathPos - _arg_1.GetDepositPath().pathLenX10000) / SETTLER_WALK_SPEED_INT));
+                            _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_EXTERNAL_DEPOSIT);
+                            _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_EXTERNAL_WORKYARD);
+                            _local_8.mStartWorkCounter = _local_4;
+                            _local_3 = this.mGeneralInterface.mCurrentPlayerZone.mStreetDataMap.mDepositContainer.get(_arg_1.GetDepositBuildingGridPos());
+                            if (_local_3 != null)
+                            {
+                                _local_3.notifyPropertyObserver(DEPOSIT_WORK_BEGIN, _local_8);
+                            };
+                        };
+                        break;
+                    case cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_EXTERNAL_DEPOSIT:
+                        _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_EXTERNAL_WORKYARD);
+                        _local_8.mStartWorkCounter = (_local_8.mStartWorkCounter + _arg_2);
+                        _local_5 = (_arg_1.GetWorkTime() * 1000);
+                                _local_3.notifyPropertyObserver(DEPOSIT_WORK_BEGIN, _local_8);
+                            };
+                        };
+                        break;
+                    case cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_EXTERNAL_DEPOSIT:
+                        _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_EXTERNAL_WORKYARD);
+                        _local_8.mStartWorkCounter = (_local_8.mStartWorkCounter + _arg_2);
+                        _local_5 = (_arg_1.GetWorkTime() * 1000);
+                        if (_local_8.mStartWorkCounter >= _local_5)
+                        {
+                            if (((!(_local_8.IsProductionActive())) || (_local_8.IsProductionLevelTooLow())))
+                            {
+                                _local_8.mStartWorkCounter = (_local_5 - defines.PRODUCTION_STOP_WAITTIME);
+                                if (_local_8.IsProductionLevelTooLow())
+                                {
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_UPGRADELEVEL_TOO_LOW);
+                                }
+                                else
+                            };
+                        };
+                        break;
+                    case cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_EXTERNAL_DEPOSIT:
+                        _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_EXTERNAL_WORKYARD);
+                        _local_8.mStartWorkCounter = (_local_8.mStartWorkCounter + _arg_2);
+                        _local_5 = (_arg_1.GetWorkTime() * 1000);
+                        if (_local_8.mStartWorkCounter >= _local_5)
+                        {
+                            if (((!(_local_8.IsProductionActive())) || (_local_8.IsProductionLevelTooLow())))
+                            {
+                                _local_8.mStartWorkCounter = (_local_5 - defines.PRODUCTION_STOP_WAITTIME);
+                                if (_local_8.IsProductionLevelTooLow())
+                                {
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_UPGRADELEVEL_TOO_LOW);
+                                }
+                                else
+                                {
+                        };
+                        break;
+                    case cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_EXTERNAL_DEPOSIT:
+                        _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_EXTERNAL_WORKYARD);
+                        _local_8.mStartWorkCounter = (_local_8.mStartWorkCounter + _arg_2);
+                        _local_5 = (_arg_1.GetWorkTime() * 1000);
+                        if (_local_8.mStartWorkCounter >= _local_5)
+                        {
+                            if (((!(_local_8.IsProductionActive())) || (_local_8.IsProductionLevelTooLow())))
+                            {
+                                _local_8.mStartWorkCounter = (_local_5 - defines.PRODUCTION_STOP_WAITTIME);
+                                if (_local_8.IsProductionLevelTooLow())
+                                {
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_UPGRADELEVEL_TOO_LOW);
+                                }
+                                else
+                                {
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_STOPPED_PRODUCTION);
+                        _local_8.mStartWorkCounter = (_local_8.mStartWorkCounter + _arg_2);
+                        _local_5 = (_arg_1.GetWorkTime() * 1000);
+                        if (_local_8.mStartWorkCounter >= _local_5)
+                        {
+                            if (((!(_local_8.IsProductionActive())) || (_local_8.IsProductionLevelTooLow())))
+                            {
+                                _local_8.mStartWorkCounter = (_local_5 - defines.PRODUCTION_STOP_WAITTIME);
+                                if (_local_8.IsProductionLevelTooLow())
+                                {
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_UPGRADELEVEL_TOO_LOW);
+                                }
+                                else
+                                {
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_STOPPED_PRODUCTION);
+                                };
+                                break;
+                            };
+                            if (_local_8.IsUpgradeInProgress())
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_STOPPED_PRODUCTION);
+                                };
+                                break;
+                            };
+                            if (_local_8.IsUpgradeInProgress())
+                            {
+                                _local_8.mStartWorkCounter = (_local_5 - defines.PRODUCTION_STOP_WAITTIME);
+                                break;
+                            };
+                            _local_4 = (_local_8.mStartWorkCounter - _local_5);
+                            if (_arg_1.GetDepositBuildingGridPos() != -1)
+                            {
+                                if (_arg_1.GetDepositPath() == null)
+                                {
+                                    cLog.warning(("Deposit path is null ! " + _arg_1));
+                                    mComputeResourceCreationLogZone = true;
+                                    this.ErrorResetResourceCreation(_arg_1);
+                                    break;
+                            };
+                            if (_local_8.IsUpgradeInProgress())
+                            {
+                                _local_8.mStartWorkCounter = (_local_5 - defines.PRODUCTION_STOP_WAITTIME);
+                                break;
+                            };
+                            _local_4 = (_local_8.mStartWorkCounter - _local_5);
+                            if (_arg_1.GetDepositBuildingGridPos() != -1)
+                            {
+                                if (_arg_1.GetDepositPath() == null)
+                                {
+                                    cLog.warning(("Deposit path is null ! " + _arg_1));
+                                    mComputeResourceCreationLogZone = true;
+                                    this.ErrorResetResourceCreation(_arg_1);
+                                    break;
+                                };
+                                _arg_1.pathPos = (_arg_1.GetDepositPath().pathLenX10000 + (_local_4 * SETTLER_WALK_SPEED_INT));
+                                _local_3 = this.mGeneralInterface.mCurrentPlayerZone.mStreetDataMap.mDepositContainer.get(_arg_1.GetDepositBuildingGridPos());
+                                };
+                                _arg_1.pathPos = (_arg_1.GetDepositPath().pathLenX10000 + (_local_4 * SETTLER_WALK_SPEED_INT));
+                                _local_3 = this.mGeneralInterface.mCurrentPlayerZone.mStreetDataMap.mDepositContainer.get(_arg_1.GetDepositBuildingGridPos());
+                                _arg_1.SetGatheredResource(0);
+                                if (_local_3 != null)
+                                {
+                                    if (((_local_3.GetAmount() > 0) || (_arg_1.GetResourceCreationDefinition().amountRemoved < 0)))
+                                    {
+                                        if (_local_3.mDepositGfx != null)
+                                        {
+                                            _local_3.mDepositGfx.SetValue(_local_3.GetAmount());
+                                        };
+                                        _local_12 = this.HasBlockingProductivityInputBuff(_local_8);
+                                        if (((_local_8.GetResourceOutputFactor() == 0) || ((_local_8.GetResourceInputFactor() == 0) && (_local_12))))
+                                        {
+                                            _local_8.mStartWorkCounter = (_local_5 - defines.PRODUCTION_STOP_WAITTIME);
+                                            _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_BUFF_STOPPED_PRODUCTION);
+                                            break;
+                                    {
+                                        if (_local_3.mDepositGfx != null)
+                                        {
+                                            _local_3.mDepositGfx.SetValue(_local_3.GetAmount());
+                                        };
+                                        _local_12 = this.HasBlockingProductivityInputBuff(_local_8);
+                                        if (((_local_8.GetResourceOutputFactor() == 0) || ((_local_8.GetResourceInputFactor() == 0) && (_local_12))))
+                                        {
+                                            _local_8.mStartWorkCounter = (_local_5 - defines.PRODUCTION_STOP_WAITTIME);
+                                            _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_BUFF_STOPPED_PRODUCTION);
+                                            break;
+                                        };
+                                        _local_13 = _local_7.amountRemoved;
+                                        if (_local_13 < 0)
+                                        {
+                                            _local_13 = (_local_13 * _local_8.GetResourceOutputFactor());
+                                        }
+                                        else
+                                        {
+                                            _local_3.mDepositGfx.SetValue(_local_3.GetAmount());
+                                        };
+                                        _local_12 = this.HasBlockingProductivityInputBuff(_local_8);
+                                        if (((_local_8.GetResourceOutputFactor() == 0) || ((_local_8.GetResourceInputFactor() == 0) && (_local_12))))
+                                        {
+                                            _local_8.mStartWorkCounter = (_local_5 - defines.PRODUCTION_STOP_WAITTIME);
+                                            _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_BUFF_STOPPED_PRODUCTION);
+                                            break;
+                                        };
+                                        _local_13 = _local_7.amountRemoved;
+                                        if (_local_13 < 0)
+                                        {
+                                            _local_13 = (_local_13 * _local_8.GetResourceOutputFactor());
+                                        }
+                                        else
+                                        {
+                                            _local_13 = (_local_13 * _local_8.GetResourceInputFactor());
+                                        if (((_local_8.GetResourceOutputFactor() == 0) || ((_local_8.GetResourceInputFactor() == 0) && (_local_12))))
+                                        {
+                                            _local_8.mStartWorkCounter = (_local_5 - defines.PRODUCTION_STOP_WAITTIME);
+                                            _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_BUFF_STOPPED_PRODUCTION);
+                                            break;
+                                        };
+                                        _local_13 = _local_7.amountRemoved;
+                                        if (_local_13 < 0)
+                                        {
+                                            _local_13 = (_local_13 * _local_8.GetResourceOutputFactor());
+                                        }
+                                        else
+                                        {
+                                            _local_13 = (_local_13 * _local_8.GetResourceInputFactor());
+                                        };
+                                        if (DEPOSIT_CREATION_INFO)
+                                        {
+                                            cLog.info(((((((this.mCurrentResourceNr + "Reached deposit: ") + _local_3.GetName_string()) + " Amount: ") + _local_3.GetAmount()) + " removed: ") + _local_7.amountRemoved));
+                                        if (_local_13 < 0)
+                                        {
+                                            _local_13 = (_local_13 * _local_8.GetResourceOutputFactor());
+                                        }
+                                        else
+                                        {
+                                            _local_13 = (_local_13 * _local_8.GetResourceInputFactor());
+                                        };
+                                        if (DEPOSIT_CREATION_INFO)
+                                        {
+                                            cLog.info(((((((this.mCurrentResourceNr + "Reached deposit: ") + _local_3.GetName_string()) + " Amount: ") + _local_3.GetAmount()) + " removed: ") + _local_7.amountRemoved));
+                                        };
+                                        if (((_local_3.GetAmount() >= _local_3.GetMaxAmount()) && ((_local_3.GetAmount() - _local_13) < _local_3.GetMaxAmount())))
+                                        {
+                                            this.mGeneralInterface.mPathFinder.InvalidateDepositMatrix(_local_8.getPlayerID(), _local_3.GetName_string(), cPathFinder.AMOUNT_TYPE_BELOW_MAX);
+                                        };
+                                        if (((_local_3.GetAmount() <= 0) && ((_local_3.GetAmount() - _local_13) > 0)))
+                                        {
+                                        else
+                                        {
+                                            _local_13 = (_local_13 * _local_8.GetResourceInputFactor());
+                                        };
+                                        if (DEPOSIT_CREATION_INFO)
+                                        {
+                                            cLog.info(((((((this.mCurrentResourceNr + "Reached deposit: ") + _local_3.GetName_string()) + " Amount: ") + _local_3.GetAmount()) + " removed: ") + _local_7.amountRemoved));
+                                        };
+                                        if (((_local_3.GetAmount() >= _local_3.GetMaxAmount()) && ((_local_3.GetAmount() - _local_13) < _local_3.GetMaxAmount())))
+                                        {
+                                            this.mGeneralInterface.mPathFinder.InvalidateDepositMatrix(_local_8.getPlayerID(), _local_3.GetName_string(), cPathFinder.AMOUNT_TYPE_BELOW_MAX);
+                                        };
+                                        if (((_local_3.GetAmount() <= 0) && ((_local_3.GetAmount() - _local_13) > 0)))
+                                        {
+                                            this.mGeneralInterface.mPathFinder.InvalidateDepositMatrix(_local_8.getPlayerID(), _local_3.GetName_string(), cPathFinder.AMOUNT_TYPE_ABOVE_ZERO);
+                                        };
+                                        if (((_local_3.GetAmount() < _local_3.GetMaxAmount()) && ((_local_3.GetAmount() - _local_13) >= _local_3.GetMaxAmount())))
+                                        {
+                                        };
+                                        if (((_local_3.GetAmount() < _local_3.GetMaxAmount()) && ((_local_3.GetAmount() - _local_13) >= _local_3.GetMaxAmount())))
+                                        {
+                                            this.mGeneralInterface.mPathFinder.InvalidateDepositMatrix(_local_8.getPlayerID(), _local_3.GetName_string(), cPathFinder.AMOUNT_TYPE_BELOW_MAX);
+                                        };
+                                        _local_3.ChangeAmount(-(_local_13));
+                                        _arg_1.SetGatheredResource(_local_7.amountRemoved);
+                                        if (_local_3.GetAmount() <= 0)
+                                        {
+                                            if (((_local_3.GetName_string().indexOf("Wood") == -1) && (!(_local_3.GetName_string() == "Fish"))))
+                                            {
+                                                globalFlash.gui.mAvatarMessageList.AddMessage(AVATAR_MESSAGE_TYPE.DEPOSIT_DEPLETED, _local_3);
+                                            };
+                                            _arg_1.SetGatheredResource((_arg_1.GetGatheredResource() + _local_3.GetAmount()));
+                                            _local_3.EmptyDeposit();
+                                            if (_local_3.GetDepositGroupID() != -1)
+                                            {
+                                                _local_3.IncEmptied();
+                                                {
+                                                    if (_local_14 != _arg_1)
+                                                    {
+                                                        _local_17 = _local_14.GetResourceCreationHouse();
+                                                        if (((!(_local_14.GetRemove())) && (!(_local_17 == null))))
+                                                        {
+                                                            if (((!(_local_14.GetResourceCreationDefinition() == null)) && (_local_14.GetResourceCreationDefinition().amountRemoved > 0)))
+                                                            {
+                                                                if (_local_17.GetBuildingMode() == cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_EXTERNAL_DEPOSIT)
+                                                                {
+                                                                    _local_17.SetBuildingMode(cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_EXTERNAL_RESOURCE_TO_RESOURCECREATIONHOUSE);
+                                                                    _local_14.pathPos = _arg_1.GetDepositPath().pathLenX10000;
+                                                                    _local_14.SetWorkingSettler();
+                                                                    _local_14.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_DEPOSIT_PATH);
+                                                                }
+                                                                else
+                                                                {
+                                                                    if (_local_17.GetBuildingMode() == cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_RESOURCECREATIONHOUSE_TO_EXTERNAL_RESOURCE)
+                        _arg_1.pathPos = (_arg_1.pathPos + (_arg_2 * SETTLER_WALK_SPEED_INT));
+                        if (_arg_1.pathPos >= _arg_1.GetPath().pathLenX20000)
+                        {
+                            _local_22 = 0;
+                            _local_23 = 0;
+                            _local_24 = 0;
+                            if (((_arg_1.GetGatheredResource() > 0) || (_local_7.amountRemoved == 0)))
+                            {
+                                _local_22 = ((_local_7.amountRemoved == 0) ? 1 : _local_7.amountRemoved);
+                                _local_23 = _local_8.GetResourceInputFactor();
+                                _local_24 = _local_8.GetResourceOutputFactor();
+                            }
+                            else
+                            {
+                                if (_arg_1.GetGatheredResource() == 0)
+                                {
+                                    if (!((!(_arg_1.GetResourceCreationDefinition().externalResource_string == null)) && (_arg_1.GetResourceCreationDefinition().externalResource_string.length > 0)))
+                                    {
+                        {
+                            _local_22 = 0;
+                            _local_23 = 0;
+                            _local_24 = 0;
+                            if (((_arg_1.GetGatheredResource() > 0) || (_local_7.amountRemoved == 0)))
+                            {
+                                _local_22 = ((_local_7.amountRemoved == 0) ? 1 : _local_7.amountRemoved);
+                                _local_23 = _local_8.GetResourceInputFactor();
+                                _local_24 = _local_8.GetResourceOutputFactor();
+                            }
+                            else
+                            {
+                                if (_arg_1.GetGatheredResource() == 0)
+                                {
+                                    if (!((!(_arg_1.GetResourceCreationDefinition().externalResource_string == null)) && (_arg_1.GetResourceCreationDefinition().externalResource_string.length > 0)))
+                                    {
+                                        _arg_1.SetGatheredResource(1);
+                                        _local_22 = _local_7.amountRemoved;
+                            _local_22 = 0;
+                            _local_23 = 0;
+                            _local_24 = 0;
+                            if (((_arg_1.GetGatheredResource() > 0) || (_local_7.amountRemoved == 0)))
+                            {
+                                _local_22 = ((_local_7.amountRemoved == 0) ? 1 : _local_7.amountRemoved);
+                                _local_23 = _local_8.GetResourceInputFactor();
+                                _local_24 = _local_8.GetResourceOutputFactor();
+                            }
+                            else
+                            {
+                                if (_arg_1.GetGatheredResource() == 0)
+                                {
+                                    if (!((!(_arg_1.GetResourceCreationDefinition().externalResource_string == null)) && (_arg_1.GetResourceCreationDefinition().externalResource_string.length > 0)))
+                                    {
+                                        _arg_1.SetGatheredResource(1);
+                                        _local_22 = _local_7.amountRemoved;
+                                        _local_23 = _local_8.GetResourceInputFactor();
+                            {
+                                if (_arg_1.GetGatheredResource() == 0)
+                                {
+                                    if (!((!(_arg_1.GetResourceCreationDefinition().externalResource_string == null)) && (_arg_1.GetResourceCreationDefinition().externalResource_string.length > 0)))
+                                    {
+                                        _arg_1.SetGatheredResource(1);
+                                        _local_22 = _local_7.amountRemoved;
+                                        _local_23 = _local_8.GetResourceInputFactor();
+                                        _local_24 = _local_8.GetResourceOutputFactor();
+                                    };
+                                };
+                            };
+                            _local_22 = (_local_22 * _local_24);
+                            if (_local_7.necessaryResources_vector.length > 0)
+                            {
+                                if (this.mResourceCreationResources.HasPlayerResourcesInList(_local_7.necessaryResources_vector, _local_23))
+                                {
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_WORKING);
+                                if (_arg_1.GetGatheredResource() == 0)
+                                {
+                                    if (!((!(_arg_1.GetResourceCreationDefinition().externalResource_string == null)) && (_arg_1.GetResourceCreationDefinition().externalResource_string.length > 0)))
+                                    {
+                                        _arg_1.SetGatheredResource(1);
+                                        _local_22 = _local_7.amountRemoved;
+                                        _local_23 = _local_8.GetResourceInputFactor();
+                                        _local_24 = _local_8.GetResourceOutputFactor();
+                                    };
+                                };
+                            };
+                            _local_22 = (_local_22 * _local_24);
+                            if (_local_7.necessaryResources_vector.length > 0)
+                            {
+                                if (this.mResourceCreationResources.HasPlayerResourcesInList(_local_7.necessaryResources_vector, _local_23))
+                                {
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_WORKING);
+                                    _local_25 = this.mResourceCreationResources.AddResource(_local_7.defaultSetting.resourceName_string, _local_22, ModifyReason.RESOURCE_CREATION, null);
+                            {
+                                _local_26 = int((_local_26 + ((_local_33.getRecruitingTime() - 100) / 100)));
+                            };
+                        };
+                        _local_26 = Math.max(_local_26, 1);
+                        _arg_1.pathPos = (_arg_1.pathPos + (_arg_2 * _local_26));
+                        _local_32 = (_local_7.amountRemoved * 1000);
+                        if (_arg_1.pathPos >= _local_32)
+                        {
+                            _arg_1.pathPos = (_arg_1.pathPos - _local_32);
+                            this.mResourceCreationResources.AddResource(_local_7.defaultSetting.resourceName_string, 1, ModifyReason.RESOURCE_CREATION, null);
+                            _arg_1.mDirtyIndicator = (_arg_1.mDirtyIndicator | DIRTY_INDICATOR.MODIFIED_BIT);
+                        };
+                    };
+                };
+            };
+            return (INCREASE_RESOURCE_RESULT_OK);
+        }

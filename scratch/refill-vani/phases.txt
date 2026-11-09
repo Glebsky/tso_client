@@ -1,0 +1,123 @@
+case cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_STOREHOUSE_TO_RESOURCECREATIONHOUSE:
+                        this.mGeneralInterface.mCurrentPlayer.notifyPropertyObserver(cResourceCreation.RESOURCE_CREATION, _arg_1);
+                        this.mGeneralInterface.mCurrentPlayer.notifyPropertyObserver(cResourceCreation.RESOURCE_CREATION_APPLY_MODIFIERS, _arg_1);
+                        this.mGeneralInterface.channels.PRODUCTION.send(PRODUCTION_VALUES, _arg_1.GetResourceCreationHouse());
+                        if (_local_7 == null)
+                        {
+                            return (INCREASE_RESOURCE_RESULT_OK);
+                        };
+                        _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_RESOURCE_PATH);
+                        _arg_1.pathPos = (_arg_1.pathPos + (_arg_2 * SETTLER_WALK_SPEED_INT));
+                        if (_arg_1.pathPos >= _arg_1.GetPath().pathLenX10000)
+                        {
+                            if (_arg_1.GetStoreHouse() == null)
+                            {
+                                return (INCREASE_RESOURCE_SET_SETTLER_TO_IDLE);
+                            };
+                            _local_4 = int(((_arg_1.pathPos - _arg_1.GetPath().pathLenX10000) / SETTLER_WALK_SPEED_INT));
+                            _local_11 = _arg_1.pathPos;
+                            _arg_1.pathPos = _arg_1.GetPath().pathLenX10000;
+                            _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_RESOURCE_CREATION_HOUSE);
+                            _local_8.mStartWorkCounter = _local_4;
+                            _local_8.notifyPropertyObserver(DEPOSIT_WORK_BEGIN, _local_8);
+                            if (_local_7.externalResource_string != "")
+                            {
+                                _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_WORKYARD_EXTERNAL_WORKYARD_SYSTEM_ACTIVE);
+                            }
+                            else
+                            {
+                                _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_WORKYARD_LOCAL_WORKYARD_SYSTEM);
+                            };
+                        };
+                        break;
+case cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_WORKYARD_EXTERNAL_WORKYARD_SYSTEM_ACTIVE:
+                        _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_RESOURCE_CREATION_HOUSE);
+                        _local_8.mStartWorkCounter = (_local_8.mStartWorkCounter + _arg_2);
+                        if (_local_8.mStartWorkCounter >= 0)
+                        {
+                            if (((!(_local_8.IsProductionActive())) || (_local_8.IsProductionLevelTooLow())))
+                            {
+                                _local_8.mStartWorkCounter = -(defines.PRODUCTION_STOP_WAITTIME);
+                                if (_local_8.IsProductionLevelTooLow())
+                                {
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_UPGRADELEVEL_TOO_LOW);
+                                }
+                                else
+                                {
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_STOPPED_PRODUCTION);
+                                };
+                                break;
+                            };
+                            if (_local_8.IsUpgradeInProgress())
+                            {
+                                _local_8.mStartWorkCounter = -(defines.PRODUCTION_STOP_WAITTIME);
+                                break;
+                            };
+                            _local_4 = _local_8.mStartWorkCounter;
+                            if (this.SearchForNearestDepositFast(_arg_1))
+                            {
+                                _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_WORKING);
+                                _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_RESOURCECREATIONHOUSE_TO_EXTERNAL_RESOURCE);
+                                _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_DEPOSIT_PATH);
+                                _arg_1.pathPos = (_local_4 * SETTLER_WALK_SPEED_INT);
+                            }
+                            else
+                            {
+                                _local_8.mStartWorkCounter = -(defines.PRODUCTION_STOP_WAITTIME);
+                                if (_local_8.GetGOContainer().mShowMissingResources)
+                                {
+                                    this.TrackMissingResources(_arg_1, 0);
+                                    _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_ERROR_NECESSARY_RESOURCE_MISSING);
+                                };
+                                break;
+                            };
+                        };
+                        break;
+case cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_RESOURCECREATIONHOUSE_TO_EXTERNAL_RESOURCE:
+                        if (_local_7 == null)
+                        {
+                            return (INCREASE_RESOURCE_RESULT_OK);
+                        };
+                        _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_DEPOSIT_PATH);
+                        _arg_1.pathPos = (_arg_1.pathPos + (_arg_2 * SETTLER_WALK_SPEED_INT));
+                        if (_arg_1.GetDepositPath() == null)
+                        {
+                            cLog.warning(("Deposit path is null ! " + _arg_1));
+                            mComputeResourceCreationLogZone = true;
+                            this.ErrorResetResourceCreation(_arg_1);
+                            break;
+                        };
+                        if (_arg_1.pathPos >= _arg_1.GetDepositPath().pathLenX10000)
+                        {
+                            if (_arg_1.GetStoreHouse() == null)
+                            {
+                                return (INCREASE_RESOURCE_SET_SETTLER_TO_IDLE);
+                            };
+                            _local_4 = int(((_arg_1.pathPos - _arg_1.GetDepositPath().pathLenX10000) / SETTLER_WALK_SPEED_INT));
+                            _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_EXTERNAL_DEPOSIT);
+                            _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_EXTERNAL_WORKYARD);
+                            _local_8.mStartWorkCounter = _local_4;
+                            _local_3 = this.mGeneralInterface.mCurrentPlayerZone.mStreetDataMap.mDepositContainer.get(_arg_1.GetDepositBuildingGridPos());
+                            if (_local_3 != null)
+                            {
+                                _local_3.notifyPropertyObserver(DEPOSIT_WORK_BEGIN, _local_8);
+                            };
+                        };
+                        break;
+case cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_EXTERNAL_RESOURCE_TO_RESOURCECREATIONHOUSE:
+                        _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_DEPOSIT_PATH);
+                        _arg_1.pathPos = (_arg_1.pathPos + (_arg_2 * SETTLER_WALK_SPEED_INT));
+                        _local_21 = 0;
+                        if (_arg_1.GetDepositPath() != null)
+                        {
+                            _local_21 = _arg_1.GetDepositPath().pathLenX20000;
+                        };
+                        if (_arg_1.pathPos >= _local_21)
+                        {
+                            _local_4 = int(((_arg_1.pathPos - _local_21) / SETTLER_WALK_SPEED_INT));
+                            _arg_1.pathPos = (_arg_1.GetPath().pathLenX10000 + (_local_4 * SETTLER_WALK_SPEED_INT));
+                            _arg_1.SetWorkingSettlerCarries();
+                            _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_SETTLER_WALKS_FROM_RESOURCECREATIONHOUSE_TO_STOREHOUSE);
+                            _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_WALKING_ON_RESOURCE_PATH);
+                        };
+                        break;

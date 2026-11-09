@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+      
+   <quest name="BuffAdv_TF_Introduction_Main1" specialType="firstQuestlastQuest" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0" howQuestWindow="false">
+		<triggers>
+			<questcomplete item="BuffAdv_TF_Introduction_Sub1"/> 	
+			<questcomplete item="BuffAdv_TF_Introduction_Sub2"/> 	
+			<questcomplete item="BuffAdv_TF_Introduction_Sub3"/> 	
+			<questcomplete item="BuffAdv_TF_Introduction_Sub4"/> 			
+		</triggers>
+		<postrequisits />
+    </quest>
+
+	<quest name="BuffAdv_TF_Introduction_Sub1" connectedToQuest="BuffAdv_TF_Introduction_Main1" type="Story" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0" >
+		<startcondition>
+		</startcondition>
+		<preeffects>
+        </preeffects>
+		  <triggers>
+			<trigger type="Building" name="Banditsleader_Adventure" condition="l" amount="1"/>		
+		  </triggers>
+   </quest>
+
+	<quest name="BuffAdv_TF_Introduction_Sub2" connectedToQuest="BuffAdv_TF_Introduction_Main1" type="Story" icon="BattleBuffHurt_BuffAd_Gate" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		</startcondition>
+		<preeffects>
+        </preeffects>
+		<triggers>
+			<trigger type="Building" name="BigWatchtower_Closed" condition="l" amount="1" locaExtension="TF_Intro"/>
+			<buildingdestroyed item="BigWatchtower" min="3" locaExtension="TF_Intro_Watchtowers" />	
+		</triggers>
+   </quest>
+   
+    <quest name="BuffAdv_TF_Introduction_Sub3" connectedToQuest="BuffAdv_TF_Introduction_Main1" type="Story" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAdv_TF_Introduction_Sub1"/>
+		   <questcomplete item="BuffAdv_TF_Introduction_Sub2"/>
+		</startcondition>
+		<triggers>
+			<!--trigger type="Building" name="Banditsleader_Residence" condition="l" amount="1" locaExtension="TF_Intro" /-->
+			<trigger type="Building" name="Banditsleader_Residence_ClueDrop" condition="l" amount="1" locaExtension="TF_Intro" />
+		</triggers>		  
+   </quest>
+   
+    <quest name="BuffAdv_TF_Introduction_Sub4" connectedToQuest="BuffAdv_TF_Introduction_Main1" type="Story" icon="EffectBuffTreasureFleetReportLow" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAdv_TF_Introduction_Sub3"/>
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="BuffAd_ValuableIntel_Quest1" />
+        </preeffects>
+		  <triggers>
+			<questcomplete item="BuffAdv_TF_Introduction_ClickResidence" locaExtension="ClickClueResidence" />
+			<buffowned item="EffectBuffTreasureFleetReportLow" min="1"/>	
+			<questcomplete item="BuffAdv_TF_Introduction_SpawnShip1" locaExtension="SpawnAtLeastOneTreasureShip" />
+			<buildingdestroyed item="TreasureShip" min="1" locaExtension="TF_Intro_Ship" />
+		  </triggers>
+   </quest>
+   
+   <quest name="BuffAdv_TF_Introduction_ClickResidence" showQuestWindow="false" showRewardWindow="false" >   
+		<startcondition>
+		</startcondition>
+		<triggers>		
+			<buildingdestroyed item="DummyBuildingCollectibleClue_EpicResidence" min="1" />
+		</triggers>
+	</quest>
+
+   <quest name="BuffAdv_TF_Introduction_SpawnShip1" showQuestWindow="false" showRewardWindow="false" >
+		<startcondition>
+		   <!--questactive item="BuffAdv_TF_Introduction_Main1"/-->
+		</startcondition>
+		<triggers>
+           <buffappliedonadventure min="1" item="EffectBuffTreasureFleetReportLow"/>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TreasureShip" mode="enemy" action="ignoreBlocking,spawnInstant,replace" x="38" y="26" units="KingdomRecruit|50,TreasureShipLoot|1" />
+		</posteffects>	
+	</quest>
+	<quest name="BuffAdv_TF_Introduction_SpawnShip2" showQuestWindow="false" showRewardWindow="false" >
+		<startcondition>
+		</startcondition>
+		<triggers>
+           <buffappliedonadventure min="2" item="EffectBuffTreasureFleetReportLow"/>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TreasureShip" mode="enemy" action="ignoreBlocking,spawnInstant,replace" x="40" y="22" units="KingdomRecruit|50,TreasureShipLoot|1" />
+		</posteffects>	
+	</quest>
+	<quest name="BuffAdv_TF_Introduction_ShipAchievement" showQuestWindow="false" showRewardWindow="false" notifyHomeZone="true">
+		<startcondition>
+			<questcomplete item="BuffAdv_TF_Introduction_SpawnShip2"/>
+		</startcondition>
+		<triggers>
+           <onmap item="TreasureShip" min="0"/>
+		</triggers>
+		<posteffects>
+		</posteffects>	
+	</quest>
+     
+</Root>
+
+    
+    
+      
+      
+      
+      
+
+

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+
+	 <quest name="XMASEventCookieAdv" specialType="firstQuestlastQuest" icon="ChristmasResource" npc="quest_character_fakesanta.png">
+		<triggers>
+			<buildingdestroyed min="3" item="xmas_buffhouse_1" locaExtension="xmas" />
+			<buildingdestroyed min="3" item="xmas_buffhouse_2" locaExtension="xmas" />
+			<buildingdestroyed min="3" item="xmas_buffhouse_3" locaExtension="xmas" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="200"/>        
+		</rewards>
+		<posteffects>
+		</posteffects>
+		<postrequisits />
+    </quest>
+	
+</Root>

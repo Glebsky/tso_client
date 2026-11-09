@@ -1,0 +1,1712 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<Root>
+    
+    	<!--
+    
+    	// name = Name of Quest
+    	// showQuestWindow="false"  = disable show Quest Window funktion
+    	// showRewardWindow="false"  = disable show Reward Window funktion
+	// colorSchema = use a colorschema could be "night" ,"oven","snow","colormod,radd,gadd,badd,rmul,gmul,bmul"
+	// specialType="firstQuest", this is the start of a quest series, will be aktivated when zone starts
+    	// active = false means quest is inactive
+    	
+    	<quests name="QuestName" colorSchema="night" specialType="firstQuest" active="true">
+    		// if all triggers true quest is finished 
+    		<triggers>
+    			// if Woodcutter exist onMap quest is finished (if amount is one, it could be ignored"
+    			<trigger type="Building" name="Woodcutter" condition="onMap" />
+    			// if Sawmill is created quest is finished
+    			<trigger type="Building" name="Sawmill" condition="created" />
+    			// if 2 Sawmill in map quest is finished
+    			<trigger type="Building" name="Sawmill" condition="ge" amount="2" />
+    			// if 100 Iron is created quest is finished ge means greater or equal
+    			<trigger type="Resource" name="Iron" condition="ge" amount="100" />
+    			// if 100 additional Iron is created quest is finished geDelta means greater or equal
+			// for example, if you have 120 iron at the start of the quest, you must have at least 220 to finish it
+    			<trigger type="Resource" name="Iron" condition="geDelta" amount="100" />
+				
+				//Trigger Events: If trigger completion shall trigger further events (besides quest progress) enter the "onComplete" property with these possible comma-seperated values (NO WHITESPACES!):
+				<trigger type="Building" condition="selected" onComplete="destroySelectedBuilding,doSomethingElse"/> //Destroys the current selected Building and is doint things:)
+    		</triggers>
+    		
+    		// Player Rewards
+    		<rewards>
+    			// Player gets 100 iron
+    			<reward type="Resource" name="Iron" amount="100" />
+    			// Player gets 200 XP
+    			<reward type="XP" amount="200" />
+    		</rewards>
+    		
+    		// postrequisits is called after player gets his rewards 
+    		// startQuest is the name of the quest to start
+    		// Delay is Delay in seconds before quest starts
+    		<postrequisits startQuest="Quest2" startDelay="10" />
+			
+			// Hints (Red bouncing arrow)
+			<hints>
+				// name:       not used yet, will be used as text identifier for hint texts
+				// pointTo:    UI Element which is pointed to
+				//   		   available values:
+				//                 ActionBarButton01
+				//                 ActionBarButton02
+				//                 ActionBarButton03
+				//                 ActionBarButton04
+				//                 ActionBarButton05
+				//                 ActionBarButton06
+				//                 ActionBarButton07
+				//                 ActionBarButton08
+				//                 ActionBarButton09
+				//                 QuestButton
+				// offsetX:    x-offset in pixels from the center of the ui element
+				// offsetY:    y-offset in pixels from the center of the ui element
+				// direction:  direction the arrow will point to
+				//             available values: N, NE, E, SE, S, SW, W, NW
+				<hint name="FirstBuildMenu" pointTo="ActionBarButton01" offsetX="0" offsetY="-40" direction="S" />
+			</hints>
+			
+    	</quests>
+    	
+    	-->
+ 		
+
+
+      <!-- PLAYER LEVEL 1 -->
+           
+    
+      <!-- PLAYER LEVEL 2 -->
+ 
+      <quest name="TutBonusWood" type="Side" icon="Resources" npc="quest_character_mentor03.png" showRewardWindow="true" >            
+        <startcondition>
+          <playerlevel min="2" max="3"/>
+          <onmap item="WoodCutter" min="1"/>    
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Wood" amount="3" condition="produce"/>
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Stone" amount="30" />                
+        </posteffects>
+      </quest>
+      
+      <!-- PLAYER LEVEL 3 -->
+      
+      <quest name="TutBonusPlanks" type="Side" icon="Resources" npc="quest_character_mentor03.png" showRewardWindow="true" >            
+        <startcondition>
+          <playerlevel min="3" max="3"/>
+          <onmap item="Sawmill" min="1"/>    
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Plank" amount="3" condition="produce"/>
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Wood" amount="20" />                
+        </posteffects>
+      </quest>
+
+      <quest name="TutBonusResourceBuff" type="Side" icon="Resources" npc="quest_character_mentor03.png" showRewardWindow="true" >            
+        <startcondition>
+          <playerlevel min="3" max="4"/>
+          <click item="GAMESTATE_ID_TOOLBOX_PANEL.Tavern" />     
+        </startcondition>
+        <preeffects>
+          <sendmail name="Theodor" item="TutBonusResourceBuffLetter"/>
+          <reward type="Buff" item="AddResource" name="Plank" amount="50"/>
+          <reward type="Buff" item="AddResource" name="Wood" amount="30"/>
+          <reward type="Buff" item="AddResource" name="Stone" amount="80"/>
+          <hint pointTo="GAMESTATE_ID_STAR_MENU.Plank" type="Glow"/>
+          <hint pointTo="GAMESTATE_ID_STAR_MENU.Wood" type="Glow"/>
+          <hint pointTo="GAMESTATE_ID_STAR_MENU.Stone" type="Glow"/>
+        </preeffects>
+        <helpeffects>
+           <hint pointTo="GAMESTATE_ID_ACTIONBAR.actionBarRight.btnActionBar06" type="Glow"/>
+           <hint pointTo="GAMESTATE_ID_ACTIONBAR.actionBarCenter.btnActionBar04" type="Glow" effectDelay="5000"/>
+        </helpeffects>
+        <triggers>
+           <trigger type="RefillBuff" name="Plank" condition="consume" amount="1"/>
+           <trigger type="RefillBuff" name="Wood" condition="consume" amount="1"/>
+           <trigger type="RefillBuff" name="Stone" condition="consume" amount="1"/>
+			<windowopen item="GAMESTATE_ID_MAIL_WINDOW"/>
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Coin" amount="10"/>               
+        </posteffects>
+      </quest>
+      
+      <!-- PLAYER LEVEL 4 -->    	
+      
+      <quest name="TutBonusTavern" type="Side" icon="Building" npc="quest_character_mentor03.png" showRewardWindow="true" >            
+        <startcondition>
+          <playerlevel min="4" max="15"/>
+          <questcomplete item="TutBonusResourceBuff"/>
+          <questactive item="TutTavernNew" />     
+        </startcondition>
+        <preeffects>
+          <hint pointTo="GAMESTATE_ID_BUILD_QUEUE.Tavern" type="Glow"/>
+          <reward type="Resource" name="HardCurrency" amount="10"/>
+        </preeffects>
+        <triggers>
+          <trigger type="Shopitem" name="8000" condition="bought" amount="1"/>
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Plank" amount="20"/>
+          <reward type="Resource" name="HardCurrency" amount="20"/>                
+        </posteffects>
+      </quest> 
+      
+      <!-- PLAYER LEVEL 5 -->
+      
+      <quest name="TutBonusStoneDeposit" type="Side" icon="Resources" npc="quest_character_mentor03.png" helpName="Help_window_deposit_0" showRewardWindow="true" >            
+        <startcondition>
+          <playerlevel min="5" max="5"/>
+          <questcomplete item="TutGeologistNew"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Specialist" name="Stone" condition="foundDeposit" amount="1"/>
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Stone" amount="30" />               
+        </posteffects>
+      </quest>
+      
+      <quest name="TutBonusPurchaseGeologist" type="Side" icon="Resources" npc="quest_character_mentor03.png" showRewardWindow="true" >            
+        <startcondition>
+          <playerlevel min="5" max="7"/>
+          <questactive item="TutGeologistNew"/>
+          <click item="GAMESTATE_ID_SPECIALIST_PANEL.btnFindDepositStone"/>     
+        </startcondition>
+        <preeffects>
+          <reward type="Resource" name="HardCurrency" amount="25"/>
+        </preeffects>
+        <helpeffects>
+          <hint pointTo="GAMESTATE_ID_ACTIONBAR.actionBarCenter.btnActionBar04" type="Glow"/>
+          <hint pointTo="GAMESTATE_ID_STAR_MENU.Geologist" type="Glow"/>
+          <hint pointTo="SPECIALIST_COOLDOWN_PANEL.btnPay" type="Glow"/>
+        </helpeffects>
+        <triggers>
+           <trigger type="Shopitem" name="8005" condition="bought" amount="1"/>
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="HardCurrency" amount="30"/>              
+        </posteffects>
+      </quest>
+
+      <!-- PLAYER LEVEL 6 -->
+      
+      <quest name="TutBonusBuildingQueue" type="Side" icon="Resources" npc="quest_character_mentor03.png" showRewardWindow="true" >            
+        <startcondition>
+          <playerlevel min="6" max="10"/>
+          <buildingqueue min="3" />     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<click item="BuildingQueueUp"/>
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Fish" amount="10" />               
+        </posteffects>
+      </quest>
+      
+      <quest name="TutBonusMoreMasons" type="Side" icon="Resources" npc="quest_character_mentor03.png" showRewardWindow="true" >            
+        <startcondition>
+          <playerlevel min="6" max="10"/>
+          <onmap item="Mason" min="3" />    
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<click item="TrackQuest"/>
+			<click item="PinToolbox"/>
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Fish" amount="10" />               
+        </posteffects>
+      </quest>
+      
+      <!-- PLAYER LEVEL 7 -->
+      
+      <quest name="TutBonusStone" type="Side" icon="Resources" npc="quest_character_mentor03.png" showRewardWindow="true" >            
+        <startcondition>
+          <playerlevel min="7" max="10"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Stone" amount="5" condition="produce"/>
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Fish" amount="10" />               
+        </posteffects>
+      </quest>
+      
+      <!-- PLAYER LEVEL 8 -->
+      
+      <quest name="TutBonusProductionTime" type="Side" icon="Building" npc="quest_character_mentor03.png" showRewardWindow="true" >            
+        <startcondition>
+          <playerlevel min="8" max="8"/>    
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <helpeffects>
+          <hint pointTo="GAMESTATE_ID_BUILDING_INFO_PANEL.Sawmill.Details" type="Glow"/>
+        </helpeffects>
+        <triggers>
+			<buildingselected item="Sawmill" min="1" />
+			<click item="GAMESTATE_ID_BUILDING_INFO_PANEL.Sawmill.Details"/>
+			<productiontime item="Sawmill" max="250" />  
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Plank" amount="30" />               
+        </posteffects>
+      </quest>
+      
+      <quest name="TutBonusBuffs" type="Side" icon="Resources" npc="quest_character_mentor03.png" helpName="Help_window_functionality_production_buff_0" showRewardWindow="true" >            
+        <startcondition>
+          <playerlevel min="8" max="18"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<buildingselected item="ProvisionHouse" min="1" />
+			<buffproduced item="ProductivityBuffLvl1" min="3" />
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Stone" amount="30" />               
+        </posteffects>
+      </quest>
+      
+      <quest name="TutBonusFishProduction" type="Side" icon="Resources" npc="quest_character_mentor03.png" showRewardWindow="true" >            
+        <startcondition>
+          <playerlevel min="8" max="10"/>       
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Fish" amount="3" condition="produce"/>
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Plank" amount="30" />               
+        </posteffects>
+      </quest>
+
+      <!-- PLAYER LEVEL 9 -->
+      
+      <quest name="TutBonusCopperMine" type="Side" icon="Building" npc="quest_character_mentor03.png" showRewardWindow="true" >            
+        <startcondition>
+          <playerlevel min="9" max="15"/>
+          <onmap item="BronzeMine" min="1"/>    
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <helpeffects>
+          <hint pointTo="GAMESTATE_ID_BUILDING_INFO_PANEL.BronzeMine.Details" type="Glow"/>
+        </helpeffects>
+        <triggers>
+			<buildingselected item="BronzeMine" min="1" />
+			<click item="GAMESTATE_ID_BUILDING_INFO_PANEL.BronzeMine.Details"/>
+			<productiontime item="BronzeMine" max="250" />
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Plank" amount="50" />               
+        </posteffects>
+      </quest>
+
+      <!-- PLAYER LEVEL 10 -->
+      
+      <quest name="TutBonusCopperDeposit" type="Side" icon="Resources" npc="quest_character_mentor03.png" helpName="Help_window_deposit_0" showRewardWindow="true" >            
+        <startcondition>
+          <playerlevel min="10" max="20"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Specialist" name="BronzeOre" condition="foundDeposit" amount="1"/>
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Stone" amount="30" />                              
+        </posteffects>
+      </quest>
+      
+      <quest name="TutBonusAddFriend" type="Side" icon="Social" npc="quest_character_mentor03.png" helpName="Help_window_invite_a_friend_0" showRewardWindow="true" >            
+        <startcondition>
+          <playerlevel min="10" max="10"/>      
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+          <trigger type="Friends" name="addFriendToFriendList" condition="addfriends" amount="1"/>
+        </triggers>
+        <posteffects>              
+          <reward type="Resource" name="Plank" amount="30" />
+          <reward type="Resource" name="Stone" amount="30" />
+          <reward type="Resource" name="Coin" amount="20" />  
+        </posteffects>
+      </quest>
+      
+    	<quest name="TutBonusVisitFriend" type="Side" icon="Social" npc="quest_character_mentor03.png" showRewardWindow="true" >            
+        <startcondition>
+          <playerlevel min="10" max="20"/>    
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="FriendVisit" name="VisitFriend" condition="visited" amount="1" />
+        </triggers>
+        <posteffects>     
+          <reward type="Resource" name="Plank" amount="30" />              
+        </posteffects>
+      </quest>
+
+      <!-- PLAYER LEVEL 11 -->
+      
+      <quest name="TutBonusCoal" type="Side" icon="Resources" npc="quest_character_mentor03.png" showRewardWindow="true" >            
+        <startcondition>
+          <playerlevel min="11" max="11"/>
+          <onmap item="CokingPlant" min="1"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Coal" amount="5" condition="produce"/>
+           <trigger type="PayForQuestFinish" name="Coal" amount="5" />
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Coin" amount="10" />               
+        </posteffects>
+      </quest>
+
+      <!-- PLAYER LEVEL 12 -->
+      
+      <quest name="TutBonusTools" type="Side" icon="Resources" npc="quest_character_mentor03.png" showRewardWindow="true" >            
+        <startcondition>
+          <playerlevel min="12" max="12"/>
+          <onmap item="Toolmaker" min="1" />     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Tool" amount="5" condition="produce"/>
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Stone" amount="30" />     
+        </posteffects>
+      </quest>
+      
+      <quest name="TutBonusBuffFriend" type="Side" icon="Social" npc="quest_character_mentor03.png" showRewardWindow="true" >            
+        <startcondition>
+          <playerlevel min="12" max="12"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="BuffOnFriend" name="" condition="geDelta" amount="1"/>
+        </triggers>
+        <posteffects> 
+          <reward type="Resource" name="Plank" amount="30" />               
+        </posteffects>
+      </quest>
+
+      <!-- PLAYER LEVEL 13 -->
+
+      <!-- PLAYER LEVEL 14 -->
+      
+      <quest name="TutBonusFarmfield" type="Side" icon="Building" npc="quest_character_geologist01.png" showRewardWindow="true" >            
+        <startcondition>
+          <playerlevel min="14" max="14"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<onmap item="Farmfield" min="3"/>
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="BronzeSword" amount="20" />      
+        </posteffects>
+      </quest>
+      
+      <quest name="TutBonusWell" type="Side" icon="Building" npc="quest_character_geologist01.png" showRewardWindow="true" >            
+        <startcondition>
+          <playerlevel min="14" max="14"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<onmap item="Well" min="2"/>
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Stone" amount="80" />               
+        </posteffects>
+      </quest>
+      
+      <quest name="TutBonusBuffWellFarm" type="Side" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" >            
+        <startcondition>
+          <playerlevel min="14" max="20"/>
+          <onmap item="Well" min="2" /> 
+          <onmap item="Farm" min="2" />     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<buffapplied min="2" target="Farm"/>
+			<buffapplied min="2" target="Well"/>
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Stone" amount="40" /> 
+          <reward type="Resource" name="Plank" amount="40" />                
+        </posteffects>
+      </quest>
+
+      <!-- PLAYER LEVEL 15 -->
+      
+      <quest name="TutBonusFarms" type="Side" icon="Building" npc="quest_character_geologist01.png" showRewardWindow="true" >            
+        <startcondition>
+          <playerlevel min="15" max="25"/>
+          <onmap item="Farmfield" min="3"/>      
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<onmap item="Farm" min="2"/>
+        </triggers>
+        <posteffects>  
+          <reward type="Resource" name="Beer" amount="50" />                   
+        </posteffects>
+      </quest>
+       
+    	<quest name="TutBonusWheat" type="Side" icon="Resources" npc="quest_character_general01.png" showRewardWindow="true" >            
+        <startcondition>
+          <playerlevel min="15" max="25"/>
+          <onmap item="Farm" min="2"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Corn" amount="5" condition="produce"/>
+        </triggers>
+        <posteffects> 
+          <reward type="Resource" name="Stone" amount="50" />                      
+        </posteffects>
+      </quest>
+      
+      <quest name="TutBonusPopulation1" type="Side" icon="Resources" npc="quest_character_mentor03.png" helpName="Help_window_population_0" showRewardWindow="true" >            
+        <startcondition>
+          <playerlevel min="15" max="40"/>
+          <population item="free" max="2" />   
+        </startcondition>
+        <preeffects>
+		      <reward type="Resource" name="Bread" amount="100" />   
+        </preeffects>
+        <helpeffects>
+          <hint pointTo="GAMESTATE_ID_TIMED_PRODUCTION_INFO_PANEL.Resources" type="Glow"/>
+        </helpeffects>
+        <triggers>
+			<click item="PopulationTooltip"/>
+			<buildingselected item="ProvisionHouse" min="1" />
+			<buffproduced item="AddResource_ConvertBreadToPopulationLvl2" min="5" />
+			<buffapplied item="AddResource" type="Population" min="5" locaExtension="addresource"/>
+        </triggers>
+        <posteffects> 
+          <reward type="Resource" name="Population" amount="10"/>
+          <reward type="Resource" name="Bread" amount="80" />                       
+        </posteffects>
+      </quest>
+  
+      <!-- PLAYER LEVEL 16 -->
+      
+      <quest name="TutBonusMoreWood" type="Side" icon="Resources" npc="quest_character_general01.png" showRewardWindow="true" questWinGemCosts="49">            
+        <startcondition>
+          <playerlevel min="16" max="16"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<resource item="Wood" min="100" />
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="10"/>
+          <reward type="Resource" name="Plank" amount="80" />               
+        </posteffects>
+      </quest>
+      
+      <quest name="TutBonusTradeWeapons" type="Side" icon="Trade" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="49">            
+        <startcondition>
+          <playerlevel min="16" max="20"/>
+          <onmap item="BronzeWeaponsmith" min="1"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+          <trigger type="Resource" name="BronzeSword" condition="buy" amount="500" />
+    			<trigger type="Resource" name="Tool" condition="buy" amount="500" />
+    			<trigger type="Resource" name="Beer" condition="buy" amount="500" />
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Coin" amount="50" />
+          <reward type="Resource" name="BronzeOre" amount="50" />
+          <reward type="XP" amount="10"/>              
+        </posteffects>
+      </quest>
+      
+      <!-- PLAYER LEVEL 17 -->
+      
+      <quest name="TutBonusTradeStone" type="Side" icon="Trade" npc="quest_character_geologist01.png" showRewardWindow="true" questWinGemCosts="49">            
+        <startcondition>
+          <playerlevel min="17" max="17"/>   
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Stone" condition="sell" amount="200"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="20"/>
+          <reward type="Resource" name="Bread" amount="100" />           
+        </posteffects>
+      </quest>
+
+      <!-- PLAYER LEVEL 18 -->
+
+      <quest name="TutBonusRealwoodPlanks" type="Side" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" questWinGemCosts="49">      
+        <startcondition>
+          <playerlevel min="18" max="18"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<resource item="RealPlank" min="200"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="20"/>               
+          <reward type="Resource" name="Bow" amount="20" />         
+        </posteffects>
+      </quest>
+      
+      <quest name="TutBonusBuffLvl1" type="Side" icon="Resources" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="49">            
+        <startcondition>
+          <playerlevel min="18" max="18"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<buffproduced item="ProductivityBuffLvl2" min="10" />
+			<buffapplied item="ProductivityBuffLvl2" min="2" />
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="20"/>  
+          <reward type="Resource" name="Stone" amount="100" />                      
+        </posteffects>
+      </quest>
+ 
+      <!-- PLAYER LEVEL 19 -->
+      
+      <quest name="TutBonusBow" type="Side" icon="Resources" npc="quest_character_general01.png" showRewardWindow="true" questWinGemCosts="49">            
+        <startcondition>
+          <playerlevel min="19" max="28"/>
+          <onmap item="Bowmaker" min="1"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Bow" amount="10" condition="produce"/>
+           <trigger type="PayForQuestFinish" name="Bow" amount="10" />
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="70"/> 
+          <reward type="Resource" name="Plank" amount="100" />                    
+        </posteffects>
+      </quest>
+      
+      <quest name="TutBonusMarbleDeposit" type="Side" icon="Resources" npc="quest_character_mentor03.png" helpName="Help_window_deposit_0" showRewardWindow="true" questWinGemCosts="49">            
+        <startcondition>
+          <playerlevel min="19" max="19"/>   
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Specialist" name="Marble" condition="foundDeposit" amount="1"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="20"/>
+          <reward type="Resource" name="BronzeSword" amount="20" />                        
+        </posteffects>
+      </quest>
+    	
+    	<quest name="TutBonusBuffFarm" type="Side" icon="Resources" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="49">            
+        <startcondition>
+          <playerlevel min="19" max="29"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<buffapplied item="ProductivityBuffLvl2" min="5" target="Farm"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="15"/>
+          <reward type="Resource" name="Flour" amount="20" />                
+        </posteffects>
+      </quest>
+
+      <!-- PLAYER LEVEL 20 -->
+      
+      <quest name="TutBonusIronDeposit" type="Side" icon="Resources" npc="quest_character_geologist01.png" helpName="Help_window_deposit_0" showRewardWindow="true" questWinGemCosts="49">            
+        <startcondition>
+          <playerlevel min="20" max="25"/>
+          <onmap item="IronMine" min="1"/>   
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Specialist" name="IronOre" condition="foundDeposit" amount="1"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="20"/>   
+          <reward type="Resource" name="Marble" amount="50" />                     
+        </posteffects>
+      </quest>
+      
+    	<quest name="TutBonusIronOre" type="Side" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" questWinGemCosts="49">            
+        <startcondition>
+          <playerlevel min="20" max="25"/>
+          <questcomplete item="TutBonusIronDeposit"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="IronOre" amount="50" condition="produce"/>
+			<onmap item="IronMine" min="2"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="20"/>   
+          <reward type="Resource" name="RealPlank" amount="100" />                    
+        </posteffects>
+      </quest>
+      
+      <quest name="TutBonusWell2" type="Side" icon="Building" npc="quest_character_geologist01.png" showRewardWindow="true" questWinGemCosts="49">            
+        <startcondition>
+          <playerlevel min="20" max="20"/>      
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<onmap item="Well_03" min="2"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="20"/>
+          <reward type="Resource" name="Corn" amount="50" />               
+        </posteffects>
+      </quest>
+      
+ 	    <quest name="TutBonusWater" type="Side" icon="Resources" npc="quest_character_general01.png" showRewardWindow="true" questWinGemCosts="49">            
+        <startcondition>
+          <playerlevel min="20" max="25"/>
+          <onmap item="Well_03" min="2"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Water" amount="100" condition="produce"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="10"/>
+          <reward type="Resource" name="Beer" amount="50" />               
+        </posteffects>
+      </quest>
+    	
+    	<quest name="TutBonusTradeWater" type="Side" icon="Trade" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="49">            
+        <startcondition>
+          <playerlevel min="20" max="20"/>   
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Water" condition="sell" amount="400"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="15"/>
+          <reward type="Resource" name="Marble" amount="50" />               
+        </posteffects>
+      </quest>
+
+      <!-- PLAYER LEVEL 21 -->
+      
+      <quest name="TutBonusBread" type="Side" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" questWinGemCosts="49">            
+        <startcondition>
+          <playerlevel min="21" max="25"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Bread" amount="80" condition="produce"/>
+           <trigger type="PayForQuestFinish" name="Bread" amount="40" />
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="40"/>
+          <reward type="Resource" name="RealPlank" amount="100" />               
+        </posteffects>
+      </quest>
+      
+ 	    <quest name="TutBonusAuntIrmasGiftBasket" type="Side" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" questWinGemCosts="49">            
+        <startcondition>
+          <playerlevel min="22" max="25"/>
+          <questcomplete item="TutBonusBread"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<buildingselected item="ProvisionHouse" min="1" />
+			<buffproduced item="ProductivityBuffLvl3" min="5"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="40"/>
+          <reward type="Resource" name="Corn" amount="50" />               
+        </posteffects>
+      </quest>
+
+      <!-- PLAYER LEVEL 22 -->
+    	
+    	<quest name="TutBonusRealwoodforester" type="Side" icon="Building" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="49">            
+        <startcondition>
+          <playerlevel min="22" max="22"/>    
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<onmap item="RealWoodForester" min="3"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="30"/>
+          <reward type="Resource" name="Meat" amount="150" />               
+        </posteffects>
+      </quest>
+    	
+    	<quest name="TutBonusBuffRealwoodCutter" type="Side" icon="Resources" npc="quest_character_general01.png" showRewardWindow="true" questWinGemCosts="49">            
+        <startcondition>
+          <playerlevel min="22" max="25"/>
+          <questcomplete item="TutBonusAuntIrmasGiftBasket"/>    
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<buffapplied item="ProductivityBuffLvl3" min="3" target="RealWoodCutter"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="30"/>
+          <reward type="Resource" name="Bread" amount="50" />               
+        </posteffects>
+      </quest>
+
+      <!-- PLAYER LEVEL 23 -->
+      
+      <quest name="TutBonusCoalDeposit" type="Side" icon="Resources" npc="quest_character_mentor03.png" helpName="Help_window_deposit_0" showRewardWindow="true" questWinGemCosts="49">            
+        <startcondition>
+          <playerlevel min="23" max="27"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Specialist" name="Coal" condition="foundDeposit" amount="1"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="10"/>
+          <reward type="Resource" name="BronzeOre" amount="50" />               
+        </posteffects>
+      </quest>
+      
+ 	    <quest name="TutBonusCoalmine" type="Side" icon="Building" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="49">            
+        <startcondition>
+          <playerlevel min="23" max="27"/>
+          <questcomplete item="TutBonusCoalDeposit"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<buildinglistupgradelevel min="1" amount="1" item="CoalMine,CoalMineEndless" name="EpicCoalMine" />
+           <trigger type="PayForQuestFinish" name="Coal" amount="50" />
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="10"/>
+          <reward type="Resource" name="Horse" amount="100" />               
+        </posteffects>
+      </quest>
+      
+      <quest name="TutBonusGoldDeposit" type="Side" icon="Resources" npc="quest_character_mentor03.png" helpName="Help_window_deposit_0" showRewardWindow="true" questWinGemCosts="49">            
+        <startcondition>
+          <playerlevel min="24" max="30"/>    
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Specialist" name="GoldOre" condition="foundDeposit" amount="1"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="10"/>
+          <reward type="Resource" name="GoldOre" amount="30" />               
+        </posteffects>
+      </quest>
+      
+ 	    <quest name="TutBonusCoinTrade" type="Side" icon="Trade" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="49">            
+        <startcondition>
+          <playerlevel min="23" max="30"/>
+          <questcomplete item="TutBonusGoldDeposit"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Coin" condition="buy" amount="400"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="15"/>
+          <reward type="Resource" name="Coal" amount="100" />               
+        </posteffects>
+      </quest>
+
+      <!-- PLAYER LEVEL 24 -->
+      
+      <quest name="TutBonusGainCoins" type="Side" icon="Resources" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="49">            
+        <startcondition>
+          <playerlevel min="24" max="30"/>
+          <questcomplete item="TutBonusCoinTrade"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<resource item="Coin" min="600" />
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="15"/>
+          <reward type="Resource" name="Coal" amount="100" />               
+        </posteffects>
+      </quest>
+      
+ 	    <quest name="TutBonusRaiseStockBread" type="Side" icon="Resources" npc="quest_character_general01.png" showRewardWindow="true" questWinGemCosts="49">            
+        <startcondition>
+          <playerlevel min="24" max="24"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+          <trigger type="Resource" name="Bread" amount="400" condition="geDelta"/>
+			<buffproduced item="AddResource_ConvertBreadToPopulationLvl3" min="25"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="20"/>
+          <reward type="Resource" name="Coin" amount="100" />                
+        </posteffects>
+      </quest>
+
+
+
+      <!-- PLAYER LEVEL 25 -->
+      
+      <quest name="TutBonusRaiseStockCoal" type="Side" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" questWinGemCosts="49">            
+        <startcondition>
+          <playerlevel min="25" max="25"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<resource item="Coal" min="1000"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="5"/>
+          <reward type="Resource" name="RealWood" amount="150" />               
+        </posteffects>
+      </quest>
+      
+    	<quest name="TutBonusGoldmine" type="Side" icon="Building" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="49">            
+        <startcondition>
+          <playerlevel min="25" max="25"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<buildinglistupgradelevel min="1" amount="1" item="GoldMine,GoldMineEndless" name="ArcticGoldMine,EpicGoldMine" locaExtension="GoldMine" />
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="10"/> 
+          <reward type="Resource" name="Longbow" amount="150"/>               
+        </posteffects>
+      </quest>
+
+      <!-- PLAYER LEVEL 26 -->
+      
+ 	    <quest name="TutBonusBattle" type="Side" icon="Military" npc="quest_character_fin01.png" showRewardWindow="true" questWinGemCosts="99">            
+        <startcondition>
+          <playerlevel min="26" max="40"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Adventure" name="TheIslandOfThePirates" amount="500" condition="l" squadUnitType="Recruit"/>
+           <trigger type="Adventure" name="Horseback" amount="500" condition="l" squadUnitType="Recruit"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="15"/>
+          <reward type="Resource" name="BronzeSword" amount="100" />
+          <reward type="Resource" name="Horse" amount="100" />               
+        </posteffects>
+      </quest>
+
+      <!-- PLAYER LEVEL 27 -->
+      
+      <quest name="TutBonusBuffSteelforge" type="Side" icon="Resources" npc="quest_character_general01.png" showRewardWindow="true" questWinGemCosts="99">            
+        <startcondition>
+          <playerlevel min="27" max="32"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<buffapplied item="ProductivityBuffLvl3" min="1" target="SteelForge"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="5"/>
+          <reward type="Resource" name="Iron" amount="100" />               
+        </posteffects>
+      </quest>
+      
+      <quest name="TutBonusSteel" type="Side" icon="Resources" npc="quest_character_general01.png" showRewardWindow="true" questWinGemCosts="99">            
+        <startcondition>
+          <playerlevel min="27" max="32"/>
+          <questcomplete item="TutBonusBuffSteelforge"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Steel" amount="200" condition="produce"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="5"/>
+          <reward type="Resource" name="RealPlank" amount="150" />
+          <reward type="Resource" name="Marble" amount="150" />               
+        </posteffects>
+      </quest>
+      
+ 	    <quest name="TutBonusSteelswords" type="Side" icon="Resources" npc="quest_character_fin01.png" showRewardWindow="true" questWinGemCosts="99">            
+        <startcondition>
+          <playerlevel min="27" max="32"/>
+          <questcomplete item="TutBonusSteel"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="SteelSword" amount="100" condition="produce"/>
+           <trigger type="PayForQuestFinish" name="SteelSword" amount="20" />
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="5"/>
+          <reward type="Resource" name="Coal" amount="200" />
+          <reward type="Resource" name="IronOre" amount="100" />               
+        </posteffects>
+      </quest>
+    	
+    	<quest name="TutBonusBuffGoldmine" type="Side" icon="Resources" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="99">            
+        <startcondition>
+          <playerlevel min="27" max="37"/>
+          <onmap item="GoldMine" min="1"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<buffapplied min="5" target="GoldMine"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="5"/>
+          <reward type="Resource" name="Bread" amount="100" />
+          <reward type="Resource" name="Sausage" amount="50" />               
+        </posteffects>
+      </quest>
+
+      <!-- PLAYER LEVEL 28 -->
+      
+      <quest name="TutBonusFarmUpgraded" type="Side" icon="Building" npc="quest_character_geologist01.png" showRewardWindow="true" questWinGemCosts="99">            
+        <startcondition>
+          <playerlevel min="28" max="28"/>     
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<buildinglistupgradelevel item="Farm,ImprovedFarm" min="3" amount="4"/>
+           <trigger type="Resource" name="Corn" amount="200" condition="produce"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="5"/>
+          <reward type="Resource" name="Water" amount="200" />
+          <reward type="Resource" name="Beer" amount="100" />               
+        </posteffects>
+      </quest>
+      
+ 	    <quest name="TutBonusGoldore" type="Side" icon="Resources" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="99">            
+        <startcondition>
+          <playerlevel min="28" max="37"/>
+          <questcomplete item="TutBonusBuffGoldmine"/>       
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="GoldOre" amount="200" condition="produce"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="5"/>
+          <reward type="Resource" name="BronzeSword" amount="150" />               
+        </posteffects>
+      </quest>
+
+      <!-- PLAYER LEVEL 29 -->
+      
+      <quest name="TutBonusAdventuresPlayed" type="Side" icon="Military" npc="quest_character_fin01.png" showRewardWindow="true" questWinGemCosts="99">            
+        <startcondition>
+          <playerlevel min="29" max="29"/>       
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Adventure" name="" condition="geDelta" amount="5" />
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="5"/>
+          <reward type="Resource" name="Longbow" amount="100" />
+          <reward type="Resource" name="Iron" amount="100" />               
+        </posteffects>
+      </quest>
+      
+ 	    <quest name="TutBonusBattle2" type="Side" icon="Military" npc="quest_character_fin01.png" showRewardWindow="true" questWinGemCosts="99">            
+        <startcondition>
+          <playerlevel min="29" max="40"/>
+          <questcomplete item="TutBonusBattle"/>       
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Adventure" name="TheDarkPriests" amount="500" condition="l" squadUnitType="Recruit"/>
+           <trigger type="Adventure" name="WitchOfTheSwamp" amount="500" condition="l" squadUnitType="Recruit"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="5"/>
+          <reward type="Resource" name="BronzeSword" amount="400" />               
+        </posteffects>
+      </quest>
+
+      <!-- PLAYER LEVEL 30 -->
+      
+      <quest name="TutBonusCoalDepositsFound" type="Side" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" questWinGemCosts="99">            
+        <startcondition>
+          <playerlevel min="30" max="30"/>       
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Specialist" name="Coal" condition="foundDeposit" amount="1"/>
+			<buildinglistupgradelevel min="1" amount="3" item="CoalMine,CoalMineEndless" name="EpicCoalMine" />
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="5"/> 
+          <reward type="Resource" name="IronOre" amount="100" />
+          <reward type="Resource" name="BronzeOre" amount="100" />              
+        </posteffects>
+      </quest>
+      
+ 	    <quest name="TutBonusGoldsmelter" type="Side" icon="Building" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="99">            
+        <startcondition>
+          <playerlevel min="30" max="40"/>        
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<onmap item="GoldSmelter" min="1"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="5"/>
+          <reward type="Resource" name="Coin" amount="100" />
+          <reward type="Resource" name="Steel" amount="100" />               
+        </posteffects>
+      </quest>
+
+      <!-- PLAYER LEVEL 31 -->
+      
+      <quest name="TutBonusMarbleStock" type="Side" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" questWinGemCosts="99">            
+        <startcondition>
+          <playerlevel min="31" max="31"/>        
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<resource item="Marble" min="8000" />
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="20"/>
+          <reward type="Resource" name="RealPlank" amount="100" /> 
+          <reward type="Resource" name="ExoticWood" amount="100" />              
+        </posteffects>
+      </quest>
+      
+ 	    <quest name="TutBonusBattle3" type="Side" icon="Military" npc="quest_character_fin01.png" showRewardWindow="true" questWinGemCosts="99">            
+        <startcondition>
+          <playerlevel min="31" max="40"/>
+          <questcomplete item="TutBonusBattle2"/>       
+        </startcondition>
+        <preeffects>
+          <reward type="Adventure" name="TheDarkPriests" amount="1"/>
+          <reward type="Adventure" name="Horseback" amount="1"/>
+        </preeffects>
+        <triggers>
+           <trigger type="Adventure" name="TheDarkPriests" amount="300" condition="l" squadUnitType="Recruit"/>
+           <trigger type="Adventure" name="Horseback" amount="100" condition="l" squadUnitType="Militia"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="15"/>
+          <reward type="Resource" name="IronSword" amount="100" />
+          <reward type="Resource" name="SteelSword" amount="100" />               
+        </posteffects>
+      </quest>
+
+      <!-- PLAYER LEVEL 32 -->
+      
+      <quest name="TutBonusToolStock" type="Side" icon="Resources" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="99">            
+        <startcondition>
+          <playerlevel min="32" max="42"/>        
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<resource item="Tool" min="8000" />
+			<productionvalue item="Tool" min="50" />
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="20"/>
+          <reward type="Resource" name="Sausage" amount="200" />               
+        </posteffects>
+      </quest>
+      
+ 	    <quest name="TutBonusGoldbar" type="Side" icon="Resources" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="99">            
+        <startcondition>
+          <playerlevel min="32" max="42"/>
+          <onmap item="Goldsmelter" min="1"/>        
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Gold" amount="100" condition="produce"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="25"/>
+          <reward type="Resource" name="Coal" amount="400" />               
+        </posteffects>
+      </quest>
+
+      <!-- PLAYER LEVEL 33 -->
+      
+      <quest name="TutBonusRealwoodStock" type="Side" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" questWinGemCosts="99">            
+        <startcondition>
+          <playerlevel min="33" max="42"/>
+          <questcomplete item="TutBonusToolStock"/>        
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<resource item="RealWood" min="5000" />
+           <trigger type="PayForQuestFinish" name="RealWood" amount="500" />
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="30"/>
+          <reward type="Resource" name="ExoticWood" amount="200" />               
+        </posteffects>
+      </quest>
+      
+ 	    <quest name="TutBonusCoinage" type="Side" icon="Building" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="99">            
+        <startcondition>
+          <playerlevel min="33" max="43"/>        
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<onmap item="Coinage" min="1"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="20"/>
+          <reward type="Resource" name="ExoticPlank" amount="200" />                
+        </posteffects>
+      </quest>
+
+      <!-- PLAYER LEVEL 34 -->
+      
+      <quest name="TutBonusAdventuresBought" type="Side" icon="Resources" npc="quest_character_mentor03.png" helpName="Help_window_adventure_purchase_0" showRewardWindow="true" questWinGemCosts="99">            
+        <startcondition>
+          <playerlevel min="34" max="34"/>       
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Shopitem" name="9006" condition="bought" amount="1"/> <!-- AdventureHorseback -->
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="30"/>
+          <reward type="Resource" name="MapPart" amount="100" />                
+        </posteffects>
+      </quest>
+      
+ 	    <quest name="TutBonusBattle4" type="Side" icon="Military" npc="quest_character_fin01.png" showRewardWindow="true" questWinGemCosts="99">            
+        <startcondition>
+          <playerlevel min="34" max="40"/>
+          <questcomplete item="TutBonusBattle3"/>       
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Adventure" name="" amount="100" condition="l" squadUnitType="Recruit"/>
+           <trigger type="Adventure" name="" amount="50" condition="l" squadUnitType="Cavalry"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="30"/>
+          <reward type="Resource" name="Horse" amount="200" />
+          <reward type="Resource" name="BronzeSword" amount="200" />                 
+        </posteffects>
+      </quest>
+
+      <!-- PLAYER LEVEL 35 -->
+      
+      <quest name="TutBonusOptimizeCoalChain" type="Side" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" questWinGemCosts="99">            
+        <startcondition>
+          <playerlevel min="35" max="40"/>        
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+        	<productionvalue item="Coal" min="0" />
+           <trigger type="Resource" name="Coal" condition="produce" amount="100" />
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="50"/>
+          <reward type="Resource" name="IronOre" amount="200" />
+          <reward type="Resource" name="Bread" amount="200" />               
+        </posteffects>
+      </quest>
+      
+ 	    <quest name="TutBonusBuffCoalMines" type="Side" icon="Resources" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="99">            
+        <startcondition>
+          <playerlevel min="35" max="40"/>
+          <questcomplete item="TutBonusOptimizeCoalChain"/>         
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<buildinglistupgradelevel min="1" amount="3" item="CoalMine,CoalMineEndless" name="EpicCoalMine" />
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="40"/>
+          <reward type="Resource" name="BronzeOre" amount="200" />               
+        </posteffects>
+      </quest>
+
+
+      <!-- PLAYER LEVEL 36 -->
+      
+      <quest name="TutBonusCoins" type="Side" icon="Resources" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="149">            
+        <startcondition>
+          <playerlevel min="36" max="46"/>
+          <onmap item="Coinage" min="1"/>         
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Coin" amount="300" condition="produce"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="120"/>
+          <reward type="Resource" name="Granite" amount="100" />               
+        </posteffects>
+      </quest>
+
+      <!-- PLAYER LEVEL 37 -->
+      
+      <quest name="TutBonusAdventuresOwned" type="Side" icon="Resources" npc="quest_character_fin02.png" showRewardWindow="true" questWinGemCosts="149">            
+        <startcondition>
+          <playerlevel min="37" max="40"/>         
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Adventure" name="" actionType="" condition="ge" amount="3" />
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="160"/>               
+        </posteffects>
+      </quest>
+
+      <!-- PLAYER LEVEL 38 -->
+      
+      <quest name="TutBonusPlayAdventures" type="Side" icon="Military" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="149">            
+        <startcondition>
+          <playerlevel min="38" max="48"/>         
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Adventure" name="" amount="3" condition="geDelta" />
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="310"/>
+          <reward type="Resource" name="Coin" amount="400" />               
+        </posteffects>
+      </quest>
+
+      <!-- PLAYER LEVEL 39 -->
+      
+      <quest name="TutBonusGraniteThroughAdventures" type="Side" icon="Military" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="149">            
+        <startcondition>
+          <playerlevel min="39" max="49"/>        
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" resourceType="Granite" amount="1000" condition="ChkResources" name="Adventure" actionName="" actionType="" />
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="100"/>
+          <reward type="Resource" name="ExoticPlank" amount="400" />
+          <reward type="Resource" name="BronzeSword" amount="200" />               
+        </posteffects>
+      </quest>
+      
+ 	    <quest name="TutBonusCrossbows" type="Side" icon="Resources" npc="quest_character_general01.png" showRewardWindow="true" questWinGemCosts="149">            
+        <startcondition>
+          <playerlevel min="39" max="42"/>         
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<resource item="ExoticWood" min="500"/>
+			<resource item="Titanium" min="500"/>
+    			<trigger type="Resource" name="Crossbow" amount="100" condition="produce"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="210"/>
+          <reward type="Resource" name="Granite" amount="200" />               
+        </posteffects>
+      </quest>
+
+      <!-- PLAYER LEVEL 40 -->
+      
+      <quest name="TutBonusDekorationBuildings" type="Side" icon="Building" npc="quest_character_fin02.png" showRewardWindow="true" questWinGemCosts="149">            
+        <startcondition>
+          <playerlevel min="40" max="42"/>         
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<onmap type="decoration" min="5" locaExtension="deco"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="200"/>               
+        </posteffects>
+      </quest>
+      
+ 	    <quest name="TutBonusMoreMines" type="Side" icon="Building" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="149">            
+        <startcondition>
+          <playerlevel min="40" max="42"/>         
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<buildinglistupgradelevel item="BronzeMine,BronzeMineEndless" name="EpicBronzeMine,SpookyBronzeMine" min="4" amount="3" locaExtension="BronzeMine" />
+			<buildinglistupgradelevel item="IronMine,IronMineEndless" name="ArcticIronMine,EpicIronMine" min="3" amount="1" locaExtension="IronMine" />
+			<buildinglistupgradelevel item="GoldMine,GoldMineEndless" name="ArcticGoldMine,EpicGoldMine" min="5" amount="1" locaExtension="GoldMine" />
+		          <trigger type="Resource" name="GoldOre" condition="sell" amount="1500" />
+    			<trigger type="Resource" name="IronOre" condition="sell" amount="1500" />
+    			<trigger type="Resource" name="BronzeOre" condition="sell" amount="1500" />
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="190"/>
+          <reward type="Resource" name="Coin" amount="300" />
+          <reward type="Resource" name="Bronze" amount="200" />
+          <reward type="Resource" name="Iron" amount="200" />
+          <reward type="Resource" name="Gold" amount="100" />               
+        </posteffects>
+      </quest>
+
+      <!-- PLAYER LEVEL 41 -->
+      
+      <quest name="TutBonusBattle5" type="Side" icon="Military" npc="quest_character_fin02.png" showRewardWindow="true" questWinGemCosts="149">            
+        <startcondition>
+          <playerlevel min="41" />       
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Adventure" name="Outlaws" amount="500" condition="l" squadUnitType="Recruit"/>
+           <trigger type="Adventure" name="VictorTheVicious" amount="50" condition="l" squadUnitType="Soldier"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="490"/>
+          <reward type="Resource" name="Sausage" amount="400" />               
+        </posteffects>
+      </quest>
+
+    	<!-- PLAYER LEVEL 42 -->
+    	
+    	<quest name="TutBonusGraniteStock" type="Side" icon="Resources" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="149">            
+        <startcondition>
+          <playerlevel min="42" max="42"/>       
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<resource item="Granite" min="10000"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="620"/>
+          <reward type="Resource" name="MapPart" amount="100" />
+          <reward type="Resource" name="Steel" amount="100" />
+          <reward type="Resource" name="Coal" amount="400" />               
+        </posteffects>
+      </quest>
+
+    	<!-- PLAYER LEVEL 43 -->
+    	
+    	<quest name="TutBonusExoticWoodStock" type="Side" icon="Resources" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="149">            
+        <startcondition>
+          <playerlevel min="43" />       
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<resource item="ExoticWood" min="10000"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="780"/>
+          <reward type="Resource" name="Granite" amount="400" />               
+        </posteffects>
+      </quest>
+
+    	<!-- PLAYER LEVEL 44 -->
+    	
+    	<quest name="TutBonusExoticwoodPlanksStock" type="Side" icon="Resources" npc="quest_character_geologist01.png" showRewardWindow="true" questWinGemCosts="149">            
+        <startcondition>
+          <playerlevel min="44" />       
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<resource item="ExoticPlank" min="10000"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="985"/>
+          <reward type="Resource" name="Titanium" amount="200" />               
+        </posteffects>
+      </quest>
+
+    	<!-- PLAYER LEVEL 45 -->
+    	
+    	<quest name="TutBonusGenerals" type="Side" icon="Resources" npc="quest_character_general01.png" showRewardWindow="true" questWinGemCosts="149">            
+        <startcondition>
+          <playerlevel min="45" />       
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Specialist" name="AllGenerals" condition="ge" amount="5"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="1240"/>               
+        </posteffects>
+      </quest>
+
+    	<!-- PLAYER LEVEL 46 -->
+      
+      <quest name="TutBonusMoreAdventures" type="Side" icon="Military" npc="quest_character_fin02.png" showRewardWindow="true" questWinGemCosts="199">            
+        <startcondition>
+          <playerlevel min="46" />        
+        </startcondition>
+        <preeffects>
+          <sendmail name="Anonymous" item="TutBonusMoreAdventuresLetter"/>
+        </preeffects>
+        <triggers>
+			<completeadventurelist amount="5" locaExtension="AnyAdventure_many"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="1560"/>
+          <reward type="Resource" name="Titanium" amount="200" />
+          <reward type="Resource" name="Coin" amount="200" />
+          <reward type="Resource" name="Granite" amount="200" />               
+        </posteffects>
+      </quest>
+
+    	<!-- PLAYER LEVEL 47 -->
+    	
+    	<quest name="TutBonusSpecialAdventures" type="Side" icon="Military" npc="quest_character_fin02.png" showRewardWindow="true" questWinGemCosts="199">            
+        <startcondition>
+          <playerlevel min="47" />        
+        </startcondition>
+        <preeffects>
+          <sendmail name="Anonymous" item="TutBonusSpecialAdventuresLetter"/>
+        </preeffects>
+        <triggers>
+			<completeadventurelist tier="6" amount="3" locaExtension="Dif6_many" />
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="600"/>
+          <reward type="Resource" name="MapPart" amount="200" />
+          <reward type="Resource" name="Granite" amount="200" />               
+        </posteffects>
+      </quest>
+      
+ 	    <quest name="TutBonusBattle6" type="Side" icon="Military" npc="quest_character_general01.png" showRewardWindow="true" questWinGemCosts="199">            
+        <startcondition>
+          <playerlevel min="47" />       
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Adventure" name="SonsOfTheVeld" amount="300" condition="l" squadUnitType="Recruit"/>
+           <trigger type="Adventure" name="RoaringBull" amount="50" condition="l" squadUnitType="EliteSoldier"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="660"/>
+          <reward type="Resource" name="Population" amount="100" />
+          <reward type="Resource" name="TitaniumSword" amount="100" />               
+        </posteffects>
+      </quest>
+    	
+    	<quest name="TutBonusFollowUpAdventure" type="Side" icon="Military" npc="quest_character_fin02.png" showRewardWindow="true" questWinGemCosts="199">            
+        <startcondition>
+          <playerlevel min="47" />        
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<completeadventurelist item="OldFriends,MoreSecludedExperiments" amount="1" locaExtension="OldFriendsAndMSE" />
+			<completeadventurelist item="NewBanditNest,MotherLove" amount="1" locaExtension="NewBanditNestAndMotherLove" />
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="700"/>
+          <reward type="Resource" name="Coin" amount="200" />               
+        </posteffects>
+      </quest>
+
+    	<!-- PLAYER LEVEL 48 -->
+    	
+    	<quest name="TutBonusMultiplayerAdventure" type="Side" icon="Military" npc="quest_character_fin02.png" showRewardWindow="true" questWinGemCosts="199">            
+        <startcondition>
+          <playerlevel min="48" />       
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Adventure" name="TheDarkBrotherhood" condition="geDelta" amount="1"/>
+           <trigger type="Adventure" name="TheBlackKnights" condition="geDelta" amount="1"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="2480"/>
+          <reward type="Resource" name="Horse" amount="400" />
+          <reward type="Resource" name="BronzeSword" amount="400" />
+          <reward type="Resource" name="ExoticPlank" amount="400" />               
+        </posteffects>
+      </quest>
+
+    	<!-- PLAYER LEVEL 49 -->
+      
+      <quest name="TutBonusHugeCapital" type="Side" icon="Resources" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="199">            
+        <startcondition>
+          <playerlevel min="49" />       
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Coin" condition="buy" amount="10000" />
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="2000"/>
+          <reward type="Resource" name="Granite" amount="200" />               
+        </posteffects>
+      </quest>
+
+      <quest name="TutBonusCannonsStock" type="Side" icon="Resources" npc="quest_character_general01.png" showRewardWindow="true" questWinGemCosts="199">            
+        <startcondition>
+          <playerlevel min="49" />       
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Cannon" condition="produce" amount="500"/>
+        </triggers>
+        <posteffects>
+          <reward type="XP" amount="1220"/>
+          <reward type="Resource" name="TitaniumSword" amount="400" />
+          <reward type="Resource" name="ExoticWood" amount="400" />               
+        </posteffects>
+      </quest>
+      
+    	<!-- PLAYER LEVEL 50 -->
+    	
+    	<quest name="TutBonusCannoneers" type="Side" icon="Resources" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="199">            
+        <startcondition>
+          <playerlevel min="50" />       
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="MilitaryUnit" name="Cannoneer" condition="ge" amount="200"/>
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Granite" amount="500"/>
+          <reward type="Resource" name="TitaniumOre" amount="200" />
+          <reward type="Resource" name="Coal" amount="400" />               
+        </posteffects>
+      </quest>
+
+      <quest name="TutBonusBattle7" type="Side" icon="Military" npc="quest_character_general01.png" showRewardWindow="true" questWinGemCosts="199">            
+        <startcondition>
+          <playerlevel min="50" />
+          <questcomplete item="TutBonusCannoneers"/>         
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Adventure" name="SecludedExperiments" amount="10" condition="l" squadUnitType="Cannoneer"/>
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Granite" amount="500"/>              
+        </posteffects>
+      </quest>
+      
+ 	    <quest name="TutBonusHugeCapital2" type="Side" icon="Resources" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="199">            
+        <startcondition>
+          <playerlevel min="50" />
+          <questcomplete item="TutBonusHugeCapital"/>       
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Resource" name="Coin" condition="ge" amount="200000"/>
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Granite" amount="500"/>
+          <reward type="Resource" name="ExoticPlank" amount="500"/>
+          <reward type="Resource" name="Titanium" amount="200" />                
+        </posteffects>
+      </quest>
+    	
+    	<quest name="TutBonusEpicDecorationBuilding" type="Side" icon="Building" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="199">            
+        <startcondition>
+          <playerlevel min="50" />
+          <questcomplete item="TutBonusFollowUpAdventure"/>       
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="Building" name="Deco" actionType="Epic" condition="ge" amount="1" />
+        </triggers>
+        <posteffects>
+          <reward type="Resource" name="Granite" amount="500"/>
+          <reward type="Resource" name="BronzeSword" amount="200" />              
+        </posteffects>
+      </quest>
+
+<!-- Tutorial Side Quest Chain End -->
+		
+</Root>

@@ -1,0 +1,192 @@
+{
+  "amf_version": 3,
+  "headers": 0,
+  "bodies": [
+    {
+      "target": "/2/onResult",
+      "response": "",
+      "declared_len": 4294967295,
+      "marker": "0x11",
+      "value": {
+        "__class": "flex.messaging.messages.AcknowledgeMessage",
+        "body": {
+          "__class": "defaultGame.Communication.VO.dServerResponse",
+          "type": 1014,
+          "zoneID": 1601416,
+          "data": {
+            "__class": "defaultGame.Communication.VO.dServerActionResult",
+            "clientTime": 0.0,
+            "errorCode": 0,
+            "data": {
+              "__class": "defaultGame.Communication.VO.dPlayerListVO",
+              "players": {
+                "__class": "flex.messaging.io.ArrayCollection",
+                "__externalizable": true,
+                "__value": [
+                  {
+                    "__class": "defaultGame.Communication.VO.dPlayerListItemVO",
+                    "id": 395894,
+                    "avatarId": 48,
+                    "username": "MadFX",
+                    "playerLevel": 67,
+                    "friendSince": 1456682862000.0,
+                    "onlineStatus": false,
+                    "adventureVO": null
+                  },
+                  {
+                    "__class": "defaultGame.Communication.VO.dPlayerListItemVO",
+                    "id": 987799,
+                    "avatarId": 27,
+                    "username": "Lotamount",
+                    "playerLevel": 46,
+                    "friendSince": 1745987841000.0,
+                    "onlineStatus": false,
+                    "adventureVO": null
+                  }
+                ]
+              },
+              "playerOptions": {
+                "__class": "defaultGame.Communication.VO.PlayerOptionsVO",
+                "options": {
+                  "__class": "flex.messaging.io.ArrayCollection",
+                  "__externalizable": true,
+                  "__value": [
+                    {
+                      "__class": "defaultGame.Communication.VO.PlayerOptionVO",
+                      "settingName": "LoopsVolume",
+                      "value": "0"
+                    },
+                    {
+                      "__class": "defaultGame.Communication.VO.PlayerOptionVO",
+                      "settingName": "ShowBuildingSmoke",
+                      "value": "true"
+                    },
+                    {
+                      "__class": "defaultGame.Communication.VO.PlayerOptionVO",
+                      "settingName": "ForceChatColorWhite",
+                      "value": "true"
+                    },
+                    {
+                      "__class": "defaultGame.Communication.VO.PlayerOptionVO",
+                      "settingName": "ShowAnimals",
+                      "value": "true"
+                    },
+                    {
+                      "__class": "defaultGame.Communication.VO.PlayerOptionVO",
+                      "settingName": "ShowSectorBoundaries",
+                      "value": "true"
+                    },
+                    {
+                      "__class": "defaultGame.Communication.VO.PlayerOptionVO",
+                      "settingName": "SFXVolume",
+                      "value": "0"
+                    },
+                    {
+                      "__class": "defaultGame.Communication.VO.PlayerOptionVO",
+                      "settingName": "UseHalfSizeGraphics",
+                      "value": "false"
+                    },
+                    {
+                      "__class": "defaultGame.Communication.VO.PlayerOptionVO",
+                      "settingName": "ChatVisible",
+                      "value": "true"
+                    },
+                    {
+                      "__class": "defaultGame.Communication.VO.PlayerOptionVO",
+                      "settingName": "ShowSettlers",
+                      "value": "true"
+                    },
+                    {
+                      "__class": "defaultGame.Communication.VO.PlayerOptionVO",
+                      "settingName": "SfxMuted",
+                      "value": "true"
+                    },
+                    {
+                      "__class": "defaultGame.Communication.VO.PlayerOptionVO",
+                      "settingName": "ShowBuffAnimations",
+                      "value": "true"
+                    },
+                    {
+                      "__class": "defaultGame.Communication.VO.PlayerOptionVO",
+                      "settingName": "FriendsListVisible",
+                      "value": "true"
+                    },
+                    {
+                      "__class": "defaultGame.Communication.VO.PlayerOptionVO",
+                      "settingName": "CurrentGlobalChatInstance",
+                      "value": "1"
+                    },
+                    {
+                      "__class": "defaultGame.Communication.VO.PlayerOptionVO",
+                      "settingName": "LoopsMuted",
+                      "value": "true"
+                    },
+                    {
+                      "__class": "defaultGame.Communication.VO.PlayerOptionVO",
+                      "settingName": "ShowGeneralMarker",
+                      "value": "true"
+                    },
+                    {
+                      "__class": "defaultGame.Communication.VO.PlayerOptionVO",
+                      "settingName": "ShowGeneralName",
+                      "value": "true"
+                    },
+                    {
+                      "__class": "defaultGame.Communication.VO.PlayerOptionVO",
+                      "settingName": "PvpTaskBuildingTasks",
+                      "value": "true"
+                    },
+                    {
+                      "__class": "defaultGame.Communication.VO.PlayerOptionVO",
+                      "settingName": "AirshipSkin",
+                      "value": "0"
+                    },
+                    {
+                      "__class": "defaultGame.Communication.VO.PlayerOptionVO",
+                      "settingName": "ShowMissingSettler",
+                      "value": "true"
+                    },
+                    {
+                      "__class": "defaultGame.Communication.VO.PlayerOptionVO",
+                      "settingName": "ShowMissingResources",
+                      "value": "true"
+                    },
+                    {
+                      "__class": "defaultGame.Communication.VO.PlayerOptionVO",
+                      "settingName": "ShowFullWarehouse",
+                      "value": "true"
+                    },
+                    {
+                      "__class": "defaultGame.Communication.VO.PlayerOptionVO",
+                      "settingName": "ShowStoppedProduction",
+                      "value": "true"
+                    },
+                    {
+                      "__class": "defaultGame.Communication.VO.PlayerOptionVO",
+                      "settingName": "uiManualScale",
+                      "value": "false"
+                    },
+                    {
+                      "__class": "defaultGame.Communication.VO.PlayerOptionVO",
+                      "settingName": "uiScale",
+                      "value": "2"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "clientId": "f6e1d7c7-db81-4d6d-b42b-8637faa548f9",
+        "correlationId": "bfedd5d1-cf8c-48e2-9aa1-7b7e07890d3b",
+        "destination": null,
+        "headers": {
+          "__class": "Object"
+        },
+        "messageId": "058692ce-f32f-474a-9b4c-61058add00d6",
+        "timeToLive": 0.0,
+        "timestamp": 1787943108562.0
+      }
+    }
+  ]
+}

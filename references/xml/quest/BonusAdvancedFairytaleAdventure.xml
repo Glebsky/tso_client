@@ -1,0 +1,1193 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<Root>
+    
+    	<!--
+    
+    	// name = Name of Quest
+    	// showQuestWindow="false"  = disable show Quest Window funktion
+    	// showRewardWindow="false"  = disable show Reward Window funktion
+	// colorSchema = use a colorschema could be "night" ,"oven","snow","colormod,radd,gadd,badd,rmul,gmul,bmul"
+	// specialType="firstQuest", this is the start of a quest series, will be aktivated when zone starts
+    	// active = false means quest is inactive
+    	
+    	<quests name="QuestName" colorSchema="night" specialType="firstQuest" active="true">
+    		// if all triggers true quest is finished 
+    		<triggers>
+    			// if Woodcutter exist onMap quest is finished (if amount is one, it could be ignored"
+    			<trigger type="Building" name="Woodcutter" condition="onMap" />
+    			// if Sawmill is created quest is finished
+    			<trigger type="Building" name="Sawmill" condition="created" />
+    			// if 2 Sawmill in map quest is finished
+    			<trigger type="Building" name="Sawmill" condition="ge" amount="2" />
+    			// if 100 Iron is created quest is finished ge means greater or equal
+    			<trigger type="Resource" name="Iron" condition="ge" amount="100" />
+    			// if 100 additional Iron is created quest is finished geDelta means greater or equal
+			// for example, if you have 120 iron at the start of the quest, you must have at least 220 to finish it
+    			<trigger type="Resource" name="Iron" condition="geDelta" amount="100" />
+				
+				//Trigger Events: If trigger completion shall trigger further events (besides quest progress) enter the "onComplete" property with these possible comma-seperated values (NO WHITESPACES!):
+				<trigger type="Building" condition="selected" onComplete="destroySelectedBuilding,doSomethingElse"/> //Destroys the current selected Building and is doint things:)
+    		</triggers>
+    		
+    		// Player Rewards
+    		<rewards>
+    			// Player gets 100 iron
+    			<reward type="Resource" name="Iron" amount="100" />
+    			// Player gets 200 XP
+    			<reward type="XP" amount="200" />
+    		</rewards>
+    		
+    		// postrequisits is called after player gets his rewards 
+    		// startQuest is the name of the quest to start
+    		// Delay is Delay in seconds before quest starts
+    		<postrequisits startQuest="Quest2" startDelay="10" />
+			
+			// Hints (Red bouncing arrow)
+			<hints>
+				// name:       not used yet, will be used as text identifier for hint texts
+				// pointTo:    UI Element which is pointed to
+				//   		   available values:
+				//                 ActionBarButton01
+				//                 ActionBarButton02
+				//                 ActionBarButton03
+				//                 ActionBarButton04
+				//                 ActionBarButton05
+				//                 ActionBarButton06
+				//                 ActionBarButton07
+				//                 ActionBarButton08
+				//                 ActionBarButton09
+				//                 QuestButton
+				// offsetX:    x-offset in pixels from the center of the ui element
+				// offsetY:    y-offset in pixels from the center of the ui element
+				// direction:  direction the arrow will point to
+				//             available values: N, NE, E, SE, S, SW, W, NW
+				<hint name="FirstBuildMenu" pointTo="ActionBarButton01" offsetX="0" offsetY="-40" direction="S" />
+			</hints>
+			
+    	</quests>
+    	
+    	-->
+    
+    <!-- Survey Migration Quest	
+    
+    <quest name="TutSurveyQuest" type="Story" icon="Building" npc="quest_character_mentor03.png" helpName="Help_window_place_building_0" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="1" max="50"/>
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <helpeffects>
+         </helpeffects>
+         <triggers>
+           <trigger type="Resource" name="Wood" amount="2" condition="produce" locaExtension="undefined"/>
+         </triggers>
+         <posteffects>
+           <reward type="Resource" name="Stone" amount="10"/>               
+         </posteffects>
+      </quest>	 -->
+
+
+    
+<!-- PLAYER LEVEL 51: FAIRYTALE ADVENTURE -->
+	
+	<quest name="BonusAdvancedFairytaleAdventure" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" helpName="Help_window_epic_raids_0" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="51" />
+           <questcomplete item="TutAdvancedNewSectorExploration"/>
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <!--trigger type="Adventure" name="Fairytale" condition="geDelta" amount="1" /-->
+		   <completeadventurelist type="Fairytale" amount="1" locaExtension="Fairytale"/>
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="15000"/>
+			<reward type="Resource" name="Granite" amount="250"/>
+			<reward type="Adventure" name="TheValiantLittleTailor" amount="1"/>
+			<reward type="Buff" item="RecruitingBuffLvl3" amount="1"/>
+         </posteffects>
+      </quest>
+      
+      
+      
+<!-- PLAYER LEVEL 52: MAJOR GENERAL -->
+	
+	<quest name="BonusAdvancedMajorGeneral" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="52" />
+           <questcomplete item="TutAdvancedNewSectorExploration"/>
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <trigger type="Specialist" name="MajorGeneral" condition="ge" amount="1"/>
+         </triggers>
+         
+         <posteffects>
+            <reward type="XP" amount="75000"/>    
+			<reward type="Resource" name="StarCoin" amount="150"/>
+			<reward type="Buff" item="HiredMilitary" name="Soldier" amount="50"/> 
+         </posteffects>
+      </quest>
+      
+      
+      
+<!-- PLAYER LEVEL 53: MAHOGANY -->
+	
+	<quest name="BonusAdvancedMahoganyWood" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="53" />
+           <questcomplete item="TutAdvancedMahoganyChain"/>
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <resource item="MahoganyWood" min="150"/>
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="1500"/>
+			<reward type="Buff" item="ProductivityBuffLvl3" amount="1"/>
+         </posteffects>
+      </quest>
+      
+      <quest name="BonusAdvancedMahoganyPlank" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="53" />
+           <questcomplete item="BonusAdvancedMahoganyWood"/>
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <trigger type="Resource" name="MahoganyPlank" amount="50" condition="produce"/>	
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="1500"/>
+			<reward type="Resource" name="Coal" amount="750"/>
+			<reward type="Resource" name="ExoticWood" amount="100"/>
+         </posteffects>
+      </quest>
+      
+      
+      
+<!-- PLAYER LEVEL 54: EXOTIC WOOD -->
+	
+	<quest name="BonusAdvancedExoticPlank" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="54" />
+           <questcomplete item="TutAdvancedExoticWoodChain"/>
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <trigger type="Resource" name="ExoticPlank" amount="500" condition="produce"/>
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="5000"/>             
+		   <reward type="Resource" name="StarCoin" amount="70"/>
+         </posteffects>
+      </quest>
+      
+      
+      
+<!-- PLAYER LEVEL 55: SADLE CLOTH -->
+	
+	<quest name="BonusAdvancedWool" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="55" />
+           <questcomplete item="TutAdvancedKnightShepard"/>
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <trigger type="Resource" name="Wool" amount="500" condition="produce"/>
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="2000"/>             
+		   <reward type="Resource" name="PlatinumOre" amount="50"/>
+         </posteffects>
+      </quest>
+      
+      <quest name="BonusAdvancedCloth" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="55" />
+           <questcomplete item="TutAdvancedKnightWeaver"/>
+           <questcomplete item="BonusAdvancedWool"/>
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <trigger type="Resource" name="Cloth" amount="350" condition="produce"/>
+		   <trigger type="Resource" name="Cloth" amount="100" condition="buy"/>
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="6500"/>             
+		   <reward type="Resource" name="ExoticWood" amount="100"/>
+		   <reward type="Resource" name="StarCoin" amount="50"/>
+		   <reward type="Buff" item="ProductivityBuffLvl5" amount="1"/>
+         </posteffects>
+      </quest>
+      
+      <quest name="BonusAdvancedSaddleCloth" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="55" />
+           <questcomplete item="TutAdvancedKnightSaddleMaker"/>
+           <questcomplete item="BonusAdvancedCloth"/>
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <trigger type="Resource" name="Saddlecloth" amount="250" condition="produce"/>
+		   <trigger type="Resource" name="BattleHorse" amount="25" condition="sell"/>
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="5000"/>             
+		   <reward type="Resource" name="StarCoin" amount="100"/> 
+         </posteffects>
+      </quest>
+      
+      
+     
+<!-- PLAYER LEVEL 56: TAILOR ADVENTURE -->
+	
+	<quest name="BonusAdvancedTailorAdventure" type="Side" icon="QuestShort" npc="quest_character_fin02.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="56" />
+           <questcomplete item="TutAdvancedKnightChain"/>
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <trigger type="Adventure" name="TheBetrayedLittleTailor" condition="geDelta" amount="1" />
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="35000"/>
+		   <reward type="Resource" name="PlatinumOre" amount="300"/>
+		   <reward type="Resource" name="StarCoin" amount="200"/>
+		   <reward type="Resource" name="Coal" amount="1500"/>
+		   <reward type="Buff" item="RecruitingBuffLvl3" amount="1"/>
+         </posteffects>
+      </quest>
+      
+      
+      
+<!-- PLAYER LEVEL 57: WOODCUTTER ADVENTURE + FAMILY BONABERTI -->
+	
+	<quest name="BonusAdvancedWoodcutterAdventure" type="Side" icon="QuestShort" npc="quest_character_general01.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="57" />
+           <questcomplete item="TutAdvancedMountedMarksmanChain"/>
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <trigger type="Adventure" name="1001NightsWoodcutter" condition="geDelta" amount="1" />
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="50000"/>       
+		   <reward type="Resource" name="StarCoin" amount="250"/>
+		   <reward type="Adventure" name="1001NightsFirstThief" amount="1"/>
+         </posteffects>
+      </quest>
+
+      
+    <!-- Bonaberti Connection Main 1 -->	
+	<quest name="BonabertiConnection_Main1" type="Side" icon="QuestLong" npc="quest_character_mentor03.png" showRewardWindow="true" >
+    <startcondition>
+           <playerlevel min="57" />
+         </startcondition>
+		<triggers>
+		   <questcomplete item="BonabertiConnection_Main1_Sub1"/>
+		   <questcomplete item="BonabertiConnection_Main1_Sub2"/>
+		   <questcomplete item="BonabertiConnection_Main1_Sub3"/>
+		   <questcomplete item="BonabertiConnection_Main1_Sub4"/>
+		</triggers>
+		<posteffects>
+      <reward type="Resource" name="Crystal" amount="2" />
+			<reward type="Buff" item="BattleBuffKill_random_boss_limited" amount="1"/>
+      <reward type="XP" amount="10000"/>
+		<startquest name="BonabertiConnection_Main2" />
+		</posteffects>
+	</quest>
+	
+	<quest name="BonabertiConnection_Main1_Sub1" connectedToQuest="BonabertiConnection_Main1" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="89" >
+		<startcondition>
+			<questactive item="BonabertiConnection_Main1"/>
+		</startcondition>
+		<triggers>
+		 <trigger type="Resource" name="MahoganyPlank" amount="80" condition="produce"/>
+     <trigger type="PayForQuestFinish" name="MahoganyPlank" amount="80" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Grout" amount="20" />
+      <reward type="Resource" name="Coal" amount="80" />
+			<reward type="Buff" item="ProvisionerBuffLvl3" amount="1"/>
+		</posteffects>
+	</quest>	
+	
+	<quest name="BonabertiConnection_Main1_Sub2" connectedToQuest="BonabertiConnection_Main1" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="139" >
+		<startcondition>
+			<questactive item="BonabertiConnection_Main1"/>
+		</startcondition>
+		<triggers>
+		  <trigger type="Resource" name="Wool" amount="2800" condition="sell"/> 
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StarCoin" amount="50" />
+			<reward type="Buff" item="ProductivityBuffLvl22" amount="1" />				
+		</posteffects>
+	</quest>		
+	
+	<quest name="BonabertiConnection_Main1_Sub3" connectedToQuest="BonabertiConnection_Main1" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="79" >
+		<startcondition>
+			<questactive item="BonabertiConnection_Main1"/>
+		</startcondition>
+		<triggers>
+				<trigger type="PayForQuestFinish" name="Recruit" amount="50" />	
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="RecruitingBuffLvl4" amount="1"/>	
+			<reward type="Resource" name="MagicBeanstalk" amount="30" />		
+		</posteffects>
+	</quest>		
+	
+	<quest name="BonabertiConnection_Main1_Sub4" connectedToQuest="BonabertiConnection_Main1" type="Side" icon="QuestLong" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="269" >
+		<startcondition>
+			<questactive item="BonabertiConnection_Main1"/>
+		</startcondition>
+		<triggers>
+		<completeadventurelist item="BonabertiBusiness" amount="1" locaExtension="bonabertibusiness" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="BattleBuffKill_random_unit_type" amount="1"/>		
+			<reward type="Resource" name="TitaniumOre" amount="100" />		
+		</posteffects>
+	</quest>					
+	
+
+<!-- Bonaberti Connection Main 2 -->	
+	<quest name="BonabertiConnection_Main2" type="Side" icon="QuestLong" npc="quest_character_mentor03.png" showRewardWindow="true" >
+		<triggers>
+		   <questcomplete item="BonabertiConnection_Main2_Sub1"/>
+		   <questcomplete item="BonabertiConnection_Main2_Sub2"/>
+		   <questcomplete item="BonabertiConnection_Main2_Sub3"/>
+		   <questcomplete item="BonabertiConnection_Main2_Sub4"/>
+		</triggers>
+		<posteffects>
+      <reward type="Resource" name="Crystal" amount="2" />
+			<reward type="Buff" item="BattleBuffKill_random_boss_limited" amount="1"/>
+      <reward type="XP" amount="15000"/>
+		<startquest name="BonabertiConnection_Main3" />
+		</posteffects>
+	</quest>
+	
+	<quest name="BonabertiConnection_Main2_Sub1" connectedToQuest="BonabertiConnection_Main2" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="89" >
+		<startcondition>
+			<questactive item="BonabertiConnection_Main2"/>
+		</startcondition>
+		<triggers>
+		 <trigger type="Resource" name="AdvancedPaper" amount="120" condition="produce"/>
+     <trigger type="PayForQuestFinish" name="AdvancedPaper" amount="120" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Grout" amount="30" />
+      <reward type="Resource" name="Coal" amount="100" />
+			<reward type="Buff" item="ProvisionerBuffLvl3" amount="1"/>
+		</posteffects>
+	</quest>	
+	
+	<quest name="BonabertiConnection_Main2_Sub2" connectedToQuest="BonabertiConnection_Main2" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="139" >
+		<startcondition>
+			<questactive item="BonabertiConnection_Main2"/>
+		</startcondition>
+		<triggers>
+		  <trigger type="Resource" name="ExoticPlank" amount="2400" condition="sell"/> 
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StarCoin" amount="60" />
+			<reward type="Buff" item="ProductivityBuffLvl22" amount="1" />				
+		</posteffects>
+	</quest>		
+	
+	<quest name="BonabertiConnection_Main2_Sub3" connectedToQuest="BonabertiConnection_Main2" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="79" >
+		<startcondition>
+			<questactive item="BonabertiConnection_Main2"/>
+		</startcondition>
+		<triggers>
+				<trigger type="PayForQuestFinish" name="Militia" amount="40" />	
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="RecruitingBuffLvl4" amount="1"/>	
+			<reward type="Resource" name="MagicBeanstalk" amount="40" />		
+		</posteffects>
+	</quest>		
+	
+	<quest name="BonabertiConnection_Main2_Sub4" connectedToQuest="BonabertiConnection_Main2" type="Side" icon="QuestLong" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="269" >
+		<startcondition>
+			<questactive item="BonabertiConnection_Main2"/>
+		</startcondition>
+		<triggers>
+		<completeadventurelist item="BonabertiBusiness" amount="1" locaExtension="bonabertibusiness" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="BattleBuffKill_random_unit_type" amount="1"/>		
+			<reward type="Resource" name="TitaniumOre" amount="110" />		
+		</posteffects>
+	</quest>					
+	
+ <!-- Bonaberti Connection Main 3 -->	
+	<quest name="BonabertiConnection_Main3" type="Side" icon="QuestLong" npc="quest_character_mentor03.png" showRewardWindow="true" >
+		<triggers>
+		   <questcomplete item="BonabertiConnection_Main3_Sub1"/>
+		   <questcomplete item="BonabertiConnection_Main3_Sub2"/>
+		   <questcomplete item="BonabertiConnection_Main3_Sub3"/>
+		   <questcomplete item="BonabertiConnection_Main3_Sub4"/>
+		</triggers>
+		<posteffects>
+      <reward type="Resource" name="Crystal" amount="2" />
+			<reward type="Buff" item="BattleBuffDestroy_small_medium_camps" amount="1"/>
+      <reward type="XP" amount="20000"/>
+		<startquest name="BonabertiConnection_Main4" />
+		</posteffects>
+	</quest>
+	
+	<quest name="BonabertiConnection_Main3_Sub1" connectedToQuest="BonabertiConnection_Main3" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="89" >
+		<startcondition>
+			<questactive item="BonabertiConnection_Main3"/>
+		</startcondition>
+		<triggers>
+		 <trigger type="Resource" name="Steel" amount="330" condition="produce"/>
+     <trigger type="PayForQuestFinish" name="Steel" amount="330" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Grout" amount="40" />
+      <reward type="Resource" name="Coal" amount="120" />
+			<reward type="Buff" item="ProvisionerBuffLvl3" amount="1"/>
+		</posteffects>
+	</quest>	
+	
+	<quest name="BonabertiConnection_Main3_Sub2" connectedToQuest="BonabertiConnection_Main3" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="139" >
+		<startcondition>
+			<questactive item="BonabertiConnection_Main3"/>
+		</startcondition>
+		<triggers>
+		  <trigger type="Resource" name="Iron" amount="2800" condition="sell"/> 
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StarCoin" amount="70" />
+			<reward type="Buff" item="ProductivityBuffLvl22" amount="1" />				
+		</posteffects>
+	</quest>		
+	
+	<quest name="BonabertiConnection_Main3_Sub3" connectedToQuest="BonabertiConnection_Main3" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="79" >
+		<startcondition>
+			<questactive item="BonabertiConnection_Main3"/>
+		</startcondition>
+		<triggers>
+				<trigger type="PayForQuestFinish" name="Cavalry" amount="30" />	
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="RecruitingBuffLvl4" amount="1"/>	
+			<reward type="Resource" name="MagicBeanstalk" amount="50" />		
+		</posteffects>
+	</quest>		
+	
+	<quest name="BonabertiConnection_Main3_Sub4" connectedToQuest="BonabertiConnection_Main3" type="Side" icon="QuestLong" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="269" >
+		<startcondition>
+			<questactive item="BonabertiConnection_Main3"/>
+		</startcondition>
+		<triggers>
+		<completeadventurelist item="BonabertiBusiness" amount="1" locaExtension="bonabertibusiness" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="BattleBuffKill_random_unit_type" amount="1"/>		
+			<reward type="Resource" name="TitaniumOre" amount="120" />		
+		</posteffects>
+	</quest>					
+	
+  <!-- Bonaberti Connection Main 4 -->	
+	<quest name="BonabertiConnection_Main4" type="Side" icon="QuestLong" npc="quest_character_mentor03.png" showRewardWindow="true" >
+		<triggers>
+		   <questcomplete item="BonabertiConnection_Main4_Sub1"/>
+		   <questcomplete item="BonabertiConnection_Main4_Sub2"/>
+		   <questcomplete item="BonabertiConnection_Main4_Sub3"/>
+		   <questcomplete item="BonabertiConnection_Main4_Sub4"/>
+		</triggers>
+		<posteffects>
+      <reward type="Resource" name="ObsidianOre" amount="150" />
+			<reward type="Buff" item="BattleBuffBomb_random_units" amount="1"/>
+      <reward type="XP" amount="50000"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="BonabertiConnection_Main4_Sub1" connectedToQuest="BonabertiConnection_Main4" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="89" >
+		<startcondition>
+			<questactive item="BonabertiConnection_Main4"/>
+		</startcondition>
+		<triggers>
+		 <trigger type="Resource" name="Sausage" amount="1200" condition="produce"/>
+     <trigger type="PayForQuestFinish" name="Sausage" amount="1200" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Grout" amount="50" />
+      <reward type="Resource" name="Coal" amount="140" />
+			<reward type="Buff" item="ProvisionerBuffLvl3" amount="1"/>
+		</posteffects>
+	</quest>	
+	
+	<quest name="BonabertiConnection_Main4_Sub2" connectedToQuest="BonabertiConnection_Main4" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="139" >
+		<startcondition>
+			<questactive item="BonabertiConnection_Main4"/>
+		</startcondition>
+		<triggers>
+		  <trigger type="Resource" name="Bread" amount="20000" condition="sell"/> 
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="StarCoin" amount="80" />
+			<reward type="Buff" item="ProductivityBuffLvl22" amount="1" />				
+		</posteffects>
+	</quest>		
+	
+	<quest name="BonabertiConnection_Main4_Sub3" connectedToQuest="BonabertiConnection_Main4" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="79" >
+		<startcondition>
+			<questactive item="BonabertiConnection_Main4"/>
+		</startcondition>
+		<triggers>
+				<trigger type="PayForQuestFinish" name="Soldier" amount="25" />	
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="RecruitingBuffLvl4" amount="1"/>	
+			<reward type="Resource" name="MagicBeanstalk" amount="60" />		
+		</posteffects>
+	</quest>		
+	
+	<quest name="BonabertiConnection_Main4_Sub4" connectedToQuest="BonabertiConnection_Main4" type="Side" icon="QuestLong" npc="quest_character_mentor03.png" showRewardWindow="true" questWinGemCosts="269" >
+		<startcondition>
+			<questactive item="BonabertiConnection_Main4"/>
+		</startcondition>
+		<triggers>
+		<completeadventurelist item="BonabertiBusiness" amount="1" locaExtension="bonabertibusiness" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="BattleBuffKill_random_unit_type" amount="1"/>		
+			<reward type="Resource" name="TitaniumOre" amount="130" />		
+		</posteffects>
+	</quest>					
+      
+      
+<!-- PLAYER LEVEL 58: FAIRYTAIL GOODS -->
+	
+	<quest name="BonusAdvancedFairytailSearch" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true">             
+         <startcondition>
+           <playerlevel min="58" />
+           <questcomplete item="TutAdvancedBesiegerChain"/>
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <ownStarMenuItemTypeList amount="1" type="Adventure" target="Fairytale" locaExtension="Fairytale"/>
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="15000"/>             
+		   <reward type="Resource" name="StarCoin" amount="100"/>
+         </posteffects>
+      </quest>
+      
+      <quest name="BonusAdvancedFairytailAdventure" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="58" />
+           <questcomplete item="BonusAdvancedFairytailSearch"/>
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+				<lootedresource amount="10000" type="PlatinumOre" target="Fairytale" locaExtension="Fairytale" />
+				<lootedresource amount="10000" type="MahoganyWood" target="Fairytale" locaExtension="Fairytale" />
+         </triggers>	
+         
+         <posteffects>
+           <reward type="XP" amount="75000"/>
+			<reward type="Resource" name="StarCoin" amount="500"/>
+			<reward type="Resource" name="Coal" amount="2000"/>
+         </posteffects>
+      </quest>
+      
+      
+      
+<!-- PLAYER LEVEL 59: EXOTIC WOOD REFILL -->
+	
+	<quest name="BonusAdvancedExoticWoodRefill" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" helpName="Help_window_refiller_0" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="59" />
+           <questcomplete item="TutAdvancedExoticPlanksExoticWood"/>
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <productionvalue item="DepositExoticWood" min="1" />
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="7500"/>
+		   <reward type="Resource" name="MahoganyWood" amount="50"/>
+		   <reward type="Resource" name="ExoticWood" amount="150"/>
+         </posteffects> 
+      </quest>
+      
+      
+      
+<!-- PLAYER LEVEL 60: MORE NEW WEAPONS -->
+	
+	<quest name="BonusAdvancedMoreNewWeapons" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="60" />
+           <questcomplete item="TutAdvancedExoticPlanksChain"/>
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <trigger type="Resource" name="PlatinumSword" amount="500" condition="geDelta"/>
+           <trigger type="Resource" name="BattleHorse" amount="400" condition="geDelta"/>
+           <trigger type="Resource" name="Archebuse" amount="300" condition="geDelta"/>
+           <trigger type="Resource" name="Mortar" amount="200" condition="geDelta"/>
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="95850"/>          
+			<reward type="Resource" name="StarCoin" amount="350"/>
+         </posteffects>
+      </quest>
+      
+      
+      
+<!-- PLAYER LEVEL 61: EPIC ADVENTURE COMPLETE -->
+	
+	<quest name="BonusAdvancedEpicAdventureComplete" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" helpName="Help_window_epic_raids_0" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="61" />
+           <questcomplete item="TutAdvancedGraniteChain"/>
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <completeadventurelist type="Fairytale" amount="10" locaExtension="Fairytale_many" />
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="85000"/>            
+			<reward type="Resource" name="StarCoin" amount="500"/>
+         </posteffects>
+      </quest>
+
+      
+      
+<!-- PLAYER LEVEL 62: STORY -->
+	
+	<quest name="BonusAdvancedStory01" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" helpName="Help_window_refiller_0" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="62" />
+           <questcomplete item="TutAdvancedTitaniumChain"/>
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <trigger type="Deposit" name="Salpeter" condition="geDelta" amount="500" />
+           <buildinglistupgradelevel item="SalpeterMine" name="EpicSalpeterMine" amount="2" min="5" />
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="22500"/>             
+		   <reward type="Resource" name="StarCoin" amount="50"/>
+         </posteffects>
+      </quest>
+      
+      
+      
+<!-- PLAYER LEVEL 63: STORY -->
+	
+	<quest name="BonusAdvancedStory02" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" helpName="Help_window_provision_house_0" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="63" />
+           <questcomplete item="TutAdvancedSalpeterChain"/>
+           <questcomplete item="BonusAdvancedStory01"/>
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <buffproduced item="ProductivityBuffLvl3" min="10"/>
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="7500"/>             
+		   <reward type="resource" name="Coal" amount="750"/>
+         </posteffects>
+      </quest>
+      
+      
+      
+<!-- PLAYER LEVEL 64: STORY -->
+	
+	<quest name="BonusAdvancedStory03" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="64" />
+           <!--questcomplete item="TutAdvancedFastTravelChain"/-->
+           <questcomplete item="BonusAdvancedStory02"/>
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <!--trigger type="WinBattlewithUnits" name="Knight" condition="winbattlewithunits" amount="50"/-->
+		   <trigger type="MilitaryUnit" name="Knight" condition="ge" amount="50"/>
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="15000"/>
+			<reward type="Resource" name="PlatinumOre" amount="100"/>
+			<reward type="Resource" name="StarCoin" amount="75"/>
+         </posteffects>
+      </quest>
+      
+      
+      
+<!-- PLAYER LEVEL 65: PLATINUM ORE SEARCH -->
+	
+	<quest name="BonusAdvancedPlatinumOreSearch" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" helpName="Help_window_find_treasure_0" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="65" />
+           <questcomplete item="TutAdvancedEpicTreasureHuntUse"/>
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <trigger type="SpecialistTask" name="FindTreasureProlonged" condition="found" resourceType="PlatinumOre" amount="500"/>
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="12500"/>             
+		   <reward type="Resource" name="StarCoin" amount="50"/>
+		   <reward type="Resource" name="Coal" amount="750"/>
+         </posteffects>
+      </quest>
+      
+      
+      
+<!-- PLAYER LEVEL 66: EXOTIC WOOD PRODUCE -->
+	
+	<quest name="BonusAdvancedExoticWoodProduce" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="66" />
+           <questcomplete item="TutAdvancedExoticWoodOptimize"/>
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <trigger type="Resource" name="ExoticWood" amount="50" condition="produce"/>
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="2500"/>             
+		   <reward type="Resource" name="PlatinumOre" amount="50"/>
+		   <reward type="Resource" name="Coal" amount="250"/>
+		   <reward type="Resource" name="Marble" amount="350"/>
+         </posteffects>
+      </quest>
+      
+      
+      
+<!-- PLAYER LEVEL 67: GRANITE PRODUCE -->
+	
+	<quest name="BonusAdvancedGraniteProduce" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="67" />
+           <questcomplete item="TutAdvancedGraniteOptimize"/>
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <trigger type="Resource" name="Granite" amount="50" condition="produce"/>
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="2500"/>             
+		   <reward type="Resource" name="PlatinumOre" amount="50"/>
+		   <reward type="Resource" name="Coal" amount="150"/>
+		   <reward type="Resource" name="ExoticWood" amount="150"/>             
+         </posteffects>
+      </quest>
+      
+      
+      
+<!-- PLAYER LEVEL 68: GRANITE PRODUCE -->
+	
+	<quest name="BonusAdvancedSalpeterProduce" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="68" />
+           <questcomplete item="TutAdvancedSalpeterOptimize"/>
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <trigger type="Resource" name="Salpeter" amount="50" condition="produce"/>
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="3550"/>
+		   <reward type="Resource" name="Coal" amount="750"/>
+		   <reward type="Resource" name="Granite" amount="150"/>
+		   <reward type="Resource" name="GoldOre" amount="50"/> 
+         </posteffects>
+      </quest>
+      
+      
+      
+<!-- PLAYER LEVEL 69: TITANIUM PRODUCE -->
+	
+	<quest name="BonusAdvancedTitaniumProduce" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="69" />
+           <questcomplete item="TutAdvancedTitaniumOptimize"/>
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <trigger type="Resource" name="Titanium" amount="350" condition="produce"/>
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="15000"/>   
+			<reward type="Resource" name="PlatinumOre" amount="50"/>
+			<reward type="Resource" name="StarCoin" amount="20"/>
+         </posteffects>
+      </quest>
+      
+      
+      
+<!-- PLAYER LEVEL 70: TASK COMPLETE -->
+	
+	<!--quest name="BonusAdvancedTaskComplete" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" helpName="Help_window_collections_0" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="70" />
+           <questcomplete item="TutAdvancedTaskBuildingChain"/>
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <resource item="Wood" min="50"/> 
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="50"/>             
+         </posteffects>
+      </quest>  -->
+      
+ <!-- PLACEHOLDER QUEST (Task building), will be exchanged with proper trigger and reward later on -->     
+      
+<!-- PLAYER LEVEL 71: TITANIUM PRODUCE -->
+	
+	<quest name="BonusAdvancedPlatinumProduce" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="71" />
+           <questcomplete item="TutAdvancedPlatinumOptimize"/>
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <trigger type="Resource" name="Platinum" amount="150" condition="produce"/>
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="15000"/>             
+		   <reward type="Resource" name="PlatinumOre" amount="75"/>
+		   <reward type="Buff" item="ProductivityBuffLvl5" amount="1"/>
+		   <reward type="Buff" item="ProductivityBuffLvl5" amount="1"/>
+		   <reward type="Buff" item="ProductivityBuffLvl5" amount="1"/>
+         </posteffects>
+      </quest>
+      
+      
+      
+<!-- PLAYER LEVEL 72: PRINCESS ADVENTURE -->
+	
+	<quest name="BonusAdvancedPrincessAdventure" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="72" />
+           <questcomplete item="TutAdvancedManorChain"/>
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <trigger type="Adventure" name="1001NightsPrincess" condition="geDelta" amount="1" />
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="85000"/>             
+		   <reward type="Resource" name="StarCoin" amount="350"/>
+		   <reward type="Resource" name="PlatinumOre" amount="500"/>
+		   <reward type="Resource" name="Coal" amount="1000"/>
+         </posteffects>
+      </quest>
+      
+      
+      
+<!-- PLAYER LEVEL 73: STORY -->
+	
+	<quest name="BonusAdvancedStory04" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="73" />
+           <questcomplete item="TutAdvancedStory09"/>
+           <questcomplete item="BonusAdvancedStory03"/>
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <buildingupgradelevel item="Manor" amount="10" min="6" />
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="185000"/>
+			<reward type="Resource" name="StarCoin" amount="200"/>
+			<reward type="Resource" name="PlatinumOre" amount="150"/>
+         </posteffects>
+      </quest>
+      
+      
+      
+<!-- PLAYER LEVEL 74: STORY -->
+	
+	<quest name="BonusAdvancedStory05" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="74" />
+           <questcomplete item="TutAdvancedStory11"/>
+           <questcomplete item="BonusAdvancedStory04"/>
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+         	<buildingselected item="GoldMine,ArcticGoldMine,EpicGoldMine,GoldMineEndless" min="10" max="20" locaExtension="AnyGoldMine" />
+           	<trigger type="PayForQuestFinish" name="GoldOre" amount="500" />
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="7550"/>             
+		   <reward type="Resource" name="MagicBeanstalk" amount="50"/>
+		   <reward type="Resource" name="StarCoin" amount="10"/>
+         </posteffects>
+      </quest>
+      
+      
+      
+<!-- PLAYER LEVEL 75: STORY -->
+	
+	<quest name="BonusAdvancedStory06" type="Side" icon="QuestShort" npc="quest_character_mentor03.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="75" />
+           <questcomplete item="TutAdvancedAllSectorsChain"/>
+           <questcomplete item="BonusAdvancedStory05"/>
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <trigger type="BuffOnFriend" name="" condition="geDelta" amount="100"/>
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="75000"/>           
+			<reward type="Resource" name="StarCoin" amount="150"/>
+			<reward type="Resource" name="PlatinumOre" amount="500"/>
+			<reward type="Resource" name="Coal" amount="5000"/>
+         </posteffects>
+      </quest>
+
+
+	  		  
+          <!-- PLAYER LEVEL 76: Let Flowers Speak -->
+	
+	<quest name="BonusAdvancedLetFlowersSpeak" type="Side" icon="Building" npc="quest_character_flora.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="76" />
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <onmap item="SunflowerFarm" min="1" />
+           <buffowned item="ProductivityBuffSunflowerFertilizer" min="3"/>
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="65500"/>             
+		   <reward type="Resource" name="ObsidianOre" amount="250"/>
+         </posteffects>
+      </quest>
+      
+
+
+          <!-- PLAYER LEVEL 77 A Foreign Threat -->
+	
+	<quest name="BonusAdvancedAForeignThreat" type="Side" icon="Military" npc="quest_character_general02.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="77" />
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <trigger type="MilitaryUnit" name="EliteSoldier" condition="ge" amount="250"/>
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="44500"/>             
+		   <reward type="Resource" name="MagicBeanstalk" amount="400"/>
+       <reward type="Resource" name="Oil" amount="30"/>
+         </posteffects>
+      </quest>
+
+
+
+          <!-- PLAYER LEVEL 78 The Greatest Good -->
+	
+	<quest name="BonusAdvancedTheGreatestGood" type="Side" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="78" />
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <buildingupgradelevel item="VillageSchool" amount="1" min="7" />
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="58500"/>
+           <reward type="Buff" item="AddResource" name="Tome" amount="5"/>
+         </posteffects>
+      </quest>
+
+
+
+              <!-- PLAYER LEVEL 79 OiledMachine -->
+	
+	<quest name="BonusAdvancedOiledMachine" type="Side" icon="Social" npc="quest_character_mentor01.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="79" />
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <buffappliedonfriend item="ProductivityBuffLvl22" amount="1" />
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="34500"/>
+           <reward type="Resource" name="StarCoin" amount="600"/>
+         </posteffects>
+      </quest>
+
+
+
+                   <!-- PLAYER LEVEL 80 The Locust Plague -->
+                   	<!-- Level Cap is at 80 momentarily, which means there can be no XP given for this quest at the moment. Please activate this quest and rebalance rewards once level cap is raised again 
+	
+	<quest name="BonusAdvancedTheLocustPlague" type="Side" icon="QuestLong" npc="quest_character_scienceSystem01.png.png" showRewardWindow="true">            
+         <startcondition>
+           <playerlevel min="80" />
+         </startcondition>
+         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <trigger type="Resource" name="Salpeter" amount="6000" condition="produce"/>
+           <trigger type="Resource" name="Beer" amount="150000" condition="produce"/>
+           <trigger type="Resource" name="Sausage" amount="22000" condition="produce"/>
+           <trigger type="Resource" name="Oilseed" amount="120" condition="produce"/>
+           <trigger type="PayForQuestFinish" name="Oil" amount="50" />
+           <trigger type="PayForQuestFinish" name="Grout" amount="50" />
+           <trigger type="PayForQuestFinish" name="MagicBeanstalk" amount="250" />
+           <buffowned item="ProductivityBuffLvl22" min="1"/>
+         </triggers>
+         
+         <posteffects>
+           <reward type="Resource" name="StarCoin" amount="1200"/>
+           <reward type="Resource" name="ObsidianOre" amount="200"/>
+           <reward type="Buff" item="ProductivityBuffLvl21" amount="1"/>
+         </posteffects>
+      </quest>
+
+-->
+
+
+</Root>

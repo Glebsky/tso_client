@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	 <quest name="ExpDefeatLastBoss" type="Story" icon="Military" npc="quest_character_general02.png" specialType="firstQuestlastQuest" >
+		<triggers>
+			<buildingdestroyed item="banditsleader_final" min="1"/>
+		</triggers>
+		<rewards/>
+		<postrequisits />
+	</quest>
+</Root>

@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<reactions>
+<!-- 
+	//////////////////////////////////////////////////////////////////////
+	// Reaction System													//
+	//////////////////////////////////////////////////////////////////////
+	The reaction system can be used to execute effects when certain
+	conditions are met.
+	Take note that the triggers are NOT persisted, which means you should
+	refrain from using delta triggers. Check the runtime documentation to
+	find out which triggers are instant triggers or delta triggers:
+	http://127.0.0.1:8080/GameServer/docs.jsp
+	
+	The initial use-case is "ConditionalBuffs":
+	A specific zone buff is started when a set of other zone buffs
+	are active at the same time.
+	Vice-versa that buff will also be cancelled by an inverted condition.
+	
+	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	!! WARNING: This system makes it possible to created endless loops  !!
+	!!          Make extra sure your triggers result in a "false"		!!
+	!!          after executing the reaction effects!					!!
+	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Cascaded trigger lists for boolean AND/OR
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	The list of triggers works as in any other place of the game as a
+	boolean "AND", which means all triggers have to be fulfilled.
+	To achieve a boolean "OR" you can specify another trigger list instead
+	of a single trigger, encapsulated in a <any> tag. Example:
+	<triggers>   										<- all have to trigger
+		<zonebuffactive name="buffA" amount="1"/>
+		<any>											<- only one has to trigger
+			<zonebuffactive name="buffB" amount="0"/>
+			<zonebuffactive name="buffC" amount="0"/>
+		</any>
+	</triggers>
+	In this example the effects will be executed when buffA is active
+	and either buffB or buffC is missing.
+
+	You can make this even more complex using the <all> tag, which acts as
+	a boolean "AND" like the trigger list itself:
+	<triggers>   										<- all have to trigger
+		<zonebuffactive name="buffA" amount="1"/>
+		<any>											<- only one has to trigger
+			<zonebuffactive name="buffB" amount="0"/>
+			<all>										<- all have to trigger
+				<zonebuffactive name="buffC" amount="0"/>
+				<zonebuffactive name="buffD" amount="0"/>
+			</all>
+		</any>
+	</triggers>
+	This example triggers when Either buffB is active together with buffA,
+	or when buffA, buffC and buffD are active at the same time.
+	
+	Hint:
+	<triggers> is always the same as <all>
+	So instead of <triggers><all>...</all></triggers>
+	just use <triggers>...</triggers>
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
+	
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Inverted triggers, or NOT-triggers
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Some triggers cannot be inverted with just the regular properties.
+	For example:
+	Trigger when the user has any amount of Planks *except* when he as 500
+	To achieve such a trigger you can invert the trigger like this:
+	<resource item="Planks" min="500" max="500" invert="true />
+	The invert=true attribute will invert the logic of this trigger,
+	so it will not trigger for 500 Planks, but for any other amount it will.
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
+	//////////////////////////////////////////////////////////////////////
+-->
+
+	<!-- Valentine Population -->
+	<reaction name="ReactionStart_ValentineSpeedUpPopulationGrowthZoneConditional">
+		<triggers>
+			<eventrunning name="Valentines2019plus_Content"/>
+			<zonebuffactive name="SpeedUpPopulationGrowthValentineZoneConditional" amount="0"/>
+			<buffactive name="EffectBuffFlowerBouquet" min="5"/>
+		</triggers>
+		<effects>
+			<applyzonebuff name="SpeedUpPopulationGrowthValentineZoneConditional"/>
+		</effects>
+	</reaction>
+	
+	<reaction name="ReactionStop_ValentineSpeedUpPopulationGrowthZoneConditional">
+		<triggers>
+			<zonebuffactive name="SpeedUpPopulationGrowthValentineZoneConditional" amount="1"/>
+			<buffactive name="EffectBuffFlowerBouquet" max="4"/>
+		</triggers>
+		<effects>
+			<cancelzonebuff name="SpeedUpPopulationGrowthValentineZoneConditional"/>
+		</effects>
+	</reaction>
+	
+	
+	<!-- Valentine Recruitment -->
+	<reaction name="ReactionStart_ValentineRecruitingBuffZoneConditional">
+		<triggers>
+			<eventrunning name="Valentines2019plus_Content"/>
+			<zonebuffactive name="RecruitingBuffValentineZoneConditional" amount="0"/>
+			<buffactive name="EffectBuffFlowerBouquet" min="10"/>
+		</triggers>
+		<effects>
+			<applyzonebuff name="RecruitingBuffValentineZoneConditional"/>
+		</effects>
+	</reaction>
+	
+	<reaction name="ReactionStop_ValentineRecruitingBuffZoneConditional">
+		<triggers>
+			<zonebuffactive name="RecruitingBuffValentineZoneConditional" amount="1"/>
+			<buffactive name="EffectBuffFlowerBouquet" max="9"/>
+		</triggers>
+		<effects>
+			<cancelzonebuff name="RecruitingBuffValentineZoneConditional"/>
+		</effects>
+	</reaction>
+	
+	
+	<!-- Valentine Loot Boost -->
+	<reaction name="ReactionStart_ValentineAdventureRewardConditional">
+		<triggers>
+			<eventrunning name="Valentines2019plus_Content"/>
+			<zonebuffactive name="ValentineAdventureRewardBoostConditional" amount="0"/>
+			<buffactive name="ProductivityBuffValentinesCard_01,ProductivityBuffValentinesCard_02,ProductivityBuffValentinesCard_03,ProductivityBuffValentinesCard_04,ProductivityBuffValentinesCard_05,ProductivityBuffValentinesCard_06,ProductivityBuffValentinesCard_07,ProductivityBuffValentinesCard_08,ProductivityBuffValentinesCard_09" min="3"/>
+		</triggers>
+		<effects>
+			<applyzonebuff name="ValentineAdventureRewardBoostConditional"/>
+		</effects>
+	</reaction>
+	
+	<reaction name="ReactionStop_ValentineAdventureRewardConditional">
+		<triggers>
+			<zonebuffactive name="ValentineAdventureRewardBoostConditional" amount="1"/>
+			<buffactive name="ProductivityBuffValentinesCard_01,ProductivityBuffValentinesCard_02,ProductivityBuffValentinesCard_03,ProductivityBuffValentinesCard_04,ProductivityBuffValentinesCard_05,ProductivityBuffValentinesCard_06,ProductivityBuffValentinesCard_07,ProductivityBuffValentinesCard_08,ProductivityBuffValentinesCard_09" max="2"/>
+		</triggers>
+		<effects>
+			<cancelzonebuff name="ValentineAdventureRewardBoostConditional"/>
+		</effects>
+	</reaction>	
+	
+	
+<!-- LOVE GARDEN -->	
+	<!-- Population Zone Buff -->
+	<reaction name="ReactionStart_LoveGardenSpeedUpPopulationGrowthZoneConditional">
+		<triggers>
+			<zonebuffactive name="SpeedUpPopulationGrowthLoveGardenZoneConditionalLvl1" amount="0"/>
+			<buffactive name="AreaBuffLoveGardenLvl1" min="15" max="24"/>
+		</triggers>
+		<effects>
+			<applyzonebuff name="SpeedUpPopulationGrowthLoveGardenZoneConditionalLvl1"/>
+		</effects>
+	</reaction>
+	
+	<reaction name="ReactionStop_LoveGardenSpeedUpPopulationGrowthZoneConditional">
+		<triggers>
+			<zonebuffactive name="SpeedUpPopulationGrowthLoveGardenZoneConditionalLvl1" amount="1"/>
+			<buffactive name="AreaBuffLoveGardenLvl1" max="14"/>
+		</triggers>
+		<effects>
+			<cancelzonebuff name="SpeedUpPopulationGrowthLoveGardenZoneConditionalLvl1"/>
+		</effects>
+	</reaction>
+	
+	<!-- Population Zone Buff -->
+	<reaction name="ReactionStart_LoveGardenSpeedUpPopulationGrowthZoneConditionalLvl2">
+		<triggers>
+			<zonebuffactive name="SpeedUpPopulationGrowthLoveGardenZoneConditionalLvl2" amount="0"/>
+			<buffactive name="AreaBuffLoveGardenLvl1" min="25"/>
+		</triggers>
+		<effects>
+			<applyzonebuff name="SpeedUpPopulationGrowthLoveGardenZoneConditionalLvl2"/>
+		</effects>
+	</reaction>
+	
+	<reaction name="ReactionStop_LoveGardenSpeedUpPopulationGrowthZoneConditionalLvl2">
+		<triggers>
+			<zonebuffactive name="SpeedUpPopulationGrowthLoveGardenZoneConditionalLvl2" amount="1"/>
+			<buffactive name="AreaBuffLoveGardenLvl1" max="24"/>
+		</triggers>
+		<effects>
+			<cancelzonebuff name="SpeedUpPopulationGrowthLoveGardenZoneConditionalLvl2"/>
+		</effects>
+	</reaction>
+<!-- ICE SKATING LAKE -->	
+	<!-- Ice Skating Lake Zone Buff -->
+	<reaction name="ReactionStart_IceSkatingLakeZoneConditional">
+		<triggers>
+			<zonebuffactive name="AreaBuffIceSkatingLakeLvl2" amount="0"/>
+			<buffactive name="AreaBuffIceSkatingLakeLvl1" min="20" max="24"/>
+		</triggers>
+		<effects>
+			<applyzonebuff name="AreaBuffIceSkatingLakeLvl2"/>
+		</effects>
+	</reaction>
+	
+	<reaction name="ReactionStop_IceSkatingLakeZoneConditional">
+		<triggers>
+			<zonebuffactive name="AreaBuffIceSkatingLakeLvl2" amount="1"/>
+			<buffactive name="AreaBuffIceSkatingLakeLvl1" max="19"/>
+		</triggers>
+		<effects>
+			<cancelzonebuff name="AreaBuffIceSkatingLakeLvl2"/>
+		</effects>
+	</reaction>
+	
+	<!-- Ice Skating Lake Zone Buff 2 -->
+	<reaction name="ReactionStart_IceSkatingLakeZoneConditional2">
+		<triggers>
+			<zonebuffactive name="AreaBuffIceSkatingLakeLvl3" amount="0"/>
+			<buffactive name="AreaBuffIceSkatingLakeLvl1" min="25"/>
+		</triggers>
+		<effects>
+			<applyzonebuff name="AreaBuffIceSkatingLakeLvl3"/>
+		</effects>
+	</reaction>
+	
+	<reaction name="ReactionStop_IceSkatingLakeZoneConditional2">
+		<triggers>
+			<zonebuffactive name="AreaBuffIceSkatingLakeLvl3" amount="1"/>
+			<buffactive name="AreaBuffIceSkatingLakeLvl1" max="24"/>
+		</triggers>
+		<effects>
+			<cancelzonebuff name="AreaBuffIceSkatingLakeLvl3"/>
+		</effects>
+	</reaction>
+	
+	<!-- Zone travel buffs - reapplies the proper skill when a new specialist is added or arrives -->
+	<reaction name="Reaction_TravelBoostNewSpecialist">
+		<triggers>
+			<any>
+				<zonebuffactive name="PropagationBuff_AdventureZoneTravelBoostLow" amount="1"/>
+				<zonebuffactive name="AdventureZoneTravelBoostLow" amount="1"/>
+				<zonebuffactive name="PropagationBuff_AdventureZoneTravelBoostMedium" amount="1"/>
+				<zonebuffactive name="AdventureZoneTravelBoostMedium" amount="1"/>
+				<zonebuffactive name="PropagationBuff_AdventureZoneTravelBoostHigh" amount="1"/>
+				<zonebuffactive name="AdventureZoneTravelBoostHigh" amount="1"/>						
+			</any>
+			<specialistownedlist item="General" />
+		</triggers>
+		<effects>
+			<skillspecialist id="227" value="1" item="general,transportergeneral" type="temp">
+				<conditions>
+					<any>
+						<zonebuffactive name="PropagationBuff_AdventureZoneTravelBoostLow" amount="1"/>
+						<zonebuffactive name="AdventureZoneTravelBoostLow" amount="1"/>
+					</any>
+				</conditions>
+			</skillspecialist>
+			<skillspecialist id="227" value="2" item="general,transportergeneral" type="temp">
+				<conditions>
+					<any>
+						<zonebuffactive name="PropagationBuff_AdventureZoneTravelBoostMedium" amount="1"/>
+						<zonebuffactive name="AdventureZoneTravelBoostMedium" amount="1"/>
+					</any>
+				</conditions>
+			</skillspecialist>
+			<skillspecialist id="227" value="3" item="general,transportergeneral" type="temp">
+				<conditions>
+					<any>
+						<zonebuffactive name="PropagationBuff_AdventureZoneTravelBoostHigh" amount="1"/>
+						<zonebuffactive name="AdventureZoneTravelBoostHigh" amount="1"/>
+					</any>
+				</conditions>
+			</skillspecialist>
+		</effects>
+	</reaction>
+
+	<!-- Zone travel buffs - reapplies the proper skill when a new specialist is added or arrives -->
+	<reaction name="Reaction_TravelBoostNewSpecialist_BlacktreeVortex">
+		<triggers>
+			<any>
+				<zonebuffactive name="PropagationBuff_AdventureZoneTravelBoost_BlackTree" amount="1"/>
+				<zonebuffactive name="AdventureZoneTravelBoost_BlackTree" amount="1"/>							
+			</any>
+			<specialistownedlist item="General" />
+		</triggers>
+		<effects>
+			<skillspecialist id="279" value="1" item="general,transportergeneral" type="temp">
+				<conditions>
+					<any>
+						<zonebuffactive name="PropagationBuff_AdventureZoneTravelBoost_BlackTree" amount="1"/>
+						<zonebuffactive name="AdventureZoneTravelBoost_BlackTree" amount="1"/>
+					</any>
+				</conditions>
+			</skillspecialist>
+		</effects>
+	</reaction>
+	
+	<!-- Fluffy Logistics -->
+	<reaction name="ReactionStart_FluffyLogisticsA">
+		<triggers>
+			<buffactive name="EffectBuffFluffyLogistics1" min="12" max="12"/>
+		</triggers>
+		<effects>
+			<applyzonebuff name="AreaBuffFluffyLogistics2"/>
+		</effects>
+	</reaction>
+	
+	<reaction name="ReactionStop_FluffyLogisticsA">
+		<triggers>
+			<buffactive name="EffectBuffFluffyLogistics1" max="11"/>
+		</triggers>
+		<effects>
+			<cancelzonebuff name="AreaBuffFluffyLogistics2"/>
+		</effects>
+	</reaction>
+	
+	<reaction name="ReactionStart_FluffyLogisticsB">
+		<triggers>
+			<zonebuffactive name="AreaBuffFluffyLogistics1" amount="1"/>
+			<zonebuffactive name="AreaBuffFluffyLogistics2" amount="1"/>
+		</triggers>
+		<effects>
+			<applyzonebuff name="AreaBuffFluffyLogistics3"/>
+		</effects>
+	</reaction>
+	
+	<reaction name="ReactionStop_FluffyLogisticsB">
+		<triggers>
+			<zonebuffactive name="AreaBuffFluffyLogistics1" amount="0"/>
+		</triggers>
+		<effects>
+			<cancelzonebuff name="AreaBuffFluffyLogistics3"/>
+		</effects>
+	</reaction>
+	
+	<reaction name="ReactionStop_FluffyLogisticsC">
+		<triggers>
+			<zonebuffactive name="AreaBuffFluffyLogistics2" amount="0"/>
+		</triggers>
+		<effects>
+			<cancelzonebuff name="AreaBuffFluffyLogistics3"/>
+		</effects>
+	</reaction>
+	
+	
+	
+	<!-- Rain Dance VFX Zone Buff -->
+	<!--
+	
+	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	!! Commenting this... I'm leaving this here because I have the      !!
+	!!   Wishful thinking that we will implement a confirable VFX 		!!
+	!!   system soon enough												!!
+	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	
+	<reaction name="ReactionStart_BuffRainDance">
+		<triggers>
+			<zonebuffactive name="BuffRainDance" amount="1"/>
+		</triggers>
+		<effects>
+			<applyzonebuff name="EffectBuff_RainFX_LightRain"/>
+		</effects>
+	</reaction>
+	
+	<reaction name="ReactionStop_BuffRainDance">
+		<triggers>
+			<zonebuffactive name="BuffRainDance" amount="0"/>
+		</triggers>
+		<effects>
+			<cancelzonebuff name="EffectBuff_RainFX_LightRain"/>
+		</effects>
+	</reaction>
+	-->
+<!-- 
+	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	!! WARNING: This system makes it possible to created endless loops  !!
+	!!          Make extra sure your triggers result in a "false"		!!
+	!!          after executing the reaction effects!					!!
+	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ -->
+	
+	<!--Starfall-->
+	<!--<reaction name="Reaction_Reward_StarfallStarRadiators1">
+		<triggers>
+			<onmap item="StarfallRadiator1,StarfallRadiator2,StarfallRadiator3,StarfallRadiator4" min="1"/>	
+		</triggers>
+		<effects>
+			<applyzonebuff name="EffectBuff_RainFX_LightRain"/>
+		</effects>
+	</reaction>
+	<reaction name="Reaction_Reward_StarfallStarRadiators2">
+		<triggers>
+			<trigger type="Building" name="StarfallRadiator1,StarfallRadiator2,StarfallRadiator3,StarfallRadiator4" condition="l" amount="1" />
+		</triggers>
+		<effects>
+			<cancelzonebuff name="EffectBuff_RainFX_LightRain"/>
+		</effects>
+	</reaction>-->
+</reactions>

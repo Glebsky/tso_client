@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+      
+   <quest name="BuffAdv_Miners_Main1" specialType="firstQuestlastQuest" icon="Military" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_buff_adventure_0" showQuestWindow="false">
+		<triggers>
+			<questcomplete item="BuffAdv_Miners_Sub1"/> 
+			<questcomplete item="BuffAdv_Miners_Sub2"/> 
+		
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="7000"/>   
+		</rewards>
+		<postrequisits />
+    </quest>
+
+	<quest name="BuffAdv_Miners_Sub1" type="Story" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_buff_adventure_0">
+		<startcondition>
+		   <questactive item="BuffAdv_Miners_Main1"/>
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="BuffAd_Miners_Quest1" />
+        </preeffects>
+		  <triggers>
+			<buildingdestroyed item="BuildingFireWood" min="7" locaExtension="pickup" />
+		  </triggers>
+   </quest>
+   
+   <quest name="BuffAdv_Miners_Sub2" type="Story" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_buff_adventure_0">
+		<startcondition>
+		   <questcomplete item="BuffAdv_Miners_Sub1"/>
+		</startcondition>
+		<preeffects>
+        </preeffects>
+		  <triggers>
+			<buffappliedonadventure item="BattleBuffHurt_BuffAd_RockDynamite_3" min="7" />
+			<trigger type="Building" name="cave_wildlife_leader" condition="l" amount="1"/>
+		  </triggers>
+   </quest>
+   
+ 
+  
+</Root>
+
+    
+    
+      
+      
+      
+      
+
+

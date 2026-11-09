@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+      
+   <quest name="BuffAdv_El_Chupacabra_Main" specialType="firstQuestlastQuest" icon="Military" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_ventures_0" showQuestWindow="false">
+		<triggers>
+			<questcomplete item="BuffAdv_El_Chupacabra_Sub1"/> 
+			<questcomplete item="BuffAdv_El_Chupacabra_Sub2"/> 
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="3000"/>   
+		</rewards>
+		<postrequisits />
+    </quest>
+
+	<quest name="BuffAdv_El_Chupacabra_Sub1" connectedToQuest="BuffAdv_El_Chupacabra_Main" type="Story" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questactive item="BuffAdv_El_Chupacabra_Main"/>
+		</startcondition>
+		<triggers>
+			<completequestlist item="BuffAdv_El_Chupacabra_Sub1a,BuffAdv_El_Chupacabra_Sub1b,BuffAdv_El_Chupacabra_Sub1c" amount="1" locaExtension="Chupacabra" />
+		</triggers>
+   </quest>
+   
+   <quest name="BuffAdv_El_Chupacabra_Sub2" connectedToQuest="BuffAdv_El_Chupacabra_Main" type="Story" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0" >
+		<startcondition>
+		   <questcomplete item="BuffAdv_El_Chupacabra_Sub1"/>
+		</startcondition>
+		<triggers>			
+			<trigger type="Building" name="BuffAd_El_Chupacabra_Cave_leader" condition="l" amount="1" locaExtension="Chupacabra" />
+		</triggers>
+   </quest>
+   
+   <quest name="BuffAdv_El_Chupacabra_Sub3" type="Side" icon="BattleBuffDestroy_infected_maya_camp" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0">
+		<startcondition>
+            <buildingdestroyed item="infected_cave" min="1"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Building" name="infected_cave" condition="l" amount="17" locaExtension="Chupacabra" />
+			<buffowned item="BattleBuffDestroy_infected_maya_camp" min="1" />
+			<buffappliedonadventure item="BattleBuffDestroy_infected_maya_camp" min="1" locaExtension="Chupacabra" />
+		</triggers>
+   </quest>
+    
+<!-- Hidden quests for scripting -->
+	<quest name="BuffAdv_El_Chupacabra_Sub1a" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questactive item="BuffAdv_El_Chupacabra_Main"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Building" name="Bandits_Wall-Edge_West" condition="l" amount="1"/>
+		</triggers>
+   </quest>
+	<quest name="BuffAdv_El_Chupacabra_Sub1b" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questactive item="BuffAdv_El_Chupacabra_Main"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Building" name="Bandits_Wall-Edge_East" condition="l" amount="1"/>
+		</triggers>
+   </quest>
+	<quest name="BuffAdv_El_Chupacabra_Sub1c" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questactive item="BuffAdv_El_Chupacabra_Main"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Building" name="Bandits_Wall-Edge_South" condition="l" amount="1"/>
+		</triggers>
+   </quest>
+	<quest name="BuffAdv_El_Chupacabra_Sub1all" showQuestWindow="false" showRewardWindow="false" notifyHomeZone="true">
+		<startcondition>
+		   <questactive item="BuffAdv_El_Chupacabra_Main"/>
+		</startcondition>
+		<triggers>
+			<completequestlist item="BuffAdv_El_Chupacabra_Sub1a,BuffAdv_El_Chupacabra_Sub1b,BuffAdv_El_Chupacabra_Sub1c" amount="3" />
+		</triggers>
+   </quest>
+  
+  		<!-- Twin Town One time only quest -->
+	<quest name="TwinTown_El_Chupacabra_Tracks_Helper" showQuestWindow="false" showRewardWindow="false" >	
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Home_Chapter1_Main2_Sub_10_QGV" min="1" max="1"/>			
+		</startcondition>	
+		<triggers>				
+		</triggers>
+		<posteffects>		
+			<spawnbuilding name="Tracks" x="13" y="74" mode="enemy" action="ignoreBlocking,spawnInstant"/>			
+			<spawnbuilding name="Tracks" x="9" y="36" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="13" y="33" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="25" y="50" mode="enemy" action="ignoreBlocking,spawnInstant"/>		
+			<spawnbuilding name="Tracks" x="14" y="40" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="27" y="73" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="36" y="105" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="35" y="100" mode="enemy" action="ignoreBlocking,spawnInstant"/>
+			<spawnbuilding name="Tracks" x="39" y="97" mode="enemy" action="ignoreBlocking,spawnInstant"/>
+			<spawnbuilding name="Tracks" x="24" y="108" mode="enemy" action="ignoreBlocking,spawnInstant"/>
+			<spawnbuilding name="Tracks" x="27" y="59" mode="enemy" action="ignoreBlocking,spawnInstant"/>
+			<spawnbuilding name="Tracks" x="12" y="64" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="33" y="57" mode="enemy" action="ignoreBlocking,spawnInstant"/>
+			<spawnbuilding name="Tracks" x="47" y="27" mode="enemy" action="ignoreBlocking,spawnInstant"/>			
+			<startquest name="TwinTown_El_Chupacabra_Tracks"/>				
+		</posteffects>		
+    </quest>	
+	
+   <quest name="TwinTown_El_Chupacabra_Tracks" type="Story" icon="QuestShort" npc="quest_character_sonya_solemoon.png" notifyHomeZone="true" >	
+		<triggers>
+			<buildingdestroyed min="6" item="Tracks" locaExtension="TwinTown_Tracks"/>				
+		</triggers>
+		<posteffects>		
+		</posteffects>		
+    </quest>			
+  
+  
+</Root>
+
+    
+    
+      
+      
+      
+      
+
+

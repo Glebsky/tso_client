@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+      
+   <quest name="BuffAdv_Evil_Queen_Snow_White_Main1" specialType="firstQuestlastQuest" icon="Military" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_ventures_0" showQuestWindow="false">
+		<triggers>
+			<questcomplete item="BuffAdv_Evil_Queen_Snow_White_Sub1"/> 
+			<questcomplete item="BuffAdv_Evil_Queen_Snow_White_Sub2"/> 
+			<questcomplete item="BuffAdv_Evil_Queen_Snow_White_Sub3"/> 
+			<questcomplete item="BuffAdv_Evil_Queen_Snow_White_Sub4"/> 
+			<questcomplete item="BuffAdv_Evil_Queen_Snow_White_Sub5"/> 
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="7000"/>   
+		</rewards>
+		<postrequisits />
+    </quest>
+
+	<quest name="BuffAdv_Evil_Queen_Snow_White_Sub1" connectedToQuest="BuffAdv_Evil_Queen_Snow_White_Main1" type="Story" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questactive item="BuffAdv_Evil_Queen_Snow_White_Main1"/>
+		</startcondition>
+		<preeffects>
+        </preeffects>
+		  <triggers>
+			<onmap max="0"  item="cave_wildlife_leader" locaExtension="cave_wildlife_leader_all"/>
+			<!--trigger type="Building" name="cave_wildlife_leader" condition="l" amount="1" locaExtension="animalshg"/-->
+		  </triggers>
+		<rewards>
+			<reward type="XP" amount="450"/>   
+		</rewards>  
+   </quest>
+   
+   <quest name="BuffAdv_Evil_Queen_Snow_White_Sub2" connectedToQuest="BuffAdv_Evil_Queen_Snow_White_Main1" type="Story" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAdv_Evil_Queen_Snow_White_Sub1"/>
+		</startcondition>
+		<preeffects>
+        </preeffects>
+		  <triggers>
+			<trigger type="Building" name="Huntsman_leader" condition="l" amount="1" locaExtension="huntsman"/>			
+			<trigger type="Building" name="Banditsleader_Dark" condition="l" amount="3" locaExtension="all"/>
+		  </triggers>
+		<rewards>
+			<reward type="XP" amount="600"/>   
+		</rewards>  
+   </quest>
+   
+   <quest name="BuffAdv_Evil_Queen_Snow_White_Sub3" connectedToQuest="BuffAdv_Evil_Queen_Snow_White_Main1" type="Story" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAdv_Evil_Queen_Snow_White_Sub2"/>
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="BuffAd_Evil_Queen_Snow_White_Quest1"/>
+			<spawncollectibles type="BuffAd_Evil_Queen_Snow_White_Quest2"/>
+		</preeffects>
+		  <triggers>
+			<buildingdestroyed item="BuildingGlowingHerbs" min="8" locaExtension="pickup" />
+			<buildingdestroyed item="BuildingStinkyMushroom" min="2" locaExtension="pickup" />
+			<trigger type="Building" name="Dwarf_Cave" condition="l" amount="1" locaExtension="bugs"/>			
+		  </triggers>
+		<rewards>
+			<reward type="XP" amount="500"/>   
+		</rewards>
+   </quest>
+      
+   <quest name="BuffAdv_Evil_Queen_Snow_White_Sub4" connectedToQuest="BuffAdv_Evil_Queen_Snow_White_Main1" type="Story" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAdv_Evil_Queen_Snow_White_Sub3"/>
+		</startcondition>
+		<preeffects>
+        </preeffects>
+		  <triggers>
+				<onmap max="0"  item="Banditsleader_Dark" locaExtension="Banditsleader_Dark_all"/>
+				<!--trigger type="Building" name="Banditsleader_Dark" condition="l" amount="1" locaExtension="darkcult"/-->
+		  </triggers>
+		<rewards>
+			<reward type="XP" amount="700"/>   
+		</rewards>
+   </quest>
+   
+   <quest name="BuffAdv_Evil_Queen_Snow_White_Sub5" connectedToQuest="BuffAdv_Evil_Queen_Snow_White_Main1" type="Story" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAdv_Evil_Queen_Snow_White_Sub4"/>
+		</startcondition>
+		<preeffects>
+        </preeffects>
+		  <triggers>
+			<trigger type="Building" name="Evil_Queen_leader" condition="l" amount="1" locaExtension="stepmother"/>
+		  </triggers>
+		<rewards>
+			<reward type="XP" amount="750"/>   
+		</rewards>
+   </quest>
+  
+</Root>
+
+    
+    
+      
+      
+      
+      
+
+

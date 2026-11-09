@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	 <quest name="WMEventAdvQ1Main" type="Event"  specialType="firstQuestlastQuest" icon="EMEventResource" npc="quest_character_soccer.png">
+		<triggers>
+			  <trigger type="Building" name="WM_back_blue_b" condition="l" amount="1"/>
+			  <trigger type="Building" name="WM_midfielder_blue_b" condition="l" amount="1"/>
+			  <trigger type="Building" name="WM_striker_blue_b" condition="l" amount="1"/>
+			  <trigger type="Building" name="s_soocergate_blue_b" condition="l" amount="1"/>
+	  </triggers>
+      <rewards>
+         <reward type="XP" amount="300"/>        
+      </rewards>
+    </quest>
+
+	 <quest name="WMEventAdvQ1Main1" type="Event"  icon="EMEventResource" npc="quest_character_soccer.png">
+		<startcondition>
+		</startcondition>
+		<triggers>
+           <!--trigger type="QuestComplete" name="WMEventAdvQ1Sub1" condition="questcompleted" amount="1"/-->
+           <trigger type="QuestComplete" name="WMEventAdvQ1Sub2" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="WMEventAdvQ1Sub3" condition="questcompleted" amount="1"/>
+		  </triggers>
+      <rewards>       
+      </rewards>
+    </quest>
+
+	 <!--quest name="WMEventAdvQ1Sub1" type="Event" connectedToQuest="WMEventAdvQ1Main1" icon="EMEventResource" npc="quest_character_soccer.png">
+		 <startcondition>
+		  <questactive item="WMEventAdvQ1Main"/>
+         </startcondition>
+		<triggers>
+           <buildingselected item="WM_back_blue_b" min="1" />
+ 		  </triggers>
+      <rewards>      
+      </rewards>
+    </quest-->
+
+	 <quest name="WMEventAdvQ1Sub2" type="Event"  connectedToQuest="WMEventAdvQ1Main1" icon="EMEventResource" npc="quest_character_soccer.png">
+		 <startcondition>
+		  <questactive item="WMEventAdvQ1Main"/>
+         </startcondition>
+		<triggers>
+			<!-- <buffapplied item="BattleBuffWMHurtTackle" min="1" /> -->
+			<trigger type="Building" name="WM_striker_blue_b" condition="l" amount="2" locaExtension="WMEventAdvQ1Sub2_tutorial"/>
+ 		  </triggers>
+      <rewards>      
+      </rewards>
+    </quest>
+
+	 <quest name="WMEventAdvQ1Sub3" type="Event"  connectedToQuest="WMEventAdvQ1Main1" icon="EMEventResource" npc="quest_character_soccer.png">
+		 <startcondition>
+		  <questactive item="WMEventAdvQ1Main"/>
+         </startcondition>
+		<triggers>
+			<trigger type="Building" name="WM_midfielder_blue_b" condition="l" amount="4" locaExtension="WMEventAdvQ1Sub3_tutorial"/>
+		<!-- 	<buffapplied item="BattleBuffHurtWMCornerBall" min="1" /> -->
+			<!-- <trigger type="Buff" name="WM_midfielder_blue_b" actionName="" condition="geDelta" amount="1" />-->
+ 		  </triggers>
+      <rewards>      
+      </rewards>
+    </quest>
+
+</Root>

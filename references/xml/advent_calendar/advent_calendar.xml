@@ -1,0 +1,1673 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+	Special Types:
+	"No_Previous_Needed" - Special door can be opened without any previous doors open
+	"All_Previous_Needed" - Special door can only be opened when ALL previous doors are open
+	
+	BackgroundTypes:
+	"Advent" - Simple Red
+	"Christmas_Eve" - Golden with Stars
+	"New_Year" - Decorative Snow Flakes
+	"WM_Event_Adventure" - Green with Footballs
+	"WM_Event_Bonus" - Gold with Trophy 
+	"Presents" - Green with Presents 
+ -->
+
+<!-- Advent Calendar starting on Dec 18th -->
+<!--
+ <AdventCalendar requiresEvent="XMAS2017plus_Shop">
+
+	<door id="XMAS_door1" openDay="0" backgroundType="Advent" rewardType="showfirst" >
+		<reward type="Adventure" name="XMAS_Map_Easy_1" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Easy_2" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_1" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_2" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_1" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_2" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward>
+	</door>
+	
+	<door id="XMAS_door2" openDay="1" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="AddResource" name="ChristmasResource" amount="50"/> 			
+	</door>
+	
+	<door id="XMAS_door3" openDay="2"  backgroundType="Advent" rewardType="showfirst">
+		<reward type="Adventure" name="XMAS_Map_Easy_1" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Easy_2" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_1" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_2" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_1" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80" />
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_2" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+	</door>
+	
+	<door id="XMAS_door4" openDay="3" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="AddResource" name="Oil" amount="500"/> 
+	</door>	
+
+	<door id="XMAS_door5" openDay="4" openGemCost="300" specialType="All_Previous_Needed" backgroundType="New_Year" >
+		<reward type="Buff" item="BuildBuilding" name="EpicIronMine" amount="1" recurringChance="0"/> 
+		<reward type="Buff" item="BuildBuilding" name="EpicTitaniumMine" amount="1" recurringChance="0"/> 
+		<reward type="Buff" item="BuildBuilding" name="EpicSalpeterMine" amount="1" recurringChance="0"/> 
+	</door>
+	
+	<door id="XMAS_door6" openDay="5" backgroundType="Advent" rewardType="showfirst">
+		<reward type="Adventure" name="XMAS_Map_Easy_3" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Easy_4" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Easy_5" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_3" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_4" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_5" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_3" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_4" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_5" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward>  
+	</door>
+	
+	<door id="XMAS_door7" openDay="6" openGemCost="300" rewardType="hidden" specialType="All_Previous_Needed" backgroundType="New_Year" >
+		<reward type="Buff" item="BuildBuilding" name="RabbitBreeding" amount="1" recurringChance="0"/> 
+	</door>
+	
+	<door id="XMAS_door8" openDay="7" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="AddResource" name="StarfallStarShards" amount="200"/> 
+	</door>
+	
+	<door id="XMAS_door9" openDay="8" openGemCost="300" rewardType="hidden" specialType="All_Previous_Needed" backgroundType="New_Year" >
+		<reward type="Buff" item="BuildBuilding" name="GiantBarrel" amount="1" recurringChance="100"/> 
+	</door>
+		
+	<door id="XMAS_door10" openDay="9" backgroundType="Advent" rewardType="showfirst" >
+		<reward type="Adventure" name="XMAS_Map_Easy_3" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Easy_4" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Easy_5" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_3" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_4" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_5" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_3" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_4" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_5" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+	</door>
+		
+	<door id="XMAS_door11" openDay="10" openGemCost="100" rewardType="hidden"  >
+		<reward type="Buff" item="AddResource" name="ChristmasResource" amount="100"/> 
+	</door>	
+	
+	<door id="XMAS_door12" openDay="11" backgroundType="Advent" rewardType="showfirst" >
+		<reward type="Adventure" name="XMAS_Map_Easy_6" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Easy_7" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Easy_8" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_6" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_7" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_8" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_6" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_7" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_8" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+	</door>
+		
+	<door id="XMAS_door13" openDay="12" openGemCost="100" rewardType="hidden" >	
+		<reward type="Buff" item="ProductivityBuffLvl24" amount="3" />		
+	</door>	
+
+	<door id="XMAS_door14" openDay="13" openGemCost="300" backgroundType="New_Year" specialType="All_Previous_Needed" >
+		<reward type="Buff" item="AddResource" name="Platinum" amount="600"/> 
+		<reward type="Buff" item="AddResource" name="Grout" amount="300"/>  		 
+	</door>
+	
+	<door id="XMAS_door15" openDay="14" backgroundType="Advent" rewardType="showfirst" >
+		<reward type="Adventure" name="XMAS_Map_Easy_6" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Easy_7" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Easy_8" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_6" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_7" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_8" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_6" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_7" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_8" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+	</door>
+	
+	<door id="XMAS_door16" openDay="15" openGemCost="300" rewardType="hidden" specialType="All_Previous_Needed" backgroundType="New_Year" >
+		<reward type="Specialist" name="EmphaticExplorer" amount="1" />
+	</door>
+	
+	<door id="XMAS_door17" openDay="16" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="AddResource" name="ChristmasResource" amount="150"/> 			
+	</door>
+
+	<door id="XMAS_door18" openDay="17" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="ProductivityBuffToyFactoryBuff3" amount="3"/> 		
+	</door>	
+	
+	<door id="XMAS_door19" openDay="18" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="ProductivityBuffLvl13" amount="6"/> 			
+	</door>
+	
+	<door id="XMAS_door20" openDay="19" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="MultiplierBuffZone2_PremiumFriendBuff1Day" amount="1"/> 
+	</door>
+	
+	<door id="XMAS_door21" openDay="20" openGemCost="300" rewardType="hidden" specialType="All_Previous_Needed" backgroundType="New_Year" >
+		<reward type="Buff" item="BuildBuilding" name="GiftChristmasTree" amount="1" recurringChance="100"/>
+	</door>
+	
+	<door id="XMAS_FinalReward" specialType="final_reward">
+		<reward type="Buff" item="ProductivityBuffLvl1" amount="1"/> 
+	</door>
+</AdventCalendar>
+-->
+
+<!--  Advent Calendar starting on Dec 12th
+
+ <AdventCalendar requiresEvent="XMAS2017plus_Shop">
+
+	<door id="XMAS_door1" openDay="0" backgroundType="Advent" rewardType="showfirst" >
+		<reward type="Adventure" name="XMAS_Map_Easy_1" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Easy_2" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_1" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_2" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_1" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_2" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward>
+	</door>
+	
+	<door id="XMAS_door2" openDay="1" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="ChangeColorScheme" name="snowlight" amount="3"/> 
+	</door>
+	
+	<door id="XMAS_door3" openDay="2" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="AddResource" name="ChristmasResource" amount="20"/> 
+	</door>
+	
+	<door id="XMAS_door4" openDay="3"  backgroundType="Advent" rewardType="showfirst">
+		<reward type="Adventure" name="XMAS_Map_Easy_1" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Easy_2" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_1" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_2" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_1" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80" />
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_2" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+	</door>
+
+	<door id="XMAS_door5" openDay="4" openGemCost="300" specialType="All_Previous_Needed" backgroundType="New_Year" >
+		<reward type="Buff" item="AddResource" name="Manuscript" amount="5"/> 
+		<reward type="Buff" item="AddResource" name="Tome" amount="3"/> 
+		<reward type="Buff" item="AddResource" name="Codex" amount="1"/> 
+	</door>
+	
+	<door id="XMAS_door6" openDay="5" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="AddResource" name="GoldOre" amount="1000"/> 
+		<reward type="Buff" item="AddResource" name="IronOre" amount="1500"/> 
+	</door>
+	
+	<door id="XMAS_door7" openDay="6" backgroundType="Advent" rewardType="showfirst">
+		<reward type="Adventure" name="XMAS_Map_Easy_3" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Easy_4" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Easy_5" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_3" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_4" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_5" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_3" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_4" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_5" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward>  
+
+	</door>
+
+	<door id="XMAS_door8" openDay="7" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="AddResource" name="ChristmasResource" amount="30"/> 
+	</door>
+	
+	<door id="XMAS_door9" openDay="8" openGemCost="300" specialType="All_Previous_Needed" backgroundType="New_Year" >
+		<reward type="Buff" item="AddResource" name="Coin" amount="500"/> 
+		<reward type="Buff" item="AddResource" name="Granite" amount="200"/> 
+		<reward type="Buff" item="AddResource" name="PlatinumOre" amount="350"/> 
+		<reward type="Buff" item="AddResource" name="ChristmasResource" amount="100"/> 
+	</door>
+	
+	<door id="XMAS_door10" openDay="9" backgroundType="Advent" rewardType="showfirst" >
+		<reward type="Adventure" name="XMAS_Map_Easy_3" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Easy_4" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Easy_5" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_3" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_4" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_5" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_3" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_4" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_5" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+	</door>
+
+	<door id="XMAS_door11" openDay="10" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="Loottable_ChristmasDecorationsBox2015" name="173" />
+	</door>
+	
+	<door id="XMAS_door12" openDay="11" openGemCost="300" specialType="All_Previous_Needed" backgroundType="New_Year" >
+		<reward type="Buff" item="AddResource" name="MagicBean" amount="500"/> 
+		<reward type="Buff" item="AddResource" name="StarCoin" amount="350"/> 
+	</door>
+	
+	<door id="XMAS_door13" openDay="12" backgroundType="Advent" rewardType="showfirst" >
+		<reward type="Adventure" name="XMAS_Map_Easy_6" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Easy_7" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Easy_8" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_6" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_7" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_8" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_6" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_7" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_8" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+	</door>
+	
+	<door id="XMAS_door14" openDay="13" openGemCost="300" specialType="All_Previous_Needed" backgroundType="Christmas_Eve" >
+		<reward type="Buff" item="BuildBuilding" name="GingerbreadResidence" amount="2" recurringChance="100"/> 
+	</door>
+	
+	<door id="XMAS_door15" openDay="14" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="ProductivityBuffLvl8" amount="2"/> 
+		<reward type="Buff" item="SpeedUpPopulationGrowth3" amount="3"/> 
+	</door>
+
+	<door id="XMAS_door16" openDay="15" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="BuildBuilding" name="ArcticIronMine" amount="1" recurringChance="0"/> 
+	</door>
+	
+	<door id="XMAS_door17" openDay="16" backgroundType="Advent" rewardType="showfirst" >
+		<reward type="Adventure" name="XMAS_Map_Easy_6" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Easy_7" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Easy_8" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_6" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_7" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_8" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_6" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_7" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_8" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+	</door>
+	
+	<door id="XMAS_door18" openDay="17" openGemCost="300" specialType="All_Previous_Needed" backgroundType="New_Year" >
+		<reward type="Buff" item="BuildBuilding" name="VillageSchool" amount="1" recurringChance="100"/> 
+		<reward type="Buff" item="BuildBuilding" name="FloatingResidence" amount="2" recurringChance="100"/>
+	</door>	
+	
+	<door id="XMAS_door19" openDay="18" openGemCost="100" rewardType="hidden" >	
+		<reward type="Buff" item="ProductivityBuffLvl19" amount="3"/> 
+		<reward type="Buff" item="ProductivityBuffLvl9" amount="3"/> 		
+		<reward type="Buff" item="ProductivityBuffLvl24" amount="4"/> 		
+	</door>
+	
+	<door id="XMAS_door20" openDay="19" openGemCost="300" specialType="All_Previous_Needed" backgroundType="Christmas_Eve" >
+		<reward type="Buff" item="Loottable_ImprovedBuildingBox" name="191" />
+		<reward type="Buff" item="BuildBuilding" name="coal_workyard" amount="1" recurringChance="100"/> 
+		<reward type="Buff" item="AddResource" name="Grout" amount="300"/> 
+	</door>
+	
+	<door id="XMAS_door21" openDay="20" openGemCost="100" rewardType="hidden" > 
+		<reward type="Buff" item="ChangeColorScheme" name="snowlight" amount="4"/> 
+		<reward type="Buff" item="ChangeColorScheme" name="snownowater" amount="4"/> 
+		<reward type="Buff" item="AnimalBuff_reindeer" amount="4"/> 
+	</door>
+		
+	<door id="XMAS_FinalReward" specialType="final_reward">
+		<reward type="Buff" item="ProductivityBuffLvl1" amount="1"/> 
+	</door>
+</AdventCalendar>
+-->
+ 
+ 
+<!-- Advent Calendar starting on Dec 15th 
+<AdventCalendar requiresEvent="XMAS2017plus_Shop">
+
+	<door id="XMAS_door1" openDay="0" backgroundType="Advent" rewardType="showfirst" >
+		<reward type="Adventure" name="XMAS_Map_Easy_1" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Easy_2" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_1" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_2" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_1" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_2" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward>
+	</door>
+	
+	<door id="XMAS_door2" openDay="1" openGemCost="100" rewardType="hidden">
+			<reward type="Buff" item="ProductivityBuffLvl12" amount="2"/> 
+	</door>
+	
+	<door id="XMAS_door3" openDay="2" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="AddResource" name="ChristmasResource" amount="25"/> 
+	</door>
+	
+	<door id="XMAS_door4" openDay="3"  backgroundType="Advent" rewardType="showfirst">
+		<reward type="Adventure" name="XMAS_Map_Easy_1" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Easy_2" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_1" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_2" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_1" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80" />
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_2" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+	</door>
+
+	<door id="XMAS_door5" openDay="4" openGemCost="300" specialType="All_Previous_Needed" backgroundType="New_Year" >
+		<reward type="Buff" item="AddResource" name="Manuscript" amount="5"/> 
+		<reward type="Buff" item="AddResource" name="Tome" amount="3"/> 
+		<reward type="Buff" item="AddResource" name="Codex" amount="1"/> 
+	</door>
+	
+	<door id="XMAS_door6" openDay="5" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="AddResource" name="TitaniumOre" amount="600"/> 
+		<reward type="Buff" item="AddResource" name="Salpeter" amount="300"/> 
+	</door>
+	
+	<door id="XMAS_door7" openDay="6" backgroundType="Advent" rewardType="showfirst">
+		<reward type="Adventure" name="XMAS_Map_Easy_3" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Easy_4" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Easy_5" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_3" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_4" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_5" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_3" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_4" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_5" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward>  
+
+	</door>
+	
+	<door id="XMAS_door8" openDay="7" openGemCost="300" specialType="All_Previous_Needed" backgroundType="New_Year" >
+		<reward type="Buff" item="AddResource" name="Titanium" amount="1000"/> 
+		<reward type="Buff" item="AddResource" name="Iron" amount="2000"/> 
+		<reward type="Buff" item="AddResource" name="Grout" amount="300"/> 
+		<reward type="Buff" item="AddResource" name="ChristmasResource" amount="150"/> 
+	</door>	
+	
+	<door id="XMAS_door9" openDay="8" openGemCost="300" specialType="All_Previous_Needed" backgroundType="Christmas_Eve" >
+		<reward type="Buff" item="BuildBuilding" name="Riverhouse" amount="1" recurringChance="100"/> 
+	</door>
+	
+	<door id="XMAS_door10" openDay="9" backgroundType="Advent" rewardType="showfirst" >
+		<reward type="Adventure" name="XMAS_Map_Easy_3" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Easy_4" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Easy_5" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_3" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_4" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_5" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_3" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_4" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_5" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+	</door>
+	
+	<door id="XMAS_door11" openDay="10" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="BuildBuilding" name="GingerbreadResidence" amount="1" recurringChance="100"/>
+	</door>	
+	
+	<door id="XMAS_door12" openDay="11" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="Loottable_ChristmasDecorationsBox2015" name="173" />
+	</door>
+	
+	<door id="XMAS_door13" openDay="12" backgroundType="Advent" rewardType="showfirst" >
+		<reward type="Adventure" name="XMAS_Map_Easy_6" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Easy_7" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Easy_8" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_6" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_7" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_8" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_6" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_7" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_8" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+	</door>
+	
+	<door id="XMAS_door14" openDay="13" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="ProductivityBuffLvl8" amount="5"/> 
+		<reward type="Buff" item="SpeedUpPopulationGrowth3" amount="5"/> 
+	</door>	
+
+	<door id="XMAS_door15" openDay="14" openGemCost="300" specialType="All_Previous_Needed" backgroundType="Christmas_Eve" >
+		<reward type="Buff" item="BuildBuilding" name="GiftChristmasTree" amount="1" recurringChance="100"/>
+		<reward type="Buff" item="BuildBuilding" name="GingerbreadStorage" amount="1" recurringChance="100"/>	
+	</door>
+
+	<door id="XMAS_door16" openDay="15" openGemCost="300" specialType="All_Previous_Needed" backgroundType="Christmas_Eve" >
+		<reward type="Buff" item="BuildBuilding" name="ImprovedFloatingResidence" amount="1" recurringChance="100"/>
+		<reward type="Buff" item="Loottable_ImprovedBuildingBox" name="191" /> 			
+	</door>
+	
+	<door id="XMAS_door17" openDay="16" backgroundType="Advent" rewardType="showfirst" >
+		<reward type="Adventure" name="XMAS_Map_Easy_6" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Easy_7" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Easy_8" amount="1">
+			<conditions>
+				<playerlevel max="25"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_6" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_7" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Medium_8" amount="1">
+			<conditions>
+				<playerlevel min="26" max="35"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_6" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_7" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+		<reward type="Adventure" name="XMAS_Map_Hard_8" amount="1">
+			<conditions>
+				<playerlevel min="36" max="80"/>
+			</conditions>
+		</reward> 
+	</door>
+	
+	<door id="XMAS_door18" openDay="17" openGemCost="300" specialType="All_Previous_Needed" backgroundType="New_Year" >
+		<reward type="Buff" item="BuildBuilding" name="ArcticIronMine" amount="1" recurringChance="0"/> 
+		<reward type="Buff" item="BuildBuilding" name="FloatingResidence" amount="1" recurringChance="100"/> 		
+	</door>
+	
+	<door id="XMAS_door19" openDay="18" openGemCost="100" rewardType="hidden" >	
+		<reward type="Buff" item="ProductivityBuffLvl19" amount="3"/> 
+		<reward type="Buff" item="ProductivityBuffLvl9" amount="3"/> 		
+		<reward type="Buff" item="ProductivityBuffLvl24" amount="3"/> 		
+	</door>
+	
+	<door id="XMAS_door20" openDay="19" openGemCost="300" specialType="All_Previous_Needed" backgroundType="New_Year" >
+		<reward type="Buff" item="BuildBuilding" name="VillageSchool" amount="1" recurringChance="100"/> 
+		<reward type="Buff" item="BuildBuilding" name="ImprovedSilo" amount="1" recurringChance="100"/>
+	</door>	
+	
+	<door id="XMAS_door21" openDay="20" openGemCost="100" rewardType="hidden" > 
+		<reward type="Buff" item="BattleBuffBomb_random_units" amount="3"/> 
+	</door>
+	
+		
+	<door id="XMAS_FinalReward" specialType="final_reward">
+		<reward type="Buff" item="ProductivityBuffLvl1" amount="1"/> 
+	</door>
+	
+</AdventCalendar>  -->
+
+<!-- SOCCER EVENT FIXTURE LIST   -->
+<!--
+<AdventCalendar requiresEvent="Soccer2018plus_Shop">
+
+	<door id="SoccerEvent_door1" openDay="0" backgroundType="WM_Event_Adventure">
+		<reward type="Adventure" name="WMEventAdventure01" amount="1"/>
+	</door>
+	
+	<door id="SoccerEvent_door2" openDay="1" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="ProductivityBuffLvl10" amount="3"/> 
+	</door>
+	
+	<door id="SoccerEvent_door3" openDay="2" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="AddResource" name="StarfallStarShards" amount="200"/> 
+	</door>
+	
+	<door id="SoccerEvent_door4" openDay="3"  backgroundType="WM_Event_Adventure">
+		<reward type="Adventure" name="WMEventAdventure04" amount="1"/>
+	</door>
+
+	<door id="SoccerEvent_door5" openDay="4" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="AddResource" name="Grout" amount="200"/> 
+	</door>
+	
+	<door id="SoccerEvent_door6" openDay="5" openGemCost="300" specialType="All_Previous_Needed" backgroundType="WM_Event_Bonus" >
+		<reward type="Buff" item="AddResource" name="Manuscript" amount="7"/> 
+		<reward type="Buff" item="AddResource" name="Tome" amount="4"/> 
+		<reward type="Buff" item="AddResource" name="Codex" amount="2"/> 
+	</door>
+	
+	<door id="SoccerEvent_door7" openDay="6" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="AddResource" name="EMEventResource" amount="250"/> 
+	</door>
+	
+	<door id="SoccerEvent_door8" openDay="7" backgroundType="WM_Event_Adventure" >
+		<reward type="Adventure" name="WMEventAdventure05" amount="1"/>
+	</door>
+	
+	<door id="SoccerEvent_door9" openDay="8" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="ProvisionerBuffLvl4" amount="3"/> 
+	</door>
+	
+	<door id="SoccerEvent_door10" openDay="9" openGemCost="300" specialType="All_Previous_Needed" backgroundType="WM_Event_Bonus" >
+		<reward type="Buff" item="BuildBuilding" name="EpicGoldMine" amount="3" recurringChance="0" />
+		<reward type="Buff" item="BuildBuilding" name="EpicIronMine" amount="4" recurringChance="0" />
+		<reward type="Buff" item="BuildBuilding" name="EpicBronzeMine" amount="6" recurringChance="0" />
+	</door>
+	
+	<door id="SoccerEvent_door11" openDay="10" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="FillDeposit" amount="1000" />
+	</door>
+	
+	<door id="SoccerEvent_door12" openDay="11" backgroundType="WM_Event_Adventure" >
+		<reward type="Adventure" name="WMEventAdventure06" amount="1"/>
+	</door>
+	
+	<door id="SoccerEvent_door13" openDay="12" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="AddResource" name="EMEventResource" amount="250"/> 
+	</door>
+	
+	<door id="SoccerEvent_door14" openDay="13" openGemCost="300" specialType="All_Previous_Needed" backgroundType="WM_Event_Bonus" >
+		<reward type="Buff" item="BattleBuffKill_random_unit_type_limited" amount="3"/> 
+		<reward type="Buff" item="BattleBuffBomb_random_units" amount="3"/> 
+		<reward type="Buff" item="BattleBuffKill_random_unit_type" amount="3"/> 
+	</door>
+	
+	<door id="SoccerEvent_door15" openDay="14" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="PropagationBuff_AdventureZoneTravelBoost_DoggyBag" amount="3"/> 
+	</door>
+
+	<door id="SoccerEvent_door16" openDay="15" backgroundType="WM_Event_Adventure" >
+		<reward type="Adventure" name="WMEventAdventure07" amount="1"/> 
+	</door>
+	
+	<door id="SoccerEvent_door17" openDay="16" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="SpeedUpPopulationGrowth4" amount="5" />
+	</door>
+	
+	<door id="SoccerEvent_door18" openDay="17" openGemCost="300" specialType="All_Previous_Needed" backgroundType="WM_Event_Bonus" > 
+		<reward type="Buff" item="AddResource" name="StarCoin" amount="1500"/> 
+		<reward type="Buff" item="AddResource" name="Grout" amount="1500"/> 
+		<reward type="Buff" item="AddResource" name="EMEventResource" amount="500"/> 
+	</door>
+	
+	<door id="SoccerEvent_door19" openDay="18" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="AddResource" name="Token" amount="100"/> 
+	</door>
+			
+	<door id="SoccerEvent_door20" openDay="19" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="AddResource" name="StarCoin" amount="250"/> 
+		<reward type="Buff" item="AddResource" name="Crystal" amount="10"/>		
+	</door> 
+	
+	<door id="SoccerEvent_door21" openDay="20" openGemCost="300" specialType="All_Previous_Needed" backgroundType="WM_Event_Bonus" > 
+		<reward type="Buff" item="BuildBuilding" name="Prospector" amount="1" recurringChance="100" />
+		<reward type="Buff" item="BuildBuilding" name="Jewelcrafter" amount="1" recurringChance="100" />
+	</door> 
+				
+	<door id="Soccer2016_FinalReward" specialType="final_reward">
+		<reward type="Buff" item="ProductivityBuffLvl1" amount="1"/> 
+	</door>
+	
+</AdventCalendar> 
+-->
+<!-- Anniversary Event Calendar  -->
+
+<AdventCalendar requiresEvent="Anniversary2018plus_Content">
+
+	<door id="AnnivEvent_door1" openDay="0" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="ProductivityBuffEWBalloonsLv2" amount="1"/>
+	</door>
+	
+	<door id="AnnivEvent_door2" openDay="1" openGemCost="300" specialType="All_Previous_Needed" backgroundType="Christmas_Eve" >
+		<reward type="Specialist" name="IronWilledGeologist" amount="1" />
+		<reward type="Buff" item="AddResource" name="Codex" amount="3"/> 
+	</door>
+	
+	<door id="AnnivEvent_door3" openDay="2" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="BuildBuilding" name="ExoticWoodTreeSchool" amount="1" recurringChance="0" />
+	</door>
+	
+	<door id="AnnivEvent_door4" openDay="3" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="ProductivityBuffLvl21" amount="3"/>
+	</door>
+
+	<door id="AnnivEvent_door5" openDay="4" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="FillDeposit" amount="1000" />
+	</door>
+	
+	<door id="AnnivEvent_door6" openDay="5" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="AddResource" name="Oil" amount="100"/> 
+	</door>	
+	
+	<door id="AnnivEvent_door7" openDay="6" openGemCost="300" specialType="All_Previous_Needed" backgroundType="Christmas_Eve" >
+		<reward type="Buff" item="PremiumAccount3Days" amount="1" />
+	</door>
+	
+	<door id="AnnivEvent_door8" openDay="7" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="MultiplierBuffZone2_PremiumFriendBuff1Day" amount="1" />	
+	</door>
+	
+	<door id="AnnivEvent_door9" openDay="8" openGemCost="300" specialType="All_Previous_Needed" backgroundType="Christmas_Eve" >
+		<reward type="Buff" item="BuildBuilding" name="GranitePit_Mini" amount="1" recurringChance="100" />	
+		<reward type="Buff" item="FillDeposit" name="Granite" amount="1000" />
+	</door>
+
+	<door id="AnnivEvent_door10" openDay="9" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="AddResource" name="Grout" amount="100"/> 
+	</door>
+	
+	<door id="AnnivEvent_door11" openDay="10" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="FillDeposit" amount="2500" />
+	</door>
+
+	<door id="AnnivEvent_door12" openDay="11" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="ProductivityBuffLvl12" amount="2" />
+	</door>
+
+	<door id="AnnivEvent_door13" openDay="12" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="AddResource" name="Token" amount="50"/> 
+	</door>
+	
+	<door id="AnnivEvent_door14" openDay="13" openGemCost="300" specialType="All_Previous_Needed" backgroundType="Christmas_Eve" >
+		<reward type="Buff" item="BuildBuilding" name="StoneDepot" amount="1" recurringChance="100" />
+		<reward type="Buff" item="AddResource" name="ObsidianOre" amount="1000"/>
+	</door>
+
+	<door id="Anniv2016_FinalReward" specialType="final_reward">
+		<reward type="Buff" item="ProductivityBuffLvl1" amount="1"/>
+	</door>
+</AdventCalendar>
+	
+<!--
+	<door id="AnnivEvent_door15" openDay="14" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="RecruitingBuffLvl9" amount="3"/> 
+	</door>	
+	
+	<door id="AnnivEvent_door16" openDay="15" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="ProductivityBuffLvl105" amount="2"/> 
+	</door>
+
+	<door id="AnnivEvent_door17" openDay="16" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="AddResource" name="Grout" amount="500"/>
+	</door>	
+
+	<door id="AnnivEvent_door18" openDay="17" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="ProductivityBuffLvlIronMine" amount="3"/> 
+	</door>	
+
+	<door id="AnnivEvent_door19" openDay="18" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="AddResource" name="Crystal" amount="50"/> 
+	</door>	
+
+	<door id="AnnivEvent_door20" openDay="19" openGemCost="300" specialType="All_Previous_Needed" backgroundType="Christmas_Eve" >
+		<reward type="Buff" item="BuildBuilding" name="ImprovedMill" amount="1" recurringChance="100" />
+	</door>
+
+	<door id="AnnivEvent_door21" openDay="20" openGemCost="300" specialType="All_Previous_Needed" backgroundType="Christmas_Eve" >
+		<reward type="Buff" item="BuildBuilding" name="School_Mini" amount="1" recurringChance="100" />
+	</door>
+
+		<door id="AnnivEvent_door22" openDay="21" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="ProductivityBuffLvl21" amount="1"/> 
+	</door>
+
+	<door id="AnnivEvent_door23" openDay="22" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="ProductivityBuffLvl22" amount="1"/> 
+	</door>	
+
+	
+-->	
+
+<!-- Halloween Event Calendar 
+
+<AdventCalendar requiresEvent="HW2017plus_Content">
+
+	<door id="HWEvent_door1" openDay="0" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="ProductivityBuffLvl108" amount="2"/> 
+	</door>
+	
+	<door id="HWEvent_door2" openDay="1" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="AddResource" name="Crystal" amount="50"/>  
+	</door>
+	
+	<door id="HWEvent_door3" openDay="2" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="AddResource" name="HalloweenResource" amount="100"/> 
+	</door>
+	
+	<door id="HWEvent_door4" openDay="3" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="RecruitingBuffLvl2" amount="2"/> 
+	</door>
+
+	<door id="HWEvent_door5" openDay="4" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="AddResource" name="StarfallStarShards" amount="200"/> 
+	</door>
+	
+	<door id="HWEvent_door6" openDay="5" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="Loottable_GrimoirePages_MysteryBox" name="302" amount="1" /> 
+	</door>	
+	
+	<door id="HWEvent_door7" openDay="6" openGemCost="300" specialType="All_Previous_Needed" backgroundType="Christmas_Eve" > 
+		<reward type="Buff" item="AddResource" name="HalloweenResource" amount="150"/> 
+		<reward type="Buff" item="AddResource" name="Oil" amount="1000"/> 
+		<reward type="Buff" item="AddResource" name="Grout" amount="1000"/> 
+	</door>
+	
+	<door id="HWEvent_door8" openDay="7" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="FillDeposit" name="HalloweenResource" amount="75" />
+	</door>
+	
+	<door id="HWEvent_door9" openDay="8" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="ProvisionerBuffLvl3" amount="3"/>  	
+	</door>
+
+	<door id="HWEvent_door10" openDay="9" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="ProductivityBuffLvl7" amount="3"/> 
+	</door>
+	
+	<door id="HWEvent_door11" openDay="10" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="BuildBuilding" name="WitchTower_Deco" amount="1" recurringChance="100" />
+	</door>
+
+	<door id="HWEvent_door12" openDay="11" openGemCost="300" specialType="All_Previous_Needed" backgroundType="Christmas_Eve"> 
+		<reward type="Buff" item="ProductivityBuffLvl28" amount="2" />
+		<reward type="Buff" item="ProductivityBuffZoneWoodLvl1" amount="2" />
+		<reward type="Buff" item="ProductivityBuffZoneStoneLvl1" amount="2" />
+	</door>
+
+	<door id="HWEvent_door13" openDay="12" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="AddResource" name="HalloweenResource" amount="150"/> 
+	</door>
+	
+	<door id="HWEvent_door14" openDay="13" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="ProductivityBuffLvl27" amount="3"/> 
+	</door>	
+	
+	<door id="HWEvent_door15" openDay="14" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="FillDeposit" name="HalloweenResource" amount="75" /> 
+	</door>
+
+	<door id="HWEvent_door16" openDay="15" openGemCost="100" rewardType="hidden">
+        <reward type="Specialist" name="SootyGeologist" amount="1"/> 
+	</door>	
+
+	<door id="HWEvent_door17" openDay="16" openGemCost="300" specialType="All_Previous_Needed" backgroundType="Christmas_Eve">
+		<reward type="Buff" item="ProductivityBuffZoneFoodLvl1" amount="2" />
+		<reward type="Buff" item="ProductivityBuffZoneOreLvl1" amount="2" />
+		<reward type="Buff" item="ProductivityBuffZoneWeaponLvl1" amount="2" /> 
+	</door>	
+	
+	<door id="HWEvent_door18" openDay="17" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="AddResource" name="StarfallStarShards" amount="200"/> 
+	</door>	
+	
+	<door id="HWEvent_door19" openDay="18" openGemCost="100"  rewardType="hidden" >
+              <reward type="Buff" item="ProductivityBuffLvl107" amount="2"/>
+		
+	</door>	
+	
+	<door id="HWEvent_door20" openDay="19" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="AddResource" name="HalloweenResource" amount="250"/>
+	</door>	
+	
+	<door id="HWEvent_door21" openDay="20" openGemCost="100" rewardType="hidden">
+		<reward type="Specialist" name="GhostGeneral" amount="1"/> 
+	</door>	
+	
+	<door id="HW2016_FinalReward" specialType="final_reward">
+		<reward type="Buff" item="ProductivityBuffLvl21" amount="2"/> 
+	</door>
+
+</AdventCalendar> -->
+
+	<!--Special Types:
+	"No_Previous_Needed" - Special door can be opened without any previous doors open
+	"All_Previous_Needed" - Special door can only be opened when ALL previous doors are open
+	
+	BackgroundTypes:
+	"Advent" - Simple Red
+	"Christmas_Eve" - Golden with Stars
+	"New_Year" - Decorative Snow Flakes
+	"WM_Event_Adventure" - Green with Footballs
+	"WM_Event_Bonus" - Gold with Trophy 
+	"Presents" - Green with Presents -->
+ 
+	
+
+
+<!-- Valentine Event Calendar -->
+<!--
+ <AdventCalendar requiresEvent="Valentines2019plus_Shop">
+
+	<door id="ValentinesEvent_door1" openDay="0" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="RecruitingBuffLvl9" amount="3"/>
+	</door>
+	
+	<door id="ValentinesEvent_door2" openDay="1" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="AddResource" name="ValentinesFlower" amount="80"/> 
+	</door>
+	
+	<door id="ValentinesEvent_door3" openDay="2" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="FillDeposit" amount="500" />
+	</door>
+	
+	<door id="ValentinesEvent_door4" openDay="3" openGemCost="300" specialType="All_Previous_Needed" backgroundType="Christmas_Eve">
+		<reward type="Specialist" name="LovelyExplorer" amount="1" />
+	</door>	
+	
+	<door id="ValentinesEvent_door5" openDay="4" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="MultiplierBuffZone1" amount="3" />
+	</door>
+	
+	<door id="ValentinesEvent_door6" openDay="5" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="ProductivityAreaBuffLvl1" amount="3" />
+	</door>	
+	
+	<door id="ValentinesEvent_door7" openDay="6" openGemCost="300" specialType="All_Previous_Needed" backgroundType="Christmas_Eve">
+		<reward type="Buff" item="BuildBuilding" name="ImprovedMill" amount="1" recurringChance="100" />
+		<reward type="Buff" item="BuildBuilding" name="ImprovedBakery" amount="1" recurringChance="100" />
+	</door>
+	
+	<door id="ValentinesEvent_door8" openDay="7" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="AddResource" name="ValentinesFlower" amount="120"/> 
+	</door>
+	
+	
+	<door id="ValentinesEvent_door9" openDay="8" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="SpeedUpPopulationGrowthDateLvl1" amount="3" />
+	</door>
+	
+	<door id="ValentinesEvent_door10" openDay="9" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="BattleBuffBomb_random_units_limited_3" amount="9"/>
+		<reward type="Buff" item="BattleBuffBombCupidosArrow" amount="6"/>
+		<reward type="Buff" item="EffectBuff_BuffFX_Hearts" amount="1"/>
+	</door>	
+
+	<door id="ValentinesEvent_door11" openDay="10"  openGemCost="300" specialType="All_Previous_Needed" backgroundType="Christmas_Eve" >
+		<reward type="Buff" item="BuildBuilding" name="Bookbinder_Mini_Gold" amount="1" recurringChance="100" />
+	</door>		
+
+	<door id="ValentinesEvent_door12" openDay="11" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="FillDeposit" amount="1000" />
+	</door>
+
+	<door id="ValentinesEvent_door13" openDay="12" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="AddResource" name="Platinum" amount="500"/> 
+		<reward type="Buff" item="AddResource" name="MahoganyPlank" amount="1000"/> 
+		<reward type="Buff" item="AddResource" name="Gunpowder" amount="700"/>
+	</door>	
+	
+	<door id="ValentinesEvent_door14" openDay="13" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="ProductivityBuffLvl22" amount="3"/>
+	</door>
+	
+	<door id="ValentinesEvent_door15" openDay="14" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="ProductivityBuffLvl12" amount="2" />
+	</door>
+	
+	<door id="ValentinesEvent_door16" openDay="15" openGemCost="300" specialType="All_Previous_Needed" backgroundType="Christmas_Eve">
+		<reward type="Buff" item="BuildBuilding" name="LoversStatue" amount="1" recurringChance="100" />
+	</door>
+	
+	
+	<door id="ValentinesEvent_door17" openDay="16" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="AddResource" name="Titanium" amount="700"/> 
+		<reward type="Buff" item="AddResource" name="Granite" amount="1000"/> 
+		<reward type="Buff" item="AddResource" name="Grout" amount="500"/>
+	</door>
+	
+		<door id="ValentinesEvent_door18" openDay="17" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="ProductivityBuffBalloonHeart" amount="6"/>
+		<reward type="Buff" item="ProductivityBuffSunflowerFertilizer" amount="4"/>
+		<reward type="Buff" item="ProductivityAreaBuffRainDance" amount="2"/>
+	</door>
+	
+	<door id="Valentines2020_FinalReward" specialType="final_reward">
+		<reward type="Buff" item="ProductivityBuffLvl22" amount="1"/>
+	</door>	
+	
+</AdventCalendar> -->
+
+
+<!-- Easter Event Calendar -->
+<!--
+<AdventCalendar requiresEvent="Easter2018plus_Shop">
+
+	<door id="EasterEvent_door1" openDay="0" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="AddResource" name="Crystal" amount="25"/> 
+	</door>
+	
+	<door id="EasterEvent_door2" openDay="1" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="AddResource" name="StripedEggs" amount="300"/> 
+	</door>
+	
+	<door id="EasterEvent_door3" openDay="2" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="ProductivityBuffLvl6" amount="5"/>  
+	</door>
+	
+	<door id="EasterEvent_door4" openDay="3" openGemCost="100" rewardType="hidden" > 
+		<reward type="Buff" item="AddResource" name="Salpeter" amount="500"/>
+		<reward type="Buff" item="AddResource" name="Granite" amount="500"/>			
+	</door>	
+	
+		<door id="EasterEvent_door5" openDay="4" openGemCost="300" specialType="All_Previous_Needed" backgroundType="Christmas_Eve" >
+		<reward type="Buff" item="BuildBuilding" name="ImprovedLettersmith" amount="1" recurringChance="100" />
+	</door>
+	
+	<door id="EasterEvent_door6" openDay="5" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="FillDeposit" amount="500" />
+	</door>	
+	
+	<door id="EasterEvent_door7" openDay="6" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="AddResource" name="Manuscript" amount="4"/> 
+		<reward type="Buff" item="AddResource" name="Tome" amount="2"/> 
+		<reward type="Buff" item="AddResource" name="StripedEggs" amount="150"/>	 
+	</door>
+	
+	<door id="EasterEvent_door8" openDay="7" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="BattleBuffBomb_random_units_limited_3" amount="9"/> 	
+		<reward type="Buff" item="BattleBuffBomb_random_units_limited" amount="6"/> 
+		<reward type="Buff" item="BattleBuffBomb_random_units_limited_2" amount="3"/> 
+		<reward type="Buff" item="BattleBuffKill_random_boss_limited" amount="3"/> 		
+	</door>
+	
+	<door id="EasterEvent_door9" openDay="8" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="RecruitingBuffZoneLvl3" amount="3"/> 
+	</door>
+
+	<door id="EasterEvent_door10" openDay="9" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="AddResource" name="Codex" amount="2"/> 
+	</door>
+	
+	<door id="EasterEvent_door11" openDay="10" openGemCost="300" specialType="All_Previous_Needed" backgroundType="Christmas_Eve" >
+             <reward type="Specialist" name="DiligentGeologist" amount="1"/> 	
+	</door>		
+	
+	<door id="EasterEvent_door12" openDay="11" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="AddResource" name="StripedEggs" amount="200"/>
+	</door>
+
+	<door id="EasterEvent_door13" openDay="12" openGemCost="100"  rewardType="hidden" >
+		<reward type="Buff" item="AddResource" name="Grout" amount="300"/>
+	</door>
+	
+	<door id="EasterEvent_door14" openDay="13" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="AddResource" name="Oil" amount="200"/> 
+		<reward type="Buff" item="AddResource" name="AdvancedTools" amount="500"/> 
+		<reward type="Buff" item="AddResource" name="StripedEggs" amount="200"/>
+	</door>			
+	
+	<door id="EasterEvent_door15" openDay="14" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="ProvisionerBuffLvl1" amount="5"/> 
+	</door>
+
+	<door id="EasterEvent_door16" openDay="15" openGemCost="100" rewardType="hidden"  >
+		<reward type="Buff" item="BattleBuffBombCupidosArrow" amount="2"/> 
+	</door>	
+
+	<door id="EasterEvent_door17" openDay="16" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="ProductivityAreaBuffLvl1" amount="3"/> 
+	</door>	
+	
+	<door id="EasterEvent_door18" openDay="17" openGemCost="300" specialType="All_Previous_Needed" backgroundType="Christmas_Eve" >
+		<reward type="Specialist" name="StarGeneral2" amount="1"/>
+		<reward type="Buff" item="AddResource" name="Grout" amount="400"/>
+	</door>	
+	
+	<door id="EasterEvent_door19" openDay="18" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="AddResource" name="StripedEggs" amount="150"/> 
+	</door>		
+	
+	<door id="EasterEvent_door20" openDay="19" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="AddResource" name="PlatinumOre" amount="100"/>
+	</door>	
+	
+	<door id="EasterEvent_door21" openDay="20" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="ProvisionerBuffLvl3" amount="5"/> 
+	</door>	
+	
+	<door id="EasterEvent_door22" openDay="21" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="ChangeDefaultSkin_Ostereierbaum_blue_permanent" amount="1"/> 
+		<reward type="Buff" item="ChangeDefaultSkin_Ostereierbaum_red_permanent" amount="1"/> 
+	</door>	
+	
+		<door id="EasterEvent_door23" openDay="22" openGemCost="300" specialType="All_Previous_Needed" backgroundType="Christmas_Eve">
+		<reward type="Buff" item="BuildBuilding" name="ExoticWoodTreeSchool" amount="1" />
+	</door>	
+	
+	<door id="EasterEvent_door24" openDay="23" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="AddResource" name="Token" amount="50"/>
+	</door>	
+	
+	<door id="EasterEvent_door25" openDay="24" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="MountainDemolition_L" amount="2"/>
+	</door>	
+	
+	<door id="Easter2020_FinalReward" specialType="final_reward">
+		<reward type="Buff" item="ProductivityBuffLvl22" amount="1"/> 
+	</door>
+	
+</AdventCalendar> -->
+
+<!-- SOCCER EVENT FIXTURE LIST -->
+<!--
+<AdventCalendar requiresEvent="Soccer2018plus_Shop">
+
+	<door id="SoccerEvent_door1" openDay="0" backgroundType="WM_Event_Adventure">
+		<reward type="Adventure" name="WMEventAdventure01" amount="1"/>
+	</door>
+
+	<door id="SoccerEvent_door2" openDay="1" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="AddResource" name="EMEventResource" amount="250"/> 
+	</door>
+	
+	<door id="SoccerEvent_door3" openDay="2" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="AddResource" name="Grout" amount="250"/> 
+	</door>
+
+	<door id="SoccerEvent_door4" openDay="3" backgroundType="WM_Event_Adventure" >
+		<reward type="Adventure" name="WMEventAdventure04" amount="1"/>
+	</door>
+
+	<door id="SoccerEvent_door5" openDay="4" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="ProductivityBuffLvl19" amount="3"/>
+	</door>
+
+	<door id="SoccerEvent_door6" openDay="5" openGemCost="300" specialType="All_Previous_Needed" backgroundType="WM_Event_Bonus" >
+		<reward type="Buff" item="BuildBuilding" name="RangerHut" amount="1" recurringChance="100"/> 
+	</door>
+
+	<door id="SoccerEvent_door7" openDay="6" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="ProductivityBuffLvl10" amount="3"/>
+	</door>
+
+	<door id="SoccerEvent_door8" openDay="7" backgroundType="WM_Event_Adventure" >
+		<reward type="Adventure" name="WMEventAdventure05" amount="1"/>
+	</door>
+
+	<door id="SoccerEvent_door9" openDay="8" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="ProductivityBuffLvl5" amount="3"/> 
+	</door>
+
+	<door id="SoccerEvent_door10" openDay="9" openGemCost="300" specialType="All_Previous_Needed" backgroundType="WM_Event_Bonus" >
+		<reward type="Buff" item="AddResource" name="StarCoin" amount="1000" />  
+		<reward type="Buff" item="AddResource" name="EMEventResource" amount="500"/>
+		<reward type="Buff" item="AddResource" name="Grout" amount="1000"/>
+	</door>
+
+	<door id="SoccerEvent_door11" openDay="10" openGemCost="100" rewardType="hidden" >
+		<reward type="Buff" item="ProvisionerBuffLvl3" amount="3" />
+	</door>
+
+	<door id="SoccerEvent_door12" openDay="11" backgroundType="WM_Event_Adventure" >
+		<reward type="Adventure" name="WMEventAdventure06" amount="1"/> 
+	</door>
+
+	<door id="SoccerEvent_door13" openDay="12" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="AddResource" name="Oil" amount="100"/> 
+	</door>
+
+	<door id="SoccerEvent_door14" openDay="13" openGemCost="300" specialType="All_Previous_Needed" backgroundType="WM_Event_Bonus" >
+		<reward type="Buff" item="BuildBuilding" name="DarkRoofedWarehouse" amount="1" recurringChance="100" />
+	</door>
+
+	<door id="SoccerEvent_door15" openDay="14" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="AddResource" name="EMEventResource" amount="250"/> 
+	</door>
+
+	<door id="SoccerEvent_door16" openDay="15" backgroundType="WM_Event_Adventure" >
+		<reward type="Adventure" name="WMEventAdventure07" amount="1"/>
+	</door>
+
+	<door id="SoccerEvent_door17" openDay="16" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="BuildBuilding" name="IronMine_Mini" amount="1" recurringChance="100"/> 
+	</door>
+
+	<door id="SoccerEvent_door18" openDay="17" openGemCost="300" specialType="All_Previous_Needed" backgroundType="WM_Event_Bonus" > 
+		<reward type="Buff" item="AddResource" name="Manuscript" amount="7"/> 
+		<reward type="Buff" item="AddResource" name="Tome" amount="4"/> 
+		<reward type="Buff" item="AddResource" name="Codex" amount="2"/> 
+	</door>
+
+	<door id="SoccerEvent_door19" openDay="18" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="ProductivityBuffLvl12" amount="3"/> 
+	</door>
+	
+	<door id="SoccerEvent_door20" openDay="19" openGemCost="100" rewardType="hidden">
+		<reward type="Buff" item="AddResource" name="Salpeter" amount="500"/>
+		<reward type="Buff" item="AddResource" name="Granite" amount="500"/>		
+	</door>
+
+	<door id="SoccerEvent_door21" openDay="20" openGemCost="300" specialType="All_Previous_Needed" backgroundType="WM_Event_Bonus" > 
+		<reward type="Specialist" name="EasterExplorer" amount="1" />
+	</door> 
+				
+	<door id="Soccer2016_FinalReward" specialType="final_reward">
+		<reward type="Buff" item="AddResource" name="Beer" amount="1000"/> 
+	</door>
+
+</AdventCalendar>   -->

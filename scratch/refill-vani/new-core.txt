@@ -1,0 +1,220 @@
+function clientClock() {
+  return safe(function() { return Number(gi().GetClientTime()); },NaN);
+}
+function timeScale() {
+  var value = safe(function() { return Number(gi().mGlobalTimeScale); },NaN);
+  return isFinite(value) && value > 0 ? value : NaN;
+}
+function resolveProducers(world, dep) {
+  var out = [];
+  for (var i = 0; i < world.producers.length; i++) {
+    var p = world.producers[i];
+    if (p.depRes === dep.res && p.depGrid && p.depGrid.key === dep.key) out.push(p);
+  }
+  return out;
+}
+function hasEffects(def, method) {
+  if (typeof def[method] !== 'function') return true;
+  var effects;
+  try { effects = def[method](); } catch (e) { return true; }
+  if (effects === undefined) return true;
+  if (!effects) return false;
+  var length = safe(function() { return Number(effects.list.length); },NaN);
+  return !isFinite(length) || length > 0;
+}
+function readBuffs(b, scale) {
+  var now = clientClock(), result = {ok:isFinite(now),items:[],changes:[]};
+  var buffs = safe(function() { return b.GetBuffs(); },null);
+  if (buffs == null) { result.ok = false; return result; }
+  each(buffs,function(pb) {
+    var active = safe(function() { return pb.IsActive(now); },null);
+    if (active === null) {result.ok = false;return;}
+    if (!active) return;
+    var def = safe(function() { return pb.GetBuffDefinition(); },null);
+    if (!def) {result.ok = false;return;}
+    var type = safe(function() { return Number(def.GetBuffType()); },NaN);
+    var start = safe(function() { return Number(pb.GetStartTime()); },NaN);
+    var duration = safe(function() { return Number(def.getDuration(pb.GetApplicanceMode())); },NaN);
+    var remain = type === 9 ? Infinity : (start + duration - now) / scale;
+    if (!isFinite(type) || !(remain > 0)) {result.ok = false;return;}
+    var pct = (type === 0 || type === 1) ? safe(function() { return Number(def.getProductivityInputPercent()); },NaN) : 100;
+    if (!isFinite(pct) || pct < 0) {result.ok = false;return;}
+    var name = safe(function() { return String(def.GetName_string()); },'');
+    var item = {raw:pb,name:tr('RES',name),type:type,pct:pct,remainMs:remain,
+      uncertain:hasEffects(def,'GetApplyEffects') || hasEffects(def,'GetPostEffects') || hasEffects(def,'GetRepeatingEffects')};
+    result.items.push(item);
+    if (isFinite(remain)) result.changes.push(remain);
+  });
+  return result;
+}
+function inputAt(m, elapsed) {
+  var factor = m.baseFactor;
+  for (var i = 0; i < m.buffs.length; i++) {
+    var buff = m.buffs[i];
+    if ((buff.type === 0 || buff.type === 1) && elapsed < buff.remainMs) factor = Math.floor(factor * buff.pct / 100);
+  }
+  return factor;
+}
+function nextWithdrawal(prod, m, scale) {
+  var r = prod.rcd, b = prod.raw;
+  var mode = safe(function() { return Number(b.GetBuildingMode()); },NaN);
+  var pos = safe(function() { return Number(r.pathPos); },NaN);
+  var counter = safe(function() { return Number(b.mStartWorkCounter); },NaN);
+  var warehouse = safe(function() { return Number(r.GetPath().pathLenX20000) / (5 * scale); },NaN);
+  var deposit = safe(function() { return Number(r.GetDepositPath().pathLenX20000) / (5 * scale); },NaN);
+  var w = m.warehouseMs, d = m.depositMs, work = m.workMs;
+  var progress = pos / (5 * scale), remain = NaN;
+  // Deposit cost is charged at the end of external deposit work, NOT at warehouse delivery.
+  if (mode === 21) remain = Math.max(0,w - progress) + d + work;
+  else if (mode === 24) remain = Math.max(0,-counter / scale) + d + work;
+  else if (mode === 25) remain = Math.max(0,d - progress) + work;
+  else if (mode === 27) remain = Math.max(0,work - counter / scale);
+  else if (mode === 26 && isFinite(deposit)) remain = Math.max(0,deposit - progress) + 2 * w + d + work;
+  else if (mode === 22 && isFinite(warehouse)) remain = Math.max(0,warehouse - progress) + w + d + work;
+  return isFinite(remain) && remain >= 0 ? remain : NaN;
+}
+function measure(dep, prod) {
+  var m = {known:false,cycleMs:null,perCycle:null,buffs:[],changes:[],buffRemMs:0,uncertainAfter:Infinity,
+    nextMs:NaN,workMs:null,warehouseMs:null,depositMs:null,baseFactor:NaN,removed:NaN,prod:prod};
+  if (!prod) return m;
+  var b = prod.raw, scale = timeScale();
+  var bonuses = safe(function() { return b.GetUpgradeLevelBonuses(); },null);
+  // This guard prevents the AS Assert seen on Farmfield containers.
+  if (!bonuses || !isFinite(scale)) return m;
+  if (safe(function() { return b.IsProductionActive(); },false) !== true ||
+      safe(function() { return b.IsUpgradeInProgress(); },true) !== false ||
+      safe(function() { return prod.rcd.GetProductionState(); },-1) !== 0) return m;
+  m.removed = safe(function() { return Number(prod.definition.amountRemoved); },NaN);
+  var factor = safe(function() { return Number(b.GetResourceInputFactor()); },NaN);
+  var output = safe(function() { return Number(b.GetResourceOutputFactor()); },NaN);
+  m.baseFactor = Math.floor(safe(function() { return Number(bonuses.getProductivityInputPercent()); },NaN) / 100);
+  if (!isFinite(m.removed) || m.removed < 0 || !isFinite(factor) || factor < 0 || !(output > 0) || !isFinite(m.baseFactor)) return m;
+  m.cycleMs = safe(function() { return Number(b.CalculateWays()); },NaN);
+  m.workMs = safe(function() { return Number(b.getProdutionTime()); },NaN);
+  m.warehouseMs = safe(function() { return Number(b.getWarehouseToWorkyardTime()); },NaN);
+  m.depositMs = safe(function() { return Number(b.getWorkyardToDepositTime()); },NaN);
+  if (!(m.cycleMs > 0) || !(m.workMs >= 0) || !(m.warehouseMs >= 0) || !(m.depositMs >= 0) ||
+      Math.abs(m.cycleMs - (m.workMs + 2 * m.warehouseMs + 2 * m.depositMs)) > 1) return m;
+  var snapshot = readBuffs(b,scale);
+  m.buffs = snapshot.items;m.changes = snapshot.changes;
+  for (var i = 0; i < m.buffs.length; i++) {
+    var buff = m.buffs[i];
+    if (isFinite(buff.remainMs)) {
+      if (!m.buffRemMs || buff.remainMs < m.buffRemMs) m.buffRemMs = buff.remainMs;
+      if (buff.uncertain && buff.remainMs < m.uncertainAfter) m.uncertainAfter = buff.remainMs;
+    }
+  }
+  m.perCycle = m.removed * factor;
+  m.nextMs = nextWithdrawal(prod,m,scale);
+  // A tick-race, unreadable buff or unsupported phase must never become a plausible number.
+  m.known = snapshot.ok && inputAt(m,0) === factor && isFinite(m.nextMs) && m.baseFactor >= 0;
+  return m;
+}
+function eventsBefore(m, time, inclusive) {
+  if (time < m.nextMs || (!inclusive && time === m.nextMs)) return 0;
+  var cycles = (time - m.nextMs) / m.cycleMs;
+  return Math.max(0,inclusive ? Math.floor(cycles + 1e-10) + 1 : Math.ceil(cycles - 1e-10));
+}
+function consumedBy(m, span, exclusive) {
+  if (!m.known || !isFinite(span) || span < 0 || (span >= m.uncertainAfter && !exclusive)) return null;
+  if (span > m.uncertainAfter) return null;
+  var cuts = [0], i, total = 0;
+  for (i = 0; i < m.changes.length; i++) if (m.changes[i] > 0 && m.changes[i] <= span) cuts.push(m.changes[i]);
+  cuts.sort(function(a,b) {return a-b;});
+  for (i = 0; i < cuts.length; i++) {
+    var start = cuts[i], stop = i + 1 < cuts.length ? cuts[i+1] : span;
+    var final = i === cuts.length - 1;
+    var count = eventsBefore(m,stop,final && !exclusive) - eventsBefore(m,start,false);
+    total += Math.max(0,count) * m.removed * inputAt(m,start);
+  }
+  return total;
+}
+function consumedAll(models, span, exclusive) {
+  if (!models.length) return null;
+  var total = 0;
+  for (var i = 0; i < models.length; i++) {
+    var value = consumedBy(models[i],span,exclusive);
+    if (value == null) return null;
+    total += value;
+  }
+  return total;
+}
+function depletionAt(models, amount) {
+  if (amount <= 0) return 0;
+  var limit = Infinity, last = 0, rate = 0, i;
+  for (i = 0; i < models.length; i++) {
+    var m = models[i];
+    if (!m.known) return null;
+    limit = Math.min(limit,m.uncertainAfter);
+    for (var j = 0; j < m.changes.length; j++) last = Math.max(last,m.changes[j]);
+  }
+  if (!models.length) return null;
+  var high;
+  if (isFinite(limit)) {
+    high = Math.max(0,limit - .0001);
+    if (consumedAll(models,high,false) < amount) return null;
+  } else {
+    for (i = 0; i < models.length; i++) rate += models[i].removed * inputAt(models[i],last + 1) / models[i].cycleMs;
+    if (rate === 0 && consumedAll(models,last + 1,false) < amount) return Infinity;
+    high = Math.max(last + 1,rate > 0 ? amount / rate + last + 1 : 1);
+    var n = 0;
+    while (consumedAll(models,high,false) < amount && n++ < 64) high *= 2;
+    if (!isFinite(high) || consumedAll(models,high,false) < amount) return null;
+  }
+  var low = 0;
+  for (i = 0; i < 64 && high - low > .01; i++) {
+    var mid = (low + high) / 2;
+    if (consumedAll(models,mid,false) >= amount) high = mid; else low = mid;
+  }
+  return Math.round(high);
+}
+
+function computeRow(dep, producers, evRem) {
+  if (!Array.isArray(producers)) producers = producers ? [producers] : [];
+  var models = [], known = producers.length > 0, buffEnd = 0, rate = 0;
+  for (var i = 0; i < producers.length; i++) {
+    var m = measure(dep,producers[i]);models.push(m);
+    if (!m.known) known = false;
+    if (m.buffRemMs > 0 && (!buffEnd || m.buffRemMs < buffEnd)) buffEnd = m.buffRemMs;
+    if (m.known) rate += m.perCycle * 3600000 / m.cycleMs;
+  }
+  var usedBuff = buffEnd > 0 ? consumedAll(models,buffEnd,true) : null;
+  var usedEvent = evRem > 0 ? consumedAll(models,evRem,false) : null;
+  var dry = depletionAt(models,dep.amount);
+  var needBuff = usedBuff == null ? null : Math.max(0,usedBuff - dep.amount);
+  var needEvent = usedEvent == null ? null : Math.max(0,usedEvent - dep.amount);
+  var cap = dep.max > 0 ? dep.max - dep.amount : Infinity;
+  return {dep:dep,models:models,known:known,prod:producers[0] || null,
+    cycleMs:models.length === 1 ? models[0].cycleMs : null,perCycle:models.length === 1 ? models[0].perCycle : null,
+    amount:dep.amount,max:dep.max,buffRemMs:buffEnd,eventRemMs:evRem,dryMs:dry,
+    needBuff:needBuff,needEvent:needEvent,capRoom:cap,overCap:needEvent != null && needEvent > cap,
+    ratePerHour:known ? rate : null,
+    status:dry != null && buffEnd > 0 && dry < buffEnd ? 'crit' : dry != null && evRem > 0 && dry < evRem ? 'warn' : 'ok'};
+}
+function fmtCycle(ms) {
+  if (ms == null || !isFinite(ms) || ms < 0) return txt('NotAvailable');
+  var seconds = Math.ceil(ms / 1000), parts = [];
+  if (seconds >= 86400) parts.push(tr('FOR','DaysShort',[Math.floor(seconds / 86400)]));
+  if (seconds >= 3600) parts.push(tr('FOR','HoursShort',[Math.floor(seconds % 86400 / 3600)]));
+  if (seconds >= 60) parts.push(tr('FOR','MinutesShort',[Math.floor(seconds % 3600 / 60)]));
+  parts.push(tr('FOR','SecondsShort',[seconds % 60]));
+  return parts.join(' ');
+}
+function modelDetails(row) {
+  if (!row.models.length) return esc(txt('ProductionDetailsTime') + ': ' + txt('NotAvailable'));
+  var text = [];
+  for (var i = 0; i < row.models.length; i++) {
+    var m = row.models[i], b = m.prod;
+    var line = '[' + esc(b.grid.key) + '] ';
+    if (!m.known) {text.push(line + esc(txt('ProductionDetailsTime') + ': ' + txt('NotAvailable')));continue;}
+    line += esc(txt('DetailsOverallTime') + ': ' + fmtCycle(m.cycleMs)) + ' = 2 × ' + esc(fmtCycle(m.warehouseMs)) + ' + 2 × ' + esc(fmtCycle(m.depositMs)) + ' + ' + esc(fmtCycle(m.workMs));
+    line += ' · ' + esc(txt('DetailsDeposit') + ': −' + fmtInt(m.perCycle));
+    for (var j = 0; j < m.buffs.length; j++) {
+      var buff = m.buffs[j];
+      line += ' · ' + esc(txt('Buff') + ': ' + buff.name + ' · ' + txt('TimeRemaining') + ' ' + fmtDur(buff.remainMs));
+    }
+    text.push(line);
+  }
+  return text.join('<br>');
+}
+

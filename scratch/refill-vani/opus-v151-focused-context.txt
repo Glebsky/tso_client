@@ -1,0 +1,395 @@
+CURRENT CALCULATION CORE
+function readNumber(fn) {
+  var value = safe(fn,null);
+  return typeof value === 'number' && isFinite(value) ? value : NaN;
+}
+// Source contracts: cBuilding.CalculateWays/GetResourceInputFactor, BuffAppliance,
+// cComputeResourceCreation.IncreaseResource, Enums.BUFF_TYPE and cBuilding modes.
+function clientClock() {
+  return readNumber(function() { return gi().GetClientTime(); });
+}
+function timeScale() {
+  var value = readNumber(function() { return gi().mGlobalTimeScale; });
+  return isFinite(value) && value > 0 ? value : NaN;
+}
+function resolveProducers(world, dep) {
+  var out = [];
+  for (var i = 0; i < world.producers.length; i++) {
+    var p = world.producers[i];
+    if (p.depRes === dep.res && p.depGrid && p.depGrid.key === dep.key) out.push(p);
+  }
+  return out;
+}
+function hasEffects(def, method) {
+  if (typeof def[method] !== 'function') return true;
+  var effects;
+  try { effects = def[method](); } catch (e) { return true; }
+  if (effects === undefined) return true;
+  if (!effects) return false;
+  var length = readNumber(function() { return effects.list.length; });
+  return !isFinite(length) || length > 0;
+}
+// Snapshot only public read-only APIs; unreadable collections are not empty lists.
+function strictItems(container) {
+  if (container == null) return null;
+  var length = readNumber(function() { return container.length; });
+  if (length < 0 || length !== Math.floor(length) || length > 10000) return null;
+  var out = [];
+  for (var i = 0; i < length; i++) {
+    var item = safe(function() { return typeof container.getItemAt === 'function' ? container.getItemAt(i) : container[i]; },null);
+    if (item == null) return null;
+    out.push(item);
+  }
+  return out;
+}
+function depositWork(dep, b, rawMs, scale) {
+  // SpeedUp.modify seeds the RAW work counter once on DEPOSIT_WORK_BEGIN.
+  // Its shifts add; UI CalculateWays instead divides successively and treats zero differently.
+  var skills = strictItems(safe(function() { return dep.raw.skills.getItems_vector(); },null));
+  if (!skills) return NaN;
+  var shift = 0;
+  for (var i = 0; i < skills.length; i++) {
+    var skill = skills[i];
+    var level = readNumber(function() { return skill.getLevel(); });
+    if (!isFinite(level) || level < 0 || level !== Math.floor(level)) return NaN;
+    if (level === 0) continue;
+    if (safe(function() { return skill.changed(); },false) === true) return NaN;
+    var mods = strictItems(safe(function() { return skill.getDefinition().level_vector[level - 1]; },null));
+    if (!mods) return NaN;
+    for (var j = 0; j < mods.length; j++) {
+      var vo = mods[j], kind = safe(function() { return vo.modifier_string; },null);
+      if (typeof kind !== 'string') return NaN;
+      if (kind.toLowerCase() !== 'depositspeedup') continue;
+      var applies = safe(function() { return b.isModifierApplyable(vo); },null);
+      if (applies === false) continue;
+      if (applies !== true) return NaN;
+      var chance = readNumber(function() { return vo.chance; });
+      if (chance === 0) continue;
+      if (!(chance >= 1) || safe(function() { return vo.channel; },null) !== '') return NaN;
+      var multiplier = readNumber(function() { return vo.multiplier; });
+      var adder = readNumber(function() { return vo.adder; });
+      if (!isFinite(multiplier) || multiplier < 0 || !isFinite(adder)) return NaN;
+      if (multiplier !== 0) shift = (shift + rawMs * (1 - 1 / multiplier)) | 0;
+      shift = (shift - adder) | 0; // Actual SpeedUp uses milliseconds here; do not copy UI seconds.
+    }
+  }
+  return Math.max(0,rawMs - shift) / scale;
+}
+function zoneForecastLimit(scale) {
+  if (!(isFinite(scale) && scale > 0)) return 0;
+  // Zone buffs use dPersistedBuffApplianceVO, not BuffAppliance methods.
+  var manager = safe(function() { return gi().mZoneBuffManager; },null);
+  var list = strictItems(safe(function() { return manager.getZoneBuffsForPersistence(); },null));
+  if (!list) return 0;
+  if (!list.length) return Infinity;
+  var cls = safe(function() { return W.swmmo.getDefinitionByName('BuffSystem.cBuffDefinition'); },null);
+  if (!cls) return 0;
+  var now = clientClock(), limit = Infinity;
+  if (!isFinite(now)) return 0;
+  for (var i = 0; i < list.length; i++) {
+    var pb = list[i];
+    var def = safe(function() { return cls.GetById(pb.buffID); },null);
+    if (!def) return 0;
+    var duration = readNumber(function() { return def.getDuration(pb.applianceMode); });
+    var start = readNumber(function() { return pb.startTime; });
+    if (!isFinite(duration) || !isFinite(start)) return 0;
+    // Repeating effects have no verified future scheduling contract: do not extrapolate them.
+    if (hasEffects(def,'GetRepeatingEffects')) return 0;
+    if (duration < 0) continue;
+    var remain = (start + duration - now) / scale;
+    if (!isFinite(remain)) return 0;
+    if (hasEffects(def,'GetPostEffects')) limit = Math.min(limit,Math.max(0,remain));
+  }
+  return limit;
+}
+function readBuffs(b, scale) {
+  var now = clientClock(), result = {ok:isFinite(now),items:[],changes:[]};
+  var buffs = strictItems(safe(function() { return b.GetBuffs(); },null));
+  if (buffs == null) { result.ok = false; return result; }
+  each(buffs,function(pb) {
+    var active = safe(function() { return pb.IsActive(now); },null);
+    if (active === null) {result.ok = false;return;}
+    if (!active) return;
+    var def = safe(function() { return pb.GetBuffDefinition(); },null);
+    if (!def) {result.ok = false;return;}
+    var type = readNumber(function() { return def.GetBuffType(); });
+    var start = readNumber(function() { return pb.GetStartTime(); });
+    var duration = readNumber(function() { return def.getDuration(pb.GetApplicanceMode()); });
+    var remain = type === 9 ? Infinity : (start + duration - now) / scale;
+    if (!isFinite(type) || !(remain > 0)) {result.ok = false;return;}
+    var pct = (type === 0 || type === 1) ? readNumber(function() { return def.getProductivityInputPercent(); }) : 100;
+    if (!isFinite(pct) || pct < 0) {result.ok = false;return;}
+    var name = safe(function() { return String(def.GetName_string()); },'');
+    var item = {raw:pb,name:tr('RES',name),type:type,pct:pct,remainMs:remain,
+      repeating:hasEffects(def,'GetRepeatingEffects'),
+      uncertain:hasEffects(def,'GetApplyEffects') || hasEffects(def,'GetPostEffects') ||
+        !(readNumber(function() { return def.getProductivityOutputPercent(); }) > 0)};
+    result.items.push(item);
+    if (isFinite(remain)) result.changes.push(remain);
+  });
+  return result;
+}
+function inputAt(m, elapsed) {
+  var factor = m.baseFactor;
+  for (var i = 0; i < m.buffs.length; i++) {
+    var buff = m.buffs[i];
+    if ((buff.type === 0 || buff.type === 1) && elapsed < buff.remainMs) factor = Math.floor(factor * buff.pct / 100);
+  }
+  return factor;
+}
+function nextWithdrawal(prod, m, scale) {
+  var r = prod.rcd, b = prod.raw;
+  var mode = readNumber(function() { return b.GetBuildingMode(); });
+  var pos = readNumber(function() { return r.pathPos; });
+  var counter = readNumber(function() { return b.mStartWorkCounter; });
+  var warehouse = readNumber(function() { return r.GetPath().pathLenX20000; }) / (5 * scale);
+  var deposit = readNumber(function() { return r.GetDepositPath().pathLenX20000; }) / (5 * scale);
+  var w = m.warehouseMs, d = m.depositMs, work = m.workMs;
+  var progress = pos / (5 * scale), remain = NaN;
+  // Deposit cost is charged at the end of external deposit work, NOT at warehouse delivery.
+  if (mode === 21) remain = Math.max(0,w - progress) + d + work;
+  else if (mode === 24) remain = Math.max(0,-counter / scale) + d + work;
+  else if (mode === 25) remain = Math.max(0,d - progress) + work;
+  else if (mode === 27) remain = Math.max(0,m.rawWorkMs - counter / scale);
+  else if (mode === 26 && isFinite(deposit)) remain = Math.max(0,deposit - progress) + 2 * w + d + work;
+  else if (mode === 22 && isFinite(warehouse)) remain = Math.max(0,warehouse - progress) + w + d + work;
+  return isFinite(remain) && remain >= 0 ? remain : NaN;
+}
+function measure(dep, prod) {
+  var m = {known:false,cycleMs:null,perCycle:null,buffs:[],changes:[],buffRemMs:0,uncertainAfter:Infinity,
+    nextMs:NaN,rawWorkMs:null,workMs:null,warehouseMs:null,depositMs:null,baseFactor:NaN,removed:NaN,prod:prod};
+  if (!prod) return m;
+  var b = prod.raw, scale = timeScale();
+  var bonuses = safe(function() { return b.GetUpgradeLevelBonuses(); },null);
+  // This guard prevents the AS Assert seen on Farmfield containers.
+  if (!bonuses || !isFinite(scale)) return m;
+  if (safe(function() { return b.IsProductionActive(); },false) !== true ||
+      safe(function() { return b.IsUpgradeInProgress(); },true) !== false ||
+      safe(function() { return prod.rcd.GetProductionState(); },-1) !== 0) return m;
+  m.removed = readNumber(function() { return prod.definition.amountRemoved; });
+  var factor = readNumber(function() { return b.GetResourceInputFactor(); });
+  var output = readNumber(function() { return b.GetResourceOutputFactor(); });
+  m.baseFactor = Math.floor(readNumber(function() { return bonuses.getProductivityInputPercent(); }) / 100);
+  if (!isFinite(m.removed) || m.removed < 0 || !isFinite(factor) || factor < 0 || !(output > 0) || !isFinite(m.baseFactor)) return m;
+  var uiCycle = readNumber(function() { return b.CalculateWays(); });
+  var rawMs = readNumber(function() { return prod.rcd.GetWorkTime(); }) * 1000;
+  m.rawWorkMs = rawMs / scale;
+  m.workMs = depositWork(dep,b,rawMs,scale);
+  m.warehouseMs = readNumber(function() { return b.getWarehouseToWorkyardTime(); });
+  m.depositMs = readNumber(function() { return b.getWorkyardToDepositTime(); });
+  m.cycleMs = m.workMs + 2 * m.warehouseMs + 2 * m.depositMs;
+  if (!(uiCycle >= 0) || !(rawMs >= 0) || !(m.cycleMs > 0) || !(m.workMs >= 0) ||
+      !(m.warehouseMs >= 0) || !(m.depositMs >= 0)) return m;
+  m.uncertainAfter = zoneForecastLimit(scale);
+  var snapshot = readBuffs(b,scale);
+  m.buffs = snapshot.items;m.changes = snapshot.changes;
+  for (var i = 0; i < m.buffs.length; i++) {
+    var buff = m.buffs[i];
+    if (buff.repeating) m.uncertainAfter = 0;
+    if (isFinite(buff.remainMs)) {
+      if (!m.buffRemMs || buff.remainMs < m.buffRemMs) m.buffRemMs = buff.remainMs;
+      if (buff.uncertain && buff.remainMs < m.uncertainAfter) m.uncertainAfter = buff.remainMs;
+    }
+  }
+  m.perCycle = m.removed * factor;
+  m.nextMs = nextWithdrawal(prod,m,scale);
+  // A tick-race, unreadable buff or unsupported phase must never become a plausible number.
+  m.known = snapshot.ok && inputAt(m,0) === factor && isFinite(m.nextMs) && m.baseFactor >= 0;
+  return m;
+}
+function eventsBefore(m, time, inclusive) {
+  if (time < m.nextMs || (!inclusive && time === m.nextMs)) return 0;
+  var cycles = (time - m.nextMs) / m.cycleMs;
+  return Math.max(0,inclusive ? Math.floor(cycles + 1e-10) + 1 : Math.ceil(cycles - 1e-10));
+}
+function consumedBy(m, span, exclusive) {
+  if (!m.known || !isFinite(span) || span < 0 || (span >= m.uncertainAfter && !exclusive)) return null;
+  if (span > m.uncertainAfter) return null;
+  var cuts = [0], i, total = 0;
+  for (i = 0; i < m.changes.length; i++) if (m.changes[i] > 0 && m.changes[i] <= span) cuts.push(m.changes[i]);
+  cuts.sort(function(a,b) {return a-b;});
+  for (i = 0; i < cuts.length; i++) {
+    var start = cuts[i], stop = i + 1 < cuts.length ? cuts[i+1] : span;
+    var final = i === cuts.length - 1;
+    var count = eventsBefore(m,stop,final && !exclusive) - eventsBefore(m,start,false);
+    total += Math.max(0,count) * m.removed * inputAt(m,start);
+  }
+  return total;
+}
+function consumedAll(models, span, exclusive) {
+  if (!models.length) return null;
+  var total = 0;
+  for (var i = 0; i < models.length; i++) {
+    var value = consumedBy(models[i],span,exclusive);
+    if (value == null) return null;
+    total += value;
+  }
+  return total;
+}
+function depletionAt(models, amount) {
+  if (amount <= 0) return 0;
+  var limit = Infinity, last = 0, rate = 0, i;
+  for (i = 0; i < models.length; i++) {
+    var m = models[i];
+    if (!m.known) return null;
+    limit = Math.min(limit,m.uncertainAfter);
+    for (var j = 0; j < m.changes.length; j++) last = Math.max(last,m.changes[j]);
+  }
+  if (!models.length) return null;
+  var high;
+  if (isFinite(limit)) {
+    high = Math.max(0,limit - .0001);
+    if (consumedAll(models,high,false) < amount) return null;
+  } else {
+    for (i = 0; i < models.length; i++) rate += models[i].removed * inputAt(models[i],last + 1) / models[i].cycleMs;
+    if (rate === 0 && consumedAll(models,last + 1,false) < amount) return Infinity;
+    high = Math.max(last + 1,rate > 0 ? amount / rate + last + 1 : 1);
+    var n = 0;
+    while (consumedAll(models,high,false) < amount && n++ < 64) high *= 2;
+    if (!isFinite(high) || consumedAll(models,high,false) < amount) return null;
+  }
+  var low = 0;
+  for (i = 0; i < 64 && high - low > .01; i++) {
+    var mid = (low + high) / 2;
+    if (consumedAll(models,mid,false) >= amount) high = mid; else low = mid;
+  }
+  return Math.round(high);
+}
+
+
+function computeRow(dep, producers, evRem) {
+  if (!Array.isArray(producers)) producers = producers ? [producers] : [];
+  var models = [], known = producers.length > 0, buffEnd = 0, rate = 0;
+  for (var i = 0; i < producers.length; i++) {
+    var m = measure(dep,producers[i]);models.push(m);
+    if (!m.known) known = false;
+    if (m.buffRemMs > 0 && (!buffEnd || m.buffRemMs < buffEnd)) buffEnd = m.buffRemMs;
+    if (m.known) rate += m.perCycle * 3600000 / m.cycleMs;
+  }
+  var usedBuff = buffEnd > 0 ? consumedAll(models,buffEnd,true) : null;
+  var usedEvent = evRem > 0 ? consumedAll(models,evRem,false) : null;
+  var dry = depletionAt(models,dep.amount);
+  var needBuff = usedBuff == null ? null : Math.max(0,usedBuff - dep.amount);
+  var needEvent = usedEvent == null ? null : Math.max(0,usedEvent - dep.amount);
+  var cap = dep.max > 0 ? dep.max - dep.amount : Infinity;
+  return {dep:dep,models:models,known:known,prod:producers[0] || null,
+    cycleMs:models.length === 1 ? models[0].cycleMs : null,perCycle:models.length === 1 ? models[0].perCycle : null,
+    amount:dep.amount,max:dep.max,buffRemMs:buffEnd,eventRemMs:evRem,dryMs:dry,
+    needBuff:needBuff,needEvent:needEvent,capRoom:cap,overCap:needEvent != null && needEvent > cap,
+    ratePerHour:known ? rate : null,
+    status:dry != null && buffEnd > 0 && dry < buffEnd ? 'crit' : dry != null && evRem > 0 && dry < evRem ? 'warn' : (!known || dry == null || (evRem > 0 && needEvent == null)) ? 'unknown' : 'ok'};
+}
+
+
+AS PRIMARY SOURCE 337606-337615
+337606         override public function modify(_arg_1:Object):Object
+337607         {
+337608             var _local_2:cBuilding = (_arg_1 as cBuilding);
+337609             if (modifierVO.multiplier != 0)
+337610             {
+337611                 _local_2.mStartWorkCounter = (_local_2.mStartWorkCounter + ((_local_2.GetResourceCreation().GetWorkTime() * 1000) * (1 - (1 / modifierVO.multiplier))));
+337612             };
+337613             _local_2.mStartWorkCounter = (_local_2.mStartWorkCounter - modifierVO.adder);
+337614             setModified(this);
+337615             return (_local_2);
+
+AS PRIMARY SOURCE 466824-466839
+466824                             _local_4 = int(((_arg_1.pathPos - _arg_1.GetDepositPath().pathLenX10000) / SETTLER_WALK_SPEED_INT));
+466825                             _local_8.SetBuildingMode(cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_EXTERNAL_DEPOSIT);
+466826                             _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_EXTERNAL_WORKYARD);
+466827                             _local_8.mStartWorkCounter = _local_4;
+466828                             _local_3 = this.mGeneralInterface.mCurrentPlayerZone.mStreetDataMap.mDepositContainer.get(_arg_1.GetDepositBuildingGridPos());
+466829                             if (_local_3 != null)
+466830                             {
+466831                                 _local_3.notifyPropertyObserver(DEPOSIT_WORK_BEGIN, _local_8);
+466832                             };
+466833                         };
+466834                         break;
+466835                     case cBuilding.BUILDING_MODE_WORKANIM_IS_WORKING_AT_EXTERNAL_DEPOSIT:
+466836                         _arg_1.SetSettlerKIState(cSettlerKI.SETTLER_STATE_IS_WORKING_IN_EXTERNAL_WORKYARD);
+466837                         _local_8.mStartWorkCounter = (_local_8.mStartWorkCounter + _arg_2);
+466838                         _local_5 = (_arg_1.GetWorkTime() * 1000);
+466839                         if (_local_8.mStartWorkCounter >= _local_5)
+
+AS PRIMARY SOURCE 466869-466895
+466869                                 _arg_1.pathPos = (_arg_1.GetDepositPath().pathLenX10000 + (_local_4 * SETTLER_WALK_SPEED_INT));
+466870                                 _local_3 = this.mGeneralInterface.mCurrentPlayerZone.mStreetDataMap.mDepositContainer.get(_arg_1.GetDepositBuildingGridPos());
+466871                                 _arg_1.SetGatheredResource(0);
+466872                                 if (_local_3 != null)
+466873                                 {
+466874                                     if (((_local_3.GetAmount() > 0) || (_arg_1.GetResourceCreationDefinition().amountRemoved < 0)))
+466875                                     {
+466876                                         if (_local_3.mDepositGfx != null)
+466877                                         {
+466878                                             _local_3.mDepositGfx.SetValue(_local_3.GetAmount());
+466879                                         };
+466880                                         _local_12 = this.HasBlockingProductivityInputBuff(_local_8);
+466881                                         if (((_local_8.GetResourceOutputFactor() == 0) || ((_local_8.GetResourceInputFactor() == 0) && (_local_12))))
+466882                                         {
+466883                                             _local_8.mStartWorkCounter = (_local_5 - defines.PRODUCTION_STOP_WAITTIME);
+466884                                             _arg_1.SetProductionState(cResourceCreation.PRODUCTIONSTATE_BUFF_STOPPED_PRODUCTION);
+466885                                             break;
+466886                                         };
+466887                                         _local_13 = _local_7.amountRemoved;
+466888                                         if (_local_13 < 0)
+466889                                         {
+466890                                             _local_13 = (_local_13 * _local_8.GetResourceOutputFactor());
+466891                                         }
+466892                                         else
+466893                                         {
+466894                                             _local_13 = (_local_13 * _local_8.GetResourceInputFactor());
+466895                                         };
+
+AS PRIMARY SOURCE 80745-80765
+80745         public function GetResourceInputFactor():int
+80746         {
+80747             var _local_4:BuffAppliance;
+80748             var _local_1:cBuffDefinition = this.GetUpgradeLevelBonuses();
+80749             if (_local_1 == null)
+80750             {
+80751                 gMisc.Assert(false, ((((((("GetUpgradeLevelBonuses() not found for " + this.mBuildingName_string) + " (") + this.mUpgradeLevel) + ") at ") + GetGrid()) + " with GetGOContainer().buildingUpgradeBonuses_vector: ") + this.GetGOContainer().buildingUpgradeBonuses_vector));
+80752             };
+80753             var _local_2:int = int((_local_1.getProductivityInputPercent() / 100));
+80754             var _local_3:int;
+80755             while (_local_3 < this.mBuffs_vector.length)
+80756             {
+80757                 _local_4 = this.mBuffs_vector[_local_3];
+80758                 if (((_local_4.GetBuffDefinition().GetBuffType() == BUFF_TYPE.TIMED) || (_local_4.GetBuffDefinition().GetBuffType() == BUFF_TYPE.ZONE)))
+80759                 {
+80760                     _local_2 = int((_local_2 * (_local_4.GetBuffDefinition().getProductivityInputPercent() / 100)));
+80761                 };
+80762                 _local_3++;
+80763             };
+80764             return (_local_2);
+80765         }
+
+AS PRIMARY SOURCE 497671-497680
+497671                     _local_5 = _local_3.getDuration(_local_2.applianceMode);
+497672                     if (_local_5 >= 0)
+497673                     {
+497674                         _local_4 = (_local_2.startTime + _local_5);
+497675                         if (_local_4 < this.gi.GetClientTime())
+497676                         {
+497677                             this.activeBuffs.removeItemAt(_local_1);
+497678                             this.removeBuffEffect(_local_2);
+497679                             globalFlash.gui.mZoneBuffPanel.Refresh();
+497680                         };
+
+AS PRIMARY SOURCE 497738-497754
+497738         private function removeBuffEffect(_arg_1:dBuffApplianceVO):void
+497739         {
+497740             var _local_2:cBuffDefinition = cBuffDefinition.GetById(_arg_1.buffID);
+497741             if (_local_2 != null)
+497742             {
+497743                 if (_local_2.GetName_string().indexOf(ZONE_BUFF_TYPE.ANIMAL_BUFF_string) >= 0)
+497744                 {
+497745                     this.gi.mCurrentPlayerZone.mSettlerKIManager.clearAnimals(true);
+497746                 };
+497747                 if (_local_2.GetName_string().indexOf(ZONE_BUFF_TYPE.CHANGE_COLOR_SCHEME_string) >= 0)
+497748                 {
+497749                     gGfxResource.applyFilter(FILTER.toString(FILTER.NONE), this.gi);
+497750                 };
+497751                 EffectList.apply(_local_2.GetPostEffects(), this.gi);
+497752             };
+497753             notifyPropertyObserver(PROPERTY_ZONE_BUFF_REMOVED, _local_2.GetName_string());
+497754         }

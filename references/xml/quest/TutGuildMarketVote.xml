@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+
+	<quest name="TutGuildMarketVote" type="Story" icon="Social" npc="quest_character_mentor03.png" helpName="Help_window_guild_market_0" showRewardWindow="true">
+		<startcondition>
+			<timeinguild amount="0" />
+			<featureavailable name="votes.guildmarket,votes.guildmarket.nocheat" />
+		</startcondition>
+
+		<preeffects>
+			<openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_guild_market_0" />
+		</preeffects>
+
+		<triggers>
+			<questcomplete item="TutGuildMarketVoteParticipation" />
+			<questcomplete item="TutGuildMarketVoteReset" />
+			<questcomplete item="TutGuildMarketVoteResults" />
+		</triggers>
+
+		<posteffects>
+			<reward type="Resource" name="GuildCoins" amount="50" />
+		</posteffects>
+	</quest>
+
+
+	<quest name="TutGuildMarketVoteParticipation" type="Story" connectedToQuest="TutGuildMarketVote" icon="QuestShort" npc="quest_character_mentor03.png" helpName="Help_window_guild_market_0" showRewardWindow="true">
+		<startcondition>
+			<questrunning item="TutGuildMarketVote" />
+		</startcondition>
+
+		<triggers>
+			<click item="GAMESTATE_ID_ACTIONBAR.actionBarRight.btnActionBar05" />
+			<click item="GAMESTATE_ID_GUILD_WINDOW.GuildMarket" />
+			<click item="GAMESTATE_ID_GUILD_WINDOW.GuildMarketUniqueItems" />
+			<click item="GAMESTATE_ID_GUILD_WINDOW.GuildMarketDefaultItems" />
+			<click item="GAMESTATE_ID_GUILD_WINDOW.btnGuildMarketSendSelection" />
+		</triggers>
+
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="89" />
+		</posteffects>
+		<hints>
+			<hint pointTo="GAMESTATE_ID_GUILD_WINDOW.GuildMarket" type="Glow" />
+			<hint pointTo="GAMESTATE_ID_ACTIONBAR.actionBarRight.btnActionBar05" type="Glow" />
+			<hint pointTo="GAMESTATE_ID_GUILD_WINDOW.GuildMarketUniqueItems" type="Glow" />
+			<hint pointTo="GAMESTATE_ID_GUILD_WINDOW.GuildMarketDefaultItems" type="Glow" />
+			<hint pointTo="GAMESTATE_ID_GUILD_WINDOW.btnGuildMarketSendSelection" type="Glow" />
+		</hints>
+	</quest>
+
+	<quest name="TutGuildMarketVoteReset" type="Story" connectedToQuest="TutGuildMarketVote" icon="QuestShort" npc="quest_character_mentor03.png" helpName="Help_window_guild_market_0" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="TutGuildMarketVoteParticipation" />
+		</startcondition>
+
+		<triggers>
+			<click item="GAMESTATE_ID_GUILD_WINDOW.btnGuildMarketResetVote.OK" />
+		</triggers>
+
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="49" />
+		</posteffects>
+		<hints>
+			<hint pointTo="GAMESTATE_ID_GUILD_WINDOW.btnGuildMarketResetVote" type="Glow" />
+		</hints>
+	</quest>
+
+	<quest name="TutGuildMarketVoteResults" type="Story" connectedToQuest="TutGuildMarketVote" icon="QuestShort" npc="quest_character_mentor03.png" helpName="Help_window_guild_market_0" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="TutGuildMarketVoteReset" />
+		</startcondition>
+
+		<triggers>
+			<click item="GAMESTATE_ID_GUILD_WINDOW.btnGuildMarketToggleHistory" />
+			<click item="GAMESTATE_ID_GUILD_WINDOW.btnGuildMarketToShop" />
+		</triggers>
+
+		<posteffects>
+			<reward type="Resource" name="GuildCoins" amount="50" />
+		</posteffects>
+		<hints>
+			<hint pointTo="GAMESTATE_ID_GUILD_WINDOW.btnGuildMarketToggleHistory" type="Glow" />
+			<hint pointTo="GAMESTATE_ID_GUILD_WINDOW.btnGuildMarketToShop" type="Glow" />
+		</hints>
+	</quest>
+
+</Root>

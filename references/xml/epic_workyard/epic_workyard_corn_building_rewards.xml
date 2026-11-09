@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE root [
+    <!ELEMENT root (genericvalue)*>
+     
+    <!ELEMENT genericvalue EMPTY >
+    <!ATTLIST genericvalue
+        id          CDATA   #REQUIRED
+        name        CDATA   #REQUIRED
+        default     NMTOKEN #REQUIRED
+    >
+]>
+<root> 
+    <!-- Epic Farmyard Reward -->
+    <genericvalue id="1" name="Reward_EpicWorkyardCorn_Building" default="0"/>
+    <genericvalue id="2" name="Reward_EpicWorkyardCorn_SeedToWater" default="0"/>
+    <genericvalue id="3" name="Reward_EpicWorkyardCorn_SeedToCorn" default="0"/>
+    <genericvalue id="4" name="Reward_EpicWorkyardCorn_CornToCorn" default="0"/>
+    <genericvalue id="5" name="Reward_EpicWorkyardCorn_CornToFlour" default="0"/>
+    <genericvalue id="6" name="Reward_EpicWorkyardCorn_FlourToBread" default="0"/>
+    <genericvalue id="7" name="Reward_EpicWorkyardCorn_CornToBeer" default="0"/>
+    <genericvalue id="8" name="Reward_EpicWorkyardCorn_CornToHorse" default="0"/>
+        
+    <!-- Science Recipes Reward -->
+    <genericvalue id="9" name="Reward_Recipe_Manuscript" default="0"/>
+    <genericvalue id="10" name="Reward_Recipe_Tome" default="0"/>
+    <genericvalue id="11" name="Reward_Recipe_Codex" default="0"/>
+    
+    <genericvalue id="12" name="Own_RarityProvisioner" default="0"/>
+    
+    <!-- Recipe Reward Guarantee -->
+    <genericvalue id="13" name="RewardGuarantee_Recipe_Manuscript" default="0"/>
+    <genericvalue id="14" name="RewardGuarantee_Recipe_Tome" default="0"/>
+    <genericvalue id="15" name="RewardGuarantee_Recipe_Codex" default="0"/>
+	
+	<!-- Counter for weekly Easter quest chains -->
+	<genericvalue id="16" name="Easter_CountStartedWeeklyQuests" default="0"/>
+    
+    <!-- Epic Forge Reward -->
+    <genericvalue id="20" name="Reward_EpicWorkyardOre_Building" default="0"/>
+    <genericvalue id="21" name="Reward_EpicWorkyardOre_OreToBronze" default="0"/>
+    <genericvalue id="22" name="Reward_EpicWorkyardOre_OreToIron" default="0"/>
+    <genericvalue id="23" name="Reward_EpicWorkyardOre_IronToSteel" default="0"/>
+    <genericvalue id="24" name="Reward_EpicWorkyardOre_OreToTitanium" default="0"/>
+    <genericvalue id="25" name="Reward_EpicWorkyardOre_OreToPlatinum" default="0"/>
+    <genericvalue id="26" name="Reward_EpicWorkyardOre_BronzeToSword" default="0"/>
+    <genericvalue id="27" name="Reward_EpicWorkyardOre_IronToSword" default="0"/>
+    <genericvalue id="28" name="Reward_EpicWorkyardOre_SteelToSword" default="0"/>
+    <genericvalue id="29" name="Reward_EpicWorkyardOre_TitaniumToSword" default="0"/>
+    <genericvalue id="30" name="Reward_EpicWorkyardOre_PlatinumToSword" default="0"/>
+	
+	<!-- Mountain Clan persistent variables -->
+	<genericvalue id="40" name="MountainClan_DispelledDebuffA" default="0"/>
+	<genericvalue id="41" name="MountainClan_DispelledDebuffB" default="0"/>
+	<genericvalue id="42" name="MountainClan_DispelledDebuffC" default="0"/>
+	<genericvalue id="43" name="MountainClan_DispelledDebuffD" default="0"/>
+	
+	<genericvalue id="44" name="MountainClan_DispelledDebuffCounter" default="0"/>	
+	
+		<!-- Mountain Clan V4 generic values -->
+	<genericvalue id="45" name="MountainClan_BuildingSlot1" default="0"/>
+	<genericvalue id="46" name="MountainClan_BuildingSlot2" default="0"/>
+	<genericvalue id="47" name="MountainClan_BuildingSlot3" default="0"/>
+	<genericvalue id="48" name="MountainClan_ObsidianDynamiteDummy" default="0"/>	
+		<!-- Mountain Clan V5 generic values -->
+	<genericvalue id="49" name="MountainClan_TMC5_FrostGiantCounter" default="0"/>
+	
+	<!-- Building Reward Guarantee -->
+    <genericvalue id="50" name="RewardGuarantee_Building_WhiteCastle" default="15001"/>
+    <genericvalue id="51" name="RewardGuarantee_Building_PirateResidence" default="15001"/>
+	<genericvalue id="52" name="RewardGuarantee_Building_Bonechurch" default="15001"/>
+	<genericvalue id="53" name="RewardGuarantee_Building_Witchtower" default="15001"/>
+	
+	<!-- Building Reward Guarantee -->
+	<genericvalue id="60" name="TwinTown_NoEnd" default="10"/>
+    <genericvalue id="61" name="TwinTown_Buildup_01" default="1"/>
+    <genericvalue id="62" name="TwinTown_Buildup_02" default="0"/>
+    <genericvalue id="63" name="TwinTown_Buildup_03" default="0"/>
+    <genericvalue id="64" name="TwinTown_Buildup_04" default="0"/>
+    <genericvalue id="65" name="TwinTown_Buildup_05" default="0"/>
+    <genericvalue id="66" name="TwinTown_Buildup_06" default="0"/>
+    <genericvalue id="67" name="TwinTown_Buildup_07" default="0"/>
+    <genericvalue id="68" name="TwinTown_Buildup_08" default="0"/>
+    <genericvalue id="69" name="TwinTown_Buildup_09" default="0"/>
+    <genericvalue id="70" name="TwinTown_Buildup_10" default="0"/>
+    <genericvalue id="71" name="TwinTown_Buildup_11" default="0"/>
+    <genericvalue id="72" name="TwinTown_Buildup_12" default="0"/>
+	
+    <genericvalue id="90" name="TwinTown_Enemies_01" default="0"/>
+    <genericvalue id="91" name="TwinTown_Enemies_02" default="0"/>
+    <genericvalue id="92" name="TwinTown_Enemies_03" default="0"/>
+    <genericvalue id="93" name="TwinTown_Enemies_04" default="0"/>
+    <genericvalue id="94" name="TwinTown_Enemies_05" default="0"/>
+    <genericvalue id="95" name="TwinTown_Enemies_06" default="0"/>
+    <genericvalue id="96" name="TwinTown_Enemies_07" default="0"/>
+    <genericvalue id="97" name="TwinTown_Enemies_08" default="0"/>
+    <genericvalue id="98" name="TwinTown_Enemies_09" default="0"/>
+    <genericvalue id="99" name="TwinTown_Enemies_10" default="0"/>
+    <genericvalue id="100" name="TwinTown_Enemies_11" default="0"/>
+    <genericvalue id="101" name="TwinTown_Enemies_12" default="0"/>
+    <genericvalue id="102" name="TwinTown_Enemies_13" default="0"/>
+    <genericvalue id="103" name="TwinTown_Enemies_14" default="0"/>
+    <genericvalue id="104" name="TwinTown_Enemies_15" default="0"/>   
+
+    <genericvalue id="130" name="TwinTown_building_spot_01" default="0"/>
+    <genericvalue id="131" name="TwinTown_building_spot_02" default="0"/>
+    <genericvalue id="132" name="TwinTown_building_spot_03" default="0"/>
+    <genericvalue id="133" name="TwinTown_building_spot_04" default="0"/>
+    <genericvalue id="134" name="TwinTown_building_spot_05" default="0"/>
+    <genericvalue id="135" name="TwinTown_building_spot_06" default="0"/>
+    <genericvalue id="136" name="TwinTown_building_spot_07" default="0"/>
+    <genericvalue id="137" name="TwinTown_building_spot_08" default="0"/>
+    <genericvalue id="138" name="TwinTown_building_spot_09" default="0"/>
+    <genericvalue id="139" name="TwinTown_building_spot_10" default="0"/>
+    <genericvalue id="140" name="TwinTown_building_spot_11" default="0"/>
+    <genericvalue id="141" name="TwinTown_building_spot_12" default="0"/>
+    <genericvalue id="142" name="TwinTown_building_spot_13" default="0"/>
+    <genericvalue id="143" name="TwinTown_building_spot_14" default="0"/>
+    <genericvalue id="144" name="TwinTown_building_spot_15" default="0"/>  
+
+    <genericvalue id="161" name="TwinTown_Random_Enemies_1" default="0"/>
+    <genericvalue id="162" name="TwinTown_Random_Enemies_1_switch" default="0"/>	
+    <genericvalue id="163" name="TwinTown_Random_Enemies_2" default="0"/>
+    <genericvalue id="164" name="TwinTown_Random_Enemies_3" default="0"/>
+    <genericvalue id="165" name="TwinTown_Random_Enemies_4" default="0"/>
+    <genericvalue id="166" name="TwinTown_Random_Enemies_5" default="0"/> 	
+
+    <genericvalue id="199" name="TwinTown_Adv_Chapter1_Sub_0_QGV" default="1"/>	
+    <genericvalue id="200" name="TwinTown_Adv_Chapter1_Sub_1_QGV" default="0"/>
+    <genericvalue id="201" name="TwinTown_Adv_Chapter1_Sub_2_QGV" default="0"/>
+    <genericvalue id="202" name="TwinTown_Adv_Chapter1_Sub_3_QGV" default="0"/>
+    <genericvalue id="203" name="TwinTown_Adv_Chapter1_Sub_4_QGV" default="0"/> 	
+    <genericvalue id="204" name="TwinTown_Adv_Chapter1_Sub_5_QGV" default="0"/>	
+    <genericvalue id="205" name="TwinTown_Adv_Chapter1_Sub_6_QGV" default="0"/>
+    <genericvalue id="206" name="TwinTown_Adv_Chapter1_Sub_7_QGV" default="0"/>
+    <genericvalue id="207" name="TwinTown_Adv_Chapter1_Sub_8_QGV" default="0"/>
+    <genericvalue id="208" name="TwinTown_Adv_Chapter1_Sub_9_QGV" default="0"/> 
+    <genericvalue id="198" name="TwinTown_Adv_Chapter1_Sub_9_Helper_QGV" default="0"/> 	
+    <genericvalue id="209" name="TwinTown_Adv_Chapter1_Sub_10_QGV" default="0"/>		
+    <genericvalue id="210" name="TwinTown_Adv_Chapter1_Sub_11_QGV" default="1"/>
+    <genericvalue id="211" name="TwinTown_Adv_Chapter1_Sub_12_QGV" default="0"/>
+    <genericvalue id="212" name="TwinTown_Adv_Chapter1_Sub_13_QGV" default="0"/>
+    <genericvalue id="213" name="TwinTown_Adv_Chapter1_Sub_14_QGV" default="0"/> 	
+    <genericvalue id="214" name="TwinTown_Adv_Chapter1_Sub_15_QGV" default="0"/>	
+    <genericvalue id="215" name="TwinTown_Adv_Chapter1_Sub_16_QGV" default="0"/>
+    <genericvalue id="216" name="TwinTown_Adv_Chapter1_Sub_17_QGV" default="0"/>
+    <genericvalue id="217" name="TwinTown_Adv_Chapter1_Sub_18_QGV" default="0"/>
+    <genericvalue id="218" name="TwinTown_Adv_Chapter1_Sub_19_QGV" default="0"/> 
+    <genericvalue id="219" name="TwinTown_Adv_Chapter1_Sub_20_QGV" default="0"/>	
+    <genericvalue id="220" name="TwinTown_Adv_Chapter1_Sub_21_QGV" default="0"/>
+    <genericvalue id="221" name="TwinTown_Adv_Chapter1_Sub_22_QGV" default="0"/>
+    <genericvalue id="222" name="TwinTown_Adv_Chapter1_Sub_23_QGV" default="0"/>
+    <genericvalue id="223" name="TwinTown_Adv_Chapter1_Sub_24_QGV" default="0"/> 	
+    <genericvalue id="224" name="TwinTown_Adv_Chapter1_Sub_25_QGV" default="0"/>	
+    <genericvalue id="225" name="TwinTown_Adv_Chapter1_Sub_26_QGV" default="0"/>
+    <genericvalue id="226" name="TwinTown_Adv_Chapter1_Sub_27_QGV" default="0"/>
+    <genericvalue id="227" name="TwinTown_Adv_Chapter1_Sub_28_QGV" default="0"/>
+    <genericvalue id="228" name="TwinTown_Adv_Chapter1_Sub_29_QGV" default="0"/> 
+    <genericvalue id="229" name="TwinTown_Adv_Chapter1_Sub_30_QGV" default="0"/>	
+    <genericvalue id="230" name="TwinTown_Adv_Chapter1_Sub_31_QGV" default="0"/>
+    <genericvalue id="231" name="TwinTown_Adv_Chapter1_Sub_32_QGV" default="0"/>
+    <genericvalue id="232" name="TwinTown_Adv_Chapter1_Sub_33_QGV" default="0"/>
+    <genericvalue id="233" name="TwinTown_Adv_Chapter1_Sub_34_QGV" default="0"/> 	
+    <genericvalue id="234" name="TwinTown_Adv_Chapter1_Sub_35_QGV" default="0"/>	
+    <genericvalue id="235" name="TwinTown_Adv_Chapter1_Sub_36_QGV" default="0"/>
+    <genericvalue id="236" name="TwinTown_Adv_Chapter1_Sub_37_QGV" default="0"/>
+    <genericvalue id="237" name="TwinTown_Adv_Chapter1_Sub_38_QGV" default="0"/>
+    <genericvalue id="238" name="TwinTown_Adv_Chapter1_Sub_39_QGV" default="0"/> 
+
+    <genericvalue id="239" name="TwinTown_Cave1_unlock" default="0"/> 
+    <genericvalue id="240" name="TwinTown_Cave2_unlock" default="0"/> 
+	<genericvalue id="241" name="TwinTown_Cave3_unlock" default="0"/> 
+	<genericvalue id="242" name="TwinTown_Cave4_unlock" default="0"/> 
+	
+	<genericvalue id="243" name="TwinTown_Home_Chapter1_Main2_Sub_7" default="0"/> 
+    <genericvalue id="244" name="TwinTown_Adv_Chapter1_Sub_33_Decision_A" default="0"/>
+    <genericvalue id="245" name="TwinTown_Adv_Chapter1_Sub_33_Decision_B" default="0"/>	
+    <genericvalue id="246" name="TwinTown_Home_Chapter1_Main2_Sub_8_QGV" default="0"/>	
+    <genericvalue id="247" name="TwinTown_Home_Chapter1_Main2_Sub_9_QGV" default="0"/>	
+    <genericvalue id="248" name="TwinTown_Home_Chapter1_Main2_Sub_10_QGV" default="0"/>	
+    <genericvalue id="249" name="TwinTown_Home_Chapter1_Main2_Sub_11_QGV" default="0"/>	
+    <genericvalue id="250" name="TwinTown_Home_Chapter1_Main2_Sub_12_QGV" default="0"/>	
+    <genericvalue id="251" name="TwinTown_Home_Chapter1_Main2_Sub_13_QGV" default="0"/>	
+	
+	
+</root>                

@@ -1,0 +1,1007 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+      
+   <quest name="BuffAdv_TMC_V5_Main1" type="Story" specialType="firstQuest" icon="Military" npc="mountain_clan_uncovered.png">
+		<triggers>
+			<questcomplete item="BuffAdv_TMC_V5_Sub1"/> 
+			<questcomplete item="BuffAdv_TMC_V5_Sub2"/> 
+		</triggers>
+		<rewards>
+		</rewards>	
+    </quest>
+	
+	<!-- Set generic values & start quests -->
+	<quest name="BuffAdv_TMC_V5_Main1Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questrunning item="BuffAdv_TMC_V5_Main1" />
+		</startcondition>	
+		<triggers>
+		</triggers>	 
+		<posteffects>
+		<!-- Start Bridge Repair Quest (Sub1) + Start Boss Respawn Warning Quest (Sub2) -->
+		
+   			<startquest name="BuffAdv_TMC_V5_Sub1"/>
+			<startquest name="BuffAdv_TMC_V5_Sub2"/>
+   			<startquest name="BuffAdv_TMC_V5_Sub2a"/>
+   			<startquest name="BuffAdv_TMC_V5_Sub2b"/>			
+			<startquest name="BuffAdv_TMC_V5_Sub8a"/>
+			<startquest name="BuffAdv_TMC_V5_Sub8b"/>
+			
+			<!-- Vice Bosses Quests visible to player -->
+			<startquest name="BuffAdv_TMC_V5_Sub3_Main"/>
+			<startquest name="BuffAdv_TMC_V5_Sub4_Main"/>
+			<startquest name="BuffAdv_TMC_V5_Sub5_Main"/>
+			<startquest name="BuffAdv_TMC_V5_Sub6_Main"/> 
+			<startquest name="BuffAdv_TMC_V5_Main2"/>  
+			
+			<!-- Invisible Helper Quests -->
+			<startquest name="BuffAdv_TMC_V5_Sub3"/>
+			<startquest name="BuffAdv_TMC_V5_Sub4"/>
+			<startquest name="BuffAdv_TMC_V5_Sub5"/>
+			<startquest name="BuffAdv_TMC_V5_Sub6"/>  
+			
+			<!-- Quest manager for RESPAWN procedure -->
+			<startquest name="BuffAdv_TMC_V5_Sub9"/>  
+
+			<!-- ObsidianDynamiteDummy if genval is set from TMC4 -->
+			<startquest name="BuffAdv_TMC_V5_ObsidianDynamiteDummy"/>  			
+			
+			<!-- Reset Frost Giant Respawn -->
+			<adjustgenericvalue name="MountainClan_TMC5_FrostGiantCounter" action="reset" />
+						
+			<!-- Activate remaining Weather debuffs from V2 -->
+			<applyzonebuff name="GeneralSpeedBuff_TMC_A">
+				<conditions>
+					<checkgenericvalue name="MountainClan_DispelledDebuffA" max="0"/>
+				</conditions>
+			</applyzonebuff>
+			<applyzonebuff name="EffectBuff_TMC_B">
+				<conditions>
+					<checkgenericvalue name="MountainClan_DispelledDebuffB" max="0"/>
+				</conditions>
+			</applyzonebuff>
+			<applyzonebuff name="EffectBuff_TMC_C">
+				<conditions>
+					<checkgenericvalue name="MountainClan_DispelledDebuffC" max="0"/>
+				</conditions>
+			</applyzonebuff>
+			<applyzonebuff name="EffectBuff_TMC_D">
+				<conditions>
+					<checkgenericvalue name="MountainClan_DispelledDebuffD" max="0"/>
+				</conditions>
+			</applyzonebuff>	
+
+			<!--BuffAdv_TMC_V5_Sub1	Helper Quests (Repair 1 of 3 Bridges) -->
+   			<startquest name="BuffAdv_TMC_V5_Sub1a"/>
+   			<startquest name="BuffAdv_TMC_V5_Sub1b"/>
+   			<startquest name="BuffAdv_TMC_V5_Sub1c"/>	
+   			<startquest name="BuffAdv_TMC_V5_Sub1Trigger"/>					
+			
+		</posteffects>
+    </quest>	
+	
+	<!--Repair 1 of 3 Bridges Quest -->
+	<quest name="BuffAdv_TMC_V5_Sub1" type="Story" icon="Military" connectedToQuest="BuffAdv_TMC_V5_Main1" npc="mountain_clan_uncovered.png">
+		  <triggers>
+			<questcomplete item="BuffAdv_TMC_V5_Sub1Trigger" locaExtension="TMC_V5_BridgeTrigger" /> 			
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+        </posteffects>
+   </quest>
+		
+		<!--"Getting Close": Start helper quests to cancel other unused quest (Sub2a + Sub2b; Warning appears when sector 31 OR 32 gets explored and cancels the quest for the other sector exploration) -->
+	<quest name="BuffAdv_TMC_V5_Sub2" type="Story" icon="Military" connectedToQuest="BuffAdv_TMC_V5_Main1" npc="mountain_clan_uncovered.png">
+		  <triggers>
+				<questcomplete item="BuffAdv_TMC_V5_Sub2Trigger" locaExtension="TMC_V5_ReachRisi"/> 
+		  </triggers>
+		<rewards>
+		</rewards>
+		<posteffects>
+        </posteffects>
+   </quest>
+		
+	<quest name="BuffAdv_TMC_V5_Sub2Trigger" showQuestWindow="false" showRewardWindow="false" >
+		<startcondition>
+		   <questactive item="BuffAdv_TMC_V5_Sub2"/>
+		</startcondition>
+		<triggers>
+			<questcomplete item="BuffAdv_TMC_V5_Sub2a"/> 
+			<questcomplete item="BuffAdv_TMC_V5_Sub2b"/>
+		</triggers>
+    </quest>	
+		
+	<!--Defeat Vice Bosses Quests -->
+	<quest name="BuffAdv_TMC_V5_Main2" type="Story" specialType="lastQuest" icon="Military" npc="mountain_clan_uncovered.png">
+		<startcondition>
+		      <questactive item="BuffAdv_TMC_V5_Main1"/>
+		</startcondition>
+		<triggers>
+			<questcomplete item="BuffAdv_TMC_V5_Sub3_Main"/>
+			<questcomplete item="BuffAdv_TMC_V5_Sub4_Main"/>
+			<questcomplete item="BuffAdv_TMC_V5_Sub5_Main"/>
+			<questcomplete item="BuffAdv_TMC_V5_Sub6_Main"/>		
+            <buildingdestroyed item="tmc_buffad_v5_FrostGiant" min="1" locaExtension="DefeatTMCFrostGiantKing" />
+		</triggers>
+		<rewards>
+		</rewards>
+    </quest>
+	
+	<!-- Check if S34 is explored-->	
+	<quest name="BuffAdv_TMC_V5_Sub9" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+			<questcomplete item="BuffAdv_TMC_V5_Sub9a" />
+			<questcomplete item="BuffAdv_TMC_V5_Sub9b" />
+	<!-- <onmaplist item="tmc_buffad_v5_s32_leader2,tmc_buffad_v5_s31_nodivert1" max="1"/> -->
+		</triggers>
+		<rewards>
+		</rewards>
+		<posteffects>
+			<cancelquest name="BuffAdv_TMC_V5_Sub3"/>
+			<cancelquest name="BuffAdv_TMC_V5_Sub4"/>
+			<cancelquest name="BuffAdv_TMC_V5_Sub5"/>
+			<cancelquest name="BuffAdv_TMC_V5_Sub6"/>
+			<startquest name="BuffAdv_TMC_V5_Sub3_PRE_RESPAWN"/>
+			<startquest name="BuffAdv_TMC_V5_Sub4_PRE_RESPAWN"/>
+			<startquest name="BuffAdv_TMC_V5_Sub5_PRE_RESPAWN"/>
+			<startquest name="BuffAdv_TMC_V5_Sub6_PRE_RESPAWN"/> 
+			<startquest name="BuffAdv_TMC_V5_Sub7_Main"/> 		
+			<!-- <startquest name="BuffAdv_TMC_V5_ExploreSector34"/> startcondition BuffAdv_TMC_V5_Sub7_Main complete used instead, to improve timing for the used onmap trigger	-->	 	
+        </posteffects>
+    </quest>
+	
+	<!-- Paragon Elk quest visible to player-->	
+	<quest name="BuffAdv_TMC_V5_Sub3_Main" type="Story" icon="Military" connectedToQuest="BuffAdv_TMC_V5_Main2" npc="mountain_clan_uncovered.png">
+		  <triggers>
+				<questcomplete item="BuffAdv_TMC_V5_Sub3_MainTrigger" locaExtension="TMC_V5_DefeatElk"/>
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+			<reward type="Buff" item="BookbinderBuffLvl1" amount="1"/>
+        </posteffects>
+   </quest>
+
+	<quest name="BuffAdv_TMC_V5_Sub3_MainTrigger" showQuestWindow="false" showRewardWindow="false" >
+		<startcondition>
+		   <questactive item="BuffAdv_TMC_V5_Sub3_Main"/>
+		</startcondition>
+		<triggers>
+			<questcomplete item="BuffAdv_TMC_V5_Sub3"/>
+			<questcomplete item="BuffAdv_TMC_V5_Sub3_RESPAWN_Win"/>		
+		</triggers>
+    </quest>	
+   
+		<!-- RESPAWN + REMOVE camps + start "RESPAWN killed?" quest-->	
+	<quest name="BuffAdv_TMC_V5_Sub3_PRE_RESPAWN" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+			<onmap min="1" item="tmc_buffad_v5_s11_leader1" locaExtension="DefeatTMCStrongholdRuinsWildlife"/>	
+		</triggers>
+		<rewards>
+		</rewards>
+		<posteffects> 
+			<spawnbuilding name="tmc_buffad_v5_s11_leader1_RESPAWN" x="31" y="13" units="EliteWildlifeLongbowman|50,EliteWildlifeAir|50,EliteWildlifeCannoneer|50,TMC_BossParagonElk|1" action="ignoreBlocking,spawnInstant,replace" mode="enemy"/>
+			<startquest name="BuffAdv_TMC_V5_Sub3_RESPAWN"/>
+		</posteffects>
+    </quest>	
+	
+		<!-- RESPAWN + REMOVE camps + start "RESPAWN killed?" quest-->	
+	<quest name="BuffAdv_TMC_V5_Sub3_RESPAWN" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="BuffAdv_TMC_V5_Sub3_PRE_RESPAWN"/>
+			<onmap min="1" item="tmc_buffad_v5_s11_leader1_RESPAWN" locaExtension="DefeatTMCStrongholdRuinsWildlife"/>		
+		</startcondition>
+		<triggers>	
+		</triggers>
+		<rewards>
+		</rewards>
+		<posteffects> 
+			<removebuilding x="44" y="65" name="tmc_buffad_v5_s11_leader1"/>
+			<startquest name="BuffAdv_TMC_V5_Sub3_RESPAWN_Win"/>
+		</posteffects>
+    </quest>
+	
+		<!-- finish Paragon Elk quest when RESPAWN is defeated -->	
+	<quest name="BuffAdv_TMC_V5_Sub3_RESPAWN_Win" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+            <buildingdestroyed item="tmc_buffad_v5_s11_leader1_RESPAWN" min="1" locaExtension="DefeatTMCStrongholdRuinsWildlife" />
+		</triggers>
+		<rewards></rewards>
+		<posteffects>
+		<!-- finish Paragon Elk quest in questbook -->
+		 	<finishquest name="BuffAdv_TMC_V5_Sub3_Main"/>
+			
+        </posteffects>
+   </quest>
+
+   		<!-- Defeat Paragon Elk directly to finish Quest -->
+	<quest name="BuffAdv_TMC_V5_Sub3" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<onmap max="0" item="tmc_buffad_v5_s11_leader1" locaExtension="DefeatTMCStrongholdRuinsWildlife"/>				
+		</triggers>
+		<rewards></rewards>
+		<posteffects>
+			<!-- finish Paragon Elk quest in questbook -->	
+			<adjustgenericvalue name="MountainClan_TMC5_FrostGiantCounter" action="add" amount="1"/>
+		 	<finishquest name="BuffAdv_TMC_V5_Sub3_Main"/>		
+        </posteffects>
+   </quest>
+  
+  
+  
+  
+	<!-- Boss Mammoth Quest visible to player-->
+	<quest name="BuffAdv_TMC_V5_Sub4_Main" type="Story" icon="Military" connectedToQuest="BuffAdv_TMC_V5_Main2" npc="mountain_clan_uncovered.png">
+		  <triggers>
+				<questcomplete item="BuffAdv_TMC_V5_Sub4_MainTrigger" locaExtension="TMC_V5_DefeatMammoth"/>	
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl18" amount="1"/>
+        </posteffects>
+   </quest>
+
+	<quest name="BuffAdv_TMC_V5_Sub4_MainTrigger" showQuestWindow="false" showRewardWindow="false" >
+		<startcondition>
+		   <questactive item="BuffAdv_TMC_V5_Sub4_Main"/>
+		</startcondition>
+		<triggers>
+			<questcomplete item="BuffAdv_TMC_V5_Sub4"/>
+			<questcomplete item="BuffAdv_TMC_V5_Sub4_RESPAWN_Win"/>	
+		</triggers>
+    </quest>	
+   
+	<quest name="BuffAdv_TMC_V5_Sub4_PRE_RESPAWN" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+					<onmap min="1" item="tmc_buffad_v5_s16_leader1" locaExtension="DefeatTMCStrongholdRuinsWildlife"/>	
+		</triggers>
+		<rewards>
+		</rewards>
+		<posteffects> 
+  			<spawnbuilding name="tmc_buffad_v5_s16_leader1_RESPAWN" x="35" y="8" units="EliteWildlifeRecruit|50,EliteWildlifeCavalry|50,EliteWildlifeAir|50,EliteWildlifeCannoneer|50,TMC_BossMammoth|1" action="ignoreBlocking,spawnInstant,replace" mode="enemy"/>
+			<startquest name="BuffAdv_TMC_V5_Sub4_RESPAWN"/>	
+		</posteffects>
+    </quest>	
+	
+		<!-- RESPAWN + REMOVE camps + start "RESPAWN killed?" quest-->	
+	<quest name="BuffAdv_TMC_V5_Sub4_RESPAWN" showQuestWindow="false" showRewardWindow="false" >
+		<startcondition>
+			<questcomplete item="BuffAdv_TMC_V5_Sub4_PRE_RESPAWN"/>
+			<onmap min="1" item="tmc_buffad_v5_s16_leader1_RESPAWN" locaExtension="DefeatTMCStrongholdRuinsWildlife"/>		
+		</startcondition>	
+		<triggers>
+		</triggers>
+		<rewards>
+		</rewards>
+		<posteffects> 
+			<removebuilding x="23" y="75" name="tmc_buffad_v5_s16_leader1" />
+			<spawnbuilding x="23" y="75" name="tmc_buffad_v5_s16_leader1_Deco" action="ignoreBlocking,spawnInstant,replace" mode="free"/>
+			<startquest name="BuffAdv_TMC_V5_Sub4_RESPAWN_Win"/>
+		</posteffects>
+    </quest>
+	
+		<!-- finish Mammoth quest when RESPAWN is defeated -->	
+	<quest name="BuffAdv_TMC_V5_Sub4_RESPAWN_Win" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+            <buildingdestroyed item="tmc_buffad_v5_s16_leader1_RESPAWN" min="1" locaExtension="DefeatTMCStrongholdRuinsWildlife" />
+		</triggers>
+		<rewards></rewards>
+		<posteffects>
+		<!-- finish Mammoth quest in questbook -->
+		 	<finishquest name="BuffAdv_TMC_V5_Sub4_Main"/>
+			
+        </posteffects>
+   </quest>
+
+   		<!-- Defeat Mammoth directly to finish Quest -->
+	<quest name="BuffAdv_TMC_V5_Sub4" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<onmap max="0" item="tmc_buffad_v5_s16_leader1" locaExtension="DefeatTMCStrongholdRuinsWildlife"/>				
+		</triggers>
+		<rewards></rewards>
+		<posteffects>
+			<!-- finish Mammoth quest in questbook -->
+			<adjustgenericvalue name="MountainClan_TMC5_FrostGiantCounter" action="add" amount="1"/>
+		 	<finishquest name="BuffAdv_TMC_V5_Sub4_Main"/>		
+        </posteffects>
+   </quest>
+  
+  
+  
+  
+  
+  
+  	<!-- Boss Smilodon Quest visible to player-->
+	<quest name="BuffAdv_TMC_V5_Sub5_Main" type="Story" icon="Military" connectedToQuest="BuffAdv_TMC_V5_Main2" npc="mountain_clan_uncovered.png">
+		  <triggers>
+				<questcomplete item="BuffAdv_TMC_V5_Sub5_MainTrigger" locaExtension="TMC_V5_DefeatSmilodon"/>
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl105" amount="1"/>
+        </posteffects>
+   </quest>
+ 
+	<quest name="BuffAdv_TMC_V5_Sub5_MainTrigger" showQuestWindow="false" showRewardWindow="false" >
+		<startcondition>
+		   <questactive item="BuffAdv_TMC_V5_Sub5_Main"/>
+		</startcondition>
+		<triggers>
+				<questcomplete item="BuffAdv_TMC_V5_Sub5"/>
+				<questcomplete item="BuffAdv_TMC_V5_Sub5_RESPAWN_Win"/>	
+		</triggers>
+    </quest>	
+ 
+ 	<quest name="BuffAdv_TMC_V5_Sub5_PRE_RESPAWN" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+				<onmap min="1" item="tmc_buffad_v5_s35_leader1" locaExtension="DefeatTMCStrongholdRuinsWildlife"/>	
+		</triggers>
+		<rewards>
+		</rewards>
+		<posteffects> 
+  			<spawnbuilding name="tmc_buffad_v5_s35_leader1_RESPAWN" x="34" y="14" units="EliteWildlifeBowman|50,EliteWildlifeCavalry|25,EliteWildlifeAir|50,EliteWildlifeCannoneer|50,TMC_BossSmilodon|1" action="ignoreBlocking,spawnInstant,replace" mode="enemy"/>
+			<startquest name="BuffAdv_TMC_V5_Sub5_RESPAWN"/>	
+		</posteffects>
+    </quest>	
+	
+		<!-- RESPAWN + REMOVE camps + start "RESPAWN killed?" quest-->	
+	<quest name="BuffAdv_TMC_V5_Sub5_RESPAWN" showQuestWindow="false" showRewardWindow="false" >
+		<startcondition>
+			<questcomplete item="BuffAdv_TMC_V5_Sub5_PRE_RESPAWN"/>
+			<onmap min="1" item="tmc_buffad_v5_s35_leader1_RESPAWN" locaExtension="DefeatTMCStrongholdRuinsWildlife"/>
+		</startcondition>	
+		<triggers>
+		</triggers>
+		<rewards>
+		</rewards>
+		<posteffects> 
+        	<removebuilding x="13" y="43" name="tmc_buffad_v5_s35_leader1" />
+			<startquest name="BuffAdv_TMC_V5_Sub5_RESPAWN_Win"/>
+		</posteffects>
+    </quest>
+	
+		<!-- finish Smilodon quest when RESPAWN is defeated -->	
+	<quest name="BuffAdv_TMC_V5_Sub5_RESPAWN_Win" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+            <buildingdestroyed item="tmc_buffad_v5_s35_leader1_RESPAWN" min="1" locaExtension="DefeatTMCStrongholdRuinsWildlife" />
+		</triggers>
+		<rewards></rewards>
+		<posteffects>
+		<!-- finish Smilodon quest in questbook -->
+		 	<finishquest name="BuffAdv_TMC_V5_Sub5_Main"/>
+			
+        </posteffects>
+   </quest>
+
+   		<!-- Defeat Smilodon directly to finish Quest -->
+	<quest name="BuffAdv_TMC_V5_Sub5" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<onmap max="0" item="tmc_buffad_v5_s35_leader1" locaExtension="DefeatTMCStrongholdRuinsWildlife"/>				
+		</triggers>
+		<rewards></rewards>
+		<posteffects>
+			<!-- finish Smilodon quest in questbook -->
+			<adjustgenericvalue name="MountainClan_TMC5_FrostGiantCounter" action="add" amount="1"/>
+		 	<finishquest name="BuffAdv_TMC_V5_Sub5_Main"/>
+        </posteffects>
+   </quest>
+  
+  
+  
+  
+  
+  
+  
+   	<!-- Boss Eagle Quest visible to player-->
+	<quest name="BuffAdv_TMC_V5_Sub6_Main" type="Story" icon="Military" connectedToQuest="BuffAdv_TMC_V5_Main2" npc="mountain_clan_uncovered.png">
+		  <triggers>
+				<questcomplete item="BuffAdv_TMC_V5_Sub6_MainTrigger" locaExtension="TMC_V5_DefeatEagle"/>
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl13" amount="1"/>
+        </posteffects>
+   </quest>
+
+	<quest name="BuffAdv_TMC_V5_Sub6_MainTrigger" showQuestWindow="false" showRewardWindow="false" >
+		<startcondition>
+		   <questactive item="BuffAdv_TMC_V5_Sub6_Main"/>
+		</startcondition>
+		<triggers>
+				<questcomplete item="BuffAdv_TMC_V5_Sub6"/>
+				<questcomplete item="BuffAdv_TMC_V5_Sub6_RESPAWN_Win"/>	
+		</triggers>
+    </quest>	   
+   
+ 	<quest name="BuffAdv_TMC_V5_Sub6_PRE_RESPAWN" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+				<onmap min="1" item="tmc_buffad_v5_s29_leader1" locaExtension="DefeatTMCStrongholdRuinsWildlife"/>	
+		</triggers>
+		<rewards>
+		</rewards>
+		<posteffects> 
+  			<spawnbuilding x="30" y="9" name="tmc_buffad_v5_s29_leader1_RESPAWN" action="ignoreBlocking,spawnInstant,replace" mode="enemy" units="EliteWildlifeRecruit|50,EliteWildlifeBowman|50,EliteWildlifeAir|50,EliteWildlifeCannoneer|50,TMC_ColossalEagleBoss|1"/>
+			<startquest name="BuffAdv_TMC_V5_Sub6_RESPAWN"/>	
+		</posteffects>
+    </quest>	
+   
+		<!-- RESPAWN + REMOVE camps + start "RESPAWN killed?" quest-->	
+	<quest name="BuffAdv_TMC_V5_Sub6_RESPAWN" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="BuffAdv_TMC_V5_Sub6_PRE_RESPAWN"/>
+			<onmap min="1" item="tmc_buffad_v5_s29_leader1_RESPAWN" locaExtension="DefeatTMCStrongholdRuinsWildlife"/>	
+		</startcondition>	
+		<triggers>
+		</triggers>
+		<rewards>
+		</rewards>
+		<posteffects>  
+        	<removebuilding x="27" y="28" name="tmc_buffad_v5_s29_leader1" />
+			<startquest name="BuffAdv_TMC_V5_Sub6_RESPAWN_Win"/>
+		</posteffects>
+    </quest>
+	
+		<!-- finish Eagle quest when RESPAWN is defeated -->	
+	<quest name="BuffAdv_TMC_V5_Sub6_RESPAWN_Win" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+            <buildingdestroyed item="tmc_buffad_v5_s29_leader1_RESPAWN" min="1" locaExtension="DefeatTMCStrongholdRuinsWildlife" />
+		</triggers>
+		<rewards></rewards>
+		<posteffects>
+		<!-- finish Eagle quest in questbook -->
+		 	<finishquest name="BuffAdv_TMC_V5_Sub6_Main"/>
+			
+        </posteffects>
+   </quest>
+
+   		<!-- Defeat Eagle directly to finish Quest -->
+	<quest name="BuffAdv_TMC_V5_Sub6" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<onmap max="0" item="tmc_buffad_v5_s29_leader1" locaExtension="DefeatTMCStrongholdRuinsWildlife"/>				
+		</triggers>
+		<rewards></rewards>
+		<posteffects>
+			<!-- finish Eagle quest in questbook -->
+			<adjustgenericvalue name="MountainClan_TMC5_FrostGiantCounter" action="add" amount="1"/>
+		 	<finishquest name="BuffAdv_TMC_V5_Sub6_Main"/>
+        </posteffects>
+   </quest> 
+  
+  	<!-- FrostGiantKing Camp Spawn depending on how many Vices killed -->
+	<quest name="BuffAdv_TMC_V5_Sub7_Main" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+		</triggers>
+		<rewards>
+		</rewards>
+		<posteffects> 
+			<Spawnbuilding name="tmc_buffad_v5_FrostGiant" action="ignoreBlocking,spawnInstant,replace" x="32" y="9" mode="enemy" units="EliteWildlifeAir|75,EliteWildlifeBowman|100,EliteWildlifeCannoneer|50,TMC_BossFrostGiantKing_0|1">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_TMC5_FrostGiantCounter" min="0" max="0"/>
+				</conditions>
+			</Spawnbuilding>		
+			<Spawnbuilding name="tmc_buffad_v5_FrostGiant" action="ignoreBlocking,spawnInstant,replace" x="32" y="9" mode="enemy" units="EliteWildlifeAir|75,EliteWildlifeBowman|100,EliteWildlifeCannoneer|50,TMC_BossFrostGiantKing_1|1">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_TMC5_FrostGiantCounter" min="1" max="1"/>
+				</conditions>
+			</Spawnbuilding>				
+			<Spawnbuilding name="tmc_buffad_v5_FrostGiant" action="ignoreBlocking,spawnInstant,replace" x="32" y="9" mode="enemy" units="EliteWildlifeAir|75,EliteWildlifeBowman|100,EliteWildlifeCannoneer|50,TMC_BossFrostGiantKing_2|1">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_TMC5_FrostGiantCounter" min="2" max="2"/>
+				</conditions>
+			</Spawnbuilding>	
+			<Spawnbuilding name="tmc_buffad_v5_FrostGiant" action="ignoreBlocking,spawnInstant,replace" x="32" y="9" mode="enemy" units="EliteWildlifeAir|75,EliteWildlifeBowman|100,EliteWildlifeCannoneer|50,TMC_BossFrostGiantKing_3|1">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_TMC5_FrostGiantCounter" min="3" max="3"/>
+				</conditions>
+			</Spawnbuilding>	
+			<Spawnbuilding name="tmc_buffad_v5_FrostGiant" action="ignoreBlocking,spawnInstant,replace" x="32" y="9" mode="enemy" units="EliteWildlifeAir|75,EliteWildlifeBowman|100,EliteWildlifeCannoneer|50,TMC_BossFrostGiantKing_4|1">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_TMC5_FrostGiantCounter" min="4" max="4"/>
+				</conditions>
+			</Spawnbuilding>	
+			<Spawnbuilding name="tmc_buffad_v5_FrostGiant" action="ignoreBlocking,spawnInstant,replace" x="32" y="9" mode="enemy" units="EliteWildlifeAir|75,EliteWildlifeBowman|100,EliteWildlifeCannoneer|50,TMC_BossFrostGiantKing_4|1">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_TMC5_FrostGiantCounter" min="5" max="15000"/>
+				</conditions>
+			</Spawnbuilding>					
+		</posteffects>
+    </quest>	 
+
+    <!-- Invisible Control Quests: Repair Bridge Helper quests (complete Sub1 when 1 bridge is repaired) -->   
+   
+   <quest name="BuffAdv_TMC_V5_Sub1a"  showQuestWindow="false" showRewardWindow="false" >
+		  <triggers>
+		  	<onmap min="1" item="tmc_v5_repaired_mb_west" locaExtension="RepairNorthernBridge"/>				
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+			<finishquest name="BuffAdv_TMC_V5_Sub1b"/>
+			<finishquest name="BuffAdv_TMC_V5_Sub1c"/>
+        </posteffects>
+   </quest>
+   
+   <quest name="BuffAdv_TMC_V5_Sub1b"  showQuestWindow="false" showRewardWindow="false" >
+		  <triggers>
+		  	<onmap min="1" item="tmc_v5_repaired_mb_center" locaExtension="RepairNorthernBridge"/>				
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+			<finishquest name="BuffAdv_TMC_V5_Sub1a"/>
+			<finishquest name="BuffAdv_TMC_V5_Sub1c"/>
+        </posteffects>
+   </quest> 
+   
+   <quest name="BuffAdv_TMC_V5_Sub1c"  showQuestWindow="false" showRewardWindow="false" >
+		  <triggers>
+		  	<onmap min="1" item="tmc_v5_repaired_mb_east" locaExtension="RepairNorthernBridge"/>				
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+			<finishquest name="BuffAdv_TMC_V5_Sub1a"/>
+			<finishquest name="BuffAdv_TMC_V5_Sub1b"/>
+        </posteffects>
+   </quest> 
+   
+   <quest name="BuffAdv_TMC_V5_Sub1Trigger"  showQuestWindow="false" showRewardWindow="false" >
+		  <triggers>
+			<questcomplete item="BuffAdv_TMC_V5_Sub1a" locaExtension="TMC_V5_BridgeWest" /> 
+			<questcomplete item="BuffAdv_TMC_V5_Sub1b" locaExtension="TMC_V5_BridgeCenter" />
+			<questcomplete item="BuffAdv_TMC_V5_Sub1c" locaExtension="TMC_V5_BridgeEast" /> 				
+		  </triggers>
+		<posteffects>
+			<adjustgenericvalue name="MountainClan_TMC5_FrostGiantCounter" action="set" amount="0"/>
+        </posteffects>
+   </quest> 
+   
+       <!-- Invisible Control Quests: Warn player before engaging the ice giant / point of no return -->   
+   
+   <quest name="BuffAdv_TMC_V5_Sub2a" showQuestWindow="false" showRewardWindow="false">
+		  <triggers>
+		  		<sectorexplored id="31"/> 		
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+			<finishquest name="BuffAdv_TMC_V5_Sub2b"/>
+        </posteffects>
+   </quest>  
+  
+   <quest name="BuffAdv_TMC_V5_Sub2b" showQuestWindow="false" showRewardWindow="false">
+		  <triggers>
+		  		<sectorexplored id="32"/> 				
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+			<finishquest name="BuffAdv_TMC_V5_Sub2a"/>
+        </posteffects>
+   </quest>  
+
+      <!-- Invisible Control Quests: reward collectible for bridge construction -->  
+    <quest name="BuffAdv_TMC_V5_Sub8a" showQuestWindow="false" showRewardWindow="false">
+		  <triggers>
+		  	<onmap max="0" item="tmc_buffad_v5_s6_leader1" locaExtension="RepairNorthernBridge"/>				
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+			<givecollectibleresource name="CollectibleRobustTools" amount="1"/>     
+			<avatarmessage action="RobustToolsFound" name="RobustToolsFound" item="resource_robust_tool"/>
+        </posteffects>
+   </quest>
+   
+   <quest name="BuffAdv_TMC_V5_Sub8b" showQuestWindow="false" showRewardWindow="false">
+		  <triggers>
+		  	<onmap max="0" item="tmc_buffad_v5_s3_leader1" locaExtension="RepairNorthernBridge"/>				
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+			<givecollectibleresource name="CollectibleRobustTools" amount="1"/>   
+			<avatarmessage action="RobustToolsFound" name="RobustToolsFound" item="resource_robust_tool"/>			
+        </posteffects>
+	</quest>
+      
+	<!-- Getting Close Trigger Quests (Destroy camp or gate close to endboss)-->
+	<quest name="BuffAdv_TMC_V5_Sub9a" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		</startcondition>	
+		  <triggers>
+				<buildingdestroyed item="tmc_buffad_v5_s32_leader2" min="1" />		
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+			<finishquest name="BuffAdv_TMC_V5_Sub9b"/>
+			<finishquest name="BuffAdv_TMC_V5_Sub9"/>			
+        </posteffects>
+	</quest>  
+   
+    <quest name="BuffAdv_TMC_V5_Sub9b" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		</startcondition>		
+		  <triggers>
+				<buildingdestroyed item="tmc_buffad_v5_s31_gate1" min="1" />		
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+			<finishquest name="BuffAdv_TMC_V5_Sub9a"/>
+			<finishquest name="BuffAdv_TMC_V5_Sub9"/>			
+        </posteffects>
+	</quest>  
+   
+       <!-- ObsidianDynamiteDummy-->
+   <quest name="BuffAdv_TMC_V5_ObsidianDynamiteDummy" showQuestWindow="false" showRewardWindow="false">
+		  <triggers>
+		  </triggers>
+		<posteffects>
+			<reward type="Buff" item="BattleBuffDestroy_TMC_v5_ObsidianDynamite" amount="1"> 
+					<conditions>
+						<checkgenericvalue name="MountainClan_ObsidianDynamiteDummy" min="1" max="1"/>	
+					</conditions>
+			</reward>
+			<avatarmessage action="buffReceived" name="buffReceived" item="buff_obsidian_dynamite">  
+					<conditions>
+						<checkgenericvalue name="MountainClan_ObsidianDynamiteDummy" min="1" max="1"/>	
+					</conditions> 			
+			</avatarmessage>
+        </posteffects>
+   </quest>
+      
+	  <!-- Outpost Buff Appliance Quest -->  
+      <quest name="BuffAdv_TMC_V5_OutpostSpawn" showQuestWindow="false" showRewardWindow="false">
+	  	<startcondition>
+		</startcondition>
+		  <triggers>			
+		  </triggers>
+		<posteffects>    
+			<!-- Spawn outpost buildings from V4 -->
+				<!-- Slot 1 -->
+			<Spawnbuilding name="tmc_buffad_provision_house" mode="free" action="ignoreBlocking,spawnInstant,replace" x="29" y="109">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot1" min="1" max="1"/>
+				</conditions>
+			</Spawnbuilding>	
+			<startquest name="Provisioner_deco_spawn1">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot1" min="1" max="1"/>
+				</conditions>
+			</startquest>			
+			<applyzonebuff name="EffectBuff_TMC_OutpostBuffA">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot1" min="1" max="1"/>
+				</conditions>
+			</applyzonebuff>
+			
+			<Spawnbuilding name="tmc_buffad_armory" mode="free" action="ignoreBlocking,spawnInstant,replace" x="29" y="109">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot1" min="2" max="2"/>
+				</conditions>
+			</Spawnbuilding>
+			<startquest name="Armory_deco_spawn1">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot1" min="2" max="2"/>
+				</conditions>
+			</startquest>
+			<applyzonebuff name="EffectBuff_TMC_OutpostBuffB">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot1" min="2" max="2"/>
+				</conditions>
+			</applyzonebuff>
+			
+			<Spawnbuilding name="tmc_buffad_watchtower" mode="free" action="ignoreBlocking,spawnInstant,replace" x="29" y="109">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot1" min="3" max="3"/>
+				</conditions>
+			</Spawnbuilding>
+			<startquest name="Watchtower_deco_spawn1">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot1" min="3" max="3"/>
+				</conditions>
+			</startquest>
+			<applyzonebuff name="EffectBuff_TMC_OutpostBuffC">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot1" min="3" max="3"/>
+				</conditions>
+			</applyzonebuff>			
+			
+			<Spawnbuilding name="tmc_buffad_hq" mode="free" action="ignoreBlocking,spawnInstant,replace" x="29" y="109">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot1" min="4" max="4"/>
+				</conditions>
+			</Spawnbuilding>
+			<startquest name="HQ_deco_spawn1">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot1" min="4" max="4"/>
+				</conditions>
+			</startquest>
+			<applyzonebuff name="EffectBuff_TMC_OutpostBuffD">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot1" min="4" max="4"/>
+				</conditions>
+			</applyzonebuff>	
+					
+				<!-- Slot 2 -->			
+			<Spawnbuilding name="tmc_buffad_provision_house" mode="free" action="ignoreBlocking,spawnInstant,replace" x="31" y="112">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot2" min="1" max="1"/>
+				</conditions>
+			</Spawnbuilding>
+			<startquest name="Provisioner_deco_spawn2">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot2" min="1" max="1"/>
+				</conditions>
+			</startquest>
+			<applyzonebuff name="EffectBuff_TMC_OutpostBuffA">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot2" min="1" max="1"/>
+				</conditions>
+			</applyzonebuff>
+			
+			<Spawnbuilding name="tmc_buffad_armory" mode="free" action="ignoreBlocking,spawnInstant,replace" x="31" y="112">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot2" min="2" max="2"/>
+				</conditions>
+			</Spawnbuilding>
+			<startquest name="Armory_deco_spawn2">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot2" min="2" max="2"/>
+				</conditions>
+			</startquest>
+			<applyzonebuff name="EffectBuff_TMC_OutpostBuffB">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot2" min="2" max="2"/>
+				</conditions>
+			</applyzonebuff>
+			
+			<Spawnbuilding name="tmc_buffad_watchtower" mode="free" action="ignoreBlocking,spawnInstant,replace" x="31" y="112">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot2" min="3" max="3"/>
+				</conditions>
+			</Spawnbuilding>
+			<startquest name="Watchtower_deco_spawn2">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot2" min="3" max="3"/>
+				</conditions>
+			</startquest>
+			<applyzonebuff name="EffectBuff_TMC_OutpostBuffC">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot2" min="3" max="3"/>
+				</conditions>
+			</applyzonebuff>				
+			
+			<Spawnbuilding name="tmc_buffad_hq" mode="free" action="ignoreBlocking,spawnInstant,replace" x="31" y="112">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot2" min="4" max="4"/>
+				</conditions>
+			</Spawnbuilding>
+			<startquest name="HQ_deco_spawn2">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot2" min="4" max="4"/>
+				</conditions>
+			</startquest>
+			<applyzonebuff name="EffectBuff_TMC_OutpostBuffD">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot2" min="4" max="4"/>
+				</conditions>
+			</applyzonebuff>	
+						
+			<!-- Slot 3 -->	
+			<Spawnbuilding name="tmc_buffad_provision_house" mode="free" action="ignoreBlocking,spawnInstant,replace" x="32" y="108">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot3" min="1" max="1"/>
+				</conditions>
+			</Spawnbuilding>
+			<startquest name="Provisioner_deco_spawn3">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot3" min="1" max="1"/>
+				</conditions>
+			</startquest>
+			<applyzonebuff name="EffectBuff_TMC_OutpostBuffA">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot3" min="1" max="1"/>
+				</conditions>
+			</applyzonebuff>
+			
+			<Spawnbuilding name="tmc_buffad_armory" mode="free" action="ignoreBlocking,spawnInstant,replace" x="32" y="108">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot3" min="2" max="2"/>
+				</conditions>
+			</Spawnbuilding>
+			<startquest name="Armory_deco_spawn3">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot3" min="2" max="2"/>
+				</conditions>
+			</startquest>
+			<applyzonebuff name="EffectBuff_TMC_OutpostBuffB">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot3" min="2" max="2"/>
+				</conditions>
+			</applyzonebuff>			
+			
+			<Spawnbuilding name="tmc_buffad_watchtower" mode="free" action="ignoreBlocking,spawnInstant,replace" x="32" y="108">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot3" min="3" max="3"/>
+				</conditions>
+			</Spawnbuilding>
+			<startquest name="Watchtower_deco_spawn3">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot3" min="3" max="3"/>
+				</conditions>
+			</startquest>
+			<applyzonebuff name="EffectBuff_TMC_OutpostBuffC">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot3" min="3" max="3"/>
+				</conditions>
+			</applyzonebuff>
+			
+			<Spawnbuilding name="tmc_buffad_hq" mode="free" action="ignoreBlocking,spawnInstant,replace" x="32" y="108">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot3" min="4" max="4"/>
+				</conditions>
+			</Spawnbuilding>
+			<startquest name="HQ_deco_spawn3">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot3" min="4" max="4"/>
+				</conditions>
+			</startquest>
+			<applyzonebuff name="EffectBuff_TMC_OutpostBuffD">
+				<conditions>	
+					<checkgenericvalue name="MountainClan_BuildingSlot3" min="4" max="4"/>
+				</conditions>
+			</applyzonebuff>			
+        </posteffects>
+   </quest>
+ 
+     <quest name="Provisioner_deco_spawn1" showQuestWindow="false" showRewardWindow="false">
+		  <triggers>			
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+           	<spawnbuilding name="firewoodHut_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="28" y="112"/>
+			<spawnbuilding name="FoodCart_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="29" y="111"/>
+			<spawnbuilding name="Kettle_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="29" y="110"/>
+			<spawnbuilding name="loadedCart_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="30" y="111"/>
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="29" y="110"/>			
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="30" y="108"/>		
+        </posteffects>
+   	</quest>
+   	<quest name="Provisioner_deco_spawn2" showQuestWindow="false" showRewardWindow="false">
+		  <triggers>			
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+			<spawnbuilding name="firewoodHut_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="31" y="115"/>
+			<spawnbuilding name="FoodCart_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="31" y="114"/>
+			<spawnbuilding name="Kettle_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="32" y="113"/>
+			<spawnbuilding name="loadedCart_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="32" y="114"/>
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="30" y="113"/>			
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="31" y="111"/>		
+        </posteffects>
+   	</quest>
+   	<quest name="Provisioner_deco_spawn3" showQuestWindow="false" showRewardWindow="false">
+		  <triggers>			
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+			<spawnbuilding name="firewoodHut_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="32" y="111"/>
+			<spawnbuilding name="FoodCart_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="32" y="110"/>
+			<spawnbuilding name="Kettle_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="33" y="109"/>
+			<spawnbuilding name="loadedCart_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="33" y="110"/>
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="31" y="109"/>			
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="32" y="107"/>					
+        </posteffects>
+   	</quest>
+   	
+   	<quest name="Armory_deco_spawn1" showQuestWindow="false" showRewardWindow="false">
+		  <triggers>			
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+           	<spawnbuilding name="crates_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="28" y="109"/>
+			<spawnbuilding name="Banner_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="29" y="111"/>
+			<spawnbuilding name="Banner_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="30" y="109"/>			
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="29" y="110"/>			
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="30" y="108"/>	
+        </posteffects>
+   	</quest>
+   	<quest name="Armory_deco_spawn2" showQuestWindow="false" showRewardWindow="false">
+		  <triggers>			
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+           	<spawnbuilding name="crates_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="30" y="112"/>
+			<spawnbuilding name="Banner_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="31" y="114"/>
+			<spawnbuilding name="Banner_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="32" y="112"/>			
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="30" y="113"/>			
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="31" y="111"/>		
+        </posteffects>
+   	</quest>
+   	<quest name="Armory_deco_spawn3" showQuestWindow="false" showRewardWindow="false">
+		  <triggers>			
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+           	<spawnbuilding name="crates_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="31" y="108"/>
+			<spawnbuilding name="Banner_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="32" y="110"/>
+			<spawnbuilding name="Banner_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="33" y="108"/>			
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="31" y="109"/>			
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="32" y="107"/>				
+        </posteffects>
+   	</quest>
+   	
+   	<quest name="Watchtower_deco_spawn1" showQuestWindow="false" showRewardWindow="false">
+		  <triggers>			
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+           	<spawnbuilding name="lanternSingle_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="30" y="111"/>
+			<spawnbuilding name="Bucket_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="29" y="111"/>			
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="29" y="110"/>			
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="30" y="108"/>
+        </posteffects>
+   	</quest>
+   	<quest name="Watchtower_deco_spawn2" showQuestWindow="false" showRewardWindow="false">
+		  <triggers>			
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+           	<spawnbuilding name="lanternSingle_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="32" y="114"/>
+			<spawnbuilding name="Bucket_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="31" y="114"/>			
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="30" y="113"/>			
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="31" y="111"/>			
+        </posteffects>
+   	</quest>
+   	<quest name="Watchtower_deco_spawn3" showQuestWindow="false" showRewardWindow="false">
+		  <triggers>			
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+           	<spawnbuilding name="lanternSingle_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="33" y="110"/>
+			<spawnbuilding name="Bucket_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="32" y="110"/>			
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="31" y="109"/>			
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="32" y="107"/>					
+        </posteffects>
+   	</quest>
+   	
+   	<quest name="HQ_deco_spawn1" showQuestWindow="false" showRewardWindow="false">
+		  <triggers>			
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+           	<spawnbuilding name="signpost_03_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="28" y="111"/>
+			<spawnbuilding name="Cherry_Tree_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="30" y="108"/>			
+			<spawnbuilding name="Cherry_Tree_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="28" y="109"/>					
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="29" y="110"/>
+        </posteffects>
+   	</quest>
+   	<quest name="HQ_deco_spawn2" showQuestWindow="false" showRewardWindow="false">
+		  <triggers>			
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+           	<spawnbuilding name="signpost_03_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="30" y="114"/>
+			<spawnbuilding name="Cherry_Tree_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="31" y="111"/>			
+			<spawnbuilding name="Cherry_Tree_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="30" y="112"/>					
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="30" y="113"/>		
+        </posteffects>
+   	</quest>
+   	<quest name="HQ_deco_spawn3" showQuestWindow="false" showRewardWindow="false">
+		  <triggers>			
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+           	<spawnbuilding name="signpost_03_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="31" y="110"/>
+			<spawnbuilding name="Cherry_Tree_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="32" y="107"/>			
+			<spawnbuilding name="Cherry_Tree_spawnasdeco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="31" y="108"/>					
+			<spawnbuilding name="Firebow3" mode="free" action="spawnInstant,ignoreBlocking,replace" x="31" y="109"/>							
+        </posteffects>
+   	</quest>
+  
+    <quest name="BuffAdv_TMC_V5_ExploreSector34" showQuestWindow="false" showRewardWindow="false">
+	  	<startcondition>
+			<questcomplete item="BuffAdv_TMC_V5_Sub7_Main"/>		
+		</startcondition>
+		  <triggers>
+		  	<onmap min="1" item="tmc_buffad_v5_FrostGiant"/>				
+		  </triggers>
+		<posteffects>
+           <exploresector id="34"/>
+        </posteffects>
+   </quest>
+   
+</Root>

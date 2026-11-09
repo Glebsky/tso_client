@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  	
+<!-- VALENTINES EVENT 2019 -->
+	
+	<!-- Tutorial Quests -->
+	<quest name="Valentines2019plus_TutorialMain" type="Event" icon="ValentinesFlower" cancelable="false" npc="quest_character_flora.png" showQuestWindow="True" showRewardWindow="true" linkEventWindow="true">
+		<triggers>
+			<questcomplete item="Valentines2019plus_TutorialReach16"/>
+			<questcomplete item="Valentines2019plus_TutorialArchive"/>
+			<questcomplete item="Valentines2019plus_TutorialFlowerFarm"/>
+			<questcomplete item="Valentines2019plus_TutorialFlowerSeed"/>
+			<questcomplete item="Valentines2019plus_TutorialFlowerBouquet"/>
+			<questcomplete item="Valentines2019plus_TutorialValentineCard"/>	
+			<questcomplete item="Valentines2019plus_TutorialEnding"/>			
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ValentinesFlower" amount="100" />
+			<reward type="Buff" item="MultiplierBuffZone1" amount="3" />				
+		</posteffects>
+	</quest>
+
+	<quest name="Valentines2019plus_TutorialReach16" type="Event" connectedToQuest="Valentines2019plus_TutorialMain" icon="ValentinesFlower" npc="quest_character_flora.png" cancelable="false" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questrunning item="Valentines2019plus_TutorialMain" />
+		</startcondition>
+		<triggers>   
+			<playerlevel min="16" /> 
+		</triggers>
+		<posteffects>
+			<startquest name="Valentines2019plus_TutorialArchive" />			
+			<reward type="Resource" name="ValentinesFlower" amount="10" />
+		</posteffects>
+	</quest>
+
+	<quest name="Valentines2019plus_TutorialArchive" type="Event" connectedToQuest="Valentines2019plus_TutorialMain" icon="ValentinesFlower" cancelable="false" npc="quest_character_flora.png" showRewardWindow="true" linkEventWindow="true">
+		<hints>
+			<hint pointTo="GAMESTATE_ID_AVATAR.options" type="Glow" />			
+		</hints>		
+		<triggers>
+			<trigger type="WindowOpen" name="GAMESTATE_ID_EVENT_WINDOW" amount="1" />	
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ValentinesFlower" amount="10" />
+			<startquest name="Valentines2019plus_TutorialFlowerFarm" />				
+		</posteffects>
+	</quest>
+	
+	<quest name="Valentines2019plus_TutorialFlowerFarm" type="Event" connectedToQuest="Valentines2019plus_TutorialMain" icon="ValentinesFlower" cancelable="false" npc="quest_character_flora.png" showRewardWindow="true" linkEventWindow="true">
+		<hints>
+			<hint pointTo="GAMESTATE_ID_SHOP_WINDOW.ValentinesEvent" type="Glow"/>
+		</hints>		
+		<triggers>
+			<onmaplist item="FlowerFarm,FlowerFarmDepleted,MineDepletedDepositValentinesFlower" min="1" locaExtension="flowerfarm" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ValentinesFlower" amount="10" />
+			<reward type="Buff" item="FillDeposit" name="ValentinesFlower" amount="10" />
+			<startquest name="Valentines2019plus_TutorialFlowerSeed" />			
+		</posteffects>
+	</quest>
+
+	<quest name="Valentines2019plus_TutorialFlowerSeed" type="Event" connectedToQuest="Valentines2019plus_TutorialMain" icon="ValentinesFlower" npc="quest_character_flora.png" cancelable="false" showRewardWindow="true" linkEventWindow="true">
+		<hints>
+			<hint pointTo="GAMESTATE_ID_STAR_MENU.bufficon" type="Glow"/>  
+		</hints>		
+		<triggers>   
+			<buffapplied item="FillDeposit" type="ValentinesFlower" min="10" locaExtension="filldeposit"/> 
+		</triggers>
+		<posteffects>
+			<startquest name="Valentines2019plus_TutorialFlowerBouquet" />			
+			<reward type="Resource" name="ValentinesFlower" amount="10" />
+		</posteffects>
+	</quest>	
+
+	<quest name="Valentines2019plus_TutorialFlowerBouquet" type="Event" connectedToQuest="Valentines2019plus_TutorialMain" icon="ValentinesFlower" npc="quest_character_flora.png" questWinGemCosts="399" cancelable="false" showRewardWindow="true" linkEventWindow="true">
+		<triggers>   
+			<buffproduced min="5" item="EffectBuffFlowerBouquet"/>
+			<buffappliedonfriend amount="5" item="EffectBuffFlowerBouquet" locaExtension="item"/>
+			<buffreceivedfromfriend amount="5" item="EffectBuffFlowerBouquet" locaExtension="on_pc_receive"/> 
+		</triggers>
+		<posteffects>
+			<startquest name="Valentines2019plus_TutorialValentineCard" />			
+			<reward type="Resource" name="ValentinesFlower" amount="20" />
+		</posteffects>
+	</quest>		
+	
+	<quest name="Valentines2019plus_TutorialValentineCard" type="Event" connectedToQuest="Valentines2019plus_TutorialMain" icon="ValentinesFlower" npc="quest_character_flora.png" questWinGemCosts="399" cancelable="false" showRewardWindow="true" linkEventWindow="true">
+		<triggers>   	
+			<buffproduced min="3" item="Loottable_ValentineCardBox"/>	
+			<buffapplied min="3" item="Loottable_ValentineCardBox" locaExtension="valentinecardbox"/>	
+			<buffappliedonfriend amount="3" item="ProductivityBuffValentinesCard_01,ProductivityBuffValentinesCard_02,ProductivityBuffValentinesCard_03,ProductivityBuffValentinesCard_04,ProductivityBuffValentinesCard_05,ProductivityBuffValentinesCard_06,ProductivityBuffValentinesCard_07,ProductivityBuffValentinesCard_08,ProductivityBuffValentinesCard_09" locaExtension="valentinecards"/>
+			<buffreceivedfromfriend amount="3" item="ProductivityBuffValentinesCard_01,ProductivityBuffValentinesCard_02,ProductivityBuffValentinesCard_03,ProductivityBuffValentinesCard_04,ProductivityBuffValentinesCard_05,ProductivityBuffValentinesCard_06,ProductivityBuffValentinesCard_07,ProductivityBuffValentinesCard_08,ProductivityBuffValentinesCard_09" locaExtension="valentinecards"/> 			
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ValentinesFlower" amount="20" />
+			<startquest name="Valentines2019plus_TutorialEnding" />				
+		</posteffects>
+	</quest>			
+	
+	<quest name="Valentines2019plus_TutorialEnding" type="Event" connectedToQuest="Valentines2019plus_TutorialMain" icon="ValentinesFlower" npc="quest_character_flora.png" questWinGemCosts="399" cancelable="false" showRewardWindow="true" linkEventWindow="true">
+		<triggers>   	
+			<trigger type="Resource" name="ValentinesFlower" amount="300" condition="produce" />
+			<buffreceivedfromfriend amount="10" item="EffectBuffFlowerBouquet" locaExtension="on_pc_receive"/>
+			<buffreceivedfromfriend amount="3" item="ProductivityBuffValentinesCard_01,ProductivityBuffValentinesCard_02,ProductivityBuffValentinesCard_03,ProductivityBuffValentinesCard_04,ProductivityBuffValentinesCard_05,ProductivityBuffValentinesCard_06,ProductivityBuffValentinesCard_07,ProductivityBuffValentinesCard_08,ProductivityBuffValentinesCard_09" locaExtension="valentinecards"/> 		
+			<zonebuffactive amount="1" name="RecruitingBuffValentineZoneConditional" locaExtension="item"/>			
+			<zonebuffactive amount="1" name="SpeedUpPopulationGrowthValentineZoneConditional" locaExtension="item"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ValentinesFlower" amount="20" />
+			<reward type="Buff" item="RecruitingBuffLvl9" amount="1" />					
+		</posteffects>
+	</quest>				
+	
+	<!-- Tracker Quests for Achievments -->
+	<quest name="Valentines2019plus_Cards1" showQuestWindow="false" showRewardWindow="false" >
+		<startcondition>
+			<questrunning item="Valentines2019plus_TutorialMain" />
+		</startcondition>	
+		<triggers>   	
+				<buffreceivedfromfriend amount="1" item="ProductivityBuffValentinesCard_01" locaExtension="on_pc_receive"/> 
+				<buffreceivedfromfriend amount="1" item="ProductivityBuffValentinesCard_02" locaExtension="on_pc_receive"/> 
+				<buffreceivedfromfriend amount="1" item="ProductivityBuffValentinesCard_03" locaExtension="on_pc_receive"/> 			
+		</triggers>
+	</quest>		
+
+	<quest name="Valentines2019plus_Cards2" showQuestWindow="false" showRewardWindow="false" >
+		<startcondition>
+			<questrunning item="Valentines2019plus_TutorialMain" />
+		</startcondition>	
+		<triggers>   	
+				<buffreceivedfromfriend amount="1" item="ProductivityBuffValentinesCard_04" locaExtension="on_pc_receive"/> 
+				<buffreceivedfromfriend amount="1" item="ProductivityBuffValentinesCard_05" locaExtension="on_pc_receive"/>
+				<buffreceivedfromfriend amount="1" item="ProductivityBuffValentinesCard_06" locaExtension="on_pc_receive"/>			
+		</triggers>
+	</quest>		
+
+	<quest name="Valentines2019plus_Cards3" showQuestWindow="false" showRewardWindow="false" >
+		<startcondition>
+			<questrunning item="Valentines2019plus_TutorialMain" />
+		</startcondition>	
+		<triggers>   	
+				<buffreceivedfromfriend amount="1" item="ProductivityBuffValentinesCard_07" locaExtension="on_pc_receive"/>
+				<buffreceivedfromfriend amount="1" item="ProductivityBuffValentinesCard_08" locaExtension="on_pc_receive"/> 
+				<buffreceivedfromfriend amount="1" item="ProductivityBuffValentinesCard_09" locaExtension="on_pc_receive"/> 		
+		</triggers>
+	</quest>			
+	
+</Root>

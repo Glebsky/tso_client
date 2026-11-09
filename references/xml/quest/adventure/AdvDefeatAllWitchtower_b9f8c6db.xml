@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	 <quest name="AdvDefeatAllWitchtower" type="Story" icon="Military" npc="quest_character_mentor03.png" specialType="firstQuestlastQuest" colorSchema="oven" >
+		<triggers>
+      <trigger type="Building" name="WitchTower" condition="l" amount="1"/>
+		  </triggers>
+      <rewards/>
+		  <postrequisits />
+    </quest>
+	
+		<!-- Twin Town One time only quest -->
+	<quest name="TwinTown_RoaringBull_Tracks_Helper" showQuestWindow="false" showRewardWindow="false" >	
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Home_Chapter1_Main2_Sub_9_QGV" min="1" max="1"/>			
+		</startcondition>	
+		<triggers>				
+		</triggers>
+		<posteffects>		
+			<spawnbuilding name="Tracks" x="20" y="90" mode="enemy" action="ignoreBlocking,spawnInstant"/>			
+			<spawnbuilding name="Tracks" x="16" y="57" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="27" y="32" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="32" y="8" mode="enemy" action="ignoreBlocking,spawnInstant"/>		
+			<spawnbuilding name="Tracks" x="60" y="52" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="42" y="63" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="33" y="85" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="36" y="116" mode="enemy" action="ignoreBlocking,spawnInstant"/>
+			<spawnbuilding name="Tracks" x="56" y="117" mode="enemy" action="ignoreBlocking,spawnInstant"/>
+			<spawnbuilding name="Tracks" x="59" y="62" mode="enemy" action="ignoreBlocking,spawnInstant"/>
+			<spawnbuilding name="Tracks" x="32" y="77" mode="enemy" action="ignoreBlocking,spawnInstant"/>
+			<spawnbuilding name="Tracks" x="58" y="93" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="61" y="109" mode="enemy" action="ignoreBlocking,spawnInstant"/>
+			<spawnbuilding name="Tracks" x="46" y="28" mode="enemy" action="ignoreBlocking,spawnInstant"/>			
+			<startquest name="TwinTown_RoaringBull_Tracks"/>				
+		</posteffects>		
+    </quest>	
+	
+   <quest name="TwinTown_RoaringBull_Tracks" type="Story" icon="QuestShort" npc="quest_character_sonya_solemoon.png" notifyHomeZone="true" >	
+		<triggers>
+			<buildingdestroyed min="7" item="Tracks" locaExtension="TwinTown_Tracks"/>				
+		</triggers>
+		<posteffects>			
+		</posteffects>		
+    </quest>			
+		
+</Root>

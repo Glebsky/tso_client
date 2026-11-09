@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+   
+   <quest name="Adv_TreasureKnowledge_Q1" type="Story" icon="Military" npc="king_shari.png" specialType="firstQuest" >
+		  <triggers>
+         <trigger type="Building" name="OrientalBanditCamp_leader" condition="l" amount="1" locaExtension="defeatAll" />
+  	  </triggers>
+   </quest>
+   
+   <quest name="Adv_TreasureKnowledge_Q2" type="Story" icon="Military" npc="king_shari.png">
+      <startcondition>
+		     <questcomplete item="Adv_TreasureKnowledge_Q1"/>
+		  </startcondition>
+		  <triggers>
+         <trigger type="Building" name="GiantPlant_leader" condition="l" amount="1" locaExtension="TreasureOfKnowledge" />
+  	  </triggers>
+   </quest>
+   
+   <quest name="Adv_TreasureKnowledge_Q3" type="Story" icon="Military" npc="king_shari.png" specialType="lastQuest">
+      <startcondition>
+		     <questcomplete item="Adv_TreasureKnowledge_Q2"/>
+		  </startcondition>
+		  <triggers>
+         <trigger type="Building" name="OrientalAncientLibrary_leader" condition="l" amount="1" locaExtension="TreasureOfKnowledge" /> 
+  	  </triggers>
+   </quest>
+  
+</Root>
+
+    
+    
+      
+      
+      
+      
+
+

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+
+	<!-- Main Quest-->
+	 <quest name="Adv_EoWEventQ1" type="Story" icon="Military" npc="quest_character_general02.png" specialType="firstQuestlastQuest" >
+		<triggers>
+      <trigger type="Building" name="Banditsleader_Adventure" condition="l" amount="1"/>
+      <trigger type="Building" name="Bandits_Adventure" condition="l" amount="1"/>
+		  </triggers>
+      <rewards/>
+		  <postrequisits />
+    </quest>
+
+	<!-- Progress Reward Quests-->
+	 <quest name="Adv_EoWEventQ2" type="Story" icon="Military" npc="quest_character_general02.png" showQuestWindow="true" showRewardWindow="true">
+		<triggers>
+      <trigger type="Bandits" condition="le" amount="35" locaExtension="eow"/>
+		  </triggers>
+      <rewards/>
+		  <postrequisits />
+    </quest>
+
+
+	 <quest name="Adv_EoWEventQ3"  type="Story" icon="Military" npc="quest_character_general02.png" showQuestWindow="true" showRewardWindow="true">
+		<triggers>
+      <trigger type="Bandits" condition="le" amount="10" locaExtension="eow"/>
+		  </triggers>
+      <rewards/>
+		  <postrequisits />
+    </quest>
+
+	<!-- Hidden Quests to measure progress -->
+	<!-- Quests measure progress and call above Progress Reward Quests-->
+
+	 <quest name="Adv_EoWEventQ4" type="Story" icon="Military" npc="quest_character_general02.png" specialType="firstQuest" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+      <trigger type="Bandits" condition="le" amount="35" locaExtension="eow"/>
+		  </triggers>
+      <rewards/>
+    		<postrequisits>
+    			<postrequisite startQuest="Adv_EoWEventQ2" />
+    		</postrequisits>
+    </quest>
+
+	 <quest name="Adv_EoWEventQ5"  type="Story" icon="Military" npc="quest_character_general02.png" specialType="firstQuest" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+      <trigger type="Bandits" condition="le" amount="10" locaExtension="eow"/>
+		  </triggers>
+      <rewards/>
+    		<postrequisits>
+    			<postrequisite startQuest="Adv_EoWEventQ3" />
+    		</postrequisits>
+    </quest>
+
+
+
+
+</Root>

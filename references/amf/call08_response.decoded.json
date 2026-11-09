@@ -1,0 +1,47 @@
+{
+  "amf_version": 3,
+  "headers": 0,
+  "bodies": [
+    {
+      "target": "/8/onResult",
+      "response": "",
+      "declared_len": 4294967295,
+      "marker": "0x11",
+      "value": {
+        "__class": "flex.messaging.messages.AcknowledgeMessage",
+        "body": {
+          "__class": "defaultGame.Communication.VO.dServerResponse",
+          "type": 15000,
+          "zoneID": 1601416,
+          "data": {
+            "__class": "defaultGame.Communication.VO.dServerActionResult",
+            "clientTime": 19037914501.0,
+            "errorCode": 0,
+            "data": {
+              "__class": "defaultGame.Communication.VO.BlackMarketAuction.dBlackMarketAuctionStateVO",
+              "auctionId": "",
+              "playerId": 536870911,
+              "playerName": null,
+              "biddingCount": 0,
+              "endTime": 0.0,
+              "refunds": {
+                "__class": "flex.messaging.io.ArrayCollection",
+                "__externalizable": true,
+                "__value": []
+              }
+            }
+          }
+        },
+        "clientId": "f7561644-006f-4b8f-84f4-5db9e87404f9",
+        "correlationId": "0d943703-9333-4f21-adbb-d45cbc51f7cd",
+        "destination": null,
+        "headers": {
+          "__class": "Object"
+        },
+        "messageId": "0d224b25-600f-4fc8-9906-39dc12ba8d43",
+        "timeToLive": 0.0,
+        "timestamp": 1787943113514.0
+      }
+    }
+  ]
+}

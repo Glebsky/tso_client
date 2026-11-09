@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	
+	<quest name="BuffAd_Of_Songs_And_Curses_Main" specialType="firstQuestlastQuest" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0" showQuestWindow="false">
+		<triggers>
+			<questcomplete item="BuffAd_Of_Songs_And_Curses_Sub1"/> 
+			<questcomplete item="BuffAd_Of_Songs_And_Curses_Sub2"/> 
+			<questcomplete item="BuffAd_Of_Songs_And_Curses_Sub3"/> 
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="200"/>   
+		</rewards>
+		<postrequisits />
+    </quest>
+	
+	<quest name="BuffAd_Of_Songs_And_Curses_Sub1" connectedToQuest="BuffAd_Of_Songs_And_Curses_Main" icon="Military" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questactive item="BuffAd_Of_Songs_And_Curses_Main"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Building" name="ForwardGuard_leader" condition="l" amount="1" locaExtension="defeat1"/>
+		</triggers>
+	</quest>
+	
+	<quest name="BuffAd_Of_Songs_And_Curses_Sub2" connectedToQuest="BuffAd_Of_Songs_And_Curses_Main" icon="EmptyEffectBuff_BuffAd_Serenade_of_Joy" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAd_Of_Songs_And_Curses_Sub1"/>
+		</startcondition>
+		<triggers>
+			<buffowned item="EmptyEffectBuff_BuffAd_Serenade_of_Joy" min="1" locaExtension="OSAC_Serenade" />
+			<buffappliedonadventure item="EmptyEffectBuff_BuffAd_Serenade_of_Joy" min="1" locaExtension="OSAC_Serenade" />
+		</triggers>
+		<posteffects>
+			<cancelquest name="BuffAd_Of_Songs_And_Curses_Sub2_Scraps"/>
+			<cancelquest name="BuffAd_Of_Songs_And_Curses_Sub2_Ruins1"/>
+			<cancelquest name="BuffAd_Of_Songs_And_Curses_Sub2_Ruins2"/>
+			<cancelquest name="BuffAd_Of_Songs_And_Curses_Sub2_Forest"/>
+			<cancelquest name="BuffAd_Of_Songs_And_Curses_Sub2_Hermit"/>
+			<cancelquest name="BuffAd_Of_Songs_And_Curses_Sub2_Cultists"/>
+		</posteffects>		
+	</quest>
+		
+	<quest name="BuffAd_Of_Songs_And_Curses_Sub2_Scraps" icon="PageOfSheetMusic" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAd_Of_Songs_And_Curses_Sub1"/>
+		</startcondition>		
+		<preeffects>
+			<spawncollectibles type="BuffAd_Of_Songs_And_Curses_Quest1" />
+        </preeffects>
+		<triggers>
+			<buildingdestroyed item="buffad_collectible_paper_scraps" min="10" locaExtension="pickup_ScrapOfSheetMusic" />
+		</triggers>
+		<posteffects>
+			<givecollectibleresource name="PageOfSheetMusic" amount="1"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="BuffAd_Of_Songs_And_Curses_Sub2_Ruins1" icon="PageOfSheetMusic" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAd_Of_Songs_And_Curses_Sub1"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Building" name="Banditsleader_Adventure" condition="l" amount="1" locaExtension="OfSongsAndCurses"/>
+		</triggers>
+	</quest>
+	
+	<quest name="BuffAd_Of_Songs_And_Curses_Sub2_Ruins2" icon="PageOfSheetMusic" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_ventures_0">
+		<startcondition>			
+		   <questcomplete item="BuffAd_Of_Songs_And_Curses_Sub2_Ruins1"/>
+		</startcondition>
+		<preeffects>
+			<Spawnbuilding name="buffad_ResidenceLot" action="ignoreBlocking,spawnInstant,replace" x="19" y="100"/>	
+			<Spawnbuilding name="buffad_ResidenceLot" action="ignoreBlocking,spawnInstant,replace" x="20" y="102"/>
+			<Spawnbuilding name="buffad_FishermanLot" action="ignoreBlocking,spawnInstant,replace" x="14" y="108"/>
+			<Spawnbuilding name="buffad_FishermanLot" action="ignoreBlocking,spawnInstant,replace" x="19" y="112"/>
+			<Spawnbuilding name="buffad_WatchtowerLot" action="ignoreBlocking,spawnInstant,replace" x="22" y="92"/>
+        </preeffects>
+		<triggers>
+			<buffappliedonadventure item="ChangeSkin_BuffAd_SimpleResidenceKit" min="2" locaExtension="OSAC_Residences" />
+			<buffappliedonadventure item="ChangeSkin_BuffAd_FishermanKit" min="2" locaExtension="OSAC_Fishers" />
+			<buffappliedonadventure item="ChangeSkin_BuffAd_WatchtowerKit" min="1" locaExtension="OSAC_Watchtower" />		
+		</triggers>
+		<posteffects>
+			<givecollectibleresource name="PageOfSheetMusic" amount="1"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="BuffAd_Of_Songs_And_Curses_Sub2_Forest" icon="PageOfSheetMusic" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAd_Of_Songs_And_Curses_Sub1"/>
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="BuffAd_Of_Songs_And_Curses_Quest2" />
+			<Spawnbuilding name="buffad_forester" action="ignoreBlocking,spawnInstant,replace" x="44" y="49"/>
+			<Spawnbuilding name="buffad_sawmill" action="ignoreBlocking,spawnInstant,replace" x="41" y="55"/>
+        </preeffects>
+		<triggers>
+			<buildingdestroyed item="buffad_collectible_axe" min="1" locaExtension="pickup_WoodcuttersAxe" />
+			<buffappliedonadventure item="EmptyEffectBuff_BuffAd_Lumber_Saw" min="1" locaExtension="OSAC_Saw" />					
+			<buffappliedonadventure item="EmptyEffectBuff_BuffAd_Forest_Fertilizer" min="1" locaExtension="OSAC_Fertilizer" />	
+			<trigger type="Building" name="cave_wildlife_leader" condition="l" amount="1" locaExtension="OSAC"/>
+		</triggers>
+		<posteffects>
+			<givecollectibleresource name="PageOfSheetMusic" amount="1"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="BuffAd_Of_Songs_And_Curses_Sub2_Hermit" icon="PageOfSheetMusic" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAd_Of_Songs_And_Curses_Sub1"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Building" name="HunterHut_leader" condition="l" amount="1" locaExtension="OfSongsAndCurses"/>
+		</triggers>
+		<posteffects>
+			<givecollectibleresource name="PageOfSheetMusic" amount="1"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="BuffAd_Of_Songs_And_Curses_Sub2_Cultists" icon="PageOfSheetMusic" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAd_Of_Songs_And_Curses_Sub1"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Building" name="Banditsleader_Dark" condition="l" amount="1" locaExtension="defeat1"/>			
+			<trigger type="Building" name="Bonechurch_leader" condition="l" amount="1" locaExtension="defeat1"/>
+		</triggers>
+		<posteffects>
+			<givecollectibleresource name="PageOfSheetMusic" amount="2"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="BuffAd_Of_Songs_And_Curses_Sub3" connectedToQuest="BuffAd_Of_Songs_And_Curses_Main" icon="PageOfSheetMusic" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAd_Of_Songs_And_Curses_Sub2"/>
+		</startcondition>
+		<preeffects>		
+			<Spawnbuilding name="buffad_mayorhouse2" action="ignoreBlocking,spawnInstant,replace" x="28" y="33"/>
+		</preeffects>
+		<triggers>
+			<buffappliedonadventure item="EmptyEffectBuff_BuffAd_Concert_Flyers" min="1" locaExtension="OSAC_Flyers" />					
+		</triggers>		
+	</quest>
+	
+	<quest name="BuffAd_Of_Songs_And_Curses_Filter" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<buffappliedonadventure item="EmptyEffectBuff_BuffAd_Concert_Flyers" min="1" />		
+		</startcondition>
+		<triggers>
+			<questcomplete name="BuffAd_Of_Songs_And_Curses_Sub3" />
+		</triggers>
+		<preeffects>
+			<filter type="none" reactivate="true"/>
+		</preeffects>
+	</quest>
+	
+	<quest name="BuffAd_Of_Songs_And_Curses_SheetAchievement" showQuestWindow="false" showRewardWindow="false" notifyHomeZone="true">
+		<startcondition>	
+		</startcondition>
+		<triggers>
+			<questcomplete name="BuffAd_Of_Songs_And_Curses_Sub2_Scraps" />
+			<questcomplete name="BuffAd_Of_Songs_And_Curses_Sub2_Ruins1" />
+			<questcomplete name="BuffAd_Of_Songs_And_Curses_Sub2_Ruins2" />
+			<questcomplete name="BuffAd_Of_Songs_And_Curses_Sub2_Forest" />
+			<questcomplete name="BuffAd_Of_Songs_And_Curses_Sub2_Hermit" />
+			<questcomplete name="BuffAd_Of_Songs_And_Curses_Sub2_Cultists" />
+		</triggers>
+	</quest>
+	
+</Root>

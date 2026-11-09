@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	 <quest name="AdvDefeatAllBandits" type="Story" icon="Military" npc="quest_character_mentor03.png" specialType="firstQuestlastQuest" >
+		<triggers>
+      <trigger type="Building" name="Bandits_Adventure" condition="l" amount="1"/>
+      <trigger type="Building" name="BanditsLvl2_Adventure" condition="l" amount="1"/>
+      <trigger type="Building" name="Banditsleader_Adventure" condition="l" amount="1"/>
+		  </triggers>
+      <rewards/>
+		  <postrequisits />
+    </quest>
+	
+		<!-- One time only quest -->
+	<quest name="TwinTown_Outlaws_Tracks_Helper" showQuestWindow="false" showRewardWindow="false" >	
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Home_Chapter1_Main2_Sub_8_QGV" min="1" max="1"/>			
+		</startcondition>	
+		<triggers>				
+		</triggers>
+		<posteffects>		
+			<spawnbuilding name="Tracks" x="29" y="81" mode="enemy" action="ignoreBlocking,spawnInstant"/>			
+			<spawnbuilding name="Tracks" x="17" y="87" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="48" y="96" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="30" y="96" mode="enemy" action="ignoreBlocking,spawnInstant"/>		
+			<spawnbuilding name="Tracks" x="44" y="75" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="61" y="41" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="47" y="35" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="55" y="6" mode="enemy" action="ignoreBlocking,spawnInstant"/>
+			<spawnbuilding name="Tracks" x="31" y="26" mode="enemy" action="ignoreBlocking,spawnInstant"/>
+			<spawnbuilding name="Tracks" x="41" y="37" mode="enemy" action="ignoreBlocking,spawnInstant"/>
+			<spawnbuilding name="Tracks" x="35" y="5" mode="enemy" action="ignoreBlocking,spawnInstant"/>
+			<spawnbuilding name="Tracks" x="22" y="30" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="8" y="30" mode="enemy" action="ignoreBlocking,spawnInstant"/>
+			<spawnbuilding name="Tracks" x="8" y="11" mode="enemy" action="ignoreBlocking,spawnInstant"/>			
+			<startquest name="TwinTown_Outlaws_Tracks"/>				
+		</posteffects>		
+    </quest>	
+	
+   <quest name="TwinTown_Outlaws_Tracks" type="Story" icon="QuestShort" npc="quest_character_sonya_solemoon.png" notifyHomeZone="true" >	
+		<triggers>
+			<buildingdestroyed min="10" item="Tracks" locaExtension="TwinTown_Tracks"/>				
+		</triggers>
+		<posteffects>		
+		</posteffects>		
+    </quest>			
+</Root>

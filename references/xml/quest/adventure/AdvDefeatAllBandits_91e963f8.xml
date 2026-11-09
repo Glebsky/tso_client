@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	 <quest name="AdvDefeatAllBandits" type="Story" icon="Military" npc="quest_character_mentor03.png" specialType="firstQuestlastQuest" >
+		<triggers>
+      <trigger type="Building" name="Banditsleader_Dark" condition="l" amount="1" locaExtension="ExperimentsII"/>
+	  </triggers>
+      <rewards/>
+		  <postrequisits />
+    </quest>
+</Root>

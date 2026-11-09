@@ -1,0 +1,2456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  
+	<quest name="XmasMarket_ChainFilter" showQuestWindow="false" showRewardWindow="false" cancelable="true" linkEventWindow="false">
+		<postrequisits>
+			<postrequisite filterQuest="Level1-15" startQuest="XMAS2017plus_XmasMarket_LevelRequirement" />
+			<postrequisite filterQuest="Level16-25" startQuest="XMAS2017plus_XmasMarket_LevelRequirement" />
+			<postrequisite filterQuest="Level26-35" startQuest="XMAS2017plus_XmasMarket_Main_lvl26" />
+			<postrequisite filterQuest="Level36-50" startQuest="XMAS2017plus_XmasMarket_Main_lvl36" />
+			<postrequisite filterQuest="Level51-80" startQuest="XMAS2017plus_XmasMarket_Main_lvl51" />
+			<postrequisite filterQuest="Level26-35" startQuest="XMAS2017plus_WinterWonderland_lvl26" />
+			<postrequisite filterQuest="Level36-50" startQuest="XMAS2017plus_WinterWonderland_lvl36" />
+			<postrequisite filterQuest="Level51-80" startQuest="XMAS2017plus_WinterWonderland_lvl51" />
+			<postrequisite filterQuest="Level26-35" startQuest="XMAS2017plus_XmasSpirit_Main_lvl26" />
+			<postrequisite filterQuest="Level36-50" startQuest="XMAS2017plus_XmasSpirit_Main_lvl36" />
+			<postrequisite filterQuest="Level51-80" startQuest="XMAS2017plus_XmasSpirit_Main_lvl51" />
+		</postrequisits>
+	</quest>
+
+	<quest name="XMAS2017plus_XmasMarket_LevelRequirement" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" >
+		<triggers>
+			<playerlevel min="26"/>
+		</triggers>
+		<posteffects>
+			<startquest name="XMAS2017plus_XmasMarket_Main_lvl26" />
+			<startquest name="XMAS2017plus_WinterWonderland_lvl26" />
+			<startquest name="XMAS2017plus_XmasSpirit_Main_lvl26" />
+			<cancelquest name="XmasMarket_ChainFilter"/>
+		</posteffects>
+	</quest>
+	
+<!-- XMAS WINTER WONDERLAND -->	
+
+	<quest name="XMAS2017plus_CheckWeek2" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="XmasMarket_ChainFilter"/>
+		</startcondition>
+		<triggers>
+			<hourselapsed amount="168" />
+		</triggers>
+	</quest>
+	<quest name="XMAS2017plus_CheckWeek3" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="XmasMarket_ChainFilter"/>
+		</startcondition>
+		<triggers>
+			<hourselapsed amount="336" />
+		</triggers>
+	</quest>	
+
+	<!-- Winter Wonderland lvl 26 -->	
+	<quest name="XMAS2017plus_WinterWonderland_lvl26" type="Event" npc="quest_character_fakesanta.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" icon="ChristmasResource" >
+		<triggers>
+			<questcomplete item="XMAS2017plus_WinterWonderlandSub0_lvl26"/>
+			<questcomplete item="XMAS2017plus_WinterWonderlandSub1_lvl26"/>
+			<questcomplete item="XMAS2017plus_WinterWonderlandDelay1_lvl26"/>
+			<questcomplete item="XMAS2017plus_WinterWonderlandSub2_lvl26"/>
+			<questcomplete item="XMAS2017plus_WinterWonderlandSub3_lvl26"/>
+			<questcomplete item="XMAS2017plus_WinterWonderlandDelay2_lvl26"/>
+			<questcomplete item="XMAS2017plus_WinterWonderlandSub4_lvl26"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="500" />
+			<reward type="Buff" item="ChangeSkin_christmas_mayorhouse_long" count="1" />	
+		</posteffects>
+	</quest>	
+	
+	<quest name="XMAS2017plus_WinterWonderlandSub0_lvl26" type="Event" connectedToQuest="XMAS2017plus_WinterWonderland_lvl26" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" questWinGemCosts="50">
+		<startcondition>
+			<questactive item="XMAS2017plus_WinterWonderland_lvl26" />
+		</startcondition>
+		<triggers>
+			<trigger type="SpecialistTask" name="FindTreasureShort" condition="found" resourceType="ChristmasResource" amount="4" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="5" />
+		</posteffects>
+	</quest>	
+	
+	<quest name="XMAS2017plus_WinterWonderlandSub1_lvl26" type="Event" connectedToQuest="XMAS2017plus_WinterWonderland_lvl26" cancelable="false" icon="ChristmasResource" npc="quest_character_fakesanta.png" showQuestWindow="true" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_WinterWonderlandSub0_lvl26"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Flour" amount="300" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Flour" amount="300" />	
+			<trigger type="PayForQuestFinish" name="CollectibleKettle" amount="3" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="5" />
+		</posteffects>
+	</quest>		
+	
+	<quest name="XMAS2017plus_WinterWonderlandDelay1_lvl26" type="Event" connectedToQuest="XMAS2017plus_WinterWonderland_lvl26" cancelable="false" icon="ChristmasResource" npc="quest_character_fakesanta.png" showQuestWindow="true" showRewardWindow="true" questWinGemCosts="395" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_WinterWonderlandSub1_lvl26"/>
+		</startcondition>
+		<triggers>
+			<buffproduced min="10" item="ProductivityBuffLvl1"/>
+			<buffapplied min="5" item="ProductivityBuffLvl1"/>
+			<completequestlist amount="1" item="XMAS2017plus_CheckWeek2" locaExtension="WaitForSecondWeek" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="200" />		
+			<reward type="Adventure" name="XMAS_Cookie_Easy_1" amount="1" />
+		</posteffects>
+	</quest>	
+
+	<quest name="XMAS2017plus_WinterWonderlandSub2_lvl26" type="Event" connectedToQuest="XMAS2017plus_WinterWonderland_lvl26" cancelable="false" icon="ChristmasResource" npc="quest_character_fakesanta.png" showQuestWindow="true" showRewardWindow="true" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_WinterWonderlandDelay1_lvl26"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Adventure" name="XMAS_Cookie_Easy_1" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="100" />		
+			<reward type="Resource" name="ChristmasResource" amount="5" />					
+		</posteffects>
+	</quest>		
+	
+	<quest name="XMAS2017plus_WinterWonderlandSub3_lvl26" type="Event" connectedToQuest="XMAS2017plus_WinterWonderland_lvl26" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" questWinGemCosts="595" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_WinterWonderlandSub2_lvl26"/>
+		</startcondition>
+		<triggers>
+			<completequestlist amount="1" item="XMAS2017plus_CheckWeek3" locaExtension="WaitForThirdWeek" />			
+			<buffproduced min="4" item="BattleBuffDestroy_XMAS2018_FakePresents"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="100" />				
+			<reward type="Adventure" name="XMAS_Cookie_Easy_2" amount="1" />			
+		</posteffects>
+	</quest>		
+	
+	<quest name="XMAS2017plus_WinterWonderlandDelay2_lvl26" type="Event" connectedToQuest="XMAS2017plus_WinterWonderland_lvl26" cancelable="false" icon="ChristmasResource" npc="quest_character_fakesanta.png" showQuestWindow="true" showRewardWindow="true" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_WinterWonderlandSub3_lvl26"/>
+		</startcondition>
+		<triggers>	
+			<trigger type="Adventure" name="XMAS_Cookie_Easy_2" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="300" />		
+			<reward type="Resource" name="ChristmasResource" amount="5" />			
+			<reward type="Buff" item="AddResource" name="Population" amount="50" />	
+		</posteffects>
+	</quest>	
+	
+	<quest name="XMAS2017plus_WinterWonderlandSub4_lvl26" type="Event" connectedToQuest="XMAS2017plus_WinterWonderland_lvl26" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_WinterWonderlandDelay2_lvl26"/>
+		</startcondition>
+		<triggers>
+			<trigger type="RefillBuff" name="Population" condition="consume" amount="25"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="100" />		
+		</posteffects>
+	</quest>		
+	
+		<!-- Winter Wonderland lvl 36 -->	
+	
+		<quest name="XMAS2017plus_WinterWonderland_lvl36" type="Event" npc="quest_character_fakesanta.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" icon="ChristmasResource" >
+		<triggers>
+			<questcomplete item="XMAS2017plus_WinterWonderlandSub0_lvl36"/>
+			<questcomplete item="XMAS2017plus_WinterWonderlandSub1_lvl36"/>
+			<questcomplete item="XMAS2017plus_WinterWonderlandDelay1_lvl36"/>
+			<questcomplete item="XMAS2017plus_WinterWonderlandSub2_lvl36"/>
+			<questcomplete item="XMAS2017plus_WinterWonderlandSub3_lvl36"/>
+			<questcomplete item="XMAS2017plus_WinterWonderlandDelay2_lvl36"/>
+			<questcomplete item="XMAS2017plus_WinterWonderlandSub4_lvl36"/>		
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="1000" />
+			<reward type="Buff" item="ChangeSkin_christmas_mayorhouse_long" count="1" />
+		</posteffects>
+	</quest>	
+	
+	<quest name="XMAS2017plus_WinterWonderlandSub0_lvl36" type="Event" connectedToQuest="XMAS2017plus_WinterWonderland_lvl36" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" questWinGemCosts="50">
+		<startcondition>
+			<questactive item="XMAS2017plus_WinterWonderland_lvl36" />
+		</startcondition>
+		<triggers>
+			<trigger type="SpecialistTask" name="FindTreasureMedium" condition="found" resourceType="ChristmasResource" amount="8" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="5" />
+		</posteffects>
+	</quest>	
+	
+	<quest name="XMAS2017plus_WinterWonderlandSub1_lvl36" type="Event" connectedToQuest="XMAS2017plus_WinterWonderland_lvl36" cancelable="false" icon="ChristmasResource" npc="quest_character_fakesanta.png" showQuestWindow="true" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_WinterWonderlandSub0_lvl36"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Flour" amount="600" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Flour" amount="600" />	
+			<trigger type="PayForQuestFinish" name="CollectibleKettle" amount="8" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="5" />
+		</posteffects>
+	</quest>		
+	
+	<quest name="XMAS2017plus_WinterWonderlandDelay1_lvl36" type="Event" connectedToQuest="XMAS2017plus_WinterWonderland_lvl36" cancelable="false" icon="ChristmasResource" npc="quest_character_fakesanta.png" showQuestWindow="true" showRewardWindow="true" questWinGemCosts="395" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_WinterWonderlandSub1_lvl36"/>
+		</startcondition>
+		<triggers>
+			<buffproduced min="10" item="ProductivityBuffLvl2"/>
+			<buffapplied min="5" item="ProductivityBuffLvl2"/>
+			<completequestlist amount="1" item="XMAS2017plus_CheckWeek2" locaExtension="WaitForSecondWeek" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="400" />		
+			<reward type="Adventure" name="XMAS_Cookie_Medium_1" amount="1" />
+		</posteffects>
+	</quest>	
+
+	<quest name="XMAS2017plus_WinterWonderlandSub2_lvl36" type="Event" connectedToQuest="XMAS2017plus_WinterWonderland_lvl36" cancelable="false" icon="ChristmasResource" npc="quest_character_fakesanta.png" showQuestWindow="true" showRewardWindow="true" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_WinterWonderlandDelay1_lvl36"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Adventure" name="XMAS_Cookie_Medium_1" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="200" />		
+			<reward type="Resource" name="ChristmasResource" amount="5" />					
+		</posteffects>
+	</quest>		
+	
+	<quest name="XMAS2017plus_WinterWonderlandSub3_lvl36" type="Event" connectedToQuest="XMAS2017plus_WinterWonderland_lvl36" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" questWinGemCosts="595">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_WinterWonderlandSub2_lvl36"/>
+		</startcondition>
+		<triggers>
+			<completequestlist amount="1" item="XMAS2017plus_CheckWeek3" locaExtension="WaitForThirdWeek" />		
+			<buffproduced min="5" item="BattleBuffDestroy_XMAS2018_FakePresents"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="200" />	
+			<reward type="Adventure" name="XMAS_Cookie_Medium_2" amount="1" />				
+		</posteffects>
+	</quest>		
+	
+	<quest name="XMAS2017plus_WinterWonderlandDelay2_lvl36" type="Event" connectedToQuest="XMAS2017plus_WinterWonderland_lvl36" cancelable="false" icon="ChristmasResource" npc="quest_character_fakesanta.png" showQuestWindow="true" showRewardWindow="true" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_WinterWonderlandSub3_lvl36"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Adventure" name="XMAS_Cookie_Medium_2" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="600" />	
+			<reward type="Resource" name="ChristmasResource" amount="5" />		
+			<reward type="Buff" item="AddResource" name="Population" amount="50" />			
+		</posteffects>
+	</quest>	
+	
+	<quest name="XMAS2017plus_WinterWonderlandSub4_lvl36" type="Event" connectedToQuest="XMAS2017plus_WinterWonderland_lvl36" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_WinterWonderlandDelay2_lvl36"/>
+		</startcondition>
+		<triggers>
+			<trigger type="RefillBuff" name="Population" condition="consume" amount="25"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="200" />		
+		</posteffects>
+	</quest>		
+	
+		<!-- Winter Wonderland lvl 51 -->	
+	
+		<quest name="XMAS2017plus_WinterWonderland_lvl51" type="Event" npc="quest_character_fakesanta.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" icon="ChristmasResource" >
+		<triggers>
+			<questcomplete item="XMAS2017plus_WinterWonderlandSub0_lvl51"/>
+			<questcomplete item="XMAS2017plus_WinterWonderlandSub1_lvl51"/>
+			<questcomplete item="XMAS2017plus_WinterWonderlandDelay1_lvl51"/>
+			<questcomplete item="XMAS2017plus_WinterWonderlandSub2_lvl51"/>
+			<questcomplete item="XMAS2017plus_WinterWonderlandSub3_lvl51"/>
+			<questcomplete item="XMAS2017plus_WinterWonderlandDelay2_lvl51"/>
+			<questcomplete item="XMAS2017plus_WinterWonderlandSub4_lvl51"/>		
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="1500" />
+			<reward type="Buff" item="ChangeSkin_christmas_mayorhouse_long" count="1" />
+		</posteffects>
+	</quest>	
+	
+	<quest name="XMAS2017plus_WinterWonderlandSub0_lvl51" type="Event" connectedToQuest="XMAS2017plus_WinterWonderland_lvl51" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" questWinGemCosts="50">
+		<startcondition>
+			<questactive item="XMAS2017plus_WinterWonderland_lvl51" />
+		</startcondition>
+		<triggers>
+			<trigger type="SpecialistTask" name="FindTreasureLong" condition="found" resourceType="ChristmasResource" amount="15" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="5" />
+		</posteffects>
+	</quest>	
+	
+	<quest name="XMAS2017plus_WinterWonderlandSub1_lvl51" type="Event" connectedToQuest="XMAS2017plus_WinterWonderland_lvl51" cancelable="false" icon="ChristmasResource" npc="quest_character_fakesanta.png" showQuestWindow="true" showRewardWindow="true" questWinGemCosts="150">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_WinterWonderlandSub0_lvl51"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Flour" amount="1200" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Flour" amount="1200" />	
+			<trigger type="PayForQuestFinish" name="CollectibleKettle" amount="20" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="5" />
+		</posteffects>
+	</quest>		
+	
+	<quest name="XMAS2017plus_WinterWonderlandDelay1_lvl51" type="Event" connectedToQuest="XMAS2017plus_WinterWonderland_lvl51" cancelable="false" icon="ChristmasResource" npc="quest_character_fakesanta.png" showQuestWindow="true" showRewardWindow="true" questWinGemCosts="395" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_WinterWonderlandSub1_lvl51"/>
+		</startcondition>
+		<triggers>
+			<buffproduced min="10" item="ProductivityBuffLvl3"/>
+			<buffapplied min="5" item="ProductivityBuffLvl3"/>
+			<completequestlist amount="1" item="XMAS2017plus_CheckWeek2" locaExtension="WaitForSecondWeek" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="800" />		
+			<reward type="Adventure" name="XMAS_Cookie_Hard_1" amount="1" />
+		</posteffects>
+	</quest>	
+
+	<quest name="XMAS2017plus_WinterWonderlandSub2_lvl51" type="Event" connectedToQuest="XMAS2017plus_WinterWonderland_lvl51" cancelable="false" icon="ChristmasResource" npc="quest_character_fakesanta.png" showQuestWindow="true" showRewardWindow="true" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_WinterWonderlandDelay1_lvl51"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Adventure" name="XMAS_Cookie_Hard_1" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="400" />		
+			<reward type="Resource" name="ChristmasResource" amount="5" />					
+		</posteffects>
+	</quest>		
+	
+	<quest name="XMAS2017plus_WinterWonderlandSub3_lvl51" type="Event" connectedToQuest="XMAS2017plus_WinterWonderland_lvl51" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" questWinGemCosts="595" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_WinterWonderlandSub2_lvl51"/>
+		</startcondition>
+		<triggers>
+			<buffproduced min="7" item="BattleBuffDestroy_XMAS2018_FakePresents"/>
+			<completequestlist amount="1" item="XMAS2017plus_CheckWeek3" locaExtension="WaitForThirdWeek" />	
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="400" />	
+			<reward type="Adventure" name="XMAS_Cookie_Hard_2" amount="1" />				
+		</posteffects>
+	</quest>		
+	
+	<quest name="XMAS2017plus_WinterWonderlandDelay2_lvl51" type="Event" connectedToQuest="XMAS2017plus_WinterWonderland_lvl51" cancelable="false" icon="ChristmasResource" npc="quest_character_fakesanta.png" showQuestWindow="true" showRewardWindow="true" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_WinterWonderlandSub3_lvl51"/>
+		</startcondition>
+		<triggers>	
+			<trigger type="Adventure" name="XMAS_Cookie_Hard_2" condition="geDelta" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="1200" />
+			<reward type="Resource" name="ChristmasResource" amount="5" />		
+			<reward type="Buff" item="AddResource" name="Population" amount="50" />				
+		</posteffects>
+	</quest>	
+	
+	<quest name="XMAS2017plus_WinterWonderlandSub4_lvl51" type="Event" connectedToQuest="XMAS2017plus_WinterWonderland_lvl51" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_WinterWonderlandDelay2_lvl51"/>
+		</startcondition>
+		<triggers>
+			<trigger type="RefillBuff" name="Population" condition="consume" amount="25"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="400" />		
+		</posteffects>
+	</quest>				
+	
+	
+<!-- XMAS MARKET LVL 26 -->
+	<quest name="XMAS2017plus_XmasMarket_Main_lvl26" type="Event" npc="quest_character_santaclaus.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" icon="ChristmasResource" >
+		<triggers>
+			<questcomplete item="XMAS2017plus_EventMarket_Tut1_lvl26"/> 
+			<questcomplete item="XMAS2017plus_EventMarket_Tut2_lvl26"/> 
+			<questcomplete item="XMAS2017plus_EventMarket_Produce1_lvl26"/>
+			<questcomplete item="XMAS2017plus_XmasMarket_lvl26"/>	
+			<questcomplete item="XMAS2017plus_EventMarket_Produce2_lvl26"/> 
+			<questcomplete item="XMAS2017plus_XmasMarket2_lvl26"/> 
+			<questcomplete item="XMAS2017plus_EventMarket_Produce3_lvl26"/>
+			<questcomplete item="XMAS2017plus_XmasMarket3_lvl26"/>
+			<questcomplete item="XMAS2017plus_EventMarket_Produce4_lvl26"/> 
+			<questcomplete item="XMAS2017plus_XmasMarketFinal_lvl26"/> 		
+		
+			<questcomplete item="XMAS2017plus_WinterWonderland_lvl26"/>
+ 	
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="BuildBuilding" name="ChristmasBakery" amount="1" recurringChance="100" />
+			<reward type="Buff" item="ProductivityBuffLvl9" amount="3" />
+			<reward type="Buff" item="ProductivityBuffLvl19" amount="3" />
+		</posteffects>
+	</quest>
+	
+	
+	
+	<!-- Build up Market Buff Tutorial -->
+
+
+	<quest name="XMAS2017plus_EventMarket_Tut1_lvl26" connectedToQuest="XMAS2017plus_XmasMarket_Main_lvl26" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png">
+		<startcondition>
+			<questrunning item="XMAS2017plus_XmasMarket_Main_lvl26"/>
+		</startcondition>
+		<triggers>
+			<buffproduced item="EventMonsterBuff_EventMarketBuff1" min="3" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="5" />
+			<spawnbuilding name="EventMonster_EventMarket_Tutorial" x="21" y="54" units="MarketHeart1|15" action="ignoreBlocking,spawnInstant,replace" mode="enemy"/>
+			<spawnbuilding name="PartyCrashers_Bridge" x="21" y="57" action="ignoreBlocking,spawnInstant,replace" mode="free" />			
+			<startquest name="XMAS2017plus_EventMarket_Tut2_lvl26" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_EventMarket_Tut2_lvl26_hidden_spawn_fix" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_EventMarket_Tut1_lvl26"/>
+			<questrunning item="XMAS2017plus_EventMarket_Tut2_lvl26"/>
+			<onmap item="EventMonster_EventMarket_Tutorial" min="0" max="0"/>
+			<!-- check if the building destroyed trigger of XMAS2017plus_EventMarket_Tut2_lvl26 if it is unfulfilled -->
+			<questtriggervalue id="1" name="XMAS2017plus_EventMarket_Tut2_lvl26" state="0"/>
+		</startcondition>
+		<posteffects>
+			<spawnbuilding name="EventMonster_EventMarket_Tutorial" x="21" y="54" units="MarketHeart1|15" action="ignoreBlocking,spawnInstant,replace" mode="enemy"/>
+			<spawnbuilding name="PartyCrashers_Bridge" x="21" y="57" action="ignoreBlocking,spawnInstant,replace" mode="free" />			
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2017plus_EventMarket_Tut2_lvl26" connectedToQuest="XMAS2017plus_XmasMarket_Main_lvl26" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png">
+		<preeffects>
+			<movecamera x="21" y="54" />
+		</preeffects>
+		<triggers>
+			<buffapplied item="EventMonsterBuff_EventMarketBuff1" min="1"/>
+			<trigger type="Building" name="EventMonster_EventMarket_Tutorial" condition="destroyed" amount="1"/>			
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="5" />
+			<startquest name="XMAS2017plus_EventMarket_Produce1_lvl26" />					
+		</posteffects>
+	</quest>
+
+	
+	<!-- Produce Resource Quest 1 -->		
+	<quest name="XMAS2017plus_EventMarket_Produce1_lvl26" connectedToQuest="XMAS2017plus_XmasMarket_Main_lvl26" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png">
+		<triggers>
+			<trigger type="Resource" name="Stone" amount="250" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Stone" amount="500" />	
+			<trigger type="Resource" name="Plank" amount="250" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Plank" amount="500" />
+		</triggers>
+		<posteffects>	
+			<reward type="Buff" item="ProductivityBuffLvl13" amount="1" />		
+			<startquest name="XMAS2017plus_XmasMarket_lvl26" />		
+			<startquest name="XMAS2017plus_SpawnDecoMarket_Tutorial_lvl26" />				
+			<spawnbuilding name="EventMonster_EventMarket_Tutorial" x="21" y="54" units="MarketHeart1|125" action="ignoreBlocking,spawnInstant,replace" mode="enemy"/>				
+		</posteffects>
+	</quest>	
+	
+	
+	<!-- Build up Market from Tutorial to Lvl 1 -->			
+	<quest name="XMAS2017plus_XmasMarket_lvl26" connectedToQuest="XMAS2017plus_XmasMarket_Main_lvl26" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" >
+		<triggers>
+			<trigger type="Building" name="EventMonster_EventMarket_Tutorial" condition="destroyed" amount="1"/>
+		</triggers>		
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="30" />
+			<reward type="Buff" item="ProductivityBuffZoneFoodLvl1" amount="1" />		
+			<startquest name="XMAS2017plus_EventMarket_Produce2_lvl26" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_SpawnDecoMarket_Tutorial_lvl26" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="Building" name="EventMonster_EventMarket_Tutorial" condition="destroyed" amount="1"/>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="EventMarket_Tutorial_Deco" x="21" y="54" action="ignoreBlocking,spawnInstant,replace" mode="free"/> <!-- Market empty stage -->		
+		</posteffects>		
+	</quest>	
+
+	<!-- Produce Resource Quest 2 -->			
+	<quest name="XMAS2017plus_EventMarket_Produce2_lvl26" connectedToQuest="XMAS2017plus_XmasMarket_Main_lvl26" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png">
+		<triggers>
+			<trigger type="Resource" name="Meat" amount="250" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Meat" amount="500" />	
+			<trigger type="Resource" name="IntermediatePaper" amount="50" condition="produce" />
+			<trigger type="PayForQuestFinish" name="IntermediatePaper" amount="100" />
+		</triggers>
+		<posteffects>	
+			<reward type="Buff" item="ProductivityBuffLvl25" amount="1" />			
+			<startquest name="XMAS2017plus_XmasMarket2_lvl26" />	
+			<startquest name="XMAS2017plus_SpawnDecoMarket_lvl1_lvl26" />			
+			<spawnbuilding name="EventMonster_EventMarket_lvl1" x="21" y="54" units="MarketHeart1|125" action="ignoreBlocking,spawnInstant,replace" mode="enemy"/>					
+		</posteffects>
+	</quest>		
+
+	<!-- Build up Market from lvl1 to Lvl 2 -->	
+	<quest name="XMAS2017plus_XmasMarket2_lvl26" connectedToQuest="XMAS2017plus_XmasMarket_Main_lvl26" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" >
+		<triggers>
+			<trigger type="Building" name="EventMonster_EventMarket_lvl1" condition="destroyed" amount="1"/>
+		</triggers>		
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="40" />
+			<reward type="Buff" item="RecruitingBuffZoneLvl1" amount="1" />			
+			<startquest name="XMAS2017plus_EventMarket_Produce3_lvl26" />				
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2017plus_SpawnDecoMarket_lvl1_lvl26" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="Building" name="EventMonster_EventMarket_lvl1" condition="destroyed" amount="1"/>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="EventMarket_lvl1_Deco" x="21" y="54" action="ignoreBlocking,spawnInstant,replace" mode="free"/> <!-- Market empty stage -->		
+		</posteffects>		
+	</quest>		
+	
+	<!-- Produce Resource Quest 3 -->			
+	<quest name="XMAS2017plus_EventMarket_Produce3_lvl26" connectedToQuest="XMAS2017plus_XmasMarket_Main_lvl26" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png">
+		<triggers>
+			<trigger type="Resource" name="Marble" amount="250" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Marble" amount="500" />	
+			<trigger type="Resource" name="RealPlank" amount="250" condition="produce" />
+			<trigger type="PayForQuestFinish" name="RealPlank" amount="500" />
+		</triggers>
+		<posteffects>	
+			<reward type="Buff" item="SpeedUpPopulationGrowth3" amount="1" />		
+			<startquest name="XMAS2017plus_XmasMarket3_lvl26" />	
+			<startquest name="XMAS2017plus_SpawnDecoMarket_lvl2_lvl26" />			
+			<spawnbuilding name="EventMonster_EventMarket_lvl2" x="21" y="54" units="MarketHeart2|125" action="ignoreBlocking,spawnInstant,replace" mode="enemy"/>				
+		</posteffects>
+	</quest>	
+	
+	<!-- Build up Market from lvl 2 to Lvl 3 -->	
+	<quest name="XMAS2017plus_XmasMarket3_lvl26" connectedToQuest="XMAS2017plus_XmasMarket_Main_lvl26" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" >
+		<triggers>
+			<trigger type="Building" name="EventMonster_EventMarket_lvl2" condition="destroyed" amount="1"/>
+		</triggers>		
+		<posteffects>			
+			<reward type="Resource" name="ChristmasResource" amount="50" />
+			<reward type="Buff" item="ProductivityBuffZoneWeaponLvl1" amount="1" /> 		
+			<startquest name="XMAS2017plus_EventMarket_Produce4_lvl26" />				
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_SpawnDecoMarket_lvl2_lvl26" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="Building" name="EventMonster_EventMarket_lvl2" condition="destroyed" amount="1"/>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="EventMarket_lvl2_Deco" x="21" y="54" action="ignoreBlocking,spawnInstant,replace" mode="free"/> <!-- Market empty stage -->			
+		</posteffects>		
+	</quest>	
+	
+	<!-- Produce Resource Quest 4 -->			
+	<quest name="XMAS2017plus_EventMarket_Produce4_lvl26" connectedToQuest="XMAS2017plus_XmasMarket_Main_lvl26" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png">
+		<triggers>
+			<trigger type="Resource" name="Gold" amount="50" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Gold" amount="50" />	
+			<trigger type="Resource" name="Iron" amount="50" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Iron" amount="50" />
+		</triggers>
+		<posteffects>	
+			<reward type="Buff" item="ProductivityBuffLvl9" amount="1" />		
+			<startquest name="XMAS2017plus_XmasMarketFinal_lvl26" />	
+			<startquest name="XMAS2017plus_SpawnDecoMarket_lvl3_lvl26" />				
+			<spawnbuilding name="EventMonster_EventMarket_lvl3" x="21" y="54" units="MarketHeart3|125" action="ignoreBlocking,spawnInstant,replace" mode="enemy"/>					
+		</posteffects>
+	</quest>	
+	
+	<!-- Build up finished -->	
+	<quest name="XMAS2017plus_XmasMarketFinal_lvl26" connectedToQuest="XMAS2017plus_XmasMarket_Main_lvl26" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" >
+		<triggers>
+			<trigger type="Building" name="EventMonster_EventMarket_lvl3" condition="destroyed" amount="1"/>
+		</triggers>		
+		<posteffects>		
+			<reward type="Resource" name="ChristmasResource" amount="60" />
+			<reward type="Buff" item="ProductivityBuffZoneScienceLvl1" amount="1" />					
+		</posteffects>
+	</quest>	
+	
+	<quest name="XMAS2017plus_SpawnDecoMarket_lvl3_lvl26" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="Building" name="EventMonster_EventMarket_lvl3" condition="destroyed" amount="1"/>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="EventMarket_lvl3_Deco" x="21" y="54" action="ignoreBlocking,spawnInstant,replace" mode="free"/> <!-- Market empty stage -->		
+		</posteffects>		
+	</quest>		
+
+<!-- XMAS MARKET LVL 36 -->
+
+<quest name="XMAS2017plus_XmasMarket_Main_lvl36" type="Event" npc="quest_character_santaclaus.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" icon="ChristmasResource" >
+		<triggers>
+			<questcomplete item="XMAS2017plus_EventMarket_Tut1_lvl36"/> 
+			<questcomplete item="XMAS2017plus_EventMarket_Tut2_lvl36"/> 
+			<questcomplete item="XMAS2017plus_EventMarket_Produce1_lvl36"/>
+			<questcomplete item="XMAS2017plus_XmasMarket_lvl36"/>	
+			
+			
+			<questcomplete item="XMAS2017plus_EventMarket_Produce2_lvl36"/> 
+			<questcomplete item="XMAS2017plus_XmasMarket2_lvl36"/> 
+			<questcomplete item="XMAS2017plus_EventMarket_Produce3_lvl36"/>
+			<questcomplete item="XMAS2017plus_XmasMarket3_lvl36"/>
+			<questcomplete item="XMAS2017plus_EventMarket_Produce4_lvl36"/> 
+			<questcomplete item="XMAS2017plus_XmasMarketFinal_lvl36"/> 
+		
+			<questcomplete item="XMAS2017plus_WinterWonderland_lvl36"/> 
+			
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="BuildBuilding" name="ChristmasBakery" amount="1" recurringChance="100" />
+			<reward type="Buff" item="ProductivityBuffLvl9" amount="3" />
+			<reward type="Buff" item="ProductivityBuffLvl19" amount="3" />
+		</posteffects>
+	</quest>
+	
+	
+	
+	<!-- Build up Market Buff Tutorial -->
+
+
+	<quest name="XMAS2017plus_EventMarket_Tut1_lvl36" connectedToQuest="XMAS2017plus_XmasMarket_Main_lvl36" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png">
+		<startcondition>
+			<questrunning item="XMAS2017plus_XmasMarket_Main_lvl36" />
+		</startcondition>
+		<triggers>
+			<buffproduced item="EventMonsterBuff_EventMarketBuff1" min="3" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="5" />
+			<spawnbuilding name="EventMonster_EventMarket_Tutorial" x="21" y="54" units="MarketHeart1|15" action="ignoreBlocking,spawnInstant,replace" mode="enemy"/>
+			<spawnbuilding name="PartyCrashers_Bridge" x="21" y="57" action="ignoreBlocking,spawnInstant,replace" mode="free" />			
+			<startquest name="XMAS2017plus_EventMarket_Tut2_lvl36" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2017plus_EventMarket_Tut2_lvl36_hidden_spawn_fix" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_EventMarket_Tut1_lvl36"/>
+			<questrunning item="XMAS2017plus_EventMarket_Tut2_lvl36"/>
+			<onmap item="EventMonster_EventMarket_Tutorial" min="0" max="0"/>
+			<!-- check if the building destroyed trigger of XMAS2017plus_EventMarket_Tut2_lvl36 if it is unfulfilled -->
+			<questtriggervalue id="1" name="XMAS2017plus_EventMarket_Tut2_lvl36" state="0"/>
+		</startcondition>
+		<posteffects>
+			<spawnbuilding name="EventMonster_EventMarket_Tutorial" x="21" y="54" units="MarketHeart1|15" action="ignoreBlocking,spawnInstant,replace" mode="enemy"/>
+			<spawnbuilding name="PartyCrashers_Bridge" x="21" y="57" action="ignoreBlocking,spawnInstant,replace" mode="free" />			
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2017plus_EventMarket_Tut2_lvl36" connectedToQuest="XMAS2017plus_XmasMarket_Main_lvl36" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png">
+		<preeffects>
+			<movecamera x="21" y="54" />
+		</preeffects>
+		<triggers>
+			<buffapplied item="EventMonsterBuff_EventMarketBuff1" min="1"/>
+			<trigger type="Building" name="EventMonster_EventMarket_Tutorial" condition="destroyed" amount="1"/>			
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="5" />
+			<startquest name="XMAS2017plus_EventMarket_Produce1_lvl36" />					
+		</posteffects>
+	</quest>	
+
+	
+	<!-- Produce Resource Quest 1 -->		
+	<quest name="XMAS2017plus_EventMarket_Produce1_lvl36" connectedToQuest="XMAS2017plus_XmasMarket_Main_lvl36" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png">
+		<triggers>
+			<trigger type="Resource" name="Stone" amount="500" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Stone" amount="750" />	
+			<trigger type="Resource" name="Plank" amount="500" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Plank" amount="750" />
+		</triggers>
+		<posteffects>	
+			<reward type="Buff" item="ProductivityBuffLvl13" amount="1" />			
+			<startquest name="XMAS2017plus_XmasMarket_lvl36" />		
+			<startquest name="XMAS2017plus_SpawnDecoMarket_Tutorial_lvl36" />			
+			<spawnbuilding name="EventMonster_EventMarket_Tutorial" x="21" y="54" units="MarketHeart1|250" action="ignoreBlocking,spawnInstant,replace" mode="enemy"/>				
+		</posteffects>
+	</quest>	
+	
+	
+	<!-- Build up Market from Tutorial to Lvl 1 -->			
+	<quest name="XMAS2017plus_XmasMarket_lvl36" connectedToQuest="XMAS2017plus_XmasMarket_Main_lvl36" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" >
+		<triggers>
+			<trigger type="Building" name="EventMonster_EventMarket_Tutorial" condition="destroyed" amount="1"/>
+		</triggers>		
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="30" />
+			<reward type="Buff" item="ProductivityBuffZoneFoodLvl1" amount="1" />			
+			<startquest name="XMAS2017plus_EventMarket_Produce2_lvl36" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_SpawnDecoMarket_Tutorial_lvl36" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="Building" name="EventMonster_EventMarket_Tutorial" condition="destroyed" amount="1"/>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="EventMarket_Tutorial_Deco" x="21" y="54" action="ignoreBlocking,spawnInstant,replace" mode="free"/> <!-- Market empty stage -->		
+		</posteffects>		
+	</quest>		
+
+	<!-- Produce Resource Quest 2 -->			
+	<quest name="XMAS2017plus_EventMarket_Produce2_lvl36" connectedToQuest="XMAS2017plus_XmasMarket_Main_lvl36" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png">
+		<triggers>
+			<trigger type="Resource" name="Meat" amount="500" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Meat" amount="750" />	
+			<trigger type="Resource" name="IntermediatePaper" amount="100" condition="produce" />
+			<trigger type="PayForQuestFinish" name="IntermediatePaper" amount="200" />
+		</triggers>
+		<posteffects>	
+			<reward type="Buff" item="ProductivityBuffLvl25" amount="1" />
+			<startquest name="XMAS2017plus_XmasMarket2_lvl36" />	
+			<startquest name="XMAS2017plus_SpawnDecoMarket_lvl1_lvl36" />			
+			<spawnbuilding name="EventMonster_EventMarket_lvl1" x="21" y="54" units="MarketHeart1|250" action="ignoreBlocking,spawnInstant,replace" mode="enemy"/>					
+		</posteffects>
+	</quest>		
+
+	<!-- Build up Market from lvl1 to Lvl 2 -->	
+	<quest name="XMAS2017plus_XmasMarket2_lvl36" connectedToQuest="XMAS2017plus_XmasMarket_Main_lvl36" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" >
+		<triggers>
+			<trigger type="Building" name="EventMonster_EventMarket_lvl1" condition="destroyed" amount="1"/>
+		</triggers>		
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="40" />
+			<reward type="Buff" item="RecruitingBuffZoneLvl1" amount="1" />				
+			<startquest name="XMAS2017plus_EventMarket_Produce3_lvl36" />				
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_SpawnDecoMarket_lvl1_lvl36" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="Building" name="EventMonster_EventMarket_lvl1" condition="destroyed" amount="1"/>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="EventMarket_lvl1_Deco" x="21" y="54" action="ignoreBlocking,spawnInstant,replace" mode="free"/> <!-- Market empty stage -->		
+		</posteffects>		
+	</quest>	
+
+	<!-- Produce Resource Quest 3 -->			
+	<quest name="XMAS2017plus_EventMarket_Produce3_lvl36" connectedToQuest="XMAS2017plus_XmasMarket_Main_lvl36" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png">
+		<triggers>
+			<trigger type="Resource" name="Marble" amount="750" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Marble" amount="1500" />	
+			<trigger type="Resource" name="RealPlank" amount="750" condition="produce" />
+			<trigger type="PayForQuestFinish" name="RealPlank" amount="1500" />
+		</triggers>
+		<posteffects>	
+			<reward type="Buff" item="SpeedUpPopulationGrowth3" amount="1" />		
+			<startquest name="XMAS2017plus_XmasMarket3_lvl36" />	
+			<startquest name="XMAS2017plus_SpawnDecoMarket_lvl2_lvl36" />			
+			<spawnbuilding name="EventMonster_EventMarket_lvl2" x="21" y="54" units="MarketHeart2|375" action="ignoreBlocking,spawnInstant,replace" mode="enemy"/>				
+		</posteffects>
+	</quest>	
+	
+	<!-- Build up Market from lvl 2 to Lvl 3 -->	
+	<quest name="XMAS2017plus_XmasMarket3_lvl36" connectedToQuest="XMAS2017plus_XmasMarket_Main_lvl36" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" >
+		<triggers>
+			<trigger type="Building" name="EventMonster_EventMarket_lvl2" condition="destroyed" amount="1"/>
+		</triggers>		
+		<posteffects>			
+			<reward type="Resource" name="ChristmasResource" amount="50" />
+			<reward type="Buff" item="ProductivityBuffZoneWeaponLvl1" amount="1" />		
+			<startquest name="XMAS2017plus_EventMarket_Produce4_lvl36" />				
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_SpawnDecoMarket_lvl2_lvl36" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="Building" name="EventMonster_EventMarket_lvl2" condition="destroyed" amount="1"/>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="EventMarket_lvl2_Deco" x="21" y="54" action="ignoreBlocking,spawnInstant,replace" mode="free"/> <!-- Market empty stage -->			
+		</posteffects>		
+	</quest>		
+	
+	<!-- Produce Resource Quest 4 -->			
+	<quest name="XMAS2017plus_EventMarket_Produce4_lvl36" connectedToQuest="XMAS2017plus_XmasMarket_Main_lvl36" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png">
+		<triggers>
+			<trigger type="Resource" name="Gold" amount="100" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Gold" amount="100" />	
+			<trigger type="Resource" name="Iron" amount="100" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Iron" amount="100" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffLvl9" amount="1" />
+			<startquest name="XMAS2017plus_XmasMarketFinal_lvl36" />
+			<startquest name="XMAS2017plus_SpawnDecoMarket_lvl3_lvl36" />
+			<spawnbuilding name="EventMonster_EventMarket_lvl3" x="21" y="54" units="MarketHeart3|375" action="ignoreBlocking,spawnInstant,replace" mode="enemy"/>					
+		</posteffects>
+	</quest>	
+	
+	<!-- Build up finished -->	
+	<quest name="XMAS2017plus_XmasMarketFinal_lvl36" connectedToQuest="XMAS2017plus_XmasMarket_Main_lvl36" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" >
+		<triggers>
+			<trigger type="Building" name="EventMonster_EventMarket_lvl3" condition="destroyed" amount="1"/>
+		</triggers>		
+		<posteffects>	
+			<reward type="Resource" name="ChristmasResource" amount="60" />
+			<reward type="Buff" item="ProductivityBuffZoneScienceLvl1" amount="1" />					
+		</posteffects>
+	</quest>	
+	
+	<quest name="XMAS2017plus_SpawnDecoMarket_lvl3_lvl36" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="Building" name="EventMonster_EventMarket_lvl3" condition="destroyed" amount="1"/>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="EventMarket_lvl3_Deco" x="21" y="54" action="ignoreBlocking,spawnInstant,replace" mode="free"/> <!-- Market empty stage -->		
+		</posteffects>		
+	</quest>		
+
+
+<!-- XMAS MARKET LVL 51 -->
+
+<quest name="XMAS2017plus_XmasMarket_Main_lvl51" type="Event" npc="quest_character_santaclaus.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" icon="ChristmasResource" >
+		<triggers>
+			<questcomplete item="XMAS2017plus_EventMarket_Tut1_lvl51"/> 
+			<questcomplete item="XMAS2017plus_EventMarket_Tut2_lvl51"/> 
+			<questcomplete item="XMAS2017plus_EventMarket_Produce1_lvl51"/>
+			<questcomplete item="XMAS2017plus_XmasMarket_lvl51"/>	
+					
+			<questcomplete item="XMAS2017plus_EventMarket_Produce2_lvl51"/> 
+			<questcomplete item="XMAS2017plus_XmasMarket2_lvl51"/> 
+			<questcomplete item="XMAS2017plus_EventMarket_Produce3_lvl51"/>
+			<questcomplete item="XMAS2017plus_XmasMarket3_lvl51"/>
+			<questcomplete item="XMAS2017plus_EventMarket_Produce4_lvl51"/> 
+			<questcomplete item="XMAS2017plus_XmasMarketFinal_lvl51"/> 	
+			
+			<questcomplete item="XMAS2017plus_WinterWonderland_lvl51"/> 
+			
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="BuildBuilding" name="ChristmasBakery" amount="1" recurringChance="100" />
+			<reward type="Buff" item="ProductivityBuffLvl9" amount="3" />
+			<reward type="Buff" item="ProductivityBuffLvl19" amount="3" />
+		</posteffects>
+	</quest>
+	
+	
+	
+	<!-- Build up Market Buff Tutorial -->
+
+
+	<quest name="XMAS2017plus_EventMarket_Tut1_lvl51" connectedToQuest="XMAS2017plus_XmasMarket_Main_lvl51" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png">
+		<startcondition>
+			<questrunning item="XMAS2017plus_XmasMarket_Main_lvl51"/>
+		</startcondition>
+		<triggers>
+			<buffproduced item="EventMonsterBuff_EventMarketBuff1" min="3" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="5" />
+			<spawnbuilding name="EventMonster_EventMarket_Tutorial" x="21" y="54" units="MarketHeart1|15" action="ignoreBlocking,spawnInstant,replace" mode="enemy"/>
+			<spawnbuilding name="PartyCrashers_Bridge" x="21" y="57" action="ignoreBlocking,spawnInstant,replace" mode="free" />			
+			<startquest name="XMAS2017plus_EventMarket_Tut2_lvl51" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_EventMarket_Tut2_lvl51_hidden_spawn_fix" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_EventMarket_Tut1_lvl51"/>
+			<questrunning item="XMAS2017plus_EventMarket_Tut2_lvl51"/>
+			<onmap item="EventMonster_EventMarket_Tutorial" min="0" max="0"/>
+			<!-- check if the building destroyed trigger of XMAS2017plus_EventMarket_Tut2_lvl51 if it is unfulfilled -->
+			<questtriggervalue id="1" name="XMAS2017plus_EventMarket_Tut2_lvl51" state="0"/>
+		</startcondition>
+		<posteffects>
+			<spawnbuilding name="EventMonster_EventMarket_Tutorial" x="21" y="54" units="MarketHeart1|15" action="ignoreBlocking,spawnInstant,replace" mode="enemy"/>
+			<spawnbuilding name="PartyCrashers_Bridge" x="21" y="57" action="ignoreBlocking,spawnInstant,replace" mode="free" />			
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2017plus_EventMarket_Tut2_lvl51" connectedToQuest="XMAS2017plus_XmasMarket_Main_lvl51" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png">
+		<preeffects>
+			<movecamera x="21" y="54" />
+		</preeffects>
+		<triggers>
+			<buffapplied item="EventMonsterBuff_EventMarketBuff1" min="1"/>
+			<trigger type="Building" name="EventMonster_EventMarket_Tutorial" condition="destroyed" amount="1"/>			
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="5" />
+			<startquest name="XMAS2017plus_EventMarket_Produce1_lvl51" />					
+		</posteffects>
+	</quest>	
+
+	
+	<!-- Produce Resource Quest 1 -->		
+	<quest name="XMAS2017plus_EventMarket_Produce1_lvl51" connectedToQuest="XMAS2017plus_XmasMarket_Main_lvl51" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png">
+		<triggers>
+			<trigger type="Resource" name="Stone" amount="750" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Stone" amount="1500" />	
+			<trigger type="Resource" name="Plank" amount="750" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Plank" amount="1500" />
+		</triggers>
+		<posteffects>	
+			<reward type="Buff" item="ProductivityBuffLvl13" amount="1" />
+			<startquest name="XMAS2017plus_XmasMarket_lvl51" />		
+			<startquest name="XMAS2017plus_SpawnDecoMarket_Tutorial_lvl51" />			
+			<spawnbuilding name="EventMonster_EventMarket_Tutorial" x="21" y="54" units="MarketHeart1|375" action="ignoreBlocking,spawnInstant,replace" mode="enemy"/>				
+		</posteffects>
+	</quest>	
+	
+	
+	<!-- Build up Market from Tutorial to Lvl 1 -->			
+	<quest name="XMAS2017plus_XmasMarket_lvl51" type="Event" connectedToQuest="XMAS2017plus_XmasMarket_Main_lvl51" icon="ChristmasResource" npc="quest_character_santaclaus.png" >
+		<triggers>
+			<trigger type="Building" name="EventMonster_EventMarket_Tutorial" condition="destroyed" amount="1"/>
+		</triggers>		
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="30" />
+			<reward type="Buff" item="ProductivityBuffZoneFoodLvl1" amount="1" />		
+			<startquest name="XMAS2017plus_EventMarket_Produce2_lvl51" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_SpawnDecoMarket_Tutorial_lvl51" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="Building" name="EventMonster_EventMarket_Tutorial" condition="destroyed" amount="1"/>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="EventMarket_Tutorial_Deco" x="21" y="54" action="ignoreBlocking,spawnInstant,replace" mode="free"/> <!-- Market empty stage -->		
+		</posteffects>		
+	</quest>		
+
+	<!-- Produce Resource Quest 2 -->			
+	<quest name="XMAS2017plus_EventMarket_Produce2_lvl51" connectedToQuest="XMAS2017plus_XmasMarket_Main_lvl51" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png">
+		<triggers>
+			<trigger type="Resource" name="Meat" amount="750" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Meat" amount="1500" />	
+			<trigger type="Resource" name="IntermediatePaper" amount="200" condition="produce" />
+			<trigger type="PayForQuestFinish" name="IntermediatePaper" amount="400" />
+		</triggers>
+		<posteffects>	
+			<reward type="Buff" item="ProductivityBuffLvl25" amount="1" />
+			<startquest name="XMAS2017plus_XmasMarket2_lvl51" />	
+			<startquest name="XMAS2017plus_SpawnDecoMarket_lvl1_lvl51" />
+			<spawnbuilding name="EventMonster_EventMarket_lvl1" x="21" y="54" units="MarketHeart1|375" action="ignoreBlocking,spawnInstant,replace" mode="enemy"/>					
+		</posteffects>
+	</quest>		
+
+	<!-- Build up Market from lvl1 to Lvl 2 -->	
+	<quest name="XMAS2017plus_XmasMarket2_lvl51" type="Event" connectedToQuest="XMAS2017plus_XmasMarket_Main_lvl51" icon="ChristmasResource" npc="quest_character_santaclaus.png" >
+		<triggers>
+			<trigger type="Building" name="EventMonster_EventMarket_lvl1" condition="destroyed" amount="1"/>
+		</triggers>		
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="40" />
+			<reward type="Buff" item="RecruitingBuffZoneLvl1" amount="1" />		
+			<startquest name="XMAS2017plus_EventMarket_Produce3_lvl51" />				
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_SpawnDecoMarket_lvl1_lvl51" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="Building" name="EventMonster_EventMarket_lvl1" condition="destroyed" amount="1"/>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="EventMarket_lvl1_Deco" x="21" y="54" action="ignoreBlocking,spawnInstant,replace" mode="free"/> <!-- Market empty stage -->		
+		</posteffects>		
+	</quest>	
+
+	<!-- Produce Resource Quest 3 -->			
+	<quest name="XMAS2017plus_EventMarket_Produce3_lvl51" connectedToQuest="XMAS2017plus_XmasMarket_Main_lvl51" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png">
+		<triggers>
+			<trigger type="Resource" name="Marble" amount="1500" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Marble" amount="3000" />	
+			<trigger type="Resource" name="RealPlank" amount="1500" condition="produce" />
+			<trigger type="PayForQuestFinish" name="RealPlank" amount="3000" />
+		</triggers>
+		<posteffects>	
+			<reward type="Buff" item="SpeedUpPopulationGrowth3" amount="1" />		
+			<startquest name="XMAS2017plus_XmasMarket3_lvl51" />	
+			<startquest name="XMAS2017plus_SpawnDecoMarket_lvl2_lvl51" />			
+			<spawnbuilding name="EventMonster_EventMarket_lvl2" x="21" y="54" units="MarketHeart2|750" action="ignoreBlocking,spawnInstant,replace" mode="enemy"/>				
+		</posteffects>
+	</quest>	
+	
+	<!-- Build up Market from lvl 2 to Lvl 3 -->	
+	<quest name="XMAS2017plus_XmasMarket3_lvl51" type="Event" connectedToQuest="XMAS2017plus_XmasMarket_Main_lvl51" icon="ChristmasResource" npc="quest_character_santaclaus.png" >
+		<triggers>
+			<trigger type="Building" name="EventMonster_EventMarket_lvl2" condition="destroyed" amount="1"/>
+		</triggers>		
+		<posteffects>				
+			<reward type="Resource" name="ChristmasResource" amount="50" />
+			<reward type="Buff" item="ProductivityBuffZoneWeaponLvl1" amount="1" />		
+			<startquest name="XMAS2017plus_EventMarket_Produce4_lvl51" />				
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_SpawnDecoMarket_lvl2_lvl51" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="Building" name="EventMonster_EventMarket_lvl2" condition="destroyed" amount="1"/>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="EventMarket_lvl2_Deco" x="21" y="54" action="ignoreBlocking,spawnInstant,replace" mode="free"/> <!-- Market empty stage -->			
+		</posteffects>		
+	</quest>		
+	
+	<!-- Produce Resource Quest 4 -->			
+	<quest name="XMAS2017plus_EventMarket_Produce4_lvl51" connectedToQuest="XMAS2017plus_XmasMarket_Main_lvl51" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png">
+		<triggers>
+			<trigger type="Resource" name="Gold" amount="250" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Gold" amount="250" />	
+			<trigger type="Resource" name="Iron" amount="250" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Iron" amount="250" />
+		</triggers>
+		<posteffects>	
+			<reward type="Buff" item="ProductivityBuffLvl9" amount="1" />
+			<startquest name="XMAS2017plus_XmasMarketFinal_lvl51" />	
+			<startquest name="XMAS2017plus_SpawnDecoMarket_lvl3_lvl51" />
+			<spawnbuilding name="EventMonster_EventMarket_lvl3" x="21" y="54" units="MarketHeart3|750" action="ignoreBlocking,spawnInstant,replace" mode="enemy"/>					
+		</posteffects>
+	</quest>	
+	
+	<!-- Build up finished -->	
+	<quest name="XMAS2017plus_XmasMarketFinal_lvl51" connectedToQuest="XMAS2017plus_XmasMarket_Main_lvl51" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" >
+		<triggers>
+			<trigger type="Building" name="EventMonster_EventMarket_lvl3" condition="destroyed" amount="1"/>
+		</triggers>		
+		<posteffects>		
+			<reward type="Resource" name="ChristmasResource" amount="60" />
+			<reward type="Buff" item="ProductivityBuffZoneScienceLvl1" amount="1" />					
+		</posteffects>
+	</quest>	
+
+	<quest name="XMAS2017plus_SpawnDecoMarket_lvl3_lvl51" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="Building" name="EventMonster_EventMarket_lvl3" condition="destroyed" amount="1"/>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="EventMarket_lvl3_Deco" x="21" y="54" action="ignoreBlocking,spawnInstant,replace" mode="free"/> <!-- Market empty stage -->		
+		</posteffects>		
+	</quest>
+
+
+<!-- XMAS 2025 Operation Holiday Cheer Questchain -->
+
+	<!-- Operation Holiday Cheer lvl 26 -->	
+	<quest name="XMAS2017plus_XmasSpirit_Main_lvl26" type="Event" npc="quest_character_santaclaus.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" icon="ChristmasResource" >
+		<triggers>
+			<questcomplete item="XMAS2017plus_CardPreparation_lvl26"/>
+			<questcomplete item="XMAS2017plus_CardDelivery_lvl26"/>
+			<questcomplete item="XMAS2017plus_DecoPlacement1_lvl26"/>
+			<questcomplete item="XMAS2017plus_DecoProduce2_lvl26"/>
+			<questcomplete item="XMAS2017plus_DecoPlacement2_lvl26"/>
+			<questcomplete item="XMAS2017plus_HolidayCheerDelay1_lvl26"/>
+			<questcomplete item="XMAS2017plus_FeastPreparation1_lvl26"/>
+			<questcomplete item="XMAS2017plus_SongProduction_lvl26"/>
+			<questcomplete item="XMAS2017plus_SongPlacement_lvl26"/>
+			<questcomplete item="XMAS2017plus_FeastPreparation2_lvl26"/>
+			<questcomplete item="XMAS2017plus_HolidayCheerDelay2_lvl26"/>
+			<questcomplete item="XMAS2017plus_PresentProduction_lvl26"/>
+			<questcomplete item="XMAS2017plus_GiftGiving_lvl26"/>
+			<questcomplete item="XMAS2017plus_XmasSpiritFinal_lvl26"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="1500" />
+			<reward type="Buff" item="MultiplierBuffZone2_PremiumFriendBuff_Christmas" amount="1"/>
+			<reward type="Buff" item="RecruitingBuffLvl9" amount="3"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_CardPreparation_lvl26" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl26" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true">
+		<startcondition>
+			<questactive item="XMAS2017plus_XmasSpirit_Main_lvl26" />
+		</startcondition>
+		<triggers>
+			<buffproduced min="3" item="ProductivityBuff_ChristmasCard"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="5" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_CardDelivery_lvl26" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl26" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_CardPreparation_lvl26"/>
+		</startcondition>
+		<triggers>
+			<buffappliedonfriend amount="3" item="ProductivityBuff_ChristmasCard" locaExtension="christmascards"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+	<quest name="XMAS2017plus_DecoPlacement1_lvl26" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl26" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_CardDelivery_lvl26"/>
+		</startcondition>
+		<triggers>
+			<onmap item="Christmas_Lantern_Deposit" min="2"/>
+			<onmap item="Christmas_Bench_Deposit" min="2"/>
+			<onmap item="Christmas_Nutcracker_Deposit" min="2"/>
+			<onmap item="Christmas_Presents_Deposit" min="2"/>
+			<onmap item="Christmas_Pyramid_Deposit" min="2"/>
+			<onmap item="Snowman_Deposit" min="2"/>
+			<onmap item="Christmastree_Deposit" min="2"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="300"/>
+			<reward type="Resource" name="ChristmasResource" amount="30" />
+			<reward type="Buff" item="ProductivityBuffToyFactoryBuff3" amount="1" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_DecoProduce2_lvl26" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl26" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_DecoPlacement1_lvl26"/>
+		</startcondition>
+		<triggers>
+			<buffproduced min="1" item="ChangeSkin_ChristmasStorehouse_short"/>
+			<buffproduced min="1" item="ChangeSkin_ChristmasBarracks_short"/>
+			<buffproduced min="1" item="ChangeSkin_ChristmasProvisionHouse_short"/>
+			<buffproduced min="1" item="ChangeSkin_ChristmasMayorhouse_short"/>
+			<buffproduced min="1" item="ChangeSkin_Xmas_ResidenceMedium_short"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="500" />
+			<reward type="Buff" item="ProductivityAreaBuffRainDance" amount="1" />
+		</posteffects>
+	</quest>		
+	
+	<quest name="XMAS2017plus_DecoPlacement2_lvl26" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl26" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_DecoProduce2_lvl26"/>
+		</startcondition>
+		<triggers>
+			<buffappliedonfriend item="ChangeSkin_ChristmasStorehouse_short" amount="1" locaExtension="christmasstorehouse"/>
+			<buffappliedonfriend item="ChangeSkin_ChristmasBarracks_short" amount="1" locaExtension="christmasbarracks"/>
+			<buffappliedonfriend item="ChangeSkin_ChristmasProvisionHouse_short" amount="1" locaExtension="christmasprovision"/>
+			<buffappliedonfriend item="ChangeSkin_ChristmasMayorhouse_short" amount="1" locaExtension="christmasmayor"/>
+			<buffappliedonfriend item="ChangeSkin_Xmas_ResidenceMedium_short" amount="1" locaExtension="christmasresidence"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="40" />
+		</posteffects>
+	</quest>		
+	
+		<quest name="XMAS2017plus_HolidayCheerDelay1_lvl26" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl26" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" questWinGemCosts="350">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_DecoPlacement2_lvl26"/>
+		</startcondition>
+		<triggers>
+			<completequestlist amount="1" item="XMAS2017plus_CheckWeek2" locaExtension="WaitForSecondWeek" />
+		</triggers>
+		<posteffects>
+		<reward type="Resource" name="ChristmasResource" amount="1" />
+		</posteffects>
+	</quest>	
+	
+	<quest name="XMAS2017plus_FeastPreparation1_lvl26" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl26" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_HolidayCheerDelay1_lvl26"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Fish" amount="400" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Fish" amount="800" />	
+			<trigger type="Resource" name="Water" amount="600" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Water" amount="1200" />
+			<trigger type="Resource" name="Bread" amount="800" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="1600" />
+			<trigger type="Resource" name="Manuscript" amount="1" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Manuscript" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="800" />
+			<reward type="Buff" item="SpeedUpPopulationGrowth3" amount="1" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_SongProduction_lvl26" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl26" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_FeastPreparation1_lvl26"/>
+		</startcondition>
+		<triggers>
+			<buffproduced min="1" item="Changeloopmusic_Christmas_Jingle"/>
+			<buffproduced min="1" item="Changeloopmusic_Christmas_Silent"/>
+			<buffproduced min="1" item="Changeloopmusic_Christmas_Merry"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="50" />
+		</posteffects>
+	</quest>
+	
+		<quest name="XMAS2017plus_SongPlacement_lvl26" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl26" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_SongProduction_lvl26"/>
+		</startcondition>
+		<triggers>
+			<buffappliedonfriend item="Changeloopmusic_Christmas_Jingle" amount="1" locaExtension="christmasjingle"/>
+			<buffappliedonfriend item="Changeloopmusic_Christmas_Silent" amount="1" locaExtension="christmassilent"/>
+			<buffappliedonfriend item="Changeloopmusic_Christmas_Merry" amount="1" locaExtension="christmasmerry"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="1000" />
+			<reward type="Buff" item="ProductivityBuffEW2" amount="1" />
+		</posteffects>
+	</quest>
+	
+		<quest name="XMAS2017plus_FeastPreparation2_lvl26" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl26" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_SongPlacement_lvl26"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Beer" amount="500" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="1000" />	
+			<trigger type="Resource" name="Sausage" amount="800" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Sausage" amount="1600" />
+			<trigger type="Resource" name="Bread" amount="1200" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="2400" />
+			<trigger type="Resource" name="Tome" amount="1" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Tome" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="60" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_HolidayCheerDelay2_lvl26" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl26" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" questWinGemCosts="350">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_FeastPreparation2_lvl26"/>
+		</startcondition>
+		<triggers>	
+			<completequestlist amount="1" item="XMAS2017plus_CheckWeek3" locaExtension="WaitForThirdWeek" />
+		</triggers>
+		<posteffects>
+		<reward type="Resource" name="ChristmasResource" amount="2" />
+		</posteffects>
+	</quest>	
+	
+	<quest name="XMAS2017plus_PresentProduction_lvl26" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl26" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_HolidayCheerDelay2_lvl26"/>
+		</startcondition>
+		<triggers>
+			<buffproduced min="1" item="ProvisionerBuffLvl_ChristmasStollen"/>
+			<buffproduced min="1" item="BookbinderBuffLvl_ChristmasStories"/>
+			<buffproduced min="1" item="ProductivityAreaBuffLvl_ChristmasJumper"/>
+			<buffproduced min="1" item="RecruitingBuffLvl_LittleDrummer"/>
+			<buffproduced min="1" item="ProductivityBuffZoneScienceLvl_Candles"/>
+			<buffproduced min="1" item="SpeedUpPopulationGrowth_MulledWine"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="1200" />
+			<reward type="Buff" item="ProductivityBuffLvl12" amount="1" />
+		</posteffects>
+	</quest>		
+	
+	<quest name="XMAS2017plus_GiftGiving_lvl26" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl26" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_PresentProduction_lvl26"/>
+		</startcondition>
+		<triggers>
+			<buffappliedonfriend amount="1" item="ProvisionerBuffLvl_ChristmasStollen" locaExtension="christmasstollen"/>
+			<buffappliedonfriend amount="1" item="BookbinderBuffLvl_ChristmasStories" locaExtension="christmasstories"/>
+			<buffappliedonfriend amount="1" item="ProductivityAreaBuffLvl_ChristmasJumper" locaExtension="christmasjumper"/>
+			<buffappliedonfriend amount="1" item="RecruitingBuffLvl_LittleDrummer" locaExtension="christmasdrummer"/>
+			<buffappliedonfriend amount="1" item="ProductivityBuffZoneScienceLvl_Candles" locaExtension="christmascandles"/>
+			<buffappliedonfriend amount="1" item="SpeedUpPopulationGrowth_MulledWine" locaExtension="christmaswine"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="70" />
+		</posteffects>
+	</quest>
+	
+		<quest name="XMAS2017plus_XmasSpiritFinal_lvl26" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl26" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_GiftGiving_lvl26"/>
+		</startcondition>
+		<triggers>
+			<completeadventurelist type="Coop" amount="3" locaExtension="Coop_many" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="100" />
+		</posteffects>
+	</quest>
+
+	<!-- Operation Holiday Cheer lvl 36 -->	
+	<quest name="XMAS2017plus_XmasSpirit_Main_lvl36" type="Event" npc="quest_character_santaclaus.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" icon="ChristmasResource" >
+		<triggers>
+			<questcomplete item="XMAS2017plus_CardPreparation_lvl36"/>
+			<questcomplete item="XMAS2017plus_CardDelivery_lvl36"/>
+			<questcomplete item="XMAS2017plus_DecoPlacement1_lvl36"/>
+			<questcomplete item="XMAS2017plus_DecoProduce2_lvl36"/>
+			<questcomplete item="XMAS2017plus_DecoPlacement2_lvl36"/>
+			<questcomplete item="XMAS2017plus_HolidayCheerDelay1_lvl36"/>
+			<questcomplete item="XMAS2017plus_FeastPreparation1_lvl36"/>
+			<questcomplete item="XMAS2017plus_SongProduction_lvl36"/>
+			<questcomplete item="XMAS2017plus_SongPlacement_lvl36"/>
+			<questcomplete item="XMAS2017plus_FeastPreparation2_lvl36"/>
+			<questcomplete item="XMAS2017plus_HolidayCheerDelay2_lvl36"/>
+			<questcomplete item="XMAS2017plus_PresentProduction_lvl36"/>
+			<questcomplete item="XMAS2017plus_GiftGiving_lvl36"/>
+			<questcomplete item="XMAS2017plus_XmasSpiritFinal_lvl36"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="4500" />
+			<reward type="Buff" item="MultiplierBuffZone2_PremiumFriendBuff_Christmas" amount="1"/>
+			<reward type="Buff" item="RecruitingBuffLvl9" amount="3"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_CardPreparation_lvl36" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl36" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true">
+		<startcondition>
+			<questactive item="XMAS2017plus_XmasSpirit_Main_lvl36" />
+		</startcondition>
+		<triggers>
+			<buffproduced min="6" item="ProductivityBuff_ChristmasCard"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="5" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_CardDelivery_lvl36" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl36" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_CardPreparation_lvl36"/>
+		</startcondition>
+		<triggers>
+			<buffappliedonfriend amount="6" item="ProductivityBuff_ChristmasCard" locaExtension="christmascards"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_DecoPlacement1_lvl36" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl36" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_CardDelivery_lvl36"/>
+		</startcondition>
+		<triggers>
+			<onmap item="Christmas_Lantern_Deposit" min="4"/>
+			<onmap item="Christmas_Bench_Deposit" min="4"/>
+			<onmap item="Christmas_Nutcracker_Deposit" min="4"/>
+			<onmap item="Christmas_Presents_Deposit" min="4"/>
+			<onmap item="Christmas_Pyramid_Deposit" min="4"/>
+			<onmap item="Snowman_Deposit" min="4"/>
+			<onmap item="Christmastree_Deposit" min="4"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="900" />
+			<reward type="Resource" name="ChristmasResource" amount="30" />
+			<reward type="Buff" item="ProductivityBuffToyFactoryBuff3" amount="1" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_DecoProduce2_lvl36" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl36" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_DecoPlacement1_lvl36"/>
+		</startcondition>
+		<triggers>
+			<buffproduced min="3" item="ChangeSkin_ChristmasStorehouse_short"/>
+			<buffproduced min="3" item="ChangeSkin_ChristmasBarracks_short"/>
+			<buffproduced min="3" item="ChangeSkin_ChristmasProvisionHouse_short"/>
+			<buffproduced min="3" item="ChangeSkin_ChristmasMayorhouse_short"/>
+			<buffproduced min="3" item="ChangeSkin_Xmas_ResidenceMedium_short"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="1500" />
+			<reward type="Buff" item="ProductivityAreaBuffRainDance" amount="1" />
+		</posteffects>
+	</quest>		
+	
+	<quest name="XMAS2017plus_DecoPlacement2_lvl36" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl36" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_DecoProduce2_lvl36"/>
+		</startcondition>
+		<triggers>
+			<buffappliedonfriend item="ChangeSkin_ChristmasStorehouse_short" amount="3" locaExtension="christmasstorehouse"/>
+			<buffappliedonfriend item="ChangeSkin_ChristmasBarracks_short" amount="3" locaExtension="christmasbarracks"/>
+			<buffappliedonfriend item="ChangeSkin_ChristmasProvisionHouse_short" amount="3" locaExtension="christmasprovision"/>
+			<buffappliedonfriend item="ChangeSkin_ChristmasMayorhouse_short" amount="3" locaExtension="christmasmayor"/>
+			<buffappliedonfriend item="ChangeSkin_Xmas_ResidenceMedium_short" amount="3" locaExtension="christmasresidence"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="40" />
+		</posteffects>
+	</quest>		
+	
+	<quest name="XMAS2017plus_HolidayCheerDelay1_lvl36" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl36" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" questWinGemCosts="350">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_DecoPlacement2_lvl36"/>
+		</startcondition>
+		<triggers>
+			<completequestlist amount="1" item="XMAS2017plus_CheckWeek2" locaExtension="WaitForSecondWeek" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="1" />
+		</posteffects>
+	</quest>	
+	
+	<quest name="XMAS2017plus_FeastPreparation1_lvl36" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl36" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_HolidayCheerDelay1_lvl36"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Fish" amount="1200" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Fish" amount="2400" />	
+			<trigger type="Resource" name="Water" amount="1800" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Water" amount="3600" />
+			<trigger type="Resource" name="Bread" amount="2400" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="4800" />
+			<trigger type="Resource" name="Manuscript" amount="1" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Manuscript" amount="2" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="2400" />
+			<reward type="Buff" item="SpeedUpPopulationGrowth3" amount="1" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_SongProduction_lvl36" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl36" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_FeastPreparation1_lvl36"/>
+		</startcondition>
+		<triggers>
+			<buffproduced min="3" item="Changeloopmusic_Christmas_Jingle"/>
+			<buffproduced min="3" item="Changeloopmusic_Christmas_Silent"/>
+			<buffproduced min="3" item="Changeloopmusic_Christmas_Merry"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="50" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_SongPlacement_lvl36" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl36" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_SongProduction_lvl36"/>
+		</startcondition>
+		<triggers>
+			<buffappliedonfriend item="Changeloopmusic_Christmas_Jingle" amount="3" locaExtension="christmasjingle"/>
+			<buffappliedonfriend item="Changeloopmusic_Christmas_Silent" amount="3" locaExtension="christmassilent"/>
+			<buffappliedonfriend item="Changeloopmusic_Christmas_Merry" amount="3" locaExtension="christmasmerry"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="3000" />
+			<reward type="Buff" item="ProductivityBuffEW2" amount="1" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_FeastPreparation2_lvl36" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl36" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_SongPlacement_lvl36"/>
+		</startcondition>
+		<triggers>
+<trigger type="Resource" name="Beer" amount="1500" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="3000" />	
+			<trigger type="Resource" name="Sausage" amount="2400" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Sausage" amount="4800" />
+			<trigger type="Resource" name="Bread" amount="3600" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="7200" />
+			<trigger type="Resource" name="Tome" amount="2" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Tome" amount="2" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="60" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_HolidayCheerDelay2_lvl36" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl36" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" questWinGemCosts="350">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_FeastPreparation2_lvl36"/>
+		</startcondition>
+		<triggers>	
+			<completequestlist amount="1" item="XMAS2017plus_CheckWeek3" locaExtension="WaitForThirdWeek" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="2" />
+		</posteffects>
+	</quest>	
+	
+	<quest name="XMAS2017plus_PresentProduction_lvl36" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl36" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_HolidayCheerDelay2_lvl36"/>
+		</startcondition>
+		<triggers>
+			<buffproduced min="3" item="ProvisionerBuffLvl_ChristmasStollen"/>
+			<buffproduced min="3" item="BookbinderBuffLvl_ChristmasStories"/>
+			<buffproduced min="3" item="ProductivityAreaBuffLvl_ChristmasJumper"/>
+			<buffproduced min="3" item="RecruitingBuffLvl_LittleDrummer"/>
+			<buffproduced min="3" item="ProductivityBuffZoneScienceLvl_Candles"/>
+			<buffproduced min="3" item="SpeedUpPopulationGrowth_MulledWine"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="3600" />
+			<reward type="Buff" item="ProductivityBuffLvl12" amount="1" />
+		</posteffects>
+	</quest>		
+	
+	<quest name="XMAS2017plus_GiftGiving_lvl36" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl36" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_PresentProduction_lvl36"/>
+		</startcondition>
+		<triggers>
+			<buffappliedonfriend amount="3" item="ProvisionerBuffLvl_ChristmasStollen" locaExtension="christmasstollen"/>
+			<buffappliedonfriend amount="3" item="BookbinderBuffLvl_ChristmasStories" locaExtension="christmasstories"/>
+			<buffappliedonfriend amount="3" item="ProductivityAreaBuffLvl_ChristmasJumper" locaExtension="christmasjumper"/>
+			<buffappliedonfriend amount="3" item="RecruitingBuffLvl_LittleDrummer" locaExtension="christmasdrummer"/>
+			<buffappliedonfriend amount="3" item="ProductivityBuffZoneScienceLvl_Candles" locaExtension="christmascandles"/>
+			<buffappliedonfriend amount="3" item="SpeedUpPopulationGrowth_MulledWine" locaExtension="christmaswine"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="70" />
+		</posteffects>
+	</quest>
+	
+		<quest name="XMAS2017plus_XmasSpiritFinal_lvl36" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl36" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_GiftGiving_lvl36"/>
+		</startcondition>
+		<triggers>
+			<completeadventurelist type="Coop" amount="6" locaExtension="Coop_many" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="100" />
+		</posteffects>
+	</quest>
+	
+	<!-- Operation Holiday Cheer lvl 51 -->	
+	<quest name="XMAS2017plus_XmasSpirit_Main_lvl51" type="Event" npc="quest_character_santaclaus.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" icon="ChristmasResource" >
+		<triggers>
+			<questcomplete item="XMAS2017plus_CardPreparation_lvl51"/>
+			<questcomplete item="XMAS2017plus_CardDelivery_lvl51"/>
+			<questcomplete item="XMAS2017plus_DecoPlacement1_lvl51"/>
+			<questcomplete item="XMAS2017plus_DecoProduce2_lvl51"/>
+			<questcomplete item="XMAS2017plus_DecoPlacement2_lvl51"/>
+			<questcomplete item="XMAS2017plus_HolidayCheerDelay1_lvl51"/>
+			<questcomplete item="XMAS2017plus_FeastPreparation1_lvl51"/>
+			<questcomplete item="XMAS2017plus_SongProduction_lvl51"/>
+			<questcomplete item="XMAS2017plus_SongPlacement_lvl51"/>
+			<questcomplete item="XMAS2017plus_FeastPreparation2_lvl51"/>
+			<questcomplete item="XMAS2017plus_HolidayCheerDelay2_lvl51"/>
+			<questcomplete item="XMAS2017plus_PresentProduction_lvl51"/>
+			<questcomplete item="XMAS2017plus_GiftGiving_lvl51"/>
+			<questcomplete item="XMAS2017plus_XmasSpiritFinal_lvl51"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="13500" />
+			<reward type="Buff" item="MultiplierBuffZone2_PremiumFriendBuff_Christmas" amount="1"/>
+			<reward type="Buff" item="RecruitingBuffLvl9" amount="3"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_CardPreparation_lvl51" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl51" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true">
+		<startcondition>
+			<questactive item="XMAS2017plus_XmasSpirit_Main_lvl51" />
+		</startcondition>
+		<triggers>
+			<buffproduced min="9" item="ProductivityBuff_ChristmasCard"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="5" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_CardDelivery_lvl51" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl51" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_CardPreparation_lvl51"/>
+		</startcondition>
+		<triggers>
+			<buffappliedonfriend amount="9" item="ProductivityBuff_ChristmasCard" locaExtension="christmascards"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+	<quest name="XMAS2017plus_DecoPlacement1_lvl51" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl51" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_CardDelivery_lvl51"/>
+		</startcondition>
+		<triggers>
+			<onmap item="Christmas_Lantern_Deposit" min="6"/>
+			<onmap item="Christmas_Bench_Deposit" min="6"/>
+			<onmap item="Christmas_Nutcracker_Deposit" min="6"/>
+			<onmap item="Christmas_Presents_Deposit" min="6"/>
+			<onmap item="Christmas_Pyramid_Deposit" min="6"/>
+			<onmap item="Snowman_Deposit" min="6"/>
+			<onmap item="Christmastree_Deposit" min="6"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="2700" />
+			<reward type="Resource" name="ChristmasResource" amount="30" />
+			<reward type="Buff" item="ProductivityBuffToyFactoryBuff3" amount="1" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_DecoProduce2_lvl51" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl51" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_DecoPlacement1_lvl51"/>
+		</startcondition>
+		<triggers>
+			<buffproduced min="5" item="ChangeSkin_ChristmasStorehouse_short"/>
+			<buffproduced min="5" item="ChangeSkin_ChristmasBarracks_short"/>
+			<buffproduced min="5" item="ChangeSkin_ChristmasProvisionHouse_short"/>
+			<buffproduced min="5" item="ChangeSkin_ChristmasMayorhouse_short"/>
+			<buffproduced min="5" item="ChangeSkin_Xmas_ResidenceMedium_short"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="4500" />
+			<reward type="Buff" item="ProductivityAreaBuffRainDance" amount="1" />
+		</posteffects>
+	</quest>		
+	
+	<quest name="XMAS2017plus_DecoPlacement2_lvl51" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl51" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_DecoProduce2_lvl51"/>
+		</startcondition>
+		<triggers>
+			<buffappliedonfriend item="ChangeSkin_ChristmasStorehouse_short" amount="5" locaExtension="christmasstorehouse"/>
+			<buffappliedonfriend item="ChangeSkin_ChristmasBarracks_short" amount="5" locaExtension="christmasbarracks"/>
+			<buffappliedonfriend item="ChangeSkin_ChristmasProvisionHouse_short" amount="5" locaExtension="christmasprovision"/>
+			<buffappliedonfriend item="ChangeSkin_ChristmasMayorhouse_short" amount="5" locaExtension="christmasmayor"/>
+			<buffappliedonfriend item="ChangeSkin_Xmas_ResidenceMedium_short" amount="5" locaExtension="christmasresidence"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="40" />
+		</posteffects>
+	</quest>		
+	
+	<quest name="XMAS2017plus_HolidayCheerDelay1_lvl51" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl51" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" questWinGemCosts="350">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_DecoPlacement2_lvl51"/>
+		</startcondition>
+		<triggers>
+			<completequestlist amount="1" item="XMAS2017plus_CheckWeek2" locaExtension="WaitForSecondWeek" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="1" />
+		</posteffects>
+	</quest>	
+	
+	<quest name="XMAS2017plus_FeastPreparation1_lvl51" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl51" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_HolidayCheerDelay1_lvl51"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="Fish" amount="3600" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Fish" amount="7200" />	
+			<trigger type="Resource" name="Water" amount="5400" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Water" amount="10800" />
+			<trigger type="Resource" name="Bread" amount="7200" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="14400" />
+			<trigger type="Resource" name="Manuscript" amount="3" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Manuscript" amount="3" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="7200" />
+			<reward type="Buff" item="SpeedUpPopulationGrowth3" amount="1" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_SongProduction_lvl51" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl51" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_FeastPreparation1_lvl51"/>
+		</startcondition>
+		<triggers>
+			<buffproduced min="5" item="Changeloopmusic_Christmas_Jingle"/>
+			<buffproduced min="5" item="Changeloopmusic_Christmas_Silent"/>
+			<buffproduced min="5" item="Changeloopmusic_Christmas_Merry"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="50" />
+		</posteffects>
+	</quest>
+	
+		<quest name="XMAS2017plus_SongPlacement_lvl51" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl51" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_SongProduction_lvl51"/>
+		</startcondition>
+		<triggers>
+			<buffappliedonfriend item="Changeloopmusic_Christmas_Jingle" amount="5" locaExtension="christmasjingle"/>
+			<buffappliedonfriend item="Changeloopmusic_Christmas_Silent" amount="5" locaExtension="christmassilent"/>
+			<buffappliedonfriend item="Changeloopmusic_Christmas_Merry" amount="5" locaExtension="christmasmerry"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="9000" />
+			<reward type="Buff" item="ProductivityBuffEW2" amount="1" />
+		</posteffects>
+	</quest>
+	
+		<quest name="XMAS2017plus_FeastPreparation2_lvl51" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl51" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_SongPlacement_lvl51"/>
+		</startcondition>
+		<triggers>
+<trigger type="Resource" name="Beer" amount="4500" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="9000" />	
+			<trigger type="Resource" name="Sausage" amount="7200" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Sausage" amount="14400" />
+			<trigger type="Resource" name="Bread" amount="10800" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="21600" />
+			<trigger type="Resource" name="Tome" amount="3" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Tome" amount="3" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="60" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_HolidayCheerDelay2_lvl51" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl51" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" questWinGemCosts="350">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_FeastPreparation2_lvl51"/>
+		</startcondition>
+		<triggers>	
+			<completequestlist amount="1" item="XMAS2017plus_CheckWeek3" locaExtension="WaitForThirdWeek" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="2" />
+		</posteffects>
+	</quest>	
+	
+	<quest name="XMAS2017plus_PresentProduction_lvl51" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl51" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_HolidayCheerDelay2_lvl51"/>
+		</startcondition>
+		<triggers>
+			<buffproduced min="5" item="ProvisionerBuffLvl_ChristmasStollen"/>
+			<buffproduced min="5" item="BookbinderBuffLvl_ChristmasStories"/>
+			<buffproduced min="5" item="ProductivityAreaBuffLvl_ChristmasJumper"/>
+			<buffproduced min="5" item="RecruitingBuffLvl_LittleDrummer"/>
+			<buffproduced min="5" item="ProductivityBuffZoneScienceLvl_Candles"/>
+			<buffproduced min="5" item="SpeedUpPopulationGrowth_MulledWine"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="10800" />
+			<reward type="Buff" item="ProductivityBuffLvl12" amount="1" />
+		</posteffects>
+	</quest>		
+	
+	<quest name="XMAS2017plus_GiftGiving_lvl51" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl51" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_PresentProduction_lvl51"/>
+		</startcondition>
+		<triggers>
+			<buffappliedonfriend amount="5" item="ProvisionerBuffLvl_ChristmasStollen" locaExtension="christmasstollen"/>
+			<buffappliedonfriend amount="5" item="BookbinderBuffLvl_ChristmasStories" locaExtension="christmasstories"/>
+			<buffappliedonfriend amount="5" item="ProductivityAreaBuffLvl_ChristmasJumper" locaExtension="christmasjumper"/>
+			<buffappliedonfriend amount="5" item="RecruitingBuffLvl_LittleDrummer" locaExtension="christmasdrummer"/>
+			<buffappliedonfriend amount="5" item="ProductivityBuffZoneScienceLvl_Candles" locaExtension="christmascandles"/>
+			<buffappliedonfriend amount="5" item="SpeedUpPopulationGrowth_MulledWine" locaExtension="christmaswine"/>
+		</triggers>
+		<posteffects>
+<reward type="Resource" name="ChristmasResource" amount="70" />
+		</posteffects>
+	</quest>
+	
+		<quest name="XMAS2017plus_XmasSpiritFinal_lvl51" type="Event" connectedToQuest="XMAS2017plus_XmasSpirit_Main_lvl51" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" >
+		<startcondition>
+			<questcomplete item="XMAS2017plus_GiftGiving_lvl51"/>
+		</startcondition>
+		<triggers>
+			<completeadventurelist type="Coop" amount="10" locaExtension="Coop_many" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="100" />
+		</posteffects>
+	</quest>
+
+<!-- XMAS EVENT 2015 Quest Chain -->
+	
+	<quest name="XMAS2017plus_Main1" type="Event" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<triggers>
+			<questcomplete item="XMAS2017plus_Reach16"/>
+			<questcomplete item="XMAS2017plus_Sub1"/>
+			<questcomplete item="XMAS2017plus_Sub2"/>
+			<questcomplete item="XMAS2017plus_Sub2a"/>
+			<questcomplete item="XMAS2017plus_Sub3"/>
+			<questcomplete item="XMAS2017plus_Sub4"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="80" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2017plus_Main2" type="Event" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_Main1" />
+		</startcondition>
+		<triggers>
+			<questcomplete item="XMAS2017plus_Reach23" />
+			<questcomplete item="XMAS2017plus_Sub5" />
+			<questcomplete item="XMAS2017plus_Sub6" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="80" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2017plus_ChainFilter" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_Main2" />
+		</startcondition>
+		<postrequisits>
+			<postrequisite filterQuest="Level1-22" startQuest="XMAS2017plus_ChainFilter" startDelay="86400" />		<!-- Level 1-22;	This line should not be required since a previous quest already requires level 23 I'll keep it in as a failsave anyway -Denis -->
+			<postrequisite filterQuest="Level23-35" startQuest="XMAS2017plus_Main3_Easy"  />		
+			<postrequisite filterQuest="Level36-47" startQuest="XMAS2017plus_Main3_Medium" />	
+			<postrequisite filterQuest="Level48-80" startQuest="XMAS2017plus_Main3_Hard" />		
+		</postrequisits>
+	</quest>
+
+	<quest name="XMAS2017plus_Main3_Easy" type="Event" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<triggers>
+			<questcomplete item="XMAS2017plus_Reach26" />
+			<questcomplete item="XMAS2017plus_Sub7_Easy" />
+			<questcomplete item="XMAS2017plus_Sub8_Easy" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="80" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2017plus_Main3_Medium" type="Event" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<triggers>
+			<questcomplete item="XMAS2017plus_Sub7_Medium" />
+			<questcomplete item="XMAS2017plus_Sub8_Medium" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="80" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2017plus_Main3_Hard" type="Event" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<triggers>
+			<questcomplete item="XMAS2017plus_Sub7_Hard" />
+			<questcomplete item="XMAS2017plus_Sub8_Hard" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="80" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2017plus_Reach16" type="Event" connectedToQuest="XMAS2017plus_Main1" icon="XP" npc="quest_character_santaclaus.png" cancelable="false" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questactive item="XMAS2017plus_Main1" />
+		</startcondition>
+		<triggers>   
+			<playerlevel min="16" /> 
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_Sub1" type="Event" connectedToQuest="XMAS2017plus_Main1" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_Reach16" />
+		</startcondition>
+		<triggers>
+			<trigger type="WindowOpen" name="GAMESTATE_ID_ADVENT_WINDOW" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+		<hints>
+			<hint pointTo="GAMESTATE_ID_AVATAR.btnAdvent" type="Glow" />
+		</hints>
+	</quest>
+	
+	<quest name="XMAS2017plus_Sub2" type="Event" connectedToQuest="XMAS2017plus_Main1" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_Sub1" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="CollectibleChristmasBells" condition="ge" amount="25" />
+			<trigger type="Resource" name="CollectibleChristmasCandy" condition="ge" amount="25" />
+			<trigger type="Resource" name="CollectibleChristmasGingerbread" condition="ge" amount="25" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_Sub2a" type="Event" connectedToQuest="XMAS2017plus_Main1" icon="ChristmasResource" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_Sub1" />
+		</startcondition>
+		<triggers>
+			<trigger type="WindowOpen" name="GAMESTATE_ID_AVATAR.options" amount="1" />
+			<trigger type="WindowOpen" name="GAMESTATE_ID_EVENT_WINDOW" amount="1" />
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</rewards>
+		<hints>
+			<hint pointTo="GAMESTATE_ID_AVATAR.options" type="Glow" />
+		</hints>
+	</quest>
+
+	<quest name="XMAS2017plus_Sub3" type="Event" connectedToQuest="XMAS2017plus_Main1" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_Sub2" />
+		</startcondition>
+		<triggers>			
+			<trigger type="Buff" name="AddResource_ChristmasResourceCollection" amount="1" condition="produce" icon="buildings:Mayorhouse" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2017plus_Sub4" type="Event" connectedToQuest="XMAS2017plus_Main1" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_Sub3" />
+		</startcondition>
+		<triggers>
+			<trigger type="SpecialistTask" name="FindTreasureShort" condition="found" resourceType="ChristmasResource" amount="1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>	
+	
+	<quest name="XMAS2017plus_Adv1" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_Sub2a" />
+		</startcondition>
+		<triggers>
+			<!--<click item="GAMESTATE_ID_ADVENTURE_PANEL.btnStart" locaExtension="XMAS2017plus_Adv1" />-->
+			<calendarDoorOpened item="XMAS_door1"/>
+		</triggers>
+		<rewards>
+		</rewards>
+		<hints>
+		</hints>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="20" />
+			<startquest name="XMAS2017plus_Adv2_easy">
+				<conditions>
+					<playerlevel min="16" max="25"/>
+				</conditions>
+			</startquest>
+			<startquest name="XMAS2017plus_Adv2_medium">
+				<conditions>
+					<playerlevel min="26" max="35"/>
+				</conditions>
+			</startquest>
+			<startquest name="XMAS2017plus_Adv2_hard">
+				<conditions>
+					<playerlevel min="36"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_Adv2_easy" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" showRewardWindow="true">
+		<triggers>
+			<buffproduced item="BattleBuffHurtXMAS_GiftBuff_easy1" min="1" />
+			<buffproduced item="BattleBuffHurtXMAS_GiftBuff_easy2" min="1" />
+		</triggers>
+		<rewards>
+		</rewards>
+		<hints>
+		</hints>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="20" />
+			<startquest name="XMAS2017plus_Adv3" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_Adv2_medium" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" showRewardWindow="true">
+		<triggers>
+			<buffproduced item="BattleBuffHurtXMAS_GiftBuff_medium1" min="1" />
+			<buffproduced item="BattleBuffHurtXMAS_GiftBuff_medium2" min="1" />
+		</triggers>
+		<rewards>
+		</rewards>
+		<hints>
+		</hints>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="20" />
+			<startquest name="XMAS2017plus_Adv3" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_Adv2_hard" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" showRewardWindow="true">
+		<triggers>
+			<buffproduced item="BattleBuffHurtXMAS_GiftBuff_hard1" min="1" />
+			<buffproduced item="BattleBuffHurtXMAS_GiftBuff_hard3" min="1" />
+		</triggers>
+		<rewards>
+		</rewards>
+		<hints>
+		</hints>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="20" />
+			<startquest name="XMAS2017plus_Adv3" />
+		</posteffects>
+	</quest>
+	
+	<quest name="XMAS2017plus_Adv3" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" showRewardWindow="true">
+		<triggers>
+			<questcomplete item="XMAS2017plus_Adv3_ObjectiveTracker" locaExtension="CompleteOneXmasScenario"/>
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="ChristmasResource" amount="20" />
+		</rewards>
+		<hints>
+		</hints>
+	</quest>
+	
+	<quest name="XMAS2017plus_Adv3_ObjectiveTracker" type="Event" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<completeadventurelist item="XMAS_Map_Easy_1,XMAS_Map_Easy_2,XMAS_Map_Medium_1,XMAS_Map_Medium_2,XMAS_Map_Hard_1,XMAS_Map_Hard_2" amount="1"/>
+		</triggers>
+		<rewards>
+		</rewards>
+		<hints>
+		</hints>
+	</quest>
+		
+	<quest name="XMAS2017plus_Reach23" type="Event" connectedToQuest="XMAS2017plus_Main2" icon="XP" npc="quest_character_santaclaus.png" cancelable="false" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questactive item="XMAS2017plus_Main2" />
+		</startcondition>
+		<triggers>
+			<trigger type="PlayerLevel" name="" condition="ge" amount="23" locaExtension="XMAS_lvl23" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2017plus_Sub5" type="Event" connectedToQuest="XMAS2017plus_Main2" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_Reach23" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Horse" amount="200" />
+			<trigger type="PayForQuestFinish" name="Wood" amount="600" />
+			<trigger type="Resource" name="Horse" condition="produce" amount="200" />
+			<trigger type="Resource" name="Wood" condition="produce" amount="600" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2017plus_Sub6" type="Event" connectedToQuest="XMAS2017plus_Main2" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_Sub5" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="CollectibleHerbs" amount="20" />
+			<trigger type="PayForQuestFinish" name="CollectibleKettle" amount="1" />
+			<trigger type="PayForQuestFinish" name="Water" amount="300" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="200" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2017plus_Reach26" type="Event" connectedToQuest="XMAS2017plus_Main3_Easy" icon="XP" npc="quest_character_santaclaus.png" cancelable="false" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questactive item="XMAS2017plus_Main3_Easy" />
+		</startcondition>
+		<triggers>
+			<trigger type="PlayerLevel" name="" condition="ge" amount="26" locaExtension="XMAS_lvl26" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="5" />
+		</posteffects>
+	</quest>
+
+
+	<quest name="XMAS2017plus_Sub7_Easy" type="Event" connectedToQuest="XMAS2017plus_Main3_Easy" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_Reach26" />
+		</startcondition>
+		<triggers>
+			<completeadventurelist type="Mission,Mini,Coop" amount="1" locaExtension="AnyMission_1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2017plus_Sub7_Medium" type="Event" connectedToQuest="XMAS2017plus_Main3_Medium" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questactive item="XMAS2017plus_Main3_Medium" />
+		</startcondition>
+		<triggers>
+			<completeadventurelist type="Mission,Mini,Coop" tier="3" amount="1" locaExtension="AnyMission_Dif3_1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2017plus_Sub7_Hard" type="Event" connectedToQuest="XMAS2017plus_Main3_Hard" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questactive item="XMAS2017plus_Main3_Hard" />
+		</startcondition>
+		<triggers>
+			<completeadventurelist type="Mission,Mini,Coop" tier="5" amount="1" locaExtension="AnyMission_Dif5_1" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2017plus_Sub8_Easy" type="Event" connectedToQuest="XMAS2017plus_Main3_Easy" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_Sub7_Easy" />
+		</startcondition>
+		<triggers>
+			<trigger type="MilitaryUnit" name="Recruit" condition="ge" amount="100" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2017plus_Sub8_Medium" type="Event" connectedToQuest="XMAS2017plus_Main3_Medium" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_Sub7_Medium" />
+		</startcondition>
+		<triggers>
+			<trigger type="MilitaryUnit" name="Recruit" condition="ge" amount="250" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	<quest name="XMAS2017plus_Sub8_Hard" type="Event" connectedToQuest="XMAS2017plus_Main3_Hard" icon="ChristmasResource" cancelable="false" npc="quest_character_santaclaus.png" showRewardWindow="true" linkEventWindow="true">
+		<startcondition>
+			<questcomplete item="XMAS2017plus_Sub7_Hard" />
+		</startcondition>
+		<triggers>
+			<trigger type="MilitaryUnit" name="Recruit" condition="ge" amount="500" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</posteffects>
+	</quest>
+
+	
+	<!-- <XMAS (Christmas)) EVENT 2015 Daily Quests> -->
+
+
+	<quest name="XMAS2017plus_DailyQuestLevelRequirement" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+			<trigger type="PlayerLevel" name="" condition="ge" amount="10" />
+		</triggers>
+		<rewards>
+		</rewards>
+		<postrequisits>
+			<postrequisite startQuest="XMAS2017plus_DailyQuest" />
+		</postrequisits>
+	</quest>
+
+
+	<quest name="XMAS2017plus_DailyQuest" showQuestWindow="false" showRewardWindow="false" specialType="regularDailyQuestList">
+		<triggers>
+			<trigger type="DailyTime" amount="1" />
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite filterQuest="Level10-17" startQuest="ChrDaiTheToyMaker" />
+				<postrequisite filterQuest="Level10-17" startQuest="ChrDaiSnowflakeTea" />
+				<postrequisite filterQuest="Level10-17" startQuest="ChrDaiColoredFish" />
+				<postrequisite filterQuest="Level18-25" startQuest="ChrDaiWarmBrew" />
+				<postrequisite filterQuest="Level18-25" startQuest="ChrDaiTheSnowyPretzel" />
+				<postrequisite filterQuest="Level18-25" startQuest="ChrDaiTallTree" />
+				<postrequisite filterQuest="Level26-35" startQuest="ChrDaiLateDinner" />
+				<postrequisite filterQuest="Level26-35" startQuest="ChrDaiYellowStar" />
+				<postrequisite filterQuest="Level26-35" startQuest="ChrDaiMerryMaintenance" />
+				<postrequisite filterQuest="Level36-80" startQuest="ChrDaiHeavyGifts" />
+				<postrequisite filterQuest="Level36-80" startQuest="ChrDaiChristmasPostcard" />
+				<postrequisite filterQuest="Level36-80" startQuest="ChrDaiTheNaughtyAndTheNice" />
+				<postrequisite filterQuest="Level10-17" startQuest="ChrDaiSavingOfChristmasEve" />
+				<postrequisite filterQuest="Level10-17" startQuest="ChrDaiCozyChristmasEve" />
+				<postrequisite filterQuest="Level10-17" startQuest="ChrDaiANewShelter" />
+				<postrequisite filterQuest="Level18-25" startQuest="ChrDaiSantasLittleHelper" />
+				<postrequisite filterQuest="Level18-25" startQuest="ChrDaiTheChristmasBakery" />
+				<postrequisite filterQuest="Level26-35" startQuest="ChrDaiAHugeChristmasTree" />
+				<postrequisite filterQuest="Level26-35" startQuest="ChrDaiTheNewMantelshelf" />
+				<postrequisite filterQuest="Level36-80" startQuest="ChrDaiHelpForMotherHolle" />
+				<postrequisite filterQuest="Level36-80" startQuest="ChrDaiImportantWood" />
+			</postrequisite>
+		</postrequisits>
+	</quest>
+
+	<quest name="ChrDaiTheToyMaker" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" questWinGemCosts="32" cancelable="true">
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Wood" amount="80" />
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</rewards>
+		<postrequisits>
+		</postrequisits>
+	</quest>
+
+	<quest name="ChrDaiSnowflakeTea" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" questWinGemCosts="32" cancelable="true">
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Water" amount="100" />
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</rewards>
+		<postrequisits>
+		</postrequisits>
+	</quest>
+
+	<quest name="ChrDaiColoredFish" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" questWinGemCosts="32" cancelable="true">
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Fish" amount="80" />
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</rewards>
+		<postrequisits>
+		</postrequisits>
+	</quest>
+
+	<quest name="ChrDaiWarmBrew" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" questWinGemCosts="32" cancelable="true">
+		<triggers>
+			<trigger type="Resource" name="Beer" condition="buy" amount="100" />
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</rewards>
+		<postrequisits>
+		</postrequisits>
+	</quest>
+
+	<quest name="ChrDaiTheSnowyPretzel" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" questWinGemCosts="32" cancelable="true">
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Water" amount="50" />
+			<trigger type="PayForQuestFinish" name="Flour" amount="50" />
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</rewards>
+		<postrequisits>
+		</postrequisits>
+	</quest>
+
+	<quest name="ChrDaiTallTree" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" questWinGemCosts="32" cancelable="true">
+		<triggers>
+			<trigger type="PayForQuestFinish" name="RealPlank" amount="100" />
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</rewards>
+		<postrequisits>
+		</postrequisits>
+	</quest>
+
+	<quest name="ChrDaiLateDinner" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" questWinGemCosts="32" cancelable="true">
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Sausage" amount="100" />
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</rewards>
+		<postrequisits>
+		</postrequisits>
+	</quest>
+
+	<quest name="ChrDaiYellowStar" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" questWinGemCosts="32" cancelable="true">
+		<triggers>
+			<trigger type="PayForQuestFinish" name="IronOre" amount="100" />
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</rewards>
+		<postrequisits>
+		</postrequisits>
+	</quest>
+
+	<quest name="ChrDaiMerryMaintenance" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" questWinGemCosts="32" cancelable="true">
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Tool" amount="150" />
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</rewards>
+		<postrequisits>
+		</postrequisits>
+	</quest>
+
+	<quest name="ChrDaiHeavyGifts" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" questWinGemCosts="32" cancelable="true">
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Horse" amount="250" />
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</rewards>
+		<postrequisits>
+		</postrequisits>
+	</quest>
+
+	<quest name="ChrDaiChristmasPostcard" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" questWinGemCosts="32" cancelable="true">
+		<triggers>
+			<trigger type="BuffOnFriend" name="ProductivityBuffLvl3" condition="geDelta" amount="5" />
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</rewards>
+		<postrequisits>
+		</postrequisits>
+	</quest>
+
+	<quest name="ChrDaiTheNaughtyAndTheNice" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" questWinGemCosts="32" cancelable="true">
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Coal" amount="250" />
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</rewards>
+		<postrequisits>
+		</postrequisits>
+	</quest>
+
+	<quest name="ChrDaiSavingOfChristmasEve" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" questWinGemCosts="32" cancelable="true">
+		<triggers>
+			<trigger type="BuffOnFriend" name="" amount="5" condition="geDelta" />
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</rewards>
+		<postrequisits>
+		</postrequisits>
+	</quest>
+
+	<quest name="ChrDaiCozyChristmasEve" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" questWinGemCosts="32" cancelable="true">
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Wood" amount="50" />
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</rewards>
+		<postrequisits>
+		</postrequisits>
+	</quest>
+
+	<quest name="ChrDaiANewShelter" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" questWinGemCosts="32" cancelable="true">
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Stone" amount="100" />
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</rewards>
+		<postrequisits>
+		</postrequisits>
+	</quest>
+
+	<quest name="ChrDaiSantasLittleHelper" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" questWinGemCosts="32" cancelable="true">
+		<triggers>
+			<trigger type="Buff" name="AddResource_ConvertBMtoToolsSmall" amount="150" condition="produce" />
+			<buffapplied item="AddResource" type="Tool" min="150" locaExtension="addresource"/>
+			<!--trigger type="Buff" name="AddResource_ConvertBMtoToolsSmall" amount="150" condition="consume" /-->
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</rewards>
+		<postrequisits>
+		</postrequisits>
+	</quest>
+
+	<quest name="ChrDaiTheChristmasBakery" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" questWinGemCosts="32" cancelable="true">
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Flour" amount="50" />
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</rewards>
+		<postrequisits>
+		</postrequisits>
+	</quest>
+
+	<quest name="ChrDaiAHugeChristmasTree" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" questWinGemCosts="32" cancelable="true">
+		<triggers>
+			<trigger type="PayForQuestFinish" name="RealPlank" amount="50" />
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</rewards>
+		<postrequisits>
+		</postrequisits>
+	</quest>
+
+	<quest name="ChrDaiTheNewMantelshelf" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" questWinGemCosts="32" cancelable="true">
+		<triggers>
+			<trigger type="Buff" name="AddResource_ConvertStoneToMarbleSmall" amount="150" condition="produce" />
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</rewards>
+		<postrequisits>
+		</postrequisits>
+	</quest>
+
+	<quest name="ChrDaiHelpForMotherHolle" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" questWinGemCosts="32" cancelable="true">
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Sausage" amount="50" />
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</rewards>
+		<postrequisits>
+		</postrequisits>
+	</quest>
+
+	<quest name="ChrDaiImportantWood" type="Event" icon="ChristmasResource" npc="quest_character_santaclaus.png" questWinGemCosts="32" cancelable="true">
+		<triggers>
+			<trigger type="Buff" name="AddResource_ConvertBowToLongbow" amount="10" condition="produce" />
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="ChristmasResource" amount="10" />
+		</rewards>
+		<postrequisits>
+		</postrequisits>
+	</quest>
+
+
+
+	<quest name="XMAS_ConcertHall2020" showQuestWindow="false" showRewardWindow="false" >
+		<startcondition>
+			<onmap item="ConcertHall" amount="1" />
+		</startcondition>
+		<triggers>
+				<zonebuffactive name="ZoneConcertHall1" amount="1" />
+				<zonebuffactive name="ZoneConcertHall2" amount="1" />
+				<zonebuffactive name="ZoneConcertHall3" amount="1" />
+		</triggers>
+		<postrequisits>
+		</postrequisits>
+	</quest>
+
+
+</Root>

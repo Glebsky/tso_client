@@ -1,0 +1,7 @@
+{
+  "tests": 64,
+  "jquery": "3.6.0",
+  "behavior": "identical DOM/checkbox state/data-index/delegated events",
+  "capacityReads": "2 -> 1 per paired market update",
+  "appends": "N -> 1 per non-empty table render"
+}

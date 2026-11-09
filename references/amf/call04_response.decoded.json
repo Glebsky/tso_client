@@ -1,0 +1,46 @@
+{
+  "amf_version": 3,
+  "headers": 0,
+  "bodies": [
+    {
+      "target": "/4/onResult",
+      "response": "",
+      "declared_len": 4294967295,
+      "marker": "0x11",
+      "value": {
+        "__class": "flex.messaging.messages.AcknowledgeMessage",
+        "body": {
+          "__class": "defaultGame.Communication.VO.dServerResponse",
+          "type": 1062,
+          "zoneID": 1601416,
+          "data": {
+            "__class": "defaultGame.Communication.VO.dServerActionResult",
+            "clientTime": 19037914501.0,
+            "errorCode": 0,
+            "data": {
+              "__class": "defaultGame.Communication.VO.dGameTickCommandVO",
+              "playerID": 1601416,
+              "time": 19037917251.0,
+              "mode": 1062,
+              "data": {
+                "__class": "flex.messaging.io.ArrayCollection",
+                "__externalizable": true,
+                "__value": []
+              },
+              "uniqueID": null
+            }
+          }
+        },
+        "clientId": "29e81abe-58e9-41ea-92c5-b1156eca8bbc",
+        "correlationId": "10f54a1e-c74c-415b-8cf7-2d3a50237c78",
+        "destination": null,
+        "headers": {
+          "__class": "Object"
+        },
+        "messageId": "ebdfb3a1-e79e-4118-951a-0110930cf706",
+        "timeToLive": 0.0,
+        "timestamp": 1787943113503.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<triggers>
+
+   <!-- Below is an example of a trigger localization definition :
+    <trigger name="buffapplied" defaultLocaParams="min,item">
+        <locaExt type="missing" param="item" locaExt="_any" />
+        <locaExt type="existing" param="target" locaExt="_on" addLocaParams="target" />
+    </trigger>
+    The system will work in the following way:
+    •	Default, the localization text id will be the trigger name (ie. “buffapplied”)
+    •	When retrieving the text from the cLocaManager, the parameters that will be sent will be the values described in the “defaultLocaParams” attribute.
+    •	The trigger node can have several children nodes, which will be conditions that, if they are met by the trigger definition, the text id sent will be appended with the “locaExt” attribute, and, optionally, additional localization parameters will be added, defined in the “addLocaParams” attribute.
+    •	The known conditions can be “missing” or “existing”, which apply to specific parameters in the TriggerVO definition parsed from the XML.
+    Example usages:
+    1.	<buffapplied item="ProductivityBuffLvl6" min="10000" />
+    •	No conditions are met, because neither the “item” attribute is missing nor the “target” attribute is defined
+    •	Call : cLocaManager.GetInstance().GetText(LOCA_GROUP.QUEST_TRIGGERS, "buffapplied", [10000, "ProductivityBuffLvl6"]);
+    2.	<buffapplied min="10000" />
+    •	Because the “item” attribute is missing from the XML, the textID will be appended with “_any”
+    •	Call: cLocaManager.GetInstance().GetText(LOCA_GROUP.QUEST_TRIGGERS, "buffapplied_any", [10000, "ProductivityBuffLvl6"]);
+    3.	<buffapplied item="ProductivityBuffLvl6" target=”Mayorhouse” min="10000" />
+    •	“target” attribute is defined, so the second condition is met, therefore the “_on” will be added to the text id and the “target” attribute value will be added to the localization parameter array
+    •	Call : cLocaManager.GetInstance().GetText(LOCA_GROUP.QUEST_TRIGGERS, "buffapplied_on", [10000, "ProductivityBuffLvl6", “Mayorhouse”]);
+    4.	<buffapplied target=”Mayorhouse” min="10000" />
+    •	Both conditions are met, therefore both localization extensions will be added in the order defined in the XML
+    •	Call: cLocaManager.GetInstance().GetText(LOCA_GROUP.QUEST_TRIGGERS, "buffapplied_any_on", [10000, "ProductivityBuffLvl6", “Mayorhouse”]);
+
+    Last thing: for more specific trigger localization, adding the "locaExt" attribute in a trigger will concatenate its value to the text ID
+    Example: <buffapplied min="100" locaExt="blabla"/>
+    Call: cLocaManager.GetInstance().GetText(LOCA_GROUP.QUEST_TRIGGERS, "buffapplied_any_blabla", [100]);
+
+    -->
+
+
+    <trigger name="playerlevel" defaultLocaParams="min" />
+    <trigger name="onmap" defaultLocaParams="min,item" />
+    <trigger name="resource" defaultLocaParams="min,item" />
+    <trigger name="questcomplete" defaultLocaParams="item" />
+    <trigger name="questactive" defaultLocaParams="item"/>
+    <trigger name="click" defaultLocaParams="item" key="ui_,{item}" altKey="WindowOpen_,{item}"/>
+    <trigger name="windowopen" defaultLocaParams="item" key="ui_,{item}" altKey="WindowOpen_,{item}"/>
+    <trigger name="windowclose" defaultLocaParams="item" key="ui_,{item}" altKey="WindowOpen_,{item}"/>
+    <trigger name="population" defaultLocaParams="min" key="{name},_,{item}" /> <!-- NOT WORKING -->
+    <trigger name="general" defaultLocaParams="min,item" />
+    <trigger name="buildingqueue" defaultLocaParams="min,item" />
+    <trigger name="productiontime" exception="true" />
+    <trigger name="productionvalue" exception="true" />
+    <trigger name="buffproduced" defaultLocaParams="min,item" />
+    <trigger name="resourcegathered" defaultLocaParams="min,type" />
+    <trigger name="buffowned" defaultLocaParams="min,item" />
+    <trigger name="buffapplied" defaultLocaParams="min,item">
+        <locaExt type="missing" param="item" locaExt="_any" />
+        <locaExt type="existing" param="target" locaExt="_on" addLocaParams="target" />
+    </trigger>
+    <trigger name="buffappliedonadventure" defaultLocaParams="min,item">
+        <locaExt type="missing" param="item" locaExt="_any" />
+        <locaExt type="existing" param="target" locaExt="_on" addLocaParams="target" />
+    </trigger>
+    <trigger name="buildingselected" defaultLocaParams="item" />
+    <trigger name="buildingdestroyed" defaultLocaParams="min,item" />
+    <trigger name="buildingupgraded" defaultLocaParams="min,item" />
+    <trigger name="buildingupgradelevel" defaultLocaParams="amount,min"> <!-- NOT WORKING-->
+        <locaExt type="missing" param="item" locaExt="_any" />
+        <locaExt type="existing" param="item" addLocaParams="item" />
+    </trigger>
+    <trigger name="premiumaccountduration" defaultLocaParams="min,item" />
+    <trigger name="skilllevel" defaultLocaParams="min,item" />
+    <trigger name="skilltreepoints" defaultLocaParams="min,item" />
+    <trigger name="pickups" defaultLocaParams="min,item" />
+	
+	<trigger name="sectorexplored" defaultLocaParams="min" />
+	<trigger name="battlewon" defaultLocaParams="amount">
+        <locaExt type="existing" param="item" locaExt="_item" addLocaParams="item" />
+	</trigger>
+	<trigger name="havedeposits" defaultLocaParams="min,item,amount" />
+	<trigger name="balancedproduction" defaultLocaParams="min,item" />
+	<trigger name="boughtgoods" defaultLocaParams="amount" >
+		<locaExt type="existing" param="item" locaExt="_item" addLocaParams="item" />
+	</trigger>
+	<trigger name="soldgoods" defaultLocaParams="amount" >
+		<locaExt type="existing" param="item" locaExt="_item" addLocaParams="item" />
+	</trigger>
+	<trigger name="boughtbuildqueueslot" defaultLocaParams="min" />
+	<trigger name="battlewonwithoutcasualties" defaultLocaParams="amount" />
+	<trigger name="unitslost" defaultLocaParams="amount" />
+	<trigger name="buildinglistupgradelevel" defaultLocaParams="amount,min,item" />
+	<trigger name="buffappliedonfriend" defaultLocaParams="amount" >
+		<locaExt type="existing" param="item" locaExt="_item" addLocaParams="item" />
+		<locaExt type="existing" param="target" locaExt="_on" addLocaParams="target" />
+	</trigger>
+	<trigger name="buffreceivedfromfriend" defaultLocaParams="amount" >
+		<locaExt type="existing" param="item" locaExt="_item" addLocaParams="item" />
+		<locaExt type="existing" param="target" locaExt="_on" addLocaParams="target" />
+	</trigger>
+	<trigger name="havefriends" defaultLocaParams="min" />
+	<trigger name="onmaplist" defaultLocaParams="amount" />
+	<trigger name="unitsownedlist" defaultLocaParams="amount" >
+		<locaExt type="existing" param="item" locaExt="_item" addLocaParams="item" />
+	</trigger>
+	<trigger name="ownresourcelist" defaultLocaParams="amount" >	
+		<locaExt type="existing" param="item" locaExt="_item" addLocaParams="item" />
+	</trigger>
+	<trigger name="completeadventurelist" defaultLocaParams="amount" >	
+		<locaExt type="existing" param="item" locaExt="_item" addLocaParams="item" />
+	</trigger>
+	<trigger name="completeexpeditionlist" defaultLocaParams="amount" >	
+		<locaExt type="existing" param="item" locaExt="_item" addLocaParams="item" />
+	</trigger>
+	<trigger name="completeadventureintime" defaultLocaParams="max" >	
+		<locaExt type="existing" param="item" locaExt="_item" addLocaParams="item" />
+	</trigger>
+	<trigger name="specialistskill" defaultLocaParams="amount" >
+		<locaExt type="existing" param="type" locaExt="_max" />
+		<locaExt type="existing" param="item" locaExt="_item" addLocaParams="item" />
+		<locaExt type="existing" param="min" locaExt="_no" addLocaParams="min" />
+	</trigger>
+	<trigger name="dailylogin" defaultLocaParams="amount" />
+	<trigger name="timeinadventurelist" defaultLocaParams="amount" >	
+		<locaExt type="existing" param="item" locaExt="_item" addLocaParams="item" />
+	</trigger>
+	<trigger name="haveguildsize" defaultLocaParams="amount" />
+	<trigger name="timeinguild" defaultLocaParams="amount" />
+	<trigger name="ownStarMenuItemTypeList" defaultLocaParams="amount" >
+		<locaExt type="existing" param="item" locaExt="_item" addLocaParams="item" />
+	</trigger>
+	<trigger name="timeingame" defaultLocaParams="amount" />
+	<trigger name="streetsInSectorList" defaultLocaParams="amount" />
+	<trigger name="produceditemlist" defaultLocaParams="amount" >
+		<locaExt type="existing" param="item" locaExt="_item" addLocaParams="item" />
+	</trigger>
+	<trigger name="generalTravel" defaultLocaParams="amount" />
+	<trigger name="admiralTravel" defaultLocaParams="amount" />
+	<trigger name="generalsVisitAdventure" defaultLocaParams="amount" />
+	<trigger name="specialistownedlist" defaultLocaParams="amount,item" />
+	<trigger name="specialisttaskresulttype" defaultLocaParams="amount,item" >
+		<locaExt type="existing" param="type" locaExt="_type" addLocaParams="type" />
+	</trigger>
+	<trigger name="completeadventurewithunittype" defaultLocaParams="item,type" />
+	<trigger name="countdeposittype" defaultLocaParams="amount,item" />
+	<trigger name="questtypecompleted" defaultLocaParams="amount" />
+	<trigger name="completeAdventureUnitsLostList" defaultLocaParams="type,max" >
+		<locaExt type="existing" param="item" locaExt="_on" addLocaParams="item" />
+	</trigger>
+	<trigger name="battlefought" defaultLocaParams="amount" >
+		<locaExt type="existing" param="item" locaExt="_on" addLocaParams="item" />
+	</trigger>
+	<trigger name="countAnyBuildingOnMap" defaultLocaParams="item" >
+		<locaExt type="existing" param="min" locaExt="_min" addLocaParams="min" />
+		<locaExt type="existing" param="max" locaExt="_max" addLocaParams="max" />
+	</trigger>	
+	<trigger name="contestpvpcolony" defaultLocaParams="amount" />	
+	<trigger name="completeadventureunitslosttotal" defaultLocaParams="max" />	
+	<trigger name="completeadventurekillunits" defaultLocaParams="amount">
+		<locaExt type="existing" param="type" locaExt="_type" addLocaParams="type" />
+	</trigger>	
+	<trigger name="successfullydefendcolony" defaultLocaParams="amount" />
+	<trigger name="fillupcolonylots" defaultLocaParams="amount" />	
+	<trigger name="colonyyield" defaultLocaParams="amount">
+		<locaExt type="existing" param="item" locaExt="_item" addLocaParams="item" />
+	</trigger>
+	<trigger name="lootedresource" defaultLocaParams="amount" >
+		<locaExt type="existing" param="type" locaExt="_resource" addLocaParams="type" />
+	</trigger>	
+	<trigger name="completequestlist" defaultLocaParams="item" />	
+	<trigger name="collectedpickups" defaultLocaParams="amount,item" />
+	<trigger name="calendardooropenedcount" defaultLocaParams="amount" />
+	<trigger name="refilldeposits" defaultLocaParams="amount" />
+	<trigger name="questadventurecompleted" defaultLocaParams="amount" />
+	<trigger name="resourcedonated" defaultLocaParams="amount,name" />
+	<trigger name="auctionwon" defaultLocaParams="item" />
+	<trigger name="contestrewardtier" defaultLocaParams="type" />
+	<trigger name="contestpointcount" defaultLocaParams="amount" />
+  <!--
+	
+    
+    
+    
+    
+    <trigger name="" defaultLocaParams="" />
+    <trigger name="" defaultLocaParams="" />
+    <trigger name="" defaultLocaParams="" />
+    <trigger name="" defaultLocaParams="" />
+-->
+
+</triggers>

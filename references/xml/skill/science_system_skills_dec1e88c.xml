@@ -1,0 +1,2107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scienceSystem>
+	
+	<!--
+	<skill id="item1">
+		<skillReference id="skill1" /> Type is ID of Skill defined in Skills tag
+		<requirements>
+			<minimumLevel level="1" /> Minimum required Player Level
+			<skillPointType type="bronze" /> Skillpoint Type (reference to skillPoint ID in skillPoints) required to spend for skill
+			<unlockedSkills> Other skills where MAX points are required to be spent before item is available
+				<skillReference id="item1" /> Reference to another item inside the skilltree
+			</unlockedSkills>
+			<pointsAccumulated amount="5"> Amount of points that has to be spent in the following other skilltree items
+				<skillReference id="item1" /> Reference to another item insider the skilltree
+				<skillReference id="item2" />
+			</pointsAccumulated>
+		</requirements>
+		<levels> Unlock levels for skilltree item, every level equals another skillpoint that needs to be spent, different values per unlock level can be assigned to the available manipulators
+			<level> Levels are sorted, first sibling stand for 1st level, second sibling for 2nd etc.
+				<param targetModifierId="modifier1" name="param1" value="10" /> pass parameter with name "param1" and value "10" to modifier "modifer1"
+			</level>
+			<level>
+				<param targetModifierId="modifier2" name="param1" value="20" />
+			</level>
+		</levels>
+		<layout>  Specific rendering data, required for the client to display the skilltree
+			<icon name="icon1.png" /> Icon to display for skill
+			<position x="1" y="0" /> Rendering position inside slot matrix, x=0 equals left-most col, y=0 equals bottom-most row
+			<arrows> Arrow definitions
+				<arrow type="TOP_1_UP" /> Arrow definition syntax: <Arrow Position from current item>_<Amount of Rows the arrow is skipping>_<Directions the Arrow is pointing towards>
+				<arrow type="LEFT_2_UP" />
+				<arrow type="RIGHT_1_UP" />
+				<arrow type="TOP_1_UPRIGHT" />
+			</arrows>
+		</layout>
+	</skill>
+
+{0} = Chance / modifierChance
+{1} = value
+{2} = multiplier(*100)
+{3} = Adder
+
+	-->
+	
+
+
+	<skills>
+		<skill id="41" name="fearlessHiker"> <!-- Shorten the search time for all Adventures by {0} %.-->
+			<requirements>
+				<minimumLevel level="26" />
+				<skillPointType type="bronze" />
+			</requirements>
+			<levels>
+				<level>
+					<searchTime type="FindAdventureZoneShort" multiplier="0.95" channel="specialist" />
+					<searchTime type="FindAdventureZoneMedium" multiplier="0.95" channel="specialist" />
+					<searchTime type="FindAdventureZoneLong" multiplier="0.95" channel="specialist" />
+					<searchTime type="FindAdventureZoneVeryLong" multiplier="0.95" channel="specialist" />
+				</level>
+				<level>
+					<searchTime type="FindAdventureZoneShort" multiplier="0.9" channel="specialist" />
+					<searchTime type="FindAdventureZoneMedium" multiplier="0.9" channel="specialist" />
+					<searchTime type="FindAdventureZoneLong" multiplier="0.9" channel="specialist" />
+					<searchTime type="FindAdventureZoneVeryLong" multiplier="0.9" channel="specialist" />
+				</level>
+				<level>
+					<searchTime type="FindAdventureZoneShort" multiplier="0.85" channel="specialist" />
+					<searchTime type="FindAdventureZoneMedium" multiplier="0.85" channel="specialist" />
+					<searchTime type="FindAdventureZoneLong" multiplier="0.85" channel="specialist" />
+					<searchTime type="FindAdventureZoneVeryLong" multiplier="0.85" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_fearless_hiker.png" />
+				<position x="0" y="4" />
+			</layout>
+		</skill>
+		<skill id="22" name="luckyDetour"> <!-- Find Granite {0} % more often on Medium Treasure Searches.-->
+			<requirements>
+				<minimumLevel level="26" />
+				<skillPointType type="bronze" />
+			</requirements>
+			<levels>
+				<level>
+					<ChangeLootChance name="FindTreasureMedium, FindTreasure_Lovely_Medium" type="FindTreasureMedium" item="Granite" value="8" channel="specialist" /> <!-- Modify BOTH Granite entries in table! ORG: 8.16.24-->
+				</level>
+				<level>
+					<ChangeLootChance name="FindTreasureMedium, FindTreasure_Lovely_Medium" type="FindTreasureMedium" item="Granite" value="16" channel="specialist" /> <!-- Modify BOTH Granite entries in table!-->
+				</level>
+				<level>
+					<ChangeLootChance name="FindTreasureMedium, FindTreasure_Lovely_Medium" type="FindTreasureMedium" item="Granite" value="24" channel="specialist" /> <!-- Modify BOTH Granite entries in table!-->
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_lucky_detour.png" />
+				<position x="1" y="4" />
+			</layout>
+		</skill>
+		
+		<skill id="23" name="pilgrimage"> <!-- Shorten the search time for Long Treasure Searches by {0} %.-->
+			<requirements>
+				<minimumLevel level="26" />
+				<skillPointType type="bronze" />
+			</requirements>
+			<levels>
+				<level>
+					<searchTime type="FindTreasureLong" multiplier="0.95" channel="specialist" />
+				</level>
+				<level>
+					<searchTime type="FindTreasureLong" multiplier="0.9" channel="specialist" />
+				</level>
+				<level>
+					<searchTime type="FindTreasureLong" multiplier="0.85" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_faster_search03.png" />
+				<position x="2" y="4" />
+			</layout>
+		</skill>
+		<skill id="24" name="mountainBoots"> <!-- Shorten the search time for all Treasure Searches by {0} %.-->
+			<requirements>
+				<minimumLevel level="26" />
+				<skillPointType type="bronze" />
+			</requirements>
+			<levels>
+				<level>
+					<searchTime type="FindTreasureShort" multiplier="0.97" channel="specialist" />
+					<searchTime type="FindTreasureMedium" multiplier="0.97" channel="specialist" />
+					<searchTime type="FindTreasureLong" multiplier="0.97" channel="specialist" />
+					<searchTime type="FindTreasureEvenLonger" multiplier="0.97" channel="specialist" />
+					<searchTime type="FindTreasureProlonged" multiplier="0.97" channel="specialist" />
+					<searchTime type="FindTreasureTravellingErudite" multiplier="0.97" channel="specialist" />
+					<searchTime type="FindTreasureBeanACollada" multiplier="0.97" channel="specialist" />
+				</level>
+				<level>
+					<searchTime type="FindTreasureShort" multiplier="0.94" channel="specialist" />
+					<searchTime type="FindTreasureMedium" multiplier="0.94" channel="specialist" />
+					<searchTime type="FindTreasureLong" multiplier="0.94" channel="specialist" />
+					<searchTime type="FindTreasureEvenLonger" multiplier="0.94" channel="specialist" />
+					<searchTime type="FindTreasureProlonged" multiplier="0.94" channel="specialist" />
+					<searchTime type="FindTreasureTravellingErudite" multiplier="0.94" channel="specialist" />
+					<searchTime type="FindTreasureBeanACollada" multiplier="0.94" channel="specialist" />
+				</level>
+				<level>
+					<searchTime type="FindTreasureShort" multiplier="0.91" channel="specialist" />
+					<searchTime type="FindTreasureMedium" multiplier="0.91" channel="specialist" />
+					<searchTime type="FindTreasureLong" multiplier="0.91" channel="specialist" />
+					<searchTime type="FindTreasureEvenLonger" multiplier="0.91" channel="specialist" />
+					<searchTime type="FindTreasureProlonged" multiplier="0.91" channel="specialist" />
+					<searchTime type="FindTreasureTravellingErudite" multiplier="0.91" channel="specialist" />
+					<searchTime type="FindTreasureBeanACollada" multiplier="0.91" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_mountain_boots.png" />
+				<position x="3" y="4" />
+			</layout>
+		</skill>
+		<skill id="25" name="wildDetermination"> <!--Find {0} % more Map Parts on Adventure Searches.-->
+			<requirements>
+				<minimumLevel level="31" />
+				<skillPointType type="silver" />
+				<pointsAccumulated amount="5">
+					<!--<skillReference id="1" />--> <!-- Hidden Stone Stash -->
+					<!--<skillReference id="2" /> --><!-- Natural Copper Vein -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<ChangeLootCount name="FindAdventureZoneShort" type="FindAdventureZoneShort" item="MapPart" multiplier="1.3" channel="specialist" /> <!-- Modify MapPart entry in ShortAdvSearch table!-->
+					<ChangeLootCount name="FindAdventureZoneMedium" type="FindAdventureZoneMedium" item="MapPart" multiplier="1.3" channel="specialist" /> <!-- Modify MapPart entry in ShortAdvSearch table!-->
+					<ChangeLootCount name="FindAdventureZoneLong" type="FindAdventureZoneLong" item="MapPart" multiplier="1.3" channel="specialist" /> <!-- Modify MapPart entry in ShortAdvSearch table!-->
+					<ChangeLootCount name="FindAdventureZoneVeryLong" type="FindAdventureZoneVeryLong" item="MapPart" multiplier="1.3" channel="specialist" />
+					<ChangeLootCount name="IntrepidLoot" type="IntrepidLoot" item="MapPart" multiplier="1.3" channel="specialist" />				
+				</level>
+				<level>
+					<ChangeLootCount name="FindAdventureZoneShort" type="FindAdventureZoneShort" item="MapPart" multiplier="1.6" channel="specialist" /> <!-- Modify MapPart entry in ShortAdvSearch table!-->
+					<ChangeLootCount name="FindAdventureZoneMedium" type="FindAdventureZoneMedium" item="MapPart" multiplier="1.6" channel="specialist" /> <!-- Modify MapPart entry in ShortAdvSearch table!-->
+					<ChangeLootCount name="FindAdventureZoneLong" type="FindAdventureZoneLong" item="MapPart" multiplier="1.6" channel="specialist" /> <!-- Modify MapPart entry in ShortAdvSearch table!-->
+					<ChangeLootCount name="FindAdventureZoneVeryLong" type="FindAdventureZoneVeryLong" item="MapPart" multiplier="1.6" channel="specialist" /> <!-- Modify MapPart entry in ShortAdvSearch table!-->
+					<ChangeLootCount name="IntrepidLoot" type="IntrepidLoot" item="MapPart" multiplier="1.6" channel="specialist" />
+				</level>
+				<level>
+					<ChangeLootCount name="FindAdventureZoneShort" type="FindAdventureZoneShort" item="MapPart" multiplier="1.9" channel="specialist" /> <!-- Modify MapPart entry in ShortAdvSearch table!-->
+					<ChangeLootCount name="FindAdventureZoneMedium" type="FindAdventureZoneMedium" item="MapPart" multiplier="1.9" channel="specialist" /> <!-- Modify MapPart entry in ShortAdvSearch table!-->
+					<ChangeLootCount name="FindAdventureZoneLong" type="FindAdventureZoneLong" item="MapPart" multiplier="1.9" channel="specialist" /> <!-- Modify MapPart entry in ShortAdvSearch table!-->
+					<ChangeLootCount name="FindAdventureZoneVeryLong" type="FindAdventureZoneVeryLong" item="MapPart" multiplier="1.9" channel="specialist" /> <!-- Modify MapPart entry in ShortAdvSearch table!-->
+					<ChangeLootCount name="IntrepidLoot" type="IntrepidLoot" item="MapPart" multiplier="1.9" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_wild_determination.png" />
+				<position x="2" y="3" />
+			</layout>
+		</skill>
+		
+		<skill id="26" name="powderSack"> <!-- Find {0} % more Exotic Wood on Extralong Treasure Searches.-->
+			<requirements>
+				<minimumLevel level="31" />
+				<skillPointType type="silver" />
+				<pointsAccumulated amount="5">
+				<!--	<skillReference id="3" /> --><!-- Two Marble In One -->
+				<!--	<skillReference id="4" /> --><!-- Quality Copper Shafts -->
+				<!--	<skillReference id="5" /> --><!-- Natural Stone Vein -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<ChangeLootCount name="FindTreasureEvenLonger, FindTreasure_Lovely_EvenLonger" type="FindTreasureEvenLonger" item="ExoticWood" multiplier="1.08" channel="specialist" /> <!-- Modify ExoticWood entry in XLTreasureSearch table!-->
+				</level>
+				<level>
+					<ChangeLootCount name="FindTreasureEvenLonger, FindTreasure_Lovely_EvenLonger" type="FindTreasureEvenLonger" item="ExoticWood" multiplier="1.16" channel="specialist" /> <!-- Modify ExoticWood entry in XLTreasureSearch table!-->
+				</level>
+				<level>
+					<ChangeLootCount name="FindTreasureEvenLonger, FindTreasure_Lovely_EvenLonger" type="FindTreasureEvenLonger" item="ExoticWood" multiplier="1.24" channel="specialist" /> <!-- Modify ExoticWood entry in XLTreasureSearch table!-->
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_powder_sack.png" />
+				<position x="0" y="3" />
+			</layout>
+		</skill>
+		<skill id="27" name="offbeatRoads"> <!-- Find Titanium Ore {0} % more often on Long Treasure Searches.-->
+			<requirements>
+				<minimumLevel level="31" />
+				<skillPointType type="silver" />
+				<pointsAccumulated amount="5">
+				<!--	<skillReference id="3" /> --><!-- Two Marble In One -->
+				<!--	<skillReference id="4" /> --><!-- Quality Copper Shafts -->
+					<!--<skillReference id="5" />--> <!-- Natural Stone Vein -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<ChangeLootChance name="FindTreasureLong, FindTreasure_Lovely_Long" type="FindTreasureLong" item="TitaniumOre" value="5" channel="specialist" /> <!-- Modify TitaniumOre entry in LongTreasureSearch table!-->
+				</level>
+				<level>
+					<ChangeLootChance name="FindTreasureLong, FindTreasure_Lovely_Long" type="FindTreasureLong" item="TitaniumOre" value="10" channel="specialist" /> <!-- Modify TitaniumOre entry in LongTreasureSearch table!-->
+				</level>
+				<level>
+					<ChangeLootChance name="FindTreasureLong, FindTreasure_Lovely_Long" type="FindTreasureLong" item="TitaniumOre" value="15" channel="specialist" /> <!-- Modify TitaniumOre entry in LongTreasureSearch table!-->
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_offbeat_roads.png" />
+				<position x="1" y="3" />
+			</layout>
+		</skill>
+		<skill id="28" name="extendedWeekend"> <!-- Shorten the search time for Medium Treasure Searches by {0} %.-->
+			<requirements>
+				<minimumLevel level="31" />
+				<skillPointType type="silver" />
+				<pointsAccumulated amount="5">
+				<!--	<skillReference id="3" /> --><!-- Two Marble In One -->
+				<!--	<skillReference id="4" /> --><!-- Quality Copper Shafts -->
+				<!--	<skillReference id="5" /> --><!-- Natural Stone Vein -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<searchTime type="FindTreasureMedium" multiplier="0.95" channel="specialist" />
+				</level>
+				<level>
+					<searchTime type="FindTreasureMedium" multiplier="0.9" channel="specialist" />
+				</level>
+				<level>
+					<searchTime type="FindTreasureMedium" multiplier="0.85" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_faster_search02.png" />
+				<position x="3" y="3" />
+			</layout>
+		</skill>
+		
+		<skill id="29" name="travelExpenses"> <!-- Reduce the cost of all Adventure Searches by {0} %.-->
+			<requirements>
+				<minimumLevel level="36" />
+				<skillPointType type="silver" />
+				<pointsAccumulated amount="10">
+					<!--<skillReference id="6" /> --><!-- Natural Marble Vein -->
+					<!--<skillReference id="7" /> --><!-- Copper Mining Surplus -->
+				<!--	<skillReference id="8" /> --><!-- Two Iron In One -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<searchCost type="FindAdventureZoneShort" multiplier="0.90" channel="specialist" />
+					<searchCost type="FindAdventureZoneMedium" multiplier="0.90" channel="specialist" />
+					<searchCost type="FindAdventureZoneLong" multiplier="0.90" channel="specialist" />
+					<searchCost type="FindAdventureZoneVeryLong" multiplier="0.90" channel="specialist" />
+				</level>
+				<level>
+					<searchCost type="FindAdventureZoneShort" multiplier="0.80" channel="specialist" />
+					<searchCost type="FindAdventureZoneMedium" multiplier="0.80" channel="specialist" />
+					<searchCost type="FindAdventureZoneLong" multiplier="0.80" channel="specialist" />
+					<searchCost type="FindAdventureZoneVeryLong" multiplier="0.80" channel="specialist" />
+				</level>
+				<level>
+					<searchCost type="FindAdventureZoneShort" multiplier="0.70" channel="specialist" />
+					<searchCost type="FindAdventureZoneMedium" multiplier="0.70" channel="specialist" />
+					<searchCost type="FindAdventureZoneLong" multiplier="0.70" channel="specialist" />
+					<searchCost type="FindAdventureZoneVeryLong" multiplier="0.70" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_travel_cost.png" />
+				<position x="3" y="2" />
+			</layout>
+		</skill>
+		<skill id="30" name="lootWagon"> <!-- Find {0} % more Granite on Medium Treasure Searches. -->
+			<requirements>
+				<minimumLevel level="36" />
+				<skillPointType type="silver" />
+				<pointsAccumulated amount="10">
+				<!--<skillReference id="6" />--> <!-- Natural Marble Vein -->
+					<!--<skillReference id="7" />--> <!-- Copper Mining Surplus -->
+				<!--	<skillReference id="8" /> --><!-- Two Iron In One -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<ChangeLootCount name="FindTreasureMedium, FindTreasure_Lovely_Medium" type="FindTreasureMedium" item="Granite" multiplier="1.08" channel="specialist" /> <!-- Modify Granite entries in MediumTreasureSearch table!-->
+				</level>
+				<level>
+					<ChangeLootCount name="FindTreasureMedium, FindTreasure_Lovely_Medium" type="FindTreasureMedium" item="Granite" multiplier="1.16" channel="specialist" /> <!-- Modify Granite entries in MediumTreasureSearch table!-->
+				</level>
+				<level>
+					<ChangeLootCount name="FindTreasureMedium, FindTreasure_Lovely_Medium" type="FindTreasureMedium" item="Granite" multiplier="1.24" channel="specialist" /> <!-- Modify Granite entries in MediumTreasureSearch table!-->
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_loot_wagon.png" />
+				<position x="0" y="2" />
+			</layout>
+		</skill>
+		<skill id="31" name="sturdyShovel"> <!-- Find {0} % more loot on all Treasure Searches.-->
+			<requirements>
+				<minimumLevel level="36" />
+				<skillPointType type="silver" />
+				<pointsAccumulated amount="10">
+				<!--	<skillReference id="6" />--> <!-- Natural Marble Vein -->
+					<!--<skillReference id="7" />--> <!-- Copper Mining Surplus -->
+					<!--<skillReference id="8" />--> <!-- Two Iron In One -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<ChangeLootCount name="FindTreasureShort, 
+					FindTreasureShort_RedNose, 
+					FindTreasureShort_SpecialistWeek, 
+					FindTreasureShort_Easter, 
+					FindTreasureShort_XMAS, 
+					FindTreasureShort_SoccerResources, 
+					FindTreasureShort_SoccerBalls, 
+					FindTreasureShort_Halloween,  
+					FindTreasureShort_Valentine,
+					FindTreasureShort_Anniversary,
+					FindTreasure_Lovely_Short,
+					FindTreasure_Lovely_Short_RedNose,
+					FindTreasure_Lovely_Short_XMAS,
+					FindTreasure_Lovely_Short_Easter,
+					FindTreasure_Lovely_Short_SoccerResources,
+					FindTreasure_Lovely_Short_SoccerBalls,
+					FindTreasure_Lovely_Short_Halloween,
+					FindTreasure_Lovely_Short_Valentine,
+					FindTreasure_Lovely_Short_Anniversary" type="FindTreasureShort" multiplier="1.03" channel="specialist" /> <!-- Modify all entries in ShortTreasureSearch table!-->
+					
+					<ChangeLootCount name="FindTreasureMedium,
+					 FindTreasureMedium_RedNose, 
+					 FindTreasureMedium_SpecialistWeek, 
+					 FindTreasureMedium_Easter, 
+					 FindTreasureMedium_XMAS, 
+					 FindTreasureMedium_SoccerResources, 
+					 FindTreasureMedium_SoccerBalls, 
+					 FindTreasureMedium_Halloween,
+					 FindTreasureMedium_Valentine,
+					 FindTreasureMedium_Anniversary,
+					 FindTreasure_Lovely_Medium,
+					 FindTreasure_Lovely_Medium_RedNose,
+					 FindTreasure_Lovely_Medium_XMAS,
+					 FindTreasure_Lovely_Medium_Easter,
+					 FindTreasure_Lovely_Medium_SoccerResources,
+					 FindTreasure_Lovely_Medium_SoccerBalls,
+					 FindTreasure_Lovely_Medium_Halloween,
+					 FindTreasure_Lovely_Medium_Valentine,
+					 FindTreasure_Lovely_Medium_Anniversary" type="FindTreasureMedium" multiplier="1.03" channel="specialist" /> <!-- Modify all entries in MediumTreasureSearch table!-->
+					 
+					<ChangeLootCount name="FindTreasureLong, 
+					FindTreasureLong_RedNose, 
+					FindTreasureLong_SpecialistWeek, 
+					FindTreasureLong_Easter, 
+					FindTreasureLong_XMAS, 
+					FindTreasureLong_SoccerResources, 
+					FindTreasureLong_SoccerBalls, 
+					FindTreasureLong_Halloween,
+					FindTreasureLong_Valentine,
+					FindTreasureLong_Anniversary, 
+					FindTreasure_Lovely_Long,
+					FindTreasure_Lovely_Long_RedNose,
+					FindTreasure_Lovely_Long_XMAS,
+					FindTreasure_Lovely_Long_Easter,
+					FindTreasure_Lovely_Long_SoccerResources,
+					FindTreasure_Lovely_Long_SoccerBalls,
+					FindTreasure_Lovely_Long_Halloween,
+					FindTreasure_Lovely_Long_Valentine,
+					FindTreasure_Lovely_Long_Anniversary" type="FindTreasureLong" multiplier="1.03" channel="specialist" /> <!-- Modify all entries in LongTreasureSearch table!-->
+					
+					<ChangeLootCount name="FindTreasureEvenLonger, 
+					FindTreasureEvenLonger_RedNose, 
+					FindTreasureEvenLonger_SpecialistWeek, 
+					FindTreasureEvenLonger_Easter, 
+					FindTreasureEvenLonger_XMAS, 
+					FindTreasureEvenLonger_SoccerResources, 
+					FindTreasureEvenLonger_SoccerBalls, 
+					FindTreasureEvenLonger_Halloween,
+					FindTreasureEvenLonger_Valentine,
+					FindTreasureEvenLonger_Anniversary, 
+					FindTreasure_Lovely_EvenLonger,
+					FindTreasure_Lovely_EvenLonger_RedNose,
+					FindTreasure_Lovely_EvenLonger_XMAS,
+					FindTreasure_Lovely_EvenLonger_Easter,
+					FindTreasure_Lovely_EvenLonger_SoccerResources,
+					FindTreasure_Lovely_EvenLonger_SoccerBalls,
+					FindTreasure_Lovely_EvenLonger_Halloween,
+					FindTreasure_Lovely_EvenLonger_Valentine,
+					FindTreasure_Lovely_EvenLonger_Anniversary" type="FindTreasureEvenLonger" multiplier="1.03" channel="specialist" /> <!-- Modify all entries in XLTreasureSearch table!-->
+					
+					<ChangeLootCount name="FindTreasureProlonged, 
+					FindTreasureProlonged_XMAS, 
+					FindTreasureProlonged_Easter, 
+					FindTreasureProlonged_SoccerResources, 
+					FindTreasureProlonged_SoccerBalls, 
+					FindTreasureProlonged_Halloween,
+					FindTreasureProlonged_Valentine,
+					FindTreasureProlonged_Anniversary,
+					FindTreasure_Lovely_Prolonged,
+					FindTreasure_Lovely_Prolonged_RedNose,
+					FindTreasure_Lovely_Prolonged_XMAS,
+					FindTreasure_Lovely_Prolonged_Easter,
+					FindTreasure_Lovely_Prolonged_SoccerResources,
+					FindTreasure_Lovely_Prolonged_SoccerBalls,
+					FindTreasure_Lovely_Prolonged_Halloween,
+					FindTreasure_Lovely_Prolonged_Valentine,
+					FindTreasure_Lovely_Prolonged_Anniversary" type="FindTreasureProlonged" multiplier="1.03" channel="specialist" />
+				</level>
+				<level>
+					<ChangeLootCount name="FindTreasureShort, 
+					FindTreasureShort_RedNose, 
+					FindTreasureShort_SpecialistWeek, 
+					FindTreasureShort_Easter, 
+					FindTreasureShort_XMAS, 
+					FindTreasureShort_SoccerResources, 
+					FindTreasureShort_SoccerBalls, 
+					FindTreasureShort_Halloween,  
+					FindTreasureShort_Valentine,
+					FindTreasureShort_Anniversary,
+					FindTreasure_Lovely_Short,
+					FindTreasure_Lovely_Short_RedNose,
+					FindTreasure_Lovely_Short_XMAS,
+					FindTreasure_Lovely_Short_Easter,
+					FindTreasure_Lovely_Short_SoccerResources,
+					FindTreasure_Lovely_Short_SoccerBalls,
+					FindTreasure_Lovely_Short_Halloween,
+					FindTreasure_Lovely_Short_Valentine,
+					FindTreasure_Lovely_Short_Anniversary" type="FindTreasureShort" multiplier="1.06" channel="specialist" /> <!-- Modify all entries in ShortTreasureSearch table!-->
+					
+					<ChangeLootCount name="FindTreasureMedium,
+					 FindTreasureMedium_RedNose, 
+					 FindTreasureMedium_SpecialistWeek, 
+					 FindTreasureMedium_Easter, 
+					 FindTreasureMedium_XMAS, 
+					 FindTreasureMedium_SoccerResources, 
+					 FindTreasureMedium_SoccerBalls, 
+					 FindTreasureMedium_Halloween,
+					 FindTreasureMedium_Valentine,
+					 FindTreasureMedium_Anniversary,
+					 FindTreasure_Lovely_Medium,
+					 FindTreasure_Lovely_Medium_RedNose,
+					 FindTreasure_Lovely_Medium_XMAS,
+					 FindTreasure_Lovely_Medium_Easter,
+					 FindTreasure_Lovely_Medium_SoccerResources,
+					 FindTreasure_Lovely_Medium_SoccerBalls,
+					 FindTreasure_Lovely_Medium_Halloween,
+					 FindTreasure_Lovely_Medium_Valentine,
+					 FindTreasure_Lovely_Medium_Anniversary" type="FindTreasureMedium" multiplier="1.06" channel="specialist" /> <!-- Modify all entries in MediumTreasureSearch table!-->
+					 
+					<ChangeLootCount name="FindTreasureLong, 
+					FindTreasureLong_RedNose, 
+					FindTreasureLong_SpecialistWeek, 
+					FindTreasureLong_Easter, 
+					FindTreasureLong_XMAS, 
+					FindTreasureLong_SoccerResources, 
+					FindTreasureLong_SoccerBalls, 
+					FindTreasureLong_Halloween,
+					FindTreasureLong_Valentine,
+					FindTreasureLong_Anniversary, 
+					FindTreasure_Lovely_Long,
+					FindTreasure_Lovely_Long_RedNose,
+					FindTreasure_Lovely_Long_XMAS,
+					FindTreasure_Lovely_Long_Easter,
+					FindTreasure_Lovely_Long_SoccerResources,
+					FindTreasure_Lovely_Long_SoccerBalls,
+					FindTreasure_Lovely_Long_Halloween,
+					FindTreasure_Lovely_Long_Valentine,
+					FindTreasure_Lovely_Long_Anniversary" type="FindTreasureLong" multiplier="1.06" channel="specialist" /> <!-- Modify all entries in LongTreasureSearch table!-->
+					
+					<ChangeLootCount name="FindTreasureEvenLonger, 
+					FindTreasureEvenLonger_RedNose, 
+					FindTreasureEvenLonger_SpecialistWeek, 
+					FindTreasureEvenLonger_Easter, 
+					FindTreasureEvenLonger_XMAS, 
+					FindTreasureEvenLonger_SoccerResources, 
+					FindTreasureEvenLonger_SoccerBalls, 
+					FindTreasureEvenLonger_Halloween,
+					FindTreasureEvenLonger_Valentine,
+					FindTreasureEvenLonger_Anniversary, 
+					FindTreasure_Lovely_EvenLonger,
+					FindTreasure_Lovely_EvenLonger_RedNose,
+					FindTreasure_Lovely_EvenLonger_XMAS,
+					FindTreasure_Lovely_EvenLonger_Easter,
+					FindTreasure_Lovely_EvenLonger_SoccerResources,
+					FindTreasure_Lovely_EvenLonger_SoccerBalls,
+					FindTreasure_Lovely_EvenLonger_Halloween,
+					FindTreasure_Lovely_EvenLonger_Valentine,
+					FindTreasure_Lovely_EvenLonger_Anniversary" type="FindTreasureEvenLonger" multiplier="1.06" channel="specialist" /> <!-- Modify all entries in XLTreasureSearch table!-->
+					
+					<ChangeLootCount name="FindTreasureProlonged, 
+					FindTreasureProlonged_XMAS, 
+					FindTreasureProlonged_Easter, 
+					FindTreasureProlonged_SoccerResources, 
+					FindTreasureProlonged_SoccerBalls, 
+					FindTreasureProlonged_Halloween,
+					FindTreasureProlonged_Valentine,
+					FindTreasureProlonged_Anniversary,
+					FindTreasure_Lovely_Prolonged,
+					FindTreasure_Lovely_Prolonged_RedNose,
+					FindTreasure_Lovely_Prolonged_XMAS,
+					FindTreasure_Lovely_Prolonged_Easter,
+					FindTreasure_Lovely_Prolonged_SoccerResources,
+					FindTreasure_Lovely_Prolonged_SoccerBalls,
+					FindTreasure_Lovely_Prolonged_Halloween,
+					FindTreasure_Lovely_Prolonged_Valentine,
+					FindTreasure_Lovely_Prolonged_Anniversary" type="FindTreasureProlonged" multiplier="1.06" channel="specialist" /> <!-- Modify all entries in XXLTreasureSearch table!-->
+				</level>
+				<level>
+					<ChangeLootCount name="FindTreasureShort, 
+					FindTreasureShort_RedNose, 
+					FindTreasureShort_SpecialistWeek, 
+					FindTreasureShort_Easter, 
+					FindTreasureShort_XMAS, 
+					FindTreasureShort_SoccerResources, 
+					FindTreasureShort_SoccerBalls, 
+					FindTreasureShort_Halloween,  
+					FindTreasureShort_Valentine,
+					FindTreasureShort_Anniversary,
+					FindTreasure_Lovely_Short,
+					FindTreasure_Lovely_Short_RedNose,
+					FindTreasure_Lovely_Short_XMAS,
+					FindTreasure_Lovely_Short_Easter,
+					FindTreasure_Lovely_Short_SoccerResources,
+					FindTreasure_Lovely_Short_SoccerBalls,
+					FindTreasure_Lovely_Short_Halloween,
+					FindTreasure_Lovely_Short_Valentine,
+					FindTreasure_Lovely_Short_Anniversary" type="FindTreasureShort" multiplier="1.09" channel="specialist" /> <!-- Modify all entries in ShortTreasureSearch table!-->
+					
+					<ChangeLootCount name="FindTreasureMedium,
+					 FindTreasureMedium_RedNose, 
+					 FindTreasureMedium_SpecialistWeek, 
+					 FindTreasureMedium_Easter, 
+					 FindTreasureMedium_XMAS, 
+					 FindTreasureMedium_SoccerResources, 
+					 FindTreasureMedium_SoccerBalls, 
+					 FindTreasureMedium_Halloween,
+					 FindTreasureMedium_Valentine,
+					 FindTreasureMedium_Anniversary,
+					 FindTreasure_Lovely_Medium,
+					 FindTreasure_Lovely_Medium_RedNose,
+					 FindTreasure_Lovely_Medium_XMAS,
+					 FindTreasure_Lovely_Medium_Easter,
+					 FindTreasure_Lovely_Medium_SoccerResources,
+					 FindTreasure_Lovely_Medium_SoccerBalls,
+					 FindTreasure_Lovely_Medium_Halloween,
+					 FindTreasure_Lovely_Medium_Valentine,
+					 FindTreasure_Lovely_Medium_Anniversary" type="FindTreasureMedium" multiplier="1.09" channel="specialist" /> <!-- Modify all entries in MediumTreasureSearch table!-->
+					 
+					<ChangeLootCount name="FindTreasureLong, 
+					FindTreasureLong_RedNose, 
+					FindTreasureLong_SpecialistWeek, 
+					FindTreasureLong_Easter, 
+					FindTreasureLong_XMAS, 
+					FindTreasureLong_SoccerResources, 
+					FindTreasureLong_SoccerBalls, 
+					FindTreasureLong_Halloween,
+					FindTreasureLong_Valentine,
+					FindTreasureLong_Anniversary, 
+					FindTreasure_Lovely_Long,
+					FindTreasure_Lovely_Long_RedNose,
+					FindTreasure_Lovely_Long_XMAS,
+					FindTreasure_Lovely_Long_Easter,
+					FindTreasure_Lovely_Long_SoccerResources,
+					FindTreasure_Lovely_Long_SoccerBalls,
+					FindTreasure_Lovely_Long_Halloween,
+					FindTreasure_Lovely_Long_Valentine,
+					FindTreasure_Lovely_Long_Anniversary" type="FindTreasureLong" multiplier="1.09" channel="specialist" /> <!-- Modify all entries in LongTreasureSearch table!-->
+					
+					<ChangeLootCount name="FindTreasureEvenLonger, 
+					FindTreasureEvenLonger_RedNose, 
+					FindTreasureEvenLonger_SpecialistWeek, 
+					FindTreasureEvenLonger_Easter, 
+					FindTreasureEvenLonger_XMAS, 
+					FindTreasureEvenLonger_SoccerResources, 
+					FindTreasureEvenLonger_SoccerBalls, 
+					FindTreasureEvenLonger_Halloween,
+					FindTreasureEvenLonger_Valentine,
+					FindTreasureEvenLonger_Anniversary, 
+					FindTreasure_Lovely_EvenLonger,
+					FindTreasure_Lovely_EvenLonger_RedNose,
+					FindTreasure_Lovely_EvenLonger_XMAS,
+					FindTreasure_Lovely_EvenLonger_Easter,
+					FindTreasure_Lovely_EvenLonger_SoccerResources,
+					FindTreasure_Lovely_EvenLonger_SoccerBalls,
+					FindTreasure_Lovely_EvenLonger_Halloween,
+					FindTreasure_Lovely_EvenLonger_Valentine,
+					FindTreasure_Lovely_EvenLonger_Anniversary" type="FindTreasureEvenLonger" multiplier="1.09" channel="specialist" /> <!-- Modify all entries in XLTreasureSearch table!-->
+					
+					<ChangeLootCount name="FindTreasureProlonged, 
+					FindTreasureProlonged_XMAS, 
+					FindTreasureProlonged_Easter, 
+					FindTreasureProlonged_SoccerResources, 
+					FindTreasureProlonged_SoccerBalls, 
+					FindTreasureProlonged_Halloween,
+					FindTreasureProlonged_Valentine,
+					FindTreasureProlonged_Anniversary,
+					FindTreasure_Lovely_Prolonged,
+					FindTreasure_Lovely_Prolonged_RedNose,
+					FindTreasure_Lovely_Prolonged_XMAS,
+					FindTreasure_Lovely_Prolonged_Easter,
+					FindTreasure_Lovely_Prolonged_SoccerResources,
+					FindTreasure_Lovely_Prolonged_SoccerBalls,
+					FindTreasure_Lovely_Prolonged_Halloween,
+					FindTreasure_Lovely_Prolonged_Valentine,
+					FindTreasure_Lovely_Prolonged_Anniversary" type="FindTreasureProlonged" multiplier="1.09" channel="specialist" /> <!-- Modify all entries in XXLTreasureSearch table!-->
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_sturdy_shovel.png" />
+				<position x="1" y="2" />
+			</layout>
+		</skill>
+		
+		<skill id="32" name="mistwalker"> <!-- Find Exotic Wood {0} % more often on Extralong Treasure Searches.-->
+			<requirements>
+				<minimumLevel level="36" />
+				<skillPointType type="silver" />
+				<pointsAccumulated amount="10">
+				<!--	<skillReference id="9" /> --><!-- Quality Coal Shafts -->
+					<!--<skillReference id="10" />--> <!-- Tendentious Geologist -->
+				<!--	<skillReference id="11" /> --><!-- Gold Mining Surplus -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<ChangeLootChance name="FindTreasureEvenLonger, FindTreasure_Lovely_EvenLonger" type="FindTreasureEvenLonger" item="ExoticWood" value="30" channel="specialist" /> <!-- Modify ExoticWood entries in XLTreasureSearch table!-->
+				</level>
+				<level>
+					<ChangeLootChance name="FindTreasureEvenLonger, FindTreasure_Lovely_EvenLonger" type="FindTreasureEvenLonger" item="ExoticWood" value="35" channel="specialist" /> <!-- Modify ExoticWood entries in XLTreasureSearch table!-->
+				</level>
+				<level>
+					<ChangeLootChance name="FindTreasureEvenLonger, FindTreasure_Lovely_EvenLonger" type="FindTreasureEvenLonger" item="ExoticWood" value="40" channel="specialist" /> <!-- Modify ExoticWood entries in XLTreasureSearch table!-->
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_mist_walker.png" />
+				<position x="2" y="2" />
+			</layout>
+		</skill>	
+		<skill id="33" name="troubleSeeker"> <!-- Grants a {0}% chance to find an additional Adventure.-->
+			<requirements>
+				<minimumLevel level="41" />
+				<skillPointType type="gold" />
+				<pointsAccumulated amount="15">
+				<!--	<skillReference id="9" />--> <!-- Quality Coal Shafts -->
+				<!--	<skillReference id="10" />--> <!-- Tendentious Geologist -->
+				<!--	<skillReference id="11" />--> <!-- Gold Mining Surplus -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<ChangeLoottableRolls name="FindAdventureZoneShort, FindAdventureZoneMedium, FindAdventureZoneLong, FindAdventureZoneVeryLong" type="FindAdventureZone" adder="1" chance="0.1" channel="specialist" /> <!-- Roll same table as before -->
+				</level>
+				<level>
+					<ChangeLoottableRolls name="FindAdventureZoneShort, FindAdventureZoneMedium, FindAdventureZoneLong, FindAdventureZoneVeryLong" type="FindAdventureZone" adder="1" chance="0.2" channel="specialist" /> <!-- Roll same table as before -->
+				</level>
+				<level>
+					<ChangeLoottableRolls name="FindAdventureZoneShort, FindAdventureZoneMedium, FindAdventureZoneLong, FindAdventureZoneVeryLong" type="FindAdventureZone" adder="1" chance="0.3" channel="specialist" /> <!-- Roll same table as before -->
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_trouble_seeker.png" />
+				<position x="1" y="1" />
+			</layout>
+		</skill>
+		<skill id="34" name="heroOre"> <!-- Find {0} % more Titanium Ore on Long Treasure Searches.-->
+			<requirements>
+				<minimumLevel level="41" />
+				<skillPointType type="gold" />
+				<pointsAccumulated amount="15">
+				<!--	<skillReference id="9" />--> <!-- Quality Coal Shafts -->
+				<!--	<skillReference id="10" />--> <!-- Tendentious Geologist -->
+					<!--<skillReference id="11" />--> <!-- Gold Mining Surplus -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<ChangeLootCount name="FindTreasureLong, FindTreasure_Lovely_Long" type="FindTreasureLong" item="TitaniumOre" multiplier="1.08" channel="specialist" /> <!-- Modify entries for TitaniumOre in LongTreasureSearch table!-->
+				</level>
+				<level>
+					<ChangeLootCount name="FindTreasureLong, FindTreasure_Lovely_Long" type="FindTreasureLong" item="TitaniumOre" multiplier="1.16" channel="specialist" /> <!-- Modify entries for TitaniumOre in LongTreasureSearch table!-->
+				</level>
+				<level>
+					<ChangeLootCount name="FindTreasureLong, FindTreasure_Lovely_Long" type="FindTreasureLong" item="TitaniumOre" multiplier="1.24" channel="specialist" /> <!-- Modify entries for TitaniumOre in LongTreasureSearch table!-->
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_hero_ore.png" />
+				<position x="0" y="1" />
+			</layout>
+		</skill>
+		
+		<skill id="35" name="sabbatical"> <!-- Shorten the search time for Extralong Treasure Searches by {0} %.-->
+			<requirements>
+				<minimumLevel level="41" />
+				<skillPointType type="gold" />
+				<pointsAccumulated amount="15">
+					<!--<skillReference id="12" />--> <!-- Hidden Coal Stash -->
+					<!--<skillReference id="13" />--> <!-- Iron Mining Surplus -->
+					<!--<skillReference id="14" />--> <!-- Natural Gold Vein -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<searchTime type="FindTreasureEvenLonger" multiplier="0.95" channel="specialist" />
+				</level>
+				<level>
+					<searchTime type="FindTreasureEvenLonger" multiplier="0.9" channel="specialist" />
+				</level>
+				<level>
+					<searchTime type="FindTreasureEvenLonger" multiplier="0.85" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_faster_search04.png" />
+				<position x="2" y="1" />
+			</layout>
+		</skill>
+		<skill id="36" name="pathfinder"> <!-- Shorten the search time for all Searches by {0} %. -->
+			<requirements>
+				<minimumLevel level="41" />
+				<skillPointType type="gold" />
+				<pointsAccumulated amount="15">
+				<!--	<skillReference id="12" />--> <!-- Hidden Coal Stash -->
+					<!--<skillReference id="13" />--> <!-- Iron Mining Surplus -->
+					<!--<skillReference id="14" />--> <!-- Natural Gold Vein -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<searchTime multiplier="0.95" channel="specialist" />
+				</level>
+				<level>
+					<searchTime multiplier="0.9" channel="specialist" />
+				</level>
+				<level>
+					<searchTime multiplier="0.85" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_pathfinder.png" />
+				<position x="3" y="1" />
+			</layout>
+		</skill>
+		<skill id="37" name="sophisticatedPillager"> <!-- Grants a {0}% chance to find an Adventure with a reward boost. When completed within 6 h you receive boosted rewards. -->
+			<requirements>
+				<minimumLevel level="45" />
+				<skillPointType type="gold" />
+				<pointsAccumulated amount="20">
+				<!--	<skillReference id="12" />--> <!-- Hidden Coal Stash -->
+					<!--<skillReference id="13" />--> <!-- Iron Mining Surplus -->
+				<!--	<skillReference id="14" /> --><!-- Natural Gold Vein -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<modifierEffect property="FOUND_ADVENTURE" type="FindAdventureZoneShort" chance="0.3" channel="specialist" rules="effect">
+						<StartQuest name="SophisticatedPillager_" action="dynamic"/> <!-- using "target" instead of "name" to build the name of found Adv_name AND the target -->
+					</modifierEffect>
+					<modifierEffect property="FOUND_ADVENTURE" type="FindAdventureZoneMedium" chance="0.3" channel="specialist" rules="effect">
+						<StartQuest name="SophisticatedPillager_" action="dynamic"/> <!-- using "target" instead of "name" to build the name of found Adv_name AND the target -->
+					</modifierEffect>
+					<modifierEffect property="FOUND_ADVENTURE" type="FindAdventureZoneLong" chance="0.3" channel="specialist" rules="effect">
+						<StartQuest name="SophisticatedPillager_" action="dynamic"/> <!-- using "target" instead of "name" to build the name of found Adv_name AND the target -->
+					</modifierEffect>
+					<modifierEffect property="FOUND_ADVENTURE" type="FindAdventureZoneVeryLong" chance="0.3" channel="specialist" rules="effect">
+						<StartQuest name="SophisticatedPillager_" action="dynamic"/> <!-- using "target" instead of "name" to build the name of found Adv_name AND the target -->
+					</modifierEffect>
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_sophisitcated_pillager.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+		
+		<skill id="38" name="streetwiseNegotiator"> <!-- {0}% chance for a Treasure boost. Increases Granite, Salpeter or Titanium Ore if found with next search.-->
+			<requirements>
+				<minimumLevel level="45" />
+				<skillPointType type="gold" />
+				<pointsAccumulated amount="20">
+					<!--<skillReference id="15" /> --><!-- Two Coal In One -->
+					<!--<skillReference id="16" /> --><!-- Quality Gold Shafts -->
+					<!--<skillReference id="17" /> --><!-- Ore Collector -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<modifierEffect property="SEARCH_TREASURE_SUCCESS" type="FindTreasureLong" chance="0.3" channel="specialist" rules="effect">
+						<StartQuest name="StreetwiseNegotiator_Salpeter, StreetwiseNegotiator_Granite, StreetwiseNegotiator_TitaniumOre" action="random"/> 
+					</modifierEffect>
+					<modifierEffect property="SEARCH_TREASURE_SUCCESS" type="FindTreasureEvenLonger" chance="0.3" channel="specialist" rules="effect">
+						<StartQuest name="StreetwiseNegotiator_Salpeter, StreetwiseNegotiator_Granite, StreetwiseNegotiator_TitaniumOre" action="random"/> 
+					</modifierEffect>
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_streetwise_negotiator.png" />
+				<position x="1" y="0" />
+			</layout>
+		</skill>
+		<skill id="39" name="travellingErudite"> <!--Find {0}% rare Collections or  Buffs in a new Explorer search-->
+			<requirements>
+				<minimumLevel level="45" />
+				<skillPointType type="gold" />
+				<pointsAccumulated amount="20">
+					<!--<skillReference id="15" /> --><!-- Two Coal In One -->
+					<!--<skillReference id="16" /> --><!-- Quality Gold Shafts -->
+				<!--	<skillReference id="17" /> --><!-- Ore Collector -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<unlockTask type="task" name="FindTreasureTravellingErudite" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_travelling_erudite.png" />
+				<position x="2" y="0" />
+			</layout>
+		</skill>
+		<skill id="40" name="beanAColada"> <!-- Find {0} % MagicBeans or GuildCoins on all Treasure Searches.-->
+			<requirements>
+				<minimumLevel level="45" />
+				<skillPointType type="gold" />
+				<pointsAccumulated amount="20">
+					<!--<skillReference id="15" />--> <!-- Two Coal In One -->
+					<!--<skillReference id="16" />--> <!-- Quality Gold Shafts -->
+				<!--	<skillReference id="17" /> --><!-- Ore Collector -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<unlockTask type="task" name="FindTreasureBeanACollada" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_bean_a_colada.png" />
+				<position x="3" y="0" />
+			</layout>
+		</skill>	
+		
+		
+		<!-- Explorer Traits -->
+		
+		<skill id="106" name="Trait_FastLuckyExplorer">
+			<levels>	
+				<level>
+					<ChangeLoottableRolls name="ExplorerBuffs"  adder="1" chance="1" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_fast_lucky_explorer.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+		
+		<skill id="107" name="Trait_IntrepidExplorer">
+			<levels>	
+				<level>
+					<ChangeLoottableRolls name="IntrepidLoot"  adder="1" chance="1" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_intrepid_explorer.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+		
+		<skill id="111" name="Trait_CorageousExplorer">
+			<levels>	
+				<level>
+					<ChangeLoottableRolls type="FindTreasureShort" name="FindTreasureShort, 
+											FindTreasureShort_Easter, 
+											FindTreasureShort_XMAS,
+											FindTreasureShort_SoccerResources,
+											FindTreasureShort_SoccerBalls,
+											FindTreasureShort_Halloween,
+											FindTreasureShort_RedNose,
+											FindTreasureShort_Anniversary,
+											FindTreasureShort_Valentine"		multiplier="2" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureMedium" name="FindTreasureMedium, 
+											FindTreasureMedium_RedNose,
+											FindTreasureMedium_XMAS,
+											FindTreasureMedium_Easter,
+											FindTreasureMedium_SoccerResources,
+											FindTreasureMedium_SoccerBalls,
+											FindTreasureMedium_Halloween,
+											FindTreasureMedium_Anniversary,
+											FindTreasureMedium_Valentine"		multiplier="2" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureLong" name="FindTreasureLong, 
+											FindTreasureLong_RedNose,
+											FindTreasureLong_XMAS,
+											FindTreasureLong_Easter,
+											FindTreasureLong_SoccerResources,
+											FindTreasureLong_SoccerBalls,
+											FindTreasureLong_Halloween,
+											FindTreasureLong_Anniversary,
+											FindTreasureLong_Valentine"		multiplier="2" chance="1" channel="specialist" rules="explicit" />	
+					<ChangeLoottableRolls type="FindTreasureEvenLonger" name="FindTreasureEvenLonger, 
+											FindTreasureEvenLonger_RedNose,
+											FindTreasureEvenLonger_XMAS,
+											FindTreasureEvenLonger_Easter,
+											FindTreasureEvenLonger_SoccerResources,
+											FindTreasureEvenLonger_SoccerBalls,
+											FindTreasureEvenLonger_Halloween,
+											FindTreasureEvenLonger_Anniversary,
+											FindTreasureEvenLonger_Valentine"		multiplier="2" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureProlonged" name="FindTreasureProlonged, 
+											FindTreasureProlonged_RedNose,
+											FindTreasureProlonged_XMAS,
+											FindTreasureProlonged_Easter,
+											FindTreasureProlonged_SoccerResources,
+											FindTreasureProlonged_SoccerBalls,
+											FindTreasureProlonged_Halloween,
+											FindTreasureProlonged_Anniversary,
+											FindTreasureProlonged_Valentine"		multiplier="2" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureBeanACollada" name="FindTreasureBeanACollada"	multiplier="2" chance="1" channel="specialist" rules="explicit" />	
+					<ChangeLoottableRolls type="FindTreasureTravellingErudite" name="FindTreasureTravellingErudite"		multiplier="2" chance="1" channel="specialist" rules="explicit" />																										
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_corageous_explorer.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+
+		<skill id="112" name="Trait_CandidExplorer">
+			<levels>	
+				<level>
+					<ChangeLoottableRolls type="FindTreasureShort" name="FindTreasureShort, 
+											FindTreasureShort_Easter, 
+											FindTreasureShort_XMAS,
+											FindTreasureShort_SoccerResources,
+											FindTreasureShort_SoccerBalls,
+											FindTreasureShort_Halloween,
+											FindTreasureShort_RedNose,
+											FindTreasureShort_Anniversary,
+											FindTreasureShort_Valentine"		multiplier="4" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureMedium" name="FindTreasureMedium, 
+											FindTreasureMedium_RedNose,
+											FindTreasureMedium_XMAS,
+											FindTreasureMedium_Easter,
+											FindTreasureMedium_SoccerResources,
+											FindTreasureMedium_SoccerBalls,
+											FindTreasureMedium_Halloween,
+											FindTreasureMedium_Anniversary,
+											FindTreasureMedium_Valentine"		multiplier="4" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureLong" name="FindTreasureLong, 
+											FindTreasureLong_RedNose,
+											FindTreasureLong_XMAS,
+											FindTreasureLong_Easter,
+											FindTreasureLong_SoccerResources,
+											FindTreasureLong_SoccerBalls,
+											FindTreasureLong_Halloween,
+											FindTreasureLong_Anniversary,
+											FindTreasureLong_Valentine"		multiplier="4" chance="1" channel="specialist" rules="explicit" />	
+					<ChangeLoottableRolls type="FindTreasureEvenLonger" name="FindTreasureEvenLonger, 
+											FindTreasureEvenLonger_RedNose,
+											FindTreasureEvenLonger_XMAS,
+											FindTreasureEvenLonger_Easter,
+											FindTreasureEvenLonger_SoccerResources,
+											FindTreasureEvenLonger_SoccerBalls,
+											FindTreasureEvenLonger_Halloween,
+											FindTreasureEvenLonger_Anniversary,
+											FindTreasureEvenLonger_Valentine"		multiplier="4" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureProlonged" name="FindTreasureProlonged, 
+											FindTreasureProlonged_RedNose,
+											FindTreasureProlonged_XMAS,
+											FindTreasureProlonged_Easter,
+											FindTreasureProlonged_SoccerResources,
+											FindTreasureProlonged_SoccerBalls,
+											FindTreasureProlonged_Halloween,
+											FindTreasureProlonged_Anniversary,
+											FindTreasureProlonged_Valentine"		multiplier="4" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureBeanACollada" name="FindTreasureBeanACollada"	multiplier="4" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureTravellingErudite" name="FindTreasureTravellingErudite"		multiplier="4" chance="1" channel="specialist" rules="explicit" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_candid_explorer.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+		
+		<skill id="122" name="Trait_LovelyExplorer">
+			<levels>	
+				<level>
+					<ChangeLoottableRolls type="FindTreasureShort" name="FindTreasureShort, FindTreasureShort_SoccerResources" adder="-2" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureMedium" name="FindTreasureMedium_SoccerResources" adder="-2" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureLong" name="FindTreasureLong_SoccerResources" adder="-2" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureEvenLonger" name="FindTreasureEvenLonger_SoccerResources" adder="-2" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureProlonged" name="FindTreasureProlonged, FindTreasureProlonged_SoccerResources" adder="-2" chance="1" channel="specialist" rules="explicit" />
+					
+					<ChangeLoottableRolls type="FindTreasureShort" name="FindTreasure_Lovely_Short, FindTreasure_Lovely_Short_SoccerResources" adder="2" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureMedium" name="FindTreasure_Lovely_Medium_SoccerResources" adder="2" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureLong" name="FindTreasure_Lovely_Long_SoccerResources" adder="2" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureEvenLonger" name="FindTreasure_Lovely_EvenLonger_SoccerResources" adder="2" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureProlonged" name="FindTreasure_Lovely_Prolonged, FindTreasure_Lovely_Prolonged_SoccerResources" adder="2" chance="1" channel="specialist" rules="explicit" />
+					
+					<ChangeLoottableRolls type="FindTreasureShort" name="FindTreasureShort_Easter, 
+											FindTreasureShort_XMAS,
+											FindTreasureShort_SoccerBalls,
+											FindTreasureShort_Halloween,
+											FindTreasureShort_Valentine,
+											FindTreasureShort_RedNose,
+											FindTreasureShort_Anniversary" adder="-1" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureMedium" name="FindTreasureMedium, 
+											FindTreasureMedium_RedNose,
+											FindTreasureMedium_XMAS,
+											FindTreasureMedium_Easter,
+											FindTreasureMedium_SoccerBalls,
+											FindTreasureMedium_Halloween,
+											FindTreasureMedium_Valentine,
+											FindTreasureMedium_Anniversary" adder="-1" chance="1" channel="specialist" rules="explicit" />						
+					<ChangeLoottableRolls type="FindTreasureLong" name="FindTreasureLong, 
+											FindTreasureLong_RedNose,
+											FindTreasureLong_XMAS,
+											FindTreasureLong_Easter,
+											FindTreasureLong_SoccerBalls,
+											FindTreasureLong_Halloween,
+											FindTreasureLong_Valentine,
+											FindTreasureLong_Anniversary" adder="-1" chance="1" channel="specialist" rules="explicit" />						
+					<ChangeLoottableRolls type="FindTreasureEvenLonger" name="FindTreasureEvenLonger, 
+											FindTreasureEvenLonger_RedNose,
+											FindTreasureEvenLonger_XMAS,
+											FindTreasureEvenLonger_Easter,
+											FindTreasureEvenLonger_SoccerBalls,
+											FindTreasureEvenLonger_Halloween,
+											FindTreasureEvenLonger_Valentine,
+											FindTreasureEvenLonger_Anniversary" adder="-1" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureProlonged" name="FindTreasureProlonged_RedNose,
+											FindTreasureProlonged_XMAS,
+											FindTreasureProlonged_Easter,
+											FindTreasureProlonged_SoccerBalls,
+											FindTreasureProlonged_Halloween,
+											FindTreasureProlonged_Valentine,
+											FindTreasureProlonged_Anniversary" adder="-1" chance="1" channel="specialist" rules="explicit" />
+											
+					<ChangeLoottableRolls type="FindTreasureShort" name="FindTreasure_Lovely_Short_Easter, 
+											FindTreasure_Lovely_Short_XMAS,
+											FindTreasure_Lovely_Short_SoccerBalls,
+											FindTreasure_Lovely_Short_Halloween,
+											FindTreasure_Lovely_Short_Valentine,
+											FindTreasure_Lovely_Short_RedNose,
+											FindTreasure_Lovely_Short_Anniversary" adder="1" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureMedium" name="FindTreasure_Lovely_Medium, 
+											FindTreasure_Lovely_Medium_RedNose,
+											FindTreasure_Lovely_Medium_XMAS,
+											FindTreasure_Lovely_Medium_Easter,
+											FindTreasure_Lovely_Medium_SoccerBalls,
+											FindTreasure_Lovely_Medium_Halloween,
+											FindTreasure_Lovely_Medium_Valentine,
+											FindTreasure_Lovely_Medium_Anniversary" adder="1" chance="1" channel="specialist" rules="explicit" />						
+					<ChangeLoottableRolls type="FindTreasureLong" name="FindTreasure_Lovely_Long, 
+											FindTreasure_Lovely_Long_RedNose,
+											FindTreasure_Lovely_Long_XMAS,
+											FindTreasure_Lovely_Long_Easter,
+											FindTreasure_Lovely_Long_SoccerBalls,
+											FindTreasure_Lovely_Long_Halloween,
+											FindTreasure_Lovely_Long_Valentine,
+											FindTreasure_Lovely_Long_Anniversary" adder="1" chance="1" channel="specialist" rules="explicit" />						
+					<ChangeLoottableRolls type="FindTreasureEvenLonger" name="FindTreasure_Lovely_EvenLonger, 
+											FindTreasure_Lovely_EvenLonger_RedNose,
+											FindTreasure_Lovely_EvenLonger_XMAS,
+											FindTreasure_Lovely_EvenLonger_Easter,
+											FindTreasure_Lovely_EvenLonger_SoccerBalls,
+											FindTreasure_Lovely_EvenLonger_Halloween,
+											FindTreasure_Lovely_EvenLonger_Valentine,
+											FindTreasure_Lovely_EvenLonger_Anniversary" adder="1" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureProlonged" name="FindTreasure_Lovely_Prolonged_RedNose,
+											FindTreasure_Lovely_Prolonged_XMAS,
+											FindTreasure_Lovely_Prolonged_Easter,
+											FindTreasure_Lovely_Prolonged_SoccerBalls,
+											FindTreasure_Lovely_Prolonged_Halloween,
+											FindTreasure_Lovely_Prolonged_Valentine,
+											FindTreasure_Lovely_Prolonged_Anniversary" adder="1" chance="1" channel="specialist" rules="explicit" />						
+											
+					<ChangeLoottableRolls type="FindTreasureBeanACollada" name="FindTreasureBeanACollada" adder="-1" chance="1" channel="specialist" rules="explicit" />	
+					<ChangeLoottableRolls type="FindTreasureBeanACollada_Lovely" name="FindTreasureBeanACollada_Lovely"	adder="2" chance="1" channel="specialist" rules="explicit" />											
+					
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_lovely_explorer.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+		
+		<skill id="200" name="Trait_PrincessZoeExplorer">
+			<levels>	
+				<level>							
+					<ChangeLoottableRolls name="FindTreasure_Zoe_Buffs" adder="1" chance="1" channel="specialist" rules="explicit"/>
+					<ChangeLoottableRolls name="FindTreasure_Zoe_Adventures" adder="1" chance="1" channel="specialist" rules="explicit"/>
+					<ChangeLoottableRolls name="FindAdventure_Zoe_Buffs" adder="1" chance="1" channel="specialist" rules="explicit"/>
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_princess_zoe.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>	
+		
+		<skill id="201" name="Trait_Soccer2019Explorer">
+			<levels>	
+				<level>
+				
+					<searchCost type="FindAdventureZoneShort" multiplier="0.5" channel="specialist" />
+					<searchCost type="FindAdventureZoneMedium" multiplier="0.5" channel="specialist" />
+					<searchCost type="FindAdventureZoneLong" multiplier="0.5" channel="specialist" />
+					<searchCost type="FindAdventureZoneVeryLong" multiplier="0.5" channel="specialist" />
+				
+					<ChangeLootCount name="FindTreasureShort, 
+					FindTreasureShort_RedNose, 
+					FindTreasureShort_SpecialistWeek, 
+					FindTreasureShort_Easter, 
+					FindTreasureShort_XMAS, 
+					FindTreasureShort_SoccerResources, 
+					FindTreasureShort_SoccerBalls, 
+					FindTreasureShort_Halloween,  
+					FindTreasureShort_Valentine,
+					FindTreasureShort_Anniversary" type="FindTreasureShort" multiplier="1.5" channel="specialist" /> <!-- Modify all entries in ShortTreasureSearch table!-->
+					
+					<ChangeLootCount name="FindTreasureMedium,
+					 FindTreasureMedium_RedNose, 
+					 FindTreasureMedium_SpecialistWeek, 
+					 FindTreasureMedium_Easter, 
+					 FindTreasureMedium_XMAS, 
+					 FindTreasureMedium_SoccerResources, 
+					 FindTreasureMedium_SoccerBalls, 
+					 FindTreasureMedium_Halloween,
+					 FindTreasureMedium_Valentine,
+					 FindTreasureMedium_Anniversary" type="FindTreasureMedium" multiplier="1.5" channel="specialist" /> <!-- Modify all entries in MediumTreasureSearch table!-->
+					 
+					<ChangeLootCount name="FindTreasureLong, 
+					FindTreasureLong_RedNose, 
+					FindTreasureLong_SpecialistWeek, 
+					FindTreasureLong_Easter, 
+					FindTreasureLong_XMAS, 
+					FindTreasureLong_SoccerResources, 
+					FindTreasureLong_SoccerBalls, 
+					FindTreasureLong_Halloween,
+					FindTreasureLong_Valentine,
+					FindTreasureLong_Anniversary" type="FindTreasureLong" multiplier="1.5" channel="specialist" /> <!-- Modify all entries in LongTreasureSearch table!-->
+					
+					<ChangeLootCount name="FindTreasureEvenLonger, 
+					FindTreasureEvenLonger_RedNose, 
+					FindTreasureEvenLonger_SpecialistWeek, 
+					FindTreasureEvenLonger_Easter, 
+					FindTreasureEvenLonger_XMAS, 
+					FindTreasureEvenLonger_SoccerResources, 
+					FindTreasureEvenLonger_SoccerBalls, 
+					FindTreasureEvenLonger_Halloween,
+					FindTreasureEvenLonger_Valentine,
+					FindTreasureEvenLonger_Anniversary" type="FindTreasureEvenLonger" multiplier="1.5" channel="specialist" /> <!-- Modify all entries in XLTreasureSearch table!-->
+					
+					<ChangeLootCount name="FindTreasureProlonged, 
+					FindTreasureProlonged_XMAS, 
+					FindTreasureProlonged_Easter, 
+					FindTreasureProlonged_SoccerResources, 
+					FindTreasureProlonged_SoccerBalls, 
+					FindTreasureProlonged_Halloween,
+					FindTreasureProlonged_Valentine,
+					FindTreasureProlonged_Anniversary" type="FindTreasureProlonged" multiplier="1.5" channel="specialist" /> <!-- Modify all entries in this TreasureSearch table!-->
+											
+					<ChangeLootCount name="FindTreasureBeanACollada" type="FindTreasureBeanACollada" multiplier="1.5" channel="specialist" /> <!-- Modify all entries in this TreasureSearch table!-->
+
+					<ChangeLootCount name="FindTreasureTravellingErudite" type="FindTreasureTravellingErudite" multiplier="1.5" channel="specialist" /> <!-- Modify all entries in this TreasureSearch table!-->					
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_soccer2019explorer.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>			
+		
+		<skill id="202" name="Trait_EmphaticExplorer">
+			<levels>	
+				<level>
+					<ChangeLoottableRolls type="FindTreasureShort" name="FindTreasureShort, 
+											FindTreasureShort_Easter, 
+											FindTreasureShort_XMAS,
+											FindTreasureShort_SoccerResources,
+											FindTreasureShort_SoccerBalls,
+											FindTreasureShort_Halloween,
+											FindTreasureShort_RedNose,
+											FindTreasureShort_Anniversary,
+											FindTreasureShort_Valentine"		multiplier="3" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureMedium" name="FindTreasureMedium, 
+											FindTreasureMedium_RedNose,
+											FindTreasureMedium_XMAS,
+											FindTreasureMedium_Easter,
+											FindTreasureMedium_SoccerResources,
+											FindTreasureMedium_SoccerBalls,
+											FindTreasureMedium_Halloween,
+											FindTreasureMedium_Anniversary,
+											FindTreasureMedium_Valentine"		multiplier="3" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureLong" name="FindTreasureLong, 
+											FindTreasureLong_RedNose,
+											FindTreasureLong_XMAS,
+											FindTreasureLong_Easter,
+											FindTreasureLong_SoccerResources,
+											FindTreasureLong_SoccerBalls,
+											FindTreasureLong_Halloween,
+											FindTreasureLong_Anniversary,
+											FindTreasureLong_Valentine"		multiplier="3" chance="1" channel="specialist" rules="explicit" />	
+					<ChangeLoottableRolls type="FindTreasureEvenLonger" name="FindTreasureEvenLonger, 
+											FindTreasureEvenLonger_RedNose,
+											FindTreasureEvenLonger_XMAS,
+											FindTreasureEvenLonger_Easter,
+											FindTreasureEvenLonger_SoccerResources,
+											FindTreasureEvenLonger_SoccerBalls,
+											FindTreasureEvenLonger_Halloween,
+											FindTreasureEvenLonger_Anniversary,
+											FindTreasureEvenLonger_Valentine"		multiplier="3" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureProlonged" name="FindTreasureProlonged, 
+											FindTreasureProlonged_RedNose,
+											FindTreasureProlonged_XMAS,
+											FindTreasureProlonged_Easter,
+											FindTreasureProlonged_SoccerResources,
+											FindTreasureProlonged_SoccerBalls,
+											FindTreasureProlonged_Halloween,
+											FindTreasureProlonged_Anniversary,
+											FindTreasureProlonged_Valentine"		multiplier="3" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureBeanACollada" name="FindTreasureBeanACollada" multiplier="3" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureTravellingErudite" name="FindTreasureTravellingErudite"	multiplier="3" chance="1" channel="specialist" rules="explicit" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_emphatic_explorer.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>		
+
+		<skill id="203" name="Trait_BewitchingExplorer">
+			<levels>	
+				<level>
+					<ChangeLoottableRolls type="FindTreasureShort" name="FindTreasureShort, FindTreasureShort_SoccerResources" adder="-2" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureMedium" name="FindTreasureMedium_SoccerResources" adder="-2" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureLong" name="FindTreasureLong_SoccerResources" adder="-2" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureEvenLonger" name="FindTreasureEvenLonger_SoccerResources" adder="-2" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureProlonged" name="FindTreasureProlonged, FindTreasureProlonged_SoccerResources" adder="-2" chance="1" channel="specialist" rules="explicit" />
+					
+					<ChangeLoottableRolls type="FindTreasureShort" name="FindTreasure_Lovely_Short, FindTreasure_Lovely_Short_SoccerResources" adder="4" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureMedium" name="FindTreasure_Lovely_Medium_SoccerResources" adder="3" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureLong" name="FindTreasure_Lovely_Long_SoccerResources" adder="3" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureEvenLonger" name="FindTreasure_Lovely_EvenLonger_SoccerResources" adder="3" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureProlonged" name="FindTreasure_Lovely_Prolonged, FindTreasure_Lovely_Prolonged_SoccerResources" adder="4" chance="1" channel="specialist" rules="explicit" />
+					
+					<ChangeLoottableRolls type="FindTreasureShort" name="FindTreasureShort_Easter, 
+											FindTreasureShort_XMAS,
+											FindTreasureShort_SoccerBalls,
+											FindTreasureShort_Halloween,
+											FindTreasureShort_Valentine,
+											FindTreasureShort_RedNose,
+											FindTreasureShort_Anniversary" adder="-1" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureMedium" name="FindTreasureMedium, 
+											FindTreasureMedium_RedNose,
+											FindTreasureMedium_XMAS,
+											FindTreasureMedium_Easter,
+											FindTreasureMedium_SoccerBalls,
+											FindTreasureMedium_Halloween,
+											FindTreasureMedium_Valentine,
+											FindTreasureMedium_Anniversary" adder="-1" chance="1" channel="specialist" rules="explicit" />						
+					<ChangeLoottableRolls type="FindTreasureLong" name="FindTreasureLong, 
+											FindTreasureLong_RedNose,
+											FindTreasureLong_XMAS,
+											FindTreasureLong_Easter,
+											FindTreasureLong_SoccerBalls,
+											FindTreasureLong_Halloween,
+											FindTreasureLong_Valentine,
+											FindTreasureLong_Anniversary" adder="-1" chance="1" channel="specialist" rules="explicit" />						
+					<ChangeLoottableRolls type="FindTreasureEvenLonger" name="FindTreasureEvenLonger, 
+											FindTreasureEvenLonger_RedNose,
+											FindTreasureEvenLonger_XMAS,
+											FindTreasureEvenLonger_Easter,
+											FindTreasureEvenLonger_SoccerBalls,
+											FindTreasureEvenLonger_Halloween,
+											FindTreasureEvenLonger_Valentine,
+											FindTreasureEvenLonger_Anniversary" adder="-1" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureProlonged" name="FindTreasureProlonged_RedNose,
+											FindTreasureProlonged_XMAS,
+											FindTreasureProlonged_Easter,
+											FindTreasureProlonged_SoccerBalls,
+											FindTreasureProlonged_Halloween,
+											FindTreasureProlonged_Valentine,
+											FindTreasureProlonged_Anniversary" adder="-1" chance="1" channel="specialist" rules="explicit" />
+											
+					<ChangeLoottableRolls type="FindTreasureShort" name="FindTreasure_Lovely_Short_Easter, 
+											FindTreasure_Lovely_Short_XMAS,
+											FindTreasure_Lovely_Short_SoccerBalls,
+											FindTreasure_Lovely_Short_Halloween,
+											FindTreasure_Lovely_Short_Valentine,
+											FindTreasure_Lovely_Short_RedNose,
+											FindTreasure_Lovely_Short_Anniversary" adder="2" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureMedium" name="FindTreasure_Lovely_Medium, 
+											FindTreasure_Lovely_Medium_RedNose,
+											FindTreasure_Lovely_Medium_XMAS,
+											FindTreasure_Lovely_Medium_Easter,
+											FindTreasure_Lovely_Medium_SoccerBalls,
+											FindTreasure_Lovely_Medium_Halloween,
+											FindTreasure_Lovely_Medium_Valentine,
+											FindTreasure_Lovely_Medium_Anniversary" adder="2" chance="1" channel="specialist" rules="explicit" />						
+					<ChangeLoottableRolls type="FindTreasureLong" name="FindTreasure_Lovely_Long, 
+											FindTreasure_Lovely_Long_RedNose,
+											FindTreasure_Lovely_Long_XMAS,
+											FindTreasure_Lovely_Long_Easter,
+											FindTreasure_Lovely_Long_SoccerBalls,
+											FindTreasure_Lovely_Long_Halloween,
+											FindTreasure_Lovely_Long_Valentine,
+											FindTreasure_Lovely_Long_Anniversary" adder="2" chance="1" channel="specialist" rules="explicit" />						
+					<ChangeLoottableRolls type="FindTreasureEvenLonger" name="FindTreasure_Lovely_EvenLonger, 
+											FindTreasure_Lovely_EvenLonger_RedNose,
+											FindTreasure_Lovely_EvenLonger_XMAS,
+											FindTreasure_Lovely_EvenLonger_Easter,
+											FindTreasure_Lovely_EvenLonger_SoccerBalls,
+											FindTreasure_Lovely_EvenLonger_Halloween,
+											FindTreasure_Lovely_EvenLonger_Valentine,
+											FindTreasure_Lovely_EvenLonger_Anniversary" adder="2" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureProlonged" name="FindTreasure_Lovely_Prolonged_RedNose,
+											FindTreasure_Lovely_Prolonged_XMAS,
+											FindTreasure_Lovely_Prolonged_Easter,
+											FindTreasure_Lovely_Prolonged_SoccerBalls,
+											FindTreasure_Lovely_Prolonged_Halloween,
+											FindTreasure_Lovely_Prolonged_Valentine,
+											FindTreasure_Lovely_Prolonged_Anniversary" adder="2" chance="1" channel="specialist" rules="explicit" />		
+
+					<ChangeLoottableRolls type="FindTreasureBeanACollada" name="FindTreasureBeanACollada" adder="-1" chance="1" channel="specialist" rules="explicit" />	
+					<ChangeLoottableRolls type="FindTreasureBeanACollada_Lovely" name="FindTreasureBeanACollada_Lovely"	adder="2" chance="1" channel="specialist" rules="explicit" />						
+					<ChangeLoottableRolls type="FindTreasureTravellingErudite" name="FindTreasureTravellingErudite"		multiplier="2" chance="1" channel="specialist" rules="explicit" />					
+
+					
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_bewitching_explorer.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+		
+		<skill id="204" name="Trait_HumbleExplorer">
+			<levels>	
+				<level>
+					<ChangeLoottableRolls type="FindTreasureShort" name="FindTreasureShort, 
+											FindTreasureShort_Easter, 
+											FindTreasureShort_XMAS,
+											FindTreasureShort_SoccerResources,
+											FindTreasureShort_SoccerBalls,
+											FindTreasureShort_Halloween,
+											FindTreasureShort_RedNose,
+											FindTreasureShort_Anniversary,
+											FindTreasureShort_Valentine"		multiplier="6" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureMedium" name="FindTreasureMedium, 
+											FindTreasureMedium_RedNose,
+											FindTreasureMedium_XMAS,
+											FindTreasureMedium_Easter,
+											FindTreasureMedium_SoccerResources,
+											FindTreasureMedium_SoccerBalls,
+											FindTreasureMedium_Halloween,
+											FindTreasureMedium_Anniversary,
+											FindTreasureMedium_Valentine"		multiplier="6" chance="1" channel="specialist" rules="explicit" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_humble_explorer.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>		
+		
+		<skill id="205" name="Trait_KeenerExplorer">
+			<levels>	
+				<level>
+					<ChangeLoottableRolls name="IntrepidLoot"  adder="2" chance="1" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_keenerexplorer.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+
+		<skill id="274" name="Trait_BoldExplorer">
+			<levels>	
+				<level>
+				
+				<ChangeLoottableRolls name="FindTreasure_Bold_Buffs" adder="1" chance="1" channel="specialist" rules="explicit"/>
+				<ChangeLoottableRolls name="FindAdventure_Zoe_Buffs" adder="1" chance="1" channel="specialist" rules="explicit"/>
+				
+					<ChangeLootCount name="FindTreasureShort, 
+					FindTreasureShort_RedNose, 
+					FindTreasureShort_SpecialistWeek, 
+					FindTreasureShort_Easter, 
+					FindTreasureShort_XMAS, 
+					FindTreasureShort_SoccerResources, 
+					FindTreasureShort_SoccerBalls, 
+					FindTreasureShort_Halloween,  
+					FindTreasureShort_Valentine,
+					FindTreasureShort_Anniversary" type="FindTreasureShort" multiplier="1.5" channel="specialist" /> <!-- Modify all entries in ShortTreasureSearch table!-->
+					
+					<ChangeLootCount name="FindTreasureMedium,
+					 FindTreasureMedium_RedNose, 
+					 FindTreasureMedium_SpecialistWeek, 
+					 FindTreasureMedium_Easter, 
+					 FindTreasureMedium_XMAS, 
+					 FindTreasureMedium_SoccerResources, 
+					 FindTreasureMedium_SoccerBalls, 
+					 FindTreasureMedium_Halloween,
+					 FindTreasureMedium_Valentine,
+					 FindTreasureMedium_Anniversary" type="FindTreasureMedium" multiplier="1.5" channel="specialist" /> <!-- Modify all entries in MediumTreasureSearch table!-->
+					 
+					<ChangeLootCount name="FindTreasureLong, 
+					FindTreasureLong_RedNose, 
+					FindTreasureLong_SpecialistWeek, 
+					FindTreasureLong_Easter, 
+					FindTreasureLong_XMAS, 
+					FindTreasureLong_SoccerResources, 
+					FindTreasureLong_SoccerBalls, 
+					FindTreasureLong_Halloween,
+					FindTreasureLong_Valentine,
+					FindTreasureLong_Anniversary" type="FindTreasureLong" multiplier="1.5" channel="specialist" /> <!-- Modify all entries in LongTreasureSearch table!-->
+					
+					<ChangeLootCount name="FindTreasureEvenLonger, 
+					FindTreasureEvenLonger_RedNose, 
+					FindTreasureEvenLonger_SpecialistWeek, 
+					FindTreasureEvenLonger_Easter, 
+					FindTreasureEvenLonger_XMAS, 
+					FindTreasureEvenLonger_SoccerResources, 
+					FindTreasureEvenLonger_SoccerBalls, 
+					FindTreasureEvenLonger_Halloween,
+					FindTreasureEvenLonger_Valentine,
+					FindTreasureEvenLonger_Anniversary" type="FindTreasureEvenLonger" multiplier="1.5" channel="specialist" /> <!-- Modify all entries in XLTreasureSearch table!-->
+					
+					<ChangeLootCount name="FindTreasureProlonged, 
+					FindTreasureProlonged_XMAS, 
+					FindTreasureProlonged_Easter, 
+					FindTreasureProlonged_SoccerResources, 
+					FindTreasureProlonged_SoccerBalls, 
+					FindTreasureProlonged_Halloween,
+					FindTreasureProlonged_Valentine,
+					FindTreasureProlonged_Anniversary" type="FindTreasureProlonged" multiplier="1.5" channel="specialist" /> <!-- Modify all entries in this TreasureSearch table!-->
+											
+					<ChangeLootCount name="FindTreasureBeanACollada" type="FindTreasureBeanACollada" multiplier="1.5" channel="specialist" /> <!-- Modify all entries in this TreasureSearch table!-->
+
+					<ChangeLootCount name="FindTreasureTravellingErudite" type="FindTreasureTravellingErudite" multiplier="1.5" channel="specialist" /> <!-- Modify all entries in this TreasureSearch table!-->
+					
+					</level>
+			</levels>
+			<layout>
+				<icon name="trait_bold_explorer.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+
+		<!-- Scared Explorer Skill -->
+
+		<skill id="277" name="Trait_ScaredExplorer">
+			<levels>	
+				<level>
+				
+				<ChangeLoottableRolls name="FindTreasure_Scared_Buffs" adder="1" chance="1" channel="specialist" rules="explicit"/>
+				
+					<ChangeLootCount name="FindTreasureShort, 
+					FindTreasureShort_RedNose, 
+					FindTreasureShort_SpecialistWeek, 
+					FindTreasureShort_Easter, 
+					FindTreasureShort_XMAS, 
+					FindTreasureShort_SoccerResources, 
+					FindTreasureShort_SoccerBalls, 
+					FindTreasureShort_Halloween,  
+					FindTreasureShort_Valentine,
+					FindTreasureShort_Anniversary" type="FindTreasureShort" multiplier="4" channel="specialist" /> <!-- Modify all entries in ShortTreasureSearch table!-->
+					
+					<ChangeLootCount name="FindTreasureMedium,
+					 FindTreasureMedium_RedNose, 
+					 FindTreasureMedium_SpecialistWeek, 
+					 FindTreasureMedium_Easter, 
+					 FindTreasureMedium_XMAS, 
+					 FindTreasureMedium_SoccerResources, 
+					 FindTreasureMedium_SoccerBalls, 
+					 FindTreasureMedium_Halloween,
+					 FindTreasureMedium_Valentine,
+					 FindTreasureMedium_Anniversary" type="FindTreasureMedium" multiplier="4" channel="specialist" /> <!-- Modify all entries in MediumTreasureSearch table!-->
+					 
+					<ChangeLootCount name="FindTreasureLong, 
+					FindTreasureLong_RedNose, 
+					FindTreasureLong_SpecialistWeek, 
+					FindTreasureLong_Easter, 
+					FindTreasureLong_XMAS, 
+					FindTreasureLong_SoccerResources, 
+					FindTreasureLong_SoccerBalls, 
+					FindTreasureLong_Halloween,
+					FindTreasureLong_Valentine,
+					FindTreasureLong_Anniversary" type="FindTreasureLong" multiplier="4" channel="specialist" /> <!-- Modify all entries in LongTreasureSearch table!-->
+					
+					<ChangeLootCount name="FindTreasureEvenLonger, 
+					FindTreasureEvenLonger_RedNose, 
+					FindTreasureEvenLonger_SpecialistWeek, 
+					FindTreasureEvenLonger_Easter, 
+					FindTreasureEvenLonger_XMAS, 
+					FindTreasureEvenLonger_SoccerResources, 
+					FindTreasureEvenLonger_SoccerBalls, 
+					FindTreasureEvenLonger_Halloween,
+					FindTreasureEvenLonger_Valentine,
+					FindTreasureEvenLonger_Anniversary" type="FindTreasureEvenLonger" multiplier="4" channel="specialist" /> <!-- Modify all entries in XLTreasureSearch table!-->
+					
+					<ChangeLootCount name="FindTreasureProlonged, 
+					FindTreasureProlonged_XMAS, 
+					FindTreasureProlonged_Easter, 
+					FindTreasureProlonged_SoccerResources, 
+					FindTreasureProlonged_SoccerBalls, 
+					FindTreasureProlonged_Halloween,
+					FindTreasureProlonged_Valentine,
+					FindTreasureProlonged_Anniversary" type="FindTreasureProlonged" multiplier="4" channel="specialist" /> <!-- Modify all entries in this TreasureSearch table!-->
+					
+					</level>
+			</levels>
+			<layout>
+				<icon name="trait_scared_explorer.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>		
+		
+
+		<skill id="282" name="Trait_SnowyExplorer">
+			<levels>	
+				<level>
+					<ChangeLoottableRolls type="FindTreasureShort" name="FindTreasureShort_Easter, 
+											FindTreasureShort_XMAS,
+											FindTreasureShort_SoccerResources,
+											FindTreasureShort_SoccerBalls,
+											FindTreasureShort_Halloween,
+											FindTreasureShort_RedNose,
+											FindTreasureShort_Anniversary,
+											FindTreasureShort_Valentine" multiplier="4" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureShort" name="FindTreasureShort" multiplier="2" chance="1" channel="specialist" rules="explicit" />						
+					
+					<ChangeLoottableRolls type="FindTreasureMedium" name="FindTreasureMedium_RedNose,
+											FindTreasureMedium_XMAS,
+											FindTreasureMedium_Easter,
+											FindTreasureMedium_SoccerResources,
+											FindTreasureMedium_SoccerBalls,
+											FindTreasureMedium_Halloween,
+											FindTreasureMedium_Anniversary,
+											FindTreasureMedium_Valentine"		multiplier="4" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureMedium" name="FindTreasureMedium" multiplier="2" chance="1" channel="specialist" rules="explicit" />
+
+					<ChangeLoottableRolls type="FindTreasureLong" name="FindTreasureLong_RedNose,
+											FindTreasureLong_XMAS,
+											FindTreasureLong_Easter,
+											FindTreasureLong_SoccerResources,
+											FindTreasureLong_SoccerBalls,
+											FindTreasureLong_Halloween,
+											FindTreasureLong_Anniversary,
+											FindTreasureLong_Valentine"		multiplier="4" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureLong" name="FindTreasureLong" multiplier="2" chance="1" channel="specialist" rules="explicit" />							
+					
+					<ChangeLoottableRolls type="FindTreasureEvenLonger" name="FindTreasureEvenLonger_RedNose,
+											FindTreasureEvenLonger_XMAS,
+											FindTreasureEvenLonger_Easter,
+											FindTreasureEvenLonger_SoccerResources,
+											FindTreasureEvenLonger_SoccerBalls,
+											FindTreasureEvenLonger_Halloween,
+											FindTreasureEvenLonger_Anniversary,
+											FindTreasureEvenLonger_Valentine"		multiplier="4" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureEvenLonger" name="FindTreasureEvenLonger" multiplier="2" chance="1" channel="specialist" rules="explicit" />						
+					
+					<ChangeLoottableRolls type="FindTreasureProlonged" name="FindTreasureProlonged_RedNose,
+											FindTreasureProlonged_XMAS,
+											FindTreasureProlonged_Easter,
+											FindTreasureProlonged_SoccerResources,
+											FindTreasureProlonged_SoccerBalls,
+											FindTreasureProlonged_Halloween,
+											FindTreasureProlonged_Anniversary,
+											FindTreasureProlonged_Valentine"		multiplier="4" chance="1" channel="specialist" rules="explicit" />
+											
+					<ChangeLoottableRolls type="FindTreasureProlonged" name="FindTreasureProlonged" multiplier="2" chance="1" channel="specialist" rules="explicit" />				
+					
+					<ChangeLoottableRolls type="FindTreasureBeanACollada" name="FindTreasureBeanACollada"	multiplier="2" chance="1" channel="specialist" rules="explicit" />	
+					
+					<ChangeLoottableRolls type="FindTreasureTravellingErudite" name="FindTreasureTravellingErudite"		multiplier="2" chance="1" channel="specialist" rules="explicit" />																										
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_snowy.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+
+		<skill id="283" name="Trait_RomanticExplorer">
+			<levels>	
+				<level>
+					<ChangeLoottableRolls type="FindTreasureLong" name="FindTreasureLong, 
+											FindTreasureLong_Easter, 
+											FindTreasureLong_XMAS,
+											FindTreasureLong_SoccerResources,
+											FindTreasureLong_SoccerBalls,
+											FindTreasureLong_Halloween,
+											FindTreasureLong_RedNose,
+											FindTreasureLong_Anniversary,
+											FindTreasureLong_Valentine"		multiplier="12" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureEvenLonger" name="FindTreasureEvenLonger, 
+											FindTreasureEvenLonger_RedNose,
+											FindTreasureEvenLonger_XMAS,
+											FindTreasureEvenLonger_Easter,
+											FindTreasureEvenLonger_SoccerResources,
+											FindTreasureEvenLonger_SoccerBalls,
+											FindTreasureEvenLonger_Halloween,
+											FindTreasureEvenLonger_Anniversary,
+											FindTreasureEvenLonger_Valentine"		multiplier="12" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureProlonged" name="FindTreasureProlonged, 
+											FindTreasureProlonged_RedNose,
+											FindTreasureProlonged_XMAS,
+											FindTreasureProlonged_Easter,
+											FindTreasureProlonged_SoccerResources,
+											FindTreasureProlonged_SoccerBalls,
+											FindTreasureProlonged_Halloween,
+											FindTreasureProlonged_Anniversary,
+											FindTreasureProlonged_Valentine"		multiplier="12" chance="1" channel="specialist" rules="explicit" />						
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_romantic_explorer.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+
+		<skill id="286" name="Trait_MotherlyExplorer">
+			<levels>	
+				<level>
+					<ChangeLoottableRolls type="FindTreasureShort" name="FindTreasureShort, 
+											FindTreasureShort_Easter, 
+											FindTreasureShort_XMAS,
+											FindTreasureShort_SoccerResources,
+											FindTreasureShort_SoccerBalls,
+											FindTreasureShort_Halloween,
+											FindTreasureShort_RedNose,
+											FindTreasureShort_Anniversary,
+											FindTreasureShort_Valentine"		multiplier="4" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureMedium" name="FindTreasureMedium, 
+											FindTreasureMedium_RedNose,
+											FindTreasureMedium_XMAS,
+											FindTreasureMedium_Easter,
+											FindTreasureMedium_SoccerResources,
+											FindTreasureMedium_SoccerBalls,
+											FindTreasureMedium_Halloween,
+											FindTreasureMedium_Anniversary,
+											FindTreasureMedium_Valentine"		multiplier="4" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureLong" name="FindTreasureLong, 
+											FindTreasureLong_RedNose,
+											FindTreasureLong_XMAS,
+											FindTreasureLong_Easter,
+											FindTreasureLong_SoccerResources,
+											FindTreasureLong_SoccerBalls,
+											FindTreasureLong_Halloween,
+											FindTreasureLong_Anniversary,
+											FindTreasureLong_Valentine"		multiplier="4" chance="1" channel="specialist" rules="explicit" />	
+					<ChangeLoottableRolls type="FindTreasureEvenLonger" name="FindTreasureEvenLonger, 
+											FindTreasureEvenLonger_RedNose,
+											FindTreasureEvenLonger_XMAS,
+											FindTreasureEvenLonger_Easter,
+											FindTreasureEvenLonger_SoccerResources,
+											FindTreasureEvenLonger_SoccerBalls,
+											FindTreasureEvenLonger_Halloween,
+											FindTreasureEvenLonger_Anniversary,
+											FindTreasureEvenLonger_Valentine"		multiplier="4" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureProlonged" name="FindTreasureProlonged, 
+											FindTreasureProlonged_RedNose,
+											FindTreasureProlonged_XMAS,
+											FindTreasureProlonged_Easter,
+											FindTreasureProlonged_SoccerResources,
+											FindTreasureProlonged_SoccerBalls,
+											FindTreasureProlonged_Halloween,
+											FindTreasureProlonged_Anniversary,
+											FindTreasureProlonged_Valentine"		multiplier="4" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureBeanACollada" name="FindTreasureBeanACollada" multiplier="4" chance="1" channel="specialist" rules="explicit" />
+					<ChangeLoottableRolls type="FindTreasureTravellingErudite" name="FindTreasureTravellingErudite"	multiplier="4" chance="1" channel="specialist" rules="explicit" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_motherly_explorer.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>	
+
+		<!-- Benevolent Explorer Skill: Infinite Goodness -->
+
+		<skill id="287" name="Trait_BenevolentExplorer">
+			<levels>	
+				<level>
+				
+				<ChangeLoottableRolls type="FindTreasureEvenLonger" name="FindTreasure_Benevolent_Buffs1" adder="1" chance="1" channel="specialist" rules="explicit"/>
+				<ChangeLoottableRolls type="FindTreasureProlonged" name="FindTreasure_Benevolent_Buffs2" adder="1" chance="1" channel="specialist" rules="explicit"/>
+
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_benevolent_explorer.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+
+		<skill id="288" name="Trait_RoyalCollector">
+			<levels>	
+				<level>
+				
+				<ChangeLoottableRolls type="FindAdventureZoneShort" name="FindAdventure_Royal_Buffs1" adder="1" chance="1" channel="specialist" rules="explicit"/>
+				<ChangeLoottableRolls type="FindAdventureZoneMedium" name="FindAdventure_Royal_Buffs2" adder="1" chance="1" channel="specialist" rules="explicit"/>
+				<ChangeLoottableRolls type="FindAdventureZoneLong" name="FindAdventure_Royal_Buffs3" adder="1" chance="1" channel="specialist" rules="explicit"/>
+				<ChangeLoottableRolls type="FindAdventureZoneVeryLong" name="FindAdventure_Royal_Buffs4" adder="1" chance="1" channel="specialist" rules="explicit"/>	 
+				 	 
+					 
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_royal_collector.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>			
+		<!-- Pirate Explorer Skill -->
+
+		<skill id="289" name="Trait_PirateExplorer">
+			<levels>	
+				<level>
+				
+				<ChangeLoottableRolls name="FindTreasure_Pirate_Buffs" adder="1" chance="1" channel="specialist" rules="explicit"/>
+				
+					<ChangeLootCount name="FindTreasureShort, 
+					FindTreasureShort_RedNose, 
+					FindTreasureShort_SpecialistWeek, 
+					FindTreasureShort_Easter, 
+					FindTreasureShort_XMAS, 
+					FindTreasureShort_SoccerResources, 
+					FindTreasureShort_SoccerBalls, 
+					FindTreasureShort_Halloween,  
+					FindTreasureShort_Valentine,
+					FindTreasureShort_Anniversary" type="FindTreasureShort" multiplier="2" channel="specialist" /> <!-- Modify all entries in ShortTreasureSearch table!-->
+					
+					<ChangeLootCount name="FindTreasureMedium,
+					 FindTreasureMedium_RedNose, 
+					 FindTreasureMedium_SpecialistWeek, 
+					 FindTreasureMedium_Easter, 
+					 FindTreasureMedium_XMAS, 
+					 FindTreasureMedium_SoccerResources, 
+					 FindTreasureMedium_SoccerBalls, 
+					 FindTreasureMedium_Halloween,
+					 FindTreasureMedium_Valentine,
+					 FindTreasureMedium_Anniversary" type="FindTreasureMedium" multiplier="2" channel="specialist" /> <!-- Modify all entries in MediumTreasureSearch table!-->
+					 
+					<ChangeLootCount name="FindTreasureLong, 
+					FindTreasureLong_RedNose, 
+					FindTreasureLong_SpecialistWeek, 
+					FindTreasureLong_Easter, 
+					FindTreasureLong_XMAS, 
+					FindTreasureLong_SoccerResources, 
+					FindTreasureLong_SoccerBalls, 
+					FindTreasureLong_Halloween,
+					FindTreasureLong_Valentine,
+					FindTreasureLong_Anniversary" type="FindTreasureLong" multiplier="2" channel="specialist" /> <!-- Modify all entries in LongTreasureSearch table!-->
+					
+					<ChangeLootCount name="FindTreasureEvenLonger, 
+					FindTreasureEvenLonger_RedNose, 
+					FindTreasureEvenLonger_SpecialistWeek, 
+					FindTreasureEvenLonger_Easter, 
+					FindTreasureEvenLonger_XMAS, 
+					FindTreasureEvenLonger_SoccerResources, 
+					FindTreasureEvenLonger_SoccerBalls, 
+					FindTreasureEvenLonger_Halloween,
+					FindTreasureEvenLonger_Valentine,
+					FindTreasureEvenLonger_Anniversary" type="FindTreasureEvenLonger" multiplier="2" channel="specialist" /> <!-- Modify all entries in XLTreasureSearch table!-->
+					
+					<ChangeLootCount name="FindTreasureProlonged, 
+					FindTreasureProlonged_XMAS, 
+					FindTreasureProlonged_Easter, 
+					FindTreasureProlonged_SoccerResources, 
+					FindTreasureProlonged_SoccerBalls, 
+					FindTreasureProlonged_Halloween,
+					FindTreasureProlonged_Valentine,
+					FindTreasureProlonged_Anniversary" type="FindTreasureProlonged" multiplier="2" channel="specialist" /> <!-- Modify all entries in this TreasureSearch table!-->
+					
+					</level>
+			</levels>
+			<layout>
+				<icon name="trait_pirateexplorer.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>	
+		
+		<skill id="308" name="Trait_FluffyButteExplorer">
+			<levels>	
+				<level>
+					<ChangeLoottableRolls type="FindTreasureShort" name="FindTreasureShort_Easter, 
+											FindTreasureShort_XMAS,
+											FindTreasureShort_SoccerResources,
+											FindTreasureShort_SoccerBalls,
+											FindTreasureShort_Halloween,
+											FindTreasureShort_RedNose,
+											FindTreasureShort_Anniversary,
+											FindTreasureShort_Valentine" multiplier="5" chance="1" channel="specialist" rules="explicit" />					
+					
+					<ChangeLoottableRolls type="FindTreasureMedium" name="FindTreasureMedium_RedNose,
+											FindTreasureMedium_XMAS,
+											FindTreasureMedium_Easter,
+											FindTreasureMedium_SoccerResources,
+											FindTreasureMedium_SoccerBalls,
+											FindTreasureMedium_Halloween,
+											FindTreasureMedium_Anniversary,
+											FindTreasureMedium_Valentine"		multiplier="5" chance="1" channel="specialist" rules="explicit" />
+
+					<ChangeLoottableRolls type="FindTreasureLong" name="FindTreasureLong_RedNose,
+											FindTreasureLong_XMAS,
+											FindTreasureLong_Easter,
+											FindTreasureLong_SoccerResources,
+											FindTreasureLong_SoccerBalls,
+											FindTreasureLong_Halloween,
+											FindTreasureLong_Anniversary,
+											FindTreasureLong_Valentine"		multiplier="5" chance="1" channel="specialist" rules="explicit" />						
+					
+					<ChangeLoottableRolls type="FindTreasureEvenLonger" name="FindTreasureEvenLonger_RedNose,
+											FindTreasureEvenLonger_XMAS,
+											FindTreasureEvenLonger_Easter,
+											FindTreasureEvenLonger_SoccerResources,
+											FindTreasureEvenLonger_SoccerBalls,
+											FindTreasureEvenLonger_Halloween,
+											FindTreasureEvenLonger_Anniversary,
+											FindTreasureEvenLonger_Valentine"		multiplier="5" chance="1" channel="specialist" rules="explicit" />						
+					
+					<ChangeLoottableRolls type="FindTreasureProlonged" name="FindTreasureProlonged_RedNose,
+											FindTreasureProlonged_XMAS,
+											FindTreasureProlonged_Easter,
+											FindTreasureProlonged_SoccerResources,
+											FindTreasureProlonged_SoccerBalls,
+											FindTreasureProlonged_Halloween,
+											FindTreasureProlonged_Anniversary,
+											FindTreasureProlonged_Valentine"		multiplier="5" chance="1" channel="specialist" rules="explicit" />
+																																				
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_fluffybutteexplorer.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+		
+		<!--Ostereirbaum Explorer loot bonus buff-->
+		<skill id="310" name="Trait_Ostereierbaum">
+			<levels>	
+				<level>
+					<ChangeLoottableRolls type="FindTreasureShort" name="FindTreasureShort_Easter, 
+											FindTreasureShort_XMAS,
+											FindTreasureShort_SoccerResources,
+											FindTreasureShort_SoccerBalls,
+											FindTreasureShort_Halloween,
+											FindTreasureShort_RedNose,
+											FindTreasureShort_Anniversary,
+											FindTreasureShort_Valentine" multiplier="2" chance="1" channel="specialist" rules="explicit" />					
+					
+					<ChangeLoottableRolls type="FindTreasureMedium" name="FindTreasureMedium_RedNose,
+											FindTreasureMedium_XMAS,
+											FindTreasureMedium_Easter,
+											FindTreasureMedium_SoccerResources,
+											FindTreasureMedium_SoccerBalls,
+											FindTreasureMedium_Halloween,
+											FindTreasureMedium_Anniversary,
+											FindTreasureMedium_Valentine"		multiplier="2" chance="1" channel="specialist" rules="explicit" />
+
+					<ChangeLoottableRolls type="FindTreasureLong" name="FindTreasureLong_RedNose,
+											FindTreasureLong_XMAS,
+											FindTreasureLong_Easter,
+											FindTreasureLong_SoccerResources,
+											FindTreasureLong_SoccerBalls,
+											FindTreasureLong_Halloween,
+											FindTreasureLong_Anniversary,
+											FindTreasureLong_Valentine"		multiplier="2" chance="1" channel="specialist" rules="explicit" />						
+					
+					<ChangeLoottableRolls type="FindTreasureEvenLonger" name="FindTreasureEvenLonger_RedNose,
+											FindTreasureEvenLonger_XMAS,
+											FindTreasureEvenLonger_Easter,
+											FindTreasureEvenLonger_SoccerResources,
+											FindTreasureEvenLonger_SoccerBalls,
+											FindTreasureEvenLonger_Halloween,
+											FindTreasureEvenLonger_Anniversary,
+											FindTreasureEvenLonger_Valentine"		multiplier="2" chance="1" channel="specialist" rules="explicit" />						
+					
+					<ChangeLoottableRolls type="FindTreasureProlonged" name="FindTreasureProlonged_RedNose,
+											FindTreasureProlonged_XMAS,
+											FindTreasureProlonged_Easter,
+											FindTreasureProlonged_SoccerResources,
+											FindTreasureProlonged_SoccerBalls,
+											FindTreasureProlonged_Halloween,
+											FindTreasureProlonged_Anniversary,
+											FindTreasureProlonged_Valentine"		multiplier="2" chance="1" channel="specialist" rules="explicit" />
+																																				
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_ostereierbaum.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+		
+		<skill id="318" name="Trait_RinaTheExplorer">
+			<levels>	
+				<level>							
+					<ChangeLoottableRolls name="FindTreasure_Rina_Adventures" adder="1" chance="1" channel="specialist" rules="explicit"/>
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_rinatheexplorer.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+
+		<skill id="323" name="Trait_LoveStruckExplorer">
+			<levels>	
+				<level>
+				<ChangeLoottableRolls type="FindAdventureZoneShort" name="FindAdventure_LoveStruckExplorer1" adder="1" chance="1" channel="specialist" rules="explicit"/>
+				<ChangeLoottableRolls type="FindAdventureZoneMedium" name="FindAdventure_LoveStruckExplorer2" adder="1" chance="1" channel="specialist" rules="explicit"/>
+				<ChangeLoottableRolls type="FindAdventureZoneLong" name="FindAdventure_LoveStruckExplorer3" adder="1" chance="1" channel="specialist" rules="explicit"/>
+				<ChangeLoottableRolls type="FindAdventureZoneVeryLong" name="FindAdventure_LoveStruckExplorer4" adder="1" chance="1" channel="specialist" rules="explicit"/>	 
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_lovestruckexplorer.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+
+		<!-- Halloween 2024: Blacktree Explorer -->
+
+		<skill id="326" name="Trait_BlacktreeExplorer">
+			<levels>	
+				<level>
+				<ChangeLoottableRolls type="FindTreasureLong" name="FindTreasure_BlacktreeExplorer_Buffs1" adder="1" chance="1" channel="specialist" rules="explicit"/>
+				<ChangeLoottableRolls type="FindTreasureEvenLonger" name="FindTreasure_BlacktreeExplorer_Buffs2" adder="1" chance="1" channel="specialist" rules="explicit"/>
+				<ChangeLoottableRolls type="FindTreasureProlonged" name="FindTreasure_BlacktreeExplorer_Buffs3" adder="1" chance="1" channel="specialist" rules="explicit"/>
+
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_blacktree_explorer.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+				
+		<!-- Easter 2025: Chummy Explorer -->
+
+		<skill id="329" name="TraitChummyExplorer">
+			<levels>	
+				<level>
+				<ChangeLoottableRolls type="FindTreasureLong" name="FindTreasure_ChummyExplorer_Buffs1" adder="1" chance="0.75" channel="specialist" rules="explicit"/>
+				<ChangeLoottableRolls type="FindTreasureEvenLonger" name="FindTreasure_ChummyExplorer_Buffs2" adder="1" chance="1" channel="specialist" rules="explicit"/>
+				<ChangeLoottableRolls type="FindTreasureProlonged" name="FindTreasure_ChummyExplorer_Buffs3" adder="2" chance="1" channel="specialist" rules="explicit"/>
+
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_chummy_explorer.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+		
+		<skill id="330" name="Trait_MercenaryExplorer">
+			<levels>	
+				<level>
+				<ChangeLoottableRolls type="FindAdventureZoneShort" name="FindAdventureZoneShort_MercenaryExplorer" adder="1" chance="1" channel="specialist" rules="explicit"/>
+				<ChangeLoottableRolls type="FindAdventureZoneMedium" name="FindAdventureZoneMedium_MercenaryExplorer" adder="1" chance="1" channel="specialist" rules="explicit"/>
+				<ChangeLoottableRolls type="FindAdventureZoneLong" name="FindAdventureZoneLong_MercenaryExplorer" adder="1" chance="1" channel="specialist" rules="explicit"/>
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_mercenaryexplorer.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+		
+		<skill id="334" name="Trait_Ghostlyloot">
+			<levels>	
+				<level>
+					<ChangeLoottableRolls type="FindTreasureLong" name="FindTreasure_GhostExplorer_Long_Buff" adder="1" chance="0.7" channel="specialist" rules="explicit"/>
+					<ChangeLoottableRolls type="FindTreasureLong" name="FindTreasure_GhostExplorer_Long_Pumpkin" adder="1" chance="0.7" channel="specialist" rules="explicit"/>
+					<ChangeLoottableRolls type="FindTreasureLong" name="FindTreasure_GhostExplorer_Long_Page" adder="1" chance="0.35" channel="specialist" rules="explicit"/>
+					<ChangeLoottableRolls type="FindTreasureEvenLonger" name="FindTreasure_GhostExplorer_EvenLonger_Buff" adder="1" chance="0.85" channel="specialist" rules="explicit"/>
+					<ChangeLoottableRolls type="FindTreasureEvenLonger" name="FindTreasure_GhostExplorer_EvenLonger_Pumpkin" adder="1" chance="0.85" channel="specialist" rules="explicit"/>
+					<ChangeLoottableRolls type="FindTreasureEvenLonger" name="FindTreasure_GhostExplorer_EvenLonger_Page" adder="1" chance="0.42" channel="specialist" rules="explicit"/>
+					<ChangeLoottableRolls type="FindTreasureProlonged" name="FindTreasure_GhostExplorer_Prolonged_Buff" adder="1" chance="1" channel="specialist" rules="explicit"/>
+					<ChangeLoottableRolls type="FindTreasureProlonged" name="FindTreasure_GhostExplorer_Prolonged_Pumpkin" adder="1" chance="1" channel="specialist" rules="explicit"/>
+					<ChangeLoottableRolls type="FindTreasureProlonged" name="FindTreasure_GhostExplorer_Prolonged_Page" adder="1" chance="0.5" channel="specialist" rules="explicit"/>
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_ghostexplorer.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+		
+		<!--Aurora Explorer buff-->
+		<skill id="335" name="Trait_Aurora">
+			<levels>	
+				<level>
+					<searchTime type="FindTreasureShort" multiplier="0.85" channel="specialist" />
+					<searchTime type="FindTreasureMedium" multiplier="0.85" channel="specialist" />
+					<searchTime type="FindTreasureLong" multiplier="0.85" channel="specialist" />
+					<searchTime type="FindTreasureEvenLonger" multiplier="0.85" channel="specialist" />
+					<searchTime type="FindTreasureProlonged" multiplier="0.85" channel="specialist" />
+					<searchTime type="FindTreasureTravellingErudite" multiplier="0.85" channel="specialist" />
+					<searchTime type="FindTreasureBeanACollada" multiplier="0.85" channel="specialist" />
+					<searchTime type="FindAdventureZoneShort" multiplier="0.85" channel="specialist" />
+					<searchTime type="FindAdventureZoneMedium" multiplier="0.85" channel="specialist" />
+					<searchTime type="FindAdventureZoneLong" multiplier="0.85" channel="specialist" />
+					<searchTime type="FindAdventureZoneVeryLong" multiplier="0.85" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="t_aurora_borealis.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+				<skill id="338" name="Trait_GloryExploriExplorer">
+			<levels>	
+				<level>
+					<searchTime type="FindTreasureShort" multiplier="1.5" channel="specialist" />
+					<searchTime type="FindTreasureMedium" multiplier="1.5" channel="specialist" />
+					<searchTime type="FindTreasureLong" multiplier="1.5" channel="specialist" />
+					<searchTime type="FindTreasureEvenLonger" multiplier="1.5" channel="specialist" />
+					<searchTime type="FindTreasureProlonged" multiplier="1.5" channel="specialist" />
+					<searchTime type="FindTreasureTravellingErudite" multiplier="1.5" channel="specialist" />
+					<searchTime type="FindTreasureBeanACollada" multiplier="1.5" channel="specialist" />
+					<searchTime type="FindAdventureZoneShort" multiplier="0.5" channel="specialist" />
+					<searchTime type="FindAdventureZoneMedium" multiplier="0.5" channel="specialist" />
+					<searchTime type="FindAdventureZoneLong" multiplier="0.5" channel="specialist" />
+					<searchTime type="FindAdventureZoneVeryLong" multiplier="0.5" channel="specialist" />
+					<ChangeLoottableRolls type="FindAdventureZoneLong" name="FindAdventureZoneLong_GloryExplori_Adventures" adder="1" chance="1" channel="specialist" rules="explicit"/>
+					<ChangeLoottableRolls type="FindAdventureZoneVeryLong" name="FindAdventureZoneVeryLong_GloryExplori_Adventures" adder="1" chance="1" channel="specialist" rules="explicit"/>
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_gloryexploriexplorer.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>	
+		
+	</skills>
+	
+	<skillTrees>
+		<skillTree id="2" name="explorer" maxPoints="21">
+			<skillReference id="41" /> <!-- Fearless Hiker: Shorten the search time for all Adventures by {0} %. -->
+			<skillReference id="22" /> <!-- Lucky Detour: Find Granite {0} % more often on Medium Treasure Searches.-->
+			<skillReference id="23" /> <!-- Pilgrimage: Shorten the search time for Long Treasure Searches by {0} %.-->
+			<skillReference id="24" /> <!-- Mountain Boots: Shorten the search time for all Treasure Searches by {0} %.-->
+			<skillReference id="25" /> <!-- Wild Determination: Find {0} % more Map Parts on Adventure Searches.-->
+			<skillReference id="26" /> <!-- Powder Sack: Find {0} % more Salpeter on Extralong Treasure Searches.-->
+			<skillReference id="27" /> <!-- Offbeat Roads: Find Titanium {0} % more often on Long Treasure Searches.-->
+			<skillReference id="28" /> <!-- Extended Weekend: Shorten the search time for Medium Treasure Searches by {0} %.-->
+			<skillReference id="29" /> <!-- Travel Expenses: Reduce the cost of all Adventure Searches by {0} %.-->
+			<skillReference id="30" /> <!-- Loot Wagon: Find {0} % more Granite on Medium Treasure Searches. -->
+			<skillReference id="31" /> <!-- Sturdy Shovel: Find {0} % more loot on all Treasure Searches. -->
+			<skillReference id="32" /> <!-- Mistwalker: Find Salpeter {0} % more often on Extralong Treasure Searches.-->
+			<skillReference id="33" /> <!-- Trouble-seeker: Grants a {0}% chance to find an additional Adventure-->
+			<skillReference id="34" /> <!-- Hero Ore: Find {0} % more Titanium Ore on Long Treasure Searches.-->
+			<skillReference id="35" /> <!-- Sabbatical: Shorten the search time for Extralong Treasure Searches by {0} %.-->
+			<skillReference id="36" /> <!-- Pathfinder: Shorten the search time for all Searches by {0} %.-->
+			<skillReference id="37" /> <!-- Sophisticated Pillager: Grants a {0}% chance to find an Adventure with a reward boost. When completed within 6 h you receive boosted rewards. -->
+			<skillReference id="38" /> <!-- Streetwise Negotiator: {0}% chance for a Treasure boost. Increases Granite, Salpeter or Titanium Ore if found with next search.-->
+			<skillReference id="39" /> <!-- Travelling Erudite: Find {0}% rare Collections or  Buffs in new Explorer search-->
+			<skillReference id="40" /> <!-- Bean-A-Colada: Find {0} % MagicBeans or GuildCoins on all Treasure Searches.-->
+		</skillTree>
+	</skillTrees>
+</scienceSystem>

@@ -1,0 +1,3242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+
+	<!-- WEEKLY CHALLENGE INFECTED MAYA -->
+	<quest name="WeeklyChallenge_ReachLevel26" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+           <playerlevel min="26"/>
+         </startcondition>
+         <posteffects>
+			<startquest name="WeeklyChallenge_ChainFilter"/>
+		</posteffects>
+	</quest>
+
+	<quest name="WeeklyChallenge_ChainFilter" showQuestWindow="false" showRewardWindow="false">
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="WeeklyChallenge_InfectedMaya_ChainFilter" />
+				<postrequisite startQuest="WeeklyChallenge_Defence_ChainFilter" />
+				<postrequisite startQuest="WeeklyChallenge_Construction_ChainFilter" />
+				<postrequisite startQuest="WeeklyChallenge_Archeology_ChainFilter" />
+			</postrequisite>
+		</postrequisits>
+	</quest>
+
+
+<!-- 
+	this is used to make sure the player is not stuck without a followup challenge
+-->
+	<quest name="WeeklyChallenge_reset" type="WeeklyChallenge" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<startcondition>
+			<zoneevent item="ZONE_LOADED"/>
+		</startcondition>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip">
+				<conditions>
+					<questcomplete item="WeeklyChallenge_ReachLevel26"/>
+					<questcomplete item="WeeklyChallenge_ChainFilter"/>
+					<onmap max="0" item="EventMonster_WeeklyChallengeShip"/>
+					<questexists invert="true" item="WeeklyChallenge_InfectedMaya_Main_lvl26,WeeklyChallenge_InfectedMaya_Main_lvl36,WeeklyChallenge_InfectedMaya_Main_lvl46,WeeklyChallenge_InfectedMaya_Main_lvl56,WeeklyChallenge_InfectedMaya_Main_lvl66,WeeklyChallenge_Defence_Main_lvl26,WeeklyChallenge_Defence_Main_lvl36,WeeklyChallenge_Defence_Main_lvl46,WeeklyChallenge_Defence_Main_lvl56,WeeklyChallenge_Defence_Main_lvl66,WeeklyChallenge_Construction_Main_lvl26,WeeklyChallenge_Construction_Main_lvl36,WeeklyChallenge_Construction_Main_lvl46,WeeklyChallenge_Construction_Main_lvl56,WeeklyChallenge_Construction_Main_lvl66,WeeklyChallenge_Archeology_Main_lvl26,WeeklyChallenge_Archeology_Main_lvl36,WeeklyChallenge_Archeology_Main_lvl46,WeeklyChallenge_Archeology_Main_lvl56,WeeklyChallenge_Archeology_Main_lvl66,WeeklyChallenge_InfectedMaya_Main_lvl26_starter,WeeklyChallenge_InfectedMaya_Main_lvl36_starter,WeeklyChallenge_InfectedMaya_Main_lvl46_starter,WeeklyChallenge_InfectedMaya_Main_lvl56_starter,WeeklyChallenge_InfectedMaya_Main_lvl66_starter,WeeklyChallenge_Defence_Main_lvl26_starter,WeeklyChallenge_Defence_Main_lvl36_starter,WeeklyChallenge_Defence_Main_lvl46_starter,WeeklyChallenge_Defence_Main_lvl56_starter,WeeklyChallenge_Defence_Main_lvl66_starter,WeeklyChallenge_Construction_Main_lvl26_starter,WeeklyChallenge_Construction_Main_lvl36_starter,WeeklyChallenge_Construction_Main_lvl46_starter,WeeklyChallenge_Construction_Main_lvl56_starter,WeeklyChallenge_Construction_Main_lvl66_starter,WeeklyChallenge_Archeology_Main_lvl26_starter,WeeklyChallenge_Archeology_Main_lvl36_starter,WeeklyChallenge_Archeology_Main_lvl46_starter,WeeklyChallenge_Archeology_Main_lvl56_starter,WeeklyChallenge_Archeology_Main_lvl66_starter"/>
+				</conditions>
+			</removebuilding>
+			<resetquest name="WeeklyChallenge_ChainFilter">
+				<conditions>
+					<questcomplete item="WeeklyChallenge_ReachLevel26"/>
+					<questcomplete item="WeeklyChallenge_ChainFilter"/>
+					<onmap max="0" item="EventMonster_WeeklyChallengeShip"/>
+					<questexists invert="true" item="WeeklyChallenge_InfectedMaya_Main_lvl26,WeeklyChallenge_InfectedMaya_Main_lvl36,WeeklyChallenge_InfectedMaya_Main_lvl46,WeeklyChallenge_InfectedMaya_Main_lvl56,WeeklyChallenge_InfectedMaya_Main_lvl66,WeeklyChallenge_Defence_Main_lvl26,WeeklyChallenge_Defence_Main_lvl36,WeeklyChallenge_Defence_Main_lvl46,WeeklyChallenge_Defence_Main_lvl56,WeeklyChallenge_Defence_Main_lvl66,WeeklyChallenge_Construction_Main_lvl26,WeeklyChallenge_Construction_Main_lvl36,WeeklyChallenge_Construction_Main_lvl46,WeeklyChallenge_Construction_Main_lvl56,WeeklyChallenge_Construction_Main_lvl66,WeeklyChallenge_Archeology_Main_lvl26,WeeklyChallenge_Archeology_Main_lvl36,WeeklyChallenge_Archeology_Main_lvl46,WeeklyChallenge_Archeology_Main_lvl56,WeeklyChallenge_Archeology_Main_lvl66,WeeklyChallenge_InfectedMaya_Main_lvl26_starter,WeeklyChallenge_InfectedMaya_Main_lvl36_starter,WeeklyChallenge_InfectedMaya_Main_lvl46_starter,WeeklyChallenge_InfectedMaya_Main_lvl56_starter,WeeklyChallenge_InfectedMaya_Main_lvl66_starter,WeeklyChallenge_Defence_Main_lvl26_starter,WeeklyChallenge_Defence_Main_lvl36_starter,WeeklyChallenge_Defence_Main_lvl46_starter,WeeklyChallenge_Defence_Main_lvl56_starter,WeeklyChallenge_Defence_Main_lvl66_starter,WeeklyChallenge_Construction_Main_lvl26_starter,WeeklyChallenge_Construction_Main_lvl36_starter,WeeklyChallenge_Construction_Main_lvl46_starter,WeeklyChallenge_Construction_Main_lvl56_starter,WeeklyChallenge_Construction_Main_lvl66_starter,WeeklyChallenge_Archeology_Main_lvl26_starter,WeeklyChallenge_Archeology_Main_lvl36_starter,WeeklyChallenge_Archeology_Main_lvl46_starter,WeeklyChallenge_Archeology_Main_lvl56_starter,WeeklyChallenge_Archeology_Main_lvl66_starter"/>
+				</conditions>
+			</resetquest>
+		</posteffects>
+	</quest>
+
+
+<!-- Infected Maya -->
+	
+	<quest name="WeeklyChallenge_InfectedMaya_ChainFilter" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<postrequisits>
+			<postrequisite filterQuest="Level26-35" startQuest="WeeklyChallenge_InfectedMaya_Main_lvl26_starter" />
+			<postrequisite filterQuest="Level36-45" startQuest="WeeklyChallenge_InfectedMaya_Main_lvl36_starter" />
+			<postrequisite filterQuest="Level46-55" startQuest="WeeklyChallenge_InfectedMaya_Main_lvl46_starter" />
+			<postrequisite filterQuest="Level56-65" startQuest="WeeklyChallenge_InfectedMaya_Main_lvl56_starter" />
+			<postrequisite filterQuest="Level66-80" startQuest="WeeklyChallenge_InfectedMaya_Main_lvl66_starter" />
+		</postrequisits>
+	</quest>
+	
+	
+	<!-- lvl 26 -->
+	<quest name="WeeklyChallenge_InfectedMaya_Main_lvl26_starter" type="WeeklyChallenge" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers/>
+		<posteffects>
+			<startquest name="WeeklyChallenge_InfectedMaya_Main_lvl26"/>
+			<startquest name="WeeklyChallenge_InfectedMaya_Quarantine_lvl26"/>
+			<startquest name="WeeklyChallenge_InfectedMaya_FirstInfected_lvl26"/>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="MayaRecruitInfected|45" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/>
+   		</posteffects>
+ 	</quest>
+ 	
+ 	
+	<quest name="WeeklyChallenge_InfectedMaya_Main_lvl26" type="WeeklyChallenge" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" repeatable="true">
+		<triggers> 
+			<questcomplete item="WeeklyChallenge_InfectedMaya_Quarantine_lvl26"/>
+			<questcomplete item="WeeklyChallenge_InfectedMaya_FirstInfected_lvl26"/> 
+			<questcomplete item="WeeklyChallenge_InfectedMaya_Supply_lvl26"/>
+			<questcomplete item="WeeklyChallenge_InfectedMaya_SecondInfected_lvl26"/>	
+			<questcomplete item="WeeklyChallenge_InfectedMaya_Solution_lvl26"/>
+			<questcomplete item="WeeklyChallenge_InfectedMaya_ThirdInfected_lvl26"/>			
+		</triggers>
+		<failconditions>
+           <hourselapsed amount="167" icon="icon_exclamationmark.png"/>
+        </failconditions>
+		<rewards>
+			<reward type="XP" amount="530" />
+			<reward type="Resource" name="Token" amount="5" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+		</posteffects>
+		<faileffects>
+         	<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+        </faileffects>
+	</quest>	
+	
+	<quest name="WeeklyChallenge_InfectedMaya_Quarantine_lvl26" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="99" connectedToQuest="WeeklyChallenge_InfectedMaya_Main_lvl26" repeatable="true">
+		<triggers>
+			<produceditemlist item="Recruit" amount="43" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Recruit" amount="43" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="120" />
+			<reward type="Resource" name="Token" amount="1" />		
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_InfectedMaya_Supply_lvl26">
+				<conditions>
+					<questfailed item="WeeklyChallenge_InfectedMaya_Main_lvl26" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_InfectedMaya_FirstInfected_lvl26" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="99" connectedToQuest="WeeklyChallenge_InfectedMaya_Main_lvl26" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="90" />	
+			<reward type="Resource" name="Token" amount="1" />			
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_InfectedMaya_SecondInfected_lvl26">
+				<conditions>
+					<questfailed item="WeeklyChallenge_InfectedMaya_Main_lvl26" invert="true"/>
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="MayaRecruitInfected|90" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_InfectedMaya_Main_lvl26" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_InfectedMaya_Supply_lvl26" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="149" connectedToQuest="WeeklyChallenge_InfectedMaya_Main_lvl26" repeatable="true">
+		<triggers>
+			<trigger type="Resource" name="Water" amount="3650" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Water" amount="7300" />
+			<trigger type="Resource" name="Bread" amount="1150" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="2300" />
+			<trigger type="Resource" name="Beer" amount="650" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="1300" />
+			<trigger type="Resource" name="Fish" amount="1450" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Fish" amount="2900" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="180" />
+			<reward type="Resource" name="Token" amount="1" />
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_InfectedMaya_Solution_lvl26">
+				<conditions>
+					<questfailed item="WeeklyChallenge_InfectedMaya_Main_lvl26" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_InfectedMaya_SecondInfected_lvl26" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="149" connectedToQuest="WeeklyChallenge_InfectedMaya_Main_lvl26" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="190" />
+			<reward type="Resource" name="Token" amount="1" />		
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_InfectedMaya_ThirdInfected_lvl26">
+				<conditions>
+					<questfailed item="WeeklyChallenge_InfectedMaya_Main_lvl26" invert="true"/>
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="MayaRecruitInfected|115" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_InfectedMaya_Main_lvl26" invert="true"/>
+				</conditions>
+			</spawnbuilding> 
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_InfectedMaya_Solution_lvl26" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="199" connectedToQuest="WeeklyChallenge_InfectedMaya_Main_lvl26" repeatable="true">
+		<triggers>
+			<specialisttaskfinished item="FindAdventureZoneShort" amount="8"/>
+			<completeadventurelist item="Traitors" amount="3" locaExtension="item"/>
+			<resourcegathered type="Coin" min="235"/>
+			<trigger type="PayForQuestFinish" name="Coin" amount="235" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="240" />	
+			<reward type="Resource" name="Token" amount="2" />	
+		</rewards>
+		<posteffects/>
+	</quest>
+	
+	<quest name="WeeklyChallenge_InfectedMaya_ThirdInfected_lvl26" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="199" connectedToQuest="WeeklyChallenge_InfectedMaya_Main_lvl26" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="240" />
+			<reward type="Resource" name="Token" amount="1" />		
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+		</posteffects>
+	</quest>
+	
+	
+	<!-- lvl 36 -->
+
+	<quest name="WeeklyChallenge_InfectedMaya_Main_lvl36_starter" type="WeeklyChallenge" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers/>
+		<posteffects>
+			<startquest name="WeeklyChallenge_InfectedMaya_Main_lvl36"/>
+			<startquest name="WeeklyChallenge_InfectedMaya_Quarantine_lvl36"/>
+			<startquest name="WeeklyChallenge_InfectedMaya_FirstInfected_lvl36"/>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="MayaRecruitInfected|118" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+   		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_InfectedMaya_Main_lvl36" type="WeeklyChallenge" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" repeatable="true">
+		<triggers> 
+			<questcomplete item="WeeklyChallenge_InfectedMaya_Quarantine_lvl36"/>
+			<questcomplete item="WeeklyChallenge_InfectedMaya_FirstInfected_lvl36"/> 
+			<questcomplete item="WeeklyChallenge_InfectedMaya_Supply_lvl36"/>
+			<questcomplete item="WeeklyChallenge_InfectedMaya_SecondInfected_lvl36"/>	
+			<questcomplete item="WeeklyChallenge_InfectedMaya_Solution_lvl36"/>
+			<questcomplete item="WeeklyChallenge_InfectedMaya_ThirdInfected_lvl36"/>			
+		</triggers>
+		<failconditions>
+           <hourselapsed amount="167" icon="icon_exclamationmark.png"/>
+        </failconditions>
+		<rewards>
+			<reward type="XP" amount="4400" />
+			<reward type="Resource" name="Token" amount="7" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+		</posteffects>
+		<faileffects>
+         	<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+        </faileffects>
+	</quest>	
+	
+	<quest name="WeeklyChallenge_InfectedMaya_Quarantine_lvl36" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="149" connectedToQuest="WeeklyChallenge_InfectedMaya_Main_lvl36" repeatable="true">
+		<triggers>
+			<produceditemlist item="Recruit" amount="66" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Recruit" amount="66" />
+			<produceditemlist item="Cavalry" amount="16" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Cavalry" amount="16" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="980" />
+			<reward type="Resource" name="Token" amount="1" />
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_InfectedMaya_Supply_lvl36">
+				<conditions>
+					<questfailed item="WeeklyChallenge_InfectedMaya_Main_lvl36" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_InfectedMaya_FirstInfected_lvl36" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="149" connectedToQuest="WeeklyChallenge_InfectedMaya_Main_lvl36" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="970" />
+			<reward type="Resource" name="Token" amount="1" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_InfectedMaya_SecondInfected_lvl36">
+				<conditions>
+					<questfailed item="WeeklyChallenge_InfectedMaya_Main_lvl36" invert="true"/>
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="MayaRecruitInfected|176" action="ignoreBlocking,spawnInstant,replace" mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_InfectedMaya_Main_lvl36" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_InfectedMaya_Supply_lvl36" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="219" connectedToQuest="WeeklyChallenge_InfectedMaya_Main_lvl36" repeatable="true">
+		<triggers>
+			<trigger type="Resource" name="Water" amount="10100" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Water" amount="20200" />
+			<trigger type="Resource" name="Bread" amount="3100" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="6200" />
+			<trigger type="Resource" name="Beer" amount="1880" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="3760" />
+			<trigger type="Resource" name="Fish" amount="3000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Fish" amount="6000" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="1400" />
+			<reward type="Resource" name="Token" amount="2" />
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_InfectedMaya_Solution_lvl36">
+				<conditions>
+					<questfailed item="WeeklyChallenge_InfectedMaya_Main_lvl36" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_InfectedMaya_SecondInfected_lvl36" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="219" connectedToQuest="WeeklyChallenge_InfectedMaya_Main_lvl36" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="1400" />
+			<reward type="Resource" name="Token" amount="1" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_InfectedMaya_ThirdInfected_lvl36">
+				<conditions>
+					<questfailed item="WeeklyChallenge_InfectedMaya_Main_lvl36" invert="true"/>
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="MayaCavalryInfected|56" action="ignoreBlocking,spawnInstant,replace" mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_InfectedMaya_Main_lvl36" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_InfectedMaya_Solution_lvl36" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="299" connectedToQuest="WeeklyChallenge_InfectedMaya_Main_lvl36" repeatable="true">
+		<triggers>
+			<specialisttaskfinished item="FindAdventureZoneMedium" amount="9"/>
+			<completeadventurelist item="Outlaws" amount="3" locaExtension="item"/>
+			<resourcegathered type="Coin" min="455"/>
+			<trigger type="PayForQuestFinish" name="Coin" amount="455" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="2000" />
+			<reward type="Resource" name="Token" amount="3" />
+		</rewards>
+		<posteffects/>
+	</quest>
+	
+	<quest name="WeeklyChallenge_InfectedMaya_ThirdInfected_lvl36" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="299" connectedToQuest="WeeklyChallenge_InfectedMaya_Main_lvl36" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="1900" />
+			<reward type="Resource" name="Token" amount="1" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+		</posteffects>
+	</quest>
+	
+	
+	<!-- lvl 46 -->
+
+	<quest name="WeeklyChallenge_InfectedMaya_Main_lvl46_starter" type="WeeklyChallenge" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers/>
+		<posteffects>
+			<startquest name="WeeklyChallenge_InfectedMaya_Main_lvl46"/>
+			<startquest name="WeeklyChallenge_InfectedMaya_Quarantine_lvl46"/>
+			<startquest name="WeeklyChallenge_InfectedMaya_FirstInfected_lvl46"/>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="MayaRecruitInfected|190" action="ignoreBlocking,spawnInstant,replace" mode="enemy"/> 
+   		</posteffects>
+  	</quest>
+  	
+	<quest name="WeeklyChallenge_InfectedMaya_Main_lvl46" type="WeeklyChallenge" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" repeatable="true">
+		<triggers> 
+			<questcomplete item="WeeklyChallenge_InfectedMaya_Quarantine_lvl46"/>
+			<questcomplete item="WeeklyChallenge_InfectedMaya_FirstInfected_lvl46"/> 
+			<questcomplete item="WeeklyChallenge_InfectedMaya_Supply_lvl46"/>
+			<questcomplete item="WeeklyChallenge_InfectedMaya_SecondInfected_lvl46"/>	
+			<questcomplete item="WeeklyChallenge_InfectedMaya_Solution_lvl46"/>
+			<questcomplete item="WeeklyChallenge_InfectedMaya_ThirdInfected_lvl46"/>			
+		</triggers>
+		<failconditions>
+           <hourselapsed amount="167" icon="icon_exclamationmark.png"/>
+        </failconditions>
+		<rewards>
+			<reward type="XP" amount="25000" />
+			<reward type="Resource" name="Token" amount="9" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />		
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+		</posteffects>
+		<faileffects>
+         	<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+        </faileffects>
+	</quest>	
+	
+	<quest name="WeeklyChallenge_InfectedMaya_Quarantine_lvl46" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="199" connectedToQuest="WeeklyChallenge_InfectedMaya_Main_lvl46" repeatable="true">
+		<triggers>
+			<produceditemlist item="Recruit" amount="135" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Recruit" amount="135" />
+			<produceditemlist item="Longbowman" amount="24" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Longbowman" amount="24" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="6300" />
+			<reward type="Resource" name="Token" amount="2" />
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_InfectedMaya_Supply_lvl46">
+				<conditions>
+					<questfailed item="WeeklyChallenge_InfectedMaya_Main_lvl46" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_InfectedMaya_FirstInfected_lvl46" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="199" connectedToQuest="WeeklyChallenge_InfectedMaya_Main_lvl46" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="5500" />
+			<reward type="Resource" name="Token" amount="1" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_InfectedMaya_SecondInfected_lvl46">
+				<conditions>
+					<questfailed item="WeeklyChallenge_InfectedMaya_Main_lvl46" invert="true"/>
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="MayaCavalryInfected|85" action="ignoreBlocking,spawnInstant,replace" mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_InfectedMaya_Main_lvl46" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_InfectedMaya_Supply_lvl46" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="299" connectedToQuest="WeeklyChallenge_InfectedMaya_Main_lvl46" repeatable="true">
+		<triggers>
+			<trigger type="Resource" name="Water" amount="27200" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Water" amount="54400" />
+			<trigger type="Resource" name="Bread" amount="7000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="14000" />
+			<trigger type="Resource" name="Beer" amount="5200" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="10400" />
+			<trigger type="Resource" name="Sausage" amount="1520" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Sausage" amount="3040" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="8400" />
+			<reward type="Resource" name="Token" amount="2" />
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_InfectedMaya_Solution_lvl46">
+				<conditions>
+					<questfailed item="WeeklyChallenge_InfectedMaya_Main_lvl46" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_InfectedMaya_SecondInfected_lvl46" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="299" connectedToQuest="WeeklyChallenge_InfectedMaya_Main_lvl46" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="8400" />
+			<reward type="Resource" name="Token" amount="1" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_InfectedMaya_ThirdInfected_lvl46">
+				<conditions>
+					<questfailed item="WeeklyChallenge_InfectedMaya_Main_lvl46" invert="true"/>
+				</conditions>
+			</startquest>	
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="MayaCavalryInfected|115" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_InfectedMaya_Main_lvl46" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_InfectedMaya_Solution_lvl46" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="399" connectedToQuest="WeeklyChallenge_InfectedMaya_Main_lvl46" repeatable="true">
+		<triggers>
+			<specialisttaskfinished item="FindAdventureZoneLong" amount="8"/>
+			<completeadventurelist item="MadHenry" amount="2" locaExtension="item"/>
+			<resourcegathered type="Coin" min="885"/>
+			<trigger type="PayForQuestFinish" name="Coin" amount="885" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="11000" />
+			<reward type="Resource" name="Token" amount="4" />
+		</rewards>
+		<posteffects/>
+	</quest>
+	
+	<quest name="WeeklyChallenge_InfectedMaya_ThirdInfected_lvl46" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="399" connectedToQuest="WeeklyChallenge_InfectedMaya_Main_lvl46" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="11000" />
+			<reward type="Resource" name="Token" amount="2" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+		</posteffects>
+	</quest>
+	
+	
+	<!-- lvl 56 -->
+
+	<quest name="WeeklyChallenge_InfectedMaya_Main_lvl56_starter" type="WeeklyChallenge" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers/>
+		<posteffects>
+			<startquest name="WeeklyChallenge_InfectedMaya_Main_lvl56"/>
+			<startquest name="WeeklyChallenge_InfectedMaya_Quarantine_lvl56"/>
+			<startquest name="WeeklyChallenge_InfectedMaya_FirstInfected_lvl56"/>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="MayaCavalryInfected|146" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+   		</posteffects>
+	</quest>
+
+	<quest name="WeeklyChallenge_InfectedMaya_Main_lvl56" type="WeeklyChallenge" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" repeatable="true">
+		<triggers> 
+			<questcomplete item="WeeklyChallenge_InfectedMaya_Quarantine_lvl56"/>
+			<questcomplete item="WeeklyChallenge_InfectedMaya_FirstInfected_lvl56"/> 
+			<questcomplete item="WeeklyChallenge_InfectedMaya_Supply_lvl56"/>
+			<questcomplete item="WeeklyChallenge_InfectedMaya_SecondInfected_lvl56"/>	
+			<questcomplete item="WeeklyChallenge_InfectedMaya_Solution_lvl56"/>
+			<questcomplete item="WeeklyChallenge_InfectedMaya_ThirdInfected_lvl56"/>			
+		</triggers>
+		<failconditions>
+           <hourselapsed amount="167" icon="icon_exclamationmark.png"/>
+        </failconditions>
+		<rewards>
+			<reward type="XP" amount="67000" />
+			<reward type="Resource" name="Token" amount="11" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+		</posteffects>
+		<faileffects>
+         	<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+        </faileffects>
+	</quest>	
+	
+	<quest name="WeeklyChallenge_InfectedMaya_Quarantine_lvl56" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="249" connectedToQuest="WeeklyChallenge_InfectedMaya_Main_lvl56" repeatable="true">
+		<triggers>
+			<produceditemlist item="Recruit" amount="380" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Recruit" amount="380" />
+			<produceditemlist item="Longbowman" amount="55" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Longbowman" amount="55"/>
+			<produceditemlist item="Knight" amount="240" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Knight" amount="240" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="15000" />
+			<reward type="Resource" name="Token" amount="2" />
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_InfectedMaya_Supply_lvl56">
+				<conditions>
+					<questfailed item="WeeklyChallenge_InfectedMaya_Main_lvl56" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_InfectedMaya_FirstInfected_lvl56" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="249" connectedToQuest="WeeklyChallenge_InfectedMaya_Main_lvl56" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="15000" />
+			<reward type="Resource" name="Token" amount="1" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_InfectedMaya_SecondInfected_lvl56">
+				<conditions>
+					<questfailed item="WeeklyChallenge_InfectedMaya_Main_lvl56" invert="true"/>
+				</conditions>
+			</startquest>	
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="MayaCavalryInfected|215" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_InfectedMaya_Main_lvl56" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_InfectedMaya_Supply_lvl56" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="369" connectedToQuest="WeeklyChallenge_InfectedMaya_Main_lvl56" repeatable="true">
+		<triggers>
+			<trigger type="Resource" name="Water" amount="75000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Water" amount="150000" />
+			<trigger type="Resource" name="Bread" amount="24000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="48000" />
+			<trigger type="Resource" name="Beer" amount="17000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="34000" />
+			<trigger type="Resource" name="Sausage" amount="4700" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Sausage" amount="9400" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="22000" />
+			<reward type="Resource" name="Token" amount="3" />
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_InfectedMaya_Solution_lvl56">
+				<conditions>
+					<questfailed item="WeeklyChallenge_InfectedMaya_Main_lvl56" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_InfectedMaya_SecondInfected_lvl56" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="369" connectedToQuest="WeeklyChallenge_InfectedMaya_Main_lvl56" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="22000" />
+			<reward type="Resource" name="Token" amount="2" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_InfectedMaya_ThirdInfected_lvl56">
+				<conditions>
+					<questfailed item="WeeklyChallenge_InfectedMaya_Main_lvl56" invert="true"/>
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="MayaCanoneerInfected|47" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_InfectedMaya_Main_lvl56" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_InfectedMaya_Solution_lvl56" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="499" connectedToQuest="WeeklyChallenge_InfectedMaya_Main_lvl56" repeatable="true">
+		<triggers>
+			<specialisttaskfinished item="FindAdventureZoneVeryLong" amount="7"/>
+			<completeadventurelist item="1001NightsFirstThief" amount="3" locaExtension="item"/>
+			<resourcegathered type="Coin" min="2800"/>
+			<trigger type="PayForQuestFinish" name="Coin" amount="2800" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="30000" />
+			<reward type="Resource" name="Token" amount="5" />
+		</rewards>
+		<posteffects/>
+	</quest>
+	
+	<quest name="WeeklyChallenge_InfectedMaya_ThirdInfected_lvl56" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="499" connectedToQuest="WeeklyChallenge_InfectedMaya_Main_lvl56" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="30000" />
+			<reward type="Resource" name="Token" amount="2" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+		</posteffects>
+	</quest>
+
+
+	<!-- lvl 66 -->
+
+	<quest name="WeeklyChallenge_InfectedMaya_Main_lvl66_starter" type="WeeklyChallenge" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+   		<triggers/>
+		<posteffects>
+			<startquest name="WeeklyChallenge_InfectedMaya_Main_lvl66"/>
+			<startquest name="WeeklyChallenge_InfectedMaya_Quarantine_lvl66"/>
+			<startquest name="WeeklyChallenge_InfectedMaya_FirstInfected_lvl66"/>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="MayaCavalryInfected|350" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+   		</posteffects>
+  	</quest>
+  	
+	<quest name="WeeklyChallenge_InfectedMaya_Main_lvl66" type="WeeklyChallenge" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" repeatable="true">
+		<triggers> 
+			<questcomplete item="WeeklyChallenge_InfectedMaya_Quarantine_lvl66"/>
+			<questcomplete item="WeeklyChallenge_InfectedMaya_FirstInfected_lvl66"/> 
+			<questcomplete item="WeeklyChallenge_InfectedMaya_Supply_lvl66"/>
+			<questcomplete item="WeeklyChallenge_InfectedMaya_SecondInfected_lvl66"/>	
+			<questcomplete item="WeeklyChallenge_InfectedMaya_Solution_lvl66"/>
+			<questcomplete item="WeeklyChallenge_InfectedMaya_ThirdInfected_lvl66"/>			
+		</triggers>
+		<failconditions>
+           <hourselapsed amount="167" icon="icon_exclamationmark.png"/>
+        </failconditions>
+		<rewards>
+			<reward type="XP" amount="190000" />
+			<reward type="Resource" name="Token" amount="14" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+		</posteffects>
+		<faileffects>
+         	<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+        </faileffects>
+	</quest>	
+	
+	<quest name="WeeklyChallenge_InfectedMaya_Quarantine_lvl66" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="299" connectedToQuest="WeeklyChallenge_InfectedMaya_Main_lvl66" repeatable="true">
+		<triggers>
+			<produceditemlist item="Recruit" amount="620" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Recruit" amount="620" />
+			<produceditemlist item="Cavalry" amount="75" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Cavalry" amount="75" />
+			<produceditemlist item="Knight" amount="415" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Knight" amount="415" />
+			<produceditemlist item="ArmoredMarksman" amount="295" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="ArmoredMarksman" amount="295" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="42000" />
+			<reward type="Resource" name="Token" amount="2" />
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_InfectedMaya_Supply_lvl66">
+				<conditions>
+					<questfailed item="WeeklyChallenge_InfectedMaya_Main_lvl66" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_InfectedMaya_FirstInfected_lvl66" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="299" connectedToQuest="WeeklyChallenge_InfectedMaya_Main_lvl66" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="43000" />
+			<reward type="Resource" name="Token" amount="2" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_InfectedMaya_SecondInfected_lvl66">
+				<conditions>
+					<questfailed item="WeeklyChallenge_InfectedMaya_Main_lvl66" invert="true"/>
+				</conditions>
+			</startquest> 
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="MayaCanoneerInfected|90" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_InfectedMaya_Main_lvl66" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_InfectedMaya_Supply_lvl66" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="449" connectedToQuest="WeeklyChallenge_InfectedMaya_Main_lvl66" repeatable="true">
+		<triggers>
+			<trigger type="Resource" name="Water" amount="175000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Water" amount="350000" />
+			<trigger type="Resource" name="Bread" amount="54000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="108000" />
+			<trigger type="Resource" name="Beer" amount="68000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="136000" />
+			<trigger type="Resource" name="Sausage" amount="11000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Sausage" amount="22000" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="65000" />
+			<reward type="Resource" name="Token" amount="3" />
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_InfectedMaya_Solution_lvl66">
+				<conditions>
+					<questfailed item="WeeklyChallenge_InfectedMaya_Main_lvl66" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_InfectedMaya_SecondInfected_lvl66" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="449" connectedToQuest="WeeklyChallenge_InfectedMaya_Main_lvl66" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="71000" />
+			<reward type="Resource" name="Token" amount="2" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_InfectedMaya_ThirdInfected_lvl66">
+				<conditions>
+					<questfailed item="WeeklyChallenge_InfectedMaya_Main_lvl66" invert="true"/>
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="MayaCanoneerInfected|108" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_InfectedMaya_Main_lvl66" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_InfectedMaya_Solution_lvl66" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="599" connectedToQuest="WeeklyChallenge_InfectedMaya_Main_lvl66" repeatable="true">
+		<triggers>
+			<specialisttaskfinished item="FindAdventureZoneVeryLong" amount="8"/>
+			<completeadventurelist item="1001NightsTreasureWisdom" amount="3" locaExtension="item"/>
+			<resourcegathered type="Coin" min="3600"/>
+			<trigger type="PayForQuestFinish" name="Coin" amount="3600" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="82000" />
+			<reward type="Resource" name="Token" amount="6" />
+		</rewards>
+		<posteffects/>
+	</quest>
+	
+	<quest name="WeeklyChallenge_InfectedMaya_ThirdInfected_lvl66" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="599" connectedToQuest="WeeklyChallenge_InfectedMaya_Main_lvl66" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="86000" />
+			<reward type="Resource" name="Token" amount="3" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+		</posteffects>
+	</quest>
+	
+	
+	
+	
+	
+<!-- Kingdom Defence -->	
+
+	<quest name="WeeklyChallenge_Defence_ChainFilter" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<postrequisits>
+			<postrequisite filterQuest="Level26-35" startQuest="WeeklyChallenge_Defence_Main_lvl26_starter" />
+			<postrequisite filterQuest="Level36-45" startQuest="WeeklyChallenge_Defence_Main_lvl36_starter" />
+			<postrequisite filterQuest="Level46-55" startQuest="WeeklyChallenge_Defence_Main_lvl46_starter" />
+			<postrequisite filterQuest="Level56-65" startQuest="WeeklyChallenge_Defence_Main_lvl56_starter" />
+			<postrequisite filterQuest="Level66-80" startQuest="WeeklyChallenge_Defence_Main_lvl66_starter" />
+		</postrequisits>
+	</quest>
+	
+	
+	<!-- lvl 26 -->
+
+	<quest name="WeeklyChallenge_Defence_Main_lvl26_starter" type="WeeklyChallenge" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers/>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Defence_Main_lvl26"/>
+			<startquest name="WeeklyChallenge_Defence_Weapons_lvl26"/>
+			<startquest name="WeeklyChallenge_Defence_FirstRecruitment_lvl26"/>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="KingdomRecruitTrainee|39" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+   		</posteffects>
+	</quest>
+   		
+	<quest name="WeeklyChallenge_Defence_Main_lvl26" type="WeeklyChallenge" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" repeatable="true">
+		<triggers> 
+			<questcomplete item="WeeklyChallenge_Defence_Weapons_lvl26"/>
+			<questcomplete item="WeeklyChallenge_Defence_FirstRecruitment_lvl26"/> 
+			<questcomplete item="WeeklyChallenge_Defence_Showcase_lvl26"/>
+			<questcomplete item="WeeklyChallenge_Defence_SecondRecruitment_lvl26"/>	
+			<questcomplete item="WeeklyChallenge_Defence_Graduation_lvl26"/>
+			<questcomplete item="WeeklyChallange_Defence_ThirdRecruitment_lvl26"/>			
+		</triggers>
+		<failconditions>
+           <hourselapsed amount="167" icon="icon_exclamationmark.png"/>
+        </failconditions>
+		<rewards>
+			<reward type="XP" amount="530" />
+			<reward type="Resource" name="Token" amount="5" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+		</posteffects>
+		<faileffects>
+         	<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+        </faileffects>
+	</quest>	
+	
+	<quest name="WeeklyChallenge_Defence_Weapons_lvl26" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="99" connectedToQuest="WeeklyChallenge_Defence_Main_lvl26" repeatable="true">
+		<triggers>
+			<trigger type="Resource" name="Bronze" amount="830" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Bronze" amount="1660" />
+			<trigger type="Resource" name="Wood" amount="5800" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Wood" amount="11600" />
+			<trigger type="Resource" name="Iron" amount="215" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Iron" amount="430" />
+			<trigger type="Resource" name="Corn" amount="1100" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Corn" amount="2200" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="120" />
+			<reward type="Resource" name="Token" amount="1" />
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Defence_Showcase_lvl26">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Defence_Main_lvl26" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Defence_FirstRecruitment_lvl26" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="99" connectedToQuest="WeeklyChallenge_Defence_Main_lvl26" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="120" />
+			<reward type="Resource" name="Token" amount="1" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_Defence_SecondRecruitment_lvl26">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Defence_Main_lvl26" invert="true"/>
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="KingdomRecruitTrainee|58" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Defence_Main_lvl26" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Defence_Showcase_lvl26" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="149" connectedToQuest="WeeklyChallenge_Defence_Main_lvl26" repeatable="true">
+		<triggers>
+			<specialisttaskfinished item="FindTreasureMedium" amount="10"/>
+			<completeadventurelist item="BuccaneerRoundup" amount="1" locaExtension="item"/>
+			<resourcegathered type="Coin" min="170"/>
+			<trigger type="PayForQuestFinish" name="Coin" amount="170" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="180" />
+			<reward type="Resource" name="Token" amount="1" />
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Defence_Graduation_lvl26">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Defence_Main_lvl26" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Defence_SecondRecruitment_lvl26" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="149" connectedToQuest="WeeklyChallenge_Defence_Main_lvl26" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="180" />
+			<reward type="Resource" name="Token" amount="1" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallange_Defence_ThirdRecruitment_lvl26">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Defence_Main_lvl26" invert="true"/>
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="KingdomRecruitTrainee|77" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Defence_Main_lvl26" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Defence_Graduation_lvl26" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="199" connectedToQuest="WeeklyChallenge_Defence_Main_lvl26" repeatable="true">
+		<triggers>		
+			<produceditemlist item="Militia" amount="22" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Militia" amount="22" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="230" />
+			<reward type="Resource" name="Token" amount="2" />
+		</rewards>
+		<posteffects/>
+	</quest>
+	
+	<quest name="WeeklyChallange_Defence_ThirdRecruitment_lvl26" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="199" connectedToQuest="WeeklyChallenge_Defence_Main_lvl26" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="230" />
+			<reward type="Resource" name="Token" amount="1" />
+		</rewards>
+		<posteffects>	
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+		</posteffects>
+	</quest>
+	
+	
+	<!-- lvl 36 -->
+
+	<quest name="WeeklyChallenge_Defence_Main_lvl36_starter" type="WeeklyChallenge" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers/> 
+		<posteffects>
+			<startquest name="WeeklyChallenge_Defence_Main_lvl36"/>
+			<startquest name="WeeklyChallenge_Defence_Weapons_lvl36"/>
+			<startquest name="WeeklyChallenge_Defence_FirstRecruitment_lvl36"/>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="KingdomRecruitTrainee|62" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+   		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Defence_Main_lvl36" type="WeeklyChallenge" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" repeatable="true">
+		<triggers> 
+			<questcomplete item="WeeklyChallenge_Defence_Weapons_lvl36"/>
+			<questcomplete item="WeeklyChallenge_Defence_FirstRecruitment_lvl36"/> 
+			<questcomplete item="WeeklyChallenge_Defence_Showcase_lvl36"/>
+			<questcomplete item="WeeklyChallenge_Defence_SecondRecruitment_lvl36"/>	
+			<questcomplete item="WeeklyChallenge_Defence_Graduation_lvl36"/>
+			<questcomplete item="WeeklyChallange_Defence_ThirdRecruitment_lvl36"/>			
+		</triggers>
+		<failconditions>
+           <hourselapsed amount="167" icon="icon_exclamationmark.png"/>
+        </failconditions>
+		<rewards>
+			<reward type="XP" amount="4400" />
+			<reward type="Resource" name="Token" amount="7" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+		</posteffects>
+		<faileffects>
+         	<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+        </faileffects>
+	</quest>	
+	
+	<quest name="WeeklyChallenge_Defence_Weapons_lvl36" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="149" connectedToQuest="WeeklyChallenge_Defence_Main_lvl36" repeatable="true">
+		<triggers>
+			<trigger type="Resource" name="Iron" amount="660" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Iron" amount="1220" />
+			<trigger type="Resource" name="Corn" amount="2850" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Corn" amount="5700" />
+			<trigger type="Resource" name="RealWood" amount="3000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="RealWood" amount="6000" />
+			<trigger type="Resource" name="Steel" amount="230" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Steel" amount="460" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="970" />
+			<reward type="Resource" name="Token" amount="1" />
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Defence_Showcase_lvl36">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Defence_Main_lvl36" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Defence_FirstRecruitment_lvl36" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="149" connectedToQuest="WeeklyChallenge_Defence_Main_lvl36" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="980" />
+			<reward type="Resource" name="Token" amount="1" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_Defence_SecondRecruitment_lvl36">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Defence_Main_lvl36" invert="true"/>
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="KingdomRecruitTrainee|93" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Defence_Main_lvl36" invert="true"/>
+				</conditions>
+			</spawnbuilding> 
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Defence_Showcase_lvl36" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="219" connectedToQuest="WeeklyChallenge_Defence_Main_lvl36" repeatable="true">
+		<triggers>
+			<specialisttaskfinished item="FindTreasureLong" amount="9"/>
+			<completeadventurelist item="RaidingTheRaiders" amount="1" locaExtension="item"/>
+			<resourcegathered type="Coin" min="330"/>
+			<trigger type="PayForQuestFinish" name="Coin" amount="330" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="1400" />
+			<reward type="Resource" name="Token" amount="3" />
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Defence_Graduation_lvl36">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Defence_Main_lvl36" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Defence_SecondRecruitment_lvl36" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="219" connectedToQuest="WeeklyChallenge_Defence_Main_lvl36" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="1500" />
+			<reward type="Resource" name="Token" amount="1" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallange_Defence_ThirdRecruitment_lvl36">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Defence_Main_lvl36" invert="true"/>
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="KingdomCavalryTrainee|38" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Defence_Main_lvl36" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Defence_Graduation_lvl36" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="299" connectedToQuest="WeeklyChallenge_Defence_Main_lvl36" repeatable="true">
+		<triggers>		
+			<produceditemlist item="Militia" amount="46" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Militia" amount="46" />
+			<produceditemlist item="Bowman" amount="66" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Bowman" amount="66" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="1900" />
+			<reward type="Resource" name="Token" amount="2" />
+		</rewards>
+		<posteffects/>
+	</quest>
+	
+	<quest name="WeeklyChallange_Defence_ThirdRecruitment_lvl36" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="299" connectedToQuest="WeeklyChallenge_Defence_Main_lvl36" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="1900" />
+			<reward type="Resource" name="Token" amount="1" />
+		</rewards>
+		<posteffects>	
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+		</posteffects>
+	</quest>
+	
+	
+	<!-- lvl 46 -->
+
+	<quest name="WeeklyChallenge_Defence_Main_lvl46_starter" type="WeeklyChallenge" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers/>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Defence_Main_lvl46"/>
+			<startquest name="WeeklyChallenge_Defence_Weapons_lvl46"/>
+			<startquest name="WeeklyChallenge_Defence_FirstRecruitment_lvl46"/>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="KingdomRecruitTrainee|93" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+   		</posteffects>
+	</quest> 
+
+	<quest name="WeeklyChallenge_Defence_Main_lvl46" type="WeeklyChallenge" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" repeatable="true">
+		<triggers> 
+			<questcomplete item="WeeklyChallenge_Defence_Weapons_lvl46"/>
+			<questcomplete item="WeeklyChallenge_Defence_FirstRecruitment_lvl46"/> 
+			<questcomplete item="WeeklyChallenge_Defence_Showcase_lvl46"/>
+			<questcomplete item="WeeklyChallenge_Defence_SecondRecruitment_lvl46"/>	
+			<questcomplete item="WeeklyChallenge_Defence_Graduation_lvl46"/>
+			<questcomplete item="WeeklyChallange_Defence_ThirdRecruitment_lvl46"/>			
+		</triggers>
+		<failconditions>
+           <hourselapsed amount="167" icon="icon_exclamationmark.png"/>
+        </failconditions>
+		<rewards>
+			<reward type="XP" amount="25000" />
+			<reward type="Resource" name="Token" amount="9" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+		</posteffects>
+		<faileffects>
+         	<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+        </faileffects>
+	</quest>	
+	
+	<quest name="WeeklyChallenge_Defence_Weapons_lvl46" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="199" connectedToQuest="WeeklyChallenge_Defence_Main_lvl46" repeatable="true">
+		<triggers>
+			<trigger type="Resource" name="Corn" amount="7000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Corn" amount="14000" />
+			<trigger type="Resource" name="RealWood" amount="5500" condition="produce" />
+			<trigger type="PayForQuestFinish" name="RealWood" amount="11000" />
+			<trigger type="Resource" name="Steel" amount="550" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Steel" amount="1100" />
+			<trigger type="Resource" name="Titanium" amount="90" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Titanium" amount="180" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="5800" />
+			<reward type="Resource" name="Token" amount="2" />
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Defence_Showcase_lvl46">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Defence_Main_lvl46" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Defence_FirstRecruitment_lvl46" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="199" connectedToQuest="WeeklyChallenge_Defence_Main_lvl46" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="5900" />
+			<reward type="Resource" name="Token" amount="1" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_Defence_SecondRecruitment_lvl46">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Defence_Main_lvl46" invert="true"/>
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="KingdomCavalryTrainee|57" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Defence_Main_lvl46" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Defence_Showcase_lvl46" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="299" connectedToQuest="WeeklyChallenge_Defence_Main_lvl46" repeatable="true">
+		<triggers>
+			<specialisttaskfinished item="FindTreasureEvenLonger" amount="6"/>
+			<completeadventurelist item="TombRaiders" amount="3" locaExtension="item"/>
+			<resourcegathered type="Coin" min="670"/>
+			<trigger type="PayForQuestFinish" name="Coin" amount="670" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="8400" />
+			<reward type="Resource" name="Token" amount="3" />
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Defence_Graduation_lvl46">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Defence_Main_lvl46" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Defence_SecondRecruitment_lvl46" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="299" connectedToQuest="WeeklyChallenge_Defence_Main_lvl46" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="8400" />
+			<reward type="Resource" name="Token" amount="1" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallange_Defence_ThirdRecruitment_lvl46">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Defence_Main_lvl46" invert="true"/>
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="KingdomCavalryTrainee|76" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Defence_Main_lvl46" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Defence_Graduation_lvl46" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="399" connectedToQuest="WeeklyChallenge_Defence_Main_lvl46" repeatable="true">
+		<triggers>		
+			<produceditemlist item="Militia" amount="90" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Militia" amount="90" />
+			<produceditemlist item="Bowman" amount="93" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Bowman" amount="93" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="11000" />
+			<reward type="Resource" name="Token" amount="3" />
+		</rewards>
+		<posteffects/>
+	</quest>
+	
+	<quest name="WeeklyChallange_Defence_ThirdRecruitment_lvl46" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="399" connectedToQuest="WeeklyChallenge_Defence_Main_lvl46" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="11000" />
+			<reward type="Resource" name="Token" amount="2" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+		</posteffects>
+	</quest>
+	
+	
+	<!-- lvl 56 -->
+
+	<quest name="WeeklyChallenge_Defence_Main_lvl56_starter" type="WeeklyChallenge" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers/> 
+		<posteffects>
+			<startquest name="WeeklyChallenge_Defence_Main_lvl56"/>
+			<startquest name="WeeklyChallenge_Defence_Weapons_lvl56"/>
+			<startquest name="WeeklyChallenge_Defence_FirstRecruitment_lvl56"/>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="KingdomCavalryTrainee|80" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+   		</posteffects>
+	</quest>
+		
+	<quest name="WeeklyChallenge_Defence_Main_lvl56" type="WeeklyChallenge" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" repeatable="true">
+		<triggers> 
+			<questcomplete item="WeeklyChallenge_Defence_Weapons_lvl56"/>
+			<questcomplete item="WeeklyChallenge_Defence_FirstRecruitment_lvl56"/> 
+			<questcomplete item="WeeklyChallenge_Defence_Showcase_lvl56"/>
+			<questcomplete item="WeeklyChallenge_Defence_SecondRecruitment_lvl56"/>	
+			<questcomplete item="WeeklyChallenge_Defence_Graduation_lvl56"/>
+			<questcomplete item="WeeklyChallange_Defence_ThirdRecruitment_lvl56"/>			
+		</triggers>
+		<failconditions>
+           <hourselapsed amount="167" icon="icon_exclamationmark.png"/>
+        </failconditions>
+		<rewards>
+			<reward type="XP" amount="67000" />
+			<reward type="Resource" name="Token" amount="11" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+		</posteffects>
+		<faileffects>
+         	<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+        </faileffects>
+	</quest>	
+	
+	<quest name="WeeklyChallenge_Defence_Weapons_lvl56" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="249" connectedToQuest="WeeklyChallenge_Defence_Main_lvl56" repeatable="true">
+		<triggers>
+			<trigger type="Resource" name="ExoticWood" amount="1300" condition="produce" />
+			<trigger type="PayForQuestFinish" name="ExoticWood" amount="2600" />
+			<trigger type="Resource" name="Gunpowder" amount="310" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Gunpowder" amount="620" />
+			<trigger type="Resource" name="Platinum" amount="470" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Platinum" amount="940" />
+			<trigger type="Resource" name="Cloth" amount="660" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Cloth" amount="1320" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="15000" />
+			<reward type="Resource" name="Token" amount="2" />
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Defence_Showcase_lvl56">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Defence_Main_lvl56" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Defence_FirstRecruitment_lvl56" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="249" connectedToQuest="WeeklyChallenge_Defence_Main_lvl56" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="15000" />
+			<reward type="Resource" name="Token" amount="1" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_Defence_SecondRecruitment_lvl56">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Defence_Main_lvl56" invert="true"/>
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="KingdomCavalryTrainee|121" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Defence_Main_lvl56" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Defence_Showcase_lvl56" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="369" connectedToQuest="WeeklyChallenge_Defence_Main_lvl56" repeatable="true">
+		<triggers>
+			<specialisttaskfinished item="FindTreasureProlonged" amount="5"/>
+			<completeadventurelist item="Whirlwind" amount="2" locaExtension="item"/>
+			<resourcegathered type="Coin" min="2100"/>
+			<trigger type="PayForQuestFinish" name="Coin" amount="2100" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="21000" />
+			<reward type="Resource" name="Token" amount="4" />
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Defence_Graduation_lvl56">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Defence_Main_lvl56" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Defence_SecondRecruitment_lvl56" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="369" connectedToQuest="WeeklyChallenge_Defence_Main_lvl56" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="23000" />
+			<reward type="Resource" name="Token" amount="2" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallange_Defence_ThirdRecruitment_lvl56">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Defence_Main_lvl56" invert="true"/>
+				</conditions>
+			</startquest>	
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="KingdomBowmanTrainee|28" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Defence_Main_lvl56" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Defence_Graduation_lvl56" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="499" connectedToQuest="WeeklyChallenge_Defence_Main_lvl56" repeatable="true">
+		<triggers>		
+			<produceditemlist item="Militia" amount="235" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Militia" amount="235" />
+			<produceditemlist item="Crossbowman" amount="35" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Crossbowman" amount="35" />
+			<produceditemlist item="Swordsman" amount="290" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Swordsman" amount="290" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="29000" />
+			<reward type="Resource" name="Token" amount="4" />
+		</rewards>
+		<posteffects>	
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallange_Defence_ThirdRecruitment_lvl56" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="499" connectedToQuest="WeeklyChallenge_Defence_Main_lvl56" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="30000" />
+			<reward type="Resource" name="Token" amount="2" />
+		</rewards>
+		<posteffects>	
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+		</posteffects>
+	</quest>
+	
+	
+	<!-- lvl 66 -->
+
+	<quest name="WeeklyChallenge_Defence_Main_lvl66_starter" type="WeeklyChallenge" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers/>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Defence_Main_lvl66"/>
+			<startquest name="WeeklyChallenge_Defence_Weapons_lvl66"/>
+			<startquest name="WeeklyChallenge_Defence_FirstRecruitment_lvl66"/>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="KingdomCavalryTrainee|230" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+   		</posteffects>
+	</quest>
+		
+	<quest name="WeeklyChallenge_Defence_Main_lvl66" type="WeeklyChallenge" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" repeatable="true">
+		<triggers> 
+			<questcomplete item="WeeklyChallenge_Defence_Weapons_lvl66"/>
+			<questcomplete item="WeeklyChallenge_Defence_FirstRecruitment_lvl66"/> 
+			<questcomplete item="WeeklyChallenge_Defence_Showcase_lvl66"/>
+			<questcomplete item="WeeklyChallenge_Defence_SecondRecruitment_lvl66"/>	
+			<questcomplete item="WeeklyChallenge_Defence_Graduation_lvl66"/>
+			<questcomplete item="WeeklyChallange_Defence_ThirdRecruitment_lvl66"/>			
+		</triggers>
+		<failconditions>
+           <hourselapsed amount="167" icon="icon_exclamationmark.png"/>
+        </failconditions>
+        <rewards>
+			<reward type="XP" amount="190000" />
+			<reward type="Resource" name="Token" amount="14" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />		
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+		</posteffects>
+		<faileffects>
+         	<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+        </faileffects>
+	</quest>	
+	
+	<quest name="WeeklyChallenge_Defence_Weapons_lvl66" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="299" connectedToQuest="WeeklyChallenge_Defence_Main_lvl66" repeatable="true">
+		<triggers>
+			<trigger type="Resource" name="Platinum" amount="2900" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Platinum" amount="5800" />
+			<trigger type="Resource" name="Cloth" amount="2300" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Cloth" amount="4600" />
+			<trigger type="Resource" name="Gunpowder" amount="2000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Gunpowder" amount="4000" />
+			<trigger type="Resource" name="Wagon" amount="370" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Wagon" amount="740" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="45000" />	
+			<reward type="Resource" name="Token" amount="2" />	
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Defence_Showcase_lvl66">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Defence_Main_lvl66" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Defence_FirstRecruitment_lvl66" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="299" connectedToQuest="WeeklyChallenge_Defence_Main_lvl66" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="43000" />
+			<reward type="Resource" name="Token" amount="2" />		
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_Defence_SecondRecruitment_lvl66">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Defence_Main_lvl66" invert="true"/>
+				</conditions>
+			</startquest>	
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="KingdomBowmanTrainee|120" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Defence_Main_lvl66" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Defence_Showcase_lvl66" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="449" connectedToQuest="WeeklyChallenge_Defence_Main_lvl66" repeatable="true">
+		<triggers>
+			<specialisttaskfinished item="FindTreasureProlonged" amount="6"/>
+			<completeadventurelist item="Whirlwind" amount="3" locaExtension="item"/>
+			<resourcegathered type="Coin" min="2600"/>
+			<trigger type="PayForQuestFinish" name="Coin" amount="2600" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="63000" />	
+			<reward type="Resource" name="Token" amount="4" />	
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Defence_Graduation_lvl66">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Defence_Main_lvl66" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Defence_SecondRecruitment_lvl66" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="449" connectedToQuest="WeeklyChallenge_Defence_Main_lvl66" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="65000" />
+			<reward type="Resource" name="Token" amount="2" />	
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallange_Defence_ThirdRecruitment_lvl66">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Defence_Main_lvl66" invert="true"/>
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="KingdomBowmanTrainee|160" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Defence_Main_lvl66" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Defence_Graduation_lvl66" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="599" connectedToQuest="WeeklyChallenge_Defence_Main_lvl66" repeatable="true">
+		<triggers>		
+			<produceditemlist item="Militia" amount="510" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Militia" amount="510" />
+			<produceditemlist item="Crossbowman" amount="55" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Crossbowman" amount="55" />
+			<produceditemlist item="Swordsman" amount="815" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Swordsman" amount="815" />
+			<produceditemlist item="MountedMarksman" amount="295" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="MountedMarksman" amount="295" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="86000" />	
+			<reward type="Resource" name="Token" amount="5" />
+		</rewards>
+		<posteffects/>
+	</quest>
+	
+	<quest name="WeeklyChallange_Defence_ThirdRecruitment_lvl66" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="599" connectedToQuest="WeeklyChallenge_Defence_Main_lvl66" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="87000" />	
+			<reward type="Resource" name="Token" amount="3" />		
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+		</posteffects>
+	</quest>
+	
+	
+	
+	
+	
+	<!-- Town Construction -->	
+
+	<quest name="WeeklyChallenge_Construction_ChainFilter" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<postrequisits>
+			<postrequisite filterQuest="Level26-35" startQuest="WeeklyChallenge_Construction_Main_lvl26_starter" />
+			<postrequisite filterQuest="Level36-45" startQuest="WeeklyChallenge_Construction_Main_lvl36_starter" />
+			<postrequisite filterQuest="Level46-55" startQuest="WeeklyChallenge_Construction_Main_lvl46_starter" />
+			<postrequisite filterQuest="Level56-65" startQuest="WeeklyChallenge_Construction_Main_lvl56_starter" />
+			<postrequisite filterQuest="Level66-80" startQuest="WeeklyChallenge_Construction_Main_lvl66_starter" />
+		</postrequisits>
+	</quest>
+	
+	
+	<!-- lvl 26 -->
+
+	<quest name="WeeklyChallenge_Construction_Main_lvl26_starter" type="WeeklyChallenge" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers/>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Construction_Main_lvl26"/>
+			<startquest name="WeeklyChallenge_Construction_Inspiration_lvl26"/>
+			<startquest name="WeeklyChallenge_Construction_FirstProvision_lvl26"/>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="ConstructionWorkerTrainee|32" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/>
+   		</posteffects>
+	</quest> 
+		
+	<quest name="WeeklyChallenge_Construction_Main_lvl26" type="WeeklyChallenge" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" repeatable="true">
+		<triggers> 
+			<questcomplete item="WeeklyChallenge_Construction_Inspiration_lvl26"/>
+			<questcomplete item="WeeklyChallenge_Construction_FirstProvision_lvl26"/> 
+			<questcomplete item="WeeklyChallenge_Construction_Security_lvl26"/>
+			<questcomplete item="WeeklyChallenge_Construction_SecondProvision_lvl26"/>	
+			<questcomplete item="WeeklyChallenge_Construction_Resources_lvl26"/>
+			<questcomplete item="WeeklyChallenge_Construction_ThirdProvision_lvl26"/>			
+		</triggers>
+		<failconditions>
+           <hourselapsed amount="167" icon="icon_exclamationmark.png"/>
+        </failconditions>
+        <rewards>
+			<reward type="XP" amount="530" />
+			<reward type="Resource" name="Token" amount="5" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+		</posteffects>
+		<faileffects>
+         	<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+        </faileffects>
+	</quest>	
+	
+	<quest name="WeeklyChallenge_Construction_Inspiration_lvl26" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="99" connectedToQuest="WeeklyChallenge_Construction_Main_lvl26" repeatable="true">
+		<triggers>		
+			<specialisttaskfinished item="FindAdventureZoneShort" amount="4"/>
+			<completeadventurelist item="TheDarkPriests" amount="2" locaExtension="item"/>
+			<resourcegathered type="Coin" min="115"/>
+			<trigger type="PayForQuestFinish" name="Coin" amount="115" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="120" />
+			<reward type="Resource" name="Token" amount="1" />		
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Construction_Security_lvl26">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Construction_Main_lvl26" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Construction_FirstProvision_lvl26" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="99" connectedToQuest="WeeklyChallenge_Construction_Main_lvl26" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="120" />	
+			<reward type="Resource" name="Token" amount="1" />	
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_Construction_SecondProvision_lvl26">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Construction_Main_lvl26" invert="true"/>
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="ConstructionWorkerTrainee|48" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Construction_Main_lvl26" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Construction_Security_lvl26" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="149" connectedToQuest="WeeklyChallenge_Construction_Main_lvl26" repeatable="true">
+		<triggers>
+			<produceditemlist item="Bowman" amount="33" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Bowman" amount="33" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="180" />	
+			<reward type="Resource" name="Token" amount="1" />		
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Construction_Resources_lvl26">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Construction_Main_lvl26" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Construction_SecondProvision_lvl26" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="149" connectedToQuest="WeeklyChallenge_Construction_Main_lvl26" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="180" />
+			<reward type="Resource" name="Token" amount="1" />			
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" /> 
+			<startquest name="WeeklyChallenge_Construction_ThirdProvision_lvl26">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Construction_Main_lvl26" invert="true"/>
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="ConstructionWorkerTrainee|60" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Construction_Main_lvl26" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Construction_Resources_lvl26" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="199" connectedToQuest="WeeklyChallenge_Construction_Main_lvl26" repeatable="true">
+		<triggers>		
+			<trigger type="Resource" name="Plank" amount="2450" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Plank" amount="4900" />
+			<trigger type="Resource" name="Stone" amount="2500" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Stone" amount="5000" />
+			<trigger type="Resource" name="Tool" amount="1250" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Tool" amount="2500" />
+			<trigger type="Resource" name="RealPlank" amount="1100" condition="produce" />
+			<trigger type="PayForQuestFinish" name="RealPlank" amount="2200" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="240" />	
+			<reward type="Resource" name="Token" amount="2" />		
+		</rewards>
+		<posteffects/>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Construction_ThirdProvision_lvl26" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="199" connectedToQuest="WeeklyChallenge_Construction_Main_lvl26" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="220" />
+			<reward type="Resource" name="Token" amount="1" />			
+		</rewards>
+		<posteffects>	
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+		</posteffects>
+	</quest>
+	
+	
+	<!-- lvl 36 -->
+
+	<quest name="WeeklyChallenge_Construction_Main_lvl36_starter" type="WeeklyChallenge" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers/>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Construction_Main_lvl36"/>
+			<startquest name="WeeklyChallenge_Construction_Inspiration_lvl36"/>
+			<startquest name="WeeklyChallenge_Construction_FirstProvision_lvl36"/>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="ConstructionWorkerTrainee|65" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+   		</posteffects>
+	</quest> 
+		
+	<quest name="WeeklyChallenge_Construction_Main_lvl36" type="WeeklyChallenge" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" repeatable="true">
+		<triggers> 
+			<questcomplete item="WeeklyChallenge_Construction_Inspiration_lvl36"/>
+			<questcomplete item="WeeklyChallenge_Construction_FirstProvision_lvl36"/> 
+			<questcomplete item="WeeklyChallenge_Construction_Security_lvl36"/>
+			<questcomplete item="WeeklyChallenge_Construction_SecondProvision_lvl36"/>	
+			<questcomplete item="WeeklyChallenge_Construction_Resources_lvl36"/>
+			<questcomplete item="WeeklyChallenge_Construction_ThirdProvision_lvl36"/>			
+		</triggers>
+		<failconditions>
+           <hourselapsed amount="167" icon="icon_exclamationmark.png"/>
+        </failconditions>
+        <rewards>
+			<reward type="XP" amount="4400" />
+			<reward type="Resource" name="Token" amount="7" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />		
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+		</posteffects>
+		<faileffects>
+         	<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+        </faileffects>
+	</quest>	
+	
+	<quest name="WeeklyChallenge_Construction_Inspiration_lvl36" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="149" connectedToQuest="WeeklyChallenge_Construction_Main_lvl36" repeatable="true">
+		<triggers>		
+			<specialisttaskfinished item="FindAdventureZoneMedium" amount="5"/>
+			<completeadventurelist item="VictorTheVicious" amount="1" locaExtension="item"/>
+			<resourcegathered type="Coin" min="225"/>
+			<trigger type="PayForQuestFinish" name="Coin" amount="225" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="1100" />	
+			<reward type="Resource" name="Token" amount="2" />		
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Construction_Security_lvl36">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Construction_Main_lvl36" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Construction_FirstProvision_lvl36" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="149" connectedToQuest="WeeklyChallenge_Construction_Main_lvl36" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="940" />	
+			<reward type="Resource" name="Token" amount="1" />		
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_Construction_SecondProvision_lvl36">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Construction_Main_lvl36" invert="true"/>
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="ConstructionWorkerTrainee|96" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Construction_Main_lvl36" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Construction_Security_lvl36" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="219" connectedToQuest="WeeklyChallenge_Construction_Main_lvl36" repeatable="true">
+		<triggers>
+			<produceditemlist item="Bowman" amount="50" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Bowman" amount="50" />
+			<produceditemlist item="Soldier" amount="25" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Soldier" amount="25" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="1500" />	
+			<reward type="Resource" name="Token" amount="2" />		
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Construction_Resources_lvl36">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Construction_Main_lvl36" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Construction_SecondProvision_lvl36" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="219" connectedToQuest="WeeklyChallenge_Construction_Main_lvl36" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="1400" />	
+			<reward type="Resource" name="Token" amount="1" />		
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_Construction_ThirdProvision_lvl36">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Construction_Main_lvl36" invert="true"/>
+				</conditions>
+			</startquest>	
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="ConstructionWorkerJourneyman|35" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Construction_Main_lvl36" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Construction_Resources_lvl36" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="299" connectedToQuest="WeeklyChallenge_Construction_Main_lvl36" repeatable="true">
+		<triggers>		
+			<trigger type="Resource" name="Tool" amount="2650" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Tool" amount="5300" />
+			<trigger type="Resource" name="RealPlank" amount="2350" condition="produce" />
+			<trigger type="PayForQuestFinish" name="RealPlank" amount="4700" />
+			<trigger type="Resource" name="Marble" amount="2950" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Marble" amount="5900" />
+			<trigger type="Resource" name="ExoticPlank" amount="230" condition="produce" />
+			<trigger type="PayForQuestFinish" name="ExoticPlank" amount="460" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="1900" />	
+			<reward type="Resource" name="Token" amount="2" />		
+		</rewards>
+		<posteffects/>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Construction_ThirdProvision_lvl36" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="299" connectedToQuest="WeeklyChallenge_Construction_Main_lvl36" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="1900" />
+			<reward type="Resource" name="Token" amount="1" />			
+		</rewards>
+		<posteffects>	
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+		</posteffects>
+	</quest>
+	
+	
+	<!-- lvl 46 -->
+
+	<quest name="WeeklyChallenge_Construction_Main_lvl46_starter" type="WeeklyChallenge" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers/>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Construction_Main_lvl46"/>
+			<startquest name="WeeklyChallenge_Construction_Inspiration_lvl46"/>
+			<startquest name="WeeklyChallenge_Construction_FirstProvision_lvl46"/>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="ConstructionWorkerTrainee|160" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+   		</posteffects>
+	</quest>
+		
+	<quest name="WeeklyChallenge_Construction_Main_lvl46" type="WeeklyChallenge" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" repeatable="true">
+		<triggers> 
+			<questcomplete item="WeeklyChallenge_Construction_Inspiration_lvl46"/>
+			<questcomplete item="WeeklyChallenge_Construction_FirstProvision_lvl46"/> 
+			<questcomplete item="WeeklyChallenge_Construction_Security_lvl46"/>
+			<questcomplete item="WeeklyChallenge_Construction_SecondProvision_lvl46"/>	
+			<questcomplete item="WeeklyChallenge_Construction_Resources_lvl46"/>
+			<questcomplete item="WeeklyChallenge_Construction_ThirdProvision_lvl46"/>			
+		</triggers>
+		<failconditions>
+           <hourselapsed amount="167" icon="icon_exclamationmark.png"/>
+        </failconditions>
+        <rewards>
+			<reward type="XP" amount="25000" />
+			<reward type="Resource" name="Token" amount="9" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+		</posteffects>
+		<faileffects>
+         	<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+        </faileffects>
+	</quest>	
+	
+	<quest name="WeeklyChallenge_Construction_Inspiration_lvl46" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="199" connectedToQuest="WeeklyChallenge_Construction_Main_lvl46" repeatable="true">
+		<triggers>		
+			<specialisttaskfinished item="FindAdventureZoneLong" amount="4"/>
+			<completeadventurelist item="TheDarkBrotherhood" amount="1" locaExtension="item"/>
+			<resourcegathered type="Coin" min="450"/>
+			<trigger type="PayForQuestFinish" name="Coin" amount="450" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="5600" />
+			<reward type="Resource" name="Token" amount="2" />			
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Construction_Security_lvl46">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Construction_Main_lvl46" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Construction_FirstProvision_lvl46" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="199" connectedToQuest="WeeklyChallenge_Construction_Main_lvl46" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="5800" />	
+			<reward type="Resource" name="Token" amount="1" />		
+		</rewards>
+		<posteffects>	
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_Construction_SecondProvision_lvl46">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Construction_Main_lvl46" invert="true"/>
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="ConstructionWorkerJourneyman|66" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Construction_Main_lvl46" invert="true"/>
+				</conditions>
+			</spawnbuilding> 
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Construction_Security_lvl46" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="299" connectedToQuest="WeeklyChallenge_Construction_Main_lvl46" repeatable="true">
+		<triggers>
+			<produceditemlist item="Bowman" amount="70" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Bowman" amount="70" />
+			<produceditemlist item="Soldier" amount="50" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Soldier" amount="50" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="8400" />
+			<reward type="Resource" name="Token" amount="3" />			
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Construction_Resources_lvl46">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Construction_Main_lvl46" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Construction_SecondProvision_lvl46" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="299" connectedToQuest="WeeklyChallenge_Construction_Main_lvl46" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="8700" />	
+			<reward type="Resource" name="Token" amount="1" />		
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_Construction_ThirdProvision_lvl46">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Construction_Main_lvl46" invert="true"/>
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="ConstructionWorkerJourneyman|85" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Construction_Main_lvl46" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Construction_Resources_lvl46" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="399" connectedToQuest="WeeklyChallenge_Construction_Main_lvl46" repeatable="true">
+		<triggers>		
+			<trigger type="Resource" name="Tool" amount="4400" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Tool" amount="8800" />
+			<trigger type="Resource" name="RealPlank" amount="4500" condition="produce" />
+			<trigger type="PayForQuestFinish" name="RealPlank" amount="9000" />
+			<trigger type="Resource" name="Marble" amount="5500" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Marble" amount="11000" />
+			<trigger type="Resource" name="ExoticPlank" amount="460" condition="produce" />
+			<trigger type="PayForQuestFinish" name="ExoticPlank" amount="920" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="11000" />
+			<reward type="Resource" name="Token" amount="3" />			
+		</rewards>
+		<posteffects/>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Construction_ThirdProvision_lvl46" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="399" connectedToQuest="WeeklyChallenge_Construction_Main_lvl46" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="11000" />	
+			<reward type="Resource" name="Token" amount="2" />		
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+		</posteffects>
+	</quest>
+	
+	
+	<!-- lvl 56 -->
+
+	<quest name="WeeklyChallenge_Construction_Main_lvl56_starter" type="WeeklyChallenge" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers/>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Construction_Main_lvl56"/>
+			<startquest name="WeeklyChallenge_Construction_Inspiration_lvl56"/>
+			<startquest name="WeeklyChallenge_Construction_FirstProvision_lvl56"/>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="ConstructionWorkerJourneyman|150" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+   		</posteffects>
+	</quest> 
+	
+	<quest name="WeeklyChallenge_Construction_Main_lvl56" type="WeeklyChallenge" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" repeatable="true">
+		<triggers> 
+			<questcomplete item="WeeklyChallenge_Construction_Inspiration_lvl56"/>
+			<questcomplete item="WeeklyChallenge_Construction_FirstProvision_lvl56"/> 
+			<questcomplete item="WeeklyChallenge_Construction_Security_lvl56"/>
+			<questcomplete item="WeeklyChallenge_Construction_SecondProvision_lvl56"/>	
+			<questcomplete item="WeeklyChallenge_Construction_Resources_lvl56"/>
+			<questcomplete item="WeeklyChallenge_Construction_ThirdProvision_lvl56"/>			
+		</triggers>
+		<failconditions>
+           <hourselapsed amount="167" icon="icon_exclamationmark.png"/>
+        </failconditions>
+        <rewards>
+			<reward type="XP" amount="66000" />
+			<reward type="Resource" name="Token" amount="11" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+		</posteffects>
+		<faileffects>
+         	<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+        </faileffects>
+	</quest>	
+	
+	<quest name="WeeklyChallenge_Construction_Inspiration_lvl56" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="249" connectedToQuest="WeeklyChallenge_Construction_Main_lvl56" repeatable="true">
+		<triggers>		
+			<specialisttaskfinished item="FindAdventureZoneVeryLong" amount="4"/>
+			<completeadventurelist item="1001NightsSecondThief" amount="2" locaExtension="item"/>
+			<resourcegathered type="Coin" min="1450"/>
+			<trigger type="PayForQuestFinish" name="Coin" amount="1450" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="17000" />	
+			<reward type="Resource" name="Token" amount="3" />		
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Construction_Security_lvl56">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Construction_Main_lvl56" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Construction_FirstProvision_lvl56" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="249" connectedToQuest="WeeklyChallenge_Construction_Main_lvl56" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="15000" />
+			<reward type="Resource" name="Token" amount="1" />			
+		</rewards>
+		<posteffects>	
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_Construction_SecondProvision_lvl56">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Construction_Main_lvl56" invert="true"/>
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="ConstructionWorkerJourneyman|215" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Construction_Main_lvl56" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Construction_Security_lvl56" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="369" connectedToQuest="WeeklyChallenge_Construction_Main_lvl56" repeatable="true">
+		<triggers>
+			<produceditemlist item="Bowman" amount="270" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Bowman" amount="270" />
+			<produceditemlist item="Soldier" amount="125" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Soldier" amount="125" />
+			<produceditemlist item="Knight" amount="350" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Knight" amount="350" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="22000" />	
+			<reward type="Resource" name="Token" amount="3" />		
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Construction_Resources_lvl56">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Construction_Main_lvl56" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Construction_SecondProvision_lvl56" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="369" connectedToQuest="WeeklyChallenge_Construction_Main_lvl56" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="21000" />		
+			<reward type="Resource" name="Token" amount="2" />	
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_Construction_ThirdProvision_lvl56">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Construction_Main_lvl56" invert="true"/>
+				</conditions>
+			</startquest>	
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="ConstructionWorkerMaster|29" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Construction_Main_lvl56" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Construction_Resources_lvl56" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="499" connectedToQuest="WeeklyChallenge_Construction_Main_lvl56" repeatable="true">
+		<triggers>		
+			<trigger type="Resource" name="RealPlank" amount="7550" condition="produce" />
+			<trigger type="PayForQuestFinish" name="RealPlank" amount="15100" />
+			<trigger type="Resource" name="Marble" amount="8700" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Marble" amount="17400" />
+			<trigger type="Resource" name="ExoticPlank" amount="2700" condition="produce" />
+			<trigger type="PayForQuestFinish" name="ExoticPlank" amount="5400" />
+			<trigger type="Resource" name="MahoganyPlank" amount="730" condition="produce" />
+			<trigger type="PayForQuestFinish" name="MahoganyPlank" amount="1460" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="29000" />	
+			<reward type="Resource" name="Token" amount="4" />		
+		</rewards>
+		<posteffects/>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Construction_ThirdProvision_lvl56" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="499" connectedToQuest="WeeklyChallenge_Construction_Main_lvl56" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="28000" />	
+			<reward type="Resource" name="Token" amount="2" />		
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+		</posteffects>
+	</quest>
+	
+	
+	<!-- lvl 66 -->
+
+	<quest name="WeeklyChallenge_Construction_Main_lvl66_starter" type="WeeklyChallenge" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers/>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Construction_Main_lvl66"/>
+			<startquest name="WeeklyChallenge_Construction_Inspiration_lvl66"/>
+			<startquest name="WeeklyChallenge_Construction_FirstProvision_lvl66"/>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="ConstructionWorkerJourneyman|340" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+   		</posteffects>
+	</quest> 
+	
+	<quest name="WeeklyChallenge_Construction_Main_lvl66" type="WeeklyChallenge" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" repeatable="true">
+		<triggers> 
+			<questcomplete item="WeeklyChallenge_Construction_Inspiration_lvl66"/>
+			<questcomplete item="WeeklyChallenge_Construction_FirstProvision_lvl66"/> 
+			<questcomplete item="WeeklyChallenge_Construction_Security_lvl66"/>
+			<questcomplete item="WeeklyChallenge_Construction_SecondProvision_lvl66"/>	
+			<questcomplete item="WeeklyChallenge_Construction_Resources_lvl66"/>
+			<questcomplete item="WeeklyChallenge_Construction_ThirdProvision_lvl66"/>			
+		</triggers>
+		<failconditions>
+           <hourselapsed amount="167" icon="icon_exclamationmark.png"/>
+        </failconditions>
+        <rewards>
+			<reward type="XP" amount="190000" />
+			<reward type="Resource" name="Token" amount="14" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />	
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+		</posteffects>
+		<faileffects>
+         	<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+        </faileffects>
+	</quest>	
+	
+	<quest name="WeeklyChallenge_Construction_Inspiration_lvl66" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="299" connectedToQuest="WeeklyChallenge_Construction_Main_lvl66" repeatable="true">
+		<triggers>		
+			<specialisttaskfinished item="FindAdventureZoneVeryLong" amount="4"/>
+			<completeadventurelist item="1001NightsBesiegedCity" amount="1" locaExtension="item"/>
+			<resourcegathered type="Coin" min="1900"/>
+			<trigger type="PayForQuestFinish" name="Coin" amount="1900" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="46000" />	
+			<reward type="Resource" name="Token" amount="3" />		
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Construction_Security_lvl66">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Construction_Main_lvl66" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Construction_FirstProvision_lvl66" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="299" connectedToQuest="WeeklyChallenge_Construction_Main_lvl66" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="44000" />	
+			<reward type="Resource" name="Token" amount="2" />		
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_Construction_SecondProvision_lvl66">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Construction_Main_lvl66" invert="true"/>
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="ConstructionWorkerMaster|53" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Construction_Main_lvl66" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Construction_Security_lvl66" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="449" connectedToQuest="WeeklyChallenge_Construction_Main_lvl66" repeatable="true">
+		<triggers>
+			<produceditemlist item="Bowman" amount="700" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Bowman" amount="700" />
+			<produceditemlist item="Soldier" amount="255" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Soldier" amount="255" />
+			<produceditemlist item="MountedSwordsman" amount="445" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="MountedSwordsman" amount="445" />
+			<produceditemlist item="Besieger" amount="445" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Besieger" amount="445" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="63000" />
+			<reward type="Resource" name="Token" amount="4" />			
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Construction_Resources_lvl66">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Construction_Main_lvl66" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Construction_SecondProvision_lvl66" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="449" connectedToQuest="WeeklyChallenge_Construction_Main_lvl66" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="66000" />	
+			<reward type="Resource" name="Token" amount="2" />		
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_Construction_ThirdProvision_lvl66">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Construction_Main_lvl66" invert="true"/>
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="ConstructionWorkerMaster|68" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Construction_Main_lvl66" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Construction_Resources_lvl66" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="599" connectedToQuest="WeeklyChallenge_Construction_Main_lvl66" repeatable="true">
+		<triggers>		
+			<trigger type="Resource" name="Marble" amount="13300" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Marble" amount="26600" />
+			<trigger type="Resource" name="ExoticPlank" amount="5600" condition="produce" />
+			<trigger type="PayForQuestFinish" name="ExoticPlank" amount="11200" />
+			<trigger type="Resource" name="MahoganyPlank" amount="2250" condition="produce" />
+			<trigger type="PayForQuestFinish" name="MahoganyPlank" amount="4500" />
+			<trigger type="Resource" name="Granite" amount="9550" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Granite" amount="19100" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="85000" />	
+			<reward type="Resource" name="Token" amount="4" />		
+		</rewards>
+		<posteffects/>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Construction_ThirdProvision_lvl66" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="599" connectedToQuest="WeeklyChallenge_Construction_Main_lvl66" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="85000" />	
+			<reward type="Resource" name="Token" amount="3" />		
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />	
+		</posteffects>
+	</quest>
+	
+	
+	
+	
+	<!-- Archeology -->	
+
+	<quest name="WeeklyChallenge_Archeology_ChainFilter" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<postrequisits>
+			<postrequisite filterQuest="Level26-35" startQuest="WeeklyChallenge_Archeology_Main_lvl26_starter" />
+			<postrequisite filterQuest="Level36-45" startQuest="WeeklyChallenge_Archeology_Main_lvl36_starter" />
+			<postrequisite filterQuest="Level46-55" startQuest="WeeklyChallenge_Archeology_Main_lvl46_starter" />
+			<postrequisite filterQuest="Level56-65" startQuest="WeeklyChallenge_Archeology_Main_lvl56_starter" />
+			<postrequisite filterQuest="Level66-80" startQuest="WeeklyChallenge_Archeology_Main_lvl66_starter" />
+		</postrequisits>
+	</quest>
+	
+	
+	<!-- lvl 26 -->
+
+	<quest name="WeeklyChallenge_Archeology_Main_lvl26_starter" type="WeeklyChallenge" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<posteffects>
+			<startquest name="WeeklyChallenge_Archeology_Main_lvl26"/>
+			<startquest name="WeeklyChallenge_Archeology_Preparation_lvl26"/>
+			<startquest name="WeeklyChallenge_Archeology_FirstDigging_lvl26"/>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="ArcheologyTrainee|32" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+   		</posteffects>
+		<triggers/>
+	</quest>
+	 
+	<quest name="WeeklyChallenge_Archeology_Main_lvl26" type="WeeklyChallenge" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" repeatable="true">
+		<triggers> 
+			<questcomplete item="WeeklyChallenge_Archeology_Preparation_lvl26"/>
+			<questcomplete item="WeeklyChallenge_Archeology_FirstDigging_lvl26"/> 
+			<questcomplete item="WeeklyChallenge_Archeology_Volunteers_lvl26"/>
+			<questcomplete item="WeeklyChallenge_Archeology_SecondDigging_lvl26"/>	
+			<questcomplete item="WeeklyChallenge_Archeology_Expedition_lvl26"/>
+			<questcomplete item="WeeklyChallenge_Archeology_ThirdDigging_lvl26"/>			
+		</triggers>
+		<failconditions>
+           <hourselapsed amount="167" icon="icon_exclamationmark.png"/>
+        </failconditions>
+        <rewards>
+			<reward type="XP" amount="530" />
+			<reward type="Resource" name="Token" amount="5" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+		</posteffects>
+		<faileffects>
+         	<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+        </faileffects>
+	</quest>	
+	
+	<quest name="WeeklyChallenge_Archeology_Preparation_lvl26" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="99" connectedToQuest="WeeklyChallenge_Archeology_Main_lvl26" repeatable="true">
+		<triggers>				
+			<trigger type="Resource" name="SimplePaper" amount="225" condition="produce" />
+			<trigger type="PayForQuestFinish" name="SimplePaper" amount="450" />
+			<trigger type="Resource" name="Nib" amount="170" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Nib" amount="340" />
+			<trigger type="Resource" name="Coal" amount="2450" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Coal" amount="4900" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="120" />
+			<reward type="Resource" name="Token" amount="1" />			
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Archeology_Volunteers_lvl26">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Archeology_Main_lvl26" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Archeology_FirstDigging_lvl26" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="99" connectedToQuest="WeeklyChallenge_Archeology_Main_lvl26" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="110" />	
+			<reward type="Resource" name="Token" amount="1" />		
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_Archeology_SecondDigging_lvl26">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Archeology_Main_lvl26" invert="true"/>
+				</conditions>
+			</startquest>	
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="ArcheologyTrainee|49" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Archeology_Main_lvl26" invert="true"/>
+				</conditions>
+			</spawnbuilding> 
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Archeology_Volunteers_lvl26" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="149" connectedToQuest="WeeklyChallenge_Archeology_Main_lvl26" repeatable="true">
+		<triggers>
+			<produceditemlist item="Cavalry" amount="13" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Cavalry" amount="13" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="180" />
+			<reward type="Resource" name="Token" amount="1" />			
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Archeology_Expedition_lvl26">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Archeology_Main_lvl26" invert="true"/>
+				</conditions>
+			</startquest> 
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Archeology_SecondDigging_lvl26" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="149" connectedToQuest="WeeklyChallenge_Archeology_Main_lvl26" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="180" />
+			<reward type="Resource" name="Token" amount="1" />			
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_Archeology_ThirdDigging_lvl26">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Archeology_Main_lvl26" invert="true"/>
+				</conditions>
+			</startquest>		
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="ArcheologyTrainee|65" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Archeology_Main_lvl26" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Archeology_Expedition_lvl26" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="199" connectedToQuest="WeeklyChallenge_Archeology_Main_lvl26" repeatable="true">
+		<triggers>		
+			<specialisttaskfinished item="FindTreasureMedium" amount="16"/>
+			<completeadventurelist item="BuffAdventures_safeTheTowns_easy" amount="4" locaExtension="item"/>
+			<resourcegathered type="Coin" min="230"/>
+			<trigger type="PayForQuestFinish" name="Coin" amount="230" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="240" />
+			<reward type="Resource" name="Token" amount="2" />			
+		</rewards>
+		<posteffects/>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Archeology_ThirdDigging_lvl26" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="199" connectedToQuest="WeeklyChallenge_Archeology_Main_lvl26" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="230" />
+			<reward type="Resource" name="Token" amount="1" />			
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+		</posteffects>
+	</quest>
+	
+	
+	<!-- lvl 36 -->
+
+	<quest name="WeeklyChallenge_Archeology_Main_lvl36_starter" type="WeeklyChallenge" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers/>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Archeology_Main_lvl36"/>>
+			<startquest name="WeeklyChallenge_Archeology_Preparation_lvl36"/>
+			<startquest name="WeeklyChallenge_Archeology_FirstDigging_lvl36"/>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="ArcheologyTrainee|50" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+   		</posteffects>
+	</quest>
+		 
+	<quest name="WeeklyChallenge_Archeology_Main_lvl36" type="WeeklyChallenge" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" repeatable="true">
+		<triggers> 
+			<questcomplete item="WeeklyChallenge_Archeology_Preparation_lvl36"/>
+			<questcomplete item="WeeklyChallenge_Archeology_FirstDigging_lvl36"/> 
+			<questcomplete item="WeeklyChallenge_Archeology_Volunteers_lvl36"/>
+			<questcomplete item="WeeklyChallenge_Archeology_SecondDigging_lvl36"/>	
+			<questcomplete item="WeeklyChallenge_Archeology_Expedition_lvl36"/>
+			<questcomplete item="WeeklyChallenge_Archeology_ThirdDigging_lvl36"/>			
+		</triggers>
+		<failconditions>
+           <hourselapsed amount="167" icon="icon_exclamationmark.png"/>
+        </failconditions>
+        <rewards>
+			<reward type="XP" amount="4300" />
+			<reward type="Resource" name="Token" amount="7" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />		
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+		</posteffects>
+		<faileffects>
+         	<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+        </faileffects>
+	</quest>	
+	
+	<quest name="WeeklyChallenge_Archeology_Preparation_lvl36" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="149" connectedToQuest="WeeklyChallenge_Archeology_Main_lvl36" repeatable="true">
+		<triggers>				
+			<trigger type="Resource" name="IntermediatePaper" amount="120" condition="produce" />
+			<trigger type="PayForQuestFinish" name="IntermediatePaper" amount="240" />
+			<trigger type="Resource" name="Letter" amount="115" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Letter" amount="230" />
+			<trigger type="Resource" name="Coal" amount="6500" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Coal" amount="13000" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="980" />
+			<reward type="Resource" name="Token" amount="1" />			
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Archeology_Volunteers_lvl36">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Archeology_Main_lvl36" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Archeology_FirstDigging_lvl36" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="149" connectedToQuest="WeeklyChallenge_Archeology_Main_lvl36" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="950" />	
+			<reward type="Resource" name="Token" amount="1" />		
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_Archeology_SecondDigging_lvl36">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Archeology_Main_lvl36" invert="true"/>
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="ArcheologyTrainee|75" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Archeology_Main_lvl36" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Archeology_Volunteers_lvl36" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="219" connectedToQuest="WeeklyChallenge_Archeology_Main_lvl36" repeatable="true">
+		<triggers>
+			<produceditemlist item="Cavalry" amount="24" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Cavalry" amount="24" />
+			<produceditemlist item="Militia" amount="35" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Militia" amount="35" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="1500" />
+			<reward type="Resource" name="Token" amount="2" />			
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Archeology_Expedition_lvl36">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Archeology_Main_lvl36" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Archeology_SecondDigging_lvl36" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="219" connectedToQuest="WeeklyChallenge_Archeology_Main_lvl36" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="1400" />
+			<reward type="Resource" name="Token" amount="1" />			
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_Archeology_ThirdDigging_lvl36">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Archeology_Main_lvl36" invert="true"/>
+				</conditions>
+			</startquest>	
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="ArcheologyJourneyman|32" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Archeology_Main_lvl36" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Archeology_Expedition_lvl36" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="299" connectedToQuest="WeeklyChallenge_Archeology_Main_lvl36" repeatable="true">
+		<triggers>		
+			<specialisttaskfinished item="FindTreasureLong" amount="12"/>
+			<completeadventurelist item="BuffAdventures_safeTheTowns_easy" amount="2" locaExtension="item"/>
+			<completeadventurelist item="BuffAdventures_heartOfTheWood_medium" amount="2" locaExtension="item"/>
+			<resourcegathered type="Coin" min="450"/>
+			<trigger type="PayForQuestFinish" name="Coin" amount="450" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="1900" />	
+			<reward type="Resource" name="Token" amount="3" />		
+		</rewards>
+		<posteffects/>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Archeology_ThirdDigging_lvl36" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="299" connectedToQuest="WeeklyChallenge_Archeology_Main_lvl36" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="1900" />	
+			<reward type="Resource" name="Token" amount="1" />		
+		</rewards>
+		<posteffects>	
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+		</posteffects>
+	</quest>
+	
+	
+	<!-- lvl 46 -->
+
+	<quest name="WeeklyChallenge_Archeology_Main_lvl46_starter" type="WeeklyChallenge" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers/>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Archeology_Main_lvl46"/>
+			<startquest name="WeeklyChallenge_Archeology_Preparation_lvl46"/>
+			<startquest name="WeeklyChallenge_Archeology_FirstDigging_lvl46"/>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="ArcheologyTrainee|75" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+   		</posteffects>
+	</quest>
+		 
+	<quest name="WeeklyChallenge_Archeology_Main_lvl46" type="WeeklyChallenge" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" repeatable="true">
+		<triggers> 
+			<questcomplete item="WeeklyChallenge_Archeology_Preparation_lvl46"/>
+			<questcomplete item="WeeklyChallenge_Archeology_FirstDigging_lvl46"/> 
+			<questcomplete item="WeeklyChallenge_Archeology_Volunteers_lvl46"/>
+			<questcomplete item="WeeklyChallenge_Archeology_SecondDigging_lvl46"/>	
+			<questcomplete item="WeeklyChallenge_Archeology_Expedition_lvl46"/>
+			<questcomplete item="WeeklyChallenge_Archeology_ThirdDigging_lvl46"/>			
+		</triggers>
+		<failconditions>
+           <hourselapsed amount="167" icon="icon_exclamationmark.png"/>
+        </failconditions>
+        <rewards>
+			<reward type="XP" amount="25000" />
+			<reward type="Resource" name="Token" amount="9" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />		
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+		</posteffects>
+		<faileffects>
+         	<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+        </faileffects>
+	</quest>	
+	
+	<quest name="WeeklyChallenge_Archeology_Preparation_lvl46" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="199" connectedToQuest="WeeklyChallenge_Archeology_Main_lvl46" repeatable="true">
+		<triggers>				
+			<trigger type="Resource" name="AdvancedPaper" amount="125" condition="produce" />
+			<trigger type="PayForQuestFinish" name="AdvancedPaper" amount="250" />
+			<trigger type="Resource" name="BookFitting" amount="90" condition="produce" />
+			<trigger type="PayForQuestFinish" name="BookFitting" amount="180" />
+			<trigger type="Resource" name="Coal" amount="16500" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Coal" amount="33000" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="5800" />
+			<reward type="Resource" name="Token" amount="2" />			
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Archeology_Volunteers_lvl46">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Archeology_Main_lvl46" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Archeology_FirstDigging_lvl46" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="199" connectedToQuest="WeeklyChallenge_Archeology_Main_lvl46" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="5600" />
+			<reward type="Resource" name="Token" amount="1" />			
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_Archeology_SecondDigging_lvl46">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Archeology_Main_lvl46" invert="true"/>
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="ArcheologyJourneyman|45" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Archeology_Main_lvl46" invert="true"/>
+				</conditions>
+			</spawnbuilding> 
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Archeology_Volunteers_lvl46" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="299" connectedToQuest="WeeklyChallenge_Archeology_Main_lvl46" repeatable="true">
+		<triggers>
+			<produceditemlist item="Cavalry" amount="44" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Cavalry" amount="44" />
+			<produceditemlist item="EliteSoldier" amount="7" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="EliteSoldier" amount="7" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="8800" />	
+			<reward type="Resource" name="Token" amount="2" />		
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Archeology_Expedition_lvl46">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Archeology_Main_lvl46" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Archeology_SecondDigging_lvl46" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="299" connectedToQuest="WeeklyChallenge_Archeology_Main_lvl46" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="8400" />
+			<reward type="Resource" name="Token" amount="1" />			
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_Archeology_ThirdDigging_lvl46">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Archeology_Main_lvl46" invert="true"/>
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="ArcheologyJourneyman|60" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Archeology_Main_lvl46" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Archeology_Expedition_lvl46" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="399" connectedToQuest="WeeklyChallenge_Archeology_Main_lvl46" repeatable="true">
+		<triggers>		
+			<specialisttaskfinished item="FindTreasureEvenLonger" amount="8"/>
+			<completeadventurelist item="BuffAdventures_heartOfTheWood_medium" amount="3" locaExtension="item"/>
+			<completeadventurelist item="BuffAdventures_Riches_of_the_Mountain" amount="3" locaExtension="item"/>
+			<resourcegathered type="Coin" min="890"/>
+			<trigger type="PayForQuestFinish" name="Coin" amount="890" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="11000" />	
+			<reward type="Resource" name="Token" amount="4" />		
+		</rewards>
+		<posteffects/>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Archeology_ThirdDigging_lvl46" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="399" connectedToQuest="WeeklyChallenge_Archeology_Main_lvl46" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="11000" />
+			<reward type="Resource" name="Token" amount="2" />			
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+		</posteffects>
+	</quest>
+	
+	
+	<!-- lvl 56 -->
+
+	<quest name="WeeklyChallenge_Archeology_Main_lvl56_starter" type="WeeklyChallenge" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers/>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Archeology_Main_lvl56"/>
+			<startquest name="WeeklyChallenge_Archeology_Preparation_lvl56"/>
+			<startquest name="WeeklyChallenge_Archeology_FirstDigging_lvl56"/>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="ArcheologyJourneyman|50" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+   		</posteffects>
+	</quest>
+		
+	<quest name="WeeklyChallenge_Archeology_Main_lvl56" type="WeeklyChallenge" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" repeatable="true">
+		<triggers> 
+			<questcomplete item="WeeklyChallenge_Archeology_Preparation_lvl56"/>
+			<questcomplete item="WeeklyChallenge_Archeology_FirstDigging_lvl56"/> 
+			<questcomplete item="WeeklyChallenge_Archeology_Volunteers_lvl56"/>
+			<questcomplete item="WeeklyChallenge_Archeology_SecondDigging_lvl56"/>	
+			<questcomplete item="WeeklyChallenge_Archeology_Expedition_lvl56"/>
+			<questcomplete item="WeeklyChallenge_Archeology_ThirdDigging_lvl56"/>			
+		</triggers>
+		<failconditions>
+           <hourselapsed amount="167" icon="icon_exclamationmark.png"/>
+        </failconditions>
+		<rewards>
+			<reward type="XP" amount="67000" />
+			<reward type="Resource" name="Token" amount="11" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />		
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+		</posteffects>
+		<faileffects>
+         	<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+        </faileffects>
+	</quest>	
+	
+	<quest name="WeeklyChallenge_Archeology_Preparation_lvl56" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="249" connectedToQuest="WeeklyChallenge_Archeology_Main_lvl56" repeatable="true">
+		<triggers>				
+			<trigger type="Resource" name="AdvancedPaper" amount="470" condition="produce" />
+			<trigger type="PayForQuestFinish" name="AdvancedPaper" amount="940" />
+			<trigger type="Resource" name="BookFitting" amount="175" condition="produce" />
+			<trigger type="PayForQuestFinish" name="BookFitting" amount="350" />
+			<trigger type="Resource" name="Coal" amount="42000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Coal" amount="84000" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="15000" />	
+			<reward type="Resource" name="Token" amount="2" />		
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Archeology_Volunteers_lvl56">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Archeology_Main_lvl56" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Archeology_FirstDigging_lvl56" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="249" connectedToQuest="WeeklyChallenge_Archeology_Main_lvl56" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="15000" />	
+			<reward type="Resource" name="Token" amount="1" />		
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_Archeology_SecondDigging_lvl56">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Archeology_Main_lvl56" invert="true"/>
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="ArcheologyJourneyman|73" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Archeology_Main_lvl56" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Archeology_Volunteers_lvl56" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="369" connectedToQuest="WeeklyChallenge_Archeology_Main_lvl56" repeatable="true">
+		<triggers>
+			<produceditemlist item="Cavalry" amount="75" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Cavalry" amount="75" />
+			<produceditemlist item="EliteSoldier" amount="28" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="EliteSoldier" amount="28" />
+			<produceditemlist item="Swordsman" amount="220" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Swordsman" amount="220" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="23000" />
+			<reward type="Resource" name="Token" amount="3" />			
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Archeology_Expedition_lvl56">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Archeology_Main_lvl56" invert="true"/>
+				</conditions>
+			</startquest> 
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Archeology_SecondDigging_lvl56" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="369" connectedToQuest="WeeklyChallenge_Archeology_Main_lvl56" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="22000" />
+			<reward type="Resource" name="Token" amount="2" />			
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_Archeology_ThirdDigging_lvl56">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Archeology_Main_lvl56" invert="true"/>
+				</conditions>
+			</startquest>	
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="ArcheologyMaster|26" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Archeology_Main_lvl56" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Archeology_Expedition_lvl56" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="499" connectedToQuest="WeeklyChallenge_Archeology_Main_lvl56" repeatable="true">
+		<triggers>		
+			<specialisttaskfinished item="FindTreasureProlonged" amount="7"/>
+			<completeadventurelist item="BuffAdventures_Storm_Recovery" amount="2" locaExtension="item"/>
+			<resourcegathered type="Coin" min="2800"/>
+			<trigger type="PayForQuestFinish" name="Coin" amount="2800" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="30000" />	
+			<reward type="Resource" name="Token" amount="5" />		
+		</rewards>
+		<posteffects/>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Archeology_ThirdDigging_lvl56" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="499" connectedToQuest="WeeklyChallenge_Archeology_Main_lvl56" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="29000" />	
+			<reward type="Resource" name="Token" amount="2" />		
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+		</posteffects>
+	</quest>
+	
+	
+	<!-- lvl 66 -->
+
+	<quest name="WeeklyChallenge_Archeology_Main_lvl66_starter" type="WeeklyChallenge" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers/>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Archeology_Main_lvl66"/>
+			<startquest name="WeeklyChallenge_Archeology_Preparation_lvl66"/>
+			<startquest name="WeeklyChallenge_Archeology_FirstDigging_lvl66"/>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="ArcheologyJourneyman|76" action="ignoreBlocking,spawnInstant,replace"  mode="enemy"/> 
+   		</posteffects>
+	</quest> 
+
+	<quest name="WeeklyChallenge_Archeology_Main_lvl66" type="WeeklyChallenge" icon="QuestLonger" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" repeatable="true">
+		<triggers> 
+			<questcomplete item="WeeklyChallenge_Archeology_Preparation_lvl66"/>
+			<questcomplete item="WeeklyChallenge_Archeology_FirstDigging_lvl66"/> 
+			<questcomplete item="WeeklyChallenge_Archeology_Volunteers_lvl66"/>
+			<questcomplete item="WeeklyChallenge_Archeology_SecondDigging_lvl66"/>	
+			<questcomplete item="WeeklyChallenge_Archeology_Expedition_lvl66"/>
+			<questcomplete item="WeeklyChallenge_Archeology_ThirdDigging_lvl66"/>			
+		</triggers>
+		<failconditions>
+           <hourselapsed amount="167" icon="icon_exclamationmark.png"/>
+        </failconditions>
+        <rewards>
+			<reward type="XP" amount="200000" />
+			<reward type="Resource" name="Token" amount="14" />
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />		
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+		</posteffects>
+		<faileffects>
+         	<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<resetquest name="WeeklyChallenge_ChainFilter"/>
+        </faileffects>
+	</quest>	
+	
+	<quest name="WeeklyChallenge_Archeology_Preparation_lvl66" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="299" connectedToQuest="WeeklyChallenge_Archeology_Main_lvl66" repeatable="true">
+		<triggers>				
+			<trigger type="Resource" name="AdvancedPaper" amount="1450" condition="produce" />
+			<trigger type="PayForQuestFinish" name="AdvancedPaper" amount="2900" />
+			<trigger type="Resource" name="BookFitting" amount="1100" condition="produce" />
+			<trigger type="PayForQuestFinish" name="BookFitting" amount="2200" />
+			<trigger type="Resource" name="Coal" amount="100000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Coal" amount="200000" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="45000" />	
+			<reward type="Resource" name="Token" amount="2" />		
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Archeology_Volunteers_lvl66">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Archeology_Main_lvl66" invert="true"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Archeology_FirstDigging_lvl66" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="299" connectedToQuest="WeeklyChallenge_Archeology_Main_lvl66" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="44000" />	
+			<reward type="Resource" name="Token" amount="2" />		
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_Archeology_SecondDigging_lvl66">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Archeology_Main_lvl66" invert="true"/>
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="ArcheologyMaster|42" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Archeology_Main_lvl66" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>	
+	</quest>
+	
+	<quest name="WeeklyChallenge_Archeology_Volunteers_lvl66" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="449" connectedToQuest="WeeklyChallenge_Archeology_Main_lvl66" repeatable="true">
+		<triggers>
+			<produceditemlist item="Cavalry" amount="140" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Cavalry" amount="140" />
+			<produceditemlist item="EliteSoldier" amount="80" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="EliteSoldier" amount="80" />
+			<produceditemlist item="Swordsman" amount="615" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Swordsman" amount="615" />
+			<produceditemlist item="Marksman" amount="385" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Marksman" amount="385" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="62000" />	
+			<reward type="Resource" name="Token" amount="3" />		
+		</rewards>
+		<posteffects>
+			<startquest name="WeeklyChallenge_Archeology_Expedition_lvl66">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Archeology_Main_lvl66" invert="true"/>
+				</conditions>
+			</startquest> 
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Archeology_SecondDigging_lvl66" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="449" connectedToQuest="WeeklyChallenge_Archeology_Main_lvl66" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="67000" />
+			<reward type="Resource" name="Token" amount="2" />			
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />
+			<startquest name="WeeklyChallenge_Archeology_ThirdDigging_lvl66">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Archeology_Main_lvl66" invert="true"/>
+				</conditions>
+			</startquest>
+			<spawnbuilding name="EventMonster_WeeklyChallengeShip" x="3" y="82" units="ArcheologyMaster|55" action="ignoreBlocking,spawnInstant,replace"  mode="enemy">
+				<conditions>
+					<questfailed item="WeeklyChallenge_Archeology_Main_lvl66" invert="true"/>
+				</conditions>
+			</spawnbuilding>
+		</posteffects>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Archeology_Expedition_lvl66" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="599" connectedToQuest="WeeklyChallenge_Archeology_Main_lvl66" repeatable="true">
+		<triggers>		
+			<specialisttaskfinished item="FindTreasureProlonged" amount="8"/>
+			<completeadventurelist item="BuffAdventures_Storm_Recovery" amount="3" locaExtension="item"/>
+			<resourcegathered type="Coin" min="3700"/>
+			<trigger type="PayForQuestFinish" name="Coin" amount="3700" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="84000" />
+			<reward type="Resource" name="Token" amount="6" />			
+		</rewards>
+		<posteffects/>
+	</quest>
+	
+	<quest name="WeeklyChallenge_Archeology_ThirdDigging_lvl66" type="WeeklyChallenge" icon="QuestLong" npc="quest_character_mentor03.png" cancelable="false" showQuestWindow="true" showRewardWindow="true" linkEventWindow="false" questWinGemCosts="599" connectedToQuest="WeeklyChallenge_Archeology_Main_lvl66" repeatable="true">
+		<triggers>
+			<buildingdestroyed min="1" item="EventMonster_WeeklyChallengeShip" locaExtension="WeeklyChallengeShipDestroyed"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="88000" />	
+			<reward type="Resource" name="Token" amount="3" />		
+		</rewards>
+		<posteffects>
+			<removebuilding x="3" y="82" name="EventMonster_WeeklyChallengeShip" />	
+		</posteffects>
+	</quest>
+
+</Root>

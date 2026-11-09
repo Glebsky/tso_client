@@ -1,0 +1,1547 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+
+	<!--
+		Epic workyards quests
+		The structure is the same as for all other quests
+	-->
+
+	<!-- Unlocking quests for epic woodyard chains -->
+
+<!-- Bi-Metal Blades - Pinewood Planks Poduction Rank 2 -->
+
+	<quest name="UnlockEW_WoodToPlankRank2" type="Story"   icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="TutMainEpicWorkyards"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="QuestComplete" name="UnlockEW_WoodToPlankRank2_p1" condition="questcompleted" amount="1"/>
+			<trigger type="QuestComplete" name="UnlockEW_WoodToPlankRank2_p2" condition="questcompleted" amount="1"/>
+		</triggers>
+		<posteffects>
+			<condition type="chain" name="EW_Wood_WoodToPlankRank2" item="EpicWorkyardWoodUnlock"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="UnlockEW_WoodToPlankRank2_p1" type="Story"  connectedToQuest="UnlockEW_WoodToPlankRank2" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="TutMainEpicWorkyards"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="Building" name="Sawmill" buildingUpgradeLevel="5" condition="levelupgrade" amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="200"/>
+			<reward type="Resource" name="Bronze" amount="250"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="UnlockEW_WoodToPlankRank2_p2" type="Story"  connectedToQuest="UnlockEW_WoodToPlankRank2" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="UnlockEW_WoodToPlankRank2_p1"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Bronze" amount="5500" />
+			<trigger type="PayForQuestFinish" name="Iron" amount="6000" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Bronze" amount="150"/>
+			<reward type="Resource" name="Iron" amount="200"/>
+		</posteffects>
+	</quest>
+	
+<!-- Eternal Cutter - Pinewood Planks Poduction Rank 3 -->
+	
+	<quest name="UnlockEW_WoodToPlankRank3" type="Story"   icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="UnlockEW_WoodToPlankRank2"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="QuestComplete" name="UnlockEW_WoodToPlankRank3_p1" condition="questcompleted" amount="1"/>
+			<trigger type="QuestComplete" name="UnlockEW_WoodToPlankRank3_p2" condition="questcompleted" amount="1"/>
+		</triggers>
+		<posteffects>
+			<condition type="chain" name="EW_Wood_WoodToPlankRank3" item="EpicWorkyardWoodUnlock"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="UnlockEW_WoodToPlankRank3_p1" type="Story"  connectedToQuest="UnlockEW_WoodToPlankRank3" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questactive item="UnlockEW_WoodToPlankRank3"/> 
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="MagicBean" amount="100" />
+			<trigger type="PayForQuestFinish" name="Steel" amount="600" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Steel" amount="200"/>
+			<reward type="Resource" name="Coin" amount="100"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="UnlockEW_WoodToPlankRank3_p2" type="Story"  connectedToQuest="UnlockEW_WoodToPlankRank3" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="UnlockEW_WoodToPlankRank3_p1"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Iron" amount="3600" />
+			<trigger type="PayForQuestFinish" name="Plank" amount="6000" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Steel" amount="300"/>
+			<reward type="Resource" name="RealPlank" amount="600"/>
+		</posteffects>
+	</quest>
+	
+	
+<!-- Marble Furnace - Pinewood to Coal Rank 2-->
+	
+	<quest name="UnlockEW_WoodToCoalRank2" type="Story"   icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="TutMainEpicWorkyards"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="QuestComplete" name="UnlockEW_WoodToCoalRank2_p1" condition="questcompleted" amount="1"/>
+			<trigger type="QuestComplete" name="UnlockEW_WoodToCoalRank2_p2" condition="questcompleted" amount="1"/>
+		</triggers>
+		<posteffects>
+			<condition type="chain" name="EW_Wood_WoodToCoalRank2" item="EpicWorkyardWoodUnlock"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="UnlockEW_WoodToCoalRank2_p1" type="Story"  connectedToQuest="UnlockEW_WoodToCoalRank2" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="TutMainEpicWorkyards"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Tool" amount="3500" />
+			<trigger type="Building" name="MarbleMason" buildingUpgradeLevel="4" condition="levelupgrade" amount="2"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Tool" amount="300"/>
+			<reward type="Resource" name="Coin" amount="50"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="UnlockEW_WoodToCoalRank2_p2" type="Story"  connectedToQuest="UnlockEW_WoodToCoalRank2" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="UnlockEW_WoodToCoalRank2_p1"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Marble" amount="5000" />
+			<trigger type="PayForQuestFinish" name="Iron" amount="3000" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Marble" amount="900"/>
+			<reward type="Resource" name="Iron" amount="720"/>
+		</posteffects>
+	</quest>
+	
+<!-- Near-instant Coking - Pinewood to Coal Rank 3-->
+	
+	<quest name="UnlockEW_WoodToCoalRank3" type="Story"   icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="UnlockEW_WoodToCoalRank2"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="QuestComplete" name="UnlockEW_WoodToCoalRank3_p1" condition="questcompleted" amount="1"/>
+			<trigger type="QuestComplete" name="UnlockEW_WoodToCoalRank3_p2" condition="questcompleted" amount="1"/>
+		</triggers>
+		<posteffects>
+			<condition type="chain" name="EW_Wood_WoodToCoalRank3" item="EpicWorkyardWoodUnlock"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="UnlockEW_WoodToCoalRank3_p1" type="Story"  connectedToQuest="UnlockEW_WoodToCoalRank3" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questactive item="UnlockEW_WoodToCoalRank3"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Steel" amount="1000" />
+			<trigger type="PayForQuestFinish" name="Granite" amount="565" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Granite" amount="150"/>
+			<reward type="Resource" name="Coin" amount="150"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="UnlockEW_WoodToCoalRank3_p2" type="Story"  connectedToQuest="UnlockEW_WoodToCoalRank3" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="UnlockEW_WoodToCoalRank3_p1"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="MagicBean" amount="150" />
+			<trigger type="PayForQuestFinish" name="Water" amount="12000" />
+			<trigger type="PayForQuestFinish" name="Plank" amount="7000" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="180"/>
+		</posteffects>
+	</quest>
+	
+<!-- The Forest Thickens - Hardwood Forester Rank 2-->
+	
+	<quest name="UnlockEW_SeedToHardwoodRank2" type="Story"   icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="TutMainEpicWorkyards"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="QuestComplete" name="UnlockEW_SeedToHardwoodRank2_p1" condition="questcompleted" amount="1"/>
+			<trigger type="QuestComplete" name="UnlockEW_SeedToHardwoodRank2_p2" condition="questcompleted" amount="1"/>
+			<trigger type="QuestComplete" name="UnlockEW_SeedToHardwoodRank2_p3" condition="questcompleted" amount="1"/>
+		</triggers>
+		<posteffects>
+			<condition type="chain" name="EW_Wood_SeedToRealWoodRank2" item="EpicWorkyardWoodUnlock"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="UnlockEW_SeedToHardwoodRank2_p1" type="Story"  connectedToQuest="UnlockEW_SeedToHardwoodRank2" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="TutMainEpicWorkyards"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="Building" name="RealWoodForester" buildingUpgradeLevel="5" condition="levelupgrade" amount="2"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="RealPlank" amount="400"/>
+			<reward type="Resource" name="Coin" amount="70"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="UnlockEW_SeedToHardwoodRank2_p2" type="Story"  connectedToQuest="UnlockEW_SeedToHardwoodRank2" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="UnlockEW_SeedToHardwoodRank2_p1"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Bronze" amount="8400" />
+			<trigger type="PayForQuestFinish" name="Water" amount="15900" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Bronze" amount="300"/>
+			<reward type="Resource" name="Tool" amount="190"/>
+		</posteffects>
+	</quest>
+	
+		<quest name="UnlockEW_SeedToHardwoodRank2_p3" type="Story"  connectedToQuest="UnlockEW_SeedToHardwoodRank2" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="UnlockEW_SeedToHardwoodRank2_p2"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="RealPlank" amount="9200" />
+			<trigger type="PayForQuestFinish" name="Tool" amount="6800" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="50"/>
+			<reward type="Resource" name="Water" amount="600"/>
+		</posteffects>
+	</quest>
+	
+<!-- Steel Joiners - Hardwood to Hardwood Planks  Rank 2-->
+	
+	<quest name="UnlockEW_HardwoodToHWPlanksRank2" type="Story"   icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="TutMainEpicWorkyards"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="QuestComplete" name="UnlockEW_HardwoodToHWPlanksRank2_p1" condition="questcompleted" amount="1"/>
+			<trigger type="QuestComplete" name="UnlockEW_HardwoodToHWPlanksRank2_p2" condition="questcompleted" amount="1"/>
+		</triggers>
+		<posteffects>
+			<condition type="chain" name="EW_Wood_RealWoodToRealPlankRank2" item="EpicWorkyardWoodUnlock"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="UnlockEW_HardwoodToHWPlanksRank2_p1" type="Story"  connectedToQuest="UnlockEW_HardwoodToHWPlanksRank2" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="TutMainEpicWorkyards"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="Building" name="RealWoodSawmill" buildingUpgradeLevel="5" condition="levelupgrade" amount="2"/>
+			<trigger type="PayForQuestFinish" name="Coin" amount="150" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Tool" amount="500"/>
+			<reward type="Resource" name="Coin" amount="100"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="UnlockEW_HardwoodToHWPlanksRank2_p2" type="Story"  connectedToQuest="UnlockEW_HardwoodToHWPlanksRank2" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="UnlockEW_HardwoodToHWPlanksRank2_p1"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Steel" amount="3300" />
+			<trigger type="PayForQuestFinish" name="RealPlank" amount="6500" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="300"/>
+		</posteffects>
+	</quest>
+	
+<!-- Animated Sawblades - Hardwood to Hardwood Planks  Rank 3-->
+	
+	<quest name="UnlockEW_HardwoodToHWPlanksRank3" type="Story"   icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="UnlockEW_HardwoodToHWPlanksRank2"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="QuestComplete" name="UnlockEW_HardwoodToHWPlanksRank3_p1" condition="questcompleted" amount="1"/>
+			<trigger type="QuestComplete" name="UnlockEW_HardwoodToHWPlanksRank3_p2" condition="questcompleted" amount="1"/>
+			<trigger type="QuestComplete" name="UnlockEW_HardwoodToHWPlanksRank3_p3" condition="questcompleted" amount="1"/>
+		</triggers>
+		<posteffects>
+			<condition type="chain" name="EW_Wood_RealWoodToRealPlankRank3" item="EpicWorkyardWoodUnlock"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="UnlockEW_HardwoodToHWPlanksRank3_p1" type="Story"  connectedToQuest="UnlockEW_HardwoodToHWPlanksRank3" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questactive item="UnlockEW_HardwoodToHWPlanksRank3"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Soldier" amount="100" />
+			<trigger type="PayForQuestFinish" name="Steel" amount="4000" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="MagicBean" amount="10"/>
+			<reward type="Resource" name="Coin" amount="150"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="UnlockEW_HardwoodToHWPlanksRank3_p2" type="Story"  connectedToQuest="UnlockEW_HardwoodToHWPlanksRank3" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="UnlockEW_HardwoodToHWPlanksRank3_p1"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="MagicBean" amount="160" />
+			<trigger type="PayForQuestFinish" name="Granite" amount="800" />
+			<trigger type="PayForQuestFinish" name="Water" amount="5450" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="150"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="UnlockEW_HardwoodToHWPlanksRank3_p3" type="Story"  connectedToQuest="UnlockEW_HardwoodToHWPlanksRank3" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="UnlockEW_HardwoodToHWPlanksRank3_p2"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Steel" amount="7000" />
+			<trigger type="PayForQuestFinish" name="Titanium" amount="350" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="100"/>
+		</posteffects>
+	</quest>
+	
+
+<!-- Granite Coking Ovens - Hardwood to Coal Rank 1-->
+	
+	<quest name="UnlockEW_HardwoodToCoalRank1" type="Story"   icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="TutMainEpicWorkyards"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="QuestComplete" name="UnlockEW_HardwoodToCoalRank1_p1" condition="questcompleted" amount="1"/>
+			<trigger type="QuestComplete" name="UnlockEW_HardwoodToCoalRank1_p2" condition="questcompleted" amount="1"/>
+		</triggers>
+		<posteffects>
+			<condition type="chain" name="EW_Wood_RealWoodToCoalRank1" item="EpicWorkyardWoodUnlock"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="UnlockEW_HardwoodToCoalRank1_p1" type="Story"  connectedToQuest="UnlockEW_HardwoodToCoalRank1" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="TutMainEpicWorkyards"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Iron" amount="4300" />
+			<trigger type="PayForQuestFinish" name="RealPlank" amount="7000" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="150"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="UnlockEW_HardwoodToCoalRank1_p2" type="Story"  connectedToQuest="UnlockEW_HardwoodToCoalRank1" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="UnlockEW_HardwoodToCoalRank1_p1"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Granite" amount="3500" />
+			<trigger type="PayForQuestFinish" name="Stone" amount="9900" />
+			<trigger type="PayForQuestFinish" name="Water" amount="8800" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="150"/>
+		</posteffects>
+	</quest>
+
+<!-- Unnatural Heat - Hardwood to Coal Rank 2-->
+	
+	<quest name="UnlockEW_HardwoodToCoalRank2" type="Story"   icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="UnlockEW_HardwoodToCoalRank1"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="QuestComplete" name="UnlockEW_HardwoodToCoalRank2_p1" condition="questcompleted" amount="1"/>
+			<trigger type="QuestComplete" name="UnlockEW_HardwoodToCoalRank2_p2" condition="questcompleted" amount="1"/>
+		</triggers>
+		<posteffects>
+			<condition type="chain" name="EW_Wood_RealWoodToCoalRank2" item="EpicWorkyardWoodUnlock"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="UnlockEW_HardwoodToCoalRank2_p1" type="Story"  connectedToQuest="UnlockEW_HardwoodToCoalRank2" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questactive item="UnlockEW_HardwoodToCoalRank2"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="MagicBean" amount="200" />
+			<trigger type="PayForQuestFinish" name="Flour" amount="12050" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="100"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="UnlockEW_HardwoodToCoalRank2_p2" type="Story"  connectedToQuest="UnlockEW_HardwoodToCoalRank2" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="UnlockEW_HardwoodToCoalRank2_p1"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Titanium" amount="2200" />
+			<trigger type="PayForQuestFinish" name="Coin" amount="500" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="150"/>
+		</posteffects>
+	</quest>
+
+<!-- Titanium Tools - Exotic Wood to Exotic Wood Planks Rank 1-->
+	
+	<quest name="UnlockEW_ExWoodToExPlankRank1" type="Story"   icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="TutMainEpicWorkyards"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="QuestComplete" name="UnlockEW_ExWoodToExPlankRank1_p1" condition="questcompleted" amount="1"/>
+			<trigger type="QuestComplete" name="UnlockEW_ExWoodToExPlankRank1_p2" condition="questcompleted" amount="1"/>
+			<trigger type="QuestComplete" name="UnlockEW_ExWoodToExPlankRank1_p3" condition="questcompleted" amount="1"/>
+		</triggers>
+		<posteffects>
+			<condition type="chain" name="EW_Wood_ExoticWoodToExoticPlankRank1" item="EpicWorkyardWoodUnlock"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="UnlockEW_ExWoodToExPlankRank1_p1" type="Story"  connectedToQuest="UnlockEW_ExWoodToExPlankRank1" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="TutMainEpicWorkyards"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="Building" name="ExoticWoodSawmill" buildingUpgradeLevel="5" condition="levelupgrade" amount="1"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="150"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="UnlockEW_ExWoodToExPlankRank1_p2" type="Story"  connectedToQuest="UnlockEW_ExWoodToExPlankRank1" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="UnlockEW_ExWoodToExPlankRank1_p1"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Soldier" amount="198" />
+			<trigger type="PayForQuestFinish" name="Coin" amount="3580" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="150"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="UnlockEW_ExWoodToExPlankRank1_p3" type="Story"  connectedToQuest="UnlockEW_ExWoodToExPlankRank1" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="UnlockEW_ExWoodToExPlankRank1_p2"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Titanium" amount="6000" />
+			<trigger type="PayForQuestFinish" name="Granite" amount="5500" />
+			<trigger type="PayForQuestFinish" name="ExoticPlank" amount="6500" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="103"/>
+		</posteffects>
+	</quest>
+	
+<!-- Titanium Tools - Exotic Wood to Exotic Wood Planks Rank 2-->
+	
+	<quest name="UnlockEW_ExWoodToExPlankRank2" type="Story"   icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="UnlockEW_ExWoodToExPlankRank1"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="QuestComplete" name="UnlockEW_ExWoodToExPlankRank2_p1" condition="questcompleted" amount="1"/>
+			<trigger type="QuestComplete" name="UnlockEW_ExWoodToExPlankRank2_p2" condition="questcompleted" amount="1"/>
+			<trigger type="QuestComplete" name="UnlockEW_ExWoodToExPlankRank2_p3" condition="questcompleted" amount="1"/>
+		</triggers>
+		<posteffects>
+			<condition type="chain" name="EW_Wood_ExoticWoodToExoticPlankRank2" item="EpicWorkyardWoodUnlock"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="UnlockEW_ExWoodToExPlankRank2_p1" type="Story"  connectedToQuest="UnlockEW_ExWoodToExPlankRank2" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questactive item="UnlockEW_ExWoodToExPlankRank2"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="Building" name="ExoticWoodSawmill" buildingUpgradeLevel="5" condition="levelupgrade" amount="2"/>
+			<trigger type="PayForQuestFinish" name="Coin" amount="1300" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="150"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="UnlockEW_ExWoodToExPlankRank2_p2" type="Story"  connectedToQuest="UnlockEW_ExWoodToExPlankRank2" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="UnlockEW_ExWoodToExPlankRank2_p1"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="SimplePaper" amount="2670" />
+			<trigger type="PayForQuestFinish" name="Nib" amount="2100" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="150"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="UnlockEW_ExWoodToExPlankRank2_p3" type="Story"  connectedToQuest="UnlockEW_ExWoodToExPlankRank2" icon="Building" npc="quest_character_scienceSystem01.png" showRewardWindow="true">
+		<startcondition>
+			<questcomplete item="UnlockEW_ExWoodToExPlankRank2_p2"/>
+			<onmap item="EpicWorkyardWood" min="1" />
+		</startcondition>
+		<triggers>
+			<trigger type="PayForQuestFinish" name="MagicBean" amount="400" />
+			<trigger type="PayForQuestFinish" name="Titanium" amount="1200" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Coin" amount="103"/>
+		</posteffects>
+	</quest>	
+
+
+<!-- Epic Farmyard pre-unlock -->
+	<quest name="EpicWorkyardCorn_PreUnlock" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		</startcondition>
+		<posteffects>
+			<upgradeepicchain name="EW_Corn_SeedToWater"/>
+			<upgradeepicchain name="EW_Corn_SeedToCorn"/>
+			<upgradeepicchain name="EW_Corn_CornToFlour" />
+			<upgradeepicchain name="EW_Corn_FlourToBread"/>
+			<upgradeepicchain name="EW_Corn_CornToBeer"/>
+			<upgradeepicchain name="EW_Corn_CornToHorse"/>
+		</posteffects>
+	</quest>
+
+<!-- Epic Workyard Corn Unlocks -->	
+	<quest name="UnlockEW_SeedToWaterRank1" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_SeedToWaterRank1" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_SeedToWaterRank2" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_SeedToWaterRank2" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_SeedToWaterRank3" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_SeedToWaterRank3" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_SeedToWaterRank4" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_SeedToWaterRank4" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_SeedToWaterRank5" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_SeedToWaterRank5" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_SeedToWaterRank6" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_SeedToWaterRank6" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	
+	
+	<quest name="UnlockEW_SeedToCornRank1" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_SeedToCornRank1" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_SeedToCornRank2" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_SeedToCornRank2" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_SeedToCornRank3" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_SeedToCornRank3" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_SeedToCornRank4" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_SeedToCornRank4" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_SeedToCornRank5" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_SeedToCornRank5" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_SeedToCornRank6" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_SeedToCornRank6" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	
+	
+	<quest name="UnlockEW_CornToCornRank2" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_CornToCornRank2" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_CornToCornRank3" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_CornToCornRank3" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_CornToCornRank4" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_CornToCornRank4" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_CornToCornRank5" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_CornToCornRank5" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_CornToCornRank6" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_CornToCornRank6" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	
+	
+	<quest name="UnlockEW_CornToFlourRank1" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_CornToFlourRank1" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_CornToFlourRank2" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_CornToFlourRank2" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_CornToFlourRank3" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_CornToFlourRank3" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_CornToFlourRank4" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_CornToFlourRank4" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_CornToFlourRank5" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_CornToFlourRank5" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_CornToFlourRank6" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_CornToFlourRank6" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	
+	
+	<quest name="UnlockEW_FlourToBreadRank1" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_FlourToBreadRank1" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_FlourToBreadRank2" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_FlourToBreadRank2" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_FlourToBreadRank3" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_FlourToBreadRank3" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_FlourToBreadRank4" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_FlourToBreadRank4" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_FlourToBreadRank5" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_FlourToBreadRank5" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_FlourToBreadRank6" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_FlourToBreadRank6" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	
+	
+	<quest name="UnlockEW_CornToBeerRank1" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_CornToBeerRank1" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_CornToBeerRank2" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_CornToBeerRank2" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_CornToBeerRank3" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_CornToBeerRank3" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_CornToBeerRank4" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_CornToBeerRank4" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_CornToBeerRank5" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_CornToBeerRank5" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_CornToBeerRank6" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_CornToBeerRank6" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	
+	
+	<quest name="UnlockEW_CornToHorseRank1" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_CornToHorseRank1" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_CornToHorseRank2" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_CornToHorseRank2" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_CornToHorseRank3" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_CornToHorseRank3" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_CornToHorseRank4" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_CornToHorseRank4" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_CornToHorseRank5" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_CornToHorseRank5" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_CornToHorseRank6" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Corn_CornToHorseRank6" item="EpicWorkyardCornUnlock"/>
+		</posteffects>
+	</quest>
+	
+	
+<!-- Epic Workyard Ore Unlocks -->	
+	<quest name="UnlockEW_OreToBronzeRank2" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_OreToBronzeRank2" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_OreToBronzeRank3" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_OreToBronzeRank3" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_OreToBronzeRank4" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_OreToBronzeRank4" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_OreToBronzeRank5" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_OreToBronzeRank5" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_OreToBronzeRank6" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_OreToBronzeRank6" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	
+	
+	<quest name="UnlockEW_OreToIronRank2" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_OreToIronRank2" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_OreToIronRank3" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_OreToIronRank3" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_OreToIronRank4" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_OreToIronRank4" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_OreToIronRank5" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_OreToIronRank5" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_OreToIronRank6" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_OreToIronRank6" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	
+	
+	<quest name="UnlockEW_IronToSteelRank2" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_IronToSteelRank2" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_IronToSteelRank3" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_IronToSteelRank3" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_IronToSteelRank4" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_IronToSteelRank4" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_IronToSteelRank5" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_IronToSteelRank5" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_IronToSteelRank6" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_IronToSteelRank6" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	
+	
+	<quest name="UnlockEW_OreToTitaniumRank2" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_OreToTitaniumRank2" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_OreToTitaniumRank3" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_OreToTitaniumRank3" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_OreToTitaniumRank4" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_OreToTitaniumRank4" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_OreToTitaniumRank5" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_OreToTitaniumRank5" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_OreToTitaniumRank6" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_OreToTitaniumRank6" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	
+	
+	<quest name="UnlockEW_OreToPlatinumRank2" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_OreToPlatinumRank2" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_OreToPlatinumRank3" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_OreToPlatinumRank3" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_OreToPlatinumRank4" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_OreToPlatinumRank4" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_OreToPlatinumRank5" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_OreToPlatinumRank5" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_OreToPlatinumRank6" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_OreToPlatinumRank6" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	
+	
+	<quest name="UnlockEW_BronzeToSwordRank2" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_BronzeToSwordRank2" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BronzeToSwordRank3" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_BronzeToSwordRank3" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BronzeToSwordRank4" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_BronzeToSwordRank4" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BronzeToSwordRank5" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_BronzeToSwordRank5" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BronzeToSwordRank6" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_BronzeToSwordRank6" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	
+	
+	<quest name="UnlockEW_IronToSwordRank2" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_IronToSwordRank2" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_IronToSwordRank3" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_IronToSwordRank3" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_IronToSwordRank4" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_IronToSwordRank4" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_IronToSwordRank5" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_IronToSwordRank5" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_IronToSwordRank6" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_IronToSwordRank6" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	
+	
+	<quest name="UnlockEW_SteelToSwordRank2" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_SteelToSwordRank2" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_SteelToSwordRank3" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_SteelToSwordRank3" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_SteelToSwordRank4" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_SteelToSwordRank4" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_SteelToSwordRank5" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_SteelToSwordRank5" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_SteelToSwordRank6" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_SteelToSwordRank6" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	
+	
+	<quest name="UnlockEW_TitaniumToSwordRank2" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_TitaniumToSwordRank2" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_TitaniumToSwordRank3" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_TitaniumToSwordRank3" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_TitaniumToSwordRank4" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_TitaniumToSwordRank4" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_TitaniumToSwordRank5" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_TitaniumToSwordRank5" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_TitaniumToSwordRank6" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_TitaniumToSwordRank6" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	
+	
+	<quest name="UnlockEW_PlatinumToSwordRank2" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_PlatinumToSwordRank2" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_PlatinumToSwordRank3" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_PlatinumToSwordRank3" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_PlatinumToSwordRank4" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_PlatinumToSwordRank4" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_PlatinumToSwordRank5" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_PlatinumToSwordRank5" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_PlatinumToSwordRank6" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Ore_PlatinumToSwordRank6" item="EpicWorkyardOreUnlock"/>
+		</posteffects>
+	</quest>
+
+	<!-- Festival Hall Unlocks; must be reset between anniversary events! -->
+	<!-- 
+	<quest name="UnlockEW_BalloonsFromCorn" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Balloons_CornRank1" item="EpicWorkyardBalloonUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BalloonsFromBronzeSword" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Balloons_BronzeSwordRank1" item="EpicWorkyardBalloonUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BalloonsFromBeer" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Balloons_BeerRank1" item="EpicWorkyardBalloonUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BalloonsFromBow" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Balloons_BowRank1" item="EpicWorkyardBalloonUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BalloonsFromBread" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Balloons_BreadRank1" item="EpicWorkyardBalloonUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BalloonsFromRealPlank" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Balloons_RealPlankRank1" item="EpicWorkyardBalloonUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BalloonsFromMarble" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Balloons_MarbleRank1" item="EpicWorkyardBalloonUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BalloonsFromWater" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Balloons_WaterRank1" item="EpicWorkyardBalloonUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BalloonsFromIronSword" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Balloons_IronSwordRank1" item="EpicWorkyardBalloonUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BalloonsFromSausage" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Balloons_SausageRank1" item="EpicWorkyardBalloonUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BalloonsFromHorse" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Balloons_HorseRank1" item="EpicWorkyardBalloonUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BalloonsFromGold" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Balloons_GoldRank1" item="EpicWorkyardBalloonUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BalloonsFromLongbow" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Balloons_LongbowRank1" item="EpicWorkyardBalloonUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BalloonsFromSteelSword" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Balloons_SteelSwordRank1" item="EpicWorkyardBalloonUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BalloonsFromExoticPlank" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Balloons_ExoticPlankRank1" item="EpicWorkyardBalloonUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BalloonsFromGranite" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Balloons_GraniteRank1" item="EpicWorkyardBalloonUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BalloonsFromCoin" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Balloons_CoinRank1" item="EpicWorkyardBalloonUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BalloonsFromTitanium" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Balloons_TitaniumRank1" item="EpicWorkyardBalloonUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BalloonsFromCrossbow" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Balloons_CrossbowRank1" item="EpicWorkyardBalloonUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BalloonsFromTitaniumSword" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Balloons_TitaniumSwordRank1" item="EpicWorkyardBalloonUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BalloonsFromWheel" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Balloons_WheelRank1" item="EpicWorkyardBalloonUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BalloonsFromGunpowder" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Balloons_GunpowderRank1" item="EpicWorkyardBalloonUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BalloonsFromMahoganyPlank" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Balloons_MahoganyPlankRank1" item="EpicWorkyardBalloonUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BalloonsFromPlatinumSword" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Balloons_PlatinumSwordRank1" item="EpicWorkyardBalloonUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BalloonsFromCloth" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Balloons_ClothRank1" item="EpicWorkyardBalloonUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BalloonsFromBattleHorse" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Balloons_BattleHorseRank1" item="EpicWorkyardBalloonUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BalloonsFromArchebuse" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Balloons_ArchebuseRank1" item="EpicWorkyardBalloonUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BalloonsFromMortar" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Balloons_MortarRank1" item="EpicWorkyardBalloonUnlock"/>
+		</posteffects>
+	</quest>
+	<quest name="UnlockEW_BalloonsFromMagisBeanstalks" showQuestWindow="false" showRewardWindow="false">
+		<posteffects>
+			<condition type="chain" name="EW_Balloons_MagisBeanstalksRank1" item="EpicWorkyardBalloonUnlock"/>
+		</posteffects>
+	</quest>
+	-->
+	
+	<!--Industrial Ore Refinery-->
+	<quest name="BuiBonus_OreRefinery_Unlock_01" type="Side" icon="QuestEpicRefinery" npc="quest_character_scienceSystem01.png" showQuestWindow="true" repeatable="false" cancelable="false" showRewardWindow="true">
+		<triggers>
+			<buffowned item="BronzeOreKnowledge1" min="1"/>
+			<buffowned item="IronOreKnowledge1" min="1"/>
+			<buffowned item="GoldOreKnowledge1" min="1"/>
+			<buffowned item="TitaniumOreKnowledge1" min="1"/>
+			<buffowned item="PlatinumOreKnowledge1" min="1"/>
+		</triggers>		
+		<posteffects>
+			<reward type="XP" amount="100" />
+			<reward type="Buff" item="BuildBuilding" name="EpicWorkyardRefinery" amount="1" recurringChance="100"/>
+			<startquest name="BuiBonus_OreRefinery_Unlock_02" />		
+		</posteffects>
+	</quest>
+	<quest name="BuiBonus_OreRefinery_Unlock_02" type="Side" icon="QuestEpicRefinery" npc="quest_character_scienceSystem01.png" showQuestWindow="true" repeatable="false" cancelable="false" showRewardWindow="true">
+		<triggers>
+			<trigger type="Building" name="EpicWorkyardRefinery" condition="selected" amount="1"/>
+			<onmap item="EW_Refinery_BronzeOre" min="3" locaExtension="EpicProductions"/>
+			<onmap item="EpicWorkyardRefinery" min="1" />
+		</triggers>		
+		<posteffects>
+			<reward type="XP" amount="100" />
+			<reward type="Dummy" item="industrialfuel.png" name="industrialfuelUnlock"/>
+			<startquest name="BuiBonus_OreRefinery_Unlock_03" />
+			<startquest name="BuiBonus_OreRefinery_buffprod" />
+		</posteffects>
+	</quest>
+	<quest name="BuiBonus_OreRefinery_Unlock_03" type="Side" icon="QuestEpicRefinery" npc="quest_character_scienceSystem01.png" showQuestWindow="true" repeatable="false" cancelable="false" showRewardWindow="true">
+		<triggers>
+			<trigger type="Building" name="ProvisionHouse" condition="selected" amount="1"/>
+			<buffproduced min="1" item="ProductivityBuffEW_Refinery" />
+			<onmap item="EpicWorkyardRefinery" min="1" />
+		</triggers>		
+		<posteffects>
+			<reward type="XP" amount="100" />
+			<startquest name="BuiBonus_OreRefinery_Unlock_04" />
+		</posteffects>
+	</quest>
+	<quest name="BuiBonus_OreRefinery_Unlock_04" type="Side" icon="QuestEpicRefinery" npc="quest_character_scienceSystem01.png" showQuestWindow="true" repeatable="false" cancelable="false" showRewardWindow="true">
+		<triggers>
+			<buffapplied item="ProductivityBuffEW_Refinery" min="1" />
+			<onmap item="EpicWorkyardRefinery" min="1" />
+		</triggers>		
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffEW_Refinery" amount="1"/>
+			<startquest name="BuiBonus_OreRefinery_Upgrades_01" />
+			<reward type="XP" amount="100" />
+		</posteffects>
+	</quest>
+	
+	<!--unlock production-->
+	<quest name="BuiBonus_OreRefinery_buffprod" type="Side" icon="QuestEpicRefinery" npc="quest_character_scienceSystem01.png" showQuestWindow="false" repeatable="false" cancelable="false" showRewardWindow="false">
+		<triggers>
+			<buffproduced min="1" item="QuestStart_OreRefinery" />
+		</triggers>		
+		<posteffects>
+		</posteffects>
+	</quest>
+	
+	<!-- Redeem in Mayorhouse DO NOT REEDEM MA'AM! -->
+	<quest name="BuiBonus_OreRefinery_Knowledge1Redeem" type="Side" icon="QuestEpicRefinery" npc="quest_character_scienceSystem01.png" showQuestWindow="false" repeatable="false" cancelable="false" showRewardWindow="false">
+		<triggers>
+			<buffproduced min="1" item="QuestStart_OreRefinery" />
+		</triggers>		
+		<posteffects>
+		</posteffects>
+	</quest>
+	<quest name="BuiBonus_OreRefinery_Knowledge2Redeem" type="Side" icon="QuestEpicRefinery" npc="quest_character_scienceSystem01.png" showQuestWindow="false" repeatable="false" cancelable="false" showRewardWindow="false">
+		<triggers>
+			<buffproduced min="1" item="QuestStart_OreRefinery" />
+		</triggers>		
+		<posteffects>
+		</posteffects>
+	</quest>
+	
+	<quest name="BuiBonus_OreRefinery_redeem" type="Side" icon="QuestEpicRefinery" npc="quest_character_scienceSystem01.png" showQuestWindow="false" repeatable="false" cancelable="false" showRewardWindow="false">
+		<startcondition>
+			<zoneevent item="ZONE_LOADED"/>
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>
+			<startquest name="BuiBonus_OreRefinery_redeem1" />
+			<startquest name="BuiBonus_OreRefinery_redeem2" />
+		</posteffects>
+	</quest>
+	<quest name="BuiBonus_OreRefinery_redeem1" type="Side" icon="QuestEpicRefinery" npc="quest_character_scienceSystem01.png" showQuestWindow="false" repeatable="false" cancelable="false" showRewardWindow="false">
+		<triggers>
+			<buffapplied item="BronzeOreKnowledge1,IronOreKnowledge1,GoldOreKnowledge1,TitaniumOreKnowledge1,PlatinumOreKnowledge1" min="1" target="Mayorhouse"/>
+		</triggers>
+		<posteffects>
+			<avatarmessage action="ManuscriptGranted" name="ManuscriptGranted" item="icon_manuscript" />
+			<reward type="Resource" name="Manuscript" amount="1" /> 
+			<startquest name="BuiBonus_OreRefinery_redeem1" />
+			<resetquest name="BuiBonus_OreRefinery_redeem1" />
+		</posteffects>
+	</quest>
+	<quest name="BuiBonus_OreRefinery_redeem2" type="Side" icon="QuestEpicRefinery" npc="quest_character_scienceSystem01.png" showQuestWindow="false" repeatable="false" cancelable="false" showRewardWindow="false">
+		<triggers>
+			<buffapplied item="BronzeOreKnowledge2,IronOreKnowledge2,GoldOreKnowledge2,TitaniumOreKnowledge2,PlatinumOreKnowledge2" min="1" target="Mayorhouse"/>
+		</triggers>
+		<posteffects>
+			<avatarmessage action="TomeGranted" name="TomeGranted" item="icon_tome" />
+			<reward type="Resource" name="Tome" amount="1" /> 
+			<startquest name="BuiBonus_OreRefinery_redeem2" />
+			<resetquest name="BuiBonus_OreRefinery_redeem2" />
+		</posteffects>
+	</quest>
+	
+	<!--T1 upgrades-->
+	<quest name="BuiBonus_OreRefinery_Upgrades_01" type="Side" icon="QuestEpicRefinery" npc="quest_character_scienceSystem01.png" showQuestWindow="true" repeatable="false" cancelable="false" showRewardWindow="true">
+		<preeffects>
+			<startquest name="BuiBonus_OreRefinery_Iron_01" />
+			<startquest name="BuiBonus_OreRefinery_Gold_01" />
+			<startquest name="BuiBonus_OreRefinery_Titanium_01" />
+			<startquest name="BuiBonus_OreRefinery_Platinum_01" />
+			<startquest name="BuiBonus_OreRefinery_Knowledge1Redeem" />
+        </preeffects>
+		<triggers>
+			<questcomplete item="BuiBonus_OreRefinery_Iron_01" />
+			<questcomplete item="BuiBonus_OreRefinery_Gold_01" />
+			<questcomplete item="BuiBonus_OreRefinery_Titanium_01" />
+			<questcomplete item="BuiBonus_OreRefinery_Platinum_01" />
+			<onmap item="EpicWorkyardRefinery" min="1" />
+		</triggers>		
+		<posteffects>
+			<reward type="XP" amount="500" />
+			<reward type="Buff" item="ProductivityBuffEW_Refinery" amount="1"/>
+			<startquest name="BuiBonus_OreRefinery_Upgrades_02" />
+		</posteffects>
+	</quest>
+	<!--T2 upgrades-->
+	<quest name="BuiBonus_OreRefinery_Upgrades_02" type="Side" icon="QuestEpicRefinery" npc="quest_character_scienceSystem01.png" showQuestWindow="true" repeatable="false" cancelable="false" showRewardWindow="true">
+		<preeffects>
+			<startquest name="BuiBonus_OreRefinery_Bronze_02" />
+			<startquest name="BuiBonus_OreRefinery_Iron_02" />
+			<startquest name="BuiBonus_OreRefinery_Gold_02" />
+			<startquest name="BuiBonus_OreRefinery_Titanium_02" />
+			<startquest name="BuiBonus_OreRefinery_Platinum_02" />
+        </preeffects>
+		<triggers>
+			<questcomplete item="BuiBonus_OreRefinery_Bronze_02" />
+			<questcomplete item="BuiBonus_OreRefinery_Iron_02" />
+			<questcomplete item="BuiBonus_OreRefinery_Gold_02" />
+			<questcomplete item="BuiBonus_OreRefinery_Titanium_02" />
+			<questcomplete item="BuiBonus_OreRefinery_Platinum_02" />
+			<onmap item="EpicWorkyardRefinery" min="1" />
+		</triggers>		
+		<posteffects>
+			<reward type="XP" amount="1000" />
+			<reward type="Buff" item="ProductivityBuffEW_Refinery" amount="1"/>
+			<startquest name="BuiBonus_OreRefinery_Upgrades_03" />
+		</posteffects>
+	</quest>
+	<!--T3 upgrades-->
+	<quest name="BuiBonus_OreRefinery_Upgrades_03" type="Side" icon="QuestEpicRefinery" npc="quest_character_scienceSystem01.png" showQuestWindow="true" repeatable="false" cancelable="false" showRewardWindow="true">
+		<preeffects>
+			<startquest name="BuiBonus_OreRefinery_Bronze_03" />
+			<startquest name="BuiBonus_OreRefinery_Iron_03" />
+			<startquest name="BuiBonus_OreRefinery_Gold_03" />
+			<startquest name="BuiBonus_OreRefinery_Titanium_03" />
+			<startquest name="BuiBonus_OreRefinery_Platinum_03" />
+			<startquest name="BuiBonus_OreRefinery_Knowledge2Redeem" />
+        </preeffects>
+		<triggers>
+			<questcomplete item="BuiBonus_OreRefinery_Bronze_03" />
+			<questcomplete item="BuiBonus_OreRefinery_Iron_03" />
+			<questcomplete item="BuiBonus_OreRefinery_Gold_03" />
+			<questcomplete item="BuiBonus_OreRefinery_Titanium_03" />
+			<questcomplete item="BuiBonus_OreRefinery_Platinum_03" />
+			<onmap item="EpicWorkyardRefinery" min="1" />
+		</triggers>		
+		<posteffects>
+			<reward type="XP" amount="2000" />
+			<reward type="Buff" item="ProductivityBuffEW_Refinery" amount="1"/>
+		</posteffects>
+	</quest>
+	<!--Copper Chain-->
+	<quest name="BuiBonus_OreRefinery_Bronze_02" type="Side" icon="QuestEpicRefinery" connectedToQuest="BuiBonus_OreRefinery_Upgrades_02" npc="quest_character_scienceSystem01.png" showQuestWindow="true" repeatable="false" cancelable="false" showRewardWindow="true">
+		<triggers>
+			<buffapplied item="BronzeOreKnowledge1" min="24" target="EpicWorkyardRefinery" />
+			<onmap item="EpicWorkyardRefinery" min="1" />
+		</triggers>		
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffEW_Refinery" amount="1"/>
+			<condition type="chain" name="EW_Refinery_BronzeOreRank2" item="EW_Refinery_BronzeOreRank2"/>
+		</posteffects>
+	</quest>
+	<quest name="BuiBonus_OreRefinery_Bronze_03" type="Side" icon="QuestEpicRefinery" connectedToQuest="BuiBonus_OreRefinery_Upgrades_03" npc="quest_character_scienceSystem01.png" showQuestWindow="true" repeatable="false" cancelable="false" showRewardWindow="true">
+		<triggers>
+			<buffapplied item="BronzeOreKnowledge2" min="16" target="EpicWorkyardRefinery"/>
+			<onmap item="EpicWorkyardRefinery" min="1" />
+		</triggers>		
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffEW_Refinery" amount="1"/>
+			<condition type="chain" name="EW_Refinery_BronzeOreRank3" item="EW_Refinery_BronzeOreRank3"/>
+		</posteffects>
+	</quest>
+	<!--Iron  Chain-->
+	<quest name="BuiBonus_OreRefinery_Iron_01" type="Side" icon="QuestEpicRefinery" connectedToQuest="BuiBonus_OreRefinery_Upgrades_01" npc="quest_character_scienceSystem01.png" showQuestWindow="true" repeatable="false" cancelable="false" showRewardWindow="true">
+		<triggers>
+			<buffapplied item="IronOreKnowledge1" min="16" target="EpicWorkyardRefinery"/>
+			<onmap item="EpicWorkyardRefinery" min="1" />
+		</triggers>		
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffEW_Refinery" amount="1"/>
+			<condition type="chain" name="EW_Refinery_IronOreRank1" item="EW_Refinery_IronOreRank1"/>
+		</posteffects>
+	</quest>
+	<quest name="BuiBonus_OreRefinery_Iron_02" type="Side" icon="QuestEpicRefinery" connectedToQuest="BuiBonus_OreRefinery_Upgrades_02" npc="quest_character_scienceSystem01.png" showQuestWindow="true" repeatable="false" cancelable="false" showRewardWindow="true">
+		<triggers>
+			<buffapplied item="IronOreKnowledge1" min="24" target="EpicWorkyardRefinery"/>
+			<onmap item="EpicWorkyardRefinery" min="1" />
+		</triggers>		
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffEW_Refinery" amount="1"/>
+			<condition type="chain" name="EW_Refinery_IronOreRank2" item="EW_Refinery_IronOreRank2"/>
+		</posteffects>
+	</quest>
+	<quest name="BuiBonus_OreRefinery_Iron_03" type="Side" icon="QuestEpicRefinery" connectedToQuest="BuiBonus_OreRefinery_Upgrades_03" npc="quest_character_scienceSystem01.png" showQuestWindow="true" repeatable="false" cancelable="false" showRewardWindow="true">
+		<triggers>
+			<buffapplied item="IronOreKnowledge2" min="16" target="EpicWorkyardRefinery"/>
+			<onmap item="EpicWorkyardRefinery" min="1" />
+		</triggers>		
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffEW_Refinery" amount="1"/>
+			<condition type="chain" name="EW_Refinery_IronOreRank3" item="EW_Refinery_IronOreRank3"/>
+		</posteffects>
+	</quest>
+	<!--Gold  Chain-->
+	<quest name="BuiBonus_OreRefinery_Gold_01" type="Side" icon="QuestEpicRefinery" connectedToQuest="BuiBonus_OreRefinery_Upgrades_01" npc="quest_character_scienceSystem01.png" showQuestWindow="true" repeatable="false" cancelable="false" showRewardWindow="true">
+		<triggers>
+			<buffapplied item="GoldOreKnowledge1" min="16" target="EpicWorkyardRefinery"/>
+			<onmap item="EpicWorkyardRefinery" min="1" />
+		</triggers>		
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffEW_Refinery" amount="1"/>
+			<condition type="chain" name="EW_Refinery_GoldOreRank1" item="EW_Refinery_GoldOreRank1"/>
+		</posteffects>
+	</quest>
+	<quest name="BuiBonus_OreRefinery_Gold_02" type="Side" icon="QuestEpicRefinery" connectedToQuest="BuiBonus_OreRefinery_Upgrades_02" npc="quest_character_scienceSystem01.png" showQuestWindow="true" repeatable="false" cancelable="false" showRewardWindow="true">
+		<triggers>
+			<buffapplied item="GoldOreKnowledge1" min="24" target="EpicWorkyardRefinery"/>
+			<onmap item="EpicWorkyardRefinery" min="1" />
+		</triggers>		
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffEW_Refinery" amount="1"/>
+			<condition type="chain" name="EW_Refinery_GoldOreRank2" item="EW_Refinery_GoldOreRank2"/>
+		</posteffects>
+	</quest>
+	<quest name="BuiBonus_OreRefinery_Gold_03" type="Side" icon="QuestEpicRefinery" connectedToQuest="BuiBonus_OreRefinery_Upgrades_03" npc="quest_character_scienceSystem01.png" showQuestWindow="true" repeatable="false" cancelable="false" showRewardWindow="true">
+		<triggers>
+			<buffapplied item="GoldOreKnowledge2" min="16" target="EpicWorkyardRefinery"/>
+			<onmap item="EpicWorkyardRefinery" min="1" />
+		</triggers>		
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffEW_Refinery" amount="1"/>
+			<condition type="chain" name="EW_Refinery_GoldOreRank3" item="EW_Refinery_GoldOreRank3"/>
+		</posteffects>
+	</quest>
+	<!--Titanium  Chain-->
+	<quest name="BuiBonus_OreRefinery_Titanium_01" type="Side" icon="QuestEpicRefinery" connectedToQuest="BuiBonus_OreRefinery_Upgrades_01" npc="quest_character_scienceSystem01.png" showQuestWindow="true" repeatable="false" cancelable="false" showRewardWindow="true">
+		<triggers>
+			<buffapplied item="TitaniumOreKnowledge1" min="16" target="EpicWorkyardRefinery"/>
+			<onmap item="EpicWorkyardRefinery" min="1" />
+		</triggers>		
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffEW_Refinery" amount="1"/>
+			<condition type="chain" name="EW_Refinery_TitaniumOreRank1" item="EW_Refinery_TitaniumOreRank1"/>
+		</posteffects>
+	</quest>
+	<quest name="BuiBonus_OreRefinery_Titanium_02" type="Side" icon="QuestEpicRefinery" connectedToQuest="BuiBonus_OreRefinery_Upgrades_02" npc="quest_character_scienceSystem01.png" showQuestWindow="true" repeatable="false" cancelable="false" showRewardWindow="true">
+		<triggers>
+			<buffapplied item="TitaniumOreKnowledge1" min="24" target="EpicWorkyardRefinery"/>
+			<onmap item="EpicWorkyardRefinery" min="1" />
+		</triggers>		
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffEW_Refinery" amount="1"/>
+			<condition type="chain" name="EW_Refinery_TitaniumOreRank2" item="EW_Refinery_TitaniumOreRank2"/>
+		</posteffects>
+	</quest>
+	<quest name="BuiBonus_OreRefinery_Titanium_03" type="Side" icon="QuestEpicRefinery" connectedToQuest="BuiBonus_OreRefinery_Upgrades_03" npc="quest_character_scienceSystem01.png" showQuestWindow="true" repeatable="false" cancelable="false" showRewardWindow="true">
+		<triggers>
+			<buffapplied item="TitaniumOreKnowledge2" min="16" target="EpicWorkyardRefinery"/>
+			<onmap item="EpicWorkyardRefinery" min="1" />
+		</triggers>		
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffEW_Refinery" amount="1"/>
+			<condition type="chain" name="EW_Refinery_TitaniumOreRank3" item="EW_Refinery_TitaniumOreRank3"/>
+		</posteffects>
+	</quest>
+	<!--Platinum  Chain-->
+	<quest name="BuiBonus_OreRefinery_Platinum_01" type="Side" icon="QuestEpicRefinery" connectedToQuest="BuiBonus_OreRefinery_Upgrades_01" npc="quest_character_scienceSystem01.png" showQuestWindow="true" repeatable="false" cancelable="false" showRewardWindow="true">
+		<triggers>
+			<buffapplied item="PlatinumOreKnowledge1" min="16" target="EpicWorkyardRefinery"/>
+			<onmap item="EpicWorkyardRefinery" min="1" />
+		</triggers>		
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffEW_Refinery" amount="1"/>
+			<condition type="chain" name="EW_Refinery_PlatinumOreRank1" item="EW_Refinery_PlatinumOreRank1"/>
+		</posteffects>
+	</quest>
+	<quest name="BuiBonus_OreRefinery_Platinum_02" type="Side" icon="QuestEpicRefinery" connectedToQuest="BuiBonus_OreRefinery_Upgrades_02" npc="quest_character_scienceSystem01.png" showQuestWindow="true" repeatable="false" cancelable="false" showRewardWindow="true">
+		<triggers>
+			<buffapplied item="PlatinumOreKnowledge1" min="24" target="EpicWorkyardRefinery"/>
+			<onmap item="EpicWorkyardRefinery" min="1" />
+		</triggers>		
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffEW_Refinery" amount="1"/>
+			<condition type="chain" name="EW_Refinery_PlatinumOreRank2" item="EW_Refinery_PlatinumOreRank2"/>
+		</posteffects>
+	</quest>
+	<quest name="BuiBonus_OreRefinery_Platinum_03" type="Side" icon="QuestEpicRefinery" connectedToQuest="BuiBonus_OreRefinery_Upgrades_03" npc="quest_character_scienceSystem01.png" showQuestWindow="true" repeatable="false" cancelable="false" showRewardWindow="true">
+		<triggers>
+			<buffapplied item="PlatinumOreKnowledge2" min="16" target="EpicWorkyardRefinery"/>
+			<onmap item="EpicWorkyardRefinery" min="1" />
+		</triggers>		
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffEW_Refinery" amount="1"/>
+			<condition type="chain" name="EW_Refinery_PlatinumOreRank3" item="EW_Refinery_PlatinumOreRank3"/>
+		</posteffects>
+	</quest>
+</Root>

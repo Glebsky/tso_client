@@ -1,0 +1,705 @@
+
+---function CalculateWays(---
+function CalculateWays():Number
+        {
+            var _local_2:cPathObject;
+            var _local_3:Number;
+            var _local_4:String;
+            var _local_5:cDeposit;
+            var _local_6:cSkill;
+            var _local_7:ModifierVO;
+            var _local_8:String;
+            var _local_9:cSkill;
+            var _local_10:ModifierVO;
+            var _local_11:String;
+            var _local_1:Number = mGeneralInterface.mGlobalTimeScale;
+            this.mWayWarehouseToWorkyard = 0;
+            this.mWayWorkyardToDeposit = 0;
+            this.mProductionTime = 0;
+            this.mOverallTime = 0;
+            this.mWayWarehouseToWorkyard = this.calculateWarehouseTransporttime();
+            this.mWayWorkyardToDeposit = -1;
+            if (((!(this.mResourceCreation == null)) && (!(this.mResourceCreation.GetDepositPath() == null))))
+            {
+                this.mWayWorkyardToDeposit = ((this.mResourceCreation.GetDepositPath().pathLenX10000 / cComputeResourceCreation.SETTLER_WALK_SPEED_INT) / _local_1);
+            }
+            else
+            {
+                if (((((!(this.mResourceCreation == null)) && (!(this.mResourceCreation.GetPath() == null))) && (!(this.mResourceCreation.GetResourceCreationDefinition() == null))) && (this.mResourceCreation.GetResourceCreationDefinition().externalResource_string == "")))
+                {
+                    this.mWayWorkyardToDeposit = this.mWayWarehouseToWorkyard;
+                }
+                else
+                {
+                    if (((((!(this.mResourceCreation == null)) && (this.mResourceCreation.GetDepositPath() == null)) && (!(this.mResourceCreation.GetResourceCreationDefinition() == null))) && (this.mResourceCreation.GetResourceCreationDefinition().amountRemoved < 0)))
+                    {
+                        _local_2 = mGeneralInterface.mPathFinder.CalculatePathForDeposit(this.mResourceCreation.GetResourceCreationDefinition().externalResource_string, this.mStreetGridEntry, this.mResourceCreation.GetPlayerID(), cPathFinder.AMOUNT_TYPE_ABOVE_ZERO);
+                        if (_local_2 != null)
+                        {
+                            this.mWayWorkyardToDeposit = ((_local_2.pathLenX10000 / cComputeResourceCreation.SETTLER_WALK_SPEED_INT) / _local_1);
+                        };
+                    };
+                };
+            };
+            if (((!(this.mResourceCreation == null)) && (!(this.mResourceCreation.GetResourceCreationDefinition() == null))))
+            {
+                _local_3 = this.mResourceCreation.GetWorkTime();
+                _local_4 = this.mResourceCreation.GetResourceCreationDefinition().externalResource_string;
+                if (((!(_local_4 == "")) && (!(this.mResourceCreation.GetDepositBuildingGridPos() == -1))))
+                {
+                    _local_5 = mGeneralInterface.mCurrentPlayerZone.mStreetDataMap.mDepositContainer.get(this.mResourceCreation.GetDepositBuildingGridPos());
+                    if (_local_5 != null)
+                    {
+                        for each (_local_6 in _local_5.skills.getItems_vector())
+                        {
+                            if (_local_6.getLevel() > 0)
+                            {
+                                for each (_local_7 in _local_6.getDefinition().level_vector[(_local_6.getLevel() - 1)])
+                                {
+                                    _local_8 = _local_7.modifier_string.toLowerCase();
+                                    if (_local_8 == SpeedUp.xml_string)
+                                    {
+                                        if (_local_7.multiplier == 0)
+                                        {
+                                            _local_3 = 0;
+                                        }
+                                        else
+                                        {
+                                            _local_3 = (_local_3 / _local_7.multiplier);
+                                        };
+                                        _local_3 = (_local_3 + _local_7.adder);
+                                    };
+                                };
+                            };
+                        };
+                    }
+                    else
+                    {
+                        for each (_local_9 in this.mPlayerData.getSkills().getItems_vector())
+                        {
+                            for each (_local_10 in _local_9.getDefinition().level_vector[(_local_9.getLevel() - 1)])
+                            {
+                                _local_11 = _local_10.modifier_string.toLowerCase();
+                                if (_local_11 == ResourceProductionSpeedUp.xml_string)
+                                {
+                                    _local_3 = ((_local_3 * _local_10.multiplier) + _local_10.adder);
+                                };
+                            };
+                        };
+                    };
+                };
+                this.mProductionTime = ((_local_3 * 1000) / _local_1);
+            }
+            else
+            {
+                this.mProductionTime = -1;
+            };
+            if (((((this.mWayWarehouseToWorkyard < 0) || (this.mWayWorkyardToDeposit < 0)) || (this.mProductionTime < 0)) || (this.IsUpgradeInProgress())))
+            {
+                this.mOverallTime = -1;
+            }
+            else
+            {
+                this.mOverallTime = (((2 * this.mWayWarehouseToWorkyard) + (2 * this.mWayWorkyardToDeposit)) + this.mProductionTime);
+            };
+            return (this.mOverallTime);
+        }
+
+        public function updateDefaultBuffSkins(_arg_1:Boolean):void
+        {
+            if (_arg_1)
+            {
+                this.currentBuffSkin = global.customGosetBuffTwinkleName;
+                this.currentFriendBuffSkin = global.customGosetFriendBuffTwinkleName;
+            }
+            else
+            {
+                this.currentBuffSkin = global.defaultGosetBuffTwinkleName;
+                this.currentFriendBuffSkin = global.defaultGosetFriendBuffTwinkleName;
+            };
+            this.mBuffTwinkleEffectSet = null;
+        }
+
+        public function SetRecurringChance(_arg_1:int):void
+        {
+            this.mRecurringChance = _arg_1;
+        }
+
+        protected function handleCollectibleBuffAdded(_arg_1:String):void
+        {
+        }
+
+        public function hasHiddenTimedBuff(_arg_1:cBuffDefinition):Boolean
+        {
+            var _local_2:BuffAppliance;
+            for each (_local_2 in this.mBuffs_vector)
+            {
+                if (((_local_2.GetBuffDefinition().GetBuffType() == BUFF_TYPE.TIMED_HIDDEN) && (_local_2.GetBuffDefinition().GetType() == _arg_1.GetType())))
+                {
+                    return (true);
+                };
+            };
+            return (false);
+        }
+
+        public function IsUpgradeAllowed(_arg_1:Boolean):Boolean
+        {
+            if ((((((((((((!(mGeneralInterfa
+
+---function GetResourceInputFactor(---
+function GetResourceInputFactor():int
+        {
+            var _local_4:BuffAppliance;
+            var _local_1:cBuffDefinition = this.GetUpgradeLevelBonuses();
+            if (_local_1 == null)
+            {
+                gMisc.Assert(false, ((((((("GetUpgradeLevelBonuses() not found for " + this.mBuildingName_string) + " (") + this.mUpgradeLevel) + ") at ") + GetGrid()) + " with GetGOContainer().buildingUpgradeBonuses_vector: ") + this.GetGOContainer().buildingUpgradeBonuses_vector));
+            };
+            var _local_2:int = int((_local_1.getProductivityInputPercent() / 100));
+            var _local_3:int;
+            while (_local_3 < this.mBuffs_vector.length)
+            {
+                _local_4 = this.mBuffs_vector[_local_3];
+                if (((_local_4.GetBuffDefinition().GetBuffType() == BUFF_TYPE.TIMED) || (_local_4.GetBuffDefinition().GetBuffType() == BUFF_TYPE.ZONE)))
+                {
+                    _local_2 = int((_local_2 * (_local_4.GetBuffDefinition().getProductivityInputPercent() / 100)));
+                };
+                _local_3++;
+            };
+            return (_local_2);
+        }
+
+        public function SetCampType(_arg_1:int):void
+        {
+            this.mCampType = _arg_1;
+        }
+
+        protected function canHandleCollectibleBuff():Boolean
+        {
+            return (false);
+        }
+
+        public function GetExactOutputFactor():int
+        {
+            var _local_1:cBuffDefinition = this.GetUpgradeLevelBonuses();
+            if (_local_1 == null)
+            {
+                gMisc.Assert(false, ((((((("GetUpgradeLevelBonuses() not found for " + this.mBuildingName_string) + " (") + this.mUpgradeLevel) + ") at ") + GetGrid()) + " with GetGOContainer().buildingUpgradeBonuses_vector: ") + this.GetGOContainer().buildingUpgradeBonuses_vector));
+            };
+            return (_local_1.getProductivityOutputPercent() / 100);
+        }
+
+        public function SetIsWaitForCommand(_arg_1:Boolean):void
+        {
+            if (_arg_1)
+            {
+                this.mFlags = (this.mFlags | FLAG_WAIT_FOR_COMMAND);
+            }
+            else
+            {
+                this.mFlags = (this.mFlags & (~(FLAG_WAIT_FOR_COMMAND)));
+            };
+        }
+
+        public function IsMovable():Boolean
+        {
+            return (this.mGoGroup.IsMovable(this.mBuildingName_string));
+        }
+
+        override public function Render():void
+        {
+            var _local_3:int;
+            var _local_4:Boolean;
+            var _local_5:cGOSetList;
+            var _local_6:Number;
+            var _local_7:cGOSetList;
+            var _local_1:int = int((mXNotScaled + this.mOffsetX));
+            var _local_2:int = int((mYNotScaled + this.mOffsetY));
+            switch (this.mBuildingMode)
+            {
+                case BUILDING_MODE_PLACED:
+                    this.renderPreBuild(mXScaled, mYScaled);
+                    return;
+                case BUILDING_MODE_QUEUED:
+                    this.renderPreBuild(mXScaled, mYScaled);
+                    if (this.mResourceCreation != null)
+                    {
+                        _local_3 = this.mResourceCreation.GetProductionStateIconIndex();
+                        if (_local_3 > -1)
+                        {
+                            if (((!(_local_3 == cResourceCreation.PRODUCTIONSTATE_ERROR_NECESSARY_RESOURCE_MISSING)) || ((_local_3 == cResourceCreation.PRODUCTIONSTATE_ERROR_NECESSARY_RESOURCE_MISSING) && (cSettingsManager.getInstance().showMissingResources))))
+                            {
+                                gGfxResource.mBuildingInfoIcons.SetSubType(_local_3);
+                                gGfxResource.mBuildingInfoIcons.RenderPos(_local_1, ((_local_2 - (global.streetGridY + global.streetGridYHalf)) - mGeneralInterface.mWobblingInt));
+                            };
+                        }
+                        else
+                        {
+                            gGfxResource.mBuildingQueuedIcon.RenderPos(_local_1, (_local_2 - (global.streetGridY * 2)));
+                        };
+                    };
+                    return;
+                case BUILDING_MODE_SETTLER_WALKS_TO_BUILDING_GROUND_PLACE:
+                case BUILDING_MODE_SET_BUILDING_GROUND_PLACE:
+                    this.renderPreBuild(mXScaled, mYScaled);
+                    if (this.mResourceCreation != null)
+                    {
+                        _local_3 = this.mResourceCreation.GetProductionStateIconIndex();
+                        if (_local_3 > -1)
+                        {
+                            gGfxResource.mBuildingInfoIcons.SetSubType(_local_3);
+                            gGfxResource.mBuildingInfoIcons.RenderPos(_local_1, ((_local_2 - (global.streetGridY + global.streetGridYHalf)) - mGeneralInterface.mWobblingInt));
+                        };
+                    };
+                    return;
+                case BUILDING_MODE_CONSTRUCTION:
+                    this.renderPreBuild(mXScaled, mYScaled);
+                    if (this.getConstructionAnimEffectSet() != null)
+                    {
+                        this.getConstructionAnimEffectSet().SetValue(this.mProgressPercent);
+                        this.getConstructionAnimEffectSet().Animate(mGeneralInterface.mCalculateTicks.mDeltaTicksOne);
+                        this.getConstructionAnimEffectSet().Render(GetXInt(), GetYInt());
+                    };
+                    return;
+                case BUILDING_MODE_DESTRUCTION:
+                    this.renderBuildingModeDestruction(this.mProgressPercent, mXScaled, mYScaled, _local_1, _local_2);
+                    return;
+                case BUILDING_MODE_EPIC_MONSTER_DYING_EFFECT:
+                    this.renderBuildingModeDestruction(this.mProgressPercent, mXScaled, mYScaled, _local_1, _local_2);
+                    return;
+                case BUILDING_DESTRUCTION_READY:
+                    if (this.getConstructionAnimEffectSet() != null)
+                    {
+                        this.getConstructionAnimEffectSet().AnimateUntilFinished(0);
+                    };
+                    if (this.getDestructionAnimEffectSet() != null)
+                    {
+                        this.getDestructionAnimEffectSet().AnimateUntilFinished(0);
+                    };
+                    switch (this.mBuildingSubMode)
+                    {
+                        case MOUNTAIN_BLOWING_UP_STEP_1:
+                            super.Render();
+                            if (this.getConstructionAnimEffectSet() != null)
+                            {
+                                if (this.getConstructionAnimEffectSet().AnimateUntilFinished(mGeneralInterface.mCalculateTicks.mDeltaTicksOne))
+                                {
+                                    this.mBuildingSubMode = MOUNTAIN_BLOWING_UP_STEP_2;
+                                    cSoundManager.getInstance().playEffect("MountainDestruction");
+                               
+
+---function GetUpgradeLevelBonuses(---
+function GetUpgradeLevelBonuses():cBuffDefinition
+        {
+            return (this.GetUpgradeLevelBonusesForLevel(this.mUpgradeLevel));
+        }
+
+        private function SetIsEngagedInCombat(_arg_1:Boolean):void
+        {
+            if (_arg_1)
+            {
+                this.mFlags = (this.mFlags | FLAG_ENGAGED_IN_COMBAT);
+            }
+            else
+            {
+                this.mFlags = (this.mFlags & (~(FLAG_ENGAGED_IN_COMBAT)));
+            };
+        }
+
+        public function handleSelectBuilding():Boolean
+        {
+            return (false);
+        }
+
+        public function IsEngagedInCombat():Boolean
+        {
+            return (!((this.mFlags & FLAG_ENGAGED_IN_COMBAT) == 0));
+        }
+
+        public function SetGoGroup(_arg_1:cGOGroup):Boolean
+        {
+            this.mGoGroup = _arg_1;
+            return (true);
+        }
+
+        public function hasBuff(_arg_1:String):Boolean
+        {
+            var _local_2:BuffAppliance;
+            for each (_local_2 in this.mBuffs_vector)
+            {
+                if (_local_2.GetBuffDefinition().GetName_string() == _arg_1)
+                {
+                    return (true);
+                };
+            };
+            return (false);
+        }
+
+        public function GetOffsetY():int
+        {
+            return (this.mOffsetY);
+        }
+
+        public function GetUniqueId():dUniqueID
+        {
+            return (this.mUniqueId);
+        }
+
+        public function GetUpgradeInstantCosts():int
+        {
+            var _local_3:dResource;
+            var _local_4:Number;
+            var _local_5:int;
+            var _local_1:int;
+            var _local_2:Vector.<dResource> = this.GetUpgradeCosts_vector();
+            if (_local_2 != null)
+            {
+                for each (_local_3 in _local_2)
+                {
+                    if (global.resourceHardcurrencyValues.hasOwnProperty(_local_3.name_string))
+                    {
+                        _local_1 = (_local_1 + int((_local_3.amount * global.resourceHardcurrencyValues[_local_3.name_string])));
+                    };
+                };
+                _local_4 = this.GetGOContainer().mUpgradeInstantBonusPercentage;
+                if (_local_4 <= 0)
+                {
+                    _local_4 = global.defaultUpgradeInstantBonusPercentage;
+                };
+                _local_5 = int(int(((_local_4 / 100) * _local_1)));
+                _local_1 = (_local_1 - _local_5);
+            };
+            return (_local_1);
+        }
+
+        public function _setGridRaw(_arg_1:int):void
+        {
+            super.SetGrid(_arg_1);
+        }
+
+        override public function Compute():void
+        {
+            var _local_2:Number;
+            var _local_4:cSpecialist;
+            var _local_5:String;
+            var _local_6:BuffAppliance;
+            var _local_7:cGOSetList;
+            var _local_8:Number;
+            var _local_9:cGOSetList;
+            var _local_10:String;
+            var _local_11:Array;
+            var _local_12:String;
+            var _local_13:String;
+            super.Compute();
+            if (this.mResourceCreation != null)
+            {
+                if (this.IsProductionLevelTooLow())
+                {
+                    if (this.mResourceCreation.GetProductionState() == cResourceCreation.PRODUCTIONSTATE_WORKING)
+                    {
+                        globalFlash.gui.mBuildingInfoPanel.DisplayProductionState(this);
+                    };
+                }
+                else
+                {
+                    if (this.mResourceCreation.GetProductionState() == cResourceCreation.PRODUCTIONSTATE_UPGRADELEVEL_TOO_LOW)
+                    {
+                        globalFlash.gui.mBuildingInfoPanel.DisplayProductionState(this);
+                    };
+                };
+            };
+            if (this.mPlayerData != null)
+            {
+                if (this._nextLabelUpdate < mGeneralInterface.GetClientTime())
+                {
+                    this._renderPlayerName = cGeneralInterface.getComputedPlayerName(this.mPlayerData.GetPlayerName_string());
+                    this._renderSpecialistName = null;
+                    if (((this.getPlayerID() == mGeneralInterface.mCurrentPlayer.GetPlayerId()) && (this.GetGOContainer().mMaxUnits > 0)))
+                    {
+                        for each (_local_4 in mGeneralInterface.mCurrentPlayerZone.GetSpecialists_vector())
+                        {
+                            if (_local_4.GetGarrisonGridIdx() == GetGrid())
+                            {
+                                _local_5 = _local_4.getName(true);
+                                if (StringUtils.isEmpty(_local_5))
+                                {
+                                    _local_5 = cLocaManager.GetInstance().GetText(LOCA_GROUP.SPECIALISTS, SPECIALIST_TYPE.toString(_local_4.GetType()));
+                                };
+                                this._renderSpecialistName = _local_5;
+                                this._renderPlayerName = cLocaManager.GetInstance().GetText(LOCA_GROUP.LABELS, "garrison_playername", [this._renderPlayerName]);
+                                break;
+                            };
+                        };
+                    };
+                    this._nextLabelUpdate = (mGeneralInterface.GetClientTime() + 1000);
+                };
+            };
+            var _local_1:int;
+            while (_local_1 < this.mBuffs_vector.length)
+            {
+                _local_6 = this.mBuffs_vector[_local_1];
+                if (!_local_6.IsActive(mGeneralInterface.GetClientTime()))
+                {
+                    _local_6.BuffRemoved(mGeneralInterface);
+                    this.mBuffs_vector.splice(_local_1, 1);
+                    _local_1--;
+                    if (_local_6 == this.productionBuff)
+                    {
+                        this.productionBuff = null;
+                    };
+                    if (_local_6.GetBuffDefinition().GetName_string().indexOf("MountainDemolition") > -1)
+                    {
+                        this.SetBuildingMode(BUILDING_DESTRUCTION_READY);
+                        globalFlash.gui.mAvatarMessageList.AddMessage(AVATAR_MESSAGE_TYPE.DESTROY_MOUNTAIN_READY, this);
+                    };
+                };
+                _local_1++;
+            };
+            var _local_3:Number = 0;
+            if (this.mBuildingMode == BUILDING_MODE_CONSTRUCTION)
+            {
+                this.mLastProgress = _local_3;
+                this.mProgressPercent = int((this.mBuildingProgress / defines.BUILDING_PROGRESS_SCALE_FACTOR));
+                this.mProgressTimeRemainingInMS = this.GetRemainingConstructionDuration();
+                if (this.mResourceCreation == null)
+                {
+                    this.mBuildingProgress = (this.mBuildingProgress + ((mGeneralInterface.mClientDeltaTime * 1000) / this.GetGOContainer().mConstructionDuration));
+                    if (t
+
+---function GetDepositBuildingGridPos(---
+function GetDepositBuildingGridPos():int
+        {
+            return (this.depositBuildingGridPos);
+        }
+
+        public function SetDepositBuildingGridPos(_arg_1:int):Boolean
+        {
+            if (_arg_1 == this.depositBuildingGridPos)
+            {
+                return (true);
+            };
+            this.depositBuildingGridPos = _arg_1;
+            this.mDirtyIndicator = (this.mDirtyIndicator | DIRTY_INDICATOR.MODIFIED_BIT);
+            return (true);
+        }
+
+        public function SetDepositPath(_arg_1:cPathObject):Boolean
+        {
+            this.depositPath = _arg_1;
+            return (true);
+        }
+
+        public function GetSettlerKIState():int
+        {
+            return (this.settlerKIState);
+        }
+
+        public function HasInvalidatedPaths():Boolean
+        {
+            return (this.invalidatePaths);
+        }
+
+        public function setModified(_arg_1:Modifier):void
+        {
+            this.modified = true;
+        }
+
+        public function GetDepositPath():cPathObject
+        {
+            return (this.depositPath);
+        }
+
+        public function SetSettlerKIState(_arg_1:int):void
+        {
+            this.settlerKIState = _arg_1;
+            if (((!(this.resourceCreationHouse == null)) && (this.resourceCreationHouse.IsBuildingInProduction())))
+            {
+                this.mDirtyIndicator = (this.mDirtyIndicator | DIRTY_INDICATOR.WEAK_MODIFICATION_BIT);
+            }
+            else
+            {
+                this.mDirtyIndicator = (this.mDirtyIndicator | DIRTY_INDICATOR.MODIFIED_BIT);
+            };
+            if (this.settler != null)
+            {
+                this.settler.mSettlerKi.SetKIState(_arg_1);
+            };
+        }
+
+        public function GetProductionStateIconIndex():int
+        {
+            if (((this.productionState == PRODUCTIONSTATE_WORKING) || (this.productionState >= PRODUCTIONSTATE_UPGRADELEVEL_TOO_LOW)))
+            {
+                return (-1);
+            };
+            return (this.productionState);
+        }
+
+        public function GetProductionState():int
+        {
+            return (this.productionState);
+        }
+
+        public function GetRemove():Boolean
+        {
+            return (this.removeFlag);
+        }
+
+        public function GetAssignedSettler():Boolean
+        {
+            return (this.assignedSettler);
+        }
+
+        public function SetInvalidatePaths(_arg_1:Boolean):void
+        {
+            this.invalidatePaths = _arg_1;
+        }
+
+        public function SetWorkingSettlerCarries():void
+        {
+            if (this.settler != null)
+            {
+                this.settler.SetSpriteImage(this.settlerWithGoods);
+            };
+        }
+
+        public function SetSettlerKIStateDeactivate():void
+        {
+            this.SetSettlerKIState(cSettlerKI.SETTLER_STATE_REMOVE_SETTLER);
+        }
+
+        public function GetGatheredResource():int
+        {
+            return (this.gatheredResource);
+        }
+
+        public function SetGatheredResource(_arg_1:int):Boolean
+        {
+            this.gatheredResource = _arg_1;
+            if (((!(this.resourceCreationHouse == null)) && (this.resourceCreationHouse.IsBuildingInProduction())))
+            {
+                this.mDirtyIndicator = (this.mDirtyIndicator | DIRTY_INDICATOR.WEAK_MODIFICATION_BIT);
+            }
+            else
+            {
+                this.mDirtyIndicator = (this.mDirtyIndicator | DIRTY_INDICATOR.MODIFIED_BIT);
+            };
+            return (true);
+        }
+
+        public function GetNecessaryResourceTypeString():String
+        {
+            var _local_2:dResource;
+            var _local_1:* = "";
+            for each (_local_2 in this.GetResourceCreationDefinition().necessaryResources_vector)
+            {
+                if (_local_1 != "")
+                {
+                    _local_1 = (_local_1 + "|");
+                };
+                _local_1 = (_local_1 + ((_local_2.name_string + ",") + _local_2.amount));
+            };
+            return (_local_1);
+        }
+
+        public function SetRemove(_arg_1:Boolean):void
+        {
+            if (this.removeFlag == _arg_1)
+            {
+                return;
+            };
+            this.removeFlag = _arg_1;
+            this.mDirtyIndicator = (this.mDirtyIndicator | DIRTY_INDICATOR.MODIFIED_BIT);
+        }
+
+        public function GetSettler():cSettler
+        {
+            return (this.settler);
+        }
+
+        public function SetSettler(_arg_1:cSettler):void
+        {
+            this.settler = _arg_1;
+        }
+
+        public function GetResourceTypeString():String
+        {
+            switch (this.GetResourceCreationDefinition().typeEnumResourceType)
+            {
+                case RESOURCE_TYPE.CREATED_BY_BUILDING:
+                    return ("Created By Building");
+                case RESOURCE_TYPE.CREATED_ALWAYS:
+                    return ("Created always");
+            };
+            return ("unknown");
+        }
+
+        public function RestoreKIStateBeforeMoving():void
+        {
+            if (((!(this.settler == null)) && (!(this.settler.mSettlerKi == null))))
+            {
+                this.settler.mSettlerKi.RestoreKIStateBeforeMoving();
+            };
+        }
+
+        public function GetPath():cPathObject
+        {
+            return (this.path);
+        }
+
+        public function GetResourceCreationHouse():cBuilding
+        {
+            return (this.resourceCreationHouse);
+        }
+
+        public function SetWorkingSettler():void
+        {
+            if (this.settler != null)
+            {
+                this.settler.SetSpriteImage(this.settlerWithoutGoods);
+            };
+        }
+
+
+    }
+}//package ServerState
+
+//------------------------------------------------------------
+//ServerState.cResources
+
+package ServerState
+{
+    import Model.Notifier;
+    import Interface.cGeneralInterface;
+    import nLib.gMisc;
+    import Enums.DIRTY_INDICATOR;
+    import __AS3__.vec.Vector;
+    import GO.cBuilding;
+    import BuffSystem.cBuffDefinition;
+    import nLib.cLog;
+    import Enums.ModifyReason;
+    import Communication.VO.dResourceVO;
+    import Communication.VO.dResourcesVO;
+    import Communication.VO.dBuffVO;
+    import Utils.TriggerUtils;
+    import Enums.RESOURCE_GROUP;
+    import __AS3__.vec.*;
+
+    public class cResources extends Notifier implements IResourceContainer 
+    {
+
+        public static const RESOURCE_CHANGE:String = "RESOURCE_CHANGE";
+        public static const POPULATION_CHANGE:String = "POPULATION_CHANGE";
+        private static const WORKER:int = 0;
+        private static const MILITARY:int = 1;
+
+        private var mWorkers:int;
+        private var mZoneID:int;
+        private var mMilitary:int;
+        public var mDirtyIndicator:int;
+        private var mMap_ResourceName_Resource:Object = new Object();
+        private var mPlayerID:int;
+        private var mGeneralInterface:cGeneralInterface;
+        private var mFree:int;
+
+        public funct

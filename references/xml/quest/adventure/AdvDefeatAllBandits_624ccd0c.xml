@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	 <quest name="AdvDefeatAllBandits" type="Story" icon="Military" specialType="firstQuestlastQuest" >
+  <!--          <preeffects>
+                <exploresector id="0"/>
+                <exploresector id="1"/>
+	        </preeffects>
+    -->
+		<triggers>
+      <buildingdestroyed min="12" item="BanditsLvl2_Adventure" />
+      <buildingdestroyed min="6" item="Banditsleader_Adventure" />
+		  </triggers>
+	  <rewards>
+         <reward type="XP" amount="2000"/>        
+      </rewards>
+		  <postrequisits />
+    </quest>
+
+   <!-- <quest name="UnlockSector2" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questrunning item="AdvDefeatAllBandits"/>
+         </startcondition>
+		<triggers>
+			<buildingdestroyed min="3" item="Bandits" />
+		</triggers>		 
+		<posteffects>
+			<exploresector id="2"/>	
+		</posteffects>  			
+	</quest>	
+
+	<quest name="UnlockSector4" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questrunning item="AdvDefeatAllBandits"/>
+         </startcondition>
+		<triggers>
+			<buildingdestroyed min="8" item="Bandits" />
+		</triggers>		 
+		<posteffects>
+			<exploresector id="3"/>		
+		</posteffects>  			
+	</quest>	
+
+    <quest name="UnlockSector5" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questrunning item="AdvDefeatAllBandits"/>
+         </startcondition>
+		<triggers>
+			<buildingdestroyed min="11" item="Bandits" />
+		</triggers>		 
+		<posteffects>
+			<exploresector id="4"/>		
+		</posteffects>  			
+	</quest>
+-->
+</Root>

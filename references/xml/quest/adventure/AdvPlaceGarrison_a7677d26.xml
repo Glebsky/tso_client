@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+
+  <quest name="AdvPlaceGarrison" type="Adventure" icon="Military" npc="quest_character_fin01.png" specialType="firstQuest" notifyHomeZone="true">            
+    <startcondition>
+    </startcondition>
+    <preeffects>
+    </preeffects>
+    <triggers>
+      <garrisonOnMap min="1"/>
+    </triggers>
+    <posteffects>               
+    </posteffects>
+  </quest>
+
+  <quest name="AdvDefeatOneBanditleader" type="Adventure" icon="Military" npc="quest_character_fin01.png">            
+    <startcondition>
+      <questcomplete item="AdvPlaceGarrison"/>
+    </startcondition>
+    <preeffects>
+    </preeffects>
+    <triggers>
+      <trigger type="Building" name="Banditsleader_Adventure" condition="l" amount="2" locaExtension="tut"/>
+    </triggers>
+    <posteffects>               
+    </posteffects>
+  </quest>
+ 	
+	<quest name="AdvDefeatAllBandits" type="Adventure" icon="Military" npc="quest_character_fin01.png" specialType="lastQuest">            
+    <startcondition>
+      <questcomplete item="AdvDefeatOneBanditleader"/>
+    </startcondition>
+    <preeffects>
+    </preeffects>
+    <triggers>
+      <trigger type="Building" name="Bandits_Adventure" condition="l" amount="1" locaExtension="tut"/>
+      <trigger type="Building" name="Banditsleader_Adventure" condition="l" amount="1"/>
+    </triggers>
+    <posteffects>               
+    </posteffects>
+  </quest>
+	
+</Root>

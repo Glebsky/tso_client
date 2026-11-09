@@ -1,0 +1,1600 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+
+
+	<!-- Neverending Background Quests -->
+   <quest name="Adv_TwinTown_NoEnd_Start" specialType="firstQuest" showQuestWindow="false" showRewardWindow="false" >	
+		<triggers>
+			<checkgenericvalue name="TwinTown_NoEnd" max="0"/>			
+		</triggers>
+    </quest>
+
+	<quest name="Adv_TwinTown_NoEnd_Last" showQuestWindow="false" showRewardWindow="false" specialType="lastQuest" >
+		<startcondition>
+		</startcondition>
+		<triggers>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_34_QGV" min="10" max="10"/>
+		</triggers>
+    </quest>
+
+	<!-- Setup Quests -->
+	<quest name="Adv_TwinTown_ExploreSectors" showQuestWindow="false" showRewardWindow="false" >
+		<startcondition>
+			<checkgenericvalue name="TwinTown_NoEnd" min="10" max="10"/>	
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>		
+			<exploresector id="3">
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_0_QGV" min="10" max="10" />
+				</conditions>		
+			</exploresector>	
+			<exploresector id="14">
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_6_QGV" min="99" max="99" />
+				</conditions>		
+			</exploresector>	
+			<exploresector id="4">
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_8_QGV" min="10" max="10" />
+				</conditions>		
+			</exploresector>	
+			<exploresector id="15">
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_8_QGV" min="10" max="10" />
+				</conditions>		
+			</exploresector>		
+			<exploresector id="16">
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_27_QGV" min="10" max="10" />
+				</conditions>		
+			</exploresector>	
+			<exploresector id="7">
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_27_QGV" min="10" max="10" />
+				</conditions>		
+			</exploresector>				
+			<exploresector id="17">
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_29_QGV" min="10" max="10" />
+				</conditions>		
+			</exploresector>				
+			<exploresector id="18">
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_30_QGV" min="10" max="10" />
+				</conditions>		
+			</exploresector>				
+		</posteffects>	
+    </quest>
+	
+	<quest name="Adv_TwinTown_Chapter1_GeneralSetup" showQuestWindow="false" showRewardWindow="false" >
+		<startcondition>
+			<checkgenericvalue name="TwinTown_NoEnd" min="10" max="10"/>	
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>				
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_10_QGV" action="set" amount="99" >
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_11_QGV" min="12" max="999"/>
+				</conditions>
+			</adjustgenericvalue>			
+		</posteffects>	
+    </quest>	
+
+	<quest name="Adv_TwinTown_Chapter1_BuildingSetup" showQuestWindow="false" showRewardWindow="false" >
+		<startcondition>
+			<checkgenericvalue name="TwinTown_NoEnd" min="10" max="10"/>	
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>	
+		<!-- Residences -->	
+		
+		<!-- Graveyards -->
+			<spawnbuilding name="TwinTown_Graveyard" action="ignoreBlocking,spawnInstant,replace" x="39" y="56" mode="free" >
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_5_QGV" min="10" max="10" />
+				</conditions>	
+			</spawnbuilding>	
+			<spawnbuilding name="TwinTown_Graveyard" action="ignoreBlocking,spawnInstant,replace" x="40" y="54" mode="free" >
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_5_QGV" min="10" max="10" />
+				</conditions>	
+			</spawnbuilding>	
+		<!-- Barricades -->			
+			<spawnbuilding name="TwinTown_Barricades_left" x="31" y="30" mode="free" action="ignoreBlocking,spawnInstant,replace" >		
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_11_QGV" min="0" max="0" />	
+				</conditions>	
+			</spawnbuilding>					
+			<spawnbuilding name="TwinTown_Barricades_left" x="36" y="34" mode="free" action="ignoreBlocking,spawnInstant,replace" >	
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_11_QGV" min="0" max="0" />	
+				</conditions>	
+			</spawnbuilding>		
+			<spawnbuilding name="TwinTown_Barricades_left" x="37" y="32" mode="free" action="ignoreBlocking,spawnInstant,replace" >	
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_11_QGV" min="0" max="0" />	
+				</conditions>	
+			</spawnbuilding>		
+			<spawnbuilding name="TwinTown_Barricades_right" x="32" y="30" mode="free" action="ignoreBlocking,spawnInstant,replace" >	
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_11_QGV" min="0" max="0" />	
+				</conditions>	
+			</spawnbuilding>		
+			<spawnbuilding name="TwinTown_Barricades_right" x="33" y="32" mode="free" action="ignoreBlocking,spawnInstant,replace" >		
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_11_QGV" min="0" max="0" />	
+				</conditions>	
+			</spawnbuilding>		
+			<spawnbuilding name="TwinTown_Barricades_right" x="34" y="34" mode="free" action="ignoreBlocking,spawnInstant,replace" >	
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_11_QGV" min="0" max="0" />	
+				</conditions>	
+			</spawnbuilding>		
+			<spawnbuilding name="TwinTown_Barricades_right" x="38" y="32" mode="free" action="ignoreBlocking,spawnInstant,replace" >	
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_11_QGV" min="0" max="0" />	
+				</conditions>	
+			</spawnbuilding>		
+			<spawnbuilding name="TwinTown_Barricades_right" x="39" y="34" mode="free" action="ignoreBlocking,spawnInstant,replace" >		
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_11_QGV" min="0" max="0" />	
+				</conditions>	
+			</spawnbuilding>		
+	
+		<!-- Farm Fields -->			
+			<spawnbuilding name="TwinTown_Farmfield" x="35" y="58" mode="enemy" action="ignoreBlocking,spawnInstant,replace" >		
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_21_QGV" min="10" max="10" />	
+				</conditions>	
+			</spawnbuilding>			
+			<spawnbuilding name="TwinTown_Farmfield" x="36" y="60" mode="enemy" action="ignoreBlocking,spawnInstant,replace" >		
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_21_QGV" min="10" max="10" />	
+				</conditions>	
+			</spawnbuilding>				
+			<spawnbuilding name="TwinTown_Farmfield" x="35" y="53" mode="enemy" action="ignoreBlocking,spawnInstant,replace" >		
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_21_QGV" min="10" max="10" />	
+				</conditions>	
+			</spawnbuilding>		
+
+		<!-- Destroy Ruins -->			
+			<removebuilding x="31" y="62" name="TwinTown_Ruin" action="exactNameMatch">
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_22_QGV" min="10" max="10" />	
+				</conditions>	
+			</removebuilding>	
+			<removebuilding x="32" y="64" name="TwinTown_Ruin" action="exactNameMatch">
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_22_QGV" min="10" max="10" />	
+				</conditions>	
+			</removebuilding>	
+			<removebuilding x="33" y="62" name="TwinTown_Ruin" action="exactNameMatch">
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_22_QGV" min="10" max="10" />	
+				</conditions>	
+			</removebuilding>	
+			<removebuilding x="34" y="60" name="TwinTown_Ruin" action="exactNameMatch">
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_22_QGV" min="10" max="10" />	
+				</conditions>	
+			</removebuilding>	
+			<removebuilding x="27" y="58" name="TwinTown_Ruin" action="exactNameMatch">
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_22_QGV" min="10" max="10" />	
+				</conditions>	
+			</removebuilding>	
+			<removebuilding x="27" y="51" name="TwinTown_Ruin" action="exactNameMatch">
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_22_QGV" min="10" max="10" />	
+				</conditions>	
+			</removebuilding>	
+			<removebuilding x="31" y="40" name="TwinTown_Ruin" action="exactNameMatch">
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_22_QGV" min="10" max="10" />	
+				</conditions>	
+			</removebuilding>	
+			<removebuilding x="33" y="39" name="TwinTown_Ruin" action="exactNameMatch">
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_22_QGV" min="10" max="10" />	
+				</conditions>	
+			</removebuilding>	
+			<removebuilding x="34" y="41" name="TwinTown_Ruin" action="exactNameMatch">
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_22_QGV" min="10" max="10" />	
+				</conditions>	
+			</removebuilding>	
+			<removebuilding x="60" y="40" name="TwinTown_Ruin" action="exactNameMatch">
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_22_QGV" min="10" max="10" />	
+				</conditions>	
+			</removebuilding>				
+
+		<!-- Defense Tower -->			
+			<spawnbuilding name="TwinTown_DefenseTower" x="35" y="67" mode="enemy" action="ignoreBlocking,spawnInstant,replace" >		
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_23_QGV" min="10" max="10" />	
+				</conditions>	
+			</spawnbuilding>	
+			<spawnbuilding name="TwinTown_DefenseTower" x="26" y="72" mode="enemy" action="ignoreBlocking,spawnInstant,replace" >		
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_23_QGV" min="10" max="10" />	
+				</conditions>	
+			</spawnbuilding>	
+			<spawnbuilding name="TwinTown_DefenseTower" x="27" y="47" mode="enemy" action="ignoreBlocking,spawnInstant,replace" >		
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_23_QGV" min="10" max="10" />	
+				</conditions>	
+			</spawnbuilding>	
+			<spawnbuilding name="TwinTown_DefenseTower" x="33" y="42" mode="enemy" action="ignoreBlocking,spawnInstant,replace" >		
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_23_QGV" min="10" max="10" />	
+				</conditions>	
+			</spawnbuilding>	
+			<spawnbuilding name="TwinTown_DefenseTower" x="38" y="49" mode="enemy" action="ignoreBlocking,spawnInstant,replace" >		
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_23_QGV" min="10" max="10" />	
+				</conditions>	
+			</spawnbuilding>				
+			
+			<!-- Decision Saltpeter Titanium Mine -->				
+			<spawnbuilding name="SalpeterMine" x="40" y="60" mode="free" action="ignoreBlocking,spawnInstant,replace" >		
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_33_Decision_A" min="10" max="10" />	
+				</conditions>	
+			</spawnbuilding>	
+			<spawnbuilding name="TitaniumMine" x="40" y="60" mode="free" action="ignoreBlocking,spawnInstant,replace" >		
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_33_Decision_B" min="10" max="10" />	
+				</conditions>	
+			</spawnbuilding>			
+			
+		</posteffects>	
+    </quest>	
+	
+ 	<quest name="Adv_TwinTown_Chapter1_BuildingSetup_Residences" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_4_QGV" min="10" max="10"/>			
+		</startcondition>	
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_Residence1" action="ignoreBlocking,spawnInstant,replace" x="27" y="61" mode="free"/>			
+			<spawnbuilding name="TwinTown_Residence1" action="ignoreBlocking,spawnInstant,replace" x="31" y="58" mode="free" />			
+			<spawnbuilding name="TwinTown_Residence1" action="ignoreBlocking,spawnInstant,replace" x="32" y="56" mode="free" />		
+			<spawnbuilding name="TwinTown_Residence1" action="ignoreBlocking,spawnInstant,replace" x="37" y="57" mode="free" />		
+			<spawnbuilding name="TwinTown_Residence1" action="ignoreBlocking,spawnInstant,replace" x="37" y="53" mode="free" />	
+		</posteffects>
+	</quest>			
+	
+	
+	<!-- Setup Quests END-->
+	
+	<!-- CHAPTER 1 -->
+
+	<quest name="TwinTown_Adv_Chapter1_Sub_0" type="Story" icon="QuestShort" npc="quest_character_sonya_solemoon.png" >	
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_0_QGV" min="1" max="1"/>			
+		</startcondition>	
+		<triggers>
+			<buildingselected min="1" item="Lookout_Tree" locaExtension="ClimbTree"/>			
+		</triggers>
+		<posteffects>		
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_0_QGV" action="set" amount="10" />	
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_1_QGV" action="set" amount="1" />	
+			<reward type="XP" amount="1500" />			
+		</posteffects>		
+    </quest>	
+	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_1_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_1_QGV" min="1" max="1"/>			
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Adv_Chapter1_Sub_1"/>
+			<spawnbuilding name="TwinTown_BanditCamp_Leader" action="ignoreBlocking,spawnInstant,replace" x="29" y="59" mode="enemy" units="EliteWildlifeRecruit|100,EliteWildlifeAir|80" />	
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant,replace" x="28" y="71" mode="enemy" units="EliteWildlifeRecruit|100,EliteWildlifeAir|80" />			
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant,replace" x="31" y="68" mode="enemy" units="EliteWildlifeRecruit|100,EliteWildlifeAir|80" />
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant,replace" x="33" y="66" mode="enemy" units="EliteWildlifeRecruit|100,EliteWildlifeAir|80" />		
+			<exploresector id="3"/>			
+		</posteffects>
+	</quest>		
+	
+   <quest name="TwinTown_Adv_Chapter1_Sub_1" type="Story" icon="QuestShort" npc="quest_character_sonya_solemoon.png" >	
+		<triggers>
+			<buildingdestroyed min="1" item="TwinTown_BanditCamp_Leader" />
+			<buildingdestroyed min="3" item="TwinTown_BanditCamp" />			
+		</triggers>
+		<posteffects>		
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_1_QGV" action="set" amount="10" />	
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_2_QGV" action="set" amount="1" />				
+			<reward type="Buff" item="BattleBuffKill_random_unit_type_limited" amount="1"/>
+			<reward type="XP" amount="3000" />			
+		</posteffects>		
+    </quest>	
+
+   <quest name="TwinTown_Adv_Chapter1_Sub_2" type="Story" icon="QuestShort" npc="quest_character_sonya_solemoon.png" >	
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_2_QGV" min="1" max="1"/>			
+		</startcondition>	
+		<triggers>
+			<buildingselected min="1" item="TwinTown_MayorHouse" locaExtension="VisitTTMayor"/>	
+		</triggers>
+		<posteffects>		
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_2_QGV" action="set" amount="10" />	
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_3_QGV" action="set" amount="1" />		
+			<reward type="XP" amount="500" />				
+		</posteffects>		
+    </quest>	
+
+   <quest name="TwinTown_Adv_Chapter1_Sub_3" type="Story" icon="QuestShort" npc="ferri_felder.png" >	
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_3_QGV" min="1" max="1"/>			
+		</startcondition>   
+		<triggers>
+			<buildingselected min="1" item="TwinTown_Residence_Ruin_Deco" locaExtension="VisitTTResRuin"/>		
+		</triggers>
+		<posteffects>		
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_3_QGV" action="set" amount="10" />	
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_4_QGV" action="set" amount="1" />		
+			<reward type="XP" amount="500" />			
+		</posteffects>		
+    </quest>	
+
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_4_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_4_QGV" min="1" max="1"/>			
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Adv_Chapter1_Sub_4"/>
+			<spawnbuilding name="TwinTown_Residence_Ruin" action="ignoreBlocking,spawnInstant,replace" x="27" y="61" mode="enemy" />
+			<spawnbuilding name="TwinTown_Residence_Ruin" action="ignoreBlocking,spawnInstant,replace" x="31" y="58" mode="enemy" />
+			<spawnbuilding name="TwinTown_Residence_Ruin" action="ignoreBlocking,spawnInstant,replace" x="32" y="56" mode="enemy" />
+			<spawnbuilding name="TwinTown_Residence_Ruin" action="ignoreBlocking,spawnInstant,replace" x="37" y="57" mode="enemy" />
+			<spawnbuilding name="TwinTown_Residence_Ruin" action="ignoreBlocking,spawnInstant,replace" x="37" y="53" mode="enemy" />					
+		</posteffects>
+	</quest>		
+	
+   <quest name="TwinTown_Adv_Chapter1_Sub_4" type="Story" icon="QuestShort" npc="ferri_felder.png" >	
+		<triggers>
+				<buffappliedonadventure min="5" item="BattleBuffDestroy_TwinTown_Residence1" target="TwinTown_Residence_Ruin" locaExtension="any"/>
+				<onmap item="TwinTown_Residence1" min="5" locaExtension="OnmapTT" />
+		</triggers>
+		<posteffects>		
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_4_QGV" action="set" amount="10" />	
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_5_QGV" action="set" amount="1" />				
+			<reward type="Buff" item="PremiumAccount1Day" amount="1"/>		
+			<reward type="XP" amount="5000" />				
+		</posteffects>		
+    </quest>			
+
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_5_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_5_QGV" min="1" max="1"/>			
+		</startcondition>	
+		<triggers>
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Adv_Chapter1_Sub_5"/>
+			<spawnbuilding name="TwinTown_Graveyard_Ruin" action="ignoreBlocking,spawnInstant,replace" x="39" y="56" mode="enemy" />
+			<spawnbuilding name="TwinTown_Graveyard_Ruin" action="ignoreBlocking,spawnInstant,replace" x="40" y="54" mode="enemy" />				
+		</posteffects>
+	</quest>		
+
+   <quest name="TwinTown_Adv_Chapter1_Sub_5" type="Story" icon="QuestShort" npc="ferri_felder.png" >	
+		<triggers>
+				<buffappliedonadventure min="2" item="BattleBuffDestroy_TwinTown_GraveyardRuins_01" target="TwinTown_Graveyard_Ruin" locaExtension="any"/>
+				<onmap item="TwinTown_Graveyard" min="2" locaExtension="OnmapTT" />
+		</triggers>
+		<posteffects>		
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_5_QGV" action="set" amount="10" />	
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_6_QGV" action="set" amount="1" />		
+			<reward type="XP" amount="5000" />				
+			<reward type="Buff" item="ProductivityBuffLvl7" amount="5"/>		
+		</posteffects>		
+    </quest>	
+	
+   <quest name="TwinTown_Adv_Chapter1_Sub_6" type="Story" icon="QuestShort" npc="ferri_felder.png" notifyHomeZone="true">	
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_6_QGV" min="1" max="1"/>			
+		</startcondition>	
+		<triggers>
+			<buildingselected min="1" item="TwinTown_MayorHouse"/>	
+		</triggers>
+		<posteffects>		
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_6_QGV" action="set" amount="10" />
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_7_QGV" action="set" amount="1" />		
+			<reward type="XP" amount="500" />			
+		</posteffects>		
+    </quest>		
+
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_7_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_7_QGV" min="1" max="1"/>			
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Adv_Chapter1_Sub_7"/>
+			<exploresector id="14"/>
+			<spawnbuilding name="TwinTown_BanditCamp_Leader" action="ignoreBlocking,spawnInstant,replace" x="25" y="117" mode="enemy" units="EliteWildlifeRecruit|100,EliteWildlifeAir|80" />
+			<spawnbuilding name="TwinTown_BanditCamp_Leader" action="ignoreBlocking,spawnInstant,replace" x="28" y="116" mode="enemy" units="EliteWildlifeRecruit|100,EliteWildlifeAir|80" />
+			<spawnbuilding name="TwinTown_BanditCamp_Leader" action="ignoreBlocking,spawnInstant,replace" x="29" y="113" mode="enemy" units="EliteWildlifeRecruit|100,EliteWildlifeAir|80" />			
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant,replace" x="30" y="111" mode="enemy" units="EliteWildlifeRecruit|100,EliteWildlifeAir|80" />			
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant,replace" x="29" y="104" mode="enemy" units="EliteWildlifeRecruit|100,EliteWildlifeAir|80" />
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant,replace" x="30" y="108" mode="enemy" units="EliteWildlifeRecruit|100,EliteWildlifeAir|80" />
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant,replace" x="25" y="109" mode="enemy" units="EliteWildlifeRecruit|100,EliteWildlifeAir|80" />			
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant,replace" x="25" y="114" mode="enemy" units="EliteWildlifeRecruit|100,EliteWildlifeAir|80" />
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant,replace" x="27" y="118" mode="enemy" units="EliteWildlifeRecruit|100,EliteWildlifeAir|80" />					
+		</posteffects>
+	</quest>		
+
+   <quest name="TwinTown_Adv_Chapter1_Sub_7" type="Story" icon="QuestShort" npc="ferri_felder.png" >	
+		<triggers>
+			<buildingdestroyed min="3" item="TwinTown_BanditCamp_Leader" />
+			<buildingdestroyed min="6" item="TwinTown_BanditCamp" />
+		</triggers>
+		<posteffects>		
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_7_QGV" action="set" amount="10" />		
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_8_QGV" action="set" amount="1" />	
+			<reward type="XP" amount="5000" />	
+			<reward type="Buff" item="PremiumAccount1Day" amount="1"/>	
+			<reward type="Buff" item="ProductivityBuffLvl21" amount="5"/>				
+		</posteffects>		
+    </quest>	
+	
+	<!-- COMBAT PATH CHAPTER 1 -->
+	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_8_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_8_QGV" min="1" max="1"/>			
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Adv_Chapter1_Sub_8"/>
+			<spawnbuilding name="TwinTown_WildlifeCamp_Leader" action="ignoreBlocking,spawnInstant" x="36" y="32" mode="enemy" units="EliteWildlifeRecruit|100,EliteWildlifeAir|80" />
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="31" y="35" mode="enemy" units="EliteWildlifeRecruit|100,EliteWildlifeAir|80" />			
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="35" y="37" mode="enemy" units="EliteWildlifeRecruit|100,EliteWildlifeAir|80" />
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="37" y="40" mode="enemy" units="EliteWildlifeRecruit|100,EliteWildlifeAir|80" />					
+		</posteffects>
+	</quest>			
+	
+   <quest name="TwinTown_Adv_Chapter1_Sub_8" type="Story" icon="QuestShort" npc="ferri_felder.png" >	
+		<triggers>
+			<buildingdestroyed min="1" item="TwinTown_WildlifeCamp_Leader" />
+			<buildingdestroyed min="3" item="TwinTown_WildlifeCamp" />	
+		</triggers>
+		<posteffects>		
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_8_QGV" action="set" amount="10" />	
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_9_QGV" action="set" amount="1" />		
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_9_Helper_QGV" action="set" amount="1" />			
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_20_QGV" action="set" amount="1" />		
+			<reward type="Buff" item="ProductivityBuffLvl6" amount="3"/>			
+		</posteffects>		
+    </quest>		
+	
+	
+	<!-- RANDOM ENEMIES 1 -->
+	<!-- RANDOM ENEMIES 1 -->
+	<!-- RANDOM ENEMIES 1 -->
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_9_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_9_Helper_QGV" min="1" max="1"/>			
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>
+			<exploresector id="4"/>
+			<exploresector id="15"/>			
+			<spawnbuilding name="TwinTown_BanditCamp_Leader" action="ignoreBlocking,spawnInstant,replace" x="35" y="10" mode="enemy" units="EliteWildlifeRecruit|100,EliteWildlifeAir|80" />	
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant,replace" x="34" y="12" mode="enemy" units="EliteWildlifeRecruit|100,EliteWildlifeAir|80" />			
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant,replace" x="35" y="13" mode="enemy" units="EliteWildlifeRecruit|100,EliteWildlifeAir|80" />
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant,replace" x="36" y="11" mode="enemy" units="EliteWildlifeRecruit|100,EliteWildlifeAir|80" />				
+		</posteffects>
+	</quest>			
+
+   <quest name="TwinTown_Adv_Chapter1_Sub_9" type="Story" icon="QuestShort" npc="ferri_felder.png" notifyHomeZone="true" >	
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_9_QGV" min="1" max="1"/>			
+		</startcondition>	
+		<triggers>
+			<buildingdestroyed min="1" item="TwinTown_BanditCamp_Leader" />
+			<buildingdestroyed min="3" item="TwinTown_BanditCamp" />	
+		</triggers>
+		<posteffects>		
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_9_QGV" action="set" amount="10" />		
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_9_Helper_QGV" action="set" amount="10" />		
+			<reward type="Buff" item="ProductivityBuffEW2" amount="3"/>				
+		</posteffects>		
+    </quest>
+	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_Helper" showQuestWindow="false" showRewardWindow="false" >
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_10_QGV" min="1" max="1"/>			
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_Left"/>
+			<startquest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Left"/>
+			<startquest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Left"/>
+			<startquest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Left"/>
+			<startquest name="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_Mid"/>
+			<startquest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Mid"/>
+			<startquest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Mid"/>
+			<startquest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Mid"/>	
+			<startquest name="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_Right"/>
+			<startquest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Right"/>
+			<startquest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Right"/>
+			<startquest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Right"/>				
+		<!--	<spawnbuilding name="TwinTown_BanditCamp_Leader" action="ignoreBlocking,spawnInstant,replace" x="29" y="59" mode="enemy" units="EliteWildlifeRecruit|5,EliteWildlifeAir|5" />	
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant,replace" x="28" y="71" mode="enemy" units="EliteWildlifeRecruit|5,EliteWildlifeAir|5" />			
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant,replace" x="31" y="68" mode="enemy" units="EliteWildlifeRecruit|5,EliteWildlifeAir|5" />
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant,replace" x="33" y="66" mode="enemy" units="EliteWildlifeRecruit|5,EliteWildlifeAir|5" />			-->	
+		</posteffects>  	
+	</quest>			
+	
+	
+	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_Left" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_left1" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_left2" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_left3" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_left4" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_left5" />				
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_left1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp_Leader" action="ignoreBlocking,spawnInstant" x="27" y="8" mode="enemy" units="EliteWildlifeRecruit|1,EliteWildlifeAir|1" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_left2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp_Leader" action="ignoreBlocking,spawnInstant" x="27" y="8" mode="enemy" units="EliteWildlifeRecruit|2,EliteWildlifeAir|2" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_left3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp_Leader" action="ignoreBlocking,spawnInstant" x="27" y="8" mode="enemy" units="EliteWildlifeRecruit|3,EliteWildlifeAir|3" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_left4" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp_Leader" action="ignoreBlocking,spawnInstant" x="27" y="8" mode="enemy" units="EliteWildlifeRecruit|4,EliteWildlifeAir|4" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_left5" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp_Leader" action="ignoreBlocking,spawnInstant" x="27" y="8" mode="enemy" units="EliteWildlifeRecruit|5,EliteWildlifeAir|5" />		
+		</posteffects>
+	</quest>		
+	
+	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_Mid" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_mid1" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_mid2" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_mid3" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_mid4" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_mid5" />				
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_mid1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp_Leader" action="ignoreBlocking,spawnInstant" x="35" y="10" mode="enemy" units="EliteWildlifeRecruit|11,EliteWildlifeAir|11" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_mid2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp_Leader" action="ignoreBlocking,spawnInstant" x="35" y="10" mode="enemy" units="EliteWildlifeRecruit|12,EliteWildlifeAir|12" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_mid3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp_Leader" action="ignoreBlocking,spawnInstant" x="35" y="10" mode="enemy" units="EliteWildlifeRecruit|13,EliteWildlifeAir|13" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_mid4" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp_Leader" action="ignoreBlocking,spawnInstant" x="35" y="10" mode="enemy" units="EliteWildlifeRecruit|14,EliteWildlifeAir|14" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_mid5" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp_Leader" action="ignoreBlocking,spawnInstant" x="35" y="10" mode="enemy" units="EliteWildlifeRecruit|15,EliteWildlifeAir|15" />		
+		</posteffects>
+	</quest>			
+
+	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_Right" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_right1" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_right2" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_right3" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_right4" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_right5" />				
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_right1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp_Leader" action="ignoreBlocking,spawnInstant" x="43" y="8" mode="enemy" units="EliteWildlifeRecruit|21,EliteWildlifeAir|21" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_right2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp_Leader" action="ignoreBlocking,spawnInstant" x="43" y="8" mode="enemy" units="EliteWildlifeRecruit|22,EliteWildlifeAir|22" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_right3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp_Leader" action="ignoreBlocking,spawnInstant" x="43" y="8" mode="enemy" units="EliteWildlifeRecruit|23,EliteWildlifeAir|23" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_right4" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp_Leader" action="ignoreBlocking,spawnInstant" x="43" y="8" mode="enemy" units="EliteWildlifeRecruit|24,EliteWildlifeAir|24" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomLeader_right5" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp_Leader" action="ignoreBlocking,spawnInstant" x="43" y="8" mode="enemy" units="EliteWildlifeRecruit|25,EliteWildlifeAir|25" />		
+		</posteffects>
+	</quest>		
+
+	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Left" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Left_left1" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Left_left2" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Left_left3" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Left_left4" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Left_left5" />				
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Left_left1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="27" y="12" mode="enemy" units="EliteWildlifeRecruit|121,EliteWildlifeAir|121" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Left_left2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="27" y="12" mode="enemy" units="EliteWildlifeRecruit|122,EliteWildlifeAir|122" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Left_left3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="27" y="12" mode="enemy" units="EliteWildlifeRecruit|123,EliteWildlifeAir|123" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Left_left4" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="27" y="12" mode="enemy" units="EliteWildlifeRecruit|124,EliteWildlifeAir|124" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Left_left5" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="27" y="12" mode="enemy" units="EliteWildlifeRecruit|125,EliteWildlifeAir|125" />		
+		</posteffects>
+	</quest>		
+
+	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Left" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Left_mid1" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Left_mid2" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Left_mid3" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Left_mid4" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Left_mid5" />				
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Left_mid1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="28" y="11" mode="enemy" units="EliteWildlifeRecruit|1,EliteWildlifeAir|1" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Left_mid2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="28" y="11" mode="enemy" units="EliteWildlifeRecruit|2,EliteWildlifeAir|2" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Left_mid3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="28" y="11" mode="enemy" units="EliteWildlifeRecruit|3,EliteWildlifeAir|3" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Left_mid4" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="28" y="11" mode="enemy" units="EliteWildlifeRecruit|4,EliteWildlifeAir|4" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Left_mid5" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="28" y="11" mode="enemy" units="EliteWildlifeRecruit|5,EliteWildlifeAir|5" />		
+		</posteffects>
+	</quest>		
+
+	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Left" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Left_right1" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Left_right2" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Left_right3" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Left_right4" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Left_right5" />				
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Left_right1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="29" y="8" mode="enemy" units="EliteWildlifeRecruit|41,EliteWildlifeAir|41" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Left_right2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="29" y="8" mode="enemy" units="EliteWildlifeRecruit|42,EliteWildlifeAir|42" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Left_right3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="29" y="8" mode="enemy" units="EliteWildlifeRecruit|43,EliteWildlifeAir|43" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Left_right4" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="29" y="8" mode="enemy" units="EliteWildlifeRecruit|44,EliteWildlifeAir|44" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Left_right5" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="29" y="8" mode="enemy" units="EliteWildlifeRecruit|45,EliteWildlifeAir|45" />		
+		</posteffects>
+	</quest>		
+
+
+
+	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Mid" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Mid_left1" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Mid_left2" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Mid_left3" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Mid_left4" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Mid_left5" />				
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Mid_left1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="34" y="12" mode="enemy" units="EliteWildlifeRecruit|34,EliteWildlifeAir|121" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Mid_left2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="34" y="12" mode="enemy" units="EliteWildlifeRecruit|34,EliteWildlifeAir|122" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Mid_left3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="34" y="12" mode="enemy" units="EliteWildlifeRecruit|34,EliteWildlifeAir|123" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Mid_left4" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="34" y="12" mode="enemy" units="EliteWildlifeRecruit|34,EliteWildlifeAir|124" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Mid_left5" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="34" y="12" mode="enemy" units="EliteWildlifeRecruit|34,EliteWildlifeAir|125" />		
+		</posteffects>
+	</quest>		
+
+	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Mid" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Mid_mid1" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Mid_mid2" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Mid_mid3" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Mid_mid4" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Mid_mid5" />				
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Mid_mid1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="35" y="13" mode="enemy" units="EliteWildlifeRecruit|9,EliteWildlifeAir|1" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Mid_mid2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="35" y="13" mode="enemy" units="EliteWildlifeRecruit|9,EliteWildlifeAir|2" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Mid_mid3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="35" y="13" mode="enemy" units="EliteWildlifeRecruit|9,EliteWildlifeAir|3" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Mid_mid4" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="35" y="13" mode="enemy" units="EliteWildlifeRecruit|9,EliteWildlifeAir|4" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Mid_mid5" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="35" y="13" mode="enemy" units="EliteWildlifeRecruit|9,EliteWildlifeAir|5" />		
+		</posteffects>
+	</quest>		
+
+	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Mid" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Mid_right1" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Mid_right2" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Mid_right3" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Mid_right4" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Mid_right5" />				
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Mid_right1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="36" y="11" mode="enemy" units="EliteWildlifeRecruit|55,EliteWildlifeAir|41" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Mid_right2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="36" y="11" mode="enemy" units="EliteWildlifeRecruit|55,EliteWildlifeAir|42" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Mid_right3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="36" y="11" mode="enemy" units="EliteWildlifeRecruit|55,EliteWildlifeAir|43" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Mid_right4" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="36" y="11" mode="enemy" units="EliteWildlifeRecruit|55,EliteWildlifeAir|44" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Mid_right5" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="36" y="11" mode="enemy" units="EliteWildlifeRecruit|55,EliteWildlifeAir|45" />		
+		</posteffects>
+	</quest>	
+
+
+
+
+	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Right" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Right_left1" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Right_left2" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Right_left3" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Right_left4" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Right_left5" />				
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Right_left1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="40" y="10" mode="enemy" units="EliteWildlifeRecruit|77,EliteWildlifeAir|121" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Right_left2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="40" y="10" mode="enemy" units="EliteWildlifeRecruit|77,EliteWildlifeAir|122" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Right_left3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="40" y="10" mode="enemy" units="EliteWildlifeRecruit|77,EliteWildlifeAir|123" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Right_left4" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="40" y="10" mode="enemy" units="EliteWildlifeRecruit|77,EliteWildlifeAir|124" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup1_Right_left5" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="40" y="10" mode="enemy" units="EliteWildlifeRecruit|77,EliteWildlifeAir|125" />		
+		</posteffects>
+	</quest>		
+
+	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Right" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Right_mid1" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Right_mid2" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Right_mid3" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Right_mid4" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Right_mid5" />				
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Right_mid1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="41" y="9" mode="enemy" units="EliteWildlifeRecruit|88,EliteWildlifeAir|1" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Right_mid2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="41" y="9" mode="enemy" units="EliteWildlifeRecruit|88,EliteWildlifeAir|2" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Right_mid3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="41" y="9" mode="enemy" units="EliteWildlifeRecruit|88,EliteWildlifeAir|3" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Right_mid4" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="41" y="9" mode="enemy" units="EliteWildlifeRecruit|88,EliteWildlifeAir|4" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup2_Right_mid5" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="41" y="9" mode="enemy" units="EliteWildlifeRecruit|88,EliteWildlifeAir|5" />		
+		</posteffects>
+	</quest>		
+
+	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Right" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Right_right1" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Right_right2" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Right_right3" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Right_right4" />
+				<postrequisite startQuest="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Right_right5" />				
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Right_right1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="43" y="12" mode="enemy" units="EliteWildlifeRecruit|99,EliteWildlifeAir|41" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Right_right2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="43" y="12" mode="enemy" units="EliteWildlifeRecruit|99,EliteWildlifeAir|42" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Right_right3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="43" y="12" mode="enemy" units="EliteWildlifeRecruit|99,EliteWildlifeAir|43" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Right_right4" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="43" y="12" mode="enemy" units="EliteWildlifeRecruit|99,EliteWildlifeAir|44" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_RandomCampGroup3_Right_right5" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_BanditCamp" action="ignoreBlocking,spawnInstant" x="43" y="12" mode="enemy" units="EliteWildlifeRecruit|99,EliteWildlifeAir|45" />		
+		</posteffects>
+	</quest>	
+
+
+	
+	
+   <quest name="TwinTown_Adv_Chapter1_Sub_10" type="Story" icon="QuestShort" npc="ferri_felder.png" notifyHomeZone="true" repeatable="true" >	
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_10_QGV" min="1" max="1"/>			
+		</startcondition>	
+		<triggers>
+			<buildingdestroyed min="3" item="TwinTown_BanditCamp_Leader" />
+			<buildingdestroyed min="9" item="TwinTown_BanditCamp" />	
+		</triggers>
+		<posteffects>		
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_10_QGV" action="set" amount="10" />			
+			<reward type="XP" amount="5000" />
+			<reward type="Buff" item="BattleBuffKill_random_unit_type_limited" amount="1"/>		
+			<reward type="Buff" item="BattleBuffDestroy_small_medium_camps" amount="1"/>					
+		</posteffects>		
+    </quest>	
+	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_10_reset" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_10_QGV" min="10" max="10" />			
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>		
+			<resetquest name="TwinTown_Adv_Chapter1_Sub_10" />
+			<resetquest name="TwinTown_Adv_Chapter1_Sub_10_Helper" />				
+		</posteffects>
+	</quest>		
+
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_11_Helper" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_11_QGV" min="11" max="999" />			
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>		
+			<spawnbuilding name="TwinTown_barricade_lot_left" x="31" y="30" mode="enemy" action="ignoreBlocking,spawnInstant,replace"/>			
+			<spawnbuilding name="TwinTown_barricade_lot_left" x="36" y="34" mode="enemy" action="ignoreBlocking,spawnInstant,replace"/>	
+			<spawnbuilding name="TwinTown_barricade_lot_left" x="37" y="32" mode="enemy" action="ignoreBlocking,spawnInstant,replace"/>	
+			<spawnbuilding name="TwinTown_barricade_lot_right" x="32" y="30" mode="enemy" action="ignoreBlocking,spawnInstant,replace"/>	
+			<spawnbuilding name="TwinTown_barricade_lot_right" x="33" y="32" mode="enemy" action="ignoreBlocking,spawnInstant,replace"/>		
+			<spawnbuilding name="TwinTown_barricade_lot_right" x="34" y="34" mode="enemy" action="ignoreBlocking,spawnInstant,replace"/>	
+			<spawnbuilding name="TwinTown_barricade_lot_right" x="38" y="32" mode="enemy" action="ignoreBlocking,spawnInstant,replace"/>		
+			<startquest name="TwinTown_Adv_Chapter1_Sub_11"/>
+		</posteffects>
+	</quest>	
+
+   <quest name="TwinTown_Adv_Chapter1_Sub_11" type="Story" icon="QuestShort" npc="ferri_felder.png" notifyHomeZone="true" >	
+		<triggers>
+			<onmaplist item="TwinTown_Barricades_left,TwinTown_Barricades_right" min="7" locaExtension="TwinTownBuildBarricades"/>
+		</triggers>
+		<posteffects>		
+			<cancelquest name="TwinTown_Adv_Chapter1_Sub_10"/>
+			<cancelquest name="TwinTown_Adv_Chapter1_Sub_10_Helper"/>			
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_10_QGV" action="set" amount="99" />	
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_11_QGV" action="set" amount="0" />				
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_12_QGV" action="set" amount="1" />		
+			<reward type="XP" amount="8000" />
+			<reward type="Buff" item="BattleBuffKill_random_boss_limited" amount="3"/>		
+			<reward type="Buff" item="ProductivityBuffLvl18" amount="7"/>			
+		</posteffects>		
+    </quest>		
+	
+	<!-- RANDOM ENEMIES 1 END -->
+	<!-- RANDOM ENEMIES 1 END -->
+	<!-- RANDOM ENEMIES 1 END -->
+		
+
+	<!-- BUILD PATH CHAPTER 1 -->
+   <quest name="TwinTown_Adv_Chapter1_Sub_20" type="Story" icon="QuestShort" npc="ferri_felder.png" notifyHomeZone="true" >	
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_20_QGV" min="1" max="1"/>			
+		</startcondition>	
+		<triggers>
+			<buffappliedonadventure min="1" item="EmptyEffectBuff_TwinTown_Gift" target="TwinTown_MayorHouse" locaExtension="on" />
+		</triggers>
+		<posteffects>		
+			<reward type="XP" amount="2000" />
+			<reward type="Buff" item="BattleBuffBomb_random_units" amount="5"/>		
+			<reward type="Buff" item="BattleBuffKill_random_unit_type" amount="5"/>		
+			<reward type="Buff" item="ProductivityBuffLvl12" amount="5"/>				
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_20_QGV" action="set" amount="10" />		
+		</posteffects>		
+    </quest>			
+
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_21_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_21_QGV" min="1" max="1"/>			
+		</startcondition>	
+		<triggers>
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Adv_Chapter1_Sub_21"/>
+			<spawnbuilding name="TwinTown_Farmfield_Ruin" action="ignoreBlocking,spawnInstant,replace" x="36" y="60" mode="enemy" />
+			<spawnbuilding name="TwinTown_Farmfield_Ruin" action="ignoreBlocking,spawnInstant,replace" x="35" y="58" mode="enemy" />	
+			<spawnbuilding name="TwinTown_Farmfield_Ruin" action="ignoreBlocking,spawnInstant,replace" x="35" y="53" mode="enemy" />	
+		</posteffects>
+	</quest>	
+
+   <quest name="TwinTown_Adv_Chapter1_Sub_21" type="Story" icon="QuestShort" npc="ferri_felder.png" >	
+		<triggers>
+				<buffappliedonadventure min="3" item="BattleBuffDestroy_TwinTown_Farmfield" target="TwinTown_Farmfield_Ruin" locaExtension="any"/>
+				<onmap item="TwinTown_Farmfield" min="3" locaExtension="OnmapTT" />
+		</triggers>
+		<posteffects>		
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_21_QGV" action="set" amount="10" />	
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_22_QGV" action="set" amount="1" />			
+				<reward type="XP" amount="5000"/>			
+				<reward type="Buff" item="ProductivityBuffLvl100" amount="5"/>	
+				<reward type="Buff" item="ProductivityBuffZoneFoodLvl1" amount="3"/>					
+		</posteffects>		
+    </quest>	
+	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_22_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_22_QGV" min="1" max="1"/>			
+		</startcondition>	
+		<triggers>
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Adv_Chapter1_Sub_22"/>
+			<spawnbuilding name="TwinTown_Ruin" action="ignoreBlocking,spawnInstant,replace" x="27" y="58" mode="enemy" />
+			<spawnbuilding name="TwinTown_Ruin" action="ignoreBlocking,spawnInstant,replace" x="27" y="51" mode="enemy" />
+			<spawnbuilding name="TwinTown_Ruin" action="ignoreBlocking,spawnInstant,replace" x="31" y="62" mode="enemy" />
+			<spawnbuilding name="TwinTown_Ruin" action="ignoreBlocking,spawnInstant,replace" x="32" y="64" mode="enemy" />
+			<spawnbuilding name="TwinTown_Ruin" action="ignoreBlocking,spawnInstant,replace" x="33" y="62" mode="enemy" />		
+			<spawnbuilding name="TwinTown_Ruin" action="ignoreBlocking,spawnInstant,replace" x="34" y="60" mode="enemy" />
+			<spawnbuilding name="TwinTown_Ruin" action="ignoreBlocking,spawnInstant,replace" x="31" y="40" mode="enemy" />
+			<spawnbuilding name="TwinTown_Ruin" action="ignoreBlocking,spawnInstant,replace" x="33" y="39" mode="enemy" />
+			<spawnbuilding name="TwinTown_Ruin" action="ignoreBlocking,spawnInstant,replace" x="34" y="41" mode="enemy" />
+			<spawnbuilding name="TwinTown_Ruin" action="ignoreBlocking,spawnInstant,replace" x="40" y="60" mode="enemy" />				
+		</posteffects>
+	</quest>			
+
+   <quest name="TwinTown_Adv_Chapter1_Sub_22" type="Story" icon="QuestShort" npc="ferri_felder.png" >	
+		<triggers>
+				<buffappliedonadventure min="10" item="BattleBuffDestroy_TwinTown_Ruins_01" target="TwinTown_Ruin" locaExtension="any"/>
+				<onmap item="TwinTown_Ruin" max="0" locaExtension="NotOnmapTT" />			
+		</triggers>
+		<posteffects>		
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_22_QGV" action="set" amount="10" />			
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_23_QGV" action="set" amount="1" />		
+			<reward type="XP" amount="5000"/>	
+			<reward type="Buff" item="ProductivityBuffZoneStoneLvl1" amount="5"/>	
+			<reward type="Buff" item="ProductivityBuffLvl22" amount="5"/>				
+		</posteffects>		
+    </quest>	
+	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_23_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_23_QGV" min="1" max="1"/>			
+		</startcondition>	
+		<triggers>
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Adv_Chapter1_Sub_23"/>
+			<spawnbuilding name="TwinTown_DefenseTower_Ruins" action="ignoreBlocking,spawnInstant,replace" x="26" y="72" mode="enemy" />
+			<spawnbuilding name="TwinTown_DefenseTower_Ruins" action="ignoreBlocking,spawnInstant,replace" x="27" y="47" mode="enemy" />	
+			<spawnbuilding name="TwinTown_DefenseTower_Ruins" action="ignoreBlocking,spawnInstant,replace" x="33" y="42" mode="enemy" />	
+			<spawnbuilding name="TwinTown_DefenseTower_Ruins" action="ignoreBlocking,spawnInstant,replace" x="38" y="49" mode="enemy" />	
+			<spawnbuilding name="TwinTown_DefenseTower_Ruins" action="ignoreBlocking,spawnInstant,replace" x="35" y="67" mode="enemy" />				
+		</posteffects>
+	</quest>		
+
+   <quest name="TwinTown_Adv_Chapter1_Sub_23" type="Story" icon="QuestShort" npc="ferri_felder.png" >	
+		<triggers>
+				<buffappliedonadventure min="5" item="BattleBuffDestroy_TwinTown_DefenseTowerRuins_01" target="TwinTown_DefenseTower_Ruins" locaExtension="any"/>
+				<onmap item="TwinTown_DefenseTower" min="5" locaExtension="OnmapTT" />		
+		</triggers>
+		<posteffects>		
+			<reward type="XP" amount="8000"/>	
+			<reward type="Buff" item="BattleBuffBomb_random_units" amount="5"/>			
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_23_QGV" action="set" amount="10" />				
+		</posteffects>		
+    </quest>	
+	
+
+	
+   <quest name="TwinTown_Adv_Chapter1_Sub_25" type="Story" icon="QuestShort" npc="quest_character_sonya_solemoon.png" notifyHomeZone="true" >	
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_25_QGV" min="1" max="1"/>			
+		</startcondition>	
+		<triggers>
+			<buildingselected min="1" item="TwinTown_MayorHouse"/>	
+			<buildingselected min="1" item="Lookout_Tree"/>	
+			<buildingselected min="1" item="TwinTown_Pirate_Storehouse"/>	
+			<buildingselected min="1" item="TwinTown_Pirate_hut01"/>		
+			<buildingselected min="1" item="TwinTown_Pirate_hut02"/>		
+			<buildingselected min="1" item="TwinTown_Tavern02"/>						
+			<buildingselected min="1" item="SimpleResidence"/>		
+			<buildingselected min="1" item="grain_barn"/>				
+			<buildingselected min="1" item="Farm"/>				
+		</triggers>
+		<posteffects>		
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_25_QGV" action="set" amount="10" />		
+			<reward type="XP" amount="500"/>				
+		</posteffects>		
+    </quest>		
+	
+   <quest name="TwinTown_Adv_Chapter1_Sub_26_Helper" showQuestWindow="false" showRewardWindow="false" >	
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_26_QGV" min="1" max="1"/>			
+		</startcondition>	
+		<triggers>				
+		</triggers>
+		<posteffects>		
+			<spawnbuilding name="Tracks" x="33" y="78" mode="enemy" action="ignoreBlocking,spawnInstant"/>			
+			<spawnbuilding name="Tracks" x="29" y="73" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="29" y="59" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="31" y="47" mode="enemy" action="ignoreBlocking,spawnInstant"/>		
+			<spawnbuilding name="Tracks" x="31" y="43" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="40" y="61" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="27" y="40" mode="enemy" action="ignoreBlocking,spawnInstant"/>			
+		</posteffects>		
+    </quest>		
+	
+   <quest name="TwinTown_Adv_Chapter1_Sub_26" type="Story" icon="QuestShort" npc="quest_character_sonya_solemoon.png" notifyHomeZone="true" >	
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_26_QGV" min="1" max="1"/>			
+		</startcondition>	
+		<triggers>
+			<buildingdestroyed min="7" item="Tracks" locaExtension="TwinTown_Tracks"/>				
+		</triggers>
+		<posteffects>		
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_26_QGV" action="set" amount="10" />	
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_27_QGV" action="set" amount="1" />		
+			<reward type="XP" amount="500"/>			
+		</posteffects>		
+    </quest>			
+	
+   <quest name="TwinTown_Adv_Chapter1_Sub_27" type="Story" icon="QuestShort" npc="quest_character_sonya_solemoon.png" >	
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_27_QGV" min="1" max="1"/>			
+		</startcondition>	
+		<triggers>
+			<buildingselected min="1" item="TwinTown_MayorHouse"/>				
+		</triggers>
+		<posteffects>		
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_27_QGV" action="set" amount="10" />	
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_28_QGV" action="set" amount="1" />		
+			<exploresector id="16"/>	
+			<exploresector id="7"/>			
+			<reward type="XP" amount="500"/>				
+		</posteffects>		
+    </quest>		
+	
+ 	<quest name="TwinTown_Adv_Chapter1_Sub_28_Helper" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_28_QGV" min="1" max="1"/>			
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Adv_Chapter1_Sub_28"/>
+			<spawnbuilding name="TwinTown_WildlifeCamp_Leader" action="ignoreBlocking,spawnInstant" x="16" y="55" mode="enemy" units="EliteWildlifeRecruit|100,EliteWildlifeAir|80" />
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="16" y="49" mode="enemy" units="EliteWildlifeRecruit|100,EliteWildlifeAir|80" />			
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="19" y="54" mode="enemy" units="EliteWildlifeRecruit|100,EliteWildlifeAir|80" />
+			<spawnbuilding name="TwinTown_WildlifeCamp" action="ignoreBlocking,spawnInstant" x="18" y="49" mode="enemy" units="EliteWildlifeRecruit|100,EliteWildlifeAir|80" />					
+		</posteffects>
+	</quest>			
+	
+   <quest name="TwinTown_Adv_Chapter1_Sub_28" type="Story" icon="QuestShort" npc="quest_character_sonya_solemoon.png" >	
+		<triggers>
+			<buildingdestroyed min="1" item="TwinTown_WildlifeCamp_Leader" />
+			<buildingdestroyed min="3" item="TwinTown_WildlifeCamp" />	
+		</triggers>
+		<posteffects>		
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_28_QGV" action="set" amount="10" />	
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_29_QGV" action="set" amount="1" />			
+			<reward type="XP" amount="5000"/>	
+			<reward type="Buff" item="ProductivityBuffLvl12" amount="3"/>				
+		</posteffects>		
+    </quest>			
+	
+   <quest name="TwinTown_Adv_Chapter1_Sub_29_Helper" showQuestWindow="false" showRewardWindow="false" >	
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_29_QGV" min="1" max="1"/>			
+		</startcondition>	
+		<triggers>				
+		</triggers>
+		<posteffects>		
+			<spawnbuilding name="Tracks" x="19" y="58" mode="enemy" action="ignoreBlocking,spawnInstant"/>			
+			<spawnbuilding name="Tracks" x="14" y="55" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="17" y="45" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="17" y="53" mode="enemy" action="ignoreBlocking,spawnInstant"/>		
+			<spawnbuilding name="Tracks" x="14" y="46" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<startquest name="TwinTown_Adv_Chapter1_Sub_29"/>			
+		</posteffects>		
+    </quest>		
+	
+   <quest name="TwinTown_Adv_Chapter1_Sub_29" type="Story" icon="QuestShort" npc="quest_character_sonya_solemoon.png" >	
+		<triggers>
+			<buildingdestroyed min="5" item="Tracks" locaExtension="TwinTown_Tracks"/>				
+		</triggers>
+		<posteffects>		
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_29_QGV" action="set" amount="10" />	
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_30_QGV" action="set" amount="1" />	
+			<exploresector id="17"/>		
+			<reward type="XP" amount="2000"/>				
+		</posteffects>		
+    </quest>			
+	
+   <quest name="TwinTown_Adv_Chapter1_Sub_30" type="Story" icon="QuestShort" npc="quest_character_sonya_solemoon.png" >	
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_30_QGV" min="1" max="1"/>			
+		</startcondition>   
+		<triggers>
+			<buildingselected min="1" item="TwinTown_Grandmother_Hut"/>				
+		</triggers>
+		<posteffects>		
+			<spawnbuilding name="Adv_DestroyableMountain_Mountain_BIG_sw02_DECO" x="6" y="48" mode="free" action="ignoreBlocking,spawnInstant,replace"/>	
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_30_QGV" action="set" amount="10" />	
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_31_QGV" action="set" amount="1" />	
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_35_QGV" action="set" amount="1" />	
+			<exploresector id="18"/>			
+			<reward type="XP" amount="2000"/>				
+		</posteffects>		
+    </quest>				
+	
+   <quest name="TwinTown_Adv_Chapter1_Sub_31_Helper" showQuestWindow="false" showRewardWindow="false" >	
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_31_QGV" min="1" max="1"/>			
+		</startcondition>	
+		<triggers>				
+		</triggers>
+		<posteffects>		
+			<spawnbuilding name="Tracks" x="11" y="63" mode="enemy" action="ignoreBlocking,spawnInstant"/>			
+			<spawnbuilding name="Tracks" x="10" y="55" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="6" y="53" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="6" y="50" mode="enemy" action="ignoreBlocking,spawnInstant"/>		
+			<spawnbuilding name="Tracks" x="8" y="46" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="7" y="49" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="7" y="50" mode="enemy" action="ignoreBlocking,spawnInstant"/>				
+			<startquest name="TwinTown_Adv_Chapter1_Sub_31"/>			
+		</posteffects>		
+    </quest>		
+	
+   <quest name="TwinTown_Adv_Chapter1_Sub_31" type="Story" icon="QuestShort" npc="quest_character_sonya_solemoon.png" >	
+		<triggers>
+			<buildingdestroyed min="7" item="Tracks" locaExtension="TwinTown_Tracks"/>				
+		</triggers>
+		<posteffects>		
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_31_QGV" action="set" amount="10" />	
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_32_QGV" action="set" amount="1" />			
+			<reward type="XP" amount="3000"/>				
+		</posteffects>		
+    </quest>	
+
+	   <quest name="TwinTown_Adv_Chapter1_Sub_32_Helper" showQuestWindow="false" showRewardWindow="false" >	
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_32_QGV" min="1" max="1"/>			
+		</startcondition>	
+		<triggers>				
+		</triggers>
+		<posteffects>		
+			<spawnbuilding name="Adv_DestroyableMountain_Mountain_BIG_sw02" x="6" y="48" mode="enemy" action="ignoreBlocking,spawnInstant,replace"/>						
+			<startquest name="TwinTown_Adv_Chapter1_Sub_32"/>			
+		</posteffects>		
+    </quest>		
+	
+   <quest name="TwinTown_Adv_Chapter1_Sub_32" type="Story" icon="QuestShort" npc="quest_character_sonya_solemoon.png" notifyHomeZone="true" >	
+		<triggers>
+				<buffappliedonadventure min="1" item="BattleBuffDestroy_TwinTown_Dynamite" target="Adv_DestroyableMountain_Mountain_BIG_sw02" locaExtension="on"/>	
+		</triggers>
+		<posteffects>		
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_32_QGV" action="set" amount="10" />		
+			<reward type="XP" amount="10000"/>	
+			<reward type="Buff" item="ProductivityBuffZoneOreLvl1" amount="3"/>	
+			<reward type="Buff" item="ProductivityBuffZoneStoneLvl1" amount="3"/>
+			<reward type="Buff" item="ProductivityBuffZoneWeaponLvl1" amount="3"/>
+			<reward type="Buff" item="RecruitingBuffZoneLvl1" amount="3"/>			
+		</posteffects>		
+    </quest>			
+	
+	   <quest name="TwinTown_Adv_Chapter1_Sub_33_Helper" showQuestWindow="false" showRewardWindow="false" >	
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_33_QGV" min="1" max="1"/>			
+		</startcondition>	
+		<triggers>				
+		</triggers>
+		<posteffects>		
+			<spawnbuilding name="TwinTown_building_spot" x="40" y="60" mode="enemy" action="ignoreBlocking,spawnInstant,replace"/>						
+			<startquest name="TwinTown_Adv_Chapter1_Sub_33"/>			
+		</posteffects>		
+    </quest>			
+	
+   <quest name="TwinTown_Adv_Chapter1_Sub_33" type="Story" icon="QuestShort" npc="ferri_felder.png" notifyHomeZone="true" >	   
+		<triggers>
+			<buffappliedonadventure target="TwinTown_building_spot" locaExtension="on"/>	
+		</triggers>
+		<posteffects>		
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_33_QGV" action="set" amount="10" />			
+			<reward type="XP" amount="8000"/>				
+		</posteffects>		
+    </quest>			
+	
+	<quest name="TwinTown_Adv_Chapter1_Sub_33_Decision_A" showQuestWindow="false" showRewardWindow="false" notifyHomeZone="true">
+		<startcondition>
+		   <questactive item="TwinTown_Adv_Chapter1_Sub_33"/>
+           <buffappliedonadventure min="1" item="EmptyEffectBuff_TwinTown_ConstructionKit_Sub33_A" target="TwinTown_building_spot"/>
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_SalpeterMine" mode="free" action="spawnConstructing,ignoreBlocking,replace"  x="40" y="60"/>	
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_33_Decision_A" action="set" amount="10" />							
+		</posteffects>
+	</quest>	
+	
+	<quest name="TwinTown_Adv_Chapter1_Sub_33_Decision_B" showQuestWindow="false" showRewardWindow="false" notifyHomeZone="true">
+		<startcondition>
+		   <questactive item="TwinTown_Adv_Chapter1_Sub_33"/>
+           <buffappliedonadventure min="1" item="EmptyEffectBuff_TwinTown_ConstructionKit_Sub33_B" target="TwinTown_building_spot"/>
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="TwinTown_TitaniumMine" mode="free" action="spawnConstructing,ignoreBlocking,replace"  x="40" y="60"/>	
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_33_Decision_B" action="set" amount="10" />							
+		</posteffects>
+	</quest>		
+	
+   <quest name="TwinTown_Adv_Chapter1_Sub_34" type="Story" icon="QuestShort" npc="ferri_felder.png" >	
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_34_QGV" min="1" max="1"/>			
+		</startcondition>	
+		<triggers>
+			<buildingselected min="1" item="TwinTown_MayorHouse" locaExtension="VisitTTMayor"/>	
+		</triggers>
+		<posteffects>		
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_34_QGV" action="set" amount="10" />	
+			<finishquest name="Adv_TwinTown_NoEnd_Last"/>
+			<reward type="XP" amount="500" />				
+		</posteffects>		
+    </quest>		
+	
+	
+   <quest name="TwinTown_Adv_Chapter1_Sub_35" type="Story" icon="QuestShort" npc="quest_character_sonya_solemoon.png" >	
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_35_QGV" min="1" max="1"/>			
+		</startcondition>	
+		<triggers>
+				<buffappliedonadventure min="1" item="EmptyEffectBuff_TwinTown_Investigate" target="TwinTown_Grandmother_Hut" locaExtension="on"/>	
+		</triggers>
+		<posteffects>		
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_35_QGV" action="set" amount="10" />		
+			<reward type="XP" amount="2000" />
+			<reward type="Buff" item="BattleBuffBomb_random_units" amount="3"/>		
+			<reward type="Buff" item="BattleBuffKill_random_unit_type" amount="3"/>		
+			<reward type="Buff" item="BattleBuffKill_random_boss_limited" amount="3"/>					
+		</posteffects>		
+    </quest>		
+	
+	
+	
+	<!-- CHAPTER 1 END -->
+
+	
+</Root>

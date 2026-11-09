@@ -1,0 +1,1569 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<Root>
+ 	
+<!-- DAILY QUESTS -->
+    <quest name="DailyQuestLevelRequirement" showQuestWindow="false" showRewardWindow="false" specialType="firstQuest"> 
+		<triggers>
+			<playerlevel min="21"/>
+    	</triggers>
+    	<rewards>
+    	</rewards>
+    	<postrequisits>
+    		<postrequisite startQuest="DailyQuest" />
+    	</postrequisits>
+    </quest>
+	
+     <quest name="DailyQuest" showQuestWindow="false" showRewardWindow="false" specialType="regularDailyQuestList">
+        <triggers>
+          <trigger type="DailyTime" amount="1"/>
+        </triggers>
+        <postrequisits>
+          <postrequisite type="randomQuestList" >
+          	<postrequisite filterQuest="Level21-50" startQuest="DaiANewJob" />
+          	<postrequisite filterQuest="Level21-50" startQuest="DaiBeerSupply" />
+          	<postrequisite filterQuest="Level21-50" startQuest="DaiCarvedIntoStone" />
+          	<postrequisite filterQuest="Level21-50" startQuest="DaiFollower" />
+          	<postrequisite filterQuest="Level21-50" startQuest="DaiTheBoneDiscovery" />
+          	<postrequisite filterQuest="Level21-50" startQuest="DaiValuableJugs" />
+          	<postrequisite filterQuest="Level21-50" startQuest="DaiWellFilled" />
+          	<postrequisite filterQuest="Level21-50" startQuest="DaiBurntDown" />
+          	<postrequisite filterQuest="Level21-50" startQuest="DaiFirstWave" />
+          	<postrequisite filterQuest="Level21-50" startQuest="DaiFoodDonation" />
+          	<postrequisite filterQuest="Level21-50" startQuest="DaiNewFarm" />
+          	<postrequisite filterQuest="Level21-50" startQuest="DaiNewSettlers" />
+          	<postrequisite filterQuest="Level21-50" startQuest="DaiNutritionForTheNew" />
+          	<postrequisite filterQuest="Level21-50" startQuest="DaiRanAground" />
+          	<postrequisite filterQuest="Level21-50" startQuest="DaiSecondWave" />
+          	<postrequisite filterQuest="Level21-50" startQuest="DaiTheBakery" />
+          	<postrequisite filterQuest="Level21-50" startQuest="DaiTheBear" />
+          	<postrequisite filterQuest="Level21-50" startQuest="DaiTheExhibition" />
+          	<postrequisite filterQuest="Level21-50" startQuest="DaiTheGreatDiscovery" />
+          	<postrequisite filterQuest="Level21-50" startQuest="DaiTheHugeStatue" />
+          	<postrequisite filterQuest="Level21-50" startQuest="DaiTheodorNeedsHelp" />
+          	<postrequisite filterQuest="Level21-50" startQuest="DaiTimberWorm" />
+          	<postrequisite filterQuest="Level21-50" startQuest="DaiDogFamily" />
+          	<postrequisite filterQuest="Level21-50" startQuest="DaiNotEnoughGoods" />
+          	<postrequisite filterQuest="Level21-50" startQuest="DaiWrongOrder" />
+          	<postrequisite filterQuest="Level21-50" startQuest="DaiHarvestTime" />
+          	<postrequisite filterQuest="Level21-50" startQuest="DaiNegotiationSkills" />
+          	<postrequisite filterQuest="Level21-50" startQuest="DaiTheWorldOfTrading" />
+          	<postrequisite filterQuest="Level21-50" startQuest="DaiHighRequest" />
+          	<postrequisite filterQuest="Level21-50" startQuest="DaiTheMonster" />
+			
+			<postrequisite filterQuest="Level24-50" startQuest="DaiTheatre" />
+          	
+          	<postrequisite filterQuest="Level31-65" startQuest="DaiHorseGrowing" />
+          	<postrequisite filterQuest="Level31-65" startQuest="DaiASignOfEsteem" />
+          	<postrequisite filterQuest="Level31-65" startQuest="DaiASignOfPeace" />
+          	<postrequisite filterQuest="Level31-65" startQuest="DaiInTheCitysHonor" />
+			<postrequisite filterQuest="Level31-65" startQuest="DaiLovelyGold" />
+			<postrequisite filterQuest="Level31-65" startQuest="DaiMeatForTheNeighbors" />
+			<postrequisite filterQuest="Level31-65" startQuest="DaiTheDefendOfTheVillage" />
+			<postrequisite filterQuest="Level31-65" startQuest="DaiTheKingsMonument" />
+			<postrequisite filterQuest="Level31-65" startQuest="DaiTheSausageCompetition" />
+			<postrequisite filterQuest="Level31-65" startQuest="DaiReparations" />
+			<postrequisite filterQuest="Level31-65" startQuest="DaiAnimalMarket" /> 
+			<postrequisite filterQuest="Level31-65" startQuest="DaiDefense" />
+			<postrequisite filterQuest="Level31-65" startQuest="DaiADarkShadow" />
+			<postrequisite filterQuest="Level31-65" startQuest="DaiAlienation" />
+			<postrequisite filterQuest="Level31-65" startQuest="DaiBehindYourBack" />
+			<postrequisite filterQuest="Level31-65" startQuest="DaiMilitaryExtension" />
+			<postrequisite filterQuest="Level31-65" startQuest="DaiLocalAlchemist" />
+			<postrequisite filterQuest="Level31-65" startQuest="DaiThePlay" />
+			<postrequisite filterQuest="Level31-65" startQuest="DaiHorseRace" />
+			
+			<postrequisite filterQuest="Level51-80" startQuest="DaiNewLand" />
+			<postrequisite filterQuest="Level51-80" startQuest="DaiNewHelpForTheodor" />  
+			<postrequisite filterQuest="Level51-80" startQuest="DaiTheProposal" /> 
+			<postrequisite filterQuest="Level51-80" startQuest="DaiTitanNarrow" />
+			<postrequisite filterQuest="Level51-80" startQuest="DaiAFullArmory" />
+			<postrequisite filterQuest="Level51-80" startQuest="DaiTheLastTime" /> 
+			<postrequisite filterQuest="Level51-80" startQuest="DaiGoodThingsCome" />
+			<postrequisite filterQuest="Level51-80" startQuest="DaiLotsOfGunpowder" />
+			<postrequisite filterQuest="Level51-80" startQuest="DaiGoodExchangeRate" /> 
+			<postrequisite filterQuest="Level51-80" startQuest="DaiCheapPrices" />
+			<postrequisite filterQuest="Level51-80" startQuest="DaiRaiseYourStock" />
+			<postrequisite filterQuest="Level51-80" startQuest="DaiSettlerOnTheMoon" />
+			<postrequisite filterQuest="Level51-80" startQuest="DaiLibrary" />
+			<postrequisite filterQuest="Level51-80" startQuest="DaiEliteDrill" />
+			<postrequisite filterQuest="Level51-80" startQuest="DaiOrigami" />
+			
+			<postrequisite filterQuest="Level62-80" startQuest="DaiBigHarvest" />
+			<postrequisite filterQuest="Level62-80" startQuest="DaiPepperoni" />
+
+			<postrequisite filterQuest="Level66-80" startQuest="DaiTournament" />
+			<postrequisite filterQuest="Level66-80" startQuest="DaiNobleFurniture" />
+			<postrequisite filterQuest="Level66-80" startQuest="DaiNobleHouses" />
+			<postrequisite filterQuest="Level66-80" startQuest="DaiMythBusters" />
+			<postrequisite filterQuest="Level66-80" startQuest="DaiTheRace" />
+			<postrequisite filterQuest="Level66-80" startQuest="DaiHiredForces" />
+			<postrequisite filterQuest="Level66-80" startQuest="DaiAnnoholicsLive" />
+			<postrequisite filterQuest="Level66-80" startQuest="DaiKittyLure" />
+			<postrequisite filterQuest="Level66-80" startQuest="DaiSpecialForces" />
+
+<!-- 
+            <postrequisite filterQuest="Level21-80" startQuest="DaiNeighborlyHelp" />
+            <postrequisite filterQuest="Level21-80" startQuest="DaiFriends" />
+            <postrequisite filterQuest="Level21-80" startQuest="DaiMotivation" />
+            <postrequisite filterQuest="Level21-80" startQuest="DaiValuableWater" />
+            <postrequisite filterQuest="Level21-80" startQuest="DaiMoreCorn" />
+            <postrequisite filterQuest="Level21-80" startQuest="DaiSocialBehavior" />
+            <postrequisite filterQuest="Level21-80" startQuest="DaiUnsatisfiedSettlers" />
+            <postrequisite filterQuest="Level21-80" startQuest="DaiTrueFriends" />
+            <postrequisite filterQuest="Level21-80" startQuest="DaiHelpToThoseBeingInNeedOf" />
+            <postrequisite filterQuest="Level21-80" startQuest="DaiFoodForThePeople" />
+            <postrequisite filterQuest="Level21-80" startQuest="DaiMarbleOutOfStone" />
+            <postrequisite filterQuest="Level21-80" startQuest="DaiCollapsedMines" />          
+            <postrequisite filterQuest="Level21-80" startQuest="DaiReforesting" />
+            <postrequisite filterQuest="Level21-80" startQuest="DaiCopperCopperEverywhere" />
+            <postrequisite filterQuest="Level21-80" startQuest="DaiTheMostBeautifulCities" />
+            <postrequisite filterQuest="Level21-80" startQuest="DaiTheMostBeautifulCityInTheLand" />
+            <postrequisite filterQuest="Level30-80" startQuest="DaiAdventures" />
+            <postrequisite filterQuest="Level30-80" startQuest="DaiIslandOfThePirates" />
+            <postrequisite filterQuest="Level25-80" startQuest="DaiIronOutOfBronze" />         
+            <postrequisite filterQuest="Level30-80" startQuest="DaiWitchHunt" />
+            <postrequisite filterQuest="Level30-80" startQuest="DaiTraitors" />
+            <postrequisite filterQuest="Level30-80" startQuest="DaiANewQuest" />         
+            <postrequisite filterQuest="Level25-80" startQuest="DaiTheFearAmongstTheSettlers" />
+            <postrequisite filterQuest="Level25-80" startQuest="DaiTheAnimalInitiative" />         
+            <postrequisite filterQuest="Level25-80" startQuest="DaiTropicalSun" />           
+            <postrequisite filterQuest="Level30-80" startQuest="DaiGoodFriends" /> 
+            <postrequisite filterQuest="Level30-80" startQuest="DaiStrongAllies" /> 
+            <postrequisite filterQuest="Level30-80" startQuest="DaiTheGreatFeast" /> 
+            <postrequisite filterQuest="Level30-80" startQuest="DaiANewGoldDeposit" /> 
+            <postrequisite filterQuest="Level30-80" startQuest="DaiANewTreasure" />            
+            <postrequisite filterQuest="Level40-80" startQuest="DaiBanditNest" />   
+            <postrequisite filterQuest="Level35-80" startQuest="DaiDebts" />                      
+            <postrequisite filterQuest="Level40-80" startQuest="DaiCannonBurglary" />   
+            <postrequisite filterQuest="Level40-80" startQuest="DaiInTheVeld" />
+            <postrequisite filterQuest="Level40-80" startQuest="DaiAttacks" />            
+            <postrequisite filterQuest="Level45-80" startQuest="DaiMoreAdventures" />
+            <postrequisite filterQuest="Level47-80" startQuest="DaiSecludedExperiments" />
+            <postrequisite filterQuest="Level47-80" startQuest="DaiWarmerRegions" />  
+            <postrequisite filterQuest="Level45-80" startQuest="DaiTheSecretOrder" />
+            <postrequisite filterQuest="Level45-80" startQuest="DaiLiberty" />
+	        <postrequisite filterQuest="Level45-80" startQuest="DaiSupplyForTheodor" />  
+	        <postrequisite filterQuest="Level47-80" startQuest="DaiCaseOfEmergency" />
+            <postrequisite filterQuest="Level36-80" startQuest="DaiPirateLife" />
+            <postrequisite filterQuest="Level26-80" startQuest="DaiSleepyReef" />
+            <postrequisite filterQuest="Level26-80" startQuest="DaiTheSleepingVolcano" /> 
+            <postrequisite filterQuest="Level26-80" startQuest="DaiDeerCrossing" />
+            <postrequisite filterQuest="Level25-80" startQuest="DaiTheLostSkull" />
+-->
+
+          </postrequisite>
+        </postrequisits>
+     </quest>
+
+<!-- ACTIVE QUESTS -->    
+<!-- LEVEL 21 - 50 -->
+		<quest name="DaiANewJob" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Fish" amount="350" />
+        </triggers>
+    		<rewards>
+				  <reward type="Resource" name="Crystal" amount="2" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>	
+    	
+    	<quest name="DaiBeerSupply" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Beer" amount="250" />
+        </triggers>
+    		<rewards>
+				  <reward type="Resource" name="Crystal" amount="2" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiCarvedIntoStone" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+				<trigger type="PayForQuestFinish" name="Marble" amount="80" />
+    		</triggers>
+    		<rewards>
+				  <reward type="Resource" name="Crystal" amount="2" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiFollower" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Corn" amount="500" />
+        </triggers>
+    		<rewards>
+				  <reward type="Resource" name="Crystal" amount="2" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiTheBoneDiscovery" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Stone" amount="130" />
+        </triggers>
+    		<rewards>
+				  <reward type="Resource" name="Crystal" amount="2" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	<quest name="DaiValuableJugs" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="BronzeOre" amount="520" />
+        </triggers>
+    		<rewards>
+				  <reward type="Resource" name="Crystal" amount="2" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiWellFilled" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+				<trigger type="PayForQuestFinish" name="RealPlank" amount="100" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="Crystal" amount="2" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiBurntDown" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Wood" amount="350" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="Crystal" amount="2" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiFirstWave" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Bronze" amount="250" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="Crystal" amount="2" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiFoodDonation" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Bread" amount="250" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="Crystal" amount="2" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiNewFarm" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Stone" amount="130" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="Crystal" amount="2" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiNewSettlers" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Stone" amount="100" />
+    			<trigger type="PayForQuestFinish" name="Plank" amount="110" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="3" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiNutritionForTheNew" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Beer" amount="190" />
+    			<trigger type="PayForQuestFinish" name="Fish" amount="260" />
+    		</triggers>
+    		<rewards>
+    	  			<reward type="Resource" name="Crystal" amount="3" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiRanAground" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Tool" amount="135" />
+    			<trigger type="Resource" name="Tool" condition="produce" amount="135" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="3" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiSecondWave" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Iron" amount="85" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="2" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiTheBakery" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Tool" amount="130" />
+    			<trigger type="PayForQuestFinish" name="Flour" amount="260" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="3" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiTheBear" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Plank" amount="105" />
+    			<trigger type="PayForQuestFinish" name="RealPlank" amount="65" />
+    			<trigger type="PayForQuestFinish" name="Tool" amount="120" />
+        </triggers>
+    		<rewards>
+				  	<reward type="Resource" name="Crystal" amount="4" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiTheExhibition" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Tool" amount="130" />
+    			<trigger type="PayForQuestFinish" name="RealPlank" amount="75" />
+        </triggers>
+    		<rewards>
+				  	<reward type="Resource" name="Crystal" amount="3" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiTheGreatDiscovery" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Population" amount="8" />
+    			<trigger type="PayForQuestFinish" name="Tool" amount="130" />
+        </triggers>
+    		<rewards>
+				  	<reward type="Resource" name="Crystal" amount="3" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiTheHugeStatue" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Stone" amount="130" />
+        </triggers>
+    		<rewards>
+				  	<reward type="Resource" name="Crystal" amount="2" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiTheodorNeedsHelp" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="RealPlank" amount="100" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="2" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiTimberWorm" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Wood" amount="260" />
+    			<trigger type="PayForQuestFinish" name="RealWood" amount="115" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="3" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiDogFamily" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="Resource" name="Bread" condition="produce" amount="250" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="2" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiNotEnoughGoods" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="Resource" name="IronOre" condition="produce" amount="170" />
+    		</triggers>
+    		<rewards>
+    				<reward type="Resource" name="Crystal" amount="2" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiWrongOrder" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="Resource" name="Marble" condition="produce" amount="80" />
+    		</triggers>
+    		<rewards>
+				  	<reward type="Resource" name="Crystal" amount="2" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+
+		<quest name="DaiPepperoni" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Salpeter" amount="70" />
+    		</triggers>
+    		<rewards>
+				  	<reward type="Resource" name="Crystal" amount="5" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiHarvestTime" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="Resource" name="Corn" condition="produce" amount="500" />
+    		</triggers>
+    		<rewards>
+				  	<reward type="Resource" name="Crystal" amount="2" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiNegotiationSkills" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="Resource" name="Coal" condition="produce" amount="165" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="2" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiTheWorldOfTrading" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Water" amount="1750" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="2" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiHighRequest" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="Resource" name="Corn" condition="produce" amount="500" />
+    		</triggers>
+    		<rewards>
+				  	<reward type="Resource" name="Crystal" amount="2" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+ 
+ 		<quest name="DaiTheMonster" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Recruit" amount="30" />
+        </triggers>
+    		<rewards>
+				  <reward type="Resource" name="Crystal" amount="2" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+
+		<quest name="DaiTheatre" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Coin" amount="45" />
+        </triggers>
+    		<rewards>
+				  <reward type="Resource" name="Crystal" amount="2" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+ 
+    	
+<!-- LEVEL 31 - 65 -->    	
+    	<quest name="DaiHorseGrowing" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Horse" amount="240" />
+    			<trigger type="Resource" name="Horse" condition="produce" amount="240" />
+        </triggers>
+    		<rewards>
+				 	<reward type="Resource" name="Crystal" amount="4" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiASignOfEsteem" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Horse" amount="240" />
+    			<trigger type="PayForQuestFinish" name="Coin" amount="26" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="4" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiASignOfPeace" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="BronzeSword" amount="70" />
+    			<trigger type="PayForQuestFinish" name="IronSword" amount="22" />
+        </triggers>
+    		<rewards>
+				  	<reward type="Resource" name="Crystal" amount="4" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiInTheCitysHonor" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Bread" amount="190" />
+    			<trigger type="PayForQuestFinish" name="Beer" amount="190" />
+    			<trigger type="PayForQuestFinish" name="Sausage" amount="50" />
+        </triggers>
+    		<rewards>
+				  	<reward type="Resource" name="Crystal" amount="5" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiLovelyGold" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Coin" amount="40" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="3" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiMeatForTheNeighbors" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Meat" amount="170" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="3" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiTheDefendOfTheVillage" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Bow" amount="55" />
+    			<trigger type="PayForQuestFinish" name="Longbow" amount="25" />
+        </triggers>
+    		<rewards>
+				  	<reward type="Resource" name="Crystal" amount="4" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiTheKingsMonument" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="GoldOre" amount="95" />
+    			<trigger type="Resource" name="GoldOre" condition="produce" amount="95" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="4" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiTheSausageCompetition" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Sausage" amount="90" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="3" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiReparations" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+				<trigger type="PayForQuestFinish" name="Steel" amount="90" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="3" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiAnimalMarket" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Coin" amount="40" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="3" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiDefense" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="Resource" name="Steel" condition="produce" amount="90" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="3" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiADarkShadow" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="Resource" name="Coin" condition="produce" amount="40" />
+        </triggers>
+    		<rewards>
+				  	<reward type="Resource" name="Crystal" amount="3" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiAlienation" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Recruit" amount="25" />
+    			<trigger type="PayForQuestFinish" name="Militia" amount="9" />
+    			<trigger type="PayForQuestFinish" name="Bowman" amount="18" />
+        </triggers>
+    		<rewards>
+				  <reward type="Resource" name="Crystal" amount="5" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiBehindYourBack" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Militia" amount="18" />
+        </triggers>
+    		<rewards>
+				  <reward type="Resource" name="Crystal" amount="3" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiMilitaryExtension" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Soldier" amount="8" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="Crystal" amount="3" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiLocalAlchemist" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Gold" amount="70" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="Crystal" amount="3" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiThePlay" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Longbowman" amount="21" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="Crystal" amount="3" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+
+		<quest name="DaiHorseRace" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Cavalry" amount="16" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="Crystal" amount="3" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+
+ 
+<!-- LEVEL 51 - 75 -->    	
+    	<quest name="DaiNewLand" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+				<trigger type="PayForQuestFinish" name="ExoticPlank" amount="105" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="4" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiNewHelpForTheodor" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="ExoticWood" amount="170" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="4" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiTheProposal" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Granite" amount="85" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="4" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiTitanNarrow" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+				<trigger type="PayForQuestFinish" name="Titanium" amount="85" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="4" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiAFullArmory" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+				<trigger type="PayForQuestFinish" name="TitaniumSword" amount="12" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="4" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiTheLastTime" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="TitaniumSword" amount="12" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="4" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiGoodThingsCome" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Wheel" amount="85" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="4" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiLotsOfGunpowder" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+				<trigger type="PayForQuestFinish" name="Gunpowder" amount="30" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="4" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiGoodExchangeRate" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+				<resourcegathered min="170" type="ExoticWood"/>
+    			<!--trigger type="Resource" name="ExoticWood" condition="produce" amount="170" /-->
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="4" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiCheapPrices" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+				<resourcegathered min="170" type="TitaniumOre"/>
+    			<!--trigger type="Resource" name="TitaniumOre" condition="produce" amount="170" /-->
+    		</triggers>
+    		<rewards>
+				  	<reward type="Resource" name="Crystal" amount="4" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiRaiseYourStock" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="Resource" name="Crossbow" condition="produce" amount="12" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="4" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiEliteDrill" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="EliteSoldier" amount="7" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="4" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiSettlerOnTheMoon" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Cannon" amount="1" />
+    			<trigger type="PayForQuestFinish" name="CollectibleWineBarrel" amount="1" />
+    			<trigger type="PayForQuestFinish" name="Gunpowder" amount="35" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="6" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiLibrary" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Manuscript" amount="2" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="7" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiOrigami" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="SimplePaper" amount="100" />
+    			<trigger type="PayForQuestFinish" name="IntermediatePaper" amount="30" />
+    			<trigger type="PayForQuestFinish" name="AdvancedPaper" amount="10" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="6" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiBigHarvest" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Salpeter" amount="60" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="4" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+
+
+
+<!-- LEVEL 66 - 75 -->  
+		<quest name="DaiTournament" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Knight" amount="25" />
+    			<trigger type="PayForQuestFinish" name="Cloth" amount="130" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="6" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiNobleFurniture" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="MahoganyWood" amount="125" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="5" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiNobleHouses" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="MagicBeanstalk" amount="160" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="5" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiMythBusters" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="TitaniumSword" amount="7" />
+    			<trigger type="PayForQuestFinish" name="PlatinumSword" amount="7" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="6" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiTheRace" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Wagon" amount="50" />
+    			<trigger type="PayForQuestFinish" name="Horse" amount="250" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="6" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiHiredForces" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="EliteSoldier" amount="5" />
+    			<trigger type="PayForQuestFinish" name="Crossbowman" amount="5" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="5" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiAnnoholicsLive" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Platinum" amount="65" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="5" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiKittyLure" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Wool" amount="200" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="5" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiSpecialForces" type="Daily" icon="Resources" npc="quest_character_mentor03.png" >
+    		<triggers>
+    			<trigger type="PayForQuestFinish" name="Besieger" amount="10" />
+    			<trigger type="PayForQuestFinish" name="MountedMarksman" amount="6" />
+    			<trigger type="PayForQuestFinish" name="MountedSwordsman" amount="12" />
+    		</triggers>
+    		<rewards>
+    		  		<reward type="Resource" name="Crystal" amount="7" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	
+
+
+<!-- INACTIVE QUESTS -->    	
+    	<quest name="DaiNeighborlyHelp" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="70">
+    		<triggers>
+    			<trigger type="BuffByFriend" name="" condition="geDelta" amount="1" />
+    		</triggers>
+    		<rewards>
+          <reward type="Resource" name="BronzeOre" amount="25" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiTrueFriends" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="70">
+    		<triggers>
+    			<trigger type="BuffByFriend" name="" condition="geDelta" amount="3" />
+    		</triggers>
+    		<rewards>
+          <reward type="Resource" name="IronOre" amount="25" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiGoodFriends" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="70">
+    		<triggers>
+    			<trigger type="BuffByFriend" name="" condition="geDelta" amount="5" />
+    		</triggers>
+    		<rewards>
+    		<reward type="Resource" name="ExoticWood" amount="25" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiFriends" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="17">
+    		<triggers>
+    			<trigger type="BuffOnFriend" name="" condition="geDelta" amount="1" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="BronzeOre" amount="120" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiHelpToThoseBeingInNeedOf" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="35">
+    		<triggers>
+    			<trigger type="BuffOnFriend" name="" condition="geDelta" amount="3" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="IronOre" amount="120" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiStrongAllies" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="70">
+    		<triggers>
+    			<trigger type="BuffOnFriend" name="" condition="geDelta" amount="5" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="ExoticWood" amount="120" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiMotivation" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="17">
+    		<triggers>
+			<buffproduced item="ProductivityBuffLvl1" min="5" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="BronzeOre" amount="30" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiFoodForThePeople" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="35">
+    		<triggers>
+			<buffproduced item="ProductivityBuffLvl2" min="5" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="IronOre" amount="70" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiTheGreatFeast" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="70">
+    		<triggers>
+			<buffproduced item="ProductivityBuffLvl3" min="5" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="ExoticWood" amount="260" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiAdventures" type="Daily" icon="Military" npc="quest_character_mentor03.png" questWinGemCosts="175">
+    		<triggers>
+    			<trigger type="Adventure" name="" condition="geDelta" amount="1" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="ExoticWood" amount="200" />
+				  <reward type="Resource" name="Coin" amount="50" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiMoreAdventures" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="525">
+    		<triggers>
+    			<trigger type="Adventure" name="" condition="geDelta" amount="2" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="TitaniumOre" amount="200" />
+				  <reward type="Resource" name="Coin" amount="100" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiBanditNest" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="175">
+    		<triggers>
+    			<trigger type="Adventure" name="BanditNest" condition="geDelta" amount="1" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="Granite" amount="500" />
+				  <reward type="Resource" name="Coin" amount="50" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiIslandOfThePirates" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="175">
+    		<triggers>
+    			<trigger type="Adventure" name="TheIslandOfThePirates" condition="geDelta" amount="1" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="ExoticWood" amount="300" />
+				  <reward type="Resource" name="Coin" amount="30" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiSecludedExperiments" type="Daily" icon="Military" npc="quest_character_mentor03.png" questWinGemCosts="525">
+    		<triggers>
+    			<trigger type="Adventure" name="SecludedExperiments" condition="geDelta" amount="1" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="Salpeter" amount="300" />
+				  <reward type="Resource" name="Coin" amount="90" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+
+    	<quest name="DaiMarbleOutOfStone" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="35">
+    		<triggers>
+			<buffproduced item="AddResource_ConvertStoneToMarbleSmall" min="250" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="IronOre" amount="20" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiIronOutOfBronze" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="175">
+    		<triggers>
+			<buffproduced item="AddResource_ConvertBronzeSwordToIronSword" min="50" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="IronOre" amount="265" />
+				  <reward type="Resource" name="Coin" amount="5" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiDebts" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="175">
+    		<triggers>
+			<buffproduced item="AddResource_ConvertBeerToGold" min="50" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="MapPart" amount="75" />
+				  <reward type="Resource" name="Coin" amount="10" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiWitchHunt" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="175">
+    		<triggers>
+    			<trigger type="Adventure" name="WitchOfTheSwamp" condition="geDelta" amount="1" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="ExoticWood" amount="300" />
+				  <reward type="Resource" name="Coin" amount="30" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiTraitors" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="175">
+    		<triggers>
+    			<trigger type="Adventure" name="Traitors" condition="geDelta" amount="1" />
+    		</triggers>
+    		<rewards>
+    	  	<reward type="Resource" name="ExoticWood" amount="400" />
+			  	<reward type="Resource" name="Coin" amount="40" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiANewQuest" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="175">
+    		<triggers>
+    			<trigger type="Adventure" name="StealingFromTheRich" condition="geDelta" amount="1" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="ExoticWood" amount="200" />
+				  <reward type="Resource" name="Coin" amount="40" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiCannonBurglary" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="175">
+    		<triggers>
+    			<trigger type="Adventure" name="Gunpowder" condition="geDelta" amount="1" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="Granite" amount="170" />
+				  <reward type="Resource" name="Coin" amount="50" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiInTheVeld" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="175">
+    		<triggers>
+    			<trigger type="Adventure" name="SonsOfTheVeld" condition="geDelta" amount="1" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="Granite" amount="300" />
+				  <reward type="Resource" name="Coin" amount="60" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiAttacks" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="175">
+    		<triggers>
+    			<trigger type="Adventure" name="Outlaws" condition="geDelta" amount="1" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="Granite" amount="400" />
+				  <reward type="Resource" name="Coin" amount="40" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiWarmerRegions" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="525">
+    		<triggers>
+    			<trigger type="Adventure" name="RoaringBull" condition="geDelta" amount="1" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="Salpeter" amount="300" />
+				  <reward type="Resource" name="Coin" amount="90" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiTheSecretOrder" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="525">
+    		<triggers>
+    			<trigger type="Adventure" name="TheDarkBrotherhood" condition="geDelta" amount="1" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="TitaniumOre" amount="300" />
+				  <reward type="Resource" name="Coin" amount="90" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiLiberty" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="525">
+    		<triggers>
+    			<trigger type="Adventure" name="TheBlackKnights" condition="geDelta" amount="1" />
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="TitaniumOre" amount="300" />
+				  <reward type="Resource" name="Coin" amount="90" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiCollapsedMines" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="35">
+    		<triggers>
+			<onmap item="BronzeMine" min="1"/>
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="IronOre" amount="50" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiValuableWater" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="35">
+    		<triggers>
+			<onmap item="Well" min="1"/>
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="BronzeOre" amount="50" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiMoreCorn" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="35">
+    		<triggers>
+			<onmap item="Farmfield" min="1"/>
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="BronzeOre" amount="50" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiDeerCrossing" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="70">
+    		<triggers>
+			<buildingupgraded item="Hunter"/>
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="IronOre" amount="50" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    		
+    	<quest name="DaiSupplyForTheodor" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="70">
+    		<triggers>
+			<resource item="Carriage" min="2"/>
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="TitaniumOre" amount="10" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiCaseOfEmergency" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="70">
+    		<triggers>
+			<resource item="Carriage" min="2"/>
+    		</triggers>
+    		<rewards>
+    		  <reward type="Resource" name="Salpeter" amount="10" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiSocialBehavior" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="70">
+    		<triggers>
+    			<trigger type="BuffByFriend" name="" condition="geDelta" amount="1" />
+          <trigger type="BuffOnFriend" name="" condition="geDelta" amount="1" />
+        </triggers>
+    		<rewards>
+          <reward type="Resource" name="BronzeOre" amount="60" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiANewGoldDeposit" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="70">
+    		<triggers>
+			<onmap item="GoldMine" min="1"/>
+        </triggers>
+    		<rewards>
+				  <reward type="Resource" name="ExoticWood" amount="60" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiTheFearAmongstTheSettlers" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="70">
+    		<triggers>
+    			<trigger type="Specialist" name="AllExplorers" condition="ge" amount="2" />
+    			<trigger type="Specialist" name="AllGeologists" condition="ge" amount="2" />
+        </triggers>
+    		<rewards>
+				  <reward type="Resource" name="IronOre" amount="50" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiANewTreasure" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="70">
+    		<triggers>
+			<resource item="MapPart" min="10"/>
+        </triggers>
+    		<rewards>
+          <reward type="Resource" name="ExoticWood" amount="10" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiTheAnimalInitiative" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="35">
+    		<triggers>
+			<buffproduced item="FillDeposit_Hunter" min="500" />
+        </triggers>
+    		<rewards>
+				  <reward type="Resource" name="IronOre" amount="20" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiReforesting" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="35">
+    		<triggers>
+			<onmap item="Forester" min="4"/>
+        </triggers>
+    		<rewards>
+				  <reward type="Resource" name="IronOre" amount="50" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiCopperCopperEverywhere" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="35">
+    		<triggers>
+			<onmap item="BronzeMine" min="3"/>
+        </triggers>
+    		<rewards>
+				  <reward type="Resource" name="IronOre" amount="50" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiTheMostBeautifulCities" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="35">
+    		<triggers>
+			<onmap item="NobleResidence" min="2"/>
+        </triggers>
+    		<rewards>
+				  <reward type="Resource" name="IronOre" amount="50" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiUnsatisfiedSettlers" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="35">
+    		<triggers>
+			<onmap item="Warehouse" min="3"/>
+        </triggers>
+    		<rewards>
+				  <reward type="Resource" name="BronzeOre" amount="50" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	
+    	<quest name="DaiTheMostBeautifulCityInTheLand" type="Daily" icon="Resources" npc="quest_character_mentor03.png" questWinGemCosts="35">
+    		<triggers>
+			<onmap item="NobleResidence" min="3"/>
+			<resource item="Population" min="100"/>
+        </triggers>
+    		<rewards>
+				  <reward type="Resource" name="IronOre" amount="60" />
+    		</rewards>
+    		<postrequisits>   
+    		</postrequisits>
+    	</quest>
+    	 
+	    <quest name="DaiTheLostSkull" type="Daily" icon="Military" npc="quest_character_general02.png" showRewardWindow="true" questWinGemCosts="99">            
+	        <triggers>
+	           <trigger type="Adventure" name="MiadTheLostSkull" condition="geDelta" amount="1" />   
+	        </triggers>
+	        <posteffects>
+	          <reward type="Resource" name="IronOre" amount="200" />           
+	        </posteffects>
+	      </quest>
+	      
+	    <quest name="DaiSleepyReef" type="Daily" icon="Military" npc="quest_character_general02.png" showRewardWindow="true" questWinGemCosts="175">            
+	        <preeffects>
+	        </preeffects>
+	        <triggers>
+	           <trigger type="Adventure" name="MiadSleepyReef" condition="geDelta" amount="1" />   
+	        </triggers>
+	        <posteffects>
+	          <reward type="Resource" name="ExoticWood" amount="400" />          
+	        </posteffects>
+	      </quest>
+	    
+	    <quest name="DaiTropicalSun" type="Daily" icon="Military" npc="quest_character_general02.png" showRewardWindow="true" questWinGemCosts="99">            
+	        <triggers>
+	           <trigger type="Adventure" name="MiadTropicalSun" condition="geDelta" amount="1" />   
+	        </triggers>
+	        <posteffects>
+	          <reward type="Resource" name="IronOre" amount="400" />            
+	        </posteffects>
+	      </quest>
+	      
+	    <quest name="DaiPirateLife" type="Daily" icon="Military" npc="quest_character_general02.png" showRewardWindow="true" questWinGemCosts="175">            
+	        <preeffects>
+	        </preeffects>
+	        <triggers>
+	           <trigger type="Adventure" name="MiadPirateLife" condition="geDelta" amount="1" />   
+	        </triggers>
+	        <posteffects>
+	    	    	<reward type="Resource" name="Horse" amount="1" />            
+	        </posteffects>
+	      </quest>
+	      
+	    <quest name="DaiTheSleepingVolcano" type="Daily" icon="Military" npc="quest_character_general02.png" showRewardWindow="true" questWinGemCosts="175">            
+	        <preeffects>
+	        </preeffects>
+	        <triggers>
+	           <trigger type="Adventure" name="MiadTheSleepingVolcano" condition="geDelta" amount="1" />   
+	        </triggers>
+	        <posteffects>
+	    	    	<reward type="Resource" name="ExoticWood" amount="300" />         
+	        </posteffects>
+	      </quest>
+
+ </Root>   	

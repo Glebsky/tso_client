@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+                                          
+
+<Root>
+
+	<quest name="MiadPirateLifeMain" type="Story" specialType="firstQuestlastQuest" icon="Military" npc="quest_character_mentor03.png" showQuestWindow="false">
+	   	<preeffects>
+        </preeffects>
+	   	<triggers>
+	   		<questcomplete item="MiadPirateLifeQ1"/>
+         	<questcomplete item="MiadPirateLifeQ1a"/>
+         	<questcomplete item="MiadPirateLifeQ2"/>
+         	<questcomplete item="MiadPirateLifeQ2a"/>
+         	<questcomplete item="MiadPirateLifeQ3"/>
+         	<questcomplete item="MiadPirateLifeQ3a"/>
+         	<questcomplete item="MiadPirateLifeQ4"/>
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="300"/>        
+      </rewards>
+    </quest> 
+    
+   <quest name="MiadPirateLifeQ1" type="Story" icon="Military" connectedToQuest="MiadPirateLifeMain" npc="quest_character_mentor03.png" >
+		  <startcondition>
+		   <questactive item="MiadPirateLifeMain"/>
+		</startcondition>
+		  <triggers>
+         <trigger type="Building" name="BanditsLvl2_Adventure" condition="l" amount="1" locaExtension="pl1" />
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="100"/>        
+      </rewards>
+      <postrequisits>
+      <postrequisite startQuest="MiadPirateLifeQ2" />
+      <postrequisite startQuest="MiadPirateLifeQ1a" /> 
+       </postrequisits> 
+   </quest>
+   
+   <quest name="MiadPirateLifeQ1a" type="Story" icon="Military" connectedToQuest="MiadPirateLifeMain" npc="quest_character_mentor03.png" >
+		  <triggers>
+         <trigger type="Building" name="WoodCutter" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="pl2" />
+         <trigger type="Building" name="WoodCutter" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="pl2" />
+         <trigger type="Building" name="WoodCutter" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="pl2" />
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="100"/>        
+      </rewards>
+      <postrequisits>
+       </postrequisits> 
+   </quest>
+   
+   <quest name="MiadPirateLifeQ2" type="Story" icon="Military" connectedToQuest="MiadPirateLifeMain" npc="quest_character_mentor03.png" >	 
+      <triggers>
+         <trigger type="Building" name="BanditsLvl3_Adventure" condition="l" amount="3" locaExtension="pl3" />       
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="200"/>        
+      </rewards>
+      <postrequisits>
+         <postrequisite startQuest="MiadPirateLifeQ3" />
+         <postrequisite startQuest="MiadPirateLifeQ2a" />    
+       </postrequisits> 
+    </quest>
+    
+   <quest name="MiadPirateLifeQ2a" type="Story" icon="Military" connectedToQuest="MiadPirateLifeMain" npc="quest_character_mentor03.png" >	 
+      <triggers>
+         <trigger type="Building" name="a_reed_01" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="pl4" />
+         <trigger type="Building" name="a_reed_01" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="pl4" />
+         <trigger type="Building" name="a_reed_01" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="pl4" />
+         <trigger type="Building" name="a_reed_01" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="pl4" />
+         <trigger type="Building" name="a_reed_01" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="pl4" />         
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="200"/>        
+      </rewards>
+      <postrequisits>
+       </postrequisits> 
+    </quest>
+    
+   <quest name="MiadPirateLifeQ3" type="Story" icon="Military" connectedToQuest="MiadPirateLifeMain" npc="quest_character_mentor03.png" >	 
+      <triggers>
+         <trigger type="Building" name="BanditsLvl3_Adventure" condition="l" amount="2" locaExtension="pl5" />      
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="200"/>        
+      </rewards>
+      <postrequisits>
+         <postrequisite startQuest="MiadPirateLifeQ4" />
+         <postrequisite startQuest="MiadPirateLifeQ3a" />                
+       </postrequisits> 
+    </quest>  
+    
+   <quest name="MiadPirateLifeQ3a" type="Story" icon="Military" connectedToQuest="MiadPirateLifeMain" npc="quest_character_mentor03.png" >	 
+      <triggers>
+         <trigger type="Building" name="Farmfield_04" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="pl6" />
+         <trigger type="Building" name="Farmfield_04" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="pl6" />
+         <trigger type="Building" name="Farmfield_04" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="pl6" />
+         <trigger type="Building" name="Farmfield_04" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="pl6" />          
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="200"/>        
+      </rewards>
+      <postrequisits>          
+       </postrequisits> 
+    </quest>  
+      
+	 <quest name="MiadPirateLifeQ4" type="Story" icon="Military" connectedToQuest="MiadPirateLifeMain" npc="quest_character_mentor03.png" >
+	  	<triggers>
+         <trigger type="Building" name="BanditsLvl3_Adventure" condition="l" amount="1" locaExtension="pl7" />      
+         <trigger type="Building" name="b_eco_main_office" condition="l" amount="1" locaExtension="pl8" />
+  	   </triggers>
+      <rewards>
+         <reward type="XP" amount="300"/>        
+      </rewards>
+		  <postrequisits>
+      </postrequisits>       
+    </quest> 
+
+</Root>
+
+    
+    
+      
+      
+      
+      
+
+

@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<Root>
+    
+    	<!--
+    
+    	// name = Name of Quest
+    	// showQuestWindow="false"  = disable show Quest Window funktion
+    	// showRewardWindow="false"  = disable show Reward Window funktion
+	// colorSchema = use a colorschema could be "night" ,"oven","snow","colormod,radd,gadd,badd,rmul,gmul,bmul"
+	// specialType="firstQuest", this is the start of a quest series, will be aktivated when zone starts
+    	// active = false means quest is inactive
+    	
+    	<quests name="QuestName" colorSchema="night" specialType="firstQuest" active="true">
+    		// if all triggers true quest is finished 
+    		<triggers>
+    			// if Woodcutter exist onMap quest is finished (if amount is one, it could be ignored"
+    			<trigger type="Building" name="Woodcutter" condition="onMap" />
+    			// if Sawmill is created quest is finished
+    			<trigger type="Building" name="Sawmill" condition="created" />
+    			// if 2 Sawmill in map quest is finished
+    			<trigger type="Building" name="Sawmill" condition="ge" amount="2" />
+    			// if 100 Iron is created quest is finished ge means greater or equal
+    			<trigger type="Resource" name="Iron" condition="ge" amount="100" />
+    			// if 100 additional Iron is created quest is finished geDelta means greater or equal
+			// for example, if you have 120 iron at the start of the quest, you must have at least 220 to finish it
+    			<trigger type="Resource" name="Iron" condition="geDelta" amount="100" />
+				
+				//Trigger Events: If trigger completion shall trigger further events (besides quest progress) enter the "onComplete" property with these possible comma-seperated values (NO WHITESPACES!):
+				<trigger type="Building" condition="selected" onComplete="destroySelectedBuilding,doSomethingElse"/> //Destroys the current selected Building and is doint things:)
+    		</triggers>
+    		
+    		// Player Rewards
+    		<rewards>
+    			// Player gets 100 iron
+    			<reward type="Resource" name="Iron" amount="100" />
+    			// Player gets 200 XP
+    			<reward type="XP" amount="200" />
+    		</rewards>
+    		
+    		// postrequisits is called after player gets his rewards 
+    		// startQuest is the name of the quest to start
+    		// Delay is Delay in seconds before quest starts
+    		<postrequisits startQuest="Quest2" startDelay="10" />
+			
+			// Hints (Red bouncing arrow)
+			<hints>
+				// name:       not used yet, will be used as text identifier for hint texts
+				// pointTo:    UI Element which is pointed to
+				//   		   available values:
+				//                 ActionBarButton01
+				//                 ActionBarButton02
+				//                 ActionBarButton03
+				//                 ActionBarButton04
+				//                 ActionBarButton05
+				//                 ActionBarButton06
+				//                 ActionBarButton07
+				//                 ActionBarButton08
+				//                 ActionBarButton09
+				//                 QuestButton
+				// offsetX:    x-offset in pixels from the center of the ui element
+				// offsetY:    y-offset in pixels from the center of the ui element
+				// direction:  direction the arrow will point to
+				//             available values: N, NE, E, SE, S, SW, W, NW
+				<hint name="FirstBuildMenu" pointTo="ActionBarButton01" offsetX="0" offsetY="-40" direction="S" />
+			</hints>
+			
+    	</quests>
+    	
+    	-->
+       
+       
+       <quest name="HWGeologist1" type="Story" icon="Building" npc="quest_character_mentor03.png" showQuestWindow="false" showRewardWindow="false">            
+         <startcondition>
+			     <questactive item="TutPurchaseGeologist"/>
+			     <click item="GAMESTATE_ID_STAR_MENU.Geologist"/>
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <triggers>
+         </triggers>
+         <posteffects>
+           <openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_geologist_0"/>
+         </posteffects>
+       </quest>
+
+
+
+       <quest name="HWTreasure1" type="Story" icon="Building" npc="quest_character_mentor03.png" showQuestWindow="false" showRewardWindow="false">            
+         <startcondition>
+			     <questactive item="TutTreasure"/>
+			     <click item="GAMESTATE_ID_STAR_MENU.Explorer"/>
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <triggers>
+         </triggers>
+         <posteffects>
+           <openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_find_treasure_0"/>
+         </posteffects>
+       </quest>
+
+
+
+       <quest name="HWGeneral1" type="Story" icon="Building" npc="quest_character_mentor03.png" showQuestWindow="false" showRewardWindow="false">            
+         <startcondition>
+			     <questactive item="TutGarrisonNew"/>
+			     <click item="GAMESTATE_ID_STAR_MENU.General"/>
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <triggers>
+         </triggers>
+         <posteffects>
+           <openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_general_0"/>
+         </posteffects>
+       </quest>
+
+
+
+       <quest name="HWRefill1" type="Story" icon="Building" npc="quest_character_mentor03.png" showQuestWindow="false" showRewardWindow="false">            
+         <startcondition>
+			     <questactive item="TutUseFishRefill"/>
+			     <click item="GAMESTATE_ID_ACTIONBAR.actionBarCenter.btnActionBar04" />
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <triggers>
+         </triggers>
+         <posteffects>
+           <openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_refiller_0"/>
+         </posteffects>
+       </quest>
+
+
+
+       <quest name="HWUseBuff1" type="Story" icon="Building" npc="quest_character_mentor03.png" showQuestWindow="false" showRewardWindow="false">            
+         <startcondition>
+			     <questactive item="TutUseBuffNew"/>
+			     <click item="GAMESTATE_ID_ACTIONBAR.actionBarCenter.btnActionBar04" />
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <triggers>
+         </triggers>
+         <posteffects>
+           <openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_use_buff_0"/>
+         </posteffects>
+       </quest>
+
+
+
+
+       <quest name="HWGarrison1" type="Story" icon="Building" npc="quest_character_mentor03.png" showQuestWindow="false" showRewardWindow="false">            
+         <startcondition>
+			     <questactive item="TutArmiesNew"/>
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <triggers>
+           <garrisonOnMap min="1"/>
+         </triggers>
+         <posteffects>
+           <openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_garnison_0"/>
+         </posteffects>
+       </quest>
+
+
+
+
+       <quest name="HWBarracks1" type="Story" icon="Building" npc="quest_character_mentor03.png" showQuestWindow="false" showRewardWindow="false">            
+         <startcondition>
+			     <questactive item="TutRecruitNew"/>
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <triggers>
+           <trigger type="Building" name="Barracks" condition="selected" amount="1"/>
+         </triggers>
+         <posteffects>
+           <openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_barracks_0"/>
+         </posteffects>
+       </quest>
+
+
+
+
+       <quest name="HWBuildingLicenze1" type="Story" icon="Building" npc="quest_character_mentor03.png" showQuestWindow="false" showRewardWindow="false">            
+         <startcondition>
+			     <questactive item="TutBuildingLicenze"/>
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <triggers>
+         </triggers>
+         <posteffects>
+           <openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_building_licenzes_0"/>
+         </posteffects>
+       </quest>
+
+
+
+
+       <quest name="HWFirstAttackUnits1" type="Story" icon="Building" npc="quest_character_mentor03.png" showQuestWindow="false" showRewardWindow="false">            
+         <startcondition>
+			     <questactive item="TutCavalry"/>
+			     <click item="GAMESTATE_ID_BARRACKS.Cavalry"/>
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <triggers>
+         </triggers>
+         <posteffects>
+           <openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_first_attack_units_0"/>
+         </posteffects>
+       </quest>
+
+
+
+
+       <quest name="HWFunctionalityProductionBuff1" type="Story" icon="Building" npc="quest_character_mentor03.png" showQuestWindow="false" showRewardWindow="false">            
+         <startcondition>
+           <questactive item="TutCreateBuffNew"/>
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <triggers>
+         </triggers>
+         <posteffects>
+			     <openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_functionality_production_buff_0"/>
+         </posteffects>
+       </quest>
+
+
+
+
+       <quest name="HWAdventure1" type="Story" icon="Building" npc="quest_character_mentor03.png" showQuestWindow="false" showRewardWindow="false">            
+         <startcondition>
+			     <questactive item="TutAdventure"/>
+			     <click item="GAMESTATE_ID_STAR_MENU.BountyHunterNew" />
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <triggers>
+         </triggers>
+         <posteffects>
+           <openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_adventure_window_0"/>
+         </posteffects>
+       </quest>
+
+
+       <quest name="HWStartAdventure1" type="Story" icon="Building" npc="quest_character_mentor03.png" showQuestWindow="false" showRewardWindow="false">            
+         <startcondition>
+			     <questactive item="TutAdventure"/>
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <triggers>
+         </triggers>
+         <posteffects>
+           <openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_start_adventure_0"/>
+         </posteffects>
+       </quest>
+
+
+
+
+       <quest name="HWToolbox1" type="Story" icon="Building" npc="quest_character_mentor03.png" showQuestWindow="false" showRewardWindow="false">            
+         <startcondition>
+			     <questactive item="TutMoveBuilding"/>
+			     <click item="GAMESTATE_ID_TOOLBOX_PANEL" />
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <triggers>
+         </triggers>
+         <posteffects>
+           <openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_toolbox_0"/>
+         </posteffects>
+       </quest>
+
+
+
+
+
+       <quest name="HWBattle1" type="Story" icon="Building" npc="quest_character_mentor03.png" showQuestWindow="false" showRewardWindow="false">            
+         <startcondition>
+			     <questactive item="TutBanditsNew"/>
+			     <click item="GAMESTATE_ID_SPECIALIST_PANEL" />
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <triggers>
+         </triggers>
+         <posteffects>
+           <openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_battle_0"/>
+			     <openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_attack_area_0" effectDelay="2"/>
+         </posteffects>
+       </quest>
+
+
+
+
+       <quest name="HWLeaderCamp1" type="Story" icon="Building" npc="quest_character_mentor03.png" showQuestWindow="false" showRewardWindow="false">            
+         <startcondition>
+			     <questactive item="TutBanditLeader"/>
+			     <click item="GAMESTATE_ID_SPECIALIST_PANEL" />
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <triggers>
+         </triggers>
+         <posteffects>
+           <openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_leader_camp_0"/>
+         </posteffects>
+       </quest>
+
+
+        
+       <quest name="HWTrade1" type="Story" icon="Building" npc="quest_character_mentor03.png" showQuestWindow="false" showRewardWindow="false">            
+         <startcondition>
+			     <questactive item="TutTrade"/>
+			     <click item="GAMESTATE_ID_ACTIONBAR.actionBarLeft.btnActionBar03" />
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <triggers>
+         </triggers>
+         <posteffects>
+           <openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_trade_0"/>
+         </posteffects>
+       </quest>
+
+
+
+       
+       <quest name="HWQuestbook1" type="Story" icon="Building" npc="quest_character_mentor03.png" showQuestWindow="false" showRewardWindow="false">            
+         <startcondition>
+			     <questactive item="TutWoodCutterNew"/>
+			     <click item="GAMESTATE_ID_AVATAR.btnQuestBook" />
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <triggers>
+         </triggers>
+         <posteffects>
+           <openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_questbook_0"/>
+         </posteffects>
+       </quest>
+
+
+
+       
+       <quest name="HWDeposit1" type="Story" icon="Building" npc="quest_character_mentor03.png" showQuestWindow="false" showRewardWindow="false">            
+         <startcondition>
+			     <questcomplete item="TutGeologistNew"/>
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <triggers>
+         </triggers>
+         <posteffects>
+           <openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_deposit_0"/>
+         </posteffects>
+       </quest>
+       
+       <quest name="HWResourceBar1" type="Story" icon="Building" npc="quest_character_mentor03.png" showQuestWindow="false" showRewardWindow="false">            
+         <startcondition>
+			     <questcomplete item="TutBuildingLicenze"/>
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <triggers>
+         </triggers>
+         <posteffects>
+           <openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_resource_bar_0"/>
+         </posteffects>
+       </quest>
+       
+       <quest name="HWEnemyCamps1" type="Story" icon="Building" npc="quest_character_mentor03.png" showQuestWindow="false" showRewardWindow="false">            
+         <startcondition>
+			     <sectorexplored min="3" max="3"/>
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <triggers>
+         </triggers>
+         <posteffects>
+           <openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_enemy_camps_0"/>
+         </posteffects>
+       </quest>
+       
+       <quest name="HWEnemyCamps2" type="Story" icon="Building" npc="quest_character_mentor03.png" showQuestWindow="false" showRewardWindow="false">            
+         <startcondition>
+			     <questactive item="TutBanditsNew"/>
+			     <click item="GAMESTATE_ID_SPECIALIST_PANEL.btnAttack"/>
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <triggers>
+         </triggers>
+         <posteffects>
+           <openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_enemy_camps_0"/>
+         </posteffects>
+       </quest>
+
+		<quest name="HWEliteUnits1" type="Story" icon="Building" npc="quest_character_mentor03.png" showQuestWindow="false" showRewardWindow="false">        
+		  <startcondition>
+         	<playerlevel min="54" />
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <triggers>
+           <trigger type="Building" name="EliteBarracks" condition="selected" amount="1"/>
+         </triggers>
+         <posteffects>
+           <openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_elite_units_0"/>
+         </posteffects>		 
+       </quest>
+	   
+		<quest name="Help_window_archipelago_0" type="Story" icon="Building" npc="quest_character_mentor03.png" showQuestWindow="false" showRewardWindow="false">        
+		  <startcondition>
+			     <questactive item="TutAdvancedNewSectorExploration"/>
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <triggers>
+         </triggers>
+         <posteffects>
+           <openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_archipelago_0"/>
+         </posteffects>		 
+       </quest>
+	   
+	   
+		<quest name="HWStarCoins1" type="Story" icon="Building" npc="quest_character_mentor03.png" showQuestWindow="false" showRewardWindow="false">        
+		  <startcondition>
+         	<playerlevel min="50" />
+         </startcondition>
+         <preeffects>
+         </preeffects>
+         <triggers>
+			<resourcegathered type="StarCoin" min="1" />
+         </triggers>
+         <posteffects>
+           <openwindow name="GAMESTATE_ID_HELP_WINDOW" item="Help_window_starcoins_0"/>
+         </posteffects>		 
+       </quest>
+	   	   
+</Root>

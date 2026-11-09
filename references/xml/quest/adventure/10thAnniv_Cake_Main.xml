@@ -1,0 +1,1187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+
+	 <quest name="10thAnniv_Cake_Main" type="Story" icon="Military" npc="quest_character_sonya_solemoon.png" specialType="firstQuestlastQuest" >
+		<triggers>
+			<buildingdestroyed min="9" item="10thAnniv_Cake_WildlifeCamp" />
+			<questcomplete item="10thAnniv_Cake_AdvDefeatAllCamps"/> 
+		</triggers>
+    </quest>
+
+	  <quest name="10thAnniv_Cake_AdvDefeatAllCamps" connectedToQuest="10thAnniv_Cake_Main" type="Story" icon="Military" npc="quest_character_sonya_solemoon.png" >
+		<startcondition>
+			<questrunning item="10thAnniv_Cake_Main"/>
+         </startcondition>	 
+		<triggers>
+			<buildingdestroyed min="9" item="10thAnniv_Cake_WildlifeCamp" />	
+		</triggers>
+    </quest>
+	
+	<quest name="10thAnniv_Cake_UnlockSector1" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questrunning item="10thAnniv_Cake_Main"/>
+         </startcondition>
+		<triggers>
+			<buildingdestroyed min="3" item="10thAnniv_Cake_WildlifeCamp" />
+		</triggers>		 
+		<posteffects>
+			<exploresector id="3"/>	
+		</posteffects>  			
+	</quest>	
+
+	<quest name="10thAnniv_Cake_UnlockSector2" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questrunning item="10thAnniv_Cake_Main"/>
+         </startcondition>
+		<triggers>
+			<buildingdestroyed min="6" item="10thAnniv_Cake_WildlifeCamp" />
+		</triggers>		 
+		<posteffects>
+			<exploresector id="4"/>		
+		</posteffects>  			
+	</quest>		
+	
+	
+ 	<quest name="10thAnniv_Cake_EnemySpawn_Filter" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questrunning item="10thAnniv_Cake_Main"/>
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>
+			<startquest name="10thAnniv_Cake_EnemySpawn1">
+				<conditions>
+					<playerlevel max="38"/>
+				</conditions>
+			</startquest>
+			<startquest name="10thAnniv_Cake_EnemySpawn2">
+				<conditions>
+					<playerlevel min="39" max="53"/>
+				</conditions>
+			</startquest>
+			<startquest name="10thAnniv_Cake_EnemySpawn3">
+				<conditions>
+					<playerlevel min="54"/>
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>  
+
+	<quest name="10thAnniv_Cake_Unlock_Sector2" showQuestWindow="false" showRewardWindow="false">
+		<triggers>
+		</triggers>		 
+		<posteffects>	
+			<exploresector id="2"/>	
+		</posteffects>  			
+	</quest>	
+
+	<quest name="10thAnniv_Cake_Unlock_Sector2_failsafe1" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="10thAnniv_Cake_EnemySpawn1"/>
+		</startcondition>	
+		<triggers>
+		</triggers>		 
+		<posteffects>	
+			<exploresector id="2"/>	
+		</posteffects>  			
+	</quest>	
+	
+	<quest name="10thAnniv_Cake_Unlock_Sector2_failsafe2" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="10thAnniv_Cake_EnemySpawn2"/>
+		</startcondition>	
+		<triggers>
+		</triggers>		 
+		<posteffects>	
+			<exploresector id="2"/>	
+		</posteffects>  			
+	</quest>		
+	
+	<quest name="10thAnniv_Cake_Unlock_Sector2_failsafe3" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questcomplete item="10thAnniv_Cake_EnemySpawn3"/>
+		</startcondition>	
+		<triggers>
+		</triggers>		 
+		<posteffects>	
+			<exploresector id="2"/>	
+		</posteffects>  			
+	</quest>	
+	
+	<!-- Random Camp Quests 
+	<quest name="Level26-38"  showQuestWindow="false" showRewardWindow="false" >
+	 	<startcondition>
+			<questrunning item="10thAnniv_Cake_Main"/>
+         </startcondition>	
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="26"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="39"/>
+          </triggers>
+		<posteffects>
+			<startquest name="10thAnniv_Cake_EnemySpawn1"/>		
+		</posteffects>  		  
+     </quest>
+     <quest name="Level39-53"  showQuestWindow="false" showRewardWindow="false" >
+	 	 <startcondition>
+			<questrunning item="10thAnniv_Cake_Main"/>
+         </startcondition>
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="39"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="54"/>
+          </triggers>
+		<posteffects>
+			<startquest name="10thAnniv_Cake_EnemySpawn2"/>		
+		</posteffects>  		  
+     </quest>
+     <quest name="Level54-80"  showQuestWindow="false" showRewardWindow="false" >
+	 	<startcondition>
+			<questrunning item="10thAnniv_Cake_Main"/>
+         </startcondition>
+          <triggers>
+                <trigger type="PlayerLevel" name="" condition="ge" amount="54"/>
+                <trigger type="PlayerLevel" name="" condition="l" amount="81"/>
+          </triggers>
+		<posteffects>
+			<startquest name="10thAnniv_Cake_EnemySpawn3"/>		
+		</posteffects>  		  
+     </quest>	 	--> 
+
+
+	<!-- <quest name="10thAnniv_Cake_EnemySpawn_Filter" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questrunning item="10thAnniv_Cake_Main"/>
+         </startcondition>
+		<triggers>
+		</triggers>		 
+		<postrequisits>
+			<postrequisite filterQuest="Level26-38" startQuest="10thAnniv_Cake_EnemySpawn1" />
+			<postrequisite filterQuest="Level39-53" startQuest="10thAnniv_Cake_EnemySpawn2" />
+			<postrequisite filterQuest="Level54-80" startQuest="10thAnniv_Cake_EnemySpawn3" />
+		</postrequisits>
+	</quest>	 -->
+
+<!-- 	
+	
+	<quest name="10thAnniv_Cake_EnemySpawn_Filter1" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questrunning item="10thAnniv_Cake_Main"/>
+         </startcondition>
+		<triggers>
+			<playerlevel min="1" />
+		</triggers>		 
+		<posteffects>
+			<startquest name="10thAnniv_Cake_EnemySpawn1" />		
+		</posteffects>  			
+	</quest>	
+
+	<quest name="10thAnniv_Cake_EnemySpawn_Filter2" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questrunning item="10thAnniv_Cake_Main"/>
+         </startcondition>
+		<triggers>
+			<playerlevel min="39" />
+		</triggers>		 
+		<posteffects>	
+			<startquest name="10thAnniv_Cake_EnemySpawn2" />		
+		</posteffects>  			
+	</quest>	
+	
+	<quest name="10thAnniv_Cake_EnemySpawn_Filter3" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+			<questrunning item="10thAnniv_Cake_Main"/>
+         </startcondition>
+		<triggers>
+			 <playerlevel min="54" />
+		</triggers>		 
+		<posteffects>
+			<startquest name="10thAnniv_Cake_EnemySpawn3" />	
+		</posteffects>  			
+	</quest>	
+
+-->
+
+          <!--                                                                                                                                                       -->
+          <!--    _______ .__   __.  _______ .___  ___. ____    ____         _______..______      ___   ____    __    ____ .__   __.                __               -->
+          <!--   |   ____||  \ |  | |   ____||   \/   | \   \  /   /        /       ||   _  \    /   \  \   \  /  \  /   / |  \ |  |               /_ |              -->
+          <!--   |  |__   |   \|  | |  |__   |  \  /  |  \   \/   /        |   (    `|  |_)  |  /  ^  \  \   \/    \/   /  |   \|  |     ______     | |     ______   -->
+          <!--   |   __|  |  . `  | |   __|  |  |\/|  |   \_    _/          \   \    |   ___/  /  /_\  \  \            /   |  . `  |    |______|    | |    |______|  -->
+          <!--   |  |____ |  |\   | |  |____ |  |  |  |     |  |        .    )   |   |  |     /  _____  \  \    /\    /    |  |\   |                | |              -->
+          <!--   |_______||__| \__| |_______||__|  |__|     |__|        |_______/    | _|    /__/     \__\  \__/  \__/     |__| \__|                |_|              -->
+          <!--                                                                                                                                                       -->
+          <!--                                                                                                                                                       -->
+
+
+
+
+ 	<quest name="10thAnniv_Cake_EnemySpawn1" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<posteffects>
+			<startquest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup1_Left"/>
+			<startquest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup2_Left"/>
+			<startquest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup3_Left"/>
+			<startquest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup1_Mid"/>
+			<startquest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup2_Mid"/>
+			<startquest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup3_Mid"/>			
+			<startquest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup1_Right"/>
+			<startquest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup2_Right"/>
+			<startquest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup3_Right"/>	
+			<applybuff name="ChangeColorScheme" item="tropical" />		
+			<startquest name="10thAnniv_Cake_Unlock_Sector2" startDelay="3" />					
+		</posteffects>  	
+	</quest>	
+
+	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup1_Left" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn1_RandomCampGroup1_Left_left1" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn1_RandomCampGroup1_Left_left2" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn1_RandomCampGroup1_Left_left3" />			
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup1_Left_left1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="28" y="73" mode="enemy" units="BanditMilitia|50,BanditCavalry|50,BanditSoldier|50" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup1_Left_left2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="28" y="73" mode="enemy" units="BanditRecruit|100,BanditLongbowman|50" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup1_Left_left3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="28" y="73" mode="enemy" units="BanditCavalry|50,BanditLongbowman|100" />		
+		</posteffects>
+	</quest>	
+
+	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup2_Left" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn1_RandomCampGroup2_Left_mid1" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn1_RandomCampGroup2_Left_mid2" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn1_RandomCampGroup2_Left_mid3" />			
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup2_Left_mid1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="30" y="75" mode="enemy" units="BanditRecruit|80,BanditMilitia|85" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup2_Left_mid2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="30" y="75" mode="enemy" units="BanditMilitia|50,BanditLongbowman|55" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup2_Left_mid3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="30" y="75" mode="enemy" units="BanditRecruit|75,BanditBowman|75" />		
+		</posteffects>
+	</quest>	
+
+	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup3_Left" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn1_RandomCampGroup3_Left_right1" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn1_RandomCampGroup3_Left_right2" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn1_RandomCampGroup3_Left_right3" />		
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup3_Left_right1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="27" y="78" mode="enemy" units="BanditBoss3|1,BanditMilitia|65,BanditCavalry|60" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup3_Left_right2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="27" y="78" mode="enemy" units="BanditBoss4|1,BanditMilitia|95,BanditCavalry|25" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup3_Left_right3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="27" y="78" mode="enemy" units="BanditBoss4|1,BanditMilitia|50,BanditRecruit|65" />		
+		</posteffects>
+	</quest>	
+
+
+	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup1_Mid" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn1_RandomCampGroup1_Mid_left1" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn1_RandomCampGroup1_Mid_left2" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn1_RandomCampGroup1_Mid_left3" />		
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup1_Mid_left1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="29" y="53" mode="enemy" units="BanditRecruit|95,BanditCavalry|80" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup1_Mid_left2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="29" y="53" mode="enemy" units="BanditMilitia|40,BanditSoldier|45,BanditCavalry|80" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup1_Mid_left3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="29" y="53" mode="enemy" units="BanditBowman|100,BanditSoldier|35,BanditCavalry|10" />		
+		</posteffects>
+	</quest>	
+
+	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup2_Mid" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn1_RandomCampGroup2_Mid_mid1" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn1_RandomCampGroup2_Mid_mid2" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn1_RandomCampGroup2_Mid_mid3" />			
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup2_Mid_mid1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="32" y="43" mode="enemy" units="BanditCavalry|75,BanditSoldier|95" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup2_Mid_mid2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="32" y="43" mode="enemy" units="BanditRecruit|55,BanditSoldier|30,BanditBowman|40" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup2_Mid_mid3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="32" y="43" mode="enemy" units="BanditRecruit|35,BanditMilitia|75,BanditCavalry|10" />		
+		</posteffects>
+	</quest>	
+
+	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup3_Mid" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn1_RandomCampGroup3_Mid_right1" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn1_RandomCampGroup3_Mid_right2" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn1_RandomCampGroup3_Mid_right3" />				
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup3_Mid_right1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="33" y="35" mode="enemy" units="BanditBoss3|1,BanditBowman|30,BanditLongbowman|70" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup3_Mid_right2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="33" y="35" mode="enemy" units="BanditBoss4|1,BanditMilitia|80,BanditCavalry|50" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup3_Mid_right3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="33" y="35" mode="enemy" units="BanditBoss4|1,BanditSoldier|55,BanditRecruit|25" />		
+		</posteffects>
+	</quest>	
+
+	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup1_Right" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn1_RandomCampGroup1_Right_left1" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn1_RandomCampGroup1_Right_left2" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn1_RandomCampGroup1_Right_left3" />			
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup1_Right_left1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="39" y="35" mode="enemy" units="BanditBowman|65,BanditLongbowman|80" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup1_Right_left2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="39" y="35" mode="enemy" units="BanditSoldier|45,BanditBowman|70" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup1_Right_left3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="39" y="35" mode="enemy" units="BanditMilitia|85,BanditCavalry|70" />		
+		</posteffects>
+	</quest>	
+
+	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup2_Right" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn1_RandomCampGroup2_Right_mid1" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn1_RandomCampGroup2_Right_mid2" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn1_RandomCampGroup2_Right_mid3" />			
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup2_Right_mid1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="44" y="53" mode="enemy" units="BanditRecruit|50,BanditMilitia|50,BanditCavalry|50" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup2_Right_mid2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="44" y="53" mode="enemy" units="BanditSoldier|50,BanditMilitia|50,BanditCavalry|10" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup2_Right_mid3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="44" y="53" mode="enemy" units="BanditRecruit|50,BanditLongbowman|50,BanditCavalry|50" />		
+		</posteffects>
+	</quest>	
+
+	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup3_Right" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn1_RandomCampGroup3_Right_right1" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn1_RandomCampGroup3_Right_right2" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn1_RandomCampGroup3_Right_right3" />			
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup3_Right_right1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="46" y="34" mode="enemy" units="BanditBoss4|1,BanditMilitia|65,BanditCavalry|30" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup3_Right_right2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="46" y="34" mode="enemy" units="BanditBoss3|1,BanditRecruit|50,BanditBowman|75" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn1_RandomCampGroup3_Right_right3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="46" y="34" mode="enemy" units="BanditBoss3|1,BanditRecruit|90,BanditCavalry|40" />		
+		</posteffects>
+	</quest>	
+
+
+<!--    _______ .__   __.  _______ .___  ___. ____    ____         _______..______      ___   ____    __    ____ .__   __.                ___                   -->
+<!--   |   ____||  \ |  | |   ____||   \/   | \   \  /   /        /       ||   _  \    /   \  \   \  /  \  /   / |  \ |  |               |__ \                  -->
+<!--   |  |__   |   \|  | |  |__   |  \  /  |  \   \/   /        |   (    `|  |_)  |  /  ^  \  \   \/    \/   /  |   \|  |     ______       ) |     ______      -->
+<!--   |   __|  |  . `  | |   __|  |  |\/|  |   \_    _/          \   \    |   ___/  /  /_\  \  \            /   |  . `  |    |______|     / /     |______|     -->
+<!--   |  |____ |  |\   | |  |____ |  |  |  |     |  |        .    )   |   |  |     /  _____  \  \    /\    /    |  |\   |                / /_                  -->
+<!--   |_______||__| \__| |_______||__|  |__|     |__|        |_______/    | _|    /__/     \__\  \__/  \__/     |__| \__|               |____|                 -->
+<!--                                                                                                                                                            -->
+<!--                                                                                                                                                            -->
+
+
+	<quest name="10thAnniv_Cake_EnemySpawn2" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<posteffects>
+			<startquest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup1_Left"/>
+			<startquest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup2_Left"/>
+			<startquest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup3_Left"/>
+			<startquest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup1_Mid"/>
+			<startquest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup2_Mid"/>
+			<startquest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup3_Mid"/>			
+			<startquest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup1_Right"/>
+			<startquest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup2_Right"/>
+			<startquest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup3_Right"/>		
+			<applybuff name="ChangeColorScheme" item="tropical" />	
+			<startquest name="10thAnniv_Cake_Unlock_Sector2" startDelay="3" />						
+		</posteffects>  	
+	</quest>	
+
+	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup1_Left" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn2_RandomCampGroup1_Left_left1" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn2_RandomCampGroup1_Left_left2" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn2_RandomCampGroup1_Left_left3" />			
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup1_Left_left1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="28" y="73" mode="enemy" units="PirateRecruit|100,PirateMilitia|200,PirateCavalry|100" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup1_Left_left2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="28" y="73" mode="enemy" units="PirateRecruit|150,PirateLongbowman|100,PirateCavalry|150" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup1_Left_left3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="28" y="73" mode="enemy" units="PirateBowman|150,PirateMilitia|100,PirateCavalry|150" />		
+		</posteffects>
+	</quest>	
+
+	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup2_Left" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn2_RandomCampGroup2_Left_mid1" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn2_RandomCampGroup2_Left_mid2" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn2_RandomCampGroup2_Left_mid3" />			
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup2_Left_mid1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="30" y="75" mode="enemy" units="PirateRecruit|100,PirateCaptain|50,PirateCavalry|150"  />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup2_Left_mid2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="30" y="75" mode="enemy" units="PirateBowman|150,PirateMilitia|75,PirateCaptain|75" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup2_Left_mid3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="30" y="75" mode="enemy" units="PirateRecruit|100,PirateLongbowman|150,PirateCaptain|75"  />		
+		</posteffects>
+	</quest>	
+
+	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup3_Left" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn2_RandomCampGroup3_Left_right1" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn2_RandomCampGroup3_Left_right2" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn2_RandomCampGroup3_Left_right3" />		
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup3_Left_right1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="27" y="78" mode="enemy" units="PirateBoss1|2,PirateCaptain|75,PirateMilitia|100" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup3_Left_right2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="27" y="78" mode="enemy" units="PirateBoss1|2,PirateCaptain|50,PirateLongbowman|125" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup3_Left_right3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="27" y="78" mode="enemy" units="PirateBoss1|2,PirateCaptain|50,PirateCavalry|200" />		
+		</posteffects>
+	</quest>	
+
+
+	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup1_Mid" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn2_RandomCampGroup1_Mid_left1" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn2_RandomCampGroup1_Mid_left2" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn2_RandomCampGroup1_Mid_left3" />		
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup1_Mid_left1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="29" y="53" mode="enemy" units="PirateBowman|100,PirateCaptain|75,PirateCavalry|100" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup1_Mid_left2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="29" y="53" mode="enemy" units="PirateLongbowman|150,PirateCaptain|100" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup1_Mid_left3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="29" y="53" mode="enemy" units="PirateLongbowman|75,PirateCaptain|100,PirateCavalry|75" />		
+		</posteffects>
+	</quest>	
+
+	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup2_Mid" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn2_RandomCampGroup2_Mid_mid1" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn2_RandomCampGroup2_Mid_mid2" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn2_RandomCampGroup2_Mid_mid3" />			
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup2_Mid_mid1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="32" y="43" mode="enemy" units="PirateBowman|100,PirateCaptain|100,PirateCavalry|50" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup2_Mid_mid2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="32" y="43" mode="enemy" units="PirateRecruit|100,PirateCaptain|100,PirateMilitia|75" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup2_Mid_mid3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="32" y="43" mode="enemy" units="PirateRecruit|100,PirateMilitia|150,PirateLongbowman|200" />		
+		</posteffects>
+	</quest>	
+
+	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup3_Mid" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn2_RandomCampGroup3_Mid_right1" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn2_RandomCampGroup3_Mid_right2" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn2_RandomCampGroup3_Mid_right3" />				
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup3_Mid_right1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="33" y="35" mode="enemy" units="KingdomBoss1|2,PirateCaptain|100,PirateCavalry|100" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup3_Mid_right2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="33" y="35" mode="enemy" units="KingdomBoss1|2,PirateCaptain|100,PirateLongbowman|150" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup3_Mid_right3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="33" y="35" mode="enemy" units="KingdomBoss1|2,PirateCaptain|150,PirateRecruit|50" />		
+		</posteffects>
+	</quest>	
+
+	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup1_Right" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn2_RandomCampGroup1_Right_left1" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn2_RandomCampGroup1_Right_left2" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn2_RandomCampGroup1_Right_left3" />			
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup1_Right_left1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="39" y="35" mode="enemy" units="PirateCaptain|125,PirateMilitia|75,PirateLongbowman|50"  />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup1_Right_left2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="39" y="35" mode="enemy" units="PirateRecruit|200,PirateCavalry|200"  />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup1_Right_left3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="39" y="35" mode="enemy" units="PirateLongbowman|100,PirateCavalry|150,PirateCaptain|50"  />		
+		</posteffects>
+	</quest>	
+
+	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup2_Right" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn2_RandomCampGroup2_Right_mid1" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn2_RandomCampGroup2_Right_mid2" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn2_RandomCampGroup2_Right_mid3" />			
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup2_Right_mid1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="44" y="53" mode="enemy" units="PirateCavalry|100,PirateCaptain|125" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup2_Right_mid2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="44" y="53" mode="enemy" units="PirateLongbowman|175,PirateMilitia|200,PirateCaptain|25" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup2_Right_mid3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="44" y="53" mode="enemy" units="PirateCavalry|50,PirateCaptain|150" />		
+		</posteffects>
+	</quest>	
+
+	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup3_Right" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn2_RandomCampGroup3_Right_right1" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn2_RandomCampGroup3_Right_right2" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn2_RandomCampGroup3_Right_right3" />			
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup3_Right_right1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="46" y="34" mode="enemy" units="RaidersBoss1|2,PirateBoss1|2,PirateCavalry|50,PirateCaptain|100"  />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup3_Right_right2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="46" y="34" mode="enemy" units="RaidersBoss1|4,PirateBoss1|2,PirateLongbowman|100,PirateCaptain|75"  />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn2_RandomCampGroup3_Right_right3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="46" y="34" mode="enemy" units="RaidersBoss1|2,PirateBoss1|3,PirateMilitia|125,PirateCaptain|75"  />		
+		</posteffects>
+	</quest>	
+
+<!--   																																							     -->
+<!--    _______ .__   __.  _______ .___  ___. ____    ____         _______..______      ___   ____    __    ____ .__   __.                ____                       -->
+<!--   |   ____||  \ |  | |   ____||   \/   | \   \  /   /        /       ||   _  \    /   \  \   \  /  \  /   / |  \ |  |               |___ \                      -->
+<!--   |  |__   |   \|  | |  |__   |  \  /  |  \   \/   /        |   (    `|  |_)  |  /  ^  \  \   \/    \/   /  |   \|  |     ______      __) |     ______          -->
+<!--   |   __|  |  . `  | |   __|  |  |\/|  |   \_    _/          \   \    |   ___/  /  /_\  \  \            /   |  . `  |    |______|    |__ <     |______|         -->
+<!--   |  |____ |  |\   | |  |____ |  |  |  |     |  |        .    )   |   |  |     /  _____  \  \    /\    /    |  |\   |                ___) |                     -->
+<!--   |_______||__| \__| |_______||__|  |__|     |__|        |_______/    | _|    /__/     \__\  \__/  \__/     |__| \__|               |____/                      -->
+<!--                                                                                                                                                                 -->
+
+
+
+	<quest name="10thAnniv_Cake_EnemySpawn3" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<posteffects>
+			<startquest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup1_Left"/>
+			<startquest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup2_Left"/>
+			<startquest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup3_Left"/>
+			<startquest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup1_Mid"/>
+			<startquest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup2_Mid"/>
+			<startquest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup3_Mid"/>			
+			<startquest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup1_Right"/>
+			<startquest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup2_Right"/>
+			<startquest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup3_Right"/>			
+			<applybuff name="ChangeColorScheme" item="tundra" />			
+			<startquest name="10thAnniv_Cake_Unlock_Sector2" startDelay="3" />						
+		</posteffects>  	
+	</quest>	
+
+	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup1_Left" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn3_RandomCampGroup1_Left_left1" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn3_RandomCampGroup1_Left_left2" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn3_RandomCampGroup1_Left_left3" />			
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup1_Left_left1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="28" y="73" mode="enemy" units="EliteWildlifeRecruit|100,EliteWildlifeCavalry|50" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup1_Left_left2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="28" y="73" mode="enemy" units="EliteWildlifeMilitia|50,EliteWildlifeAir|50" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup1_Left_left3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="28" y="73" mode="enemy" units="EliteWildlifeMilitia|75,EliteWildlifeBowman|50" />		
+		</posteffects>
+	</quest>	
+
+	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup2_Left" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn3_RandomCampGroup2_Left_mid1" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn3_RandomCampGroup2_Left_mid2" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn3_RandomCampGroup2_Left_mid3" />			
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup2_Left_mid1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="30" y="75" mode="enemy" units="EliteWildlifeRecruit|50,EliteWildlifeCavalry|25,EliteWildlifeLongbowman|75" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup2_Left_mid2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="30" y="75" mode="enemy" units="EliteWildlifeRecruit|20,EliteWildlifeMilitia|20,EliteWildlifeAir|70" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup2_Left_mid3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="30" y="75" mode="enemy" units="EliteWildlifeCavalry|25,EliteWildlifeMilitia|75,EliteWildlifeAir|25" />		
+		</posteffects>
+	</quest>	
+
+	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup3_Left" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn3_RandomCampGroup3_Left_right1" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn3_RandomCampGroup3_Left_right2" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn3_RandomCampGroup3_Left_right3" />		
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup3_Left_right1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="27" y="78" mode="enemy" units="TMC_BossGhastlyWolf|1,EliteWildlifeCavalry|50,EliteWildlifeAir|50" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup3_Left_right2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="27" y="78" mode="enemy" units="TMC_BossGhastlyWolf|1,EliteWildlifeMilitia|50,EliteWildlifeLongbowman|25" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup3_Left_right3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="27" y="78" mode="enemy" units="TMC_BossGhastlyWolf|1,EliteWildlifeAir|50,EliteWildlifeCannoneer|25" />		
+		</posteffects>
+	</quest>	
+
+
+	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup1_Mid" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn3_RandomCampGroup1_Mid_left1" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn3_RandomCampGroup1_Mid_left2" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn3_RandomCampGroup1_Mid_left3" />		
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup1_Mid_left1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="29" y="53" mode="enemy" units="EliteWildlifeBowman|50,EliteWildlifeMilitia|50,EliteWildlifeAir|25" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup1_Mid_left2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="29" y="53" mode="enemy" units="EliteWildlifeCavalry|50,EliteWildlifeMilitia|50,EliteWildlifeCannoneer|30" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup1_Mid_left3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="29" y="53" mode="enemy" units="EliteWildlifeBowman|55,EliteWildlifeMilitia|25,EliteWildlifeAir|50" />		
+		</posteffects>
+	</quest>	
+
+	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup2_Mid" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn3_RandomCampGroup2_Mid_mid1" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn3_RandomCampGroup2_Mid_mid2" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn3_RandomCampGroup2_Mid_mid3" />			
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup2_Mid_mid1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="32" y="43" mode="enemy" units="EliteWildlifeRecruit|100,EliteWildlifeCavalry|35,EliteWildlifeAir|30" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup2_Mid_mid2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="32" y="43" mode="enemy" units="EliteWildlifeLongbowman|25,EliteWildlifeMilitia|35,EliteWildlifeAir|75" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup2_Mid_mid3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="32" y="43" mode="enemy" units="EliteWildlifeMilitia|25,EliteWildlifeCavalry|50,EliteWildlifeCannoneer|50" />		
+		</posteffects>
+	</quest>	
+
+	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup3_Mid" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn3_RandomCampGroup3_Mid_right1" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn3_RandomCampGroup3_Mid_right2" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn3_RandomCampGroup3_Mid_right3" />				
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup3_Mid_right1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="33" y="35" mode="enemy" units="TMC_BossRavagingOx|1,EliteWildlifeMilitia|50,EliteWildlifeCavalry|50" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup3_Mid_right2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="33" y="35" mode="enemy" units="TMC_BossGargantuanLynx|1,EliteWildlifeRecruit|80,EliteWildlifeCavalry|50" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup3_Mid_right3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="33" y="35" mode="enemy" units="TMC_BossRavagingOx|1,EliteWildlifeAir|30,EliteWildlifeCannoneer|50" />		
+		</posteffects>
+	</quest>	
+
+	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup1_Right" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn3_RandomCampGroup1_Right_left1" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn3_RandomCampGroup1_Right_left2" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn3_RandomCampGroup1_Right_left3" />			
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup1_Right_left1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="39" y="35" mode="enemy" units="EliteWildlifeRecruit|50,EliteWildlifeCavalry|100,EliteWildlifeAir|25" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup1_Right_left2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="39" y="35" mode="enemy" units="EliteWildlifeMilitia|50,EliteWildlifeCavalry|50,EliteWildlifeBowman|50" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup1_Right_left3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="39" y="35" mode="enemy" units="EliteWildlifeRecruit|50,EliteWildlifeAir|25,EliteWildlifeCannoneer|50" />		
+		</posteffects>
+	</quest>	
+
+	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup2_Right" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn3_RandomCampGroup2_Right_mid1" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn3_RandomCampGroup2_Right_mid2" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn3_RandomCampGroup2_Right_mid3" />			
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup2_Right_mid1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="44" y="53" mode="enemy" units="EliteWildlifeRecruit|190" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup2_Right_mid2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="44" y="53" mode="enemy" units="EliteWildlifeAir|160" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup2_Right_mid3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="44" y="53" mode="enemy" units="EliteWildlifeLongbowman|187" />		
+		</posteffects>
+	</quest>	
+
+	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup3_Right" showQuestWindow="false" showRewardWindow="false" >
+		<triggers>
+		</triggers>
+		<postrequisits>
+			<postrequisite type="randomQuestList">
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn3_RandomCampGroup3_Right_right1" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn3_RandomCampGroup3_Right_right2" />
+				<postrequisite startQuest="10thAnniv_Cake_EnemySpawn3_RandomCampGroup3_Right_right3" />			
+			</postrequisite>
+		</postrequisits>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup3_Right_right1" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="46" y="34" mode="enemy" units="TMC_BossFrostBearMatriarch|1,EliteWildlifeMilitia|50,EliteWildlifeCavalry|50" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup3_Right_right2" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="46" y="34" mode="enemy" units="TMC_BossFrostBearMatriarch|1,EliteWildlifeRecruit|50,EliteWildlifeAir|25" />		
+		</posteffects>
+	</quest>	
+ 	<quest name="10thAnniv_Cake_EnemySpawn3_RandomCampGroup3_Right_right3" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<spawnbuilding name="10thAnniv_Cake_WildlifeCamp" action="ignoreBlocking,spawnInstant,replace" x="46" y="34" mode="enemy" units="TMC_BossFrostBearMatriarch|1,EliteWildlifeCannoneer|35,EliteWildlifeAir|25" />		
+		</posteffects>
+	</quest>	
+
+
+</Root>

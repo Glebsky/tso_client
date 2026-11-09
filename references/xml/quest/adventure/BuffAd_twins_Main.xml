@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	
+	<quest name="BuffAd_twins_Main" specialType="firstQuestlastQuest" icon="BridgeBaseMaterial"  npc="quest_character_mentor03.png"  showQuestWindow="false"  helpName="Help_window_buff_adventure_0">
+		<triggers>
+		   <questcomplete item="BuffAd_twins_Sub1" />
+		   <questcomplete item="BuffAd_twins_Sub2" />
+		   <questcomplete item="BuffAd_twins_Sub3" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="1000"/>    
+		</rewards>
+		<postrequisits />
+    </quest>
+	
+	<quest name="BuffAd_twins_Sub1" connectedToQuest="BuffAd_twins_Main" icon="BridgeBaseMaterial" npc="quest_character_mentor03.png"  helpName="Help_window_buff_adventure_0">
+		<startcondition>
+		   <questactive item="BuffAd_twins_Main"/>
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="BuffAd_Twins_Quest1" />
+        </preeffects>
+		<triggers>
+            <buildingdestroyed item="buffad_collectible_bridge_base_material" min="9" locaExtension="pickup" />
+			<buffappliedonadventure item="ChangeSkin_BuffAd_Bridge"  target="buffad_swamp" min="3" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="50"/>        
+		</rewards>
+		<postrequisits />
+    </quest>
+	
+	<quest name="BuffAd_twins_Sub2" connectedToQuest="BuffAd_twins_Main" icon="SimplePaper" npc="quest_character_mentor03.png"  helpName="Help_window_buff_adventure_0">
+		<startcondition>
+		   <questcomplete item="BuffAd_twins_Sub1"/>
+		</startcondition>
+		<triggers>
+			<buffappliedonadventure item="ChangeSkin_BuffAd_Broadsheet"  target="buffad_twin_residence" min="3" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="70"/>        
+		</rewards>
+		<postrequisits />
+    </quest>		
+
+	<quest name="BuffAd_twins_Sub3" connectedToQuest="BuffAd_twins_Main" icon="UsedHammer" npc="quest_character_mentor03.png"  helpName="Help_window_buff_adventure_0">
+		<startcondition>
+		   <questcomplete item="BuffAd_twins_Sub2"/>
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="BuffAd_Twins_Quest3" />
+        </preeffects>
+		<triggers>
+            <buildingdestroyed item="buffad_collectible_UsedHammer" min="5" locaExtension="pickup" />
+			<buffappliedonadventure item="ChangeSkin_BuffAd_Rescueparty" target="buffad_ancient_ruin" min="1" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="100"/>        
+		</rewards>
+		<postrequisits />
+    </quest>	
+</Root>

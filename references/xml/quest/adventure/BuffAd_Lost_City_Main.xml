@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	
+	<quest name="BuffAd_Lost_City_Main" specialType="firstQuestlastQuest" icon="Military" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_ventures_0" showQuestWindow="false">
+		<triggers>
+			<questcomplete item="BuffAd_Lost_City_Sub1"/> 
+			<questcomplete item="BuffAd_Lost_City_Sub2"/> 
+			<questcomplete item="BuffAd_Lost_City_Sub3"/> 
+			<questcomplete item="BuffAd_Lost_City_Sub4"/> 
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="40000"/>  				
+		</rewards>
+		<postrequisits />
+    </quest>
+	
+	<!-- defeat all bandits -->
+	<quest name="BuffAd_Lost_City_Sub1" connectedToQuest="BuffAd_Lost_City_Main" icon="Military" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questactive item="BuffAd_Lost_City_Main"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Building" name="OrientalBanditCamp_leader" condition="l" amount="1" locaExtension="defeatAll" />
+		</triggers>
+		<postrequisits />
+	</quest>
+	
+	<!-- Activate any 1 ritual site -->
+	<quest name="BuffAd_Lost_City_Sub2" connectedToQuest="BuffAd_Lost_City_Main" icon="EmptyEffectBuff_BuffAd_RitualActivatorAll" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questactive item="BuffAd_Lost_City_Main"/>
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="BuffAd_Lost_City_Quest1"/>
+        </preeffects>
+		<triggers>	
+			<completequestlist item="BuffAd_Lost_City_Activate1,BuffAd_Lost_City_Activate2,BuffAd_Lost_City_Activate3,BuffAd_Lost_City_Activate4,BuffAd_Lost_City_Activate5,BuffAd_Lost_City_Activate6" amount="1" locaExtension="LostCityActivateAll" />
+		</triggers>
+		<postrequisits />
+    </quest>
+	
+	<!-- Produce and use shovels to unearth the lost city -->
+	<quest name="BuffAd_Lost_City_Sub3" connectedToQuest="BuffAd_Lost_City_Main" icon="BattleBuffHurt_BuffAd_Shovel_2" npc="quest_character_sonya_solemoon.png"   helpName="Help_window_ventures_0" >
+		<startcondition>
+		   <questactive item="BuffAd_Lost_City_Main"/>
+		</startcondition>
+		<preeffects>
+        </preeffects>
+		<triggers>
+			<trigger type="Building" name="BuffAd_Sand" condition="l" amount="1" locaExtension="LostCity" />
+		</triggers>
+		<postrequisits />
+    </quest>
+
+	<!-- Activate all ritual sites -->
+	<quest name="BuffAd_Lost_City_Sub4" connectedToQuest="BuffAd_Lost_City_Main" icon="EmptyEffectBuff_BuffAd_RitualActivatorAll" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAd_Lost_City_Sub3"/>
+		</startcondition>
+		<preeffects>
+        </preeffects>
+		<triggers>
+			<questcomplete item="BuffAd_Lost_City_Activate1" locaExtension="WaterAltar" />
+			<questcomplete item="BuffAd_Lost_City_Activate2" locaExtension="NightAltar" />
+			<questcomplete item="BuffAd_Lost_City_Activate3" locaExtension="MetalAltar" />
+			<questcomplete item="BuffAd_Lost_City_Activate4" locaExtension="StoneAltar" />
+			<questcomplete item="BuffAd_Lost_City_Activate5" locaExtension="FireAltar" />
+			<questcomplete item="BuffAd_Lost_City_Activate6" locaExtension="WindAltar" />
+		</triggers>
+		<postrequisits />
+    </quest>
+	
+<!-- Behind-the-scenes quests -->
+	<!-- Destroy occupied ruins (replaces ruins with the proper quest building upon sector liberation) -->
+	<quest name="BuffAd_Lost_City_Kill1" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questactive item="BuffAd_Lost_City_Main"/>
+		</startcondition>
+		<triggers>
+            <buildingdestroyed item="BuffAd_Ritual_Ruin_Occupied1" min="1" locaExtension="LostCity" />
+		</triggers>
+		<posteffects>
+			<Spawnbuilding name="BuffAd_Ritual_Ruin1" action="ignoreBlocking,spawnInstant,replace" x="13" y="11"/>			
+		</posteffects>
+	</quest>
+	<quest name="BuffAd_Lost_City_Kill2" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questactive item="BuffAd_Lost_City_Main"/>
+		</startcondition>
+		<triggers>
+            <buildingdestroyed item="BuffAd_Ritual_Ruin_Occupied2" min="1" locaExtension="LostCity" />
+		</triggers>
+		<posteffects>
+			<Spawnbuilding name="BuffAd_Ritual_Ruin2" action="ignoreBlocking,spawnInstant,replace" x="48" y="105"/>			
+		</posteffects>
+	</quest>
+	<quest name="BuffAd_Lost_City_Kill3" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questactive item="BuffAd_Lost_City_Main"/>
+		</startcondition>
+		<triggers>
+            <buildingdestroyed item="BuffAd_Ritual_Ruin_Occupied3" min="1" locaExtension="LostCity" />
+		</triggers>
+		<posteffects>
+			<Spawnbuilding name="BuffAd_Ritual_Ruin3" action="ignoreBlocking,spawnInstant,replace" x="46" y="16"/>			
+		</posteffects>
+	</quest>
+	<quest name="BuffAd_Lost_City_Kill4" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questactive item="BuffAd_Lost_City_Main"/>
+		</startcondition>
+		<triggers>
+            <buildingdestroyed item="BuffAd_Ritual_Ruin_Occupied4" min="1" locaExtension="LostCity" />
+		</triggers>
+		<posteffects>
+			<Spawnbuilding name="BuffAd_Ritual_Ruin4" action="ignoreBlocking,spawnInstant,replace" x="13" y="107"/>			
+		</posteffects>
+	</quest>
+	<quest name="BuffAd_Lost_City_Kill5" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questactive item="BuffAd_Lost_City_Main"/>
+		</startcondition>
+		<triggers>
+            <buildingdestroyed item="BuffAd_Ritual_Ruin_Occupied5" min="1" locaExtension="LostCity" />
+		</triggers>
+		<posteffects>
+			<Spawnbuilding name="BuffAd_Ritual_Ruin5" action="ignoreBlocking,spawnInstant,replace" x="49" y="43"/>			
+		</posteffects>
+	</quest>
+	<quest name="BuffAd_Lost_City_Kill6" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questactive item="BuffAd_Lost_City_Main"/>
+		</startcondition>
+		<triggers>
+            <buildingdestroyed item="BuffAd_Ritual_Ruin_Occupied6" min="1" locaExtension="LostCity" />
+		</triggers>
+		<posteffects>
+			<Spawnbuilding name="BuffAd_Ritual_Ruin6" action="ignoreBlocking,spawnInstant,replace" x="11" y="49"/>			
+		</posteffects>
+	</quest>
+	<!-- Activate specific ritual site -->
+	<quest name="BuffAd_Lost_City_Activate1" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questactive item="BuffAd_Lost_City_Main"/>
+		</startcondition>
+		<triggers>
+           <buffappliedonadventure min="1" target="BuffAd_Ritual_Ruin1"/>
+		</triggers>
+		<posteffects>
+			<applyzonebuff name="CombatBuffLostCityWater"/>
+			<cancelquest name="BuffAd_Lost_City_RitualAchievement" />
+		</posteffects>
+	</quest>
+	<quest name="BuffAd_Lost_City_Activate2" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questactive item="BuffAd_Lost_City_Main"/>
+		</startcondition>
+		<triggers>
+           <buffappliedonadventure min="1" target="BuffAd_Ritual_Ruin2"/>
+		</triggers>
+		<posteffects>
+			<applyzonebuff name="CombatBuffLostCityNature"/>
+			<cancelquest name="BuffAd_Lost_City_RitualAchievement" />
+		</posteffects>
+	</quest>
+	<quest name="BuffAd_Lost_City_Activate3" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questactive item="BuffAd_Lost_City_Main"/>
+		</startcondition>
+		<triggers>
+           <buffappliedonadventure min="1" target="BuffAd_Ritual_Ruin3"/>
+		</triggers>
+		<posteffects>
+			<applyzonebuff name="CombatBuffLostCityMetal"/>
+			<cancelquest name="BuffAd_Lost_City_RitualAchievement" />
+		</posteffects>
+	</quest>
+	<quest name="BuffAd_Lost_City_Activate4" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questactive item="BuffAd_Lost_City_Main"/>
+		</startcondition>
+		<triggers>
+           <buffappliedonadventure min="1" target="BuffAd_Ritual_Ruin4"/>
+		</triggers>
+		<posteffects>
+			<applyzonebuff name="CombatBuffLostCityStone"/>
+			<cancelquest name="BuffAd_Lost_City_RitualAchievement" />
+		</posteffects>
+	</quest>
+	<quest name="BuffAd_Lost_City_Activate5" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questactive item="BuffAd_Lost_City_Main"/>
+		</startcondition>
+		<triggers>
+           <buffappliedonadventure min="1" target="BuffAd_Ritual_Ruin5"/>
+		</triggers>
+		<posteffects>
+			<applyzonebuff name="CombatBuffLostCityFire"/>
+			<cancelquest name="BuffAd_Lost_City_RitualAchievement" />
+		</posteffects>
+	</quest>
+	<quest name="BuffAd_Lost_City_Activate6" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questactive item="BuffAd_Lost_City_Main"/>
+		</startcondition>
+		<triggers>
+           <buffappliedonadventure min="1" target="BuffAd_Ritual_Ruin6"/>
+		</triggers>
+		<posteffects>
+			<applyzonebuff name="CombatBuffLostCityWind"/>
+			<cancelquest name="BuffAd_Lost_City_RitualAchievement" />
+		</posteffects>
+	</quest>	
+	
+	<quest name="BuffAd_Lost_City_RitualAchievement" showQuestWindow="false" showRewardWindow="false" notifyHomeZone="true">
+		<startcondition>
+		</startcondition>
+		<triggers>
+           <buildingdestroyed item="OrientalBanditCamp_leader" max="0"/>
+		</triggers>
+		<posteffects>
+		</posteffects>
+	</quest>	
+	
+</Root>

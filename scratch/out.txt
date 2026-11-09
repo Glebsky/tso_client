@@ -1,0 +1,5 @@
+GuildEdit: Редактировать
+GuildEditDetails: Подробно
+Name: Название
+UserName: Имя
+Save: Сохранить

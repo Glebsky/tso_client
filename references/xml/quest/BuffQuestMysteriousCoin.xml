@@ -1,0 +1,1604 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<Root>
+        	       
+<!-- Quest pool "The Mysterious Coin" -->
+	
+	<quest name="BuffQuestMysteriousCoin" type="Side" icon="QuestMedium" npc="quest_character_mentor03.png" helpName="Help_window_collections_0" showRewardWindow="true" repeatable="true">
+		<preeffects>
+			<startquest name="BuffQuestGoldsmith"/>
+		</preeffects>
+			
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <questcomplete item="BuffQuestGoldsmith"/> 
+           <questcomplete item="BuffQuestTheJourney"/> 
+           <questcomplete item="BuffQuestTikkiIsland"/> 
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="85000"/>
+		   <reward type="Buff" item="ProductivityBuffLvl20" amount="1"/>
+		   <reward type="Resource" name="StarCoin" amount="150"/>
+         </posteffects>
+      </quest>
+	  
+		  
+	  <quest name="BuffQuestGoldsmith" type="Side" connectedToQuest="BuffQuestMysteriousCoin" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true" unlockTooltipLoca="BuffQuestGoldsmith">
+    		<triggers>
+    			 <trigger type="PayForQuestFinish" name="Coin" amount="200" />
+				 <trigger type="PayForQuestFinish" name="Tool" amount="1500" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="7450"/>
+				<reward type="Resource" name="Bread" amount="100"/>
+				<reward type="Resource" name="Sausage" amount="50"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+				
+		<quest name="BuffQuestTheJourney" type="Side" connectedToQuest="BuffQuestMysteriousCoin" icon="Building" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestGoldsmith"/>
+			</startcondition>			
+			
+			<triggers> 	
+    			 <resource item="Bread" min="10000"/>
+    			 <resource item="Sausage" min="3000"/>
+    			 <resource item="Fish" min="30000"/>
+    			 <trigger type="PayForQuestFinish" name="ExoticPlank" amount="250" />
+    			 <trigger type="PayForQuestFinish" name="RealPlank" amount="1000" />
+    			 <trigger type="PayForQuestFinish" name="Titanium" amount="500" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="5800"/>
+    			<reward type="Adventure" name="MiadTikkiIsland" amount = "1"/>
+     		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+
+		<quest name="BuffQuestTikkiIsland" type="Side" connectedToQuest="BuffQuestMysteriousCoin" icon="Military" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestTheJourney"/>
+			</startcondition>	
+			
+			<triggers>
+    			<completeadventurelist item="MiadTikkiIsland" amount="1" locaExtension="adv_tikki"/>
+				<!--trigger type="Adventure" name="MiadTikkiIsland" condition="geDelta" amount="1" /-->
+    		</triggers>
+    		
+    		<posteffects>	
+    			<reward type="XP" amount="15000"/> 
+     		</posteffects>
+     		<failconditions>
+				<adventurelost item="MiadTikkiIsland"/>
+			</failconditions>
+		  <hints>
+		  </hints>
+    	</quest>
+
+<!-- Quest pool "The little panda" -->
+	
+	<quest name="BuffQuestTheLittlePanda" type="Side" icon="QuestMedium" npc="quest_character_mentor03.png" helpName="Help_window_collections_0" showRewardWindow="true" repeatable="true">            
+        <preeffects>
+			<startquest name="BuffQuestThePandaCub"/>
+		</preeffects>
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <questcomplete item="BuffQuestThePandaCub"/> 
+           <questcomplete item="BuffQuestTravelCage"/> 
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="65000" />    
+		   <reward type="Buff" item="SpeedUpPopulationGrowth2" amount="1"/>
+		   <reward type="Resource" name="StarCoin" amount="75"/>
+         </posteffects>
+      </quest>
+	  
+		  
+	  <quest name="BuffQuestThePandaCub" type="Side" connectedToQuest="BuffQuestTheLittlePanda" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+	
+    		<triggers>
+				 <trigger type="PayForQuestFinish" name="Bread" amount="500" />
+				 <trigger type="PayForQuestFinish" name="Water" amount="1000" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="2000"/>
+				<reward type="Resource" name="TitaniumOre" amount="100"/>
+				<startquest name="BuffQuestTravelCage"/> <!-- fail safe -->
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+				
+		<quest name="BuffQuestTravelCage" type="Side" connectedToQuest="BuffQuestTheLittlePanda" icon="Building" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+
+			<triggers> 	
+    			 <buffowned item="EffectBuffPandaCage" min="1"/>
+				 <buffapplied item="EffectBuffPandaCage" min="1" max="1" target="mayorhouse"/>
+    			 <trigger type="PayForQuestFinish" name="Coin" amount="50" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="23500"/>
+				<reward type="Resource" name="Tool" amount="500"/>
+    		</posteffects>
+     		
+			  <hints>				  
+			  </hints>
+    	</quest>
+
+     		
+<!-- Quest pool "The Wedding invitation" -->
+	
+	<quest name="BuffQuestWeddingInvitation" type="Side" icon="QuestMedium" npc="quest_character_mentor03.png" helpName="Help_window_collections_0" showRewardWindow="true" repeatable="true">            
+        <preeffects>
+			<startquest name="BuffQuestWeddingCake"/>
+		</preeffects>         
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <questcomplete item="BuffQuestWeddingCake"/> 
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="40000" />             
+         </posteffects>
+      </quest>
+	  
+		  
+	  <quest name="BuffQuestWeddingCake" type="Side" connectedToQuest="BuffQuestWeddingInvitation" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+
+		 
+    		<triggers>
+				 <buffowned item="EffectBuffWeddingCake" min="1"/>
+				 <buffapplied item="EffectBuffWeddingCake" min="1" max="1" target="mayorhouse"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="1500"/>
+				<reward type="Resource" name="Population" amount="50"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>	
+
+		
+	<!-- Content Generator BuffQuests -->
+	<!--Settlers and Bandits -->
+	<quest name="BuffQuestSettlersBanditsMain" type="Side" icon="QuestMedium" npc="quest_character_mentor03.png" helpName="Help_window_collections_0" showRewardWindow="true" repeatable="true">
+		<preeffects>
+			<startquest name="BuffQuestSettlersBandits_Sub1"/>
+		</preeffects>
+			
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <questcomplete item="BuffQuestSettlersBandits_Sub1"/> 
+           <questcomplete item="BuffQuestSettlersBandits_Sub2"/> 
+           <questcomplete item="BuffQuestSettlersBandits_Sub3"/> 
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="33000"/> <!-- ATTENTION: Balance XP depending on the level range this quest is addressed for! -->
+		   <reward type="Buff" item="Loottable_RewardBoxManuscriptRecipe" name="188" amount="1"/>               
+         </posteffects>
+      </quest>
+	  
+		  
+		<quest name="BuffQuestSettlersBandits_Sub1" type="Side" connectedToQuest="BuffQuestSettlersBanditsMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<triggers>
+    			 <trigger type="PayForQuestFinish" name="SimplePaper" amount="1500" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="1800"/>
+				<reward type="Buff" item="SpeedUpPopulationGrowth2" amount="4"/>	
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+	
+		<quest name="BuffQuestSettlersBandits_Sub2" type="Side" connectedToQuest="BuffQuestSettlersBanditsMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+			<startcondition>
+				<questcomplete item="BuffQuestSettlersBandits_Sub1"/>
+			</startcondition>
+			<triggers>
+    			 <buffapplied min="1" item="EffectBuffRulebook" target="MayorHouse"/> 
+				 <buffapplied min="1" item="EffectBuffDice" target="MayorHouse"/> 
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="25200"/>
+				<reward type="Buff" item="ProductivityBuffLvl10" amount="3"/>	
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+		
+		<quest name="BuffQuestSettlersBandits_Sub3" type="Side" connectedToQuest="BuffQuestSettlersBanditsMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestSettlersBandits_Sub2"/>
+			</startcondition>			
+			<triggers>
+    			 <trigger type="PayForQuestFinish" name="AdvancedPaper" amount="750" />
+				 <trigger type="PayForQuestFinish" name="Coal" amount="3000" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="5000"/>
+				<reward type="Resource" name="TitaniumOre" amount="250"/>
+				<reward type="Resource" name="Coin" amount="500"/>				
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+	
+	<!-- Bart, the barterer -->
+	
+	<quest name="BuffQuestBartMain" type="Side" icon="QuestMedium" npc="quest_character_mentor03.png" helpName="Help_window_collections_0" showRewardWindow="true" repeatable="true">
+		<preeffects>
+			<startquest name="BuffQuestBart_Sub1"/>
+		</preeffects>
+			
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <questcomplete item="BuffQuestBart_Sub1"/> 
+           <questcomplete item="BuffQuestBart_Sub2"/> 
+           <questcomplete item="BuffQuestBart_Sub3"/> 
+		   <questcomplete item="BuffQuestBart_Sub4"/> 
+		   <questcomplete item="BuffQuestBart_Sub5"/> 
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="7000"/> <!-- ATTENTION: Balance XP depending on the level range this quest is addressed for! -->
+		   <reward type="Resource" name="HardCurrency" amount="50"/>
+         </posteffects>
+      </quest>
+	  
+		  
+		<quest name="BuffQuestBart_Sub1" type="Side" connectedToQuest="BuffQuestBartMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<triggers>
+    			 <buffapplied min="1" item="EffectBuffRealWoodStatue" target="MayorHouse"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="300"/>
+				<reward type="Resource" name="Marble" amount="250"/>	
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+	
+		<quest name="BuffQuestBart_Sub2" type="Side" connectedToQuest="BuffQuestBartMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestBart_Sub1"/>
+			</startcondition>	
+			
+			<triggers>
+    			 <buffapplied min="1" item="EffectBuffAncientBrassSword" target="MayorHouse"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="1300"/>
+				<reward type="Resource" name="Tome" amount="1"/>	
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+			
+		<quest name="BuffQuestBart_Sub3" type="Side" connectedToQuest="BuffQuestBartMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestBart_Sub2"/>
+			</startcondition>	
+			
+			<triggers>
+    			 <buffapplied min="1" item="EffectBuffGourmetMeal" target="MayorHouse"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="1300"/>
+				<reward type="Buff" item="ProvisionerBuffLvl2" amount="2"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+		
+		<quest name="BuffQuestBart_Sub4" type="Side" connectedToQuest="BuffQuestBartMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestBart_Sub3"/>
+			</startcondition>	
+			
+			<triggers>
+				<buffapplied min="1" item="EffectBuffSpecialTable" target="MayorHouse"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="1700"/>
+				<reward type="Resource" name="Granite" amount="150"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+		
+		<quest name="BuffQuestBart_Sub5" type="Side" connectedToQuest="BuffQuestBartMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestBart_Sub4"/>
+			</startcondition>	
+			
+			<triggers>
+				<trigger type="PayForQuestFinish" name="Coin" amount="200" />
+				<buffapplied min="1" item="EffectBuffGoldenStatue" target="MayorHouse"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="5600"/>
+				<reward type="Resource" name="TitaniumSword" amount="20"/>
+				<reward type="Resource" name="Crossbow" amount="20"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+	
+	<!-- The Annoholics, Live! -->
+	
+	<quest name="BuffQuestAnnoholicsMain" type="Side" icon="QuestMedium" npc="quest_character_mentor03.png" helpName="Help_window_collections_0" showRewardWindow="true" repeatable="true">
+		<preeffects>
+			<startquest name="BuffQuestAnnoholics_Sub1"/>
+		</preeffects>
+			
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <questcomplete item="BuffQuestAnnoholics_Sub1"/> 
+           <questcomplete item="BuffQuestAnnoholics_Sub2"/> 
+           <questcomplete item="BuffQuestAnnoholics_Sub3"/> 
+		   <questcomplete item="BuffQuestAnnoholics_Sub4"/> 
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="700"/> <!-- ATTENTION: Balance XP depending on the level range this quest is addressed for! -->
+		   <reward type="Resource" name="HardCurrency" amount="50"/>
+         </posteffects>
+      </quest>
+	  
+		  
+		<quest name="BuffQuestAnnoholics_Sub1" type="Side" connectedToQuest="BuffQuestAnnoholicsMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<triggers>
+    			 <trigger type="PayForQuestFinish" name="Coin" amount="100" />
+				 <trigger type="PayForQuestFinish" name="SimplePaper" amount="100" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="500"/>				
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+	
+		<quest name="BuffQuestAnnoholics_Sub2" type="Side" connectedToQuest="BuffQuestAnnoholicsMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestAnnoholics_Sub1"/>
+			</startcondition>
+			
+			<triggers>
+    			 <buffapplied min="1" item="EffectBuffLiveStage" target="MayorHouse"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="70"/>
+				<reward type="Buff" item="SpeedUpPopulationGrowth5" amount="1"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+			
+		<quest name="BuffQuestAnnoholics_Sub3" type="Side" connectedToQuest="BuffQuestAnnoholicsMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestAnnoholics_Sub2"/>
+			</startcondition>
+			
+			<triggers>
+    			 <buffapplied min="1" item="EffectBuffLute" target="MayorHouse"/> 
+				 <buffapplied min="1" item="EffectBuffDrum" target="MayorHouse"/> 
+				 <buffapplied min="1" item="EffectBuffFlute" target="MayorHouse"/> 
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="100"/>
+				<reward type="Buff" item="ProductivityBuffLvl10" amount="2"/>	
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+		
+		<quest name="BuffQuestAnnoholics_Sub4" type="Side" connectedToQuest="BuffQuestAnnoholicsMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestAnnoholics_Sub3"/>
+			</startcondition>
+			
+			<triggers>
+				<!--completeadventurelist amount="1"/-->
+				<buffappliedonfriend amount="50"/> 
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="300"/>
+				<reward type="Resource" name="Coin" amount="250"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>	
+	
+	<!-- The lost compass -->
+	
+	<quest name="BuffQuestLostCompassMain" type="Side" icon="QuestMedium" npc="quest_character_mentor03.png" helpName="Help_window_collections_0" showRewardWindow="true" repeatable="true">
+		<preeffects>
+			<startquest name="BuffQuestLostCompass_Sub1"/>
+		</preeffects>
+			
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <questcomplete item="BuffQuestLostCompass_Sub1"/> 
+           <questcomplete item="BuffQuestLostCompass_Sub2"/> 
+           <questcomplete item="BuffQuestLostCompass_Sub3"/> 
+		   <questcomplete item="BuffQuestLostCompass_Sub4"/> 
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="112000"/> <!-- ATTENTION: Balance XP depending on the level range this quest is addressed for! -->
+		   <reward type="Buff" item="Loottable_RewardBoxManuscriptRecipe" name="188" amount="1"/>
+         </posteffects>
+      </quest>
+	  
+		  
+		<quest name="BuffQuestLostCompass_Sub1" type="Side" connectedToQuest="BuffQuestLostCompassMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<triggers>
+    			 <resourcegathered min="1" type="Codex"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="20000"/>
+				<reward type="Resource" name="Coin" amount="300"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+	
+		<quest name="BuffQuestLostCompass_Sub2" type="Side" connectedToQuest="BuffQuestLostCompassMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestLostCompass_Sub1"/>
+			</startcondition>
+			
+			<triggers>
+    			 <completeadventurelist amount="2"/>				 
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="76000"/>
+				<reward type="Resource" name="PlatinumOre" amount="2000"/>
+				<reward type="Resource" name="MahoganyWood" amount="1000"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+			
+		<quest name="BuffQuestLostCompass_Sub3" type="Side" connectedToQuest="BuffQuestLostCompassMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestLostCompass_Sub2"/>
+			</startcondition>
+			
+			<triggers>
+    			 <completeadventurelist amount="1" type="ArabianNights" locaExtension="1001Nights_1"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="100000"/>
+				<reward type="Resource" name="Grout" amount="500"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+		
+		<quest name="BuffQuestLostCompass_Sub4" type="Side" connectedToQuest="BuffQuestLostCompassMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestLostCompass_Sub3"/>
+			</startcondition>
+			
+			<triggers>
+				<buffapplied min="1" item="EffectBuffChestKey" target="MayorHouse"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="32000"/>
+				<reward type="Resource" name="StarCoin" amount="450"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>	
+	
+	<!-- A threat -->
+	
+	<quest name="BuffQuestAThreatMain" type="Side" icon="QuestMedium" npc="quest_character_mentor03.png" helpName="Help_window_collections_0" showRewardWindow="true" repeatable="true">
+		<preeffects>
+			<startquest name="BuffQuestAThreat_Sub1"/>
+		</preeffects>
+			
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <questcomplete item="BuffQuestAThreat_Sub1"/> 
+           <questcomplete item="BuffQuestAThreat_Sub2"/> 
+           <questcomplete item="BuffQuestAThreat_Sub3"/> 
+		   <questcomplete item="BuffQuestAThreat_Sub4"/> 
+		   <questcomplete item="BuffQuestAThreat_Sub5"/> 
+		   <questcomplete item="BuffQuestAThreat_Sub6"/> 
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="112000"/> <!-- ATTENTION: Balance XP depending on the level range this quest is addressed for! -->
+		   <reward type="Buff" item="Loottable_RewardBoxManuscriptRecipe" name="188" amount="1"/>
+         </posteffects>
+      </quest>
+	  
+		  
+		<quest name="BuffQuestAThreat_Sub1" type="Side" connectedToQuest="BuffQuestAThreatMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<triggers>
+    			 <resourcegathered min="750" type="MahoganyPlank"/>
+				 <trigger type="PayForQuestFinish" name="MahoganyPlank" amount="750" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="12000"/>
+				<reward type="Resource" name="Granite" amount="500"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+	
+		<quest name="BuffQuestAThreat_Sub2" type="Side" connectedToQuest="BuffQuestAThreatMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestAThreat_Sub1"/>
+			</startcondition>
+			
+			<triggers>
+    			<resourcegathered min="750" type="TitaniumSword"/>
+				<trigger type="MilitaryUnit" name="EliteSoldier" condition="ge" amount="300"/>
+			</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="20000"/>
+				<reward type="Resource" name="PlatinumOre" amount="1500"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+			
+		<quest name="BuffQuestAThreat_Sub3" type="Side" connectedToQuest="BuffQuestAThreatMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestAThreat_Sub2"/>
+			</startcondition>
+			
+			<triggers>
+    			 <buffapplied min="5" item="EffectBuffSpyglass" target="MayorHouse"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="28000"/>
+				<reward type="Buff" item="RecruitingBuffLvl4" amount="1"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+		
+		<quest name="BuffQuestAThreat_Sub4" type="Side" connectedToQuest="BuffQuestAThreatMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestAThreat_Sub3"/>
+			</startcondition>
+			
+			<triggers>
+				<trigger type="PayForQuestFinish" name="Meat" amount="7500" />
+				<trigger type="PayForQuestFinish" name="Fish" amount="30000" />
+				<buffproduced min="50" item="ProductivityBuffLvl3" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="13600"/>
+				<reward type="Buff" item="ProvisionerBuffLvl3" amount="1"/>  
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>	
+		
+		<quest name="BuffQuestAThreat_Sub5" type="Side" connectedToQuest="BuffQuestAThreatMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestAThreat_Sub4"/>
+			</startcondition>
+			
+			<triggers>
+				<trigger type="PayForQuestFinish" name="Coin" amount="1500" />
+				<trigger type="PayForQuestFinish" name="PlatinumSword" amount="750" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="116000"/>
+				<reward type="Resource" name="Grout" amount="250"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>	
+		
+		<quest name="BuffQuestAThreat_Sub6" type="Side" connectedToQuest="BuffQuestAThreatMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestAThreat_Sub5"/>
+			</startcondition>
+			
+			<triggers>
+				 <completeadventurelist amount="1" type="ArabianNights" locaExtension="1001Nights_1"/>
+    		</triggers>    		
+    		<posteffects>
+    			<reward type="XP" amount="88000"/>
+				<reward type="Resource" name="StarCoin" amount="600"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>	
+		
+		<!-- Strange Idols -->
+		
+		<quest name="BuffQuestStrangeIdolsMain" type="Side" icon="QuestMedium" npc="quest_character_mentor03.png" helpName="Help_window_collections_0" showRewardWindow="true" repeatable="true">
+		<preeffects>
+			<startquest name="BuffQuestStrangeIdols_Sub1"/>
+		</preeffects>
+			
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <questcomplete item="BuffQuestStrangeIdols_Sub1"/> 
+           <questcomplete item="BuffQuestStrangeIdols_Sub2"/> 
+           <questcomplete item="BuffQuestStrangeIdols_Sub3"/> 
+		   <questcomplete item="BuffQuestStrangeIdols_Sub4"/> 
+
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="500"/> <!-- ATTENTION: Balance XP depending on the level range this quest is addressed for! -->
+		   <reward type="Resource" name="HardCurrency" amount="50"/>
+         </posteffects>
+      </quest>
+	  
+		  
+		<quest name="BuffQuestStrangeIdols_Sub1" type="Side" connectedToQuest="BuffQuestStrangeIdolsMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<triggers>
+    			 <resourcegathered min="200" type="Bronze"/>
+				 <resourcegathered min="200" type="Stone"/>
+				 <resourcegathered min="200" type="Marble"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="310"/>
+				<reward type="Resource" name="BronzeSword" amount="50"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+	
+		<quest name="BuffQuestStrangeIdols_Sub2" type="Side" connectedToQuest="BuffQuestStrangeIdolsMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestStrangeIdols_Sub1"/>
+			</startcondition>
+			
+			<triggers>
+    			<buffappliedonfriend amount="15"/>			 
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="30"/> 
+				<reward type="Buff" item="ProductivityBuffLvl6" amount="1"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+			
+		<quest name="BuffQuestStrangeIdols_Sub3" type="Side" connectedToQuest="BuffQuestStrangeIdolsMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestStrangeIdols_Sub2"/>
+			</startcondition>
+			
+			<triggers>
+    			 <buffapplied min="1" item="EffectBuffRustBGone" target="MayorHouse"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="80"/>
+				<reward type="Resource" name="Marble" amount="250"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+		
+		<quest name="BuffQuestStrangeIdols_Sub4" type="Side" connectedToQuest="BuffQuestStrangeIdolsMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestStrangeIdols_Sub3"/>
+			</startcondition>
+			
+			<triggers>
+				<soldgoods item="BronzeSword" amount="100" locaExtension="item"/>
+				<soldgoods item="Corn" amount="1000" locaExtension="item"/>
+				<soldgoods item="Plank" amount="1500" locaExtension="item"/>
+				<buffproduced min="30" item="ProductivityBuffLvl3" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="400"/>
+				<reward type="Resource" name="Coin" amount="500"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>	
+		
+		<!-- A very sharp claw -->
+		
+		<quest name="BuffQuestSharpClawMain" type="Side" icon="QuestMedium" npc="quest_character_mentor03.png" helpName="Help_window_collections_0" showRewardWindow="true" repeatable="true">
+		<preeffects>
+			<startquest name="BuffQuestSharpClaw_Sub1"/>
+		</preeffects>
+			
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <questcomplete item="BuffQuestSharpClaw_Sub1"/> 
+           <questcomplete item="BuffQuestSharpClaw_Sub2"/> 
+           <questcomplete item="BuffQuestSharpClaw_Sub3"/> 
+		   <questcomplete item="BuffQuestSharpClaw_Sub4"/> 
+
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="1000"/> <!-- ATTENTION: Balance XP depending on the level range this quest is addressed for! -->
+		   <reward type="Resource" name="HardCurrency" amount="50"/>
+         </posteffects>
+      </quest>
+	  
+		  
+		<quest name="BuffQuestSharpClaw_Sub1" type="Side" connectedToQuest="BuffQuestSharpClawMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<triggers>
+				<specialisttaskfinished item="FindTreasureShort" amount="5"/>    			
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="200"/>
+				<reward type="Resource" name="Marble" amount="150"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+	
+		<quest name="BuffQuestSharpClaw_Sub2" type="Side" connectedToQuest="BuffQuestSharpClawMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestSharpClaw_Sub1"/>
+			</startcondition>
+			
+			<triggers>
+    			<specialisttaskfinished item="FindDepositBronzeOre" amount="5"/> 
+				<specialisttaskfinished item="FindDepositStone" amount="6"/> 
+				<!--specialisttaskresulttype item="FindDepositBronzeOre" amount="9" /> 	
+				<specialisttaskresulttype item="FindDepositStone" amount="10" /-->
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="240"/> 
+				<reward type="Resource" name="Iron" amount="50"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+			
+		<quest name="BuffQuestSharpClaw_Sub3" type="Side" connectedToQuest="BuffQuestSharpClawMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestSharpClaw_Sub2"/>
+			</startcondition>
+			
+			<triggers>
+    			 <buffapplied min="1" item="EffectBuffArmoredCage" target="MayorHouse"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="100"/>
+				<reward type="Resource" name="RealWood" amount="250"/> 
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+		
+		<quest name="BuffQuestSharpClaw_Sub4" type="Side" connectedToQuest="BuffQuestSharpClawMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestSharpClaw_Sub3"/>
+			</startcondition>
+			
+			<triggers>
+				<trigger type="MilitaryUnit" name="Recruit" condition="ge" amount="30"/>
+				<trigger type="MilitaryUnit" name="Bowman" condition="ge" amount="30"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="120"/>
+				<reward type="Resource" name="Coin" amount="250"/>
+				<reward type="Buff" item="ProductivityBuffLvl5" amount="1"/> 
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>	
+	
+	<!-- To my dear Miranda -->
+		
+		<quest name="BuffQuestMirandaMain" type="Side" icon="QuestMedium" npc="quest_character_mentor03.png" helpName="Help_window_collections_0" showRewardWindow="true" repeatable="true">
+		<preeffects>
+			<startquest name="BuffQuestMiranda_Sub1"/>
+		</preeffects>
+			
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <questcomplete item="BuffQuestMiranda_Sub1"/> 
+           <questcomplete item="BuffQuestMiranda_Sub2"/> 
+           <questcomplete item="BuffQuestMiranda_Sub3"/> 
+
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="5000"/> <!-- ATTENTION: Balance XP depending on the level range this quest is addressed for! -->
+		   <reward type="Resource" name="HardCurrency" amount="50"/>
+         </posteffects>
+      </quest>
+	  
+		  
+		<quest name="BuffQuestMiranda_Sub1" type="Side" connectedToQuest="BuffQuestMirandaMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<triggers>    			 
+				 <buffapplied min="1" item="EffectBuffMessengerPigeon" target="MayorHouse"/>
+				 <trigger type="PayForQuestFinish" name="IntermediatePaper" amount="30" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="1000"/>
+				<reward type="Buff" item="ProductivityBuffLvl5" amount="1"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+	
+		<quest name="BuffQuestMiranda_Sub2" type="Side" connectedToQuest="BuffQuestMirandaMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestMiranda_Sub1"/>
+			</startcondition>
+			
+			<triggers>
+    			<completeadventurelist amount="1" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="5200"/> 
+				<reward type="Resource" name="ExoticWood" amount="70"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+			
+		<quest name="BuffQuestMiranda_Sub3" type="Side" connectedToQuest="BuffQuestMirandaMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestMiranda_Sub2"/>
+			</startcondition>
+			
+			<triggers>
+    			 <buffapplied min="1" item="EffectBuffVitaminRemedy" target="MayorHouse"/>
+				 <trigger type="PayForQuestFinish" name="Water" amount="4000" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="500"/>
+				<reward type="Resource" name="Population" amount="1"/>
+				<reward type="Resource" name="Granite" amount="50"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+	
+	<!-- A Vigilante's insignia -->
+		
+		<quest name="BuffQuestVigilanteMain" type="Side" icon="QuestMedium" npc="quest_character_mentor03.png" helpName="Help_window_collections_0" showRewardWindow="true" repeatable="true">
+		<preeffects>
+			<startquest name="BuffQuestVigilante_Sub1"/>
+		</preeffects>
+			
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <questcomplete item="BuffQuestVigilante_Sub1"/> 
+           <questcomplete item="BuffQuestVigilante_Sub2"/> 
+           <questcomplete item="BuffQuestVigilante_Sub3"/> 
+		   <questcomplete item="BuffQuestVigilante_Sub4"/> 
+			<questcomplete item="BuffQuestVigilante_Sub5"/>
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="5000"/> <!-- ATTENTION: Balance XP depending on the level range this quest is addressed for! -->
+		   <reward type="Resource" name="HardCurrency" amount="50"/>
+         </posteffects>
+      </quest>
+	  
+		  
+		<quest name="BuffQuestVigilante_Sub1" type="Side" connectedToQuest="BuffQuestVigilanteMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<triggers>
+    			 <completeadventurelist amount="2"/> 
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="15000"/>
+				<reward type="Buff" item="ProductivityBuffLvl4" amount="2"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+	
+		<quest name="BuffQuestVigilante_Sub2" type="Side" connectedToQuest="BuffQuestVigilanteMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestVigilante_Sub1"/>
+			</startcondition>
+			
+			<triggers>
+    			<buffapplied min="1" item="EffectBuffFakeCoins" target="MayorHouse"/>
+				<buffapplied min="1" item="EffectBuffFlimsyProp" target="MayorHouse"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="2800"/> 
+				<reward type="Resource" name="Coin" amount="200"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+			
+		<quest name="BuffQuestVigilante_Sub3" type="Side" connectedToQuest="BuffQuestVigilanteMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestVigilante_Sub2"/>
+			</startcondition>
+			
+			<triggers>
+    			 <trigger type="PayForQuestFinish" name="IntermediatePaper" amount="150" />
+				 <trigger type="PayForQuestFinish" name="Nib" amount="400" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="1300"/>
+				<reward type="Buff" item="ProductivityBuffLvl14" amount="3"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+		
+		<quest name="BuffQuestVigilante_Sub4" type="Side" connectedToQuest="BuffQuestVigilanteMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestVigilante_Sub3"/>
+			</startcondition>
+			
+			<triggers>
+				<resourcegathered min="1000" type="RealWood"/>
+				<resourcegathered min="750" type="Iron"/>
+				<resourcegathered min="750" type="Coal"/>
+				<resourcegathered min="500" type="IronSword"/>
+				<resourcegathered min="250" type="SteelSword"/>
+				<resourcegathered min="1000" type="Horse"/>
+				<trigger type="PayForQuestFinish" name="Tool" amount="1500" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="7000"/>
+				<reward type="Resource" name="ExoticWood" amount="200"/> 
+     		</posteffects>
+		</quest>
+			
+		
+		<quest name="BuffQuestVigilante_Sub5" type="Side" connectedToQuest="BuffQuestVigilanteMain" icon="QuestShort" npc="quest_character_mentor03.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestVigilante_Sub4"/>
+			</startcondition>
+			
+			<triggers>
+				<completeadventurelist amount="1"/> 
+				<battlewonwithoutcasualties amount="1"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="5000"/>
+				<reward type="Buff" item="ProductivityBuffLvl10" amount="2"/> 
+     		</posteffects>
+		
+			  <hints>
+			  </hints>
+		</quest>
+	
+	<!-- The Larsian Silk Cat (German Excelsior story contest winner) -->
+		
+		<quest name="BuffQuestSilkCatMain" type="Side" icon="QuestMedium" npc="quest_character_sonya_solemoon.png" helpName="Help_window_provision_house_0" showRewardWindow="true" repeatable="true">
+			<preeffects>
+				<startquest name="BuffQuestSilkCat_Sub1"/>
+			</preeffects>         
+			<triggers>
+			   <questcomplete item="BuffQuestSilkCat_Sub1"/> 
+			   <questcomplete item="BuffQuestSilkCat_Sub2"/> 
+			   <questcomplete item="BuffQuestSilkCat_Sub3"/> 
+			   <questcomplete item="BuffQuestSilkCat_Sub4"/> 
+			</triggers>
+			 
+			<posteffects>
+			   <reward type="XP" amount="800"/> <!-- ATTENTION: Balance XP depending on the level range this quest is addressed for! -->
+			   <reward type="Resource" name="HardCurrency" amount="50"/>
+			</posteffects>
+		</quest>
+	
+		<quest name="BuffQuestSilkCat_Sub1" type="Side" connectedToQuest="BuffQuestSilkCatMain" icon="QuestShort" npc="quest_character_sonya_solemoon.png"  showRewardWindow="true" repeatable="true">
+			<triggers>
+    			<buffapplied min="1" item="EffectBuffTentDecoration" target="MayorHouse" locaExtension="mayorhouse"/>				
+    			<trigger type="PayForQuestFinish" name="Recruit" amount="6" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="300"/>
+				<reward type="Buff" item="SpeedUpPopulationGrowth5" amount="1"/>
+     		</posteffects>			
+		</quest>
+		
+		<quest name="BuffQuestSilkCat_Sub2" type="Side" connectedToQuest="BuffQuestSilkCatMain" icon="QuestShort" npc="quest_character_sonya_solemoon.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestSilkCat_Sub1"/>
+			</startcondition>			
+			<triggers>			
+    			<trigger type="PayForQuestFinish" name="Flour" amount="200" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="100"/>
+				<reward type="Resource" name="Coin" amount="100"/> 
+     		</posteffects>			
+		</quest>
+		
+		<quest name="BuffQuestSilkCat_Sub3" type="Side" connectedToQuest="BuffQuestSilkCatMain" icon="QuestShort" npc="quest_character_sonya_solemoon.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestSilkCat_Sub2"/>
+			</startcondition>			
+			<triggers>			
+    			<trigger type="Resource" name="Fish" condition="produce" amount="500" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="100"/>
+				<reward type="Buff" item="ProductivityAreaBuffLvl3" amount="3"/>
+     		</posteffects>			
+		</quest>
+		
+		<quest name="BuffQuestSilkCat_Sub4" type="Side" connectedToQuest="BuffQuestSilkCatMain" icon="QuestShort" npc="quest_character_sonya_solemoon.png"  showRewardWindow="true" repeatable="true">
+    		<startcondition>
+				<questcomplete item="BuffQuestSilkCat_Sub3"/>
+			</startcondition>			
+			<triggers>
+    			<buffapplied min="1" item="EffectBuffCatChow" target="MayorHouse" locaExtension="mayorhouse"/>
+    			<buffapplied min="1" item="EffectBuffScratchingPost" target="MayorHouse" locaExtension="mayorhouse"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="200"/>
+				<reward type="Resource" name="Coin" amount="250"/> 
+     		</posteffects>			
+		</quest>
+		
+	<!-- A new Gemstone? -->
+		
+		<quest name="BuffQuestNewStone" type="Side" icon="QuestMedium" npc="quest_character_geologist01.png" helpName="Help_window_collections_0" showRewardWindow="true" repeatable="true">
+		<preeffects>
+			<startquest name="BuffQuestNewStone_Sub1"/>
+		</preeffects>
+			
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+           <questcomplete item="BuffQuestNewStone_Sub1"/> 
+           <questcomplete item="BuffQuestNewStone_Sub2"/> 
+           <questcomplete item="BuffQuestNewStone_Sub3"/> 
+		   <questcomplete item="BuffQuestNewStone_Sub4"/> 
+			<questcomplete item="BuffQuestNewStone_Sub5"/>
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="34000"/>
+		   <reward type="Resource" name="CrystalShard" amount="6"/>
+         </posteffects>
+      </quest>
+	  
+	  	<quest name="BuffQuestNewStone_Sub1" type="Side" connectedToQuest="BuffQuestNewStone" icon="QuestShort" npc="quest_character_geologist01.png"  showRewardWindow="true" repeatable="true" unlockTooltipLoca="BuffQuestNewStone_Sub1">
+    		<triggers>
+    			 <onmap item="Well_03" min="2"/>
+				 <trigger type="Resource" name="Water" condition="produce" amount="8300" />
+				 <trigger type="PayForQuestFinish" name="Water" amount="16600" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="5400"/>
+				<reward type="Resource" name="Coin" amount="200"/>
+				<reward type="Buff" item="SpeedUpPopulationGrowth" amount="1"/>
+				<startquest name="BuffQuestNewStone_Sub2"/>
+     		</posteffects>
+     		
+			<hints>
+			</hints>
+		</quest>
+		
+		<quest name="BuffQuestNewStone_Sub2" type="Side" connectedToQuest="BuffQuestNewStone" icon="QuestShort" npc="quest_character_geologist01.png"  showRewardWindow="true" repeatable="true">
+    		<triggers>
+				 <trigger type="PayForQuestFinish" name="Bread" amount="4500" />
+				 <buffproduced min="25" item="ProductivityBuffLvl3" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="5700"/>
+				<reward type="Buff" item="FillDeposit" amount="50"/>
+				<startquest name="BuffQuestNewStone_Sub3"/>
+     		</posteffects>
+     		
+			<hints>
+			</hints>
+		</quest>
+		
+		<quest name="BuffQuestNewStone_Sub3" type="Side" connectedToQuest="BuffQuestNewStone" icon="QuestShort" npc="quest_character_geologist01.png"  showRewardWindow="true" repeatable="true">
+			<triggers>
+				 <produceditemlist item="Recruit" amount="200" locaExtension="unit"/> 
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="300"/>
+				<reward type="Buff" item="RecruitingBuffLvl1" amount="1"/>
+				<startquest name="BuffQuestNewStone_Sub4"/>
+     		</posteffects>
+     		
+			<hints>
+			</hints>
+		</quest>
+		
+		<quest name="BuffQuestNewStone_Sub4" type="Side" connectedToQuest="BuffQuestNewStone" icon="QuestShort" npc="quest_character_geologist01.png"  showRewardWindow="true" repeatable="true">
+			<triggers>
+				 <trigger type="PayForQuestFinish" name="Recruit" amount="200"/>
+				 <trigger type="Resource" name="Beer" condition="produce" amount="1500" />
+				 <trigger type="PayForQuestFinish" name="Beer" amount="3000" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="5000"/>
+				<reward type="Buff" item="ProductivityBuffLvl18" amount="1"/> 
+				<startquest name="BuffQuestNewStone_Sub5"/>
+     		</posteffects>
+     		
+			<hints>
+			</hints>
+		</quest>
+		
+		<quest name="BuffQuestNewStone_Sub5" type="Side" connectedToQuest="BuffQuestNewStone" icon="QuestShort" npc="quest_character_geologist01.png"  showRewardWindow="true" repeatable="true">
+			<triggers>
+				 <buffapplied min="25" item="ProductivityBuffLvl3"/>
+    		</triggers>
+    		
+    		<posteffects>
+				<reward type="XP" amount="400"/>
+				<reward type="Buff" item="ProductivityBuffLvl6" amount="1"/> 
+     		</posteffects>
+     		
+			<hints>
+			</hints>
+		</quest>
+
+	<!-- Save the Deers -->
+		
+		<quest name="BuffQuestSaveTheDeers" type="Side" icon="QuestMedium" npc="quest_character_geologist01.png" helpName="Help_window_collections_0" showRewardWindow="true" repeatable="true">
+			<preeffects>
+				<startquest name="BuffQuestSaveTheDeers_Sub1"/>
+			</preeffects>
+
+			<helpeffects>
+			</helpeffects>
+			
+			<triggers>
+				<questcomplete item="BuffQuestSaveTheDeers_Sub1"/> 
+				<questcomplete item="BuffQuestSaveTheDeers_Sub2"/> 
+				<questcomplete item="BuffQuestSaveTheDeers_Sub3"/> 
+				<questcomplete item="BuffQuestSaveTheDeers_Sub4"/> 
+				<questcomplete item="BuffQuestSaveTheDeers_Sub5"/>
+				<questcomplete item="BuffQuestSaveTheDeers_Sub6"/>
+			</triggers>
+			
+			<posteffects>
+				<reward type="XP" amount="73000"/>
+				<reward type="Resource" name="CrystalShard" amount="11"/>
+			</posteffects>
+		</quest>
+	  
+	  	<quest name="BuffQuestSaveTheDeers_Sub1" type="Side" connectedToQuest="BuffQuestSaveTheDeers" icon="QuestShort" npc="quest_character_geologist01.png"  showRewardWindow="true" repeatable="true">
+    		<triggers>
+				 <trigger type="Resource" name="Meat" condition="produce" amount="8300" />
+				 <buffproduced min="16000" item="FillDeposit_Hunter" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="7400"/>
+				<reward type="Buff" item="ProvisionerBuffLvl2" amount="1"/>
+				<startquest name="BuffQuestSaveTheDeers_Sub2"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+		
+		<quest name="BuffQuestSaveTheDeers_Sub2" type="Side" connectedToQuest="BuffQuestSaveTheDeers" icon="QuestShort" npc="quest_character_geologist01.png"  showRewardWindow="true" repeatable="true">
+			<triggers>
+				 <buffapplied item="ProductivityBuffLvl23" min="25"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="400"/>
+				<reward type="Resource" name="Coin" amount="300"/>
+				<startquest name="BuffQuestSaveTheDeers_Sub3"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+		
+		<quest name="BuffQuestSaveTheDeers_Sub3" type="Side" connectedToQuest="BuffQuestSaveTheDeers" icon="QuestShort" npc="quest_character_geologist01.png"  showRewardWindow="true" repeatable="true">
+			<triggers>
+				 <trigger type="PayForQuestFinish" name="Sausage" amount="3000" />
+				 <trigger type="PayForQuestFinish" name="Fish" amount="8900" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="6900"/>
+				<reward type="Buff" item="ProductivityBuffLvl6" amount="1"/>
+				<startquest name="BuffQuestSaveTheDeers_Sub4"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+		
+		<quest name="BuffQuestSaveTheDeers_Sub4" type="Side" connectedToQuest="BuffQuestSaveTheDeers" icon="QuestShort" npc="quest_character_geologist01.png"  showRewardWindow="true" repeatable="true">
+			<triggers>
+				 <trigger type="PayForQuestFinish" name="Wood" amount="36500" />
+				 <trigger type="PayForQuestFinish" name="RealWood" amount="10300" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="6700"/>
+				<reward type="Buff" item="ProductivityBuffLvl4" amount="1"/>
+				<startquest name="BuffQuestSaveTheDeers_Sub5"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+		
+		<quest name="BuffQuestSaveTheDeers_Sub5" type="Side" connectedToQuest="BuffQuestSaveTheDeers" icon="QuestShort" npc="quest_character_geologist01.png"  showRewardWindow="true" repeatable="true">
+			<triggers>
+				 <produceditemlist item="Bowman" amount="100" locaExtension="bowmen"/> 
+				 <trigger type="PayForQuestFinish" name="Bowman" amount="100"  />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="7900"/>
+				<reward type="Buff" item="RecruitingBuffLvl100" amount="1"/>
+				<startquest name="BuffQuestSaveTheDeers_Sub6"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+		
+		<quest name="BuffQuestSaveTheDeers_Sub6" type="Side" connectedToQuest="BuffQuestSaveTheDeers" icon="QuestShort" npc="quest_character_geologist01.png"  showRewardWindow="true" repeatable="true">
+			<triggers>
+				 <trigger type="Deposit" condition="geDelta" name="Meat" amount="16000" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="7400"/>
+				<reward type="Buff" item="FillDeposit" amount="50"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>		
+		
+	<!-- Wolf Puppy -->
+		
+		<quest name="BuffQuestWolfPuppy" type="Side" icon="QuestMedium" npc="quest_character_geologist01.png" helpName="Help_window_collections_0" showRewardWindow="true" repeatable="true">
+		<preeffects>
+			<startquest name="BuffQuestWolfPuppy_Sub1"/>
+		</preeffects>
+			
+         <helpeffects>
+         </helpeffects>
+         
+         <triggers>
+			<questcomplete item="BuffQuestWolfPuppy_Sub1"/> 
+			<questcomplete item="BuffQuestWolfPuppy_Sub2"/> 
+			<questcomplete item="BuffQuestWolfPuppy_Sub3"/> 
+			<questcomplete item="BuffQuestWolfPuppy_Sub4"/> 
+			<questcomplete item="BuffQuestWolfPuppy_Sub5"/>
+         </triggers>
+         
+         <posteffects>
+           <reward type="XP" amount="169000"/>
+		   <reward type="Resource" name="CrystalShard" amount="16"/>
+         </posteffects>
+		</quest>
+	  
+	  	<quest name="BuffQuestWolfPuppy_Sub1" type="Side" connectedToQuest="BuffQuestWolfPuppy" icon="QuestShort" npc="quest_character_geologist01.png"  showRewardWindow="true" repeatable="true">
+    		<triggers>
+				<trigger type="PayForQuestFinish" name="Plank" amount="4950" />
+				<trigger type="PayForQuestFinish" name="Corn" amount="56900" />
+				<buildinglistupgradelevel min="1" amount="5" item="IronMine,IronMineEndless" name="ArcticIronMine,EpicIronMine" locaExtension="IronMine"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="20900"/>
+				<reward type="Buff" item="ProductivityBuffLvl7" amount="1"/>
+				<startquest name="BuffQuestWolfPuppy_Sub2"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+		
+		<quest name="BuffQuestWolfPuppy_Sub2" type="Side" connectedToQuest="BuffQuestWolfPuppy" icon="QuestShort" npc="quest_character_geologist01.png"  showRewardWindow="true" repeatable="true">
+			<triggers>
+				<trigger type="PayForQuestFinish" name="SimplePaper" amount="3700" />
+				<trigger type="Resource" name="Corn" condition="produce" amount="28200" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="20800"/>
+				<reward type="Buff" item="BookbinderBuffLvl1" amount="1"/>
+				<startquest name="BuffQuestWolfPuppy_Sub3"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+		
+		<quest name="BuffQuestWolfPuppy_Sub3" type="Side" connectedToQuest="BuffQuestWolfPuppy" icon="QuestShort" npc="quest_character_geologist01.png"  showRewardWindow="true" repeatable="true">
+			<triggers>
+				<trigger type="Resource" name="Meat" condition="produce" amount="25600" />
+				<trigger type="PayForQuestFinish" name="Meat" amount="50900" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="20900"/>
+				<reward type="Buff" item="RecruitingBuffLvl4" amount="1"/>
+				<startquest name="BuffQuestWolfPuppy_Sub4"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+		
+		<quest name="BuffQuestWolfPuppy_Sub4" type="Side" connectedToQuest="BuffQuestWolfPuppy" icon="QuestShort" npc="quest_character_geologist01.png"  showRewardWindow="true" repeatable="true">
+			<triggers>
+				 <buffapplied item="ProductivityBuffLvl23" min="50"/>
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="1300"/>
+				<reward type="Buff" item="FillDeposit" amount="50"/>
+				<startquest name="BuffQuestWolfPuppy_Sub5"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+
+		<quest name="BuffQuestWolfPuppy_Sub5" type="Side" connectedToQuest="BuffQuestWolfPuppy" icon="QuestShort" npc="quest_character_geologist01.png"  showRewardWindow="true" repeatable="true">
+			<triggers>
+				<trigger type="Resource" name="Flour" condition="produce" amount="16400" />
+				<trigger type="PayForQuestFinish" name="Flour" amount="32900" />
+    		</triggers>
+    		
+    		<posteffects>
+    			<reward type="XP" amount="20800"/>
+				<reward type="Buff" item="SpeedUpPopulationGrowth4" amount="1"/>
+     		</posteffects>
+     		
+			  <hints>
+			  </hints>
+		</quest>
+			
+	<!-- "Valentines 2026 Wedding Chapel Stories" -->	
+	<!--  Wedding Chapel Stories 1 -->	
+	<quest name="BuffQuestWeddingStory1_A" type="Side" icon="QuestMedium" npc="quest_character_flora.png" showRewardWindow="true" repeatable="true">
+		<preeffects>
+			<startquest name="BuffQuestWeddingStory1_B"/>
+		</preeffects>
+		<triggers>
+			<questcomplete item="BuffQuestWeddingStory1_B"/> 
+			<questcomplete item="BuffQuestWeddingStory1_C"/> 
+		</triggers>
+		<failconditions>
+           <hourselapsed amount="240" icon="icon_exclamationmark.png"/>
+        </failconditions>
+		<posteffects>
+			<reward type="XP" amount="10000" />
+			<reward type="Buff" item="FillDeposit" amount="25"/>
+		</posteffects>
+	</quest>	
+	<quest name="BuffQuestWeddingStory1_B" type="Side" connectedToQuest="BuffQuestWeddingStory1_A" icon="QuestShort" npc="quest_character_flora.png" showRewardWindow="true" repeatable="true">
+		<triggers>
+			<specialisttaskresulttype item="FindTreasureEvenLonger" type="Granite" amount="600" locaExtension="type"/>  
+			<trigger type="PayForQuestFinish" name="Tool" amount="1000" /> 
+		</triggers>    		
+		<posteffects>
+			<reward type="XP" amount="5000"/>
+			<reward type="Buff" item="BuildBuilding" name="Platinum_Shack" amount="1" />
+			<reward type="Buff" item="BuildBuilding" name="Platinum_Shack" amount="1" />
+			<reward type="Buff" item="BuildBuilding" name="Platinum_Shack" amount="1" />
+			<startquest name="BuffQuestWeddingStory1_C"/>
+		</posteffects>
+	</quest>	
+	<quest name="BuffQuestWeddingStory1_C" type="Side" connectedToQuest="BuffQuestWeddingStory1_A" icon="QuestShort" npc="quest_character_flora.png" showRewardWindow="true" repeatable="true">
+		<triggers>
+			<buildingdestroyed item="Platinum_Shack" min="3" locaExtension="Deplete_Extractors_Generic" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="5000"/>
+			<reward type="Buff" item="ProductivityBuffHalloween1" amount="2"/>
+		</posteffects>		
+	</quest>	
+	
+	<!--  Wedding Chapel Stories 2 -->	
+	<quest name="BuffQuestWeddingStory2_A" type="Side" icon="QuestMedium" npc="quest_character_flora.png" showRewardWindow="true" repeatable="true">
+		<preeffects>
+			<startquest name="BuffQuestWeddingStory2_B"/>
+		</preeffects>
+		<triggers>
+			<questcomplete item="BuffQuestWeddingStory2_B"/> 
+			<questcomplete item="BuffQuestWeddingStory2_C"/> 
+		</triggers>
+		<failconditions>
+           <hourselapsed amount="240" icon="icon_exclamationmark.png"/>
+        </failconditions>
+		<posteffects>
+			<reward type="XP" amount="10000" />
+			<reward type="Buff" item="FillDeposit" amount="25"/>
+		</posteffects>
+	</quest>	
+	<quest name="BuffQuestWeddingStory2_B" type="Side" connectedToQuest="BuffQuestWeddingStory2_A" icon="QuestShort" npc="quest_character_flora.png" showRewardWindow="true" repeatable="true">
+		<triggers>
+			<trigger type="Resource" name="Wool" amount="1000" condition="produce"/> 
+			<trigger type="PayForQuestFinish" name="Wool" amount="1000" /> 
+			<trigger type="Resource" name="Marble" amount="10000" condition="produce"/> 
+			<trigger type="PayForQuestFinish" name="Marble" amount="10000" /> 
+		</triggers>    		
+		<posteffects>
+			<reward type="XP" amount="5000"/>
+			<reward type="Buff" item="BuildBuilding" name="Mahogany_Tree" amount="1" />
+			<reward type="Buff" item="BuildBuilding" name="Mahogany_Tree" amount="1" />
+			<reward type="Buff" item="BuildBuilding" name="Mahogany_Tree" amount="1" />
+			<reward type="Buff" item="BuildBuilding" name="Mahogany_Tree" amount="1" />
+			<startquest name="BuffQuestWeddingStory2_C"/>
+		</posteffects>
+	</quest>	
+	<quest name="BuffQuestWeddingStory2_C" type="Side" connectedToQuest="BuffQuestWeddingStory2_A" icon="QuestShort" npc="quest_character_flora.png" showRewardWindow="true" repeatable="true">
+		<triggers>
+			<buildingdestroyed item="Mahogany_Tree" min="4" locaExtension="Deplete_Extractors_Generic" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="5000"/>
+			<reward type="Buff" item="RecruitingBuffLvl9" amount="2"/>
+		</posteffects>		
+	</quest>	
+	
+	<!--  Wedding Chapel Stories 3 -->	
+	<quest name="BuffQuestWeddingStory3_A" type="Side" icon="QuestMedium" npc="quest_character_flora.png" showRewardWindow="true" repeatable="true">
+		<preeffects>
+			<startquest name="BuffQuestWeddingStory3_B"/>
+		</preeffects>
+		<triggers>
+			<questcomplete item="BuffQuestWeddingStory3_B"/> 
+			<questcomplete item="BuffQuestWeddingStory3_C"/> 
+		</triggers>
+		<failconditions>
+           <hourselapsed amount="240" icon="icon_exclamationmark.png"/>
+        </failconditions>
+		<posteffects>
+			<reward type="XP" amount="10000" />
+			<reward type="Buff" item="FillDeposit" amount="25"/>
+		</posteffects>
+	</quest>	
+	<quest name="BuffQuestWeddingStory3_B" type="Side" connectedToQuest="BuffQuestWeddingStory3_A" icon="QuestShort" npc="quest_character_flora.png" showRewardWindow="true" repeatable="true">
+		<triggers>
+			<trigger type="Resource" name="AdvancedPaper" amount="500" condition="produce"/> 
+			<trigger type="PayForQuestFinish" name="AdvancedPaper" amount="500" /> 
+			<trigger type="Resource" name="CollectibleHerbs" condition="ge" amount="10" />
+		</triggers>    		
+		<posteffects>
+			<reward type="XP" amount="5000"/>
+			<reward type="Buff" item="BuildBuilding" name="Seedoil_Deposit" amount="1" />
+			<reward type="Buff" item="BuildBuilding" name="Seedoil_Deposit" amount="1" />
+			<reward type="Buff" item="BuildBuilding" name="Seedoil_Deposit" amount="1" />
+			<startquest name="BuffQuestWeddingStory3_C"/>
+		</posteffects>
+	</quest>	
+	<quest name="BuffQuestWeddingStory3_C" type="Side" connectedToQuest="BuffQuestWeddingStory3_A" icon="QuestShort" npc="quest_character_flora.png" showRewardWindow="true" repeatable="true">
+		<triggers>
+			<buildingdestroyed item="Seedoil_Deposit" min="3" locaExtension="Deplete_Extractors_Generic" />
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="5000"/>
+			<reward type="Buff" item="ProductivityBuffSunflowerFertilizer" amount="2"/>
+		</posteffects>		
+	</quest>	
+</Root>

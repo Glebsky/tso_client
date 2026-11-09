@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+      
+   <quest name="BuffAdv_TMC_V2_Main" specialType="firstQuestlastQuest" icon="Venture" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_ventures_0" showQuestWindow="false">
+		<triggers>
+			<questcomplete item="BuffAdv_TMC_V2_Sub1"/> 
+			<questcomplete item="BuffAdv_TMC_V2_Sub2"/> 
+			<questcomplete item="BuffAdv_TMC_V2_TradeTutorial"/> 
+			<questcomplete item="BuffAdv_TMC_V2_Sub3"/> 
+			<questcomplete item="BuffAdv_TMC_V2_Sub4"/> 
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="7000"/>   
+		</rewards>
+		<posteffects>
+			<!-- Commit dispelled debuffs to memory for future ventures or until next time this quest gets completed -->
+			<adjustgenericvalue name="MountainClan_DispelledDebuffA" action="reset" />
+			<adjustgenericvalue name="MountainClan_DispelledDebuffB" action="reset" />
+			<adjustgenericvalue name="MountainClan_DispelledDebuffC" action="reset" />
+			<adjustgenericvalue name="MountainClan_DispelledDebuffD" action="reset" />
+			<adjustgenericvalue name="MountainClan_DispelledDebuffA" action="add" amount="1">
+				<conditions>
+					<questcomplete item="BuffAdv_TMC_V2_DispellA"/> 
+				</conditions>
+			</adjustgenericvalue>
+			<adjustgenericvalue name="MountainClan_DispelledDebuffB" action="add" amount="1">
+				<conditions>
+					<questcomplete item="BuffAdv_TMC_V2_DispellB"/> 
+				</conditions>
+			</adjustgenericvalue>
+			<adjustgenericvalue name="MountainClan_DispelledDebuffC" action="add" amount="1">
+				<conditions>
+					<questcomplete item="BuffAdv_TMC_V2_DispellC"/> 
+				</conditions>
+			</adjustgenericvalue>
+			<adjustgenericvalue name="MountainClan_DispelledDebuffD" action="add" amount="1">
+				<conditions>
+					<questcomplete item="BuffAdv_TMC_V2_DispellD"/> 
+				</conditions>
+			</adjustgenericvalue>
+		</posteffects>
+    </quest>
+
+	<!-- Against the Elements: Eliminate 2 zone debuffs -->
+	<quest name="BuffAdv_TMC_V2_Sub1" type="Story" connectedToQuest="BuffAdv_TMC_V2_Main" icon="Venture" npc="mountain_clan_covered.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V2_Main"/>
+		</startcondition>
+		<preeffects>
+			<applyzonebuff name="GeneralSpeedBuff_TMC_A"/>
+			<applyzonebuff name="EffectBuff_TMC_B"/>
+			<applyzonebuff name="EffectBuff_TMC_C"/>
+			<applyzonebuff name="EffectBuff_TMC_D"/>	
+			<adjustgenericvalue name="MountainClan_DispelledDebuffCounter" action="reset" />
+		</preeffects>
+		<triggers>
+			<completequestlist item="BuffAdv_TMC_V2_DispellA,BuffAdv_TMC_V2_DispellB,BuffAdv_TMC_V2_DispellC,BuffAdv_TMC_V2_DispellD" amount="2" locaExtension="TMC_Dispell2Debuffs" />
+		</triggers>
+   </quest>
+  
+	<!-- Making Contact: Liberate a Nords village -->
+	<quest name="BuffAdv_TMC_V2_Sub2" type="Story" connectedToQuest="BuffAdv_TMC_V2_Main" icon="Military" npc="mountain_clan_covered.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V2_Main"/>
+		</startcondition>
+		<triggers>
+			<completequestlist item="BuffAdv_TMC_V2_Liberate13,BuffAdv_TMC_V2_Liberate9,BuffAdv_TMC_V2_Liberate14,BuffAdv_TMC_V2_Liberate11" amount="1" locaExtension="TMC_LiberateFirstVillage"/>
+		</triggers>
+	</quest>    
+
+	<!-- More Business Partners: Liberate a second Nords village -->
+	<quest name="BuffAdv_TMC_V2_Sub3" type="Story" connectedToQuest="BuffAdv_TMC_V2_Main" icon="Military" npc="mountain_clan_covered.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAdv_TMC_V2_Sub2"/>
+		</startcondition>
+		<triggers>
+		   <questcomplete item="BuffAdv_TMC_V2_Liberate2Villages" locaExtension="TMC_LiberateSecondVillage" />
+		</triggers>
+   </quest>
+   
+	<!-- Ambush!: Defeat all Nords leaders -->
+	<quest name="BuffAdv_TMC_V2_Sub4" type="Story" connectedToQuest="BuffAdv_TMC_V2_Main" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAdv_TMC_V2_Sub1"/>
+		</startcondition>
+		<preeffects>			
+			<exploresector id="12"/>
+		</preeffects>
+		<triggers>
+			<onmap item="tent_nords_leader" max="0" locaExtension="DefeatLeaderNords"/>
+		</triggers>
+   </quest>     
+
+	<!-- Grim Trophies: Produce 1 Trade Offer from furs collected from defeated leader camps -->   
+	<quest name="BuffAdv_TMC_V2_TradeTutorial" type="Story" connectedToQuest="BuffAdv_TMC_V2_Main" icon="BattleBuffDestroy_TMC_TradeOffer" npc="mountain_clan_covered.png" helpName="Help_window_ventures_0">
+		<startcondition>
+			<questrunning item="BuffAdv_TMC_V2_Main" />
+		</startcondition>
+		<triggers>	
+			<buffowned item="BattleBuffDestroy_TMC_TradeOffer" min="1" />
+		</triggers>
+   </quest>   	
+ 
+	<!-- Can't be Overprepared: Eliminate a third zone debuff -->
+ 	<quest name="BuffAdv_TMC_V2_Optional" type="Optional" icon="Venture" npc="mountain_clan_covered.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAdv_TMC_V2_Sub1"/>
+		</startcondition>
+		<triggers>
+            <questcomplete item="BuffAdv_TMC_V2_Dispelled3" locaExtension="TMC_DispellThirdDebuff"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="AddResource" name="ObsidianOre" amount="45" />
+        </posteffects>
+   </quest>
+  
+	<!-- Help You Help Me: Liberate a third village -->
+	<quest name="BuffAdv_TMC_V2_OptionalSub1" type="Optional" icon="Military" npc="mountain_clan_covered.png" helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V2_Optional"/>
+		</startcondition>
+		<triggers>
+		   <questcomplete item="BuffAdv_TMC_V2_Liberate3Villages" locaExtension="TMC_LiberateThirdVillage" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="AddResource" name="ObsidianOre" amount="45" />
+        </posteffects>
+	</quest>
+
+<!-- Trade quests; start when sector is freed. Allow trading a trade offer buff for an equipment buff by using it on the town's main building -->
+	<!-- Trade with Gullsmiðja: Apply a Trade Offer buff on the Gullsmiðja main building -->
+    <quest name="BuffAdv_TMC_V2_TradeA" connectedToQuest="BuffAdv_TMC_V2_Main" icon="Military" npc="mountain_clan_covered.png" helpName="Help_window_ventures_0">
+		<preeffects>
+			<Spawnbuilding name="tmc_buffad_townhallA" action="ignoreBlocking,spawnInstant,replace" x="21" y="31"/>
+		</preeffects>
+		<triggers>			
+			<buffappliedonadventure min="1" item="BattleBuffDestroy_TMC_TradeOffer" target="tmc_buffad_townhallA" locaExtension="TMC_trade"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="EffectBuff_TMC_DispellA" amount="1">
+				<conditions>
+					<checkgenericvalue name="MountainClan_DispelledDebuffCounter" max="2" />
+				</conditions>
+			</reward>	     				
+		</posteffects>
+	</quest> 
+	<!-- Trade with Fiskrboð: Apply a Trade Offer buff on the Fiskrboð main building -->
+	<quest name="BuffAdv_TMC_V2_TradeB" connectedToQuest="BuffAdv_TMC_V2_Main" icon="Military" npc="mountain_clan_covered.png" helpName="Help_window_ventures_0">
+		<preeffects>
+			<Spawnbuilding name="tmc_buffad_townhallB" action="ignoreBlocking,spawnInstant,replace" x="49" y="49"/>
+		</preeffects>
+		<triggers>			
+			<buffappliedonadventure min="1" item="BattleBuffDestroy_TMC_TradeOffer" target="tmc_buffad_townhallB" locaExtension="TMC_trade"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="EffectBuff_TMC_DispellB" amount="1">
+				<conditions>
+					<checkgenericvalue name="MountainClan_DispelledDebuffCounter" max="2" />
+				</conditions>
+			</reward>	      				
+		</posteffects>
+	</quest>   
+	<!-- Trade with Rúnborg: Apply a Trade Offer buff on the Rúnborg main building -->
+	<quest name="BuffAdv_TMC_V2_TradeC" connectedToQuest="BuffAdv_TMC_V2_Main" icon="Military" npc="mountain_clan_covered.png" helpName="Help_window_ventures_0">
+		<preeffects>
+			<Spawnbuilding name="tmc_buffad_townhallC" action="ignoreBlocking,spawnInstant,replace" x="13" y="70"/>
+		</preeffects>
+		<triggers>			
+			<buffappliedonadventure min="1" item="BattleBuffDestroy_TMC_TradeOffer" target="tmc_buffad_townhallC" locaExtension="TMC_trade"/>
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="EffectBuff_TMC_DispellC" amount="1">
+				<conditions>
+					<checkgenericvalue name="MountainClan_DispelledDebuffCounter" max="2" />
+				</conditions>
+			</reward>					
+		</posteffects>
+	</quest>   
+	<!-- Trade with Suðrsverð: Apply a Trade Offer buff on the Suðrsverð main building -->
+	<quest name="BuffAdv_TMC_V2_TradeD" connectedToQuest="BuffAdv_TMC_V2_Main" icon="Military" npc="mountain_clan_covered.png" helpName="Help_window_ventures_0">
+		<preeffects>
+			<Spawnbuilding name="tmc_buffad_townhallD" action="ignoreBlocking,spawnInstant,replace" x="41" y="106" />
+		</preeffects>
+		<triggers>			
+			<buffappliedonadventure min="1" item="BattleBuffDestroy_TMC_TradeOffer" target="tmc_buffad_townhallD" locaExtension="TMC_trade" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="EffectBuff_TMC_DispellD" amount="1">
+				<conditions>
+					<checkgenericvalue name="MountainClan_DispelledDebuffCounter" max="2" />
+				</conditions>
+			</reward>	
+		</posteffects>
+	</quest>   
+ 
+<!-- Hidden quests: Liberate sectors to reveal neighbouring sectors or as conditions for other quests -->
+	<quest name="BuffAdv_TMC_V2_Liberate2" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V2_Main"/>
+		</startcondition>
+		<triggers>
+			<sectorliberated min="1" id="2"/>
+		</triggers>
+		<posteffects>
+			<exploresector id="4"/>
+			<exploresector id="13"/>
+		</posteffects>
+	</quest>
+	<quest name="BuffAdv_TMC_V2_Liberate3" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V2_Main"/>
+		</startcondition>
+		<triggers>
+			<sectorliberated min="1" id="3"/>
+		</triggers>
+		<posteffects>
+			<exploresector id="4"/>
+		</posteffects>
+	</quest>
+	<quest name="BuffAdv_TMC_V2_Liberate4" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V2_Main"/>
+		</startcondition>
+		<triggers>
+            <sectorliberated min="1" id="4"/>
+		</triggers>
+		<posteffects>
+			<exploresector id="2"/>
+			<exploresector id="3"/>
+			<exploresector id="14"/>
+		</posteffects>
+	</quest>
+	<quest name="BuffAdv_TMC_V2_Liberate6" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V2_Main"/>
+		</startcondition>
+		<triggers>
+            <sectorliberated min="1" id="6"/>
+		</triggers>
+		<posteffects>
+			<exploresector id="7"/>
+			<exploresector id="8"/>
+			<exploresector id="9"/>
+		</posteffects>
+	</quest>
+	<quest name="BuffAdv_TMC_V2_Liberate8" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V2_Main"/>
+		</startcondition>
+		<triggers>
+            <sectorliberated min="1" id="8"/>
+		</triggers>
+		<posteffects>
+			<exploresector id="6"/>
+			<exploresector id="9"/>
+			<exploresector id="10"/>
+		</posteffects>
+	</quest>
+	<quest name="BuffAdv_TMC_V2_Liberate9" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V2_Main"/>
+		</startcondition>
+		<triggers>
+            <sectorliberated min="1" id="9"/>
+		</triggers>
+		<posteffects>
+			<exploresector id="6"/>
+			<exploresector id="8"/>
+			<startquest name="BuffAdv_TMC_V2_TradeB">
+				<conditions>
+					<checkgenericvalue name="MountainClan_DispelledDebuffCounter" max="2" />
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	<quest name="BuffAdv_TMC_V2_Liberate10" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V2_Main"/>
+		</startcondition>
+		<triggers>
+            <sectorliberated min="1" id="10"/>
+		</triggers>
+		<posteffects>
+			<exploresector id="8"/>
+			<exploresector id="11"/>
+		</posteffects>
+	</quest>
+	<quest name="BuffAdv_TMC_V2_Liberate11" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V2_Main"/>
+		</startcondition>
+		<triggers>
+            <sectorliberated min="1" id="11"/>
+		</triggers>
+		<posteffects>
+			<startquest name="BuffAdv_TMC_V2_TradeD">
+				<conditions>
+					<checkgenericvalue name="MountainClan_DispelledDebuffCounter" max="2" />
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	<quest name="BuffAdv_TMC_V2_Liberate13" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V2_Main"/>
+		</startcondition>
+		<triggers>
+            <sectorliberated min="1" id="13"/>
+		</triggers>
+		<posteffects>
+			<startquest name="BuffAdv_TMC_V2_TradeA">
+				<conditions>
+					<checkgenericvalue name="MountainClan_DispelledDebuffCounter" max="2" />
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	<quest name="BuffAdv_TMC_V2_Liberate14" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V2_Main"/>
+		</startcondition>
+		<triggers>
+            <sectorliberated min="1" id="14"/>
+		</triggers>
+		<posteffects>
+			<startquest name="BuffAdv_TMC_V2_TradeC">
+				<conditions>
+					<checkgenericvalue name="MountainClan_DispelledDebuffCounter" max="2" />
+				</conditions>
+			</startquest>
+		</posteffects>
+	</quest>
+	<quest name="BuffAdv_TMC_V2_Liberate18" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V2_Main"/>
+		</startcondition>
+		<triggers>
+			<sectorliberated min="1" id="18"/>
+		</triggers>
+		<posteffects>
+			<exploresector id="2"/>
+		</posteffects>
+	</quest>
+	<quest name="BuffAdv_TMC_V2_Liberate19" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V2_Main"/>
+		</startcondition>
+		<triggers>
+			<sectorliberated min="1" id="19"/>
+		</triggers>
+		<posteffects>
+			<exploresector id="3"/>
+		</posteffects>
+	</quest>
+	<quest name="BuffAdv_TMC_V2_Liberate20" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V2_Main"/>
+		</startcondition>
+		<triggers>
+			<sectorliberated min="1" id="20"/>
+		</triggers>
+		<posteffects>
+			<exploresector id="6"/>
+		</posteffects>
+	</quest>
+	<quest name="BuffAdv_TMC_V2_Liberate21" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V2_Main"/>
+		</startcondition>
+		<triggers>
+			<sectorliberated min="1" id="21"/>
+		</triggers>
+		<posteffects>
+			<exploresector id="8"/>
+		</posteffects>
+	</quest>
+   
+<!-- Hidden quests: Liberate a number of villages -->
+	<quest name="BuffAdv_TMC_V2_Liberate2Villages" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V2_Main"/>
+		</startcondition>
+		<triggers>
+			<completequestlist item="BuffAdv_TMC_V2_Liberate13,BuffAdv_TMC_V2_Liberate9,BuffAdv_TMC_V2_Liberate14,BuffAdv_TMC_V2_Liberate11" amount="2" />
+		</triggers>
+	</quest>
+	<quest name="BuffAdv_TMC_V2_Liberate3Villages" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V2_Main"/>
+		</startcondition>
+		<triggers>
+			<completequestlist item="BuffAdv_TMC_V2_Liberate13,BuffAdv_TMC_V2_Liberate9,BuffAdv_TMC_V2_Liberate14,BuffAdv_TMC_V2_Liberate11" amount="3" />
+		</triggers>
+	</quest>
+   
+<!-- Hidden quests: Remove debuffs when using equipment buffs -->
+   	<quest name="BuffAdv_TMC_V2_DispellA" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V2_Main"/>
+		</startcondition>
+		<triggers>
+           <buffappliedonadventure min="1" item="EffectBuff_TMC_DispellA"/>
+		</triggers>
+		<posteffects>     
+			<adjustgenericvalue name="MountainClan_DispelledDebuffCounter" action="add" amount="1" >
+				<conditions>
+					<checkgenericvalue name="MountainClan_DispelledDebuffCounter" max="2" />
+				</conditions>
+			</adjustgenericvalue>				
+		</posteffects>
+	</quest>
+	<quest name="BuffAdv_TMC_V2_DispellB" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V2_Main"/>
+		</startcondition>
+		<triggers>
+           <buffappliedonadventure min="1" item="EffectBuff_TMC_DispellB"/>
+		</triggers>
+		<posteffects>     
+			<adjustgenericvalue name="MountainClan_DispelledDebuffCounter" action="add" amount="1" >
+				<conditions>
+					<checkgenericvalue name="MountainClan_DispelledDebuffCounter" max="2" />
+				</conditions>
+			</adjustgenericvalue>				
+		</posteffects>
+	</quest>
+	<quest name="BuffAdv_TMC_V2_DispellC" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V2_Main"/>
+		</startcondition>
+		<triggers>
+           <buffappliedonadventure min="1" item="EffectBuff_TMC_DispellC"/>
+		</triggers>
+		<posteffects>     
+			<adjustgenericvalue name="MountainClan_DispelledDebuffCounter" action="add" amount="1" >
+				<conditions>
+					<checkgenericvalue name="MountainClan_DispelledDebuffCounter" max="2" />
+				</conditions>
+			</adjustgenericvalue>				
+		</posteffects>
+	</quest>
+	<quest name="BuffAdv_TMC_V2_DispellD" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V2_Main"/>
+		</startcondition>
+		<triggers>
+           <buffappliedonadventure min="1" item="EffectBuff_TMC_DispellD"/>
+		</triggers>
+		<posteffects>     
+			<adjustgenericvalue name="MountainClan_DispelledDebuffCounter" action="add" amount="1" >
+				<conditions>
+					<checkgenericvalue name="MountainClan_DispelledDebuffCounter" max="2" />
+				</conditions>
+			</adjustgenericvalue>				
+		</posteffects>
+	</quest>
+
+	<quest name="BuffAdv_TMC_V2_Traded3" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V2_Main"/>
+		</startcondition>
+		<triggers>
+			<completequestlist amount="3" item="BuffAdv_TMC_V2_TradeA,BuffAdv_TMC_V2_TradeB,BuffAdv_TMC_V2_TradeC,BuffAdv_TMC_V2_TradeD" />
+			<!-- <checkgenericvalue name="MountainClan_DispelledDebuffCounter" min="3" max="3" />  -->		
+		</triggers>
+		<posteffects>
+			<cancelquest name="BuffAdv_TMC_V2_TradeA"/>					
+			<cancelquest name="BuffAdv_TMC_V2_TradeB"/>			
+			<cancelquest name="BuffAdv_TMC_V2_TradeC"/>			
+			<cancelquest name="BuffAdv_TMC_V2_TradeD"/>			
+		</posteffects>
+	</quest>
+	
+	<quest name="BuffAdv_TMC_V2_Dispelled3" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V2_Main"/>
+		</startcondition>
+		<triggers>
+			<completequestlist amount="3" item="BuffAdv_TMC_V2_DispellA,BuffAdv_TMC_V2_DispellB,BuffAdv_TMC_V2_DispellC,BuffAdv_TMC_V2_DispellD" />
+			<!-- <checkgenericvalue name="MountainClan_DispelledDebuffCounter" min="3" max="3" />  -->		
+		</triggers>
+		<posteffects>
+			<!-- cancelquest name="BuffAdv_TMC_V2_WeatherConditionAchievement"/ -->				
+		</posteffects>
+	</quest>
+<!-- 	
+	<quest name="BuffAdv_TMC_V2_WeatherConditionAchievement" showQuestWindow="false" showRewardWindow="false" notifyHomeZone="true">
+		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V2_Main"/>
+		</startcondition>
+		<triggers>
+            <completequestlist item="BuffAdv_TMC_V2_DispellA,BuffAdv_TMC_V2_DispellB,BuffAdv_TMC_V2_DispellC,BuffAdv_TMC_V2_DispellD" amount="2" />
+            <questcomplete item="BuffAdv_TMC_V2_Main" />
+		</triggers>
+	</quest>
+-->	  
+</Root>

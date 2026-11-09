@@ -1,0 +1,1388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scienceSystem>
+	
+	<!--
+	<skill id="item1">
+		<skillReference id="skill1" /> Type is ID of Skill defined in Skills tag
+		<requirements>
+			<minimumLevel level="1" /> Minimum required Player Level
+			<skillPointType type="bronze" /> Skillpoint Type (reference to skillPoint ID in skillPoints) required to spend for skill
+			<unlockedSkills> Other skills where MAX points are required to be spent before item is available
+				<skillReference id="item1" /> Reference to another item inside the skilltree
+			</unlockedSkills>
+			<pointsAccumulated amount="5"> Amount of points that has to be spent in the following other skilltree items
+				<skillReference id="item1" /> Reference to another item insider the skilltree
+				<skillReference id="item2" />
+			</pointsAccumulated>
+		</requirements>
+		<levels> Unlock levels for skilltree item, every level equals another skillpoint that needs to be spent, different values per unlock level can be assigned to the available manipulators
+			<level> Levels are sorted, first sibling stand for 1st level, second sibling for 2nd etc.
+				<param targetModifierId="modifier1" name="param1" value="10" /> pass parameter with name "param1" and value "10" to modifier "modifer1"
+			</level>
+			<level>
+				<param targetModifierId="modifier2" name="param1" value="20" />
+			</level>
+		</levels>
+		<layout>  Specific rendering data, required for the client to display the skilltree
+			<icon name="icon1.png" /> Icon to display for skill
+			<position x="1" y="0" /> Rendering position inside slot matrix, x=0 equals left-most col, y=0 equals bottom-most row
+			<arrows> Arrow definitions
+				<arrow type="TOP_1_UP" /> Arrow definition syntax: <Arrow Position from current item>_<Amount of Rows the arrow is skipping>_<Directions the Arrow is pointing towards>
+				<arrow type="LEFT_2_UP" />
+				<arrow type="RIGHT_1_UP" />
+				<arrow type="TOP_1_UPRIGHT" />
+			</arrows>
+		</layout>
+	</skill>
+	-->
+	
+	<skills>
+		<skill id="1" name="hiddenStoneStash"> <!-- Grants a {0}% chance to find treasure when searching a Stone deposit.-->
+			<requirements>
+				<minimumLevel level="14" />
+				<skillPointType type="bronze" />
+			</requirements>
+			<levels>
+				<level>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositStone" chance="0.1" channel="specialist" rules="effect">
+						<reward type="loottable" name="hiddenStoneStash" id="74" />
+					</modifierEffect>
+				</level>
+				<level>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositStone" chance="0.2" channel="specialist" rules="effect">
+						<reward type="loottable" name="hiddenStoneStash" id="74" />
+					</modifierEffect>
+				</level>
+				<level>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositStone" chance="0.3" channel="specialist" rules="effect">
+						<reward type="loottable" name="hiddenStoneStash" id="74" />
+					</modifierEffect>
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_hidden_stash_stone.png" />
+				<position x="0" y="6" />
+			</layout>
+		</skill>
+		<skill id="2" name="naturalCopperVein"> <!-- Discover {0}% greater Copper deposits.-->
+			<requirements>
+				<minimumLevel level="14" />
+				<skillPointType type="bronze" />
+			</requirements>
+			<levels>
+				<level>
+					<searchDepositCapacity type="FindDepositBronzeOre" multiplier="1.05" channel="specialist" />
+				</level>
+				<level>
+					<searchDepositCapacity type="FindDepositBronzeOre" multiplier="1.1" channel="specialist" />
+				</level>
+				<level>
+					<searchDepositCapacity type="FindDepositBronzeOre" multiplier="1.15" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_natural_vein_copper.png" />
+				<position x="2" y="6" />
+			</layout>
+		</skill>
+		
+		<skill id="3" name="twoMarbleInOne"> <!-- Grants a {0}% chance to discover two Marble deposits at once.-->
+			<requirements>
+				<minimumLevel level="18" />
+				<skillPointType type="bronze" />
+				<pointsAccumulated amount="5">
+					<!--<skillReference id="1" /> --><!-- Hidden Stone Stash -->
+					<!--<skillReference id="2" /> --><!-- Natural Copper Vein -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<findDeposit type="FindDepositMarble" chance="0.08" adder="1" channel="specialist" />
+				</level>
+				<level>
+					<findDeposit type="FindDepositMarble" chance="0.16" adder="1" channel="specialist" />
+				</level>
+				<level>
+					<findDeposit type="FindDepositMarble" chance="0.24" adder="1" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_two_in_one_marble.png" />
+				<position x="0" y="5" />
+			</layout>
+		</skill>
+		<skill id="4" name="qualityCopperShafts"> <!-- Grants a {0}% chance to find Copper deposits that can be mined faster.-->
+			<requirements>
+				<minimumLevel level="18" />
+				<skillPointType type="bronze" />
+				<pointsAccumulated amount="5">
+					<!--<skillReference id="1" /> --><!-- Hidden Stone Stash -->
+				<!--<skillReference id="2" /> --><!-- Natural Copper Vein -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositBronzeOre" chance="0.15" channel="specialist" rules="effect">
+						<skillDeposit id="21" value="2" serverOnly="true" /> <!-- id = SkillID, value = SkillLevel, index is set dynamically IF empty / 0 -->
+					</modifierEffect>
+				</level>
+				<level>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositBronzeOre" chance="0.3" channel="specialist" rules="effect">
+						<skillDeposit id="21" value="2" serverOnly="true" /> <!-- id = SkillID, value = SkillLevel, index is set dynamically IF empty / 0 -->
+					</modifierEffect>
+				</level>
+				<level>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositBronzeOre" chance="0.45" channel="specialist" rules="effect">
+						<skillDeposit id="21" value="2" serverOnly="true" /> <!-- id = SkillID, value = SkillLevel, index is set dynamically IF empty / 0 -->
+					</modifierEffect>
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_quality_shaft_copper.png" />
+				<position x="1" y="5" />
+			</layout>
+		</skill>
+		<skill id="5" name="naturalStoneVein"> <!-- Discover {0}% greater Stone deposits.-->
+			<requirements>
+				<minimumLevel level="18" />
+				<skillPointType type="bronze" />
+				<pointsAccumulated amount="5">
+					<!--<skillReference id="1" />--> <!-- Hidden Stone Stash -->
+					<!--<skillReference id="2" /> --><!-- Natural Copper Vein -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<searchDepositCapacity type="FindDepositStone" multiplier="1.08" channel="specialist" />
+				</level>
+				<level>
+					<searchDepositCapacity type="FindDepositStone" multiplier="1.16" channel="specialist" />
+				</level>
+				<level>
+					<searchDepositCapacity type="FindDepositStone" multiplier="1.24" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_natural_vein_stone.png" />
+				<position x="2" y="5" />
+			</layout>
+		</skill>
+		
+		<skill id="6" name="naturalMarbleVein"> <!-- Discover {0}% greater Marble deposits.-->
+			<requirements>
+				<minimumLevel level="23" />
+				<skillPointType type="silver" />
+				<pointsAccumulated amount="10">
+				<!--	<skillReference id="3" /> --><!-- Two Marble In One -->
+				<!--	<skillReference id="4" /> --><!-- Quality Copper Shafts -->
+				<!--	<skillReference id="5" /> --><!-- Natural Stone Vein -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<searchDepositCapacity type="FindDepositMarble" multiplier="1.08" channel="specialist" />
+				</level>
+				<level>
+					<searchDepositCapacity type="FindDepositMarble" multiplier="1.16" channel="specialist" />
+				</level>
+				<level>
+					<searchDepositCapacity type="FindDepositMarble" multiplier="1.24" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_natural_vein_marble.png" />
+				<position x="0" y="4" />
+			</layout>
+		</skill>
+		<skill id="7" name="copperMiningSurplus"> <!-- Grants a {0}% chance to find mined Copper when searching a Copper deposit.-->
+			<requirements>
+				<minimumLevel level="23" />
+				<skillPointType type="silver" />
+				<pointsAccumulated amount="10">
+				<!--	<skillReference id="3" /> --><!-- Two Marble In One -->
+				<!--	<skillReference id="4" /> --><!-- Quality Copper Shafts -->
+					<!--<skillReference id="5" />--> <!-- Natural Stone Vein -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<modifierEffect property="SEARCH_DEPOSIT_SUCCESSFUL" type="FindDepositBronzeOre" chance="0.08" channel="specialist" rules="effect">
+						<reward type="loottable" name="copperMiningSurplus" id="76" />
+					</modifierEffect>
+				</level>
+				<level>
+					<modifierEffect property="SEARCH_DEPOSIT_SUCCESSFUL" type="FindDepositBronzeOre" chance="0.16" channel="specialist" rules="effect">
+						<reward type="loottable" name="copperMiningSurplus" id="76" />
+					</modifierEffect>
+				</level>
+				<level>
+					<modifierEffect property="SEARCH_DEPOSIT_SUCCESSFUL" type="FindDepositBronzeOre" chance="0.24" channel="specialist" rules="effect">
+						<reward type="loottable" name="copperMiningSurplus" id="76" />
+					</modifierEffect>
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_mining_surplus_copper.png" />
+				<position x="1" y="4" />
+			</layout>
+		</skill>
+		<skill id="8" name="twoIronInOne"> <!-- Grants a {0}% chance to discover two Iron deposits at once.-->
+			<requirements>
+				<minimumLevel level="23" />
+				<skillPointType type="silver" />
+				<pointsAccumulated amount="10">
+				<!--	<skillReference id="3" /> --><!-- Two Marble In One -->
+				<!--	<skillReference id="4" /> --><!-- Quality Copper Shafts -->
+				<!--	<skillReference id="5" /> --><!-- Natural Stone Vein -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<findDeposit type="FindDepositIronOre" chance="0.08" adder="1" channel="specialist" />
+				</level>
+				<level>
+					<findDeposit type="FindDepositIronOre" chance="0.16" adder="1" channel="specialist" />
+				</level>
+				<level>
+					<findDeposit type="FindDepositIronOre" chance="0.24" adder="1" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_two_in_one_iron.png" />
+				<position x="2" y="4" />
+			</layout>
+		</skill>
+		
+		<skill id="9" name="qualityCoalShafts"> <!-- Grants a {0}% chance to find Coal deposits that can be mined faster.-->
+			<requirements>
+				<minimumLevel level="32" />
+				<skillPointType type="silver" />
+				<pointsAccumulated amount="15">
+					<!--<skillReference id="6" /> --><!-- Natural Marble Vein -->
+					<!--<skillReference id="7" /> --><!-- Copper Mining Surplus -->
+				<!--	<skillReference id="8" /> --><!-- Two Iron In One -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositCoal" chance="0.15" channel="specialist" rules="effect">
+						<skillDeposit id="21" value="2" serverOnly="true"/> <!-- id = SkillID, value = SkillLevel, index is set dynamically IF empty / 0 -->
+					</modifierEffect>
+				</level>
+				<level>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositCoal" chance="0.3" channel="specialist" rules="effect">
+						<skillDeposit id="21" value="2" serverOnly="true" /> <!-- id = SkillID, value = SkillLevel, index is set dynamically IF empty / 0 -->
+					</modifierEffect>
+				</level>
+				<level>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositCoal" chance="0.45" channel="specialist" rules="effect">
+						<skillDeposit id="21" value="2" serverOnly="true" /> <!-- id = SkillID, value = SkillLevel, index is set dynamically IF empty / 0 -->
+					</modifierEffect>
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_quality_shaft_coal.png" />
+				<position x="0" y="3" />
+			</layout>
+		</skill>
+		<skill id="10" name="tendentiousGeologist"> <!-- Shortens the search time for Minerals by {0}%. -->
+			<requirements>
+				<minimumLevel level="32" />
+				<skillPointType type="silver" />
+				<pointsAccumulated amount="15">
+				<!--<skillReference id="6" />--> <!-- Natural Marble Vein -->
+					<!--<skillReference id="7" />--> <!-- Copper Mining Surplus -->
+				<!--	<skillReference id="8" /> --><!-- Two Iron In One -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<searchTime type="FindDepositStone" multiplier="0.9" channel="specialist" />
+					<searchTime type="FindDepositMarble" multiplier="0.9" channel="specialist" />
+					<searchTime type="FindDepositCoal" multiplier="0.9" channel="specialist" />
+					<searchTime type="FindDepositGranite" multiplier="0.9" channel="specialist" />
+					<searchTime type="FindDepositSalpeter" multiplier="0.9" channel="specialist" />
+				</level>
+				<level>
+					<searchTime type="FindDepositStone" multiplier="0.8" channel="specialist" />
+					<searchTime type="FindDepositMarble" multiplier="0.8" channel="specialist" />
+					<searchTime type="FindDepositCoal" multiplier="0.8" channel="specialist" />
+					<searchTime type="FindDepositGranite" multiplier="0.8" channel="specialist" />
+					<searchTime type="FindDepositSalpeter" multiplier="0.8" channel="specialist" />
+				</level>
+				<level>
+					<searchTime type="FindDepositStone" multiplier="0.7" channel="specialist" />
+					<searchTime type="FindDepositMarble" multiplier="0.7" channel="specialist" />
+					<searchTime type="FindDepositCoal" multiplier="0.7" channel="specialist" />
+					<searchTime type="FindDepositGranite" multiplier="0.7" channel="specialist" />
+					<searchTime type="FindDepositSalpeter" multiplier="0.7" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_tendentious_geologist.png" />
+				<position x="1" y="3" />
+			</layout>
+		</skill>
+		<skill id="11" name="goldMiningSurplus"> <!-- Grants a {0}% chance to find mined Gold when searching a Gold deposit.-->
+			<requirements>
+				<minimumLevel level="32" />
+				<skillPointType type="silver" />
+				<pointsAccumulated amount="15">
+				<!--	<skillReference id="6" />--> <!-- Natural Marble Vein -->
+					<!--<skillReference id="7" />--> <!-- Copper Mining Surplus -->
+					<!--<skillReference id="8" />--> <!-- Two Iron In One -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<modifierEffect property="SEARCH_DEPOSIT_SUCCESSFUL" type="FindDepositGoldOre" chance="0.08" channel="specialist" rules="effect">
+						<reward type="loottable" name="goldMiningSurplus" id="77" />
+					</modifierEffect>
+				</level>
+				<level>
+					<modifierEffect property="SEARCH_DEPOSIT_SUCCESSFUL" type="FindDepositGoldOre" chance="0.16" channel="specialist" rules="effect">
+						<reward type="loottable" name="goldMiningSurplus" id="77" />
+					</modifierEffect>
+				</level>
+				<level>
+					<modifierEffect property="SEARCH_DEPOSIT_SUCCESSFUL" type="FindDepositGoldOre" chance="0.24" channel="specialist" rules="effect">
+						<reward type="loottable" name="goldMiningSurplus" id="77" />
+					</modifierEffect>
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_mining_surplus_gold.png" />
+				<position x="2" y="3" />
+			</layout>
+		</skill>
+		
+		<skill id="12" name="hiddenCoalStash"> <!-- Grants a {0}% chance to find treasure when searching a Coal deposit.-->
+			<requirements>
+				<minimumLevel level="40" />
+				<skillPointType type="gold" />
+				<pointsAccumulated amount="20">
+				<!--	<skillReference id="9" /> --><!-- Quality Coal Shafts -->
+					<!--<skillReference id="10" />--> <!-- Tendentious Geologist -->
+				<!--	<skillReference id="11" /> --><!-- Gold Mining Surplus -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<modifierEffect property="SEARCH_DEPOSIT_SUCCESSFUL" type="FindDepositCoal" chance="0.1" channel="specialist" rules="effect">
+						<reward type="loottable" name="hiddenCoalStash" id="75" />
+					</modifierEffect>
+				</level>
+				<level>
+					<modifierEffect property="SEARCH_DEPOSIT_SUCCESSFUL" type="FindDepositCoal" chance="0.2" channel="specialist" rules="effect">
+						<reward type="loottable" name="hiddenCoalStash" id="75" />
+					</modifierEffect>
+				</level>
+				<level>
+					<modifierEffect property="SEARCH_DEPOSIT_SUCCESSFUL" type="FindDepositCoal" chance="0.3" channel="specialist" rules="effect">
+						<reward type="loottable" name="hiddenCoalStash" id="75" />
+					</modifierEffect>
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_hidden_stash_coal.png" />
+				<position x="0" y="2" />
+			</layout>
+		</skill>	
+		<skill id="13" name="ironMiningSurplus"> <!-- Grants a {0}% chance to find mined Iron when searching a Iron deposit.-->
+			<requirements>
+				<minimumLevel level="40" />
+				<skillPointType type="gold" />
+				<pointsAccumulated amount="20">
+				<!--	<skillReference id="9" />--> <!-- Quality Coal Shafts -->
+				<!--	<skillReference id="10" />--> <!-- Tendentious Geologist -->
+				<!--	<skillReference id="11" />--> <!-- Gold Mining Surplus -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<modifierEffect property="SEARCH_DEPOSIT_SUCCESSFUL" type="FindDepositIronOre" chance="0.08" channel="specialist" rules="effect">
+						<reward type="loottable" name="ironMiningSurplus" id="78" />
+					</modifierEffect>
+				</level>
+				<level>
+					<modifierEffect property="SEARCH_DEPOSIT_SUCCESSFUL" type="FindDepositIronOre" chance="0.16" channel="specialist" rules="effect">
+						<reward type="loottable" name="ironMiningSurplus" id="78" /> 
+					</modifierEffect>
+				</level>
+				<level>
+					<modifierEffect property="SEARCH_DEPOSIT_SUCCESSFUL" type="FindDepositIronOre" chance="0.24" channel="specialist" rules="effect">
+						<reward type="loottable" name="ironMiningSurplus" id="78" />
+					</modifierEffect>
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_mining_surplus_iron.png" />
+				<position x="1" y="2" />
+			</layout>
+		</skill>
+		<skill id="14" name="naturalGoldVein"> <!-- Discover {0}% greater Gold deposits.-->
+			<requirements>
+				<minimumLevel level="40" />
+				<skillPointType type="gold" />
+				<pointsAccumulated amount="20">
+				<!--	<skillReference id="9" />--> <!-- Quality Coal Shafts -->
+				<!--	<skillReference id="10" />--> <!-- Tendentious Geologist -->
+					<!--<skillReference id="11" />--> <!-- Gold Mining Surplus -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<searchDepositCapacity type="FindDepositGoldOre" multiplier="1.08" channel="specialist" />
+				</level>
+				<level>
+					<searchDepositCapacity type="FindDepositGoldOre" multiplier="1.16" channel="specialist" />
+				</level>
+				<level>
+					<searchDepositCapacity type="FindDepositGoldOre" multiplier="1.24" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_natural_vein_gold.png" />
+				<position x="2" y="2" />
+			</layout>
+		</skill>
+		
+		<skill id="15" name="twoCoalInOne"> <!-- Grants a {0}% chance to discover two Coal deposits at once.-->
+			<requirements>
+				<minimumLevel level="45" />
+				<skillPointType type="gold" />
+				<pointsAccumulated amount="25">
+					<!--<skillReference id="12" />--> <!-- Hidden Coal Stash -->
+					<!--<skillReference id="13" />--> <!-- Iron Mining Surplus -->
+					<!--<skillReference id="14" />--> <!-- Natural Gold Vein -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<findDeposit type="FindDepositCoal" chance="0.08" adder="1" channel="specialist" />
+				</level>
+				<level>
+					<findDeposit type="FindDepositCoal" chance="0.16" adder="1" channel="specialist" />
+				</level>
+				<level>
+					<findDeposit type="FindDepositCoal" chance="0.24" adder="1" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_two_in_one_coal.png" />
+				<position x="0" y="1" />
+			</layout>
+		</skill>
+		<skill id="16" name="qualityGoldShafts"> <!-- Grants a {0}% chance to find Gold deposits that can be mined faster.-->
+			<requirements>
+				<minimumLevel level="45" />
+				<skillPointType type="gold" />
+				<pointsAccumulated amount="25">
+				<!--	<skillReference id="12" />--> <!-- Hidden Coal Stash -->
+					<!--<skillReference id="13" />--> <!-- Iron Mining Surplus -->
+					<!--<skillReference id="14" />--> <!-- Natural Gold Vein -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositGoldOre" chance="0.15" channel="specialist" rules="effect">
+						<skillDeposit id="21" value="2" serverOnly="true"/> <!-- id = SkillID, value = SkillLevel, index is set dynamicly IF empty / 0 -->
+					</modifierEffect>
+				</level>
+				<level>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositGoldOre" chance="0.3" channel="specialist" rules="effect">
+						<skillDeposit id="21" value="2" serverOnly="true"/> <!-- id = SkillID, value = SkillLevel, index is set dynamicly IF empty / 0 -->
+					</modifierEffect>
+				</level>
+				<level>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositGoldOre" chance="0.45" channel="specialist" rules="effect">
+						<skillDeposit id="21" value="2" serverOnly="true" /> <!-- id = SkillID, value = SkillLevel, index is set dynamicly IF empty / 0 -->
+					</modifierEffect>
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_quality_shaft_gold.png" />
+				<position x="1" y="1" />
+			</layout>
+		</skill>
+		<skill id="17" name="oreCollector"> <!-- Shortens the search time for Ores by {0}%. -->
+			<requirements>
+				<minimumLevel level="45" />
+				<skillPointType type="gold" />
+				<pointsAccumulated amount="25">
+				<!--	<skillReference id="12" />--> <!-- Hidden Coal Stash -->
+					<!--<skillReference id="13" />--> <!-- Iron Mining Surplus -->
+				<!--	<skillReference id="14" /> --><!-- Natural Gold Vein -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<searchTime type="FindDepositBronzeOre" multiplier="0.9" channel="specialist" />
+					<searchTime type="FindDepositIronOre" multiplier="0.9" channel="specialist" />
+					<searchTime type="FindDepositGoldOre" multiplier="0.9" channel="specialist" />
+					<searchTime type="FindDepositTitaniumOre" multiplier="0.9" channel="specialist" />
+				</level>
+				<level>
+					<searchTime type="FindDepositBronzeOre" multiplier="0.8" channel="specialist" />
+					<searchTime type="FindDepositIronOre" multiplier="0.8" channel="specialist" />
+					<searchTime type="FindDepositGoldOre" multiplier="0.8" channel="specialist" />
+					<searchTime type="FindDepositTitaniumOre" multiplier="0.8" channel="specialist" />
+				</level>
+				<level>
+					<searchTime type="FindDepositBronzeOre" multiplier="0.7" channel="specialist" />
+					<searchTime type="FindDepositIronOre" multiplier="0.7" channel="specialist" />
+					<searchTime type="FindDepositGoldOre" multiplier="0.7" channel="specialist" />
+					<searchTime type="FindDepositTitaniumOre" multiplier="0.7" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_ore_collector.png" />
+				<position x="2" y="1" />
+			</layout>
+		</skill>
+		
+		<skill id="18" name="luckyFind"> <!-- Grants a {0}% chance to discover one more Iron or Marble deposit than the maximum.-->
+			<requirements>
+				<minimumLevel level="50" />
+				<skillPointType type="gold" />
+				<pointsAccumulated amount="30">
+					<!--<skillReference id="15" /> --><!-- Two Coal In One -->
+					<!--<skillReference id="16" /> --><!-- Quality Gold Shafts -->
+					<!--<skillReference id="17" /> --><!-- Ore Collector -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<failoverGroupID type="FindDepositIronOre" value="28" chance="0.15" channel="specialist" /> <!-- failoverGroupID stepping in if search fails. Then it tries to find a Depo from the given DepositGroupID(property)  -->
+					<failoverGroupID type="FindDepositMarble" value="29" chance="0.15" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_lucky_find.png" />
+				<position x="0" y="0" />
+			</layout>
+		</skill>
+		<skill id="19" name="naturalResourceVein"> <!--aka NaturalBornDigger - Discover {0}% greater deposits of all types.-->
+			<requirements>
+				<minimumLevel level="50" />
+				<skillPointType type="gold" />
+				<pointsAccumulated amount="30">
+					<!--<skillReference id="15" /> --><!-- Two Coal In One -->
+					<!--<skillReference id="16" /> --><!-- Quality Gold Shafts -->
+				<!--	<skillReference id="17" /> --><!-- Ore Collector -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<searchDepositCapacity multiplier="1.08" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_natural_vein_all.png" />
+				<position x="1" y="0" />
+			</layout>
+		</skill>
+		<skill id="20" name="naturesGift"> <!-- Grants a {0}% chance to refill a random active deposit.-->
+			<requirements>
+				<minimumLevel level="50" />
+				<skillPointType type="gold" />
+				<pointsAccumulated amount="30">
+					<!--<skillReference id="15" />--> <!-- Two Coal In One -->
+					<!--<skillReference id="16" />--> <!-- Quality Gold Shafts -->
+				<!--	<skillReference id="17" /> --><!-- Ore Collector -->
+				</pointsAccumulated>
+			</requirements>
+			<levels>
+				<level>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositStone" chance="0.1" channel="specialist" rules="effect">
+						<refillDeposit type="Stone" amount="50" /> <!-- TODO: Paula H. Set right balanced amount to add into deposits -->
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositMarble" chance="0.1" channel="specialist" rules="effect">
+						<refillDeposit type="Marble" amount="50" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositCoal" chance="0.1" channel="specialist" rules="effect">
+						<refillDeposit type="Coal" amount="400" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositBronzeOre" chance="0.1" channel="specialist" rules="effect">
+						<refillDeposit type="BronzeOre" amount="20" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositIronOre" chance="0.1" channel="specialist" rules="effect">
+						<refillDeposit type="IronOre" amount="100" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositGoldOre" chance="0.1" channel="specialist" rules="effect">
+						<refillDeposit type="GoldOre" amount="100" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositTitaniumOre" chance="0.1" channel="specialist" rules="effect">
+						<refillDeposit type="BronzeOre" amount="40" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositSalpeter" chance="0.1" channel="specialist" rules="effect">
+						<refillDeposit type="IronOre" amount="50" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositGranite" chance="0.1" channel="specialist" rules="effect">
+						<refillDeposit type="Granite" amount="60" />
+					</modifierEffect>
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_natures_gift.png" />
+				<position x="2" y="0" />
+			</layout>
+		</skill>
+		
+		<skill id="57" name="conscientious"> <!-- Grants a 100% chance to find an additional deposit.-->
+			<levels>
+				<level>				
+					<findDeposit type="FindDepositStone" chance="1.00" adder="1" channel="specialist" />
+					<findDeposit type="FindDepositMarble" chance="1.00" adder="1" channel="specialist" />
+					<findDeposit type="FindDepositGranite" chance="1.00" adder="1" channel="specialist" />
+					<findDeposit type="FindDepositCoal" chance="1.00" adder="1" channel="specialist" />
+					<findDeposit type="FindDepositBronzeOre" chance="1.00" adder="1" channel="specialist" />
+					<findDeposit type="FindDepositIronOre" chance="1.00" adder="1" channel="specialist" />
+					<findDeposit type="FindDepositGoldOre" chance="1.00" adder="1" channel="specialist" />	
+					<findDeposit type="FindDepositTitaniumOre" chance="1.00" adder="1" channel="specialist" />
+					<findDeposit type="FindDepositSalpeter" chance="1.00" adder="1" channel="specialist" />					
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_conscentious_geologist.png" />
+				<position x="2" y="0" />
+			</layout>
+		</skill>
+
+		<!--skill id="115" name="iron_willed"> Old version of iron-willed. Increased mining speed of deposit by 50%. 
+			<levels>
+				<level>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositIronOre" chance="1" channel="specialist" rules="effect">
+						<skillDeposit id="21" value="6" serverOnly="true"/>
+					</modifierEffect>
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_iron_willed_geologist.png" />
+				<position x="2" y="0" />
+			</layout>
+		</skill-->
+		<skill id="115" name="iron_willed2">  
+			<levels>
+				<level>
+					<searchTime type="FindDepositIronOre" multiplier="0.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositIronOre" multiplier="2" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_iron_willed_geologist.png" />
+				<position x="2" y="0" />
+			</layout>
+		</skill>	
+		
+		<skill id="116" name="stone_cold">  
+			<levels>
+				<level>
+					<searchTime type="FindDepositStone" multiplier="0.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositStone" multiplier="2" channel="specialist" />
+					<searchTime type="FindDepositMarble" multiplier="0.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositMarble" multiplier="2" channel="specialist" />
+					<searchTime type="FindDepositGranite" multiplier="0.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositGranite" multiplier="2" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="stone_cold_geologist_resource_icon.png" />
+				<position x="2" y="0" />
+			</layout>
+		</skill>			
+
+		<skill id="119" name="versed">  
+			<levels>
+				<level>
+					<searchTime type="FindDepositStone" multiplier="0.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositStone" multiplier="1.5" channel="specialist" />
+					<searchTime type="FindDepositMarble" multiplier="0.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositMarble" multiplier="1.5" channel="specialist" />
+					<searchTime type="FindDepositGranite" multiplier="0.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositGranite" multiplier="1.5" channel="specialist" />
+					<searchTime type="FindDepositIronOre" multiplier="0.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositIronOre" multiplier="1.5" channel="specialist" />		
+					<searchTime type="FindDepositCoal" multiplier="0.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositCoal" multiplier="1.5" channel="specialist" />		
+					<searchTime type="FindDepositBronzeOre" multiplier="0.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositBronzeOre" multiplier="1.5" channel="specialist" />		
+					<searchTime type="FindDepositGoldOre" multiplier="0.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositGoldOre" multiplier="1.5" channel="specialist" />		
+					<searchTime type="FindDepositTitaniumOre" multiplier="0.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositTitaniumOre" multiplier="1.5" channel="specialist" />		
+					<searchTime type="FindDepositSalpeter" multiplier="0.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositSalpeter" multiplier="1.5" channel="specialist" />							
+					<findDeposit type="FindDepositStone" chance="0.5" adder="1" channel="specialist" />
+					<findDeposit type="FindDepositMarble" chance="0.5" adder="1" channel="specialist" />
+					<findDeposit type="FindDepositGranite" chance="0.5" adder="1" channel="specialist" />
+					<findDeposit type="FindDepositCoal" chance="0.5" adder="1" channel="specialist" />
+					<findDeposit type="FindDepositBronzeOre" chance="0.5" adder="1" channel="specialist" />
+					<findDeposit type="FindDepositIronOre" chance="0.5" adder="1" channel="specialist" />
+					<findDeposit type="FindDepositGoldOre" chance="0.5" adder="1" channel="specialist" />	
+					<findDeposit type="FindDepositTitaniumOre" chance="0.5" adder="1" channel="specialist" />
+					<findDeposit type="FindDepositSalpeter" chance="0.5" adder="1" channel="specialist" />	
+				</level>
+			</levels>
+			<layout>
+				<icon name="versed_geologist_resource_icon.png" />
+				<position x="2" y="0" />
+			</layout>
+		</skill>
+		
+		<skill id="121" name="Trait_LovelyGeologist"> <!-- Grants a 100% chance to find Iron, Titanium and Salpeter deposits that can be mined faster.-->
+			<levels>
+				<level>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositIronOre" chance="1.0" channel="specialist" rules="effect">
+						<skillDeposit id="21" value="2" serverOnly="true" /> <!-- id = SkillID, value = SkillLevel, index is set dynamically IF empty / 0 -->
+					</modifierEffect>
+					<searchDepositCapacity type="FindDepositIronOre" multiplier="2.0" channel="specialist" />
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositTitaniumOre" chance="1.0" channel="specialist" rules="effect">
+						<skillDeposit id="21" value="2" serverOnly="true" /> <!-- id = SkillID, value = SkillLevel, index is set dynamically IF empty / 0 -->
+					</modifierEffect>
+					<searchDepositCapacity type="FindDepositTitaniumOre" multiplier="2.0" channel="specialist" />
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositSalpeter" chance="1.0" channel="specialist" rules="effect">
+						<skillDeposit id="21" value="2" serverOnly="true" /> <!-- id = SkillID, value = SkillLevel, index is set dynamically IF empty / 0 -->
+					</modifierEffect>
+					<searchDepositCapacity type="FindDepositSalpeter" multiplier="2.0" channel="specialist" />
+				</level>
+			</levels>
+			<layout>
+				<icon name="lovely_geologist_resource_icon.png" />
+				<position x="1" y="5" />
+			</layout>
+		</skill>	
+
+		<skill id="175" name="gold_hearted">  
+			<levels>
+				<level>
+					<searchTime type="FindDepositGoldOre" multiplier="0.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositGoldOre" multiplier="2" channel="specialist" />	
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositGoldOre" chance="1" channel="specialist" rules="effect">
+						<refillDeposit type="GoldOre" amount="100" />
+					</modifierEffect>
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_gold_hearted_geologist.png" />
+				<position x="2" y="0" />
+			</layout>
+		</skill>			
+		
+		<skill id="177" name="buriedTreasure"> <!-- Grants a {0}% chance to find different items searching a deposit.-->
+			<levels>
+				<level>
+		<!--			<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositStone" chance="0.05" channel="specialist" rules="effect">
+						<reward type="loottable" name="ironMiningSurplus" id="228" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositMarble" chance="0.1" channel="specialist" rules="effect">
+						<reward type="loottable" name="ironMiningSurplus" id="228" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositBronzeOre" chance="0.1" channel="specialist" rules="effect">
+						<reward type="loottable" name="ironMiningSurplus" id="228" />
+					</modifierEffect>    
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositIronOre" chance="0.1" channel="specialist" rules="effect">
+						<reward type="loottable" name="ironMiningSurplus" id="228" />
+					</modifierEffect>       -->
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositCoal" chance="0.25" channel="specialist" rules="effect">
+						<reward type="loottable" name="buriedTreasure" id="228" />
+					</modifierEffect>					
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositGoldOre" chance="0.25" channel="specialist" rules="effect">
+						<reward type="loottable" name="buriedTreasure" id="228" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositTitaniumOre" chance="0.5" channel="specialist" rules="effect">
+						<reward type="loottable" name="buriedTreasure" id="228" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositSalpeter" chance="0.5" channel="specialist" rules="effect">
+						<reward type="loottable" name="buriedTreasure" id="228" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositGranite" chance="0.5" channel="specialist" rules="effect">
+						<reward type="loottable" name="buriedTreasure" id="228" />
+					</modifierEffect>					
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_archeologist_geologist.png" />
+				<position x="1" y="2" />
+			</layout>
+		</skill>		
+		
+		<skill id="178" name="thorough">  
+			<levels>
+				<level>
+					<searchTime type="FindDepositStone" multiplier="3.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositStone" multiplier="3.0" channel="specialist" />
+					<searchTime type="FindDepositMarble" multiplier="3.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositMarble" multiplier="3.0" channel="specialist" />
+					<searchTime type="FindDepositGranite" multiplier="3.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositGranite" multiplier="3.0" channel="specialist" />
+					<searchTime type="FindDepositIronOre" multiplier="3.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositIronOre" multiplier="3.0" channel="specialist" />		
+					<searchTime type="FindDepositCoal" multiplier="3.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositCoal" multiplier="3.0" channel="specialist" />		
+					<searchTime type="FindDepositBronzeOre" multiplier="3.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositBronzeOre" multiplier="3.0" channel="specialist" />		
+					<searchTime type="FindDepositGoldOre" multiplier="3.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositGoldOre" multiplier="3.0" channel="specialist" />		
+					<searchTime type="FindDepositTitaniumOre" multiplier="3.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositTitaniumOre" multiplier="3.0" channel="specialist" />		
+					<searchTime type="FindDepositSalpeter" multiplier="3.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositSalpeter" multiplier="3.0" channel="specialist" />							
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_thorough_geologist.png" />
+				<position x="2" y="0" />
+			</layout>
+		</skill>		
+		
+		<skill id="179" name="deservedBonus"> <!-- Grants a {0}% chance to find different items searching a deposit.-->
+			<levels>
+				<level>
+					<searchTime type="FindDepositMarble" multiplier="6.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositMarble" multiplier="1.5" channel="specialist" />
+					<searchTime type="FindDepositGranite" multiplier="6.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositGranite" multiplier="1.5" channel="specialist" />
+					<searchTime type="FindDepositIronOre" multiplier="6.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositIronOre" multiplier="1.5" channel="specialist" />		
+					<searchTime type="FindDepositCoal" multiplier="6.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositCoal" multiplier="1.5" channel="specialist" />			
+					<searchTime type="FindDepositGoldOre" multiplier="6.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositGoldOre" multiplier="1.5" channel="specialist" />		
+					<searchTime type="FindDepositTitaniumOre" multiplier="6.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositTitaniumOre" multiplier="1.5" channel="specialist" />		
+					<searchTime type="FindDepositSalpeter" multiplier="6.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositSalpeter" multiplier="1.5" channel="specialist" />	
+					
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositMarble" chance="0.25" channel="specialist" rules="effect">
+						<reward type="loottable" name="deservedBonus" id="259" />
+					</modifierEffect> 
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositIronOre" chance="0.35" channel="specialist" rules="effect">
+						<reward type="loottable" name="deservedBonus" id="259" />
+					</modifierEffect>       
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositCoal" chance="0.5" channel="specialist" rules="effect">
+						<reward type="loottable" name="deservedBonus" id="259" />
+					</modifierEffect>					
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositGoldOre" chance="0.5" channel="specialist" rules="effect">
+						<reward type="loottable" name="deservedBonus" id="259" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositTitaniumOre" chance="0.75" channel="specialist" rules="effect">
+						<reward type="loottable" name="deservedBonus" id="259" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositSalpeter" chance="0.75" channel="specialist" rules="effect">
+						<reward type="loottable" name="deservedBonus" id="259" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositGranite" chance="0.75" channel="specialist" rules="effect">
+						<reward type="loottable" name="deservedBonus" id="259" />
+					</modifierEffect>					
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_diligent_geologist.png" />
+				<position x="1" y="2" />
+			</layout>
+		</skill>			
+		
+	<!-- Chummy Geologist Skill "chummyBonus" aka Choco Bonus-->
+
+		<skill id="180" name="chummyBonus"> <!-- Grants a {0}% chance to find different items searching a deposit.-->
+			<levels>
+				<level>
+					<searchTime type="FindDepositStone" multiplier="0.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositStone" multiplier="1.0" channel="specialist" />
+
+					<searchTime type="FindDepositBronzeOre" multiplier="0.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositBronzeOre" multiplier="1.0" channel="specialist" />
+
+					<searchTime type="FindDepositMarble" multiplier="0.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositMarble" multiplier="1.0" channel="specialist" />
+
+					<searchTime type="FindDepositIronOre" multiplier="0.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositIronOre" multiplier="1.0" channel="specialist" />
+
+					<searchTime type="FindDepositCoal" multiplier="1.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositCoal" multiplier="1.0" channel="specialist" />	
+
+					<searchTime type="FindDepositGoldOre" multiplier="1.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositGoldOre" multiplier="1.0" channel="specialist" />
+
+					<searchTime type="FindDepositGranite" multiplier="1.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositGranite" multiplier="1.0" channel="specialist" />	
+
+					<searchTime type="FindDepositTitaniumOre" multiplier="1.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositTitaniumOre" multiplier="1.0" channel="specialist" />
+
+					<searchTime type="FindDepositSalpeter" multiplier="1.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositSalpeter" multiplier="1.0" channel="specialist" />	
+					
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositCoal" chance="0.4" channel="specialist" rules="effect">
+						<reward type="loottable" name="chummyBonus" id="261" />
+					</modifierEffect>					
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositGoldOre" chance="0.4" channel="specialist" rules="effect">
+						<reward type="loottable" name="chummyBonus" id="261" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositGranite" chance="0.6" channel="specialist" rules="effect">
+						<reward type="loottable" name="chummyBonus" id="261" />
+					</modifierEffect>	
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositTitaniumOre" chance="0.6" channel="specialist" rules="effect">
+						<reward type="loottable" name="chummyBonus" id="261" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositSalpeter" chance="0.6" channel="specialist" rules="effect">
+						<reward type="loottable" name="chummyBonus" id="261" />
+					</modifierEffect>
+								
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_chummy_geologist.png" />
+				<position x="1" y="2" />
+			</layout>
+		</skill>
+
+		<skill id="290" name="mummified">  
+			<levels>
+				<level>
+					<searchTime type="FindDepositStone" multiplier="3.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositStone" multiplier="4.0" channel="specialist" />
+					<searchTime type="FindDepositMarble" multiplier="3.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositMarble" multiplier="4.0" channel="specialist" />
+					<searchTime type="FindDepositGranite" multiplier="3.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositGranite" multiplier="4.0" channel="specialist" />
+					<searchTime type="FindDepositIronOre" multiplier="3.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositIronOre" multiplier="4.0" channel="specialist" />		
+					<searchTime type="FindDepositCoal" multiplier="3.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositCoal" multiplier="4.0" channel="specialist" />		
+					<searchTime type="FindDepositBronzeOre" multiplier="3.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositBronzeOre" multiplier="4.0" channel="specialist" />		
+					<searchTime type="FindDepositGoldOre" multiplier="3.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositGoldOre" multiplier="4.0" channel="specialist" />		
+					<searchTime type="FindDepositTitaniumOre" multiplier="3.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositTitaniumOre" multiplier="4.0" channel="specialist" />		
+					<searchTime type="FindDepositSalpeter" multiplier="3.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositSalpeter" multiplier="4.0" channel="specialist" />							
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_mummified_geologist.png" />
+				<position x="1" y="2" />
+			</layout>
+		</skill>			
+		
+		<!--Gingerbread Geologist -->
+		<skill id="306" name="GingerbreadGeology"> <!-- Grants a {0}% chance to find different items searching a deposit.-->
+			<levels>
+				<level>
+					<searchTime type="FindDepositStone" multiplier="3.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositStone" multiplier="1.5" channel="specialist" />
+					<searchTime type="FindDepositBronzeOre" multiplier="3.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositBronzeOre" multiplier="1.5" channel="specialist" />
+					<searchTime type="FindDepositMarble" multiplier="3.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositMarble" multiplier="1.5" channel="specialist" />
+					<searchTime type="FindDepositGranite" multiplier="3.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositGranite" multiplier="1.5" channel="specialist" />
+					<searchTime type="FindDepositIronOre" multiplier="3.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositIronOre" multiplier="1.5" channel="specialist" />		
+					<searchTime type="FindDepositCoal" multiplier="3.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositCoal" multiplier="1.5" channel="specialist" />			
+					<searchTime type="FindDepositGoldOre" multiplier="3.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositGoldOre" multiplier="1.5" channel="specialist" />		
+					<searchTime type="FindDepositTitaniumOre" multiplier="3.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositTitaniumOre" multiplier="1.5" channel="specialist" />		
+					<searchTime type="FindDepositSalpeter" multiplier="3.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositSalpeter" multiplier="1.5" channel="specialist" />	
+					
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositStone" chance="0.25" channel="specialist" rules="effect">
+						<reward type="loottable" name="deservedBonus" id="262" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositBronzeOre" chance="0.25" channel="specialist" rules="effect">
+						<reward type="loottable" name="deservedBonus" id="262" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositMarble" chance="0.25" channel="specialist" rules="effect">
+						<reward type="loottable" name="deservedBonus" id="262" />
+					</modifierEffect> 
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositIronOre" chance="0.35" channel="specialist" rules="effect">
+						<reward type="loottable" name="deservedBonus" id="262" />
+					</modifierEffect>       
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositCoal" chance="0.5" channel="specialist" rules="effect">
+						<reward type="loottable" name="deservedBonus" id="262" />
+					</modifierEffect>					
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositGoldOre" chance="0.5" channel="specialist" rules="effect">
+						<reward type="loottable" name="deservedBonus" id="262" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositTitaniumOre" chance="0.75" channel="specialist" rules="effect">
+						<reward type="loottable" name="deservedBonus" id="262" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositSalpeter" chance="0.75" channel="specialist" rules="effect">
+						<reward type="loottable" name="deservedBonus" id="262" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositGranite" chance="0.75" channel="specialist" rules="effect">
+						<reward type="loottable" name="deservedBonus" id="262" />
+					</modifierEffect>					
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_gingerbreadgeologist.png" />
+				<position x="1" y="2" />
+			</layout>
+		</skill>	
+		
+		<!--ArtMuseum Geologist Buffs-->
+		<skill id="311" name="ArtMuseumBuff1"> 
+			<levels>
+				<level>
+					<searchTime type="FindDepositStone" multiplier="0.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositStone" multiplier="3.0" channel="specialist" />
+					<searchTime type="FindDepositMarble" multiplier="0.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositMarble" multiplier="3.0" channel="specialist" />
+					<searchTime type="FindDepositGranite" multiplier="0.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositGranite" multiplier="3.0" channel="specialist" />								
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_artmuseumbuff1.png" />
+				<position x="1" y="2" />
+			</layout>
+		</skill>	
+		
+		<skill id="312" name="ArtMuseumBuff2"> 
+			<levels>
+				<level>
+					<searchTime type="FindDepositBronzeOre" multiplier="0.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositBronzeOre" multiplier="3.0" channel="specialist" />
+					<searchTime type="FindDepositIronOre" multiplier="0.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositIronOre" multiplier="3.0" channel="specialist" />		
+					<searchTime type="FindDepositGoldOre" multiplier="0.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositGoldOre" multiplier="3.0" channel="specialist" />		
+					<searchTime type="FindDepositTitaniumOre" multiplier="0.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositTitaniumOre" multiplier="3.0" channel="specialist" />						
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_artmuseumbuff2.png" />
+				<position x="1" y="2" />
+			</layout>
+		</skill>	
+		
+		<!--Geologist on Vacation-->
+		<skill id="315" name="VacationalGeology"> <!-- Grants a {0}% chance to find different items searching a deposit.-->
+			<levels>
+				<level>
+					<searchTime type="FindDepositStone" multiplier="2.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositStone" multiplier="1.5" channel="specialist" />
+					<searchTime type="FindDepositBronzeOre" multiplier="2.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositBronzeOre" multiplier="1.5" channel="specialist" />
+					<searchTime type="FindDepositMarble" multiplier="2.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositMarble" multiplier="1.5" channel="specialist" />
+					<searchTime type="FindDepositGranite" multiplier="2.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositGranite" multiplier="1.5" channel="specialist" />
+					<searchTime type="FindDepositIronOre" multiplier="2.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositIronOre" multiplier="1.5" channel="specialist" />		
+					<searchTime type="FindDepositCoal" multiplier="2.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositCoal" multiplier="1.5" channel="specialist" />			
+					<searchTime type="FindDepositGoldOre" multiplier="2.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositGoldOre" multiplier="1.5" channel="specialist" />		
+					<searchTime type="FindDepositTitaniumOre" multiplier="2.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositTitaniumOre" multiplier="1.5" channel="specialist" />		
+					<searchTime type="FindDepositSalpeter" multiplier="2.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositSalpeter" multiplier="1.5" channel="specialist" />	
+					
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositStone" chance="1" channel="specialist" rules="effect">
+						<reward type="loottable" id="267" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositBronzeOre" chance="1" channel="specialist" rules="effect">
+						<reward type="loottable" id="268" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositMarble" chance="1" channel="specialist" rules="effect">
+						<reward type="loottable" id="269" />
+					</modifierEffect> 
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositIronOre" chance="1" channel="specialist" rules="effect">
+						<reward type="loottable" id="270" />
+					</modifierEffect>       
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositCoal" chance="1" channel="specialist" rules="effect">
+						<reward type="loottable" id="271" />
+					</modifierEffect>					
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositGoldOre" chance="1" channel="specialist" rules="effect">
+						<reward type="loottable" id="272" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositTitaniumOre" chance="1" channel="specialist" rules="effect">
+						<reward type="loottable" id="273" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositSalpeter" chance="1" channel="specialist" rules="effect">
+						<reward type="loottable" id="274" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositGranite" chance="1" channel="specialist" rules="effect">
+						<reward type="loottable" id="275" />
+					</modifierEffect>					
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_geologistonvacation.png" />
+				<position x="1" y="2" />
+			</layout>
+		</skill>	
+		
+		<!--Sooty Geologist-->
+		<skill id="320" name="sooty">  
+			<levels>
+				<level>
+					<searchTime type="FindDepositCoal" multiplier="0.75" channel="specialist" />
+					<searchDepositCapacity type="FindDepositCoal" multiplier="3" channel="specialist" />	
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositCoal" chance="0.75" channel="specialist" rules="effect">
+						<refillDeposit type="Coal" amount="200" />
+						<skillDeposit id="21" value="3" serverOnly="true" /> <!-- id = SkillID, value = SkillLevel, index is set dynamically IF empty / 0 -->
+					</modifierEffect>
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_sooty_geologist.png" />
+				<position x="2" y="0" />
+			</layout>
+		</skill>	
+		
+		<!--Balanced Geologist-->
+		<skill id="325" name="balanced">
+			<levels>
+				<level>
+					<searchTime type="FindDepositStone" multiplier="0.5" channel="specialist" />
+					<modifierEffect property="SEARCH_DEPOSIT_SUCCESSFUL" type="FindDepositStone" chance="1" channel="specialist" rules="effect">
+						<refillDeposit type="BronzeOre" amount="200" />
+					</modifierEffect>
+					<searchTime type="FindDepositBronzeOre" multiplier="0.5" channel="specialist" />
+					<modifierEffect property="SEARCH_DEPOSIT_SUCCESSFUL" type="FindDepositBronzeOre" chance="1" channel="specialist" rules="effect">
+						<refillDeposit type="Stone" amount="200" />
+					</modifierEffect>
+					<searchTime type="FindDepositMarble" multiplier="0.5" channel="specialist" />
+					<modifierEffect property="SEARCH_DEPOSIT_SUCCESSFUL" type="FindDepositMarble" chance="1" channel="specialist" rules="effect">
+						<refillDeposit type="IronOre" amount="200" />
+					</modifierEffect>
+					<searchTime type="FindDepositIronOre" multiplier="0.5" channel="specialist" />
+					<modifierEffect property="SEARCH_DEPOSIT_SUCCESSFUL" type="FindDepositIronOre" chance="1" channel="specialist" rules="effect">
+						<refillDeposit type="Marble" amount="200" />
+					</modifierEffect>
+					<searchTime type="FindDepositCoal" multiplier="0.5" channel="specialist" />
+					<modifierEffect property="SEARCH_DEPOSIT_SUCCESSFUL" type="FindDepositCoal" chance="1" channel="specialist" rules="effect">
+						<refillDeposit type="GoldOre" amount="200" />
+					</modifierEffect>
+					<searchTime type="FindDepositGoldOre" multiplier="0.5" channel="specialist" />
+					<modifierEffect property="SEARCH_DEPOSIT_SUCCESSFUL" type="FindDepositGoldOre" chance="1" channel="specialist" rules="effect">
+						<refillDeposit type="Coal" amount="200" />
+					</modifierEffect>
+					<searchTime type="FindDepositGranite" multiplier="0.5" channel="specialist" />
+					<modifierEffect property="SEARCH_DEPOSIT_SUCCESSFUL" type="FindDepositGranite" chance="1" channel="specialist" rules="effect">
+						<refillDeposit type="TitaniumOre" amount="200" />
+					</modifierEffect>
+					<searchTime type="FindDepositTitaniumOre" multiplier="0.5" channel="specialist" />
+					<modifierEffect property="SEARCH_DEPOSIT_SUCCESSFUL" type="FindDepositTitaniumOre" chance="1" channel="specialist" rules="effect">
+						<refillDeposit type="Granite" amount="200" />
+					</modifierEffect>
+					<searchTime type="FindDepositSalpeter" multiplier="0.5" channel="specialist" />
+					<modifierEffect property="SEARCH_DEPOSIT_SUCCESSFUL" type="FindDepositSalpeter" chance="1" channel="specialist" rules="effect">
+						<refillDeposit type="Granite" amount="200" />
+					</modifierEffect>
+				</level>
+			</levels>
+			<layout>
+				<icon name="icon_balanced_geologist.png" />
+				<position x="2" y="0" />
+			</layout>
+		</skill>
+
+		<!--Marathon Geologist -->
+		<skill id="328" name="marathon"> 
+			<levels>
+				<level>
+					<searchDepositCapacity type="FindDepositStone" multiplier="0.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositBronzeOre" multiplier="0.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositMarble" multiplier="0.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositGranite" multiplier="0.5" channel="specialist" />
+					<searchDepositCapacity type="FindDepositIronOre" multiplier="0.5" channel="specialist" />		
+					<searchDepositCapacity type="FindDepositCoal" multiplier="0.5" channel="specialist" />			
+					<searchDepositCapacity type="FindDepositGoldOre" multiplier="0.5" channel="specialist" />		
+					<searchDepositCapacity type="FindDepositTitaniumOre" multiplier="0.5" channel="specialist" />		
+					<searchDepositCapacity type="FindDepositSalpeter" multiplier="0.5" channel="specialist" />	
+					
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositStone" chance="0.25" channel="specialist" rules="effect">
+						<reward type="loottable" name="deservedBonus" id="294" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositBronzeOre" chance="0.25" channel="specialist" rules="effect">
+						<reward type="loottable" name="deservedBonus" id="294" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositMarble" chance="0.25" channel="specialist" rules="effect">
+						<reward type="loottable" name="deservedBonus" id="294" />
+					</modifierEffect> 
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositIronOre" chance="0.35" channel="specialist" rules="effect">
+						<reward type="loottable" name="deservedBonus" id="294" />
+					</modifierEffect>       
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositCoal" chance="0.5" channel="specialist" rules="effect">
+						<reward type="loottable" name="deservedBonus" id="294" />
+					</modifierEffect>					
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositGoldOre" chance="0.5" channel="specialist" rules="effect">
+						<reward type="loottable" name="deservedBonus" id="294" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositTitaniumOre" chance="0.75" channel="specialist" rules="effect">
+						<reward type="loottable" name="deservedBonus" id="262" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositSalpeter" chance="0.75" channel="specialist" rules="effect">
+						<reward type="loottable" name="deservedBonus" id="294" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositGranite" chance="0.75" channel="specialist" rules="effect">
+						<reward type="loottable" name="deservedBonus" id="294" />
+					</modifierEffect>					
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_marathon.png" />
+				<position x="1" y="2" />
+			</layout>
+		</skill>	
+		
+		
+		<!--Vesy-->
+		<skill id="331" name="AAAAGeology"> 
+			<levels>
+				<level>
+					<searchTime type="FindDepositStone" multiplier="3" channel="specialist" />
+									
+					<searchTime type="FindDepositMarble" multiplier="3" channel="specialist" />
+					
+					<searchTime type="FindDepositGranite" multiplier="3" channel="specialist" />
+										
+					<searchTime type="FindDepositCoal" multiplier="3" channel="specialist" />
+					
+										
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositStone" chance="0.1" channel="specialist" rules="effect">
+						<reward type="loottable" id="300" />
+					</modifierEffect>
+
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositMarble" chance="0.2" channel="specialist" rules="effect">
+						<reward type="loottable" id="300" />
+					</modifierEffect> 
+					
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositCoal" chance="0.4" channel="specialist" rules="effect">
+						<reward type="loottable" id="300" />
+					</modifierEffect>					
+					
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositGranite" chance="0.4" channel="specialist" rules="effect">
+						<reward type="loottable" id="300" />
+					</modifierEffect>
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_vesy.png" />
+				<position x="1" y="2" />
+			</layout>
+		</skill>	
+		<!--Stargazing Geologist-->
+		<skill id="336" name="Stargazinggeology"> <!-- Grants a {0}% chance to find different items searching a deposit.-->
+			<levels>
+				<level>
+					<searchTime type="FindDepositStone" multiplier="2.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositStone" multiplier="2.0" channel="specialist" />
+					<searchTime type="FindDepositBronzeOre" multiplier="2.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositBronzeOre" multiplier="2.0" channel="specialist" />
+					<searchTime type="FindDepositMarble" multiplier="2.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositMarble" multiplier="2.0" channel="specialist" />
+					<searchTime type="FindDepositGranite" multiplier="2.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositGranite" multiplier="2.0" channel="specialist" />
+					<searchTime type="FindDepositIronOre" multiplier="2.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositIronOre" multiplier="2.0" channel="specialist" />		
+					<searchTime type="FindDepositCoal" multiplier="2.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositCoal" multiplier="2.0" channel="specialist" />			
+					<searchTime type="FindDepositGoldOre" multiplier="2.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositGoldOre" multiplier="2.0" channel="specialist" />		
+					<searchTime type="FindDepositTitaniumOre" multiplier="2.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositTitaniumOre" multiplier="2.0" channel="specialist" />		
+					<searchTime type="FindDepositSalpeter" multiplier="2.0" channel="specialist" />
+					<searchDepositCapacity type="FindDepositSalpeter" multiplier="2.0" channel="specialist" />	
+					
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositCoal" chance="0.25" channel="specialist" rules="effect">
+						<reward type="loottable" id="305" />
+					</modifierEffect>					
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositGoldOre" chance="0.25" channel="specialist" rules="effect">
+						<reward type="loottable" id="305" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositTitaniumOre" chance="0.5" channel="specialist" rules="effect">
+						<reward type="loottable" id="305" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositSalpeter" chance="0.5" channel="specialist" rules="effect">
+						<reward type="loottable" id="305" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositGranite" chance="0.5" channel="specialist" rules="effect">
+						<reward type="loottable" id="305" />
+					</modifierEffect>					
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_stargazinggeologist.png" />
+				<position x="1" y="2" />
+			</layout>
+		</skill>	
+		<!--Titanic Geologist-->
+		<skill id="340" name="titanicgeology"> <!-- Grants a {0}% chance to find different items searching a deposit.-->
+			<levels>
+				<level>
+					<searchDepositCapacity type="FindDepositTitaniumOre" multiplier="3.0" channel="specialist" />					
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositStone" chance="0.05" channel="specialist" rules="effect">
+						<reward type="loottable" id="340" />
+					</modifierEffect>	
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositBronzeOre" chance="0.1" channel="specialist" rules="effect">
+						<reward type="loottable" id="340" />
+					</modifierEffect>					
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositMarble" chance="0.2" channel="specialist" rules="effect">
+						<reward type="loottable" id="340" />
+					</modifierEffect>	
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositIronOre" chance="0.4" channel="specialist" rules="effect">
+						<reward type="loottable" id="340" />
+					</modifierEffect>	
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositCoal" chance="0.5" channel="specialist" rules="effect">
+						<reward type="loottable" id="341" />
+					</modifierEffect>					
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositGoldOre" chance="0.5" channel="specialist" rules="effect">
+						<reward type="loottable" id="341" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositTitaniumOre" chance="1" channel="specialist" rules="effect">
+						<reward type="loottable" id="342" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositSalpeter" chance="1" channel="specialist" rules="effect">
+						<reward type="loottable" id="341" />
+					</modifierEffect>
+					<modifierEffect property="SEARCH_DEPOSIT_SET" type="FindDepositGranite" chance="1" channel="specialist" rules="effect">
+						<reward type="loottable" id="341" />
+					</modifierEffect>					
+				</level>
+			</levels>
+			<layout>
+				<icon name="trait_titanic.png" />
+				<position x="1" y="2" />
+			</layout>
+		</skill>	
+		
+
+	</skills>
+	
+	
+	<skillTrees>
+		<skillTree id="1" name="geologist" maxPoints="31">
+			<skillReference id="1" /> <!-- Hidden Stone Stash: Grants a {0}% chance to find treasure when searching a Stone deposit.-->
+			<skillReference id="2" /> <!-- Natural Copper Vein: Discover {0}% greater Copper deposits.-->
+			<skillReference id="3" /> <!-- Two Marble In One: Grants a {0}% chance to discover two Marble deposits at once.-->
+			<skillReference id="4" /> <!-- Quality Copper Shafts: Grants a {0}% chance to find Copper deposits that can be mined faster.-->
+			<skillReference id="5" /> <!-- Natural Stone Vein: Discover {0}% greater Stone deposits.-->
+			<skillReference id="6" /> <!-- Natural Marble Vein: Discover {0}% greater Marble deposits.-->
+			<skillReference id="7" /> <!-- Copper Mining Surplus: Grants a {0}% chance to find mined Copper when searching a Copper deposit.-->
+			<skillReference id="8" /> <!-- Two Iron In One: Grants a {0}% chance to discover two Iron deposits at once.-->
+			<skillReference id="9" /> <!-- Quality Coal Shafts: Grants a {0}% chance to find Coal deposits that can be mined faster.-->
+			<skillReference id="10" /> <!-- Tendentious Geologist: Shortens the search time for Minerals by {0}%. -->
+			<skillReference id="11" /> <!-- Gold Mining Surplus: Grants a {0}% chance to find mined Gold when searching a Gold deposit.-->
+			<skillReference id="12" /> <!-- Hidden Coal Stash: Grants a {0}% chance to find treasure when searching a Coal deposit.-->
+			<skillReference id="13" /> <!-- Iron Mining Surplus: Grants a {0}% chance to find mined Iron when searching a Iron deposit.-->
+			<skillReference id="14" /> <!-- Natural Gold Vein: Discover {0}% greater Gold deposits.-->
+			<skillReference id="15" /> <!-- Two Coal In One: Grants a {0}% chance to discover two Coal deposits at once.-->
+			<skillReference id="16" /> <!-- Quality Gold Shafts: Grants a {0}% chance to find Gold deposits that can be mined faster.-->
+			<skillReference id="17" /> <!-- Ore Collector: Shortens the search time for Ores by {0}%. -->
+			<skillReference id="18" /> <!-- Lucky Find: Grants a {0}% chance to discover one more Iron or Marble deposit than the maximum.-->
+			<skillReference id="19" /> <!-- Natural Resource Vein: Discover {0}% greater deposits of all types.-->
+			<skillReference id="20" /> <!-- Natures Gift: Grants a {0}% chance to refill a random active deposit.-->
+		</skillTree>
+	</skillTrees>
+</scienceSystem>

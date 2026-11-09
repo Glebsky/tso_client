@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+      
+   <quest name="BuffAdv_TF_Stage02_Main1" specialType="firstQuestlastQuest" icon="Military" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_buff_adventure_0" showQuestWindow="false">
+		<triggers>
+			<questcomplete item="BuffAdv_TF_Stage02_Sub1"/> 	
+			<questcomplete item="BuffAdv_TF_Stage02_Sub2"/> 	
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="7000"/>   
+		</rewards>
+		<postrequisits />
+    </quest>
+
+	<quest name="BuffAdv_TF_Stage02_Sub1" type="Story" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_buff_adventure_0">
+		<startcondition>
+		   <questactive item="BuffAdv_TF_Stage02_Main1"/>
+		</startcondition>
+		<preeffects>
+			<!--<spawnbuilding name="EventMonster_Golem2" x="32" y="29" units="BanditRecruit|50" />	
+			<spawnbuilding name="EventMonster_Golem2" x="30" y="33" units="BanditRecruit|50" /> -->	
+        </preeffects>
+		  <triggers>
+			<trigger type="Building" name="tent_nords_leader" condition="l" amount="1"/>
+			
+		  </triggers>
+   </quest>
+
+    <quest name="BuffAdv_TF_Stage02_Sub2" type="Story" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_buff_adventure_0">
+		<startcondition>
+		   <questcomplete item="BuffAdv_TF_Stage02_Sub1"/>
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="BuffAd_TF_Stage02_Quest1" />
+        </preeffects>
+		  <triggers>
+		
+			<buffappliedonadventure item="BattleBuffHurt_BuffAd_TF_Activator3" min="5" />
+		  </triggers>
+   </quest>
+  
+</Root>
+
+    
+    
+      
+      
+      
+      
+
+

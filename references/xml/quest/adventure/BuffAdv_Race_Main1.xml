@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+      
+   <quest name="BuffAdv_Race_Main1" specialType="firstQuestlastQuest" icon="Military" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_buff_adventure_0" showQuestWindow="false">
+		<triggers>
+			<questcomplete item="BuffAdv_Race_Sub1"/> 	
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="7000"/>   
+		</rewards>
+		<postrequisits />
+    </quest>
+
+	<quest name="BuffAdv_Race_Sub1" type="Story" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_buff_adventure_0">
+		<startcondition>
+		   <questactive item="BuffAdv_Race_Main1"/>
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="BuffAd_Race_Quest1" />
+        </preeffects>
+		  <triggers>
+			<trigger type="Building" name="RaiderStash_leader" condition="l" amount="1"/>
+		  </triggers>
+   </quest>
+ 
+  
+</Root>
+
+    
+    
+      
+      
+      
+      
+
+

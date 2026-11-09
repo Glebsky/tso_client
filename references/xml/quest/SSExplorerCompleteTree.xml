@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<Root>
+    
+    	<!--
+    
+    	// name = Name of Quest
+    	// showQuestWindow="false"  = disable show Quest Window funktion
+    	// showRewardWindow="false"  = disable show Reward Window funktion
+	// colorSchema = use a colorschema could be "night" ,"oven","snow","colormod,radd,gadd,badd,rmul,gmul,bmul"
+	// specialType="firstQuest", this is the start of a quest series, will be aktivated when zone starts
+    	// active = false means quest is inactive
+    	
+    	<quests name="QuestName" colorSchema="night" specialType="firstQuest" active="true">
+    		// if all triggers true quest is finished 
+    		<triggers>
+    			// if Woodcutter exist onMap quest is finished (if amount is one, it could be ignored"
+    			<trigger type="Building" name="Woodcutter" condition="onMap" />
+    			// if Sawmill is created quest is finished
+    			<trigger type="Building" name="Sawmill" condition="created" />
+    			// if 2 Sawmill in map quest is finished
+    			<trigger type="Building" name="Sawmill" condition="ge" amount="2" />
+    			// if 100 Iron is created quest is finished ge means greater or equal
+    			<trigger type="Resource" name="Iron" condition="ge" amount="100" />
+    			// if 100 additional Iron is created quest is finished geDelta means greater or equal
+			// for example, if you have 120 iron at the start of the quest, you must have at least 220 to finish it
+    			<trigger type="Resource" name="Iron" condition="geDelta" amount="100" />
+				
+				//Trigger Events: If trigger completion shall trigger further events (besides quest progress) enter the "onComplete" property with these possible comma-seperated values (NO WHITESPACES!):
+				<trigger type="Building" condition="selected" onComplete="destroySelectedBuilding,doSomethingElse"/> //Destroys the current selected Building and is doint things:)
+    		</triggers>
+    		
+    		// Player Rewards
+    		<rewards>
+    			// Player gets 100 iron
+    			<reward type="Resource" name="Iron" amount="100" />
+    			// Player gets 200 XP
+    			<reward type="XP" amount="200" />
+    		</rewards>
+    		
+    		// postrequisits is called after player gets his rewards 
+    		// startQuest is the name of the quest to start
+    		// Delay is Delay in seconds before quest starts
+    		<postrequisits startQuest="Quest2" startDelay="10" />
+			
+			// Hints (Red bouncing arrow)
+			<hints>
+				// name:       not used yet, will be used as text identifier for hint texts
+				// pointTo:    UI Element which is pointed to
+				//   		   available values:
+				//                 ActionBarButton01
+				//                 ActionBarButton02
+				//                 ActionBarButton03
+				//                 ActionBarButton04
+				//                 ActionBarButton05
+				//                 ActionBarButton06
+				//                 ActionBarButton07
+				//                 ActionBarButton08
+				//                 ActionBarButton09
+				//                 QuestButton
+				// offsetX:    x-offset in pixels from the center of the ui element
+				// offsetY:    y-offset in pixels from the center of the ui element
+				// direction:  direction the arrow will point to
+				//             available values: N, NE, E, SE, S, SW, W, NW
+				<hint name="FirstBuildMenu" pointTo="ActionBarButton01" offsetX="0" offsetY="-40" direction="S" />
+			</hints>
+			
+    	</quests>
+    	
+    	-->
+
+ 	<!-- Explorer Questchain -->
+ 	<!-- Explorer: Complete one skill tree -->
+
+      <quest name="SSExplorerCompleteTree" type="Story" icon="Resources" npc="quest_character_scienceSystem01.png" showRewardWindow="true" >            
+        <startcondition>
+			<questcomplete item="SSManuscript"/> 
+			<playerlevel min="26" />			
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+           <trigger type="QuestComplete" name="SSExplorerFirstSkill" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="SSExplorerBronzeComplete" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="SSExplorerSilverComplete" condition="questcompleted" amount="1"/>
+           <trigger type="QuestComplete" name="SSExplorerGoldComplete" condition="questcompleted" amount="1"/>
+        </triggers>
+        <posteffects>
+			<reward type="Resource" name="Coin" amount="500" /> 
+        </posteffects>
+      </quest>
+
+ 	<!-- First Manuscript -->
+
+      <quest name="SSExplorerFirstSkill" type="Story" connectedToQuest="SSExplorerCompleteTree" icon="Resources" npc="quest_character_scienceSystem01.png" showRewardWindow="true" >            
+        <startcondition>
+			<questcomplete item="SSManuscript"/> 
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<skilltreepoints item="explorer" type="bronze" min="1" />
+<!--			 <skilltreepoints id="2" item="Manuscript" min="1" />   	 ID:2 = ExplorerTree "Invest atleast 1 Manuscript in ExplSkillTree
+			<trigger type="BronzeSkillTreePoints" name="explorer" condition="ge" amount="1" /> -->
+        </triggers>
+        <posteffects>
+			<reward type="Resource" name="Bread" amount="200" /> 
+			<reward type="Resource" name="Beer" amount="150" /> 
+        </posteffects>
+      </quest>
+
+ 	<!-- Bronze Skills Complete-->
+
+      <quest name="SSExplorerBronzeComplete" type="Story" connectedToQuest="SSExplorerCompleteTree" icon="Resources" npc="quest_character_scienceSystem01.png" showRewardWindow="true" >            
+        <startcondition>
+			<questcomplete item="SSExplorerFirstSkill"/> 
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<skilltreepoints item="explorer" type="bronze" min="5" />
+			<!--			 <skilltreepoints id="2" item="Manuscript" min="5" />   
+			<trigger type="BronzeSkillTreePoints" name="explorer" condition="ge" amount="5" /> --> 
+        </triggers>
+        <posteffects>
+			<reward type="Resource" name="Coal" amount="150" />
+			<reward type="Resource" name="Beer" amount="250" />
+        </posteffects>
+      </quest>
+
+ 	<!-- Silver Skills Complete-->
+
+      <quest name="SSExplorerSilverComplete" type="Story" connectedToQuest="SSExplorerCompleteTree" icon="Resources" npc="quest_character_scienceSystem01.png" showRewardWindow="true" >            
+        <startcondition>
+			<questcomplete item="SSExplorerBronzeComplete"/> 
+			<playerlevel min="36" />
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<skilltreepoints item="explorer" type="silver" min="10" />
+	<!--			 <skilltreepoints id="2" item="Tome" min="10" />
+			<trigger type="SilverSkillTreePoints" name="explorer" condition="ge" amount="10" /> -->    
+        </triggers>
+        <posteffects>
+			<reward type="Resource" name="Coal" amount="250" /> 
+			<reward type="Resource" name="Marble" amount="200" />
+        </posteffects>
+      </quest>
+
+ 	<!-- Gold Skills Complete-->
+
+      <quest name="SSExplorerGoldComplete" type="Story" connectedToQuest="SSExplorerCompleteTree" icon="Resources" npc="quest_character_scienceSystem01.png" showRewardWindow="true" >            
+        <startcondition>
+			<questcomplete item="SSExplorerSilverComplete"/> 
+			<playerlevel min="45" />
+        </startcondition>
+        <preeffects>
+        </preeffects>
+        <triggers>
+			<skilltreepoints item="explorer" type="gold" min="6" />
+		<!--	 <skilltreepoints id="2" item="Codex" min="6" />
+			<trigger type="GoldSkillTreePoints" name="explorer" condition="ge" amount="6" /> --> 
+        </triggers>
+        <posteffects>
+			<reward type="Resource" name="Coal" amount="300" /> 
+			<reward type="Resource" name="Granite" amount="200" /> 
+        </posteffects>
+      </quest>
+
+</Root>

@@ -1,0 +1,1117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<!--
+			- the collection node
+			- name - naming convention for this collection node
+			- pLvl -> the needed player level for the collection to be active
+					-> optional
+			- minLevel -> the minimum player level required for the collection to be active
+						-> optional
+						-> if missing, will try to read the old "pLvl" attribute
+			- maxLevel -> the maximum player level required for the collection to be active
+						-> optional
+			- outBuffName -> what we will create. This MUST be the id of an available buff
+				- showResourceIcon -> if the created buff is an add resource or a fill deposit buff, this flag will decide if the buff frame will render the resource icon on top of the background or not
+								   -> default true
+			- blueprint -> the needed blueprint/recipe id, which is buff /star menu item(!?)
+						 -> optional
+			- productionTime -> time in seconds needed to produce the collection item
+			- InstantBuildCosts -> the amount of gems needed to instantly produce the item
+				- requiresEvent -> if this attribute is set, the collection will only be active while the event quest is running
+								-> optional. If no value is set, then the collection will always be active
+			EX:
+				<collection name="CountrySaying" minLevel="15" maxLevel="29" outBuffName="FillDeposit" showResourceIcon="false" outBuffResourceName="Corn" outBuffResourceAmount="1000" blueprint="" productionTime="120" InstantBuildCosts="200">
+				<resource name="scarecrow" amount="10" />
+				<resource name="flower" amount="5" />
+			</collection>
+		-->
+
+	<collections>
+	
+	<!-- Event collections -->
+	<!-- Red nose collections -->
+		<collection name="RedNoseCollection" pLvl="16" outBuffName="AddResource_RedNoseCollection" blueprint="" productionTime="20" InstantBuildCosts="1" requiresEvent="RedNose_EventRunning">
+			<!-- all the needed resources to craft a collection item. -->
+			<resource name="CollectibleHerbs" amount="8"/>
+			<resource name="CollectibleScarecrow" amount="8"/>
+		</collection>
+		
+	<!-- Xmas collections -->
+		<collection name="ChristmasResourceCollection" pLvl="16" outBuffName="AddResource_ChristmasResourceCollection" outBuffResourceName="ChristmasResource" blueprint="" productionTime="3600" InstantBuildCosts="30" requiresEvent="XMAS2017plus_Content">
+			<!-- all the needed resources to craft a collection item. -->
+			<resource name="CollectibleChristmasBells" amount="25"/>
+			<resource name="CollectibleChristmasCandy" amount="25"/>
+			<resource name="CollectibleChristmasGingerbread" amount="25"/>
+		</collection>
+
+	<!-- Easter collections -->
+		<collection name="EasterResourceCollection" pLvl="17" outBuffName="AddResource_EasterEggResourceCollection" blueprint="" productionTime="3600" InstantBuildCosts="30" requiresEvent="Easter2015_EventRunning">
+		  <!-- all the needed resources to craft a collection item. -->
+		  <resource name="CollectibleEggpaint" amount="25"/>
+		  <resource name="CollectiblePlainEgg" amount="25" />
+		  <resource name="CollectibleWickerBasket" amount="25" />
+		</collection>
+
+		<collection name="EasterEggHuntCollection" pLvl="26" outBuffName="EasterEggHunt" blueprint="" productionTime="3600" InstantBuildCosts="30" requiresEvent="Easter2015_EventRunning">
+		  <!-- all the needed resources to craft a collection item. -->
+		  <resource name="CollectibleEggpaint" amount="25"/>
+		  <resource name="CollectiblePlainEgg" amount="25" />
+		  <resource name="CollectibleWickerBasket" amount="25" />
+		</collection>
+
+	<!-- Halloween 2014 collections -->
+		<collection name="BansheeScream" pLvl="22" outBuffName="ProductivityBuffLvl107" blueprint="" productionTime="600" InstantBuildCosts="30" requiresEvent="HW2017plus_Content">
+			<resource name="CollectibleScarecrow" amount="10" />
+			<resource name="CollectibleBanner" amount="5" />
+			<resource name="CollectibleFurs" amount="1" />
+		</collection>
+		
+		<collection name="WarewolfHowl" pLvl="22" outBuffName="ProductivityBuffLvl108" blueprint="" productionTime="600" InstantBuildCosts="30" requiresEvent="HW2017plus_Content">
+			<resource name="CollectibleWineBarrel" amount="20" />
+			<resource name="CollectibleGrainSacks" amount="10" />
+			<resource name="CollectibleFurs" amount="2" />
+		</collection>
+
+	<!-- Regular collections -->
+	<collection name="CountrySaying" pLvl="16" outBuffName="FillDeposit_Wheat_01" HardCurrency="20" blueprint="" productionTime="300" InstantBuildCosts="15" showResourceIcon="false">
+	<!-- all the needed resources to craft a collection item. -->
+       <resource name="CollectibleHerbs" amount="25" />
+       <resource name="CollectibleScarecrow" amount="20" />
+      </collection>
+      <collection name="HarvestRitual" pLvl="18" outBuffName="ProductivityBuffLvl100" blueprint="" productionTime="600" InstantBuildCosts="30">
+      <!-- all the needed resources to craft a collection item. -->
+      <resource name="CollectibleHerbs" amount="20" />
+      <resource name="CollectibleFoodCart" amount="12" />
+    </collection>
+	
+    <collection name="FurFestival" pLvl="22" outBuffName="ProductivityBuffLvl105" blueprint="" productionTime="600" InstantBuildCosts="30">
+      <!-- lvl 22 needed to match the lvl at which the butcher is unlocked. -->
+      <resource name="CollectibleWineBarrel" amount="20" />
+	  <resource name="CollectibleBanner" amount="10" />
+	  <resource name="CollectibleGrainSacks" amount="4" />
+      <resource name="CollectibleFurs" amount="3" />
+    </collection>
+	<collection name="MiracleBait" pLvl="22" outBuffName="ProductivityBuffLvl106" blueprint="" productionTime="600" InstantBuildCosts="30">
+      <!-- lvl 22 needed to match the lvl of the FurFestival buff is unlocked. -->
+      <resource name="CollectibleWineBarrel" amount="20" />
+	  <resource name="CollectibleKettle" amount="10" />
+	  <resource name="CollectibleGrainSacks" amount="4" />
+      <resource name="CollectibleFurs" amount="3" />
+    </collection>
+	
+	<collection name="WhipsCarrots" pLvl="23" outBuffName="ProductivityBuffLvl101" blueprint="" productionTime="600" InstantBuildCosts="30">
+      <!-- lvl 23 needed to match the lvl at which stable is unlocked. -->
+      <resource name="CollectibleHerbs" amount="25" />
+	  <resource name="CollectibleScarecrow" amount="15" />
+      <resource name="CollectibleKettle" amount="10" />
+      <resource name="CollectibleBanner" amount="5" />
+    </collection>
+    <collection name="DrillSergeantSkunck" pLvl="23" outBuffName="RecruitingBuffLvl100" blueprint="" productionTime="1200" InstantBuildCosts="60">
+      <!-- all the needed resources to craft a collection item. -->
+      <resource name="CollectibleScarecrow" amount="25"/>
+      <resource name="CollectibleFoodCart" amount="6" />
+      <resource name="CollectibleKettle" amount="6"/>
+      <resource name="CollectibleBanner" amount="15"/>
+    </collection>
+	
+	<collection name="GoldenRibon" pLvl="24" outBuffName="ProductivityBuffLvl104" blueprint="" productionTime="600" InstantBuildCosts="30">
+      <!-- lvl 24 needed to match the lvl of the Coinage unlocked. -->
+      <resource name="CollectibleScarecrow" amount="25" />
+	  <resource name="CollectibleGrainSacks" amount="15" />
+	  <resource name="CollectibleFurs" amount="2" />
+	  <resource name="CollectibleBronzeCauldron" amount="2" />
+	  <resource name="CollectibleAdamantium" amount="2" />
+    </collection>
+	
+    <collection name="ASipFromTheKettle" pLvl="24" outBuffName="SpeedUpPopulationGrowth100" blueprint="" productionTime="1800" InstantBuildCosts="90">
+      <!-- all the needed resources to craft a collection item. -->
+      <resource name="CollectibleScarecrow" amount="15"/>
+      <resource name="CollectibleFoodCart" amount="10" />
+      <resource name="CollectibleKettle" amount="14" />
+	  <resource name="CollectibleBanner" amount="8" />
+    </collection>
+    <collection name="PotionOfEndlessEnergy" pLvl="26" outBuffName="ProductivityBuffLvl102" blueprint="" productionTime="1800" InstantBuildCosts="90">
+      <!-- all the needed resources to craft a collection item. -->
+      <resource name="CollectibleHerbs" amount="40"/>
+      <resource name="CollectibleScarecrow" amount="10" />
+      <resource name="CollectibleFoodCart" amount="12" />
+      <resource name="CollectibleBronzeCauldron" amount="6" />
+    </collection>
+	<collection name="MasterToolkit" pLvl="48" outBuffName="ProductivityBuffCollectibleEW" blueprint="" productionTime="3600" InstantBuildCosts="180">
+      <!-- all the needed resources to craft a collection item. -->
+	  <resource name="CollectibleWineBarrel" amount="50" />
+	  <resource name="CollectibleBanner" amount="4" />
+	  <resource name="CollectibleGrainSacks" amount="10" />
+	  <resource name="CollectibleAdamantium" amount="6" />
+    </collection>
+	</collections>
+
+
+	<!--
+		- lootTables for pickups. 
+		
+		- pickups - Since we create building resource pairs, here we should define the what resources will be handed back to the user when he clicks on the building
+			- buildingName: building name
+			- resourceName: resource name
+			- min: the minimum amount of the resource the user can redeem
+			- max: the maximum amount of the resource the user can redeem
+			- chance: the chance for this item to be generated. In percent: 0->100
+
+		EX:
+		<lootTable name="lootTbl2" rarity="0" >
+			<pickup buildingId="scareCrowBuilding" resourceId="scarecrow" min="3" max="5" chance="7" />
+			...
+		</lootTable>
+	-->
+	<lootTables>
+		<lootTable name="lt1" rarity="0">
+			<pickup resourceName="CollectibleScarecrow" min="2" max="5" chance="33"/>
+			<pickup resourceName="CollectibleHerbs" min="2" max="5" chance="33"/>
+			<pickup resourceName="CollectibleWineBarrel" min="2" max="5" chance="33"/>
+		</lootTable>
+		<lootTable name="lt1b" rarity="4">
+			<pickup resourceName="CollectibleScarecrow" min="2" max="5" chance="25"/>
+			<pickup resourceName="CollectibleHerbs" min="2" max="5" chance="25"/>
+			<pickup resourceName="CollectibleWineBarrel" min="2" max="5" chance="25"/>
+			<pickup resourceName="Nothing" chance="25"/>
+		</lootTable>
+		<lootTable name="lt2" rarity="1">
+			<pickup resourceName="CollectibleFoodCart" min="1" max="3" chance="19"/> <!-- chance in %: 23.75 -->
+			<pickup resourceName="CollectibleKettle" min="1" max="2" chance="21"/> <!-- chance in %: 26.25 -->
+			<pickup resourceName="CollectibleBanner" min="1" max="3" chance="19"/> <!-- chance in %: 23.75 -->
+			<pickup resourceName="CollectibleGrainSacks" min="1" max="2" chance="21"/> <!-- chance in %: 26.25 -->
+		</lootTable>
+		<lootTable name="lt2b" rarity="5">
+			<pickup resourceName="CollectibleFoodCart" min="1" max="3" chance="8"/>
+			<pickup resourceName="CollectibleKettle" min="1" max="2" chance="8"/>
+			<pickup resourceName="CollectibleBanner" min="1" max="3" chance="8"/>
+			<pickup resourceName="CollectibleGrainSacks" min="1" max="2" chance="8"/>
+			<pickup resourceName="Nothing" chance="68"/>
+		</lootTable>
+		<lootTable name="lt3" rarity="2" >
+			<pickup resourceName="CollectibleFurs" min="1" max="1" chance="100"/>
+		</lootTable>		
+		<lootTable name="lt3b" rarity="6" >
+			<pickup resourceName="CollectibleFurs" min="1" max="1" chance="35"/>
+			<pickup resourceName="Nothing" chance="65"/>
+		</lootTable>
+		
+		<lootTable name="lt_Halloween" rarity="9" requiresEvent="HW2017plus_Content">
+		<!-- Halloween Event  -->
+			<pickup resourceName="HalloweenResource" min="1" max="1" chance="1"/>
+		</lootTable>
+
+		<!-- Christmas Event  -->
+		<lootTable name="lt_Christmas" rarity="10" requiresEvent="XMAS2017plus_Content">
+			<pickup resourceName="CollectibleChristmasBells" min="2" max="2" chance="1"/>
+			<pickup resourceName="CollectibleChristmasCandy" min="2" max="2" chance="1"/>
+			<pickup resourceName="CollectibleChristmasGingerbread" min="2" max="2" chance="1"/>
+		</lootTable>
+		
+		<!-- Easter Event  -->
+		<lootTable name="lt_Easter" rarity="3" requiresEvent="Easter2014_EventRunning" >
+			<pickup resourceName="CollectibleEggpaint" min="2" max="5" chance="15"/>
+			<pickup resourceName="CollectiblePlainEgg" min="2" max="5" chance="15"/>
+			<pickup resourceName="CollectibleWickerBasket" min="2" max="5" chance="15"/>
+			<pickup resourceName="Nothing" chance="55"/>
+		</lootTable>
+
+		<!-- WM Event  -->
+		<lootTable name="lt_WMEvent" rarity="8" requiresEvent="Soccer2018plus_Content" >
+			<pickup resourceName="WMShoe" min="2" max="4" chance="11"/>
+			<pickup resourceName="WMBanana" min="2" max="4" chance="5"/>
+			<pickup resourceName="WMRedColor" min="2" max="4" chance="5"/>
+			<pickup resourceName="WMTelescope" min="2" max="4" chance="10"/>
+			<pickup resourceName="WMFist" min="2" max="4" chance="5"/>
+			<pickup resourceName="WMDummy" min="2" max="4" chance="5"/>
+			<pickup resourceName="WMElasticSpring" min="2" max="4" chance="10"/>
+			<pickup resourceName="EMEventResource" min="1" max="2" chance="12"/>
+		</lootTable>
+		
+		<!-- Anniversary Event  -->
+		<lootTable name="lt_AnniversaryEvent" rarity="11" requiresEvent="Anniversary2018plus_Content" >
+			<pickup resourceName="Candles" min="2" max="2" chance="1"/>
+			<pickup resourceName="CakeDough" min="2" max="3" chance="1"/>
+		</lootTable>
+
+    <lootTable name="lt_Easter_2015" rarity="7" requiresEvent="Easter2018plus_Content">
+      <pickup resourceName="StripedEggs" min="1" max="1" chance="100"/>
+    </lootTable>
+		<!--
+		no rares on first bundle
+		<lootTable name="lt3" rarity="2" >
+			<pickup resourceName="CollectibleScarecrow" min="1" max="2" chance="25"/>
+			<pickup resourceName="CollectibleHerbs" min="2" max="8" chance="20"/>
+			<pickup resourceName="CollectibleFoodCart" min="1" max="5" chance="40"/>
+			<pickup resourceName="Nothing" chance="15"/>
+		</lootTable>
+		-->
+		<lootTable name="adv_lt1" rarity="2">
+			<pickup resourceName="CollectibleBronzeCauldron" min="2" max="4" chance="15"/>
+			<pickup resourceName="CollectibleAdamantium" min="2" max="4" chance="15"/>
+			<pickup resourceName="Nothing" chance="70"/>
+		</lootTable>
+<!-- 
+        <lootTable name="lt_easter_egg_hunt" rarity="3" >
+            <pickup resourceName="StripedEggs" min="1" max="1" chance="100"/>
+        </lootTable>
+-->
+	     <lootTable name="lt_easter_egg_adv_hunt" rarity="3" >
+            <pickup resourceName="StripedEggs" min="1" max="1" chance="100"/>
+        </lootTable>
+
+	    <lootTable name="Buff_Ad_3_1" rarity="3" >
+            <pickup resourceName="Plant" min="1" max="1" chance="100"/>
+        </lootTable>
+
+	     <lootTable name="Buff_Ad_3_2" rarity="3" >
+            <pickup resourceName="Flower" min="1" max="1" chance="100"/>
+        </lootTable>
+
+	     <lootTable name="Buff_Ad_3_3" rarity="3" >
+            <pickup resourceName="HeartFruit" min="1" max="1" chance="100"/>
+        </lootTable>
+
+	     <lootTable name="Buff_Ad_3_4" rarity="3" >
+            <pickup resourceName="DeadTreeWood" min="1" max="1" chance="100"/>
+        </lootTable>
+		
+		<lootTable name="Buff_Ad_4_1" rarity="3" >
+            <pickup resourceName="MountainOre" min="1" max="1" chance="100"/>
+        </lootTable>
+	
+	     <lootTable name="Buff_Ad_4_2" rarity="3" >
+            <pickup resourceName="FireWood" min="1" max="1" chance="100"/>
+        </lootTable>
+
+	     <lootTable name="Buff_Ad_4_3" rarity="3" >
+            <pickup resourceName="Pick" min="1" max="1" chance="100"/>
+        </lootTable>
+
+	     <lootTable name="Buff_Ad_4_4" rarity="3" >
+            <pickup resourceName="Bucket" min="1" max="1" chance="100"/>
+        </lootTable>
+
+		 <lootTable name="Buff_Ad_1_1" rarity="3" >
+            <pickup resourceName="Furniture" min="1" max="1" chance="100"/>
+        </lootTable>
+		
+		<lootTable name="Buff_Ad_1_2" rarity="3" >
+            <pickup resourceName="Sack" min="1" max="1" chance="100"/>
+        </lootTable>
+
+		<lootTable name="Buff_Ad_1_2a" rarity="2" >
+            <pickup resourceName="Barrel" min="1" max="1" chance="100"/>
+        </lootTable>
+	
+	     <lootTable name="Buff_Ad_1_3" rarity="3" >
+            <pickup resourceName="Board" min="1" max="1" chance="100"/>
+        </lootTable>
+
+	     <lootTable name="Buff_Ad_2_1" rarity="3" >
+            <pickup resourceName="BridgeBaseMaterial" min="1" max="1" chance="100"/>
+        </lootTable>
+
+	     <lootTable name="Buff_Ad_2_3" rarity="3" >
+            <pickup resourceName="UsedHammer" min="1" max="1" chance="100"/>
+        </lootTable>
+
+<!-- Easter Event 2015 Buff Adventure -->
+	     <lootTable name="Easter_Event_2015_Buff_Adventure_Collectible1" rarity="3" >
+            <pickup resourceName="EasterEventStinkyplant" min="1" max="1" chance="100"/>
+        </lootTable>
+	     <lootTable name="Easter_Event_2015_Buff_Adventure_Collectible2" rarity="3" >
+            <pickup resourceName="EasterEventFrightenedChicken" min="1" max="1" chance="100"/>
+        </lootTable>
+
+<!-- Lvl Cap Raise Buff Adventure: Storm Recovery -->
+	     <lootTable name="Buff_Ad_5_1" rarity="3" >
+            <pickup resourceName="DeadCrops" min="1" max="1" chance="100"/>
+        </lootTable>
+	     <lootTable name="Buff_Ad_5_2" rarity="3" >
+            <pickup resourceName="GlowingHerbs" min="1" max="1" chance="100"/>
+        </lootTable>
+	     <lootTable name="Buff_Ad_5_3" rarity="2" >
+            <pickup resourceName="StinkyMushroom" min="1" max="1" chance="100"/>
+        </lootTable>
+	     <lootTable name="Buff_Ad_5_4" rarity="3" >
+            <pickup resourceName="Flowers" min="1" max="1" chance="100"/>
+        </lootTable>
+		<!-- Raid of the Nords -->
+		<lootTable name="Buff_Ad_6_1" rarity="3" >
+            <pickup resourceName="FireWood" min="1" max="1" chance="100"/>
+        </lootTable>
+		<lootTable name="Buff_Ad_6_2" rarity="3" >
+            <pickup resourceName="CollectibleFurs2" min="1" max="1" chance="100"/>
+        </lootTable>
+		<!-- Lost City -->
+		<lootTable name="Buff_Ad_7_1" rarity="3" >
+          	<pickup resourceName="CollectibleMagicStone" min="1" max="1" chance="100"/>
+        </lootTable>		
+		<!--Dragon's Roost-->
+		<lootTable name="Buff_Ad_8_1" rarity="3" >
+          	<pickup resourceName="BridgeBaseMaterial" min="1" max="1" chance="100"/>
+        </lootTable>
+		<lootTable name="Buff_Ad_8_2" rarity="4" >
+          	<pickup resourceName="MountainOre" min="1" max="1" chance="100"/>
+        </lootTable>
+		<lootTable name="Buff_Ad_8_3" rarity="5" >
+          	<pickup resourceName="GlowingHerbs" min="1" max="1" chance="100"/>
+        </lootTable>
+
+<!-- Mixed Adventures -->
+		<!--Chupacabra>
+		<lootTable name="Buff_Ad_9_1" rarity="3" >
+            <pickup resourceName="GlowingHerbs" min="1" max="1" chance="100"/>
+        </lootTable>
+		<lootTable name="Buff_Ad_9_2" rarity="4" >
+            <pickup resourceName="StinkyMushroom" min="1" max="1" chance="100"/>
+        </lootTable-->
+		<!--Mine-->
+		<lootTable name="Buff_Ad_10_1" rarity="3" >
+            <pickup resourceName="FireWood" min="1" max="1" chance="100"/>
+        </lootTable>
+		<!--Race-->
+		<lootTable name="Buff_Ad_11_1" rarity="3" >
+            <pickup resourceName="FireWood" min="1" max="1" chance="100"/>
+        </lootTable>
+		
+		<!--Valuable Intel-->
+		<lootTable name="Buff_Ad_12_1" rarity="3" >
+            <pickup resourceName="CollectibleClue" min="1" max="1" chance="100"/>
+        </lootTable>
+				
+		<!--Evil Queen-->
+		
+		<!--Fisherman-->
+		<lootTable name="Buff_Ad_13_1" rarity="3" >
+            <pickup resourceName="GlowingHerbs" min="1" max="1" chance="100"/>
+        </lootTable>
+		<!--Snow White-->
+		<lootTable name="Buff_Ad_14_1" rarity="3" >
+            <pickup resourceName="GlowingHerbs" min="1" max="1" chance="100"/>
+        </lootTable>
+		
+		<lootTable name="Buff_Ad_15_1" rarity="3" >
+            <pickup resourceName="StinkyMushroom" min="1" max="1" chance="100"/>
+        </lootTable>
+		
+		<!--Hansel and gretel-->
+		<lootTable name="Buff_Ad_16_1" rarity="3" >
+            <pickup resourceName="GlowingHerbs" min="1" max="1" chance="100"/>
+        </lootTable>
+		
+		<lootTable name="Buff_Ad_16_2" rarity="3" >
+            <pickup resourceName="StinkyMushroom" min="1" max="1" chance="100"/>
+        </lootTable>
+		<!--Red Riding Hood-->
+		<lootTable name="Buff_Ad_17_1" rarity="3" >
+            <pickup resourceName="MountainOre" min="1" max="1" chance="100"/>
+        </lootTable>
+		
+		<lootTable name="Buff_Ad_18_1" rarity="3" >
+            <pickup resourceName="HeartFruit" min="1" max="1" chance="100"/>
+        </lootTable>
+		
+		<!--Piper-->
+		<lootTable name="Buff_Ad_19_1" rarity="3" >
+            <pickup resourceName="GlowingHerbs" min="1" max="1" chance="100"/>
+        </lootTable>
+				
+		<!-- New Ventures -->
+
+		<!-- Of Songs and Curses -->		
+	    <lootTable name="Buff_Ad_20_1" rarity="3" >
+            <pickup resourceName="PageOfSheetMusic" min="0" max="0" chance="100"/>
+        </lootTable>		
+		<lootTable name="Buff_Ad_20_2" rarity="4" >
+            <pickup resourceName="Tool" min="0" max="0" chance="100"/>
+        </lootTable>	
+				
+	</lootTables>
+
+
+	<!--
+		- spawn lists define a list of zone names (for now just adventure maps + homezone, maybe later PvP)
+		- one special spawnlist for the homezone (named HOME)
+		EX:
+			<spawnList name="ADVLVL25">
+				<zone name="TropicalSun" />
+				<zone name="adv_name_1" />
+				<zone name="adv_name_2" />
+				<zone name="adv_name_3" />
+			</spawnList>
+	-->
+
+	<spawnLists>
+		<spawnList name="ADVENTURES">
+			<zones>
+				<zone name="BountyHunter" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="MadHenry" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="ANightToRemember" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="Pirates" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="WitchOfTheSwamp" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="Horseback" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="Traitors" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="Outlaws" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="TheDarkPriests" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="TheDarkBrotherhood" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="VictorTheVicious" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="StealingFromTheRich" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="SonsOfTheVeld" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="TheNords" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="TheIslandOfThePirates" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="OldFriends" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="MotherLove" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="TheBlackKnights" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="SecludedExperiments" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="BanditNest" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="RoaringBull" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="Gunpowder" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="SurpriseAttack" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="ChristmasAdventureEasy" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="ChristmasAdventureNormal" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="MadHenryReloaded" rarity0="0" rarity1="0" rarity2="6" />
+				
+				<zone name="EMEventAdventure01" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="EMEventAdventure02" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="EMEventAdventure03" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="EMEventAdventure04" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="EMEventAdventure05" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="EMEventAdventure06" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="EMEventAdventure01_2" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="EMEventAdventure02_2" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="EMEventAdventure03_2" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="EMEventAdventure04_2" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="EMEventAdventure05_2" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="EMEventAdventure06_2" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="BountyHunterNew" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="TheNords2" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="EoWEventAdventure" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="MiadTheLostSkull" rarity0="0" rarity1="0" rarity2="6" />
+				
+				<zone name="MiadTropicalSun" rarity0="0" rarity1="0" rarity2="6" />		
+				<zone name="TheBetrayedLittleTailor" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="TheCleverLittleTailor" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="TheHeroicLittleTailor" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="TheSonsOfTheLittleTailor" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="TheValiantLittleTailor" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="Birthday2013MilitaryAdventure1" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="Birthday2013MilitaryAdventure2" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="Birthday2013MilitaryAdventure1ShopVersion" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="Birthday2013MilitaryAdventure2ShopVersion" rarity0="0" rarity1="0" rarity2="6" />
+				
+				<zone name="MiadTheSleepingVolcano" rarity0="0" rarity1="0" rarity2="6" />		
+				<zone name="MiadPirateLife" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="MiadSleepyReef" rarity0="0" rarity1="0" rarity2="6" />
+
+				<zone name="ChristmasAdventure2013" rarity0="0" rarity1="0" rarity2="6" rarity3="10" />		
+				<zone name="ChristmasAdventureEasy" rarity0="0" rarity1="0" rarity2="6" rarity3="10" />
+				<zone name="MoreSecludedExperiments" rarity0="0" rarity1="0" rarity2="20" />
+				<zone name="NewBanditNest" rarity0="0" rarity1="0" rarity2="20" />
+
+				<zone name="TheSiege" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="LakesideTreasure" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="BuccaneerRoundup" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="RaidingTheRaiders" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="TombRaiders" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="Whirlwind" rarity0="0" rarity1="0" rarity2="6" />
+				
+				<zone name="MiadArcticExplosion" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="MiadBastilleIsland" rarity0="0" rarity1="0" rarity2="6" />
+
+				<zone name="Traitors02" rarity0="0" rarity1="0" rarity2="6" />
+				<zone name="StealingFromTheRich02" rarity0="0" rarity1="0" rarity2="6" />
+				
+			 </zones>
+			 <lootTables>
+				<lootTable name="adv_lt1"/>
+			</lootTables>
+		</spawnList>
+		
+		<!-- Easter 2014 find eggs adventures-->
+		
+		<spawnList name="EasterAdventures">
+			<zones>
+				<zone name="EasterEvent2013Adventure01" rarity0="0" rarity1="0" rarity2="0" rarity3="9"/>
+				<zone name="EasterEvent2013Adventure02" rarity0="0" rarity1="0" rarity2="0" rarity3="9"/>
+				<zone name="EasterEvent2013Adventure03" rarity0="0" rarity1="0" rarity2="0" rarity3="9"/>
+				<zone name="EasterEvent2013Adventure04" rarity0="0" rarity1="0" rarity2="0" rarity3="9"/>
+				<zone name="EasterEvent2013Adventure05" rarity0="0" rarity1="0" rarity2="0" rarity3="9"/>
+				<zone name="EasterEvent2013Adventure06" rarity0="0" rarity1="0" rarity2="0" rarity3="9"/>
+				<zone name="EasterEvent2013Adventure07" rarity0="0" rarity1="0" rarity2="0" rarity3="9"/>
+				<zone name="EasterEvent2013Adventure08" rarity0="0" rarity1="0" rarity2="0" rarity3="9"/>
+		
+			 </zones>
+			 <lootTables>
+				<lootTable name="lt_easter_egg_adv_hunt"/>
+			 </lootTables>
+		</spawnList>
+		
+		
+		<spawnList name="HOME">
+			<zones>
+				<zone name="HOME" rarity0="12" rarity1="5" rarity2="1" rarity3="12" rarity4="2" rarity5="1" rarity6="1" rarity7="15" rarity8="26" rarity9="10" rarity10="9" rarity11="10" />
+				<!-- while rarity 0-2 are guaranteed to spawn a collectible on all rolls, rarities 4-6 are their counterparts that also have chances to spawn nothing (defined in loottable). -->
+				<!-- Rarity overview:
+					* 0: Common regulars (fixed)
+					* 1: Uncommon regulars (fixed)
+					* 2: Rare regulars (fixed)
+					* 3: Old event category
+					* 4: Common regulars (random bonus)
+					* 5: Uncommon regulars (random bonus)
+					* 6: Rare regulars (random bonus)
+					* 7: Easter
+					* 8: Soccer
+					* 9: Halloween
+					* 10: Xmas
+					* 11: Anniversary
+
+					
+				-->
+			</zones>
+			<lootTables>
+				<lootTable name="lt1"/>
+				<lootTable name="lt2"/>
+				<lootTable name="lt3"/>
+				<lootTable name="lt1b"/>
+				<lootTable name="lt2b"/>
+				<lootTable name="lt3b"/>
+				<lootTable name="lt_Halloween"/>
+				<lootTable name="lt_Christmas"/>
+				<lootTable name="lt_Easter"/>
+				<lootTable name="lt_WMEvent"/>
+				<lootTable name="lt_Easter_2015"/>  
+				<lootTable name="lt_AnniversaryEvent"/>    
+			</lootTables>
+		</spawnList>
+
+		<!-- BUFF ADVENTURE: Twins -->
+		
+		<spawnList name="BuffAdventures_twins_easy">
+			<zones>
+				<zone name="BuffAdventures_twins_easy" rarity0="0" rarity1="0" rarity2="0" rarity3="0"/>
+			</zones>
+			<lootTables>
+				<lootTable name="Buff_Ad_2_1"/>
+				<lootTable name="Buff_Ad_2_3"/>
+			</lootTables>
+		</spawnList>
+
+		<!-- BUFF ADVENTURE: Safe The Towns -->
+
+		<spawnList name="BuffAdventures_safeTheTowns_easy">
+			<zones>
+				<zone name="BuffAdventures_safeTheTowns_easy" rarity0="0" rarity1="0" rarity2="0" rarity3="0"/>
+			</zones>
+			<lootTables>
+				<lootTable name="Buff_Ad_1_1"/>
+				<lootTable name="Buff_Ad_1_2"/>
+				<lootTable name="Buff_Ad_1_2a"/>
+				<lootTable name="Buff_Ad_1_3"/>
+			</lootTables>
+		</spawnList>
+
+		<!-- BUFF ADVENTURE: Heart of the Woods -->	
+
+		<spawnList name="BuffAdventures_heartOfTheWood_medium">
+			<zones>
+				<zone name="BuffAdventures_heartOfTheWood_medium" rarity0="0" rarity1="0" rarity2="0" rarity3="0"/>
+			</zones>
+			<lootTables>
+				<lootTable name="Buff_Ad_3_1"/>
+				<lootTable name="Buff_Ad_3_2"/>
+				<lootTable name="Buff_Ad_3_3"/>
+				<lootTable name="Buff_Ad_3_4"/>
+			</lootTables>
+		</spawnList>
+		
+		<!-- BUFF ADVENTURE: Riches of the Mountain -->	
+
+		<spawnList name="BuffAdventures_Riches_of_the_Mountain">
+			<zones>
+				<zone name="BuffAdventures_Riches_of_the_Mountain" rarity0="0" rarity1="0" rarity2="0" rarity3="0"/>
+			</zones>
+			<lootTables>
+				<lootTable name="Buff_Ad_4_1"/>
+				<lootTable name="Buff_Ad_4_2"/>
+				<lootTable name="Buff_Ad_4_3"/>
+				<lootTable name="Buff_Ad_4_4"/>
+			</lootTables>
+		</spawnList>
+		
+		<spawnList name="BuffAdventures_Easter_Event_2015">
+			<zones>
+				<zone name="BuffAdventures_Easter_Event_2015" rarity0="0" rarity1="0" rarity2="0" rarity3="0"/>
+				<!-- rarity3 should be used for event collectables -->
+			</zones>
+			<lootTables>
+				<lootTable name="Easter_Event_2015_Buff_Adventure_Collectible1"/>
+				<lootTable name="Easter_Event_2015_Buff_Adventure_Collectible2"/>
+			</lootTables>
+		</spawnList>
+
+
+		<!-- BUFF ADVENTURE: Storm Recovery -->	
+
+		<spawnList name="BuffAdventures_Storm_Recovery">
+			<zones>
+				<zone name="BuffAdventures_Storm_Recovery" rarity0="0" rarity1="0" rarity2="0" rarity3="0"/>
+			</zones>
+			<lootTables>
+				<lootTable name="Buff_Ad_5_1"/>
+				<lootTable name="Buff_Ad_5_2"/>
+				<lootTable name="Buff_Ad_5_3"/>
+				<lootTable name="Buff_Ad_5_4"/>
+			</lootTables>
+		</spawnList>
+		
+		<!-- XMAS 2015 -->
+		
+		<spawnList name="BuffAdventures_RaidOfTheNords">
+			<zones>
+				<zone name="BuffAdventures_RaidOfTheNords" rarity0="0" rarity1="0" rarity2="0" rarity3="0"/>
+			</zones>
+			<lootTables>
+				<lootTable name="Buff_Ad_6_1"/>
+				<lootTable name="Buff_Ad_6_2"/>
+				
+			</lootTables>
+		</spawnList>
+		
+		<spawnList name="BuffAdventures_LostCity">
+			<zones>
+				<zone name="BuffAdventures_LostCity" rarity0="0" rarity1="0" rarity2="0" rarity3="0"/>
+			</zones>
+			<lootTables>
+				<lootTable name="Buff_Ad_7_1"/>
+			</lootTables>
+		</spawnList>
+		
+		<spawnList name="BuffAdventures_DragonsRoost">
+			<zones>
+				<zone name="BuffAdventures_DragonsRoost" rarity0="0" rarity1="0" rarity2="0" rarity3="0"/>
+			</zones>
+			<lootTables>
+				<lootTable name="Buff_Ad_8_1"/>	
+				<lootTable name="Buff_Ad_8_2"/>
+				<lootTable name="Buff_Ad_8_3"/>					
+			</lootTables>
+		</spawnList>		
+		
+		
+		
+		<!-- Mixed Adventures Player Level 26 -->
+		<!--spawnList name="BuffAdventures_El_Chupacabra">
+			<zones>
+				<zone name="BuffAdventures_El_Chupacabra" rarity0="0" rarity1="0" rarity2="0" rarity3="0"/>
+			</zones>
+			<lootTables>
+				<lootTable name="Buff_Ad_9_1"/>
+				<lootTable name="Buff_Ad_9_2"/>	
+			</lootTables>
+		</spawnList-->
+		
+		<spawnList name="BuffAdventures_Miners">
+			<zones>
+				<zone name="BuffAdventures_Miners" rarity0="0" rarity1="0" rarity2="0" rarity3="0"/>
+			</zones>
+			<lootTables>
+				<lootTable name="Buff_Ad_10_1"/>
+				
+			</lootTables>
+		</spawnList>
+		
+		<spawnList name="BuffAdventures_Race">
+			<zones>
+				<zone name="BuffAdventures_Race" rarity0="0" rarity1="0" rarity2="0" rarity3="0"/>
+			</zones>
+			<lootTables>
+				<lootTable name="Buff_Ad_11_1"/>
+				
+			</lootTables>
+		</spawnList>
+		
+		<spawnList name="BuffAdventures_ValuableIntel">
+			<zones>
+				<zone name="BuffAdventures_ValuableIntel" rarity0="0" rarity1="0" rarity2="0" rarity3="0"/>
+			</zones>
+			<lootTables>
+				<lootTable name="Buff_Ad_12_1"/>
+			</lootTables>
+		</spawnList>
+				
+		<spawnList name="BuffAdventures_Evil_Queen_Fisherman">
+			<zones>
+				<zone name="BuffAdventures_Evil_Queen_Fisherman" rarity0="0" rarity1="0" rarity2="0" rarity3="0"/>
+			</zones>
+			<lootTables>
+				<lootTable name="Buff_Ad_13_1"/>
+			
+			</lootTables>
+		</spawnList>
+		
+		<spawnList name="BuffAdventures_Evil_Queen_Snow_White">
+			<zones>
+				<zone name="BuffAdventures_Evil_Queen_Snow_White" rarity0="0" rarity1="0" rarity2="0" rarity3="0"/>
+			</zones>
+			<lootTables>
+				<lootTable name="Buff_Ad_14_1"/>
+				<lootTable name="Buff_Ad_15_1"/>
+			</lootTables>
+		</spawnList>
+		
+		<spawnList name="BuffAdventures_Evil_Queen_Hansel_Gretel">
+			<zones>
+				<zone name="BuffAdventures_Evil_Queen_Hansel_Gretel" rarity0="0" rarity1="0" rarity2="0" rarity3="0"/>
+			</zones>
+			<lootTables>
+				<lootTable name="Buff_Ad_16_1"/>
+				<lootTable name="Buff_Ad_16_2"/>
+			</lootTables>
+		</spawnList>
+		
+		<spawnList name="BuffAdventures_Evil_Queen_Red_Riding_Hood">
+			<zones>
+				<zone name="BuffAdventures_Evil_Queen_Red_Riding_Hood" rarity0="0" rarity1="0" rarity2="0" rarity3="0"/>
+			</zones>
+			<lootTables>
+				<lootTable name="Buff_Ad_17_1"/>
+				<lootTable name="Buff_Ad_18_1"/>
+			</lootTables>
+		</spawnList>
+		
+		<spawnList name="BuffAdventures_Evil_Queen_Piper_of_Hamelin">
+			<zones>
+				<zone name="BuffAdventures_Evil_Queen_Piper_of_Hamelin" rarity0="0" rarity1="0" rarity2="0" rarity3="0"/>
+			</zones>
+			<lootTables>
+				<lootTable name="Buff_Ad_19_1"/>
+			</lootTables>
+		</spawnList>
+				
+		<!-- Mixed Adventures Player Level 42 -->
+		
+		<spawnList name="BuffAdventures_Miners_lvl_42">
+			<zones>
+				<zone name="BuffAdventures_Miners_lvl_42" rarity0="0" rarity1="0" rarity2="0" rarity3="0"/>
+			</zones>
+			<lootTables>
+				<lootTable name="Buff_Ad_10_1"/>
+				
+			</lootTables>
+		</spawnList>
+						
+		<!-- Mixed Adventures Player Level 56 -->
+		
+		<spawnList name="BuffAdventures_Miners_lvl_56">
+			<zones>
+				<zone name="BuffAdventures_Miners_lvl_56" rarity0="0" rarity1="0" rarity2="0" rarity3="0"/>
+			</zones>
+			<lootTables>
+				<lootTable name="Buff_Ad_10_1"/>
+				
+			</lootTables>
+		</spawnList>
+						
+	</spawnLists>
+	<!--
+	IgnoreGridLists define extra grid indexes where collectibles can't spawn
+	You can define a zone for each map with the following parameters:
+		- name = the name of the map where the grid idexes are located (can be HOME for homezone or the name of any other map) 
+		- gridIds = a list of grid indexes where collectibles aren't allowed to spawn
+	NOTE: these IDs are added to grid considered as invalid by the automatic algorythm.
+	-->
+	<ignoreGridLists>
+		<zone name="HOME" gridIds="1388,1594,1660,3259,5235,6351"/>
+	</ignoreGridLists>
+  
+    <!--
+       Buff spawn list table correlation map. For every event buff that must spawn event collectible buildings,
+           there will be an attached loot table, with attached rarities.
+       - buffName - buff definition name
+       - lootTableName - loot table name
+       - rarity0 - the maximum number of rarity 0 collectible buildings to spawn
+       - rarity1 - the maximum number of rarity 1 collectible buildings to spawn
+       - rarity2 - the maximum number of rarity 2 collectible buildings to spawn
+       - rarity3 - the maximum number of rarity 3 collectible buildings to spawn
+   -->
+    <buffSpawnLists>
+    	<!-- 
+        <buffSpawnLists buffName="EasterEggHunt" lootTableName="lt_easter_egg_hunt" rarity0="0" rarity1="0" rarity2="0" rarity3="10" />
+         -->
+		<buffSpawnLists buffName="BuffAd_HeartOfWood_Quest1" lootTableNames="Buff_Ad_3_1" rarity0="0" rarity1="0" rarity2="0" rarity3="5" />
+		<buffSpawnLists buffName="BuffAd_HeartOfWood_Quest2" lootTableNames="Buff_Ad_3_2" rarity0="0" rarity1="0" rarity2="0" rarity3="5" />
+		<buffSpawnLists buffName="BuffAd_HeartOfWood_Quest3" lootTableNames="Buff_Ad_3_3" rarity0="0" rarity1="0" rarity2="0" rarity3="10" />
+		<buffSpawnLists buffName="BuffAd_HeartOfWood_Quest4" lootTableNames="Buff_Ad_3_4" rarity0="0" rarity1="0" rarity2="0" rarity3="5" />
+		<buffSpawnLists buffName="BuffAd_RichesOfTheMountain_Quest1" lootTableNames="Buff_Ad_4_1" rarity0="0" rarity1="0" rarity2="0" rarity3="3" />
+		<buffSpawnLists buffName="BuffAd_RichesOfTheMountain_Quest2" lootTableNames="Buff_Ad_4_2" rarity0="0" rarity1="0" rarity2="0" rarity3="4" />
+		<buffSpawnLists buffName="BuffAd_RichesOfTheMountain_Quest3" lootTableNames="Buff_Ad_4_3" rarity0="0" rarity1="0" rarity2="0" rarity3="5" />
+		<buffSpawnLists buffName="BuffAd_RichesOfTheMountain_Quest4" lootTableNames="Buff_Ad_4_4" rarity0="0" rarity1="0" rarity2="0" rarity3="10" />
+		<buffSpawnLists buffName="BuffAd_SafeTheTowns_Quest1" lootTableNames="Buff_Ad_1_1" rarity0="0" rarity1="0" rarity2="0" rarity3="5" />
+		<buffSpawnLists buffName="BuffAd_SafeTheTowns_Quest2" lootTableNames="Buff_Ad_1_2,Buff_Ad_1_2a" rarity0="0" rarity1="0" rarity2="3" rarity3="3" />
+		<buffSpawnLists buffName="BuffAd_SafeTheTowns_Quest3" lootTableNames="Buff_Ad_1_3" rarity0="0" rarity1="0" rarity2="0" rarity3="3" />
+		<buffSpawnLists buffName="BuffAd_Twins_Quest1" lootTableNames="Buff_Ad_2_1" rarity0="0" rarity1="0" rarity2="0" rarity3="9" />
+		<buffSpawnLists buffName="BuffAd_Twins_Quest3" lootTableNames="Buff_Ad_2_3" rarity0="0" rarity1="0" rarity2="0" rarity3="5" />
+		<buffSpawnLists buffName="Easter_Event_2015_Buff_Adventure_Collectible1" lootTableNames="Easter_Event_2015_Buff_Adventure_Collectible1" rarity0="0" rarity1="0" rarity2="0" rarity3="5" />
+		<buffSpawnLists buffName="Easter_Event_2015_Buff_Adventure_Collectible2" lootTableNames="Easter_Event_2015_Buff_Adventure_Collectible2" rarity0="0" rarity1="0" rarity2="0" rarity3="5" />
+		<buffSpawnLists buffName="BuffAd_Storm_Recovery_Quest1" lootTableNames="Buff_Ad_5_1" rarity0="0" rarity1="0" rarity2="0" rarity3="9" />
+		<buffSpawnLists buffName="BuffAd_Storm_Recovery_Quest3" lootTableNames="Buff_Ad_5_2,Buff_Ad_5_3" rarity0="0" rarity1="0" rarity2="11" rarity3="11" />
+		<buffSpawnLists buffName="BuffAd_Storm_Recovery_Quest4" lootTableNames="Buff_Ad_5_4" rarity0="0" rarity1="0" rarity2="0" rarity3="2" />
+		<!-- MIXED ADVENUTRES -->
+		<buffSpawnLists buffName="BuffAd_Raid_of_the_Nords_Quest1" lootTableNames="Buff_Ad_6_1" rarity0="0" rarity1="0" rarity2="0" rarity3="5" />
+		<buffSpawnLists buffName="BuffAd_Raid_of_the_Nords_Quest2" lootTableNames="Buff_Ad_6_2" rarity0="0" rarity1="0" rarity2="0" rarity3="6" />
+		<buffSpawnLists buffName="BuffAd_Lost_City_Quest1" lootTableNames="Buff_Ad_7_1" rarity0="0" rarity1="0" rarity2="0" rarity3="2" />
+		<buffSpawnLists buffName="BuffAd_Dragons_Roost_Quest1" lootTableNames="Buff_Ad_8_1,Buff_Ad_8_2,Buff_Ad_8_3" rarity0="0" rarity1="0" rarity2="0" rarity3="2" rarity4="4" rarity5="5" />
+		<!--buffSpawnLists buffName="BuffAd_El_Chupacabra_Quest1" lootTableNames="Buff_Ad_9_1,Buff_Ad_9_2" rarity0="0" rarity1="0" rarity2="0" rarity3="0" rarity4="0" /-->
+		<buffSpawnLists buffName="BuffAd_Miners_Quest1" lootTableNames="Buff_Ad_10_1" rarity0="0" rarity1="0" rarity2="0" rarity3="7" />
+		<buffSpawnLists buffName="BuffAd_Race_Quest1" lootTableNames="Buff_Ad_11_1" rarity0="0" rarity1="0" rarity2="0" rarity3="6" />
+		<buffSpawnLists buffName="BuffAd_ValuableIntel_Quest1" lootTableNames="Buff_Ad_12_1" rarity0="0" rarity1="0" rarity2="0" rarity3="3" />
+		<buffSpawnLists buffName="BuffAd_Evil_Queen_Fisherman_Quest1" lootTableNames="Buff_Ad_13_1" rarity0="0" rarity1="0" rarity2="0" rarity3="3" />
+		<buffSpawnLists buffName="BuffAd_Evil_Queen_Snow_White_Quest1" lootTableNames="Buff_Ad_14_1" rarity0="0" rarity1="0" rarity2="0" rarity3="8" />
+		<buffSpawnLists buffName="BuffAd_Evil_Queen_Snow_White_Quest2" lootTableNames="Buff_Ad_15_1" rarity0="0" rarity1="0" rarity2="0" rarity3="2" />
+		<buffSpawnLists buffName="BuffAd_Evil_Queen_Hansel_Gretel_Quest1" lootTableNames="Buff_Ad_16_1" rarity0="0" rarity1="0" rarity2="0" rarity3="7" />
+		<buffSpawnLists buffName="BuffAd_Evil_Queen_Hansel_Gretel_Quest2" lootTableNames="Buff_Ad_16_2" rarity0="0" rarity1="0" rarity2="0" rarity3="1" />
+		<buffSpawnLists buffName="BuffAd_Evil_Queen_Red_Riding_Hood_Quest1" lootTableNames="Buff_Ad_17_1" rarity0="0" rarity1="0" rarity2="0" rarity3="5" />
+		<buffSpawnLists buffName="BuffAd_Evil_Queen_Red_Riding_Hood_Quest2" lootTableNames="Buff_Ad_18_1" rarity0="0" rarity1="0" rarity2="0" rarity3="5" />
+		<buffSpawnLists buffName="BuffAd_Evil_Queen_Piper_of_Hamelin_Quest1" lootTableNames="Buff_Ad_19_1" rarity0="0" rarity1="0" rarity2="0" rarity3="12" />
+		<buffSpawnLists buffName="BuffAd_Of_Songs_And_Curses_Quest1" lootTableNames="Buff_Ad_20_1" rarity0="0" rarity1="0" rarity2="0" rarity3="10" />
+		<buffSpawnLists buffName="BuffAd_Of_Songs_And_Curses_Quest2" lootTableNames="Buff_Ad_20_2" rarity0="0" rarity1="0" rarity2="0" rarity3="0" rarity4="1" />
+		
+		
+		
+    </buffSpawnLists>
+  
+	<resourceDefinitions>
+		<ResourceDefinition name="CollectibleHerbs" rarity="0" pLvl="16">
+            <building name="CollectibleHerbsBuilding" />
+        </ResourceDefinition>
+		<ResourceDefinition name="CollectibleScarecrow" rarity="0" pLvl="16">
+            <building name="CollectibleScarecrowBuilding" />
+        </ResourceDefinition>
+		<ResourceDefinition name="CollectibleFoodCart" rarity="1" pLvl="18">
+            <building name="CollectibleFoodCartBuilding" />
+        </ResourceDefinition>
+		<ResourceDefinition name="CollectibleKettle" rarity="1" pLvl="20">
+            <building name="CollectibleKettleBuilding" />
+        </ResourceDefinition>
+		<ResourceDefinition name="CollectibleBanner" rarity="1" pLvl="20">
+            <building name="CollectibleBannerBuilding" />
+        </ResourceDefinition>
+		<ResourceDefinition name="CollectibleBronzeCauldron" rarity="2" pLvl="26">
+            <building name="CollectibleBronzeCauldronBuilding" />
+        </ResourceDefinition>
+		<ResourceDefinition name="HalloweenResource"  rarity="9" pLvl="16">
+            <building name="CollectiblePumpkinBuilding" />
+        </ResourceDefinition>
+		<ResourceDefinition name="CollectibleChristmasBells" rarity="10" pLvl="16">
+            <building name="CollectibleChristmasBellsBuilding" />
+        </ResourceDefinition>
+		<ResourceDefinition name="CollectibleChristmasCandy" rarity="10" pLvl="16">
+            <building name="CollectibleChristmasCandyBuilding" />
+        </ResourceDefinition>
+		<ResourceDefinition name="CollectibleChristmasGingerbread" rarity="10" pLvl="16">
+            <building name="CollectibleChristmasGingerbreadBuilding" />
+        </ResourceDefinition>
+        <ResourceDefinition name="EventResource" rarity="3" pLvl="4">
+        <!-- 
+            <building name="EasterEggHuntBuilding" type="event" lootTables="lt_easter_egg_hunt" />
+			<building name="EasterEggHuntBuilding1" type="event" lootTables="lt_easter_egg_hunt" />
+			<building name="EasterEggHuntBuilding2" type="event" lootTables="lt_easter_egg_hunt" />
+			<building name="EasterEggHuntBuilding3" type="event" lootTables="lt_easter_egg_hunt" />
+			<building name="EasterEggHuntBuilding4" type="event" lootTables="lt_easter_egg_hunt" />
+			<building name="EasterEggHuntBuilding5" type="event" lootTables="lt_easter_egg_hunt" />
+			<building name="EasterEggHuntBuilding6" type="event" lootTables="lt_easter_egg_hunt" />
+			<building name="EasterEggHuntBuilding7" type="event" lootTables="lt_easter_egg_hunt" />
+		 -->
+			<building name="AdvEasterEggHuntBuilding" lootTables="lt_easter_egg_adv_hunt" />
+			<building name="AdvEasterEggHuntBuilding1" lootTables="lt_easter_egg_adv_hunt" />
+			<building name="AdvEasterEggHuntBuilding2" lootTables="lt_easter_egg_adv_hunt" />
+			<building name="AdvEasterEggHuntBuilding3" lootTables="lt_easter_egg_adv_hunt" />
+			<building name="AdvEasterEggHuntBuilding4" lootTables="lt_easter_egg_adv_hunt" />
+			<building name="AdvEasterEggHuntBuilding5" lootTables="lt_easter_egg_adv_hunt" />
+			<building name="AdvEasterEggHuntBuilding6" lootTables="lt_easter_egg_adv_hunt" />
+			<building name="AdvEasterEggHuntBuilding7" lootTables="lt_easter_egg_adv_hunt" />
+			
+        </ResourceDefinition>
+	    <ResourceDefinition name="CollectibleEggpaint" rarity="3" pLvl="16">
+            <building name="CollectibleEggpaintBuilding" />
+        </ResourceDefinition>
+		<ResourceDefinition name="CollectiblePlainEgg" rarity="3" pLvl="16">
+            <building name="CollectiblePlainEggBuilding" />
+        </ResourceDefinition>
+		<ResourceDefinition name="CollectibleWickerBasket" rarity="3" pLvl="16">
+            <building name="CollectibleWickerBasketBuilding" />
+        </ResourceDefinition>
+		<ResourceDefinition name="CollectibleWineBarrel" rarity="0" pLvl="22">
+            <building name="CollectibleWineBarrelBuilding" />
+        </ResourceDefinition>
+		<ResourceDefinition name="CollectibleGrainSacks" rarity="1" pLvl="22">
+            <building name="CollectibleGrainSacksBuilding" />
+        </ResourceDefinition>
+		<ResourceDefinition name="CollectibleFurs" rarity="2" pLvl="22">
+            <building name="CollectibleFursBuilding" />
+        </ResourceDefinition>
+		<ResourceDefinition name="CollectibleAdamantium" rarity="2" pLvl="24">
+            <building name="CollectibleAdamantiumBuilding" />
+        </ResourceDefinition>
+
+<!-- WM Event Collectibles -->
+		<ResourceDefinition name="WMShoe" rarity="8" pLvl="16">
+			<building name="BuildingWMShoe" />
+        </ResourceDefinition>
+		<ResourceDefinition name="WMBanana" rarity="8" pLvl="16">
+			<building name="BuildingWMBanana" />
+        </ResourceDefinition>
+		<ResourceDefinition name="WMRedColor" rarity="8" pLvl="16">
+			<building name="BuildingWMRedColor" />
+        </ResourceDefinition>
+		<ResourceDefinition name="WMTelescope" rarity="8" pLvl="16">
+			<building name="BuildingWMTelescope" />
+        </ResourceDefinition>
+		<ResourceDefinition name="WMFist" rarity="8" pLvl="16">
+			<building name="BuildingWMFist" />
+        </ResourceDefinition>
+		<ResourceDefinition name="WMDummy" rarity="8" pLvl="16">
+			<building name="BuildingWMDummy" />
+        </ResourceDefinition>
+		<ResourceDefinition name="WMElasticSpring" rarity="8" pLvl="16">
+			<building name="BuildingWMElasticSpring" />
+        </ResourceDefinition>
+		<ResourceDefinition name="EMEventResource" rarity="8" pLvl="16">
+			<building name="BuildingWMFootball" />
+        </ResourceDefinition>
+
+		<ResourceDefinition name="FireWood" rarity="3" pLvl="16">
+			<building name="BuildingFireWood" type="event"/>
+        </ResourceDefinition>
+		<ResourceDefinition name="Bucket" rarity="3" pLvl="16">
+			<building name="BuildingBucket" type="event"/>
+        </ResourceDefinition>
+		<ResourceDefinition name="MountainOre" rarity="3" pLvl="16">
+			<building name="BuildingMountainOre" type="event"/>
+        </ResourceDefinition>
+		<ResourceDefinition name="Pick" rarity="3" pLvl="16">
+			<building name="BuildingPick" type="event"/>
+        </ResourceDefinition>
+		
+		<ResourceDefinition name="Plant" rarity="3" pLvl="16">
+			<building name="BuildingPlant" type="event"/>
+        </ResourceDefinition>
+		<ResourceDefinition name="Flower" rarity="3" pLvl="16">
+			<building name="BuildingFlower" type="event"/>
+        </ResourceDefinition>
+		<ResourceDefinition name="HeartFruit" rarity="3" pLvl="16">
+			<building name="BuildingHeartFruit" type="event"/>
+        </ResourceDefinition>
+		<ResourceDefinition name="DeadTreeWood" rarity="3" pLvl="16">
+			<building name="BuildingDeadTreeWood" type="event"/>
+        </ResourceDefinition>
+
+		<ResourceDefinition name="BridgeBaseMaterial" rarity="3" pLvl="16">
+			<building name="buffad_collectible_bridge_base_material" type="event"/>
+        </ResourceDefinition>
+		<ResourceDefinition name="Sack" rarity="3" pLvl="16">
+			<building name="buffad_collectible_sacks" type="event"/>
+        </ResourceDefinition>
+		<ResourceDefinition name="Barrel" rarity="3" pLvl="16">
+			<building name="buffad_collectible_barrels" type="event"/>
+        </ResourceDefinition>
+		<ResourceDefinition name="Furniture" rarity="3" pLvl="16">
+			<building name="buffad_collectible_furniture" type="event"/>
+        </ResourceDefinition>
+		<ResourceDefinition name="Board" rarity="3" pLvl="16">
+			<building name="buffad_collectible_boards" type="event"/>
+        </ResourceDefinition>
+		<ResourceDefinition name="UsedHammer" rarity="3" pLvl="16">
+			<building name="buffad_collectible_UsedHammer" type="event"/>
+        </ResourceDefinition>
+
+
+<!-- Easter Event 2015 Buff Adventure Collectibles -->
+		<ResourceDefinition name="EasterEventFrightenedChicken" rarity="3" pLvl="16">
+			<building name="Easter_Event_2015_Buff_Adventure_Building_Frightened_chicken" type="event"/>
+        </ResourceDefinition>
+		<ResourceDefinition name="EasterEventStinkyplant" rarity="3" pLvl="16">
+			<building name="Easter_Event_2015_Buff_Adventure_Building_Stinky_plant" type="event"/>
+        </ResourceDefinition>
+        
+    <ResourceDefinition name="StripedEggs" rarity="7" pLvl="16">
+			<building name="BuildingStripedEggs" />
+    </ResourceDefinition>
+
+<!-- Lvl Cap Raise Buff Adventure: Storm Recovery -->
+		<ResourceDefinition name="DeadCrops" rarity="3" pLvl="16">
+			<building name="BuildingDeadCrops" type="event"/>
+        </ResourceDefinition>
+		<ResourceDefinition name="StinkyMushroom" rarity="3" pLvl="16">
+			<building name="BuildingStinkyMushroom" type="event"/>
+        </ResourceDefinition>
+		<ResourceDefinition name="GlowingHerbs" rarity="3" pLvl="16">
+			<building name="BuildingGlowingHerbs" type="event"/>
+        </ResourceDefinition>
+		<ResourceDefinition name="Flowers" rarity="3" pLvl="16">
+			<building name="BuildingFlowers" type="event"/>
+        </ResourceDefinition>
+
+<!-- XMAS 2015 -->
+		<ResourceDefinition name="CollectibleFurs2" rarity="2" pLvl="16">
+            <building name="CollectibleFurs2Building" type="event" />
+        </ResourceDefinition>
+		<ResourceDefinition name="CollectibleMagicStone" rarity="2" pLvl="16">
+            <building name="CollectibleMagicStoneBuilding" type="event" />
+        </ResourceDefinition>
+		<ResourceDefinition name="CollectibleSacredStone" rarity="2" pLvl="16">
+            <building name="CollectibleSacredStoneBuilding" />
+        </ResourceDefinition>
+		
+<!-- Mixed adventures -->		
+		<ResourceDefinition name="CollectibleClue" rarity="2" pLvl="16">
+            <building name="BuildingCollectibleClue" type="event" />
+        </ResourceDefinition>
+		
+		<ResourceDefinition name="SpottedMushroom" rarity="2" pLvl="16">
+            <building name="BuildingSpottedMushroom" type="event" />
+        </ResourceDefinition>
+		
+		<ResourceDefinition name="PageOfSheetMusic" rarity="3" pLvl="16">
+			<building name="buffad_collectible_paper_scraps" type="event"/>
+        </ResourceDefinition>
+		
+		<ResourceDefinition name="Tool" rarity="4" pLvl="16">
+			<building name="buffad_collectible_axe" type="event" locaExtension="JanesAxeCollected" />
+        </ResourceDefinition>
+	
+	<!-- Anniversary Event -->
+		<ResourceDefinition name="Candles" rarity="11" minLevel="58">
+			<building name="CollectibleCandlesBuilding" />
+        </ResourceDefinition>
+		<ResourceDefinition name="CakeDough" rarity="11" minLevel="16" maxLevel="57">
+			<building name="CollectibleCakeDoughBuilding" />
+        </ResourceDefinition>
+	</resourceDefinitions>
+
+	<settings>
+		<!--
+			- homeland specific tag.
+			- minHours -> the minimum time in hours before an item is respawned
+			- maxHours -> the maximum time in hours before an item is respawned
+		-->
+		<homeland minMinutes="480" maxMinutes="480"/>
+		<!--
+		    - quests (of type: "CountAll...") that need to be reset each time typed pickups are generated
+		    - attributes:
+		        - name : the quest name
+		        - type : the collectible type this quest will count:
+		                -> 0 -> normal collectible buildings
+		                -> 1 -> event collectible buildings
+		-->
+		<questsToResetAtPickupGeneration>
+			<quest name="CollectAllCollectibles" type="0"/>
+			<quest name="CollectAllCollectiblesAdventure" type="0"/>
+            <quest name="CollectAllEasterCollectibles" type="1"/>
+            <quest name="CollectAllEventCollectibles" type="1"/>
+		</questsToResetAtPickupGeneration>
+	</settings>
+
+</root>

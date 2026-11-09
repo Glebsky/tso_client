@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	 <quest name="BuccaneerRoundupQ1" type="Story" icon="Military" npc="quest_character_general01.png" specialType="firstQuest" >
+		<triggers>
+
+			<trigger type="Building" name="pirate_fort_leader" condition="l" amount="1"/>
+     
+		  </triggers>
+      <rewards/>
+		 <postrequisits>
+              
+				 <postrequisite startQuest="BuccaneerRoundupQ2" /> 
+		</postrequisits>
+    </quest>
+	
+
+
+	<quest name="BuccaneerRoundupQ2" type="Story" icon="Military" npc="quest_character_general01.png" specialType="lastQuest">
+		<triggers>
+
+			<trigger type="Building" name="red_ship_leader" condition="l" amount="1"/>
+     
+		  </triggers>
+
+		 <postrequisits>
+
+		</postrequisits>
+    </quest>	
+	
+</Root>

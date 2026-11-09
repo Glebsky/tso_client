@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	
+	<quest name="ExpDefeatLastBoss" type="Story" icon="Military" npc="quest_character_general02.png" specialType="firstQuestlastQuest" >
+		<triggers>
+			<buildingdestroyed item="banditsleader_final" min="1"/>
+		</triggers>
+		<rewards/>
+		<postrequisits />
+	</quest>
+	
+	<quest name="ExpDefeatMeleeCamp" type="Side" icon="Military" npc="quest_character_general02.png" helpName="Help_window_combat3_0" >
+		<startcondition>
+		</startcondition>
+		<triggers>
+			<buildingdestroyed item="melee_camp" min="1"/>
+		</triggers>
+		<rewards/>
+		<postrequisits />
+	</quest>
+	
+	<quest name="ExpDefeatSectorBoss" type="Side" icon="Military" npc="quest_character_general02.png" helpName="Help_window_combat3_1" >
+		<startcondition>
+			<questcomplete item="ExpDefeatMeleeCamp"/>
+		</startcondition>
+		<triggers>
+			<buildingdestroyed item="banditsleader_sector" min="1"/>
+		</triggers>
+		<rewards/>
+		<postrequisits />
+	</quest>
+	
+	<quest name="ExpUseDistract" type="Side" icon="Military" npc="quest_character_general02.png" helpName="Help_window_combat3_2" >
+		<startcondition>
+		   <questcomplete item="ExpDefeatSectorBoss"/>
+		</startcondition>
+		<triggers>
+			<zoneevent item="SUCCESSFUL_BLOCKING"/>
+		</triggers>
+		<rewards/>
+		<postrequisits />
+	</quest>
+	
+
+</Root>

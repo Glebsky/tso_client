@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	
+	<quest name="BuffAd4_Riches_of_the_Mountain_Main1" specialType="firstQuestlastQuest" icon="DepositBronzeOre" npc="Mining_NPC.png"  helpName="Help_window_buff_adventure_0" showQuestWindow="false">
+		<triggers>
+			<questcomplete item="BuffAd4_Proof_of_Purity_Sub1"/> 
+			<questcomplete item="BuffAd4_Construction_Area_Sub2"/> 
+			<questcomplete item="BuffAd4_Mining_Post_Sub3"/> 
+			<questcomplete item="BuffAd4_Opening_the_Shaft_Sub4"/> 
+			<questcomplete item="BuffAd4_Miner_Catering_Sub5"/> 
+			<questcomplete item="BuffAd4_Sabotage_Sub6"/> 
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="7000"/>   
+		</rewards>
+		<postrequisits />
+    </quest>
+	
+	<quest name="BuffAd4_Proof_of_Purity_Sub1" connectedToQuest="BuffAd4_Riches_of_the_Mountain_Main1" icon="MountainOre" npc="Mining_NPC.png"  helpName="Help_window_buff_adventure_0">
+		<startcondition>
+		   <questactive item="BuffAd4_Riches_of_the_Mountain_Main1"/>
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="BuffAd_RichesOfTheMountain_Quest1" />
+        </preeffects>
+		<triggers>
+			<buildingdestroyed item="BuildingMountainOre" min="3" locaExtension="pickup" />
+			<buffappliedonadventure item="ChangeSkin_BuffAd_PureOre" min="1" locaExtension="pureore"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="50"/>        
+		</rewards>
+		<postrequisits />
+    </quest>
+
+	<quest name="BuffAd4_Construction_Area_Sub2" connectedToQuest="BuffAd4_Riches_of_the_Mountain_Main1" icon="Building" npc="Mining_NPC.png"   helpName="Help_window_buff_adventure_0" >
+		<startcondition>
+		   <questactive item="BuffAd4_Riches_of_the_Mountain_Main1"/>
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="BuffAd_RichesOfTheMountain_Quest2" />
+        </preeffects>
+		<triggers>
+			<buildingdestroyed item="BuildingFireWood" min="4" locaExtension="pickup" />
+			<buildingdestroyed item="buffad_destructible_stone" min="4" locaExtension="buffad" />
+			<trigger type="Building" name="buffad_destructible_log" condition="l" amount="1" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="100"/>        
+		</rewards>
+		<postrequisits />
+    </quest>
+
+	<quest name="BuffAd4_Mining_Post_Sub3" connectedToQuest="BuffAd4_Riches_of_the_Mountain_Main1" icon="Building" npc="Mining_NPC.png"  helpName="Help_window_buff_adventure_0">
+		<startcondition>
+		   <questactive item="BuffAd4_Riches_of_the_Mountain_Main1"/>
+		</startcondition>
+		<triggers>
+			<buffappliedonadventure item="ChangeSkin_BuffAd_TavernKit" target="buffad_building_site" min="1" />
+			<buffappliedonadventure item="ChangeSkin_BuffAd_StorageKit" target="buffad_building_site" min="1" />
+			<buffappliedonadventure item="ChangeSkin_BuffAd_MasonKit" target="buffad_building_site" min="3" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="150"/>        
+		</rewards>
+		<postrequisits />
+    </quest>
+
+	<quest name="BuffAd4_Opening_the_Shaft_Sub4" connectedToQuest="BuffAd4_Riches_of_the_Mountain_Main1" icon="DepositIronOre" npc="Mining_NPC.png"  helpName="Help_window_buff_adventure_0">
+		<startcondition>
+			<questcomplete item="BuffAd4_Proof_of_Purity_Sub1"/>
+			<questcomplete item="BuffAd4_Construction_Area_Sub2"/>
+			<questcomplete item="BuffAd4_Mining_Post_Sub3"/> 
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="BuffAd_RichesOfTheMountain_Quest3" />
+        </preeffects>
+		<triggers>
+			<buildingdestroyed item="BuildingPick" min="5" locaExtension="pickup" />
+			<trigger type="Building" name="a_mountains_03" condition="l" amount="1" locaExtension=""/>
+			<buffappliedonadventure item="ChangeSkin_BuffAd_ShaftConstruction" target="buffad_shaft" min="1" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="200"/>        
+		</rewards>
+		<postrequisits />
+    </quest>
+
+	<quest name="BuffAd4_Miner_Catering_Sub5" connectedToQuest="BuffAd4_Riches_of_the_Mountain_Main1" icon="ProductivityBuffLvl3" npc="Mining_NPC.png"  helpName="Help_window_buff_adventure_0">
+		<startcondition>
+			<questcomplete item="BuffAd4_Opening_the_Shaft_Sub4"/> 
+		</startcondition>
+		<triggers>
+			<buffappliedonadventure item="EmptyEffectBuff_BuffAd_FoodProvision" min="2" locaExtension="shaft"/>
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="250"/>        
+		</rewards>
+		<postrequisits />
+    </quest>
+
+	<quest name="BuffAd4_Sabotage_Sub6" connectedToQuest="BuffAd4_Riches_of_the_Mountain_Main1" icon="CultLongbowman" npc="Mining_NPC.png"  helpName="Help_window_buff_adventure_ui_0">
+		<startcondition>
+			<questcomplete item="BuffAd4_Miner_Catering_Sub5"/> 
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="BuffAd_RichesOfTheMountain_Quest4" />
+        </preeffects>
+		<triggers>
+			<trigger type="Building" name="buffad_sabotage" condition="l" amount="1" locaExtension=""/>
+			<buildingdestroyed item="BuildingBucket" min="10" locaExtension="bucket" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="300"/>        
+		</rewards>
+		<postrequisits />
+    </quest>
+
+
+</Root>

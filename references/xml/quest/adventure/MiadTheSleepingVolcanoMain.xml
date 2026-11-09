@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Root>
+
+	<quest name="MiadTheSleepingVolcanoMain" type="Story" specialType="firstQuestlastQuest" icon="Military" npc="quest_character_mentor03.png" showQuestWindow="false">
+	   	<preeffects>
+        </preeffects>
+	   	<triggers>
+	   		<questcomplete item="MiadTheSleepingVolcanoQ1"/>
+         	<questcomplete item="MiadTheSleepingVolcanoQ2"/>
+         	<questcomplete item="MiadTheSleepingVolcanoQ3"/>
+         	<questcomplete item="MiadTheSleepingVolcanoQ4"/>
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="100"/>        
+      </rewards>
+    </quest> 
+   
+   <quest name="MiadTheSleepingVolcanoQ1" type="Story" icon="Military" connectedToQuest="MiadTheSleepingVolcanoMain" npc="quest_character_mentor03.png" >
+		  <startcondition>
+		   <questactive item="MiadTheSleepingVolcanoMain"/>
+		</startcondition>
+		<triggers>
+		  	<onmap item="WitchTower_Statue_South" max="1" locaExtension="tsv1"/>
+		  	<onmap item="WitchTower_Gate-Right_East" max="0" locaExtension="tsv2"/>
+  	  	</triggers>
+      	<rewards>
+         	<reward type="XP" amount="50"/>        
+      	</rewards>
+      	<postrequisits>
+         	<postrequisite startQuest="MiadTheSleepingVolcanoQ2" />
+       	</postrequisits> 
+   </quest>
+  
+	 <quest name="MiadTheSleepingVolcanoQ2" type="Story" icon="Military" connectedToQuest="MiadTheSleepingVolcanoMain" npc="quest_character_mentor03.png" >
+	  	<triggers>
+	  		<onmap item="WitchTower_Statue_North" max="0" locaExtension="tsv3"/>
+  	   </triggers>
+      <rewards>
+         <reward type="XP" amount="50"/>        
+      </rewards>
+		  <postrequisits>
+         <postrequisite startQuest="MiadTheSleepingVolcanoQ3" />
+         <postrequisite startQuest="MiadTheSleepingVolcanoQ4" /> 
+      </postrequisits>       
+    </quest>
+   
+    
+   <quest name="MiadTheSleepingVolcanoQ3" type="Story" icon="Military" connectedToQuest="MiadTheSleepingVolcanoMain" npc="quest_character_mentor03.png" >
+		  <triggers>
+         <trigger type="Building" name="a_skeleton_02" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="tsv3" />
+         <trigger type="Building" name="a_skeleton_02" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="tsv3" />
+         <trigger type="Building" name="a_skeleton_02" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="tsv3" />
+         <trigger type="Building" name="a_skeleton_02" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="tsv3" />
+         <trigger type="Building" name="a_skeleton_02" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="tsv3" />
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="50"/>        
+      </rewards>
+      <postrequisits>
+       </postrequisits> 
+    </quest>
+    
+    
+   <quest name="MiadTheSleepingVolcanoQ4" type="Story" icon="Military" connectedToQuest="MiadTheSleepingVolcanoMain" npc="quest_character_mentor03.png" >
+	   	<triggers>
+         <trigger type="Building" name="WitchTower" condition="l" amount="1" locaExtension="tsv4" />
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="100"/>        
+      </rewards>
+		  <postrequisits/>     
+    </quest> 
+
+</Root>
+
+    
+    
+      
+      
+      
+      
+
+

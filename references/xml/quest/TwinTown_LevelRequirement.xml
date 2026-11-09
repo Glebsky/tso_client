@@ -1,0 +1,802 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<Root>
+ 		
+	<quest name="TwinTown_LevelRequirement" showQuestWindow="false" showRewardWindow="false">     
+		<startcondition>
+		</startcondition>	
+		<triggers>
+			<playerlevel min="100"/> 
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_QuestFilter"/>
+		</posteffects>
+	</quest>
+	
+	<quest name="TwinTown_QuestFilter" showQuestWindow="false" showRewardWindow="false" repeatable="true">            
+		<triggers>
+		</triggers>
+		<posteffects>
+			<resetquest name="TwinTown_QuestSetup"/>
+		</posteffects>
+	</quest>
+	
+	<!--	<quest name="TwinTown_QuestSetup" showQuestWindow="false" showRewardWindow="false" cancelable="false">
+		<triggers>
+		</triggers>
+		<posteffects>
+			<startquest name="Adv_TwinTown_Build_01_HomezoneMirrored">
+				<conditions>
+					<checkgenericvalue name="TwinTown_Buildup_01" min="1" max="1" />
+				</conditions>		
+			</startquest>
+			<startquest name="Adv_TwinTown_Build_02_HomezoneMirrored">
+				<conditions>
+					<checkgenericvalue name="TwinTown_Buildup_02" min="1" max="1" />
+				</conditions>		
+			</startquest>			
+		</posteffects>
+	</quest> -->
+
+	<!-- CHAPTER 1 -->	
+	<quest name="TwinTown_Home_Chapter1_Main1" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" >     
+		<startcondition>
+			<playerlevel min="100"/> 
+		</startcondition>	
+		<triggers>
+		   <questcomplete item="TwinTown_Home_Chapter1_Start_1"/> 
+           <questcomplete item="TwinTown_Home_Chapter1_Sub_1"/>
+           <questcomplete item="TwinTown_Home_Chapter1_Sub_2"/>
+           <questcomplete item="TwinTown_Home_Chapter1_Sub_3"/>
+           <questcomplete item="TwinTown_Home_Chapter1_Sub_4"/>
+           <questcomplete item="TwinTown_Home_Chapter1_Sub_5"/>
+           <questcomplete item="TwinTown_Home_Chapter1_Sub_6"/>
+           <questcomplete item="TwinTown_Home_Chapter1_Sub_7"/>
+           <questcomplete item="TwinTown_Home_Chapter1_Sub_8"/>
+           <questcomplete item="TwinTown_Home_Chapter1_Sub_9"/>
+           <questcomplete item="TwinTown_Home_Chapter1_Sub_10"/>
+           <questcomplete item="TwinTown_Home_Chapter1_Sub_11"/>
+           <questcomplete item="TwinTown_Home_Chapter1_Sub_12"/>
+           <questcomplete item="TwinTown_Home_Chapter1_Sub_13"/>	
+           <questcomplete item="TwinTown_Home_Chapter1_Sub_14"/>
+           <questcomplete item="TwinTown_Home_Chapter1_Sub_15"/>
+           <questcomplete item="TwinTown_Home_Chapter1_Sub_16"/>
+           <questcomplete item="TwinTown_Home_Chapter1_Sub_17"/>		   
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Token" amount="50" />
+			<reward type="Buff" item="PremiumAccount3Days" amount="1"/>
+			<reward type="Buff" item="MultiplierBuffZone2_PremiumFriendBuff1Day" amount="1"/>			
+			<reward type="XP" amount="100000"/>	
+			<reward type="Resource" name="Oil" amount="200" />
+			<reward type="Resource" name="Grout" amount="1000" />				
+		</posteffects>
+	</quest>	
+
+	<quest name="TwinTown_Home_Chapter1_Start_1" connectedToQuest="TwinTown_Home_Chapter1_Main1" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" >     
+		<startcondition>
+			<questrunning item="TwinTown_Home_Chapter1_Main1" />
+		</startcondition>	
+		<triggers>
+			<buildingselected min="1" item="Tavern" locaExtension="selecttavern"/>
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Home_Chapter1_Sub_1"/>
+			<reward type="Resource" name="SimplePaper" amount="50" />
+			<reward type="XP" amount="500"/>				
+		</posteffects>
+	</quest>
+	
+	<quest name="TwinTown_Home_Chapter1_Sub_1" connectedToQuest="TwinTown_Home_Chapter1_Main1" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" questWinGemCosts="399">     
+		<triggers>
+			<specialisttaskfinished item="FindAdventureZoneMedium" amount="30"/>
+			<specialisttaskfinished item="FindTreasureMedium" amount="30"/>
+			<specialisttaskfinished item="FindAdventureZoneLong" amount="30"/>			
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Home_Chapter1_Sub_2"/>		
+			<reward type="Buff" item="ProductivityBuffLvl5" amount="3"/>
+			<reward type="Buff" item="RecruitingBuffLvl2" amount="3"/>
+			<reward type="Buff" item="ProductivityBuffLvl10" amount="3"/>		
+			<reward type="Resource" name="Coin" amount="250" />			
+			<reward type="XP" amount="5000"/>			
+		</posteffects>
+	</quest>
+	
+	<quest name="TwinTown_Home_Chapter1_Sub_2" connectedToQuest="TwinTown_Home_Chapter1_Main1" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" questWinGemCosts="719" >     
+		<triggers>
+			<trigger type="Resource" name="RealPlank" amount="10000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="RealPlank" amount="20000" />	
+			<trigger type="Resource" name="Iron" amount="1000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Iron" amount="2000" />		
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Home_Chapter1_Sub_3"/>	
+			<reward type="Resource" name="Oil" amount="20" />				
+			<reward type="Buff" item="ProductivityBuffZoneOreLvl1" amount="3"/>		
+			<reward type="XP" amount="2000"/>				
+		</posteffects>
+	</quest>
+
+	<quest name="TwinTown_Home_Chapter1_Sub_3" connectedToQuest="TwinTown_Home_Chapter1_Main1" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" questWinGemCosts="699">     
+		<triggers>
+			<produceditemlist item="Recruit" amount="200" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Recruit" amount="200" />
+			<produceditemlist item="Longbowman" amount="200" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Longbowman" amount="200"/>
+			<produceditemlist item="Cavalry" amount="200" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Cavalry" amount="200" />
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Home_Chapter1_Sub_4"/>	
+			<reward type="Resource" name="Oil" amount="50" />	
+			<reward type="Buff" item="RecruitingBuffZoneLvl1" amount="3"/>			
+			<reward type="Resource" name="Token" amount="5" />			
+			<reward type="XP" amount="2000"/>				
+		</posteffects>
+	</quest>
+
+	<quest name="TwinTown_Home_Chapter1_Sub_4" connectedToQuest="TwinTown_Home_Chapter1_Main1" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" questWinGemCosts="719" >     
+		<triggers>
+			<trigger type="Resource" name="Meat" amount="7500" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Meat" amount="22500" />	
+			<trigger type="Resource" name="Fish" amount="10000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Fish" amount="30000" />		
+			<trigger type="Resource" name="Bread" amount="10000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Bread" amount="20000" />			
+		</triggers>
+		<posteffects>
+				<startquest name="TwinTown_Home_Chapter1_Sub_5"/>	
+				<reward type="Resource" name="AdvancedTools" amount="100" />	
+				<reward type="Buff" item="ProductivityBuffZoneFoodLvl1" amount="5"/>				
+				<reward type="Resource" name="Token" amount="5" />	
+				<reward type="XP" amount="5000"/>					
+		</posteffects>
+	</quest>	
+	
+	<quest name="TwinTown_Home_Chapter1_Sub_5" connectedToQuest="TwinTown_Home_Chapter1_Main1" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" questWinGemCosts="399" >     	
+		<triggers>
+		    <buildingqueue min="3"/>
+			<buildingupgraded item="CoalMine"/>		   
+			<buildingupgraded item="IronMine"/>
+			<buildingupgraded item="GoldMine"/>			
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Home_Chapter1_Sub_6"/>
+			<reward type="Resource" name="Oil" amount="20" />
+			<reward type="Resource" name="Grout" amount="100" />			
+			<reward type="XP" amount="2000"/>				
+		</posteffects>
+	</quest>	
+
+	<quest name="TwinTown_Home_Chapter1_Sub_6" connectedToQuest="TwinTown_Home_Chapter1_Main1" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" questWinGemCosts="719" >     	
+		<triggers>
+			<trigger type="Resource" name="Tool" amount="3000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Tool" amount="9000" />	
+			<trigger type="Resource" name="Coin" amount="750" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Coin" amount="1500" />		
+			<trigger type="Resource" name="Horse" amount="2000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Horse" amount="10000" />		
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Home_Chapter1_Sub_7"/>
+				<reward type="Resource" name="AdvancedTools" amount="200" />	
+				<reward type="Buff" item="ProductivityBuffZoneOreLvl1" amount="3"/>				
+				<reward type="Resource" name="Token" amount="5" />				
+				<reward type="XP" amount="2000"/>					
+		</posteffects>
+	</quest>	
+
+	<quest name="TwinTown_Home_Chapter1_Sub_7" connectedToQuest="TwinTown_Home_Chapter1_Main1" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" questWinGemCosts="729" >     
+		<triggers>
+			<completeadventurelist tier="9" amount="5" locaExtension="Dif9_many" />
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Home_Chapter1_Sub_8"/>
+				<reward type="Resource" name="Grout" amount="500" />	
+				<reward type="Buff" item="ProductivityBuffLvl12" amount="3"/>				
+				<reward type="Resource" name="Token" amount="15" />				
+				<reward type="XP" amount="10000"/>				
+		</posteffects>
+	</quest>		
+	
+	<quest name="TwinTown_Home_Chapter1_Sub_8" connectedToQuest="TwinTown_Home_Chapter1_Main1" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" questWinGemCosts="719" >     
+		<triggers>
+			<trigger type="Resource" name="SimplePaper" amount="3000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="SimplePaper" amount="12000" />	
+			<trigger type="Resource" name="Coal" amount="30000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Coal" amount="30000" />		
+			<trigger type="Resource" name="Water" amount="30000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Water" amount="30000" />		
+			<trigger type="Resource" name="Sausage" amount="3000" condition="produce" />
+			<trigger type="PayForQuestFinish" name="Sausage" amount="12000" />				
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Home_Chapter1_Sub_9"/>
+				<reward type="Resource" name="Grout" amount="1000" />				
+				<reward type="Resource" name="Crystal" amount="30" />				
+				<reward type="XP" amount="8000"/>					
+		</posteffects>
+	</quest>			
+	
+	<quest name="TwinTown_Home_Chapter1_Sub_9" connectedToQuest="TwinTown_Home_Chapter1_Main1" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" questWinGemCosts="719" >     
+		<triggers>
+			<buffproduced item="ProductivityBuffLvl3" min="100"/>
+			<buffapplied min="35" item="ProductivityBuffLvl3"/>		
+			<buffappliedonfriend amount="35" item="ProductivityBuffLvl3" locaExtension="item"/>			
+			<countdeposittype item="BronzeOre,Marble,IronOre,Coal" amount="30" />
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Home_Chapter1_Sub_10"/>
+				<reward type="Buff" item="ProvisionerBuffLvl3" amount="5"/>		
+				<reward type="XP" amount="5000"/>				
+		</posteffects>
+	</quest>			
+
+	<quest name="TwinTown_Home_Chapter1_Sub_10" connectedToQuest="TwinTown_Home_Chapter1_Main1" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" questWinGemCosts="929" >     
+		<triggers>
+			<trigger type="PayForQuestFinish" name="Tome" amount="2" />	
+			<trigger type="PayForQuestFinish" name="Manuscript" amount="5" />
+			<trigger type="PayForQuestFinish" name="CollectibleHerbs" amount="500" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="10000" />
+			<trigger type="PayForQuestFinish" name="MapPart" amount="2000" />
+			<trigger type="PayForQuestFinish" name="Iron" amount="2000" />			
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Home_Chapter1_Sub_11"/>
+				<reward type="Resource" name="Grout" amount="500" />				
+				<reward type="Resource" name="Crystal" amount="20" />
+				<reward type="Resource" name="Token" amount="10" />	
+				<reward type="XP" amount="10000"/>					
+		</posteffects>
+	</quest>			
+
+	<quest name="TwinTown_Home_Chapter1_Sub_11" connectedToQuest="TwinTown_Home_Chapter1_Main1" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" questWinGemCosts="819" >     
+		<triggers>
+			<completeadventurelist type="Mission,Mini,Coop,Venture" amount="7" locaExtension="NonScenario_many"/>
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Home_Chapter1_Sub_12"/>
+				<reward type="Resource" name="Token" amount="15" />	
+				<reward type="XP" amount="15000"/>			
+		</posteffects>
+	</quest>			
+
+	<quest name="TwinTown_Home_Chapter1_Sub_12" connectedToQuest="TwinTown_Home_Chapter1_Main1" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" questWinGemCosts="319" >     
+		<triggers>
+			<hourselapsed amount="23" />
+			<buildingselected min="1" item="Harbour"/>
+		</triggers>
+		<posteffects>
+			<reward type="Adventure" name="TwinTown_Main" amount="1"/>
+			<startquest name="TwinTown_Home_Chapter1_Sub_13"/>			
+		</posteffects>
+	</quest>			
+
+	<quest name="TwinTown_Home_Chapter1_Sub_13" connectedToQuest="TwinTown_Home_Chapter1_Main1" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" questWinGemCosts="719" >     
+		<triggers>
+			<buffproduced item="GeneralSpeedBuff_Bronze" min="20"/>
+			<buffproduced item="AddResource_ConvertBronzeSwordToIronSword" min="1000" />
+			<buffproduced item="AddResource_ConvertBowToLongbow" min="1000" />
+		</triggers>
+		<posteffects>
+				<reward type="Resource" name="Crystal" amount="20" />	
+				<reward type="XP" amount="5000"/>	
+		</posteffects>
+	</quest>			
+
+	<quest name="TwinTown_Home_Chapter1_Sub_14" connectedToQuest="TwinTown_Home_Chapter1_Main1" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" >     
+		<startcondition>
+			<questadventurecompleted name="TwinTown_Main" item="TwinTown_Adv_Chapter1_Sub_6" amount="1" locaExtension="TTadvQuest"/>			
+		</startcondition>		
+		<triggers>
+			<adventurelost item="TwinTown_Main" locaExtension="TTleave" />
+			<hourselapsed amount="47" />
+		</triggers>
+		<posteffects>
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_6_QGV" action="set" amount="99" />	
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_7_QGV" action="set" amount="1" />
+			<reward type="XP" amount="1000"/>			
+		</posteffects>
+	</quest>			
+			
+	<quest name="TwinTown_Home_Chapter1_Sub_15_Helper" showQuestWindow="false" showRewardWindow="false" >            	
+		<startcondition>
+		</startcondition>
+		<triggers>
+			<questadventurecompleted name="TwinTown_Main" item="TwinTown_Adv_Chapter1_Sub_20" amount="1" locaExtension="TTadvQuest"/>
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Home_Chapter1_Sub_15" />	
+		</posteffects>
+	</quest>			
+			
+	<quest name="TwinTown_Home_Chapter1_Sub_15" connectedToQuest="TwinTown_Home_Chapter1_Main1" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" questWinGemCosts="819" >     
+		<triggers>
+			<produceditemlist item="Recruit" amount="500" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Recruit" amount="500" />
+			<produceditemlist item="Cavalry" amount="500" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Cavalry" amount="500" />
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Home_Chapter1_Sub_16"/>	
+				<reward type="Resource" name="Oil" amount="100" />	
+				<reward type="Buff" item="RecruitingBuffLvl9" amount="3"/>				
+				<reward type="Resource" name="Token" amount="20" />				
+				<reward type="XP" amount="5000"/>			
+		</posteffects>
+	</quest>			
+
+	<quest name="TwinTown_Home_Chapter1_Sub_16" connectedToQuest="TwinTown_Home_Chapter1_Main1" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" questWinGemCosts="799" >     
+		<triggers>
+			<hourselapsed amount="71" />
+		</triggers>
+		<posteffects>		
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_21_QGV" action="set" amount="1" />	
+			<startquest name="TwinTown_Home_Chapter1_Sub_17" startDelay="82795"/>		
+			<startquest name="TwinTown_Home_Chapter1_Main2"/>	
+			<startquest name="TwinTown_Home_Chapter1_Main2_Sub_1"/>		
+			<reward type="XP" amount="1000"/>			
+		</posteffects>
+	</quest>	
+
+	<quest name="TwinTown_Home_Chapter1_Sub_17" connectedToQuest="TwinTown_Home_Chapter1_Main1" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" questWinGemCosts="829" >     
+		<triggers>
+			<trigger type="Resource" name="Fish" amount="7500" condition="produce" />
+			<trigger type="Resource" name="Beer" amount="5000" condition="produce" />
+			<trigger type="Resource" name="Corn" amount="5000" condition="produce" />
+			<trigger type="Resource" name="Meat" amount="5000" condition="produce" />	
+			<trigger type="PayForQuestFinish" name="Manuscript" amount="5" />
+			<trigger type="PayForQuestFinish" name="Fish" amount="15000" />
+			<trigger type="PayForQuestFinish" name="Beer" amount="10000" />
+			<trigger type="PayForQuestFinish" name="Corn" amount="10000" />
+			<trigger type="PayForQuestFinish" name="Meat" amount="10000" />			
+		</triggers>
+		<posteffects>
+				<reward type="Resource" name="AdvancedTools" amount="300" />	
+				<reward type="Resource" name="Oil" amount="100" />					
+				<reward type="Buff" item="ProductivityBuffZoneFoodLvl1" amount="3"/>				
+				<reward type="Resource" name="Token" amount="10" />	
+				<reward type="XP" amount="5000"/>				
+		</posteffects>
+	</quest>				
+	
+	<quest name="TwinTown_Home_Chapter1_Main2" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" >     
+		<triggers>
+           <questcomplete item="TwinTown_Home_Chapter1_Main2_Sub_1"/>
+           <questcomplete item="TwinTown_Home_Chapter1_Main2_Sub_2"/>
+           <questcomplete item="TwinTown_Home_Chapter1_Main2_Sub_3"/>
+           <questcomplete item="TwinTown_Home_Chapter1_Main2_Sub_4"/>
+           <questcomplete item="TwinTown_Home_Chapter1_Main2_Sub_5"/>   
+           <questcomplete item="TwinTown_Home_Chapter1_Main2_Sub_6"/> 	
+           <questcomplete item="TwinTown_Home_Chapter1_Main2_Sub_7"/> 	
+           <questcomplete item="TwinTown_Home_Chapter1_Main2_Sub_8"/> 	
+           <questcomplete item="TwinTown_Home_Chapter1_Main2_Sub_9"/> 	
+           <questcomplete item="TwinTown_Home_Chapter1_Main2_Sub_10"/> 	
+           <questcomplete item="TwinTown_Home_Chapter1_Main2_Sub_11"/> 	
+         <!--  <questcomplete item="TwinTown_Home_Chapter1_Main2_Sub_12"/> 	-->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Token" amount="50" />
+			<reward type="Buff" item="PremiumAccount3Days" amount="1"/>		
+			<reward type="XP" amount="100000"/>	
+			<reward type="Resource" name="Oil" amount="300" />
+			<reward type="Resource" name="AdvancedTools" amount="500" />			
+			<reward type="Resource" name="Grout" amount="1000" />			
+		</posteffects>
+	</quest>		
+	
+	<quest name="TwinTown_Home_Chapter1_Main2_Sub_1" connectedToQuest="TwinTown_Home_Chapter1_Main2" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" questWinGemCosts="599">     
+		<triggers>
+			<specialisttaskfinished item="FindAdventureZoneLong" amount="50"/>
+			<specialisttaskfinished item="FindTreasureEvenLonger" amount="50"/>
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Home_Chapter1_Main2_Sub_2"/>		
+			<reward type="XP" amount="10000"/>	
+			<reward type="Resource" name="Oilseed" amount="500" />		
+			<reward type="Resource" name="Grout" amount="500" />					
+		</posteffects>
+	</quest>	
+	
+	<quest name="TwinTown_Home_Chapter1_Main2_Sub_2" connectedToQuest="TwinTown_Home_Chapter1_Main2" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" questWinGemCosts="599">     
+		<triggers>
+			<specialisttaskfinished item="FindDepositGoldOre" amount="1"/>
+			<specialisttaskfinished item="FindDepositIronOre" amount="2"/>
+			<specialisttaskfinished item="FindDepositMarble" amount="3"/>			
+			<specialisttaskfinished item="FindTreasureShort" amount="10"/>
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Home_Chapter1_Main2_Sub_3"/>		
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_25_QGV" action="set" amount="1" />	
+			<reward type="XP" amount="2000"/>			
+			<reward type="Resource" name="Oilseed" amount="250" />				
+		</posteffects>
+	</quest>	
+
+	<quest name="TwinTown_Home_Chapter1_Main2_Sub_3" connectedToQuest="TwinTown_Home_Chapter1_Main2" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" >     
+		<triggers>
+			<questadventurecompleted name="TwinTown_Main" item="TwinTown_Adv_Chapter1_Sub_25" amount="1" locaExtension="TTadvQuest"/>
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Home_Chapter1_Main2_Sub_4"/>	
+			<reward type="XP" amount="2000"/>		
+			<reward type="Buff" item="ProductivityBuffLvl19" amount="3"/>				
+		</posteffects>
+	</quest>	
+	
+	<quest name="TwinTown_Home_Chapter1_Main2_Sub_4" connectedToQuest="TwinTown_Home_Chapter1_Main2" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" questWinGemCosts="199">     
+		<triggers>
+			<buildingselected min="1" item="SimpleResidence"/>	
+			<buildingselected min="1" item="NobleResidence"/>	
+			<buildingselected min="1" item="BronzeSmelter"/>	
+			<buildingselected min="1" item="IronSmelter"/>	
+			<buildingselected min="1" item="GoldSmelter"/>			
+			<buildingselected min="1" item="Mason"/>	
+			<buildingselected item="BronzeMine,EpicBronzeMine,BronzeMineEndless,SpookyBronzeMine" locaExtension="AnyBronzeMine"/>
+			<buildingselected item="IronMine,EpicIronMine,ArcticIronMine,IronMineEndless" locaExtension="AnyIronMine"/>
+			<buildingselected item="CoalMine,EpicCoalMine,CoalMineEndless" locaExtension="AnyCoalMine"/>
+			<buildingselected item="GoldMine,ArcticGoldMine,EpicGoldMine,GoldMineEndless" locaExtension="AnyGoldMine"/>
+			<buildingselected min="1" item="Tavern"/>		
+			<buildingselected min="1" item="Logistics"/>					
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Home_Chapter1_Main2_Sub_5"/>
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_26_QGV" action="set" amount="1" />	
+			<reward type="XP" amount="2000"/>		
+			<reward type="Buff" item="ProductivityBuffLvl22" amount="1"/>				
+		</posteffects>
+	</quest>	
+	
+	<quest name="TwinTown_Home_Chapter1_Main2_Sub_5" connectedToQuest="TwinTown_Home_Chapter1_Main2" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" >     
+		<triggers>
+			<questadventurecompleted name="TwinTown_Main" item="TwinTown_Adv_Chapter1_Sub_26" amount="1" locaExtension="TTadvQuest"/>
+		</triggers>
+		<posteffects>
+			<reward type="XP" amount="2000"/>	
+			<reward type="Buff" item="BookbinderBuffLvl1" amount="2"/>			
+		</posteffects>
+	</quest>		
+	
+	<quest name="TwinTown_Home_Chapter1_Main2_Sub_6_Helper" showQuestWindow="false" showRewardWindow="false" >            	
+		<startcondition>		
+		</startcondition>
+		<triggers>
+			<questadventurecompleted name="TwinTown_Main" item="TwinTown_Adv_Chapter1_Sub_32" amount="1" locaExtension="TTadvQuest"/>
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Home_Chapter1_Main2_Sub_6"/>
+		</posteffects>
+	</quest>		
+	
+	<quest name="TwinTown_Home_Chapter1_Main2_Sub_6" connectedToQuest="TwinTown_Home_Chapter1_Main2" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" questWinGemCosts="1129" >     
+		<triggers>
+			<trigger type="Resource" name="BronzeSword" amount="6000" condition="produce" />
+			<trigger type="Resource" name="IronSword" amount="1000" condition="produce" />
+			<trigger type="Resource" name="SteelSword" amount="1000" condition="produce" />
+			<trigger type="Resource" name="Longbow" amount="1000" condition="produce" />	
+			<trigger type="Resource" name="Crossbow" amount="200" condition="produce" />	
+			<trigger type="Resource" name="Horse" amount="8000" condition="produce" />				
+			<trigger type="PayForQuestFinish" name="BronzeSword" amount="6000" />
+			<trigger type="PayForQuestFinish" name="IronSword" amount="2000" />
+			<trigger type="PayForQuestFinish" name="SteelSword" amount="2000" />
+			<trigger type="PayForQuestFinish" name="Longbow" amount="4000" />
+			<trigger type="PayForQuestFinish" name="Crossbow" amount="400" />			
+			<trigger type="PayForQuestFinish" name="Horse" amount="16000" />			
+		</triggers>
+		<posteffects>
+				<reward type="Adventure" name="TwinTown_Cave1" amount="1"/>
+				<reward type="Resource" name="Oil" amount="100" />	
+				<reward type="Buff" item="ProductivityBuffLvl21" amount="3"/>				
+				<reward type="Resource" name="Token" amount="25" />				
+				<reward type="XP" amount="10000"/>				
+			<adjustgenericvalue name="TwinTown_Cave1_unlock" action="set" amount="10" />	
+			<startquest name="TwinTown_Home_Chapter1_Main2_Sub_7"/>		
+			<adjustgenericvalue name="TwinTown_Home_Chapter1_Main2_Sub_7" action="set" amount="1" />			
+		</posteffects>
+	</quest>			
+	
+	<quest name="TwinTown_Home_Chapter1_Main2_Sub_7" connectedToQuest="TwinTown_Home_Chapter1_Main2" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" >     
+		<triggers>
+			<completeadventurelist item="TwinTown_Cave1" amount="1" locaExtension="Mission_1"/>
+			<questadventurecompleted name="TwinTown_Cave1" item="TwinTown_Cave1_Tracks" amount="1" locaExtension="TTadvQuest"/>
+		</triggers>
+		<posteffects>
+				<reward type="Resource" name="Oil" amount="50" />			
+				<reward type="XP" amount="5000"/>			
+			 <startquest name="TwinTown_Home_Chapter1_Main2_Sub_8"/> 
+				<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_33_QGV" action="set" amount="1" />		
+				<adjustgenericvalue name="TwinTown_Home_Chapter1_Main2_Sub_8_QGV" action="set" amount="1" />
+		</posteffects>
+	</quest>	
+
+	<quest name="TwinTown_Home_Chapter1_Main2_Sub_8" connectedToQuest="TwinTown_Home_Chapter1_Main2" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" questWinGemCosts="729" >     
+		<triggers>
+			<completeadventurelist item="Outlaws" amount="1" locaExtension="Mission_1"/>
+			<questadventurecompleted name="Outlaws" item="TwinTown_Outlaws_Tracks" amount="1" locaExtension="TTadvQuest"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="AdvancedTools" amount="200" />			
+			<reward type="XP" amount="5000"/>			
+			<startquest name="TwinTown_Home_Chapter1_Main2_Sub_9"/> 
+			<adjustgenericvalue name="TwinTown_Home_Chapter1_Main2_Sub_8_QGV" action="set" amount="10" />	
+			<adjustgenericvalue name="TwinTown_Home_Chapter1_Main2_Sub_9_QGV" action="set" amount="1" />			
+		</posteffects>
+	</quest>				
+	
+	<quest name="TwinTown_Home_Chapter1_Main2_Sub_9" connectedToQuest="TwinTown_Home_Chapter1_Main2" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" questWinGemCosts="729" >     
+		<triggers>
+			<completeadventurelist item="RoaringBull" amount="1" locaExtension="Mission_1"/>
+			<questadventurecompleted name="RoaringBull" item="TwinTown_RoaringBull_Tracks" amount="1" locaExtension="TTadvQuest"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="AdvancedTools" amount="300" />			
+			<reward type="XP" amount="8000"/>		
+			<startquest name="TwinTown_Home_Chapter1_Main2_Sub_10"/> 
+			<adjustgenericvalue name="TwinTown_Home_Chapter1_Main2_Sub_9_QGV" action="set" amount="10" />	
+			<adjustgenericvalue name="TwinTown_Home_Chapter1_Main2_Sub_10_QGV" action="set" amount="1" />				
+		</posteffects>
+	</quest>		
+
+	<quest name="TwinTown_Home_Chapter1_Main2_Sub_10" connectedToQuest="TwinTown_Home_Chapter1_Main2" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" questWinGemCosts="729" >     
+		<triggers>
+			<completeadventurelist item="BuffAdventures_ElChupacabra" amount="1" locaExtension="Mission_1"/>
+			<questadventurecompleted name="BuffAdventures_ElChupacabra" item="TwinTown_El_Chupacabra_Tracks" amount="1" locaExtension="TTadvQuest" />
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Oil" amount="100" />			
+			<reward type="XP" amount="8000"/>		
+			<startquest name="TwinTown_Home_Chapter1_Main2_Sub_11"/> 
+			<adjustgenericvalue name="TwinTown_Home_Chapter1_Main2_Sub_10_QGV" action="set" amount="10" />	
+			<adjustgenericvalue name="TwinTown_Home_Chapter1_Main2_Sub_11_QGV" action="set" amount="1" />				
+		</posteffects>
+	</quest>		
+	
+	<quest name="TwinTown_Home_Chapter1_Main2_Sub_11" connectedToQuest="TwinTown_Home_Chapter1_Main2" type="TwinTown" icon="QuestShort" npc="quest_character_sonya_solemoon.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" questWinGemCosts="729" >     
+		<triggers>
+			<completeadventurelist item="TheHeroicLittleTailor" amount="1" locaExtension="Mission_1"/>
+			<questadventurecompleted name="TheHeroicLittleTailor" item="TwinTown_TheHeroicLittleTailor_Tracks" amount="1" locaExtension="TTadvQuest"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Oil" amount="150" />	
+			<reward type="Resource" name="Grout" amount="500" />				
+			<reward type="XP" amount="8000"/>			
+			<startquest name="TwinTown_Home_Chapter1_Sub_12"/> 
+			<adjustgenericvalue name="TwinTown_Home_Chapter1_Main2_Sub_11_QGV" action="set" amount="10" />	
+			<adjustgenericvalue name="TwinTown_Home_Chapter1_Main2_Sub_12_QGV" action="set" amount="1" />				
+		</posteffects>
+	</quest>		
+	
+	<quest name="TwinTown_Home_Chapter1_Main3" type="TwinTown" icon="QuestShort" npc="ferri_felder.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" >     
+		<triggers>
+           <questcomplete item="TwinTown_Home_Chapter1_Main3_Sub_1" locaExtension="CompleteQuest10times"/>
+           <questcomplete item="TwinTown_Home_Chapter1_Main3_Sub_2"/>
+           <questcomplete item="TwinTown_Home_Chapter1_Main3_Sub_3"/>	 
+		   <questcomplete item="TwinTown_Home_Chapter1_Main3_Sub_4"/>
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Token" amount="50" />
+			<reward type="Buff" item="PremiumAccount3Days" amount="1"/>		
+			<reward type="Buff" item="RecruitingBuffZoneLvl1" amount="5"/>				
+			<reward type="XP" amount="100000"/>			
+			<reward type="Resource" name="Grout" amount="2000" />	
+			<reward type="Resource" name="Coin" amount="2000" />				
+		</posteffects>
+	</quest>	
+	
+	<!-- RANDOM ENEMIES 1 -->
+	<!-- RANDOM ENEMIES 1 -->
+	<!-- RANDOM ENEMIES 1 -->
+	
+	<quest name="TwinTown_Home_Chapter1_Main3_Sub_1_Starter" showQuestWindow="false" showRewardWindow="false" >            	
+		<startcondition>		
+		</startcondition>
+		<triggers>
+			<questadventurecompleted name="TwinTown_Main" item="TwinTown_Adv_Chapter1_Sub_9" amount="1" locaExtension="TTadvQuest"/>
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Home_Chapter1_Main3_Sub_1_Starter2" startDelay="82795"/>	
+			<startquest name="TwinTown_Home_Chapter1_Main3"/>	
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_10_QGV" action="set" amount="1" />			
+		</posteffects>
+	</quest>
+	
+	<quest name="TwinTown_Home_Chapter1_Main3_Sub_1_Starter2" connectedToQuest="TwinTown_Home_Chapter1_Main3" type="TwinTown" icon="QuestShort" npc="ferri_felder.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" questWinGemCosts="1019" >            	
+		<triggers>
+			<questadventurecompleted name="TwinTown_Main" item="TwinTown_Adv_Chapter1_Sub_10" amount="1" locaExtension="TTadvQuest"/>
+		</triggers>
+		<posteffects>
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_10_QGV" action="set" amount="10" />	
+			<reward type="Resource" name="Token" amount="10" />	
+			<reward type="Buff" item="RecruitingBuffLvl9" amount="1"/>			
+		</posteffects>
+	</quest>	
+
+ 	<quest name="TwinTown_Home_Chapter1_Main3_Sub_1_Helper" showQuestWindow="false" showRewardWindow="false" repeatable="true">
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_10_QGV" min="10" max="10"/>			
+		</startcondition>
+		<triggers>
+			<hourselapsed amount="100" />
+		</triggers>
+		<posteffects>
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_10_QGV" action="set" amount="1" >	
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_10_QGV" min="0" max="10" />
+				</conditions>
+			</adjustgenericvalue> 	
+			<startquest name="TwinTown_Home_Chapter1_Main3_Sub_1"/>					
+		</posteffects>
+	</quest>		
+
+	<quest name="TwinTown_Home_Chapter1_Main3_Sub_1" connectedToQuest="TwinTown_Home_Chapter1_Main3" type="TwinTown" icon="QuestShort" npc="ferri_felder.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" repeatable="true" questWinGemCosts="1019" >     
+		<triggers>
+			<questadventurecompleted name="TwinTown_Main" item="TwinTown_Adv_Chapter1_Sub_10" amount="1" locaExtension="DefendTwinTown"/>
+		</triggers>
+		<posteffects>		
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_10_QGV" action="set" amount="10" >
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_10_QGV" min="0" max="10" />
+				</conditions>
+			</adjustgenericvalue> 				
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_11_QGV" action="add" amount="1" >		
+				<conditions>
+					<checkgenericvalue name="TwinTown_Adv_Chapter1_Sub_11_QGV" min="1" max="999" />
+				</conditions>
+			</adjustgenericvalue> 				
+			<resetquest name="TwinTown_Home_Chapter1_Main3_Sub_1_Helper"/>
+			<startquest name="TwinTown_Home_Chapter1_Main3_Sub_2"/>				
+			<reward type="Resource" name="Token" amount="5" />	
+			<reward type="Resource" name="Crystal" amount="10" />			
+		</posteffects>
+	</quest>		
+	
+	<quest name="TwinTown_Home_Chapter1_Main3_Sub_1_Finisher" showQuestWindow="false" showRewardWindow="false" >            	
+		<startcondition>		
+		</startcondition>
+		<triggers>
+			<questadventurecompleted name="TwinTown_Main" item="TwinTown_Adv_Chapter1_Sub_11" amount="1" locaExtension="TTadvQuest"/>
+		</triggers>
+		<posteffects>
+			<finishquest name="TwinTown_Home_Chapter1_Main3_Sub_1"/>
+		</posteffects>
+	</quest>	
+	
+	<!-- RANDOM ENEMIES 1 END -->
+	<!-- RANDOM ENEMIES 1 END -->
+	<!-- RANDOM ENEMIES 1 END -->
+	
+	<quest name="TwinTown_Home_Chapter1_Main3_Sub_2" connectedToQuest="TwinTown_Home_Chapter1_Main3" type="TwinTown" icon="QuestShort" npc="ferri_felder.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" questWinGemCosts="799">     
+		<triggers>
+			<completeadventurelist item="Outlaws,TheIslandOfThePirates,BanditNest,NewBanditNest,MiadBastilleIsland" amount="3" locaExtension="item"/>
+		</triggers>
+		<posteffects>		
+			<startquest name="TwinTown_Home_Chapter1_Main3_Sub_3"/>
+			<reward type="Resource" name="Crystal" amount="25" />	
+			<reward type="Resource" name="Grout" amount="1000" />	
+			<reward type="Resource" name="Titanium" amount="1000" />			
+		</posteffects>
+	</quest>			
+	
+	<quest name="TwinTown_Home_Chapter1_Main3_Sub_3" connectedToQuest="TwinTown_Home_Chapter1_Main3" type="TwinTown" icon="QuestShort" npc="ferri_felder.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" questWinGemCosts="799" >     	
+		<triggers>
+			<produceditemlist item="Militia" amount="500" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Militia" amount="500" />
+			<produceditemlist item="Longbowman" amount="500" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Longbowman" amount="500" />			
+			<produceditemlist item="Soldier" amount="500" locaExtension="unit"/>
+			<trigger type="PayForQuestFinish" name="Soldier" amount="500" />			
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Home_Chapter1_Main3_Sub_4"/>
+			<startquest name="TwinTown_Home_Chapter1_Main3_Sub_4_Helper_A"/>
+			<startquest name="TwinTown_Home_Chapter1_Main3_Sub_4_Helper_B"/>	
+			<reward type="Resource" name="Token" amount="25" />	
+			<reward type="Resource" name="Crystal" amount="25" />		
+			<reward type="Resource" name="AdvancedTools" amount="250" />				
+		</posteffects>
+	</quest>		
+	
+	<quest name="TwinTown_Home_Chapter1_Main3_Sub_4_Helper_A" showQuestWindow="false" showRewardWindow="false" >            	
+		<triggers>
+			<questadventurecompleted name="TwinTown_Main" item="TwinTown_Adv_Chapter1_Sub_33_Decision_A" amount="1" locaExtension="TTadvQuest"/>
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Home_Chapter1_Main3_Sub_4_WeeklyReward_A"/>
+		</posteffects>
+	</quest>		
+
+	<quest name="TwinTown_Home_Chapter1_Main3_Sub_4_Helper_B" showQuestWindow="false" showRewardWindow="false" >            	
+		<triggers>
+			<questadventurecompleted name="TwinTown_Main" item="TwinTown_Adv_Chapter1_Sub_33_Decision_B" amount="1" locaExtension="TTadvQuest" />
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Home_Chapter1_Main3_Sub_4_WeeklyReward_B"/>
+		</posteffects>
+	</quest>			
+
+	<quest name="TwinTown_Home_Chapter1_Main3_Sub_4" connectedToQuest="TwinTown_Home_Chapter1_Main3" type="TwinTown" icon="QuestShort" npc="ferri_felder.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" >     
+		<triggers>
+			<questadventurecompleted name="TwinTown_Main" item="TwinTown_Adv_Chapter1_Sub_33" amount="1" locaExtension="TTadvQuest" />
+		</triggers>
+		<posteffects>
+			<reward type="Buff" item="ProductivityBuffZoneOreLvl1" amount="3"/>				
+			<reward type="XP" amount="8000"/>				
+		</posteffects>
+	</quest>
+		
+	
+	<!-- First Decision Reward Loop , TwinTown_Adv_Chapter1_Sub_33 , Saltpeter Mine -->	
+	<quest name="TwinTown_Home_Chapter1_Main3_Sub_4_WeeklyReward_A" type="TwinTown" icon="QuestShort" npc="ferri_felder.png" showQuestWindow="true" showRewardWindow="true">
+		<triggers>
+			<hourselapsed amount="167" />
+		</triggers>		
+		<posteffects>
+			<startquest name="TwinTown_Home_Chapter1_Main3_Sub_4_WeeklyReward_A_Loop"/>
+			<reward type="Buff" item="AddResource" name="Saltpeter" amount="250" />				
+		</posteffects>	
+	</quest>
+	
+	<quest name="TwinTown_Home_Chapter1_Main3_Sub_4_WeeklyReward_A_Loop" type="TwinTown" icon="QuestShort" npc="ferri_felder.png" showQuestWindow="true" showRewardWindow="true">
+		<triggers>
+			<hourselapsed amount="167" />
+		</triggers>		
+		<posteffects>
+			<resetquest name="TwinTown_Home_Chapter1_Main3_Sub_4_WeeklyReward_A_Loop" />
+			<reward type="Buff" item="AddResource" name="Saltpeter" amount="250" />	
+		</posteffects>
+	</quest>	
+	
+	<!-- First Decision Reward Loop , TwinTown_Adv_Chapter1_Sub_33 , Titanium Mine -->	
+
+	<quest name="TwinTown_Home_Chapter1_Main3_Sub_4_WeeklyReward_B" type="TwinTown" icon="QuestShort" npc="ferri_felder.png" showQuestWindow="true" showRewardWindow="true">
+		<triggers>
+			<hourselapsed amount="167" />
+		</triggers>		
+		<posteffects>
+			<startquest name="TwinTown_Home_Chapter1_Main3_Sub_4_WeeklyReward_B_Loop"/>
+			<reward type="Buff" item="AddResource" name="TitaniumOre" amount="250" />				
+		</posteffects>	
+	</quest>
+	
+	<quest name="TwinTown_Home_Chapter1_Main3_Sub_4_WeeklyReward_B_Loop" type="TwinTown" icon="QuestShort" npc="ferri_felder.png" showQuestWindow="true" showRewardWindow="true">	
+		<triggers>
+			<hourselapsed amount="167" />
+		</triggers>		
+		<posteffects>
+			<resetquest name="TwinTown_Home_Chapter1_Main3_Sub_4_WeeklyReward_B_Loop" />
+			<reward type="Buff" item="AddResource" name="TitaniumOre" amount="250" />				
+		</posteffects>	
+	</quest>		
+	
+	
+	<quest name="TwinTown_Home_Chapter1_Main4_Helper" showQuestWindow="false" showRewardWindow="false" >            	
+		<startcondition>		
+		   <questcomplete item="TwinTown_Home_Chapter1_Main1"/>
+           <questcomplete item="TwinTown_Home_Chapter1_Main2"/>
+           <questcomplete item="TwinTown_Home_Chapter1_Main3"/>	 
+		</startcondition>
+		<triggers>
+		</triggers>
+		<posteffects>
+			<startquest name="TwinTown_Home_Chapter1_Main4"/>
+			<adjustgenericvalue name="TwinTown_Adv_Chapter1_Sub_34_QGV" action="set" amount="1" />	
+		</posteffects>
+	</quest>		
+	
+	<quest name="TwinTown_Home_Chapter1_Main4" type="TwinTown" icon="QuestShort" npc="quest_no_character01.png" showQuestWindow="true" showRewardWindow="true" cancelable="false" >     
+		<triggers>
+			<completeadventurelist item="TwinTown_Main" amount="1" locaExtension="Mission_1"/>	   
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="Token" amount="100" />
+			<reward type="Buff" item="PremiumAccount3Days" amount="1"/>						
+			<reward type="XP" amount="20000"/>			
+			<reward type="Resource" name="Oil" amount="500" />	
+			<reward type="Resource" name="AdvancedTools" amount="1000" />				
+		</posteffects>
+	</quest>	
+	
+	<!-- CHAPTER 1 END -->
+
+
+ </Root>   	

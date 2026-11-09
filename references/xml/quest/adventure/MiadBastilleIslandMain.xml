@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+                                          
+
+<Root>
+
+   <quest name="MiadBastilleIslandMain" type="Story" specialType="firstQuestlastQuest" icon="Military" npc="quest_character_mentor03.png" showQuestWindow="false">
+	   	<preeffects>
+        </preeffects>
+	   	<triggers>
+	   		<questcomplete item="MiadBastilleIslandQ1"/>
+         	<questcomplete item="MiadBastilleIslandQ2"/>
+         	<questcomplete item="MiadBastilleIslandQ3"/>
+         	<questcomplete item="MiadBastilleIslandQ4"/>
+         	<questcomplete item="MiadBastilleIslandQ5"/>
+         	<questcomplete item="MiadBastilleIslandQ6"/>
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="680"/>        
+      </rewards>
+    </quest> 
+   
+   <quest name="MiadBastilleIslandQ1" type="Story" icon="Military" connectedToQuest="MiadBastilleIslandMain" npc="quest_character_mentor03.png" >
+		  <startcondition>
+		   <questactive item="MiadBastilleIslandMain"/>
+		</startcondition>
+		  <triggers>
+         <trigger type="Building" name="tent_riders_02" condition="l" amount="1" locaExtension="bi1" />
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="100"/>        
+      </rewards>
+      <postrequisits>
+       </postrequisits> 
+   </quest>
+  
+	 <quest name="MiadBastilleIslandQ2" type="Story" icon="Military" connectedToQuest="MiadBastilleIslandMain" npc="quest_character_mentor03.png" specialType="firstQuest" >
+	  	<startcondition>
+		   <questactive item="MiadBastilleIslandMain"/>
+		</startcondition>
+	  	<triggers>
+         <trigger type="Building" name="FortifiedWarehouse" condition="l" amount="1" locaExtension="bi2" />
+  	   </triggers>
+      <rewards>
+         <reward type="XP" amount="100"/>        
+      </rewards>
+		  <postrequisits>
+      </postrequisits>       
+    </quest>
+   
+    
+   <quest name="MiadBastilleIslandQ3" type="Story" icon="Military" connectedToQuest="MiadBastilleIslandMain" npc="quest_character_mentor03.png" specialType="firstQuest" >
+		  <startcondition>
+		   <questactive item="MiadBastilleIslandMain"/>
+		</startcondition>
+		  <triggers>
+         <trigger type="Building" name="WitchTower" condition="l" amount="1" locaExtension="bi3" />         
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="200"/>        
+      </rewards>
+      <postrequisits>
+       </postrequisits> 
+    </quest>
+    
+   <quest name="MiadBastilleIslandQ4" type="Story" icon="Military" connectedToQuest="MiadBastilleIslandMain" npc="quest_character_mentor03.png" specialType="firstQuest" >	  
+      <startcondition>
+		   <questactive item="MiadBastilleIslandMain"/>
+		</startcondition>
+      <triggers>
+         <trigger type="Building" name="tent_nords_02" condition="l" amount="1" locaExtension="bi4" />         
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="200"/>        
+      </rewards>
+      <postrequisits>
+       </postrequisits> 
+    </quest>   
+    
+   <quest name="MiadBastilleIslandQ5" type="Story" icon="Military" connectedToQuest="MiadBastilleIslandMain" npc="quest_character_mentor03.png" specialType="firstQuest" >	 
+      <startcondition>
+		   <questactive item="MiadBastilleIslandMain"/>
+		</startcondition>
+      <triggers>
+         <trigger type="Building" name="BigWatchtower" condition="l" amount="1" locaExtension="bi5" />         
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="50"/>        
+      </rewards>
+      <postrequisits>
+         <postrequisite startQuest="MiadBastilleIslandQ6" /> 
+       </postrequisits> 
+    </quest>        
+
+   <quest name="MiadBastilleIslandQ6" type="Story" icon="Military" connectedToQuest="MiadBastilleIslandMain" npc="quest_character_mentor03.png" >   	
+       <triggers>
+         <trigger type="Building" name="ruinAncientLibrary_02" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="bi6" />  <!-- no good -->
+         <trigger type="Building" name="Pirate-hut02" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="bi7" />
+         <trigger type="Building" name="WitchTower_Statue_West" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="bi8" />
+         <trigger type="Building" name="a_exhausted_well_01" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="bi9" />   <!-- no good -->
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="50"/>        
+      </rewards>
+		  <postrequisits>
+      </postrequisits>     
+    </quest>
+
+</Root>
+
+    
+    
+      
+      
+      
+      
+
+

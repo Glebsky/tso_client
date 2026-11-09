@@ -1,0 +1,78 @@
+{
+  "amf_version": 3,
+  "headers": 0,
+  "bodies": [
+    {
+      "target": "/5/onResult",
+      "response": "",
+      "declared_len": 4294967295,
+      "marker": "0x11",
+      "value": {
+        "__class": "flex.messaging.messages.AcknowledgeMessage",
+        "body": {
+          "__class": "defaultGame.Communication.VO.dServerResponse",
+          "type": 1063,
+          "zoneID": 1601416,
+          "data": {
+            "__class": "defaultGame.Communication.VO.dServerActionResult",
+            "clientTime": 0.0,
+            "errorCode": 0,
+            "data": {
+              "__class": "flex.messaging.io.ArrayCollection",
+              "__externalizable": true,
+              "__value": [
+                {
+                  "__class": "defaultGame.Communication.VO.TradeWindow.dTradeObjectVO",
+                  "id": 36043367,
+                  "senderID": 2421231,
+                  "senderName": "Zidolls",
+                  "receiverID": 1601416,
+                  "type": 0,
+                  "slotType": 0,
+                  "slotPos": 0,
+                  "created": 1766253198000.0,
+                  "remainingTime": 0.0,
+                  "offer": "Iron,1000|IronOre,4000|4",
+                  "lotsRemaining": 0,
+                  "deleted": 1766253217000.0,
+                  "removed": 0,
+                  "offerAcceptedID": 36043362,
+                  "coolDownTime": 0.0,
+                  "isTradeCancled": false
+                },
+                {
+                  "__class": "defaultGame.Communication.VO.TradeWindow.dTradeObjectVO",
+                  "id": 36043362,
+                  "senderID": 1601416,
+                  "senderName": "CipSoft",
+                  "receiverID": 0,
+                  "type": 0,
+                  "slotType": 0,
+                  "slotPos": 0,
+                  "created": 1766253145000.0,
+                  "remainingTime": 0.0,
+                  "offer": "Iron,1000|IronOre,4000|4",
+                  "lotsRemaining": 3,
+                  "deleted": 1766300278000.0,
+                  "removed": 0,
+                  "offerAcceptedID": 0,
+                  "coolDownTime": 0.0,
+                  "isTradeCancled": false
+                }
+              ]
+            }
+          }
+        },
+        "clientId": "17c99a47-1bb6-4497-8984-2b3da270dfeb",
+        "correlationId": "d70b1c70-252a-4d97-ab37-f16506331ac4",
+        "destination": null,
+        "headers": {
+          "__class": "Object"
+        },
+        "messageId": "1207ed8b-e361-4a7b-8682-be662ed89496",
+        "timeToLive": 0.0,
+        "timestamp": 1787943112852.0
+      }
+    }
+  ]
+}

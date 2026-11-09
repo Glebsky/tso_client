@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+
+	<!-- RED NOSE EVENT QUESTS -->
+
+	<quest name="RedNose_DonateStuff" type="Event" icon="RedNose" linkEventWindow="true" cancelable="false">
+		<triggers>
+			<!--  trigger type="EventCounter" condition="eventdonate" name="RedNose" amount="80" showAsPercentage="true"  -->
+		</triggers>
+		<posteffects>
+			<reward type="Resource" name="HardCurrency" amount="100" />
+			<reward type="Buff" item="BuildBuilding" name="Watermill" amount="1" recurringChance="100" />
+			<reward type="Buff" item="ProductivityBuffLvl12" amount="1" />
+		</posteffects>
+	</quest>
+
+	<quest name="RedNose_Main" type="Event" icon="RedNose" linkEventWindow="true" cancelable="false">
+		<triggers>
+			<trigger type="QuestComplete" name="RedNose_Reach16" condition="questcompleted" amount="1" />
+			<trigger type="QuestComplete" name="RedNose_Sub1" condition="questcompleted" amount="1" />
+			<trigger type="QuestComplete" name="RedNose_Sub2" condition="questcompleted" amount="1" />
+			<trigger type="QuestComplete" name="RedNose_Sub3" condition="questcompleted" amount="1" />
+			<trigger type="QuestComplete" name="RedNose_Sub4" condition="questcompleted" amount="1" />
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="RedNose" amount="200" />
+		</rewards>
+	</quest>
+
+	<quest name="RedNose_Reach16" connectedToQuest="RedNose_Main" type="Event" icon="XP" linkEventWindow="true"
+		cancelable="false">
+		<startcondition>
+			<questactive item="RedNose_Main" />
+		</startcondition>
+		<triggers>
+			<trigger type="PlayerLevel" name="" condition="ge" amount="16" locaExtension="RedNose" />
+			<trigger type="WindowOpen" name="GAMESTATE_ID_AVATAR.options" amount="1" />
+			<trigger type="WindowOpen" name="GAMESTATE_ID_EVENT_WINDOW" amount="1" />
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="RedNose" amount="10" />
+		</rewards>
+	</quest>
+
+	<quest name="RedNose_Sub1" type="Event" connectedToQuest="RedNose_Main" icon="RedNose" linkEventWindow="true"
+		cancelable="false">
+		<startcondition>
+			<questcomplete item="RedNose_Reach16" />
+		</startcondition>
+		<triggers>
+			<trigger type="SpecialistTask" name="FindTreasureShort" condition="found" resourceType="RedNose" amount="1" />
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="RedNose" amount="50" />
+		</rewards>
+	</quest>
+
+	<quest name="RedNose_Sub2" type="Event" connectedToQuest="RedNose_Main" icon="RedNose" linkEventWindow="true"
+		cancelable="false">
+		<startcondition>
+			<questcomplete item="RedNose_Sub1" />
+		</startcondition>
+		<triggers>
+			<!--  <trigger type="Resource" name="RedNose" amount="5" condition="eventdonate" /> -->
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="RedNose" amount="50" />
+		</rewards>
+	</quest>
+
+	<quest name="RedNose_Sub3" type="Event" connectedToQuest="RedNose_Main" icon="RedNose" linkEventWindow="true"
+		cancelable="false">
+		<startcondition>
+			<questcomplete item="RedNose_Sub2" />
+		</startcondition>
+		<triggers>
+			<trigger type="Resource" name="CollectibleHerbs" condition="ge" amount="8" />
+			<trigger type="Resource" name="CollectibleScarecrow" condition="ge" amount="8" />
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="RedNose" amount="50" />
+		</rewards>
+	</quest>
+
+	<quest name="RedNose_Sub4" type="Event" connectedToQuest="RedNose_Main" icon="RedNose" linkEventWindow="true"
+		cancelable="false">
+		<startcondition>
+			<questcomplete item="RedNose_Sub3" />
+		</startcondition>
+		<triggers>
+			<trigger type="Building" name="Mayorhouse" condition="selected" amount="1" />
+			<trigger type="WindowOpen" name="GAMESTATE_ID_WAREHOUSE_INFO_PANEL.Collections" amount="1" />
+			<trigger type="Buff" name="AddResource_RedNoseCollection" amount="1" condition="produce" icon="buildings:Mayorhouse" />
+		</triggers>
+		<rewards>
+			<reward type="Resource" name="RedNose" amount="50" />
+		</rewards>
+		<hints>
+			<hint pointTo="GAMESTATE_ID_WAREHOUSE_INFO_PANEL.Collections" type="Glow" />
+		</hints>
+	</quest>
+
+</Root>

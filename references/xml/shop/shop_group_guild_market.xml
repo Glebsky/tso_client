@@ -1,0 +1,1074 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Group id="16" name="GuildMarket" sortIndex="12" hideInShop="false" voteBatchDurationInDays="21">
+
+<!-- GUILD MARKET BATCH 13 -->
+<!-- If a ShopItem is not needed for the next vote round it has to have disabled="true" (only used by the py script) -->
+
+
+<!-- Specialist 60000 - 60499 -->
+		
+<!-- Buildings 60500 - 60999 -->
+		<ShopItem id="60500" name="BuildingArcticGoldMine" sortIndex="1" perVoteRound="1" quality="3" playerLevel="24" giftable="false" icon="icon_goldmine_lvl6" frameType="buffInstant" votePoolName="UniqueItems">
+			<Costs>
+				<Cost name="GuildCoins" count="4340"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="BuildBuilding" resource="ArcticGoldMine" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="60501" name="BuildingArcticIronMine" sortIndex="1" perVoteRound="1" quality="3" playerLevel="20" giftable="false" icon="icon_arctic_ironmine01" frameType="buffInstant" votePoolName="UniqueItems">
+			<Costs>
+				<Cost name="GuildCoins" count="4340"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="BuildBuilding" resource="ArcticIronMine" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="60502" name="BuildingCoalWorkyard" sortIndex="1" perVoteRound="1" quality="3" playerLevel="16" giftable="false" icon="icon_recyclingmanufactury" frameType="buffInstant" votePoolName="UniqueItems">
+			<Costs>
+				<Cost name="GuildCoins" count="3930"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="BuildBuilding" resource="coal_workyard" recurringChance="100" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="60503" name="BuildingDeerstalkerHut" sortIndex="1" perVoteRound="1" quality="3" playerLevel="16" giftable="false" icon="icon_deerstalker01" frameType="buffInstant" votePoolName="UniqueItems">
+			<Costs>
+				<Cost name="GuildCoins" count="7910"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="BuildBuilding" resource="DeerstalkerHut" recurringChance="100" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="60504" name="BuildingExoticWoodTreeSchool" sortIndex="1" perVoteRound="1" quality="3" playerLevel="26" giftable="false" icon="icon_exoticwood_treeschool" frameType="buffInstant" votePoolName="UniqueItems">
+			<Costs>
+				<Cost name="GuildCoins" count="7830"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="BuildBuilding" resource="ExoticWoodTreeSchool" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="60505" name="BuildingFarmfield_02" sortIndex="1" perVoteRound="1" quality="3" playerLevel="13" giftable="false" icon="buff_farmfield_02" frameType="buffInstant" votePoolName="UniqueItems">
+			<Costs>
+				<Cost name="GuildCoins" count="380"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="BuildBuilding" resource="Farmfield_02" />
+			</Content>
+		</ShopItem>	
+		
+		<ShopItem id="60506" name="FishFarm" sortIndex="1" perVoteRound="1" quality="3" playerLevel="6" giftable="false" icon="icon_fishfarm" frameType="buffInstant" votePoolName="UniqueItems">
+			<Costs>
+				<Cost name="GuildCoins" count="3350"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="BuildBuilding" resource="FishFarm" recurringChance="100" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="60507" name="BuildingFloatingResidence" sortIndex="1" perVoteRound="1" quality="3" playerLevel="5" giftable="false" icon="icon_floating_house01" frameType="buffInstant" votePoolName="UniqueItems">
+			<Costs>
+				<Cost name="GuildCoins" count="1150"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="BuildBuilding" resource="FloatingResidence" recurringChance="100" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="60508" name="BuildingFriary" sortIndex="1" perVoteRound="1" quality="3" giftable="false" icon="icon_em_building_friary01" frameType="buffInstant" votePoolName="UniqueItems">
+			<Costs>
+				<Cost name="GuildCoins" count="9720"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="BuildBuilding" resource="Friary" recurringChance="100" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="60509" name="BuildingGranitePit" sortIndex="1" perVoteRound="1" quality="3" playerLevel="26" giftable="false" icon="icon_granite_pit" frameType="buffInstant" votePoolName="UniqueItems">
+			<Costs>
+				<Cost name="GuildCoins" count="7830"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="BuildBuilding" resource="GranitePit" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="60510" name="BuildingImprovedButcher" sortIndex="1" perVoteRound="1" playerLevel="22"  giftable="false" icon="icon_butcher_building" frameType="buffInstant" votePoolName="UniqueItems">
+			<Costs>
+				<Cost name="GuildCoins" count="7440"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="BuildBuilding" resource="ImprovedButcher" recurringChance="100" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="60511" name="BuildingImprovedFarm" sortIndex="1" perVoteRound="1" quality="3" playerLevel="13" giftable="false" icon="icon_improved_farm" frameType="buffInstant" votePoolName="UniqueItems">
+			<Costs>
+				<Cost name="GuildCoins" count="3350"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="BuildBuilding" resource="ImprovedFarm" recurringChance="100"/>
+			</Content>
+		</ShopItem> 
+		
+		<ShopItem id="60512" name="ImprovedMill" sortIndex="1" perVoteRound="1" playerLevel="5" giftable="false" icon="icon_improved_mill" frameType="buffInstant" votePoolName="UniqueItems">
+			<Costs>
+				<Cost name="GuildCoins" count="3870"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="BuildBuilding" resource="ImprovedMill" recurringChance="100" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="60513" name="BuildingImprovedSilo" sortIndex="1" perVoteRound="1" quality="3" playerLevel="13" giftable="false" icon="icon_silo_high_quality" frameType="buffInstant" votePoolName="UniqueItems">
+			<Costs>
+				<Cost name="GuildCoins" count="7910"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="BuildBuilding" resource="ImprovedSilo" recurringChance="100"/>
+			</Content>
+		</ShopItem> 
+		
+		<ShopItem id="60514" name="BuildingImprovedWarehouse" sortIndex="1" perVoteRound="1" quality="3" playerLevel="5" giftable="false" icon="icon_improved_warehouse" frameType="buffInstant" votePoolName="UniqueItems">
+			<Costs>
+				<Cost name="GuildCoins" count="2980"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="BuildBuilding" resource="ImprovedWarehouse" recurringChance="100"/>
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="60515" name="BuildingImprovedWatermill" sortIndex="1" perVoteRound="1" quality="3" playerLevel="13" giftable="false" icon="icon_improved_watermill" frameType="buffInstant" votePoolName="UniqueItems">
+			<Costs>
+				<Cost name="GuildCoins" count="4720"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="BuildBuilding" resource="ImprovedWatermill" recurringChance="100" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="60516" name="BuildingNobleResidence" sortIndex="1" perVoteRound="1" quality="3" playerLevel="5" giftable="false" icon="buff_noble_residence_01" frameType="buffInstant" votePoolName="UniqueItems">
+			<Costs>
+				<Cost name="GuildCoins" count="380"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="BuildBuilding" resource="NobleResidence" recurringChance="100" />
+			</Content>
+		</ShopItem>  
+		
+		<ShopItem id="60517" name="BuildingSilo" sortIndex="1" perVoteRound="1" quality="3" playerLevel="13" giftable="false" icon="icon_silo1" frameType="buffInstant" votePoolName="UniqueItems">
+			<Costs>
+				<Cost name="GuildCoins" count="2980"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="BuildBuilding" resource="silo" recurringChance="100"/>
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="60518" name="BuildingVillageSchool" sortIndex="1" perVoteRound="1" quality="3" playerLevel="1" giftable="false" icon="icon_village_school01" frameType="buffInstant" votePoolName="UniqueItems">
+			<Costs>
+				<Cost name="GuildCoins" count="2980"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="BuildBuilding" resource="VillageSchool" recurringChance="100" />
+			</Content>
+		</ShopItem>	
+		
+		<ShopItem id="60519" name="BuildingWatermill" sortIndex="1" perVoteRound="1" quality="3" playerLevel="13" giftable="false" icon="icon_watermill" frameType="buffInstant" votePoolName="UniqueItems">
+			<Costs>
+				<Cost name="GuildCoins" count="3550"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="BuildBuilding" resource="Watermill" recurringChance="100" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="60520" name="BuildingWell_02" sortIndex="1" perVoteRound="1" quality="2" playerLevel="13" giftable="false" icon="icon_well_04" frameType="buffInstant" votePoolName="UniqueItems">
+			<Costs>
+				<Cost name="GuildCoins" count="380"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="BuildBuilding" resource="Well_02"  />
+			</Content>
+		</ShopItem>
+			
+
+<!-- Adventures 61000 - 61499 -->		
+		<ShopItem id="61000" name="1001NightsWoodcutter" sortIndex="1" quality="1" playerLevel="51" icon="icon_ali_baba_the_young_woodcutter" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="1970"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="1001NightsWoodcutter" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61001" name="AdventureBanditNest" sortIndex="1" quality="1" playerLevel="36" icon="bandit_nest" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="630"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="BanditNest" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61002" name="AdventureMilitaryBirthday2" sortIndex="1" quality="1" playerLevel="26" icon="adventure_military02" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="570"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="Birthday2013MilitaryAdventure2ShopVersion" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61003" name="AdventureBountyHunter" sortIndex="1" quality="1" playerLevel="26" icon="bounty_hunter" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="100"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="BountyHunterNew" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61004" name="AdventureBuccaneerRoundup" sortIndex="1" quality="1" playerLevel="26" icon="buccaneer_roundup" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="200"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="BuccaneerRoundup" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61005" name="BuffAdventures_heartOfTheWood_medium" sortIndex="1" quality="1" playerLevel="26" icon="easter2015_adventure3" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="270"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="BuffAdventures_heartOfTheWood_medium" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61006" name="BuffAdventuresRichesoftheMountain" sortIndex="1" quality="1" playerLevel="26" icon="easter2015_adventure4" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="730"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="BuffAdventures_Riches_of_the_Mountain" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61007" name="BuffAdventureGrainConflict" sortIndex="1" quality="1" playerLevel="26" icon="easter2015_adventure1" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="70"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="BuffAdventures_safeTheTowns_easy" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61008" name="AdventureStormRecovery" sortIndex="1" quality="1" playerLevel="42" icon="icon_storm_recovery" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="1400"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="BuffAdventures_Storm_Recovery" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61009" name="BuffAdventureTwins" sortIndex="1" quality="1" playerLevel="26" icon="easter2015_adventure2" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="70"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="BuffAdventures_twins_easy" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61010" name="AdventureGunpowder" sortIndex="1" quality="1" playerLevel="36" icon="icon_shop_adventure_gunpowder" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="870"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="Gunpowder" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61011" name="AdventureHorseback" sortIndex="1" quality="1" playerLevel="26" icon="horseback" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="300"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="Horseback" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61012" name="AdventureLakesideTreasure" sortIndex="1" quality="1" playerLevel="36" icon="lakeside_treasure" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="370"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="LakesideTreasure" count="1" />
+			</Content>
+		</ShopItem> 
+		
+		<ShopItem id="61013" name="AdventureMadHenry" sortIndex="1" quality="1" playerLevel="16" icon="wild_mary" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="570"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="MadHenry" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61014" name="MIADArcticExplosion" sortIndex="1" quality="1" playerLevel="42" icon="artic_explosion" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="870"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="MiadArcticExplosion" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61015" name="MIADBastilleIsland" sortIndex="1" quality="1" playerLevel="36" icon="bastille_island" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="670"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="MiadBastilleIsland" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61016" name="AdventureMiadPirateLife" sortIndex="1" quality="1" playerLevel="36" icon="pirate_life" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="570"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="MiadPirateLife" count="1" />
+			</Content>
+		</ShopItem> 
+		
+		<ShopItem id="61017" name="AdventureMiadSleepyReef" sortIndex="1" quality="1" playerLevel="26" icon="the_sleepy_reef" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="270"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="MiadSleepyReef" count="1" />
+			</Content>
+		</ShopItem> 
+		
+		<ShopItem id="61018" name="AdventureMiadTheLostSkull" sortIndex="1" quality="1" playerLevel="15" frameType="buffInstant" icon="lost_Skull" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="200"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="MiadTheLostSkull" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61019" name="AdventureMiadTheSleepingVolcano" sortIndex="1" quality="1" playerLevel="26" icon="the_sleeping_volcano" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="200"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="MiadTheSleepingVolcano" count="1" />
+			</Content>
+		</ShopItem>  
+		
+		<ShopItem id="61020" name="AdventureMiadTropicalSun" sortIndex="1" quality="1" playerLevel="26" icon="tropical_sun" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="200"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="MiadTropicalSun" count="1" />
+			</Content>
+		</ShopItem> 
+		
+		<ShopItem id="61021" name="AdventureOutlaws" sortIndex="1" quality="1" playerLevel="36" icon="outlaws" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="630"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="Outlaws" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61022" name="AdventureRaidingTheRaiders" sortIndex="1" quality="1" playerLevel="36" icon="raiding_the_raiders" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="330"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="RaidingTheRaiders" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61023" name="AdventureRoaringBull" sortIndex="1" quality="1" playerLevel="42" icon="roaring_bull" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="870"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="RoaringBull" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61024" name="AdventureSecludedExperiments" sortIndex="1" quality="1" playerLevel="42" icon="secluded_experiments" frameType="buffInstant" votePoolName="DefaultItems">
+				<Costs>
+					<Cost name="GuildCoins" count="1270"/>>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="SecludedExperiments" count="1" />
+				</Content>
+		</ShopItem>
+				
+		<ShopItem id="61025" name="AdventureStealingFromTheRich" sortIndex="1" quality="1" playerLevel="26" icon="stealing_from_the_rich" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="430"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="StealingFromTheRich" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61026" name="AdventureSurpriseAttack" sortIndex="1" quality="1" playerLevel="36" icon="surprise_attack" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="770"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="SurpriseAttack" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61027" name="AdventureTheBlackKnights" sortIndex="1" quality="1" playerLevel="42" icon="the_black_knights" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="700"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="TheBlackKnights" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61028" name="AdventureTheDarkBrotherhood" sortIndex="1" quality="1" playerLevel="42" icon="the_dark_brotherhood" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="1130"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="TheDarkBrotherhood" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61029" name="AdventureTheDarkPriests" sortIndex="1" quality="1" playerLevel="26" icon="the_dark_priests" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="270"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="TheDarkPriests" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61030" name="AdventureTheIslandOfThePirates" sortIndex="1" quality="1" playerLevel="26" icon="island_of_the_pirates" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>                                                                                                                                                                    
+				<Cost name="GuildCoins" count="170"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="TheIslandOfThePirates" count="1" />
+			</Content>
+		</ShopItem> 
+		
+		<ShopItem id="61031" name="AdventureTheNords" sortIndex="1" quality="1" playerLevel="36" icon="the_nords" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="670"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="TheNords" count="1" />
+			</Content>
+		</ShopItem> 
+		
+		<ShopItem id="61032" name="AdventureTheSiege" sortIndex="1" quality="1" playerLevel="26" icon="the_siege" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="270"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="TheSiege" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61033" name="AdventureTheValiantLittleTailor" sortIndex="1" quality="1" playerLevel="45" icon="the_valiant_little_tailor" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="1270"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="TheValiantLittleTailor" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61034" name="AdventureVictorTheVicious" sortIndex="1" quality="1" playerLevel="36" icon="victor_the_vicious" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="770"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="VictorTheVicious" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61035" name="AdventureWhirlwind" sortIndex="1" quality="1" playerLevel="42" icon="whirlwind" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="600"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="Whirlwind" count="1" />
+			</Content>
+		</ShopItem>	
+		
+		<ShopItem id="61036" name="AdventureWitchOfTheSwamp" sortIndex="1" quality="1" playerLevel="26" icon="witch_of_the_swamp" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="230"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="WitchOfTheSwamp" count="1" />
+			</Content>
+		</ShopItem>
+		
+
+<!-- Buffs 61500 - 61999 -->	
+		<ShopItem id="61500" name="Shop_AnimalBuff_blackknights" sortIndex="1" quality="1" playerLevel="1" icon="buff_black_knights" frameType="ZoneTimed" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="190"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="AnimalBuff_blackknights" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61501" name="AnimalBuff_ghosts" sortIndex="1" quality="1" playerLevel="1" icon="icon_ouija_board" frameType="ZoneTimed" votePoolName="DefaultItems">
+				<Costs>
+					<Cost name="GuildCoins" count="190"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="AnimalBuff_ghosts"/>
+				</Content>		
+		</ShopItem>
+		
+		<ShopItem id="61502" name="Shop_AnimalBuff_reindeer" sortIndex="1" quality="1" playerLevel="1" icon="buff_reindeer_bait" frameType="ZoneTimed" votePoolName="DefaultItems">
+				<Costs>
+					<Cost name="GuildCoins" count="190"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="AnimalBuff_reindeer"/>
+				</Content>		
+		</ShopItem>
+		
+		<ShopItem id="61503" name="Shop_AnimalBuff_unicorn" sortIndex="1" quality="1" playerLevel="1" icon="buff_unicorn" frameType="ZoneTimed" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="190"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="AnimalBuff_unicorn"/>
+			</Content>		
+		</ShopItem>	
+		
+		<ShopItem id="61504" name="AnimalBuff_Zombies" sortIndex="1" quality="1" playerLevel="1" icon="icon_zombie_bite" frameType="ZoneTimed" votePoolName="DefaultItems">
+				<Costs>
+					<Cost name="GuildCoins" count="190"/>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="AnimalBuff_zombies"/>
+				</Content>		
+		</ShopItem>
+		
+		<ShopItem id="61505" name="BookbinderBoostLvl1" sortIndex="1" quality="1" playerLevel="15" frameType="buffTimed" icon="icon_hide_glue" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="460"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="BookbinderBuffLvl1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61506" name="ShopBookbinderBuffLvl2" sortIndex="1" quality="1" playerLevel="10" icon="icon_wilderwood_resin" frameType="buffTimed" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="680"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="BookbinderBuffLvl2" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61507" name="EasterAreaBuff" sortIndex="1" quality="1" playerLevel="1" icon="buff_inspirational_speech" frameType="buffTimed" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="890"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="ProductivityAreaBuffLvl1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61508" name="ProductivityBuffEW1" sortIndex="1" quality="1" playerLevel="48" icon="icon_epic_workyard01"  frameType="buffTimed" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="200"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="ProductivityBuffEW1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61509" name="ProductivityBuffEW2" sortIndex="1" quality="1" playerLevel="48" icon="buff_epic_workyard_chant"  frameType="buffTimed" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="300"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="ProductivityBuffEW2" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61510" name="ProductionBoostLvl6" sortIndex="1" quality="1" playerLevel="1" icon="icon_helpful_scarecrow" frameType="buffTimed" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="320"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="ProductivityBuffLvl15" />
+			</Content>
+		</ShopItem>	
+		
+		<ShopItem id="61511" name="ShopProductivityBuffLvl16" sortIndex="1" quality="1" playerLevel="10" icon="icon_mayan_omniseed01" frameType="buffTimed" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="490"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="ProductivityBuffLvl16" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61512" name="ProductionBoostLvl7" sortIndex="1" quality="1" playerLevel="10" icon="icon_gold_fever01" frameType="buffTimed" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="320"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="ProductivityBuffLvl17" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61513" name="DamasceneHammer" sortIndex="1" quality="1" playerLevel="1" icon="icon_damascene_hammer_buff" frameType="buffTimed" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="400"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="ProductivityBuffLvl18" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61514" name="ChristmasSchoolBuff" sortIndex="1" quality="1" playerLevel="1" icon="icon_hot_lemon_tea" frameType="buffTimed" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="480"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="ProductivityBuffLvl19" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61515" name="ProductionBoostLvl1" sortIndex="1" quality="1" playerLevel="1" icon="buff_exotic_fruit_basket" frameType="buffTimed" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="300"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="ProductivityBuffLvl4" />
+			</Content>
+		</ShopItem>	
+		
+		<ShopItem id="61516" name="ProductionBoostLvl2" sortIndex="1" quality="1" playerLevel="1" icon="buff_red_flying_settler" frameType="buffTimed" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="590"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="ProductivityBuffLvl5" />
+			</Content>
+		</ShopItem>	
+		
+		<ShopItem id="61517" name="ProductionBoostLvl3" sortIndex="1" quality="1" playerLevel="1" icon="zombie_icon" frameType="buffTimed" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="400"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="ProductivityBuffLvl7" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61518" name="ChristmasProductivityBuff" sortIndex="1" quality="1" playerLevel="1" icon="icon_cookies" frameType="buffTimed" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="790"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="ProductivityBuffLvl8" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61519" name="IronMineProdBoost" sortIndex="1" quality="1" playerLevel="20" icon="buff_iron_ore_extractor" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="630"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="ProductivityBuffLvlIronMine" />
+			</Content>
+		</ShopItem> 
+		
+		<ShopItem id="61520" name="EasternProvisionerBuffLvl1" sortIndex="1" quality="1"  playerLevel="7" icon="buff_chocolate_bunny01" frameType="buffTimed" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="380"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="ProvisionerBuffLvl1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61521" name="EasterEggPraline" sortIndex="1" quality="1" playerLevel="7" icon="buff_box_of_chocolates01" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="570"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="ProvisionerBuffLvl2" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61522" name="ProvisionerBuffLvl301" sortIndex="1" quality="1" playerLevel="30" frameType="buffTimed" icon="buff_weaponsmith2" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="510"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="ProvisionerBuffLvl301" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61523" name="ShopRecoverGeneral" sortIndex="1" quality="1" playerLevel="13" icon="Icon_General2.0" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="1560"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="RecoverGeneral" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61524" name="RecruitingBuffLvl1" sortIndex="1" quality="1" playerLevel="16" icon="buff_recruiting_buff_lvl_01" frameType="buffTimed" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="590"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="RecruitingBuffLvl1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61525" name="RecruitingBuffLvl2" sortIndex="1" quality="1" playerLevel="14" icon="icon_myer" frameType="buffTimed" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="100"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="RecruitingBuffLvl2" />
+			</Content>
+		</ShopItem> 
+		
+		<ShopItem id="61526" name="RecruitingBuffLvl301" sortIndex="1" quality="1" playerLevel="30" frameType="buffTimed" icon="buff_barracks2" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="760"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="RecruitingBuffLvl301" />
+			</Content>   
+		</ShopItem>  
+		
+		<ShopItem id="61527" name="RecruitingBuffLvl4" sortIndex="1" quality="1" playerLevel="14" icon="nash_williams" frameType="buffTimed" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="200"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="RecruitingBuffLvl4" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61528" name="RevealCollectiblesBuff01" sortIndex="1" quality="1" playerLevel="16" icon="c_buff_reveal_collectibles" frameType="ZoneTimed" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="30"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="RevealCollectiblesBuff01" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61529" name="RevealCollectiblesBuff02" sortIndex="1" quality="1" playerLevel="16" icon="c_buff_reveal_collectibles_adventure" frameType="ZoneTimed" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="60"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="RevealCollectiblesBuff02" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61530" name="SpeedUpPopulationGrowth" sortIndex="1" quality="1" playerLevel="1" icon="buff_speedup_population_01" frameType="buffTimed" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="460"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="SpeedUpPopulationGrowth" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61531" name="SpeedUpPopulationGrowth2" sortIndex="1" quality="1" playerLevel="1" icon="WHOLESALE_cheese_sandwich" frameType="buffTimed" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="30"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="SpeedUpPopulationGrowth2" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="61532" name="SpeedUpPopulationGrowth5" sortIndex="1" quality="1" playerLevel="26" icon="icon_celebrity" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="910"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="SpeedUpPopulationGrowth5" />
+			</Content>
+		</ShopItem>
+
+
+<!-- Resource 62000 - 62499 --> 			
+	
+			
+<!-- Refill 62500 - 62999 -->	
+		<ShopItem id="62500" name="FillUpAny" sortIndex="1" quality="1" playerLevel="3" icon="fill_up_any" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="190"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="FillDeposit" count="250" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="62501" name="FillUpCopperLvl1" sortIndex="1" quality="1" playerLevel="8" icon="fill_up_copper_lvl1" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="100"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="FillDeposit" resource="BronzeOre"  count="500"  />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="62502" name="CoalRefillGuild" sortIndex="1" quality="1" playerLevel="1" icon="icon_black_chunk" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="300"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="FillDeposit" resource="Coal" count="1000" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="62503" name="FillUpGoldLvl1" sortIndex="1" quality="1" playerLevel="23" icon="fill_up_gold_lvl1" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="250"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="FillDeposit" resource="GoldOre" count="500" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="62504" name="FillUpGraniteLvl1" sortIndex="1" quality="1" playerLevel="60" icon="icon_granite_hammer" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="230"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="FillDeposit" resource="Granite" count="500" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="62505" name="FillUpIronLvl1" sortIndex="1" quality="1" playerLevel="18" icon="fill_up_iron_lvl1" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="200"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="FillDeposit" resource="IronOre" count="750" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="62506" name="GuildFillMarble" sortIndex="1" quality="1" playerLevel="1" icon="icon_hidden_marble" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="120"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="FillDeposit" resource="Marble" count="500" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="62507" name="RabbitFood" sortIndex="1" quality="1" playerLevel="21" icon="icon_rabbitfood" frameType="buffInstant" tooltip="Resource" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="150"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="FillDeposit" resource="Meat" count="1000" />
+			</Content>
+		</ShopItem>
+
+		<ShopItem id="62508" name="FillUpSalpeterLvl1" sortIndex="1" quality="1" playerLevel="62" icon="icon_salt_enrichment" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="330"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="FillDeposit" resource="Salpeter" count="500" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="62509" name="FillUpStoneLvl1" sortIndex="1" quality="1" playerLevel="3" icon="fill_up_stone_lvl1" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="50"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="FillDeposit" resource="Stone" count="500" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="62510" name="FillUpTitaniumLvl1" sortIndex="1" quality="1" playerLevel="61" icon="icon_titan_drill" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="280"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="FillDeposit" resource="TitaniumOre" count="500" />
+			</Content>
+		</ShopItem>	
+	
+		
+<!-- Items for the first Fake results -->
+		<ShopItem id="63000" name="MasterExplorerLvl1" disabled="true" sortIndex="1" perVoteRound="1" giftable="false" playerLevel="7" quality="1" frameType="specialist" icon="specialist_master_explorer" votePoolName="UniqueItems">
+				<Costs>
+					<Cost name="GuildCoins" count="3000"/>
+				</Costs>
+				<Content>
+					<Item type="Specialist" name="MasterExplorer" count="1" />
+				</Content> 			
+		</ShopItem>
+		
+		<ShopItem id="63001" name="BuildingImprovedWatermill" disabled="true" sortIndex="1" perVoteRound="1" quality="3" playerLevel="13" icon="icon_improved_watermill" frameType="buffInstant" votePoolName="UniqueItems">
+			<Costs>
+				<Cost name="GuildCoins" count="3500"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="BuildBuilding" resource="ImprovedWatermill" recurringChance="100" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="63002" name="Groutlvl1" disabled="true" sortIndex="1" perVoteRound="1" quality="1" icon="icon_plaster" frameType="buffInstant" votePoolName="UniqueItems">
+				<Costs>
+					<Cost name="GuildCoins" count="1825"/>
+				</Costs>
+				<Content>
+					<Item type="Resource" resource="Grout" count="200" />
+				</Content>
+		</ShopItem>   
+		
+		<ShopItem id="63003" name="SpeedUpPopulationGrowth5" disabled="true" sortIndex="1" quality="1" playerLevel="26" icon="icon_celebrity" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="225"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="SpeedUpPopulationGrowth5" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="63004" name="ProductionBoostLvl2" disabled="true" sortIndex="1" quality="1" playerLevel="1" icon="buff_red_flying_settler" frameType="buffTimed" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="600"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="ProductivityBuffLvl5" />
+			</Content>
+		</ShopItem>		
+		
+		<ShopItem id="63005" name="EasterAreaBuff" disabled="true" sortIndex="1" quality="1" playerLevel="1" icon="buff_inspirational_speech" frameType="buffTimed" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="2150"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="ProductivityAreaBuffLvl1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="63006" name="RecruitingBuffLvl4" disabled="true" sortIndex="1" quality="1" playerLevel="14" icon="nash_williams" frameType="buffTimed" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="1990"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="RecruitingBuffLvl4" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="63007" name="FillUpIronLvl2" disabled="true" sortIndex="1" playerLevel="18" quality="1" icon="buff_big_iron_refill" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="1250"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="FillDeposit" resource="IronOre" count="7500" />
+			</Content>		
+		</ShopItem>
+		
+		<ShopItem id="63008" name="ShopRecoverGeneral" disabled="true" sortIndex="1" quality="1" playerLevel="13" icon="Icon_General2.0" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="1500"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="RecoverGeneral" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="63009" name="AdventureTheBlackKnights" disabled="true" sortIndex="1" quality="1" playerLevel="42" icon="the_black_knights" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="1250"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="TheBlackKnights" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="63010" name="AdventureMilitaryBirthday2" disabled="true" sortIndex="1" quality="1" playerLevel="26" icon="adventure_military02" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="450"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="Birthday2013MilitaryAdventure2ShopVersion" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="63011" name="AdventureSurpriseAttack" disabled="true" sortIndex="1" quality="1" playerLevel="36" icon="surprise_attack" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="1990"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="SurpriseAttack" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="63012" name="1001NightsWoodcutter" disabled="true" sortIndex="1" quality="1" playerLevel="51" icon="icon_ali_baba_the_young_woodcutter" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="3500"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="1001NightsWoodcutter" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="63013" name="BuffAdventureGrainConflict" disabled="true" sortIndex="1" quality="1" playerLevel="26" icon="easter2015_adventure1" frameType="buffInstant" votePoolName="DefaultItems">
+			<Costs>
+				<Cost name="GuildCoins" count="250"/>
+			</Costs>
+			<Content>
+				<Item type="Buff" name="Adventure" resource="BuffAdventures_safeTheTowns_easy" count="1" />
+			</Content>
+		</ShopItem>
+		
+		<ShopItem id="63014" name="AdventureSecludedExperiments" disabled="true" sortIndex="1" quality="1" playerLevel="42" icon="secluded_experiments" frameType="buffInstant" votePoolName="DefaultItems">
+				<Costs>
+					<Cost name="GuildCoins" count="1250"/>>
+				</Costs>
+				<Content>
+					<Item type="Buff" name="Adventure" resource="SecludedExperiments" count="1" />
+				</Content>
+		</ShopItem>
+</Group>

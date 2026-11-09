@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	
+	<quest name="BuffAd_Raid_of_the_Nords_Main" specialType="firstQuestlastQuest" icon="Military" npc="quest_character_sonya_solemoon.png" helpName="Help_window_ventures_0" showQuestWindow="false">
+		<triggers>
+			<questcomplete item="BuffAd_Raid_of_the_Nords_Sub1"/> 
+			<questcomplete item="BuffAd_Raid_of_the_Nords_Sub2"/> 
+			<questcomplete item="BuffAd_Raid_of_the_Nords_Sub3"/> 
+			<questcomplete item="BuffAd_Raid_of_the_Nords_Sub4"/> 
+			
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="5000"/>   
+		</rewards>
+		<postrequisits />
+    </quest>
+	
+	<quest name="BuffAd_Raid_of_the_Nords_Sub1" connectedToQuest="BuffAd_Raid_of_the_Nords_Main" icon="Military" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questactive item="BuffAd_Raid_of_the_Nords_Main"/>
+		</startcondition>
+		<triggers>
+			<trigger type="Building" name="tent_nords_leader" condition="l" amount="1"/>
+		</triggers>
+	</quest>
+	
+	<quest name="BuffAd_Raid_of_the_Nords_Sub2" connectedToQuest="BuffAd_Raid_of_the_Nords_Main" icon="BattleBuffHurt_BuffAd_TimeFuse" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAd_Raid_of_the_Nords_Sub1"/>
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="BuffAd_Raid_of_the_Nords_Quest1" />
+        </preeffects>
+		<triggers>
+			<buildingdestroyed item="BuildingFireWood" min="5" locaExtension="pickup" />
+			<trigger type="Building" name="BuffAd_Ship" condition="l" amount="1" locaExtension="RaidOfTheNords" />
+		</triggers>
+		<postrequisits />
+    </quest>
+	
+	<quest name="BuffAd_Raid_of_the_Nords_Sub3" connectedToQuest="BuffAd_Raid_of_the_Nords_Main" icon="BattleBuffHurt_BuffAd_Native_Repairkit" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_ventures_0">
+		<startcondition>
+		   <questcomplete item="BuffAd_Raid_of_the_Nords_Sub2"/>
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="BuffAd_Raid_of_the_Nords_Quest2" />
+        </preeffects>
+		<triggers>
+			<buildingdestroyed item="CollectibleFurs2Building" min="6" locaExtension="pickup_furs" />
+			<buffappliedonadventure item="BattleBuffHurt_BuffAd_Native_Repairkit" min="6" locaExtension="RaidOfTheNords" />
+		</triggers>
+		<postrequisits />
+    </quest>
+		
+	<quest name="BuffAd_Raid_of_the_Nords_Sub4" connectedToQuest="BuffAd_Raid_of_the_Nords_Main" icon="EmptyEffectBuff_BuffAd_Native_Feast" npc="quest_character_sonya_solemoon.png"  helpName="Help_window_ventures_0">
+		<startcondition>
+			<questcomplete item="BuffAd_Raid_of_the_Nords_Sub3"/> 
+		</startcondition>
+		<preeffects>
+			<Spawnbuilding name="BuffAd_Tent" mode="free" action="ignoreBlocking,spawnInstant,replace" x="29" y="63" />	
+		</preeffects>
+		<triggers>
+			<buffappliedonadventure item="EmptyEffectBuff_BuffAd_Native_Feast" target="BuffAd_Tent" min="1" locaExtension="RaidOfTheNords" />
+		</triggers>
+		<postrequisits />
+    </quest>
+	
+	
+	
+</Root>

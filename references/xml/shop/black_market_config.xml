@@ -1,0 +1,320 @@
+<BlackMarketConfig>
+	<BlackMarketAuctionUnlock>
+		<Costs>
+			<Cost name="Coin" count="10000"/>
+		</Costs>
+	</BlackMarketAuctionUnlock>
+    <BlackMarketAuctions>
+		<!--DO NOT DELETE OLD AUCTIONS// Comment out old ones for documentation purposes// Always add a comment with the release version of the batch// -->
+		
+		<!-- Auctions included in Kratos 12/2022 -->
+		<BlackMarketAuction id="BlackMarketAuction_Kratos00">
+			<!--From 10:00 9/12/2022 to 20:00 11/12/2022-->
+			<Costs>
+                <Cost name="Plank" count="5000"/>
+            </Costs>
+            <AuctionIncrements>
+                <AuctionIncrement name="Plank" count="200" type="flat"/>
+            </AuctionIncrements>
+            <Content>
+                <Item shopItemId="2022112901"/>
+            </Content>
+        </BlackMarketAuction>
+		<BlackMarketAuction id="BlackMarketAuction_Kratos01">
+			<!--From 10:00 16/12/2022 to 20:00 18/12/2022-->
+			<Costs>
+                <Cost name="MapPart" count="4000"/>
+            </Costs>
+            <AuctionIncrements>
+                <AuctionIncrement name="MapPart" count="200" type="flat"/>
+            </AuctionIncrements>
+            <Content>
+                <Item shopItemId="2022112904"/>
+            </Content>
+        </BlackMarketAuction>
+		<BlackMarketAuction id="BlackMarketAuction_Kratos02">
+			<!--From 10:00 23/10/2022 to 20:00 25/12/2022-->
+			<Costs>
+                <Cost name="Marble" count="50000"/>
+            </Costs>
+            <AuctionIncrements>
+                <AuctionIncrement name="Marble" count="500" type="flat"/>
+            </AuctionIncrements>
+            <Content>
+                <Item shopItemId="2022112900"/>
+            </Content>
+        </BlackMarketAuction>
+		<BlackMarketAuction id="BlackMarketAuction_Kratos03">
+			<!--From 10:00 30/12/2022 to 20:00 1/1/2023-->
+		    <Costs>
+                <Cost name="TitaniumSword" count="2000"/>
+            </Costs>
+            <AuctionIncrements>
+                <AuctionIncrement name="TitaniumSword" count="50" type="flat"/>
+            </AuctionIncrements>
+            <Content>
+                <Item shopItemId="2022112905"/>
+            </Content>
+        </BlackMarketAuction>
+		<BlackMarketAuction id="BlackMarketAuction_Kratos04">
+			<!--From 10:00 6/1/2023 to 20:00 8/1/2023-->
+			<Costs>
+                <Cost name="Coal" count="20000"/>
+            </Costs>
+            <AuctionIncrements>
+                <AuctionIncrement name="Coal" count="200" type="flat"/>
+            </AuctionIncrements>
+            <Content>
+                <Item shopItemId="2022112903"/>
+            </Content>
+        </BlackMarketAuction>
+		<BlackMarketAuction id="BlackMarketAuction_Kratos05">
+            <!--From 10:00 13/1/2023 to 20:00 15/1/2023-->
+			<Costs>
+                <Cost name="Crossbow" count="1500"/>
+            </Costs>
+            <AuctionIncrements>
+                <AuctionIncrement name="Crossbow" count="50" type="flat"/>
+            </AuctionIncrements>
+            <Content>
+                <Item shopItemId="2022112906"/>
+            </Content>
+        </BlackMarketAuction>
+		<BlackMarketAuction id="BlackMarketAuction_Kratos06">
+            <!--From 10:00 20/1/2023 to 20:00 22/1/2023-->
+			<Costs>
+                <Cost name="Tool" count="30000"/>
+            </Costs>
+            <AuctionIncrements>
+                <AuctionIncrement name="Tool" count="350" type="flat"/>
+            </AuctionIncrements>
+            <Content>
+                <Item shopItemId="2022112902"/>
+            </Content>
+        </BlackMarketAuction>
+		<BlackMarketAuction id="BlackMarketAuction_Kratos07">
+            <!--From 10:00 27/1/2023 to 20:00 29/1/2023-->
+			<Costs>
+                <Cost name="Cloth" count="25000"/>
+            </Costs>
+            <AuctionIncrements>
+                <AuctionIncrement name="Cloth" count="400" type="flat"/>
+            </AuctionIncrements>
+            <Content>
+                <Item shopItemId="2022112907"/>
+            </Content>
+        </BlackMarketAuction>
+		<BlackMarketAuction id="BlackMarketAuction_Kratos08">
+            <!--From 10:00 3/2/2023 to 20:00 5/2/2023-->
+			<Costs>
+                <Cost name="Crystal" count="250"/>
+            </Costs>
+            <AuctionIncrements>
+                <AuctionIncrement name="Crystal" count="25" type="flat"/>
+            </AuctionIncrements>
+            <Content>
+                <Item shopItemId="2022112908"/>
+            </Content>
+        </BlackMarketAuction>
+
+		
+		<!-- Auctions included in Illidan 10/2022 -->
+		<BlackMarketAuction id="BlackMarketAuction_Illidan0">
+			<!--From 10:00 14/10/2022 to 22:00 16/10/2022-->
+			<Costs>
+                <Cost name="CollectibleHerbs" count="200"/>
+            </Costs>
+            <AuctionIncrements>
+                <AuctionIncrement name="CollectibleHerbs" count="50" type="flat"/>
+            </AuctionIncrements>
+            <Content>
+                <Item shopItemId="2022101100"/>
+            </Content>
+        </BlackMarketAuction>
+		<BlackMarketAuction id="BlackMarketAuction_Illidan00">
+			<!--From 10:00 21/10/2022 to 22:00 23/10/2022-->
+			<Costs>
+                <Cost name="CollectibleGrainSacks" count="300"/>
+            </Costs>
+            <AuctionIncrements>
+                <AuctionIncrement name="CollectibleGrainSacks" count="100" type="flat"/>
+            </AuctionIncrements>
+            <Content>
+                <Item shopItemId="2022101101"/>
+            </Content>
+        </BlackMarketAuction>
+		<BlackMarketAuction id="BlackMarketAuction_Illidan01">
+			<!--From 10:00 28/10/2022 to 22:00 30/10/2022-->
+			<Costs>
+                <Cost name="Coin" count="75000"/>
+            </Costs>
+            <AuctionIncrements>
+                <AuctionIncrement name="Coin" count="5000" type="flat"/>
+            </AuctionIncrements>
+            <Content>
+                <Item shopItemId="2022100601"/>
+            </Content>
+        </BlackMarketAuction>
+		<BlackMarketAuction id="BlackMarketAuction_Illidan02">
+			<!--From 10:00 4/11/2022 to 22:00 6/11/2022-->
+		    <Costs>
+                <Cost name="Platinum" count="15000"/>
+            </Costs>
+            <AuctionIncrements>
+                <AuctionIncrement name="Platinum" count="250" type="flat"/>
+            </AuctionIncrements>
+            <Content>
+                <Item shopItemId="2022100602"/>
+            </Content>
+        </BlackMarketAuction>
+		<BlackMarketAuction id="BlackMarketAuction_Illidan03">
+			<!--From 10:00 11/11/2022 to 22:00 13/11/2022-->
+			<Costs>
+                <Cost name="MahoganyPlank" count="200000"/>
+            </Costs>
+            <AuctionIncrements>
+                <AuctionIncrement name="MahoganyPlank" count="10000" type="flat"/>
+            </AuctionIncrements>
+            <Content>
+                <Item shopItemId="2022100603"/>
+            </Content>
+        </BlackMarketAuction>
+		<BlackMarketAuction id="BlackMarketAuction_Illidan04">
+            <!--From 10:00 18/11/2022 to 22:00 20/11/2022-->
+			<Costs>
+                <Cost name="Salpeter" count="15000"/>
+            </Costs>
+            <AuctionIncrements>
+                <AuctionIncrement name="Salpeter" count="1000" type="flat"/>
+            </AuctionIncrements>
+            <Content>
+                <Item shopItemId="2022100604"/>
+            </Content>
+        </BlackMarketAuction>
+		<BlackMarketAuction id="BlackMarketAuction_UnityEvent_Residence">
+            <!--From 10:00 ??/??/2026 to 22:00 ??/??/2022 Needs to be defined-->
+			<Costs>
+                <Cost name="MagicBeanstalk" count="5000"/>
+            </Costs>
+            <AuctionIncrements>
+                <AuctionIncrement name="MagicBeanstalk" count="1000" type="flat"/>
+            </AuctionIncrements>
+            <Content>
+                <Item shopItemId="2026062201"/>
+            </Content>
+		</BlackMarketAuction>
+	<!-- Tests -->
+		<!-- 
+		<BlackMarketAuction id="BlackMarketAuction_Test001">
+            <Costs>
+                <Cost name="HardCurrency" count="100"/>
+            </Costs>
+            <AuctionIncrements>
+                <AuctionIncrement name="HardCurrency" count="1" type="flat"/>
+            </AuctionIncrements>
+            <Content>
+                <Item shopItemId="5004"/>
+            </Content>
+        </BlackMarketAuction>
+        <BlackMarketAuction id="BlackMarketAuction_Test002">
+            <Costs>
+                <Cost name="Coin" count="10"/>
+            </Costs>
+            <AuctionIncrements>
+                <AuctionIncrement name="Coin" count="10" type="flat"/>
+            </AuctionIncrements>
+            <Content>
+                <Item shopItemId="0001"/>
+            </Content>
+        </BlackMarketAuction>
+        <BlackMarketAuction id="BlackMarketAuction_Test003">
+            <Costs>
+                <Cost name="Wood" count="1"/>
+            </Costs>
+            <AuctionIncrements>
+                <AuctionIncrement name="Wood" count="1" type="flat"/>
+            </AuctionIncrements>
+            <Content>
+                <Item shopItemId="1018"/>
+            </Content>
+        </BlackMarketAuction>
+        <BlackMarketAuction id="BlackMarketAuction_Test004">
+            <Costs>
+                <Cost name="HardCurrency" count="1"/>
+            </Costs>
+            <AuctionIncrements>
+                <AuctionIncrement name="HardCurrency" count="1" type="flat"/>
+            </AuctionIncrements>
+            <Content>
+                <Item shopItemId="2001"/>
+            </Content>
+        </BlackMarketAuction>
+        <BlackMarketAuction id="BlackMarketAuction_Test005">
+            <Costs>
+                <Cost name="Fish" count="100"/>
+            </Costs>
+            <AuctionIncrements>
+                <AuctionIncrement name="Fish" count="100" type="flat"/>
+            </AuctionIncrements>
+            <Content>
+                <Item shopItemId="72103"/>
+            </Content>
+        </BlackMarketAuction>
+        <BlackMarketAuction id="BlackMarketAuction_Test006">
+            <Costs>
+                <Cost name="Coin" count="100"/>
+            </Costs>
+            <AuctionIncrements>
+                <AuctionIncrement name="Coin" count="100" type="flat"/>
+            </AuctionIncrements>
+            <Content>
+                <Item shopItemId="5500"/>
+            </Content>
+        </BlackMarketAuction>
+        <BlackMarketAuction id="BlackMarketAuction_Test007">
+            <Costs>
+                <Cost name="Coin" count="10"/>
+            </Costs>
+            <AuctionIncrements>
+                <AuctionIncrement name="Coin" count="10" type="flat"/>
+            </AuctionIncrements>
+            <Content>
+                <Item shopItemId="7055"/>
+            </Content>
+        </BlackMarketAuction>
+        <BlackMarketAuction id="BlackMarketAuction_Test008">
+            <Costs>
+                <Cost name="Coin" count="10"/>
+            </Costs>
+            <AuctionIncrements>
+                <AuctionIncrement name="Coin" count="10" type="flat"/>
+            </AuctionIncrements>
+            <Content>
+                <Item shopItemId="9005"/>
+            </Content>
+        </BlackMarketAuction>
+        <BlackMarketAuction id="BlackMarketAuction_Test009">
+            <Costs>
+                <Cost name="Coin" count="10"/>
+            </Costs>
+            <AuctionIncrements>
+                <AuctionIncrement name="Coin" count="10" type="flat"/>
+            </AuctionIncrements>
+            <Content>
+                <Item shopItemId="11010"/>
+            </Content>
+        </BlackMarketAuction>
+        <BlackMarketAuction id="BlackMarketAuction_Test010">
+            <Costs>
+                <Cost name="HardCurrency" count="1"/>
+            </Costs>
+            <AuctionIncrements>
+                <AuctionIncrement name="HardCurrency" count="1" type="flat"/>
+            </AuctionIncrements>
+            <Content>
+                <Item shopItemId="304286"/>
+            </Content>
+        </BlackMarketAuction>
+		-->
+    </BlackMarketAuctions>
+</BlackMarketConfig>

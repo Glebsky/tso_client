@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+	Contains config for event based contests
+ -->
+ <root>
+ 
+	<contest name="GuildFest" type="Guild" contestPhaseHours="240" minContribution="1000" requiresEvent="GuildFest_Shop">
+		<rewardTiers>
+			<tier name="ContestWinner" type="rank" min="1" max="1" icon="Tier1" background="winner">
+				<reward type="Resource" name="GuildFestCommendation" amount="10000"/>
+				<reward type="Buff" item="BuildBuilding" name="EliteGuildBanner_Deco" amount="1" recurringChance="100" />	
+				<reward type="Buff" item="ChangeDefaultSkin_guild_building_GF_plat_perm" amount="1" recurringChance="100"/> 
+				<reward type="Buff" item="MultiplierBuffZone2_PremiumFriendBuff1Day" amount="7" /> 
+				<reward type="Buff" item="BuildBuilding" name="GuildHouse_Mini" amount="1" recurringChance="100" />	
+				<reward type="Buff" item="BuildBuilding" name="TowerOfBraggingRights" amount="1" recurringChance="100" />	
+			</tier>
+			<tier name="ContestBest10Percent" type="bracket" percentile ="10" barType="gold" icon="tier2" background="gold">
+				<reward type="Resource" name="GuildFestCommendation" amount="10000"/>
+				<reward type="Buff" item="BuildBuilding" name="EliteGuildBanner_Deco" amount="1" recurringChance="100" />
+				<reward type="Buff" item="ChangeDefaultSkin_guild_building_GF_gold_perm" amount="1" recurringChance="100"/> 
+				<reward type="Buff" item="MultiplierBuffZone2_PremiumFriendBuff1Day" amount="4" />
+				<reward type="Buff" item="BuildBuilding" name="GuildHouse_Mini" amount="1" recurringChance="100" />
+			</tier>
+			<tier name="ContestBest40Percent" type="bracket" percentile ="30" barType="silver" icon="tier3" background="silver">
+				<reward type="Resource" name="GuildFestCommendation" amount="7000"/>
+				<reward type="Buff" item="BuildBuilding" name="GuildBanner_Deco" amount="1" recurringChance="100" />	
+				<reward type="Buff" item="ChangeDefaultSkin_guild_building_GF_silver_perm" amount="1" recurringChance="100"/> 
+				<reward type="Buff" item="MultiplierBuffZone2_PremiumFriendBuff1Day" amount="2" /> 
+			</tier>
+			<tier name="ContestBest80Percent" type="bracket" percentile ="80" barType="bronze" icon="tier4" background="bronze">
+				<reward type="Resource" name="GuildFestCommendation" amount="5000"/>
+				<reward type="Buff" item="BuildBuilding" name="GuildBanner_Deco" amount="1" recurringChance="100" />	
+				<reward type="Buff" item="ChangeDefaultSkin_guild_building_GF_bronze_perm" amount="1" recurringChance="100"/> 
+				<reward type="Buff" item="MultiplierBuffZone2_PremiumFriendBuff1Day" amount="1" /> 
+			</tier>
+			<tier name="ContestTheRest" type="bracket" percentile ="100" barType="wood" icon="tier5" background="wood">
+				<reward type="Resource" name="GuildFestCommendation" amount="3000"/>
+				<reward type="Buff" item="BuildBuilding" name="GuildBanner_Deco" amount="1" recurringChance="100" />				
+			</tier>
+		</rewardTiers>
+	</contest>
+ 
+ </root>
+

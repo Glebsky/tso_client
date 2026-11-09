@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Combat3Battleground campOffsetX="-185" campOffsetY="-185">
+	<itemShadow alpha="0.6" blur="11" distance="2" enabled="false" strength="1" />
+	<enemy showDropzones="false" spawnX="150" spawnY="150">
+		<flyouts>
+			<spawn chance="5.0" lifetime="3" name="armor.png" />
+			<spawn chance="5.0" lifetime="3" name="arm-pad.png" />
+			<spawn chance="5.0" lifetime="3" name="crossbow.png" condition="enemy-unit-ranged" />
+			<spawn chance="5.0" lifetime="3" name="glove.png" />
+			<spawn chance="5.0" lifetime="3" name="mace.png" condition="enemy-unit-melee" />
+			<spawn chance="5.0" lifetime="3" name="plate-boot.png" />
+			<spawn chance="5.0" lifetime="3" name="crossbow.png" condition="enemy-unit-ranged" />
+			<spawn chance="5.0" lifetime="3" name="shoe.png" />
+			<spawn chance="5.0" lifetime="3" name="sword-01.png" condition="enemy-unit-melee" />
+			<spawn chance="5.0" lifetime="3" name="sword-02.png" condition="enemy-unit-melee" />
+			<spawn chance="5.0" lifetime="3" name="rare_horseshoe.png" condition="enemy-unit-cavalry" />
+			<spawn chance="5.0" lifetime="3" name="shield-01-red.png" condition="enemy-unit-melee" />
+			<spawn chance="5.0" lifetime="3" name="shield-02-red.png" condition="enemy-unit-melee" />
+			<spawn chance="10.0" lifetime="3" name="helmet-01-red.png" />
+			<spawn chance="10.0" lifetime="3" name="helmet-02-red.png" />
+			<spawn chance="10.0" lifetime="3" name="helmet-03-red.png" />
+			<spawn chance="10.0" lifetime="3" name="helmet-04-red.png" />
+			<spawn chance="0.1" lifetime="5" name="rare_anvil.png" />
+			<spawn chance="0.5" lifetime="5" name="rare_bottle.png" />
+			<spawn chance="0.1" lifetime="5" name="rare_bra.png" />
+			<spawn chance="0.1" lifetime="5" name="rare_chicken.png" />
+			<spawn chance="0.1" lifetime="5" name="rare_cow.png" />
+			<spawn chance="0.1" lifetime="5" name="rare_duck.png" />
+			<spawn chance="0.5" lifetime="5" name="rare_icon_Fish.png" />
+			<spawn chance="0.5" lifetime="5" name="rare_meat.png" />
+			<spawn chance="0.5" lifetime="5" name="rare_pan.png" />
+			<spawn chance="0.1" lifetime="5" name="rare_pants.png" />
+			<spawn chance="0.1" lifetime="5" name="rare_rabbid.png" />
+			<spawn chance="0.5" lifetime="5" name="rare_roller.png" />
+			<spawn chance="0.5" lifetime="5" name="rare_teddy-bear.png" />
+			<spawn chance="1.0" lifetime="5" name="rare_wheel.png" />
+		</flyouts>
+		<!-- April Fools 2015
+		<flyouts requiresEvent="AprilFools">
+			<spawn chance="10.0" lifetime="5" name="rare_anvil.png" />
+			<spawn chance="10.0" lifetime="5" name="rare_bottle.png" />
+			<spawn chance="10.0" lifetime="5" name="rare_bra.png" />
+			<spawn chance="10.0" lifetime="5" name="rare_chicken.png" />
+			<spawn chance="10.0" lifetime="5" name="rare_cow.png" />
+			<spawn chance="10.0" lifetime="5" name="rare_duck.png" />
+			<spawn chance="10.0" lifetime="5" name="rare_horseshoe.png" />
+			<spawn chance="10.0" lifetime="5" name="rare_icon_Fish.png" />
+			<spawn chance="10.0" lifetime="5" name="rare_meat.png" />
+			<spawn chance="10.0" lifetime="5" name="rare_pan.png" />
+			<spawn chance="10.0" lifetime="5" name="rare_pants.png" />
+			<spawn chance="10.0" lifetime="5" name="rare_rabbid.png" />
+			<spawn chance="10.0" lifetime="5" name="rare_roller.png" />
+			<spawn chance="10.0" lifetime="5" name="rare_teddy-bear.png" />
+			<spawn chance="10.0" lifetime="5" name="rare_wheel.png" />
+		</flyouts> -->
+		<dropzone x="120" y="0" width="130" height="65" />
+		<dropzone x="70" y="-25" width="50" height="55" />
+		<dropzone x="-25" y="100" width="75" height="130" />
+		<dropzone x="50" y="180" width="65" height="50" />
+	</enemy>
+	<player showDropzones="false" spawnX="220" spawnY="130">
+		<flyouts>
+			<spawn chance="5.0" lifetime="3" name="armor.png" />
+			<spawn chance="5.0" lifetime="3" name="arm-pad.png" />
+			<spawn chance="5.0" lifetime="3" name="crossbow.png" condition="player-unit-ranged" />
+			<spawn chance="5.0" lifetime="3" name="glove.png" />
+			<spawn chance="5.0" lifetime="3" name="mace.png" condition="player-unit-melee" />
+			<spawn chance="5.0" lifetime="3" name="plate-boot.png" />
+			<spawn chance="5.0" lifetime="3" name="crossbow.png" condition="player-unit-ranged" />
+			<spawn chance="5.0" lifetime="3" name="shoe.png" />
+			<spawn chance="5.0" lifetime="3" name="sword-01.png" condition="player-unit-melee" />
+			<spawn chance="5.0" lifetime="3" name="sword-02.png" condition="player-unit-melee" />
+			<spawn chance="5.0" lifetime="3" name="rare_horseshoe.png" condition="enemy-unit-cavalry" />
+			<spawn chance="5.0" lifetime="3" name="shield-01-blue.png" condition="player-unit-melee" />
+			<spawn chance="5.0" lifetime="3" name="shield-02-blue.png" condition="player-unit-melee" />
+			<spawn chance="10.0" lifetime="3" name="helmet-01-blue.png" />
+			<spawn chance="10.0" lifetime="3" name="helmet-02-blue.png" />
+			<spawn chance="10.0" lifetime="3" name="helmet-03-blue.png" />
+			<spawn chance="10.0" lifetime="3" name="helmet-04-blue.png" />
+			<spawn chance="0.1" lifetime="5" name="rare_anvil.png" />
+			<spawn chance="0.5" lifetime="5" name="rare_bottle.png" />
+			<spawn chance="0.1" lifetime="5" name="rare_bra.png" />
+			<spawn chance="0.1" lifetime="5" name="rare_chicken.png" />
+			<spawn chance="0.1" lifetime="5" name="rare_cow.png" />
+			<spawn chance="0.1" lifetime="5" name="rare_duck.png" />
+			<spawn chance="0.5" lifetime="5" name="rare_icon_Fish.png" />
+			<spawn chance="0.5" lifetime="5" name="rare_meat.png" />
+			<spawn chance="0.5" lifetime="5" name="rare_pan.png" />
+			<spawn chance="0.1" lifetime="5" name="rare_pants.png" />
+			<spawn chance="0.1" lifetime="5" name="rare_rabbid.png" />
+			<spawn chance="0.5" lifetime="5" name="rare_roller.png" />
+			<spawn chance="0.5" lifetime="5" name="rare_teddy-bear.png" />
+			<spawn chance="1.0" lifetime="5" name="rare_wheel.png" />
+		</flyouts>
+		<!-- April Fools 2015
+		<flyouts requiresEvent="AprilFools">
+			<spawn chance="10.0" lifetime="5" name="rare_anvil.png" />
+			<spawn chance="10.0" lifetime="5" name="rare_bottle.png" />
+			<spawn chance="10.0" lifetime="5" name="rare_bra.png" />
+			<spawn chance="10.0" lifetime="5" name="rare_chicken.png" />
+			<spawn chance="10.0" lifetime="5" name="rare_cow.png" />
+			<spawn chance="10.0" lifetime="5" name="rare_duck.png" />
+			<spawn chance="10.0" lifetime="5" name="rare_horseshoe.png" />
+			<spawn chance="10.0" lifetime="5" name="rare_icon_Fish.png" />
+			<spawn chance="10.0" lifetime="5" name="rare_meat.png" />
+			<spawn chance="10.0" lifetime="5" name="rare_pan.png" />
+			<spawn chance="10.0" lifetime="5" name="rare_pants.png" />
+			<spawn chance="10.0" lifetime="5" name="rare_rabbid.png" />
+			<spawn chance="10.0" lifetime="5" name="rare_roller.png" />
+			<spawn chance="10.0" lifetime="5" name="rare_teddy-bear.png" />
+			<spawn chance="10.0" lifetime="5" name="rare_wheel.png" />
+		</flyouts>-->
+		<dropzone x="255" y="270" width="50" height="55" />
+		<dropzone x="260" y="75" width="65" height="50" />
+		<dropzone x="135" y="240" width="120" height="65" />
+		<dropzone x="325" y="75" width="75" height="130" />
+	</player>
+	<cloud tick="1500">
+		<animation x="80" y="25" name="main_battlecloud03" />
+		<animation name="firework" condition="enemy-dmg-bonus">
+			<zone x="110" y="30" width="10" height="10" />
+		</animation>
+		<animation name="firework" condition="player-dmg-bonus">
+			<zone x="170" y="70" width="20" height="30" />
+		</animation>
+		<picker>
+			<animation name="small_cloud01" loops="2-5" chance="33.3">
+				<zone x="150" y="10" width="20" height="30" />
+			</animation>
+			<animation name="small_cloud02" loops="2-5" chance="33.3">
+				<zone x="60" y="20" width="30" height="20" />
+			</animation>
+			<animation name="small_cloud03" loops="2-5" chance="33.3">
+				<zone x="50" y="-10" width="20" height="20" />
+			</animation>
+		</picker>
+		<picker chance="50">
+			<animation name="enemygethit_01" chance="33.3">
+				<zone x="130" y="55" width="30" height="20" />
+			</animation>
+			<animation name="enemygethit_02" chance="33.3">
+				<zone x="120" y="60" width="20" height="20" />
+			</animation>
+			<animation name="enemygethit_03" chance="33.3">
+				<zone x="150" y="70" width="10" height="20" />
+			</animation>
+		</picker>
+		<picker chance="50">
+			<animation name="playergethit_01" chance="33.3">
+				<zone x="180" y="70" width="10" height="40" />
+			</animation>
+			<animation name="playergethit_02" chance="33.3">
+				<zone x="175" y="60" width="20" height="35" />
+			</animation>
+			<animation name="playergethit_03" chance="33.3">
+				<zone x="160" y="75" width="30" height="20" />
+			</animation>
+		</picker>
+	</cloud>
+</Combat3Battleground>

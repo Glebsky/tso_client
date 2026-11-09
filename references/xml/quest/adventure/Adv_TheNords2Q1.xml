@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+
+   <quest name="Adv_TheNords2Q1" type="Story" icon="Military" npc="quest_character_mentor03.png" specialType="firstQuest" >
+		  <triggers>
+         <trigger type="Building" name="tent_nords_leader" condition="l" amount="5" locaExtension="rb" />
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="1500"/>        
+      </rewards>
+      <postrequisits>
+         <postrequisite startQuest="Adv_TheNords2Q2" /> 
+       </postrequisits> 
+   </quest>
+  
+	 <quest name="Adv_TheNords2Q2" type="Story" icon="Military" npc="quest_character_mentor03.png" >
+	  	<triggers>
+         <trigger type="Building" name="tent_nords_leader" condition="l" amount="4" locaExtension="rb" />
+  	   </triggers>
+      <rewards>
+         <reward type="XP" amount="1500"/>        
+      </rewards>
+		  <postrequisits>
+         <postrequisite startQuest="Adv_TheNords2Q3" /> 
+      </postrequisits>       
+    </quest>
+   
+    
+   <quest name="Adv_TheNords2Q3" type="Story" icon="Military" npc="quest_character_mentor03.png" >
+		  <triggers>
+         <trigger type="Building" name="MineDepletedDepositWater" condition="selected" onComplete="destroySelectedBuilding" amount="1"/>
+         <trigger type="Building" name="MineDepletedDepositWater" condition="selected" onComplete="destroySelectedBuilding" amount="1"/>
+         <trigger type="Building" name="MineDepletedDepositWater" condition="selected" onComplete="destroySelectedBuilding" amount="1"/>
+         <trigger type="Building" name="MineDepletedDepositWater" condition="selected" onComplete="destroySelectedBuilding" amount="1"/>
+         <trigger type="Building" name="MineDepletedDepositWater" condition="selected" onComplete="destroySelectedBuilding" amount="1"/>
+         <trigger type="Building" name="MineDepletedDepositWater" condition="selected" onComplete="destroySelectedBuilding" amount="1"/>
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="1500"/>        
+      </rewards>
+      <postrequisits>
+          <postrequisite startQuest="Adv_TheNords2Q4" /> 
+       </postrequisits> 
+    </quest>
+    
+    
+   <quest name="Adv_TheNords2Q4" type="Story" icon="Military" npc="quest_character_mentor03.png" specialType="lastQuest" >
+	   	<triggers>
+         <trigger type="Building" name="tent_nords_leader" condition="l" amount="1" locaExtension="rb" />
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="1500"/>        
+      </rewards>
+		  <postrequisits/>     
+    </quest> 
+
+</Root>
+
+    
+    
+      
+      
+      
+      
+
+

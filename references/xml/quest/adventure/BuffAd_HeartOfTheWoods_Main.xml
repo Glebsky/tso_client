@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	
+	<quest name="BuffAd_HeartOfTheWoods_Main" specialType="firstQuestlastQuest" icon="Tree" npc="quest_character_mentor03.png" showQuestWindow="false"  helpName="Help_window_buff_adventure_0">
+		<startcondition>
+		</startcondition>
+		<triggers>
+		   <questcomplete item="BuffAd_HeartOfTheWoods_Sub1" />
+		   <questcomplete item="BuffAd_HeartOfTheWoods_Sub2" />
+		   <questcomplete item="BuffAd_HeartOfTheWoods_Sub3" />
+		   <questcomplete item="BuffAd_HeartOfTheWoods_Sub4" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="3500"/>
+		</rewards>
+		<postrequisits />
+    </quest>
+	
+	<quest name="BuffAd_HeartOfTheWoods_Sub1" connectedToQuest="BuffAd_HeartOfTheWoods_Main" icon="DepositAnimal" npc="quest_character_mentor03.png"  helpName="Help_window_buff_adventure_0">
+		<startcondition>
+		   <questactive item="BuffAd_HeartOfTheWoods_Main"/>
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="BuffAd_HeartOfWood_Quest1" />
+        </preeffects>
+		<triggers>
+            <buildingdestroyed item="BuildingPlant" min="5" locaExtension="pickup" />
+			<buffappliedonadventure item="ChangeSkin_BuffAd_wildlife" min="5" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="50"/>        
+		</rewards>
+		<postrequisits />
+    </quest>
+	
+	<quest name="BuffAd_HeartOfTheWoods_Sub2" connectedToQuest="BuffAd_HeartOfTheWoods_Main" icon="DepositExoticWood" npc="quest_character_mentor03.png"  helpName="Help_window_buff_adventure_0">
+		<startcondition>
+		   <questcomplete item="BuffAd_HeartOfTheWoods_Sub1"/>
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="BuffAd_HeartOfWood_Quest2" />
+        </preeffects>
+		<triggers>
+            <buildingdestroyed item="BuildingFlower" min="5" locaExtension="pickup" />
+			<buffappliedonadventure item="ChangeSkin_BuffAd_hearttree"  target="HoW_dead_heart_tree" min="1" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="100"/>        
+		</rewards>
+		<postrequisits />
+    </quest>		
+
+	<quest name="BuffAd_HeartOfTheWoods_Sub3" connectedToQuest="BuffAd_HeartOfTheWoods_Main" icon="Tree" npc="quest_character_mentor03.png"  helpName="Help_window_buff_adventure_0">
+		<startcondition>
+		   <questcomplete item="BuffAd_HeartOfTheWoods_Sub2"/>
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="BuffAd_HeartOfWood_Quest3" />
+        </preeffects>
+		<triggers>
+            <buildingdestroyed item="BuildingHeartFruit" min="10" locaExtension="pickup" />
+			<buffappliedonadventure item="ChangeSkin_BuffAd_woodhealing" tartget="HoW_dead_tree" min="10" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="150"/>        
+		</rewards>
+		<postrequisits />
+    </quest>	
+	
+	<quest name="BuffAd_HeartOfTheWoods_Sub4" connectedToQuest="BuffAd_HeartOfTheWoods_Main" icon="DepositExoticWood" npc="quest_character_mentor03.png"  helpName="Help_window_buff_adventure_0">
+		<startcondition>
+		   <questcomplete item="BuffAd_HeartOfTheWoods_Sub3"/>
+		</startcondition>
+		<preeffects>
+			<spawncollectibles type="BuffAd_HeartOfWood_Quest4" />
+        </preeffects>
+		<triggers>
+            <buildingdestroyed item="BuildingDeadTreeWood" min="5" locaExtension="pickup" />
+			<buffappliedonadventure item="ChangeSkin_BuffAd_Fertilizer" target="HoW_dead_heart_tree" min="1" />
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="200"/>        
+		</rewards>
+		<postrequisits />
+    </quest>	
+</Root>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<HelpDefinitions>
+		<!--
+			<HelpDefinition
+				id="help1" - the id used for identification of the help definition (used for the loca strings)
+				type="Production" - the category of the help definition
+				icon="Wheel" - the icon visible in the help overview (all ResourceIcons from gfx_settings.xml can be used)
+				image="help_image" - the image of the help definition (location: GFX/help/NAME_PAGE.png)
+				pages="2" - page count for this definition (when missing by default 1)
+				hasButton - activates a button that uses the definition "image"+"Button"
+			/>
+		-->
+		<HelpDefinition id="Help_window_avatar_panel_0" type="UI" icon="Social" image="HelpWindowAvatarPanel" />
+		<HelpDefinition id="Help_window_star_menu_0" type="UI" icon="Star" image="HelpWindowStarMenu" />
+		<HelpDefinition id="Help_window_building_menu_0" type="Building" icon="Building"  image="HelpWindowBuildingMenu" />
+		<HelpDefinition id="Help_window_workyard_menu_0" type="Building" icon="Building"  image="HelpWindowWorkyardMenu" />
+		<HelpDefinition id="Help_window_place_building_0" type="Building" icon="Building"  image="HelpWindowPlaceBuilding" />
+		<HelpDefinition id="Help_window_building_queue_0" type="Building" icon="Building"  image="HelpWindowBuildingQueue" />
+		<HelpDefinition id="Help_window_storage_0" type="Building" icon="Resources"  image="HelpWindowStorage" />
+		<HelpDefinition id="Help_window_geologist_0" type="Specialists" icon="Resources"  image="HelpWindowGeologist" />
+		<HelpDefinition id="Help_window_use_buff_0" type="Building" icon="ProductivityBuffLvl1"  image="HelpWindowUseBuff" />
+		<HelpDefinition id="Help_window_provision_house_0" type="Building" icon="ProductivityBuffLvl1"  image="HelpWindowProvisionHouse" />
+		<HelpDefinition id="Help_window_sound_and_music_0" type="UI" icon="Tool"  image="HelpWindowSoundAndMusic" />
+		<HelpDefinition id="Help_window_mines_0" type="Building" icon="DepositCoal"  image="HelpWindowMines" />
+		<HelpDefinition id="Help_window_find_treasure_0" type="Specialists" icon="Loottable_ChristmasMysteryBoxResource"  image="HelpWindowFindTreasure" pages="2"/>
+		<HelpDefinition id="Help_window_refiller_0" type="Building" icon="DepositCoal"  image="HelpWindowRefiller" />
+		<HelpDefinition id="Help_window_invite_a_friend_0" type="Building" icon="Social"  image="HelpWindowInviteAFriend" pages="2"/>
+		<HelpDefinition id="Help_window_farm_and_farmfield_0" type="Building" icon="DepositHalloweenResource"  image="HelpWindowFarmAndFarmfield" />
+		<HelpDefinition id="Help_window_upgrade_0" type="Building" icon="Building"  image="HelpWindowUpgrade" />
+		<HelpDefinition id="Help_window_taverne_0" type="Specialists" icon="Building"  image="HelpWindowTaverne" />
+		<HelpDefinition id="Help_window_general_0" type="Military" icon="Military"  image="HelpWindowGeneral" />
+		<HelpDefinition id="Help_window_battle_0" type="Military" icon="Military"  image="HelpWindowBattle" />
+		<HelpDefinition id="Help_window_attack_area_0" type="Military" icon="Military"  image="HelpWindowAttackArea" />
+		<HelpDefinition id="Help_window_functionality_production_buff_0" type="Building" icon="ProductivityBuffLvl1"  image="HelpWindowFunctionalityProductionBuff" />
+		<HelpDefinition id="Help_window_claim_sector_0" type="Building" icon="ProductivityBuffLvl1"  image="HelpWindowClaimSector" />
+		<HelpDefinition id="Help_window_leader_camp_0" type="Military" icon="Military"  image="HelpWindowLeaderCamp" />
+		<HelpDefinition id="Help_window_building_licenzes_0" type="Building" icon="Building"  image="HelpWindowBuildingLicenzes" />
+		<HelpDefinition id="Help_window_trade_0" type="Building" icon="Trade"  image="HelpWindowTrade" />
+		<HelpDefinition id="Help_window_trade_make_offer_0" type="Building" icon="Trade"  image="HelpWindowTradeMakeOffer" />
+		<HelpDefinition id="Help_window_make_new_guild_0" type="Guild" icon="Social"  image="HelpWindowMakeNewGuild" />
+		<HelpDefinition id="Help_window_adventure_window_0" type="Adventures" icon="MapPart"  image="HelpWindowAdventureWindow" />
+		<HelpDefinition id="Help_window_start_adventure_0" type="Adventures" icon="MapPart"  image="HelpWindowStartAdventure" />
+		<HelpDefinition id="Help_window_adventure_purchase_0" type="Adventures" icon="MapPart"  image="HelpWindowAdventurePurchase" />
+		<HelpDefinition id="Help_window_garnison_0" type="Military" icon="Military"  image="HelpWindowGarnison" />
+
+		<HelpDefinition id="Help_window_economy_overview_0" type="Building" icon="Resources"  image="HelpWindowEconomyOverview" />
+		<HelpDefinition id="Help_window_population_0" type="UI" icon="Resources"  image="HelpWindowPopulation" />
+		<HelpDefinition id="Help_window_shop_0" type="UI" icon="Resources"  image="HelpWindowShop" />
+		<HelpDefinition id="Help_window_barracks_0" type="Building" icon="Military"  image="HelpWindowBarracks" />
+		<!--	<HelpDefinition id="Help_window_first_attack_units_0" type="Military" icon="Military"  image="HelpWindowFirstAttackUnits" /> Made redundant by new entry Help_window_attributes_0 -->
+		<HelpDefinition id="Help_window_chatupdate_0" type="UI" icon="MapPart"  image="HelpWindowChat" />
+		<HelpDefinition id="Help_window_enemy_camps_0" type="Military" icon="Military"  image="HelpWindowEnemyCamps" />
+		<HelpDefinition id="Help_window_toolbox_0" type="Building" icon="Building"  image="HelpWindowToolbox" />
+		<HelpDefinition id="Help_window_questbook_0" type="UI" icon="Social"  image="HelpWindowQuestbook" />
+		<HelpDefinition id="Help_window_deposit_0" type="Specialists" icon="Resources"  image="HelpWindowDeposit" />
+		<HelpDefinition id="Help_window_shortcuts_0" type="UI" icon="Building"  image="HelpWindowShortcuts" />
+		<HelpDefinition id="Help_window_resource_bar_0" type="UI" icon="Resources"  image="HelpWindowResourceBar" />
+		<HelpDefinition id="Help_window_general_defeated_0" type="Military" icon="Military"  image="HelpWindowGeneralDefeated" />
+		<HelpDefinition id="Help_window_daily_login_bonus_0" type="UI" icon="Resources"  image="HelpWindowDailyLoginBonus" />
+		<HelpDefinition id="Help_window_precombat_feedback_new_0" type="Military" icon="Military"  image="HelpWindowPrecombatFeedbackNew" />
+		<HelpDefinition id="Help_window_bookbinder_0" type="Building" icon="Building"  image="HelpWindowBookbinder" />
+		<HelpDefinition id="Help_window_skilltrees_0" type="Specialists" icon="Resources"  image="HelpWindowSkilltrees" pages="2"/>
+<!--		<HelpDefinition id="Help_window_crisisquests_0" type="Military" icon="Military"  image="HelpWindowCrisisQuest" />-->
+
+		<!--HelpDefinition id="Help_window_epic_raids_0" type="Adventures" icon="MagicBean"  image="HelpWindowEpicRaids" /> REMOVED AS OF ADVENTURE TYPE REWORK 2017 -->
+
+		<HelpDefinition id="Help_window_premium_account_0" type="UI" icon="Resources"  image="HelpWindowPremiumAccount" />
+
+		<HelpDefinition id="Help_window_guild_leader_change_0" type="Guild" icon="Social"  image="HelpWindowGuildLeaderChange" pages="2"/>
+		<HelpDefinition id="Help_window_guild_applications_0" type="Guild" icon="Social"  image="HelpWindowGuildApplications" />
+		<HelpDefinition id="Help_window_guild_market_0" type="Guild" icon="Social"  image="HelpWindowGuildMarketVote" />
+		<HelpDefinition id="Help_window_guild_panel_0" type="Guild" icon="Social"  image="HelpWindowGuildPanel" />
+		<!-- <HelpDefinition id="Help_window_guild_bank_0" type="Guild" icon="Social"  image="HelpWindowGuildBank" /> -->
+		<HelpDefinition id="Help_window_collections_0" type="UI" icon="Resources"  image="HelpWindowCollections" pages="2" />
+		<!--<HelpDefinition id="Help_window_collections_1" type="Building" icon="Resources"  image="HelpWindowCollections" />-->
+		<HelpDefinition id="Help_window_achievements_0" type="Achievements" icon="Social"  image="HelpWindowAchievements" pages="2" />
+		<HelpDefinition id="Help_window_XP_conversion_0" type="UI" icon="StarCoin"  image="HelpWindowXPConversion" />
+		<HelpDefinition id="Help_window_specialist_week_0" type="Specialists" icon="Star"  image="HelpWindowSpecialistWeek" />
+		<HelpDefinition id="Help_window_exp_troops_0" type="Colony" icon="Military"  image="HelpWindowExpTroops" />
+		<HelpDefinition id="Help_window_PvP_0" type="Colony" icon="Military"  image="HelpWindowPvP" />
+		<HelpDefinition id="Help_window_combat3_0" type="Colony" icon="Military"  image="HelpWindowCombat3" />
+		<HelpDefinition id="Help_window_combat3_1" type="Colony" icon="Military"  image="HelpWindowCombat3MultiUnits" />
+		<HelpDefinition id="Help_window_combat3_2" type="Colony" icon="Military"  image="HelpWindowCombat3Blocking" />
+		<HelpDefinition id="Help_window_defense_mode_0" type="Colony" icon="Military"  image="HelpWindowDefense" />
+		<HelpDefinition id="Help_window_pvp_maintenance_info_0" type="Colony" icon="Military"  image="HelpWindowMaintenancePVP" />
+		<HelpDefinition id="Help_window_recovery_admiral_0" type="Colony" icon="Military"  image="HelpWindowMaintenanceRecovery" />
+		<HelpDefinition id="Help_window_combat3_tutorial" type="Colony" icon="Military"  image="HelpWindowCombat3Tutorial" hasButton="true" buttonPositionX="150" buttonPositionY="39" url="/redirect/Combat3Tutorial" />
+		<HelpDefinition id="Help_window_production_week_0" type="Building" icon="Star"  image="HelpWindowProductionWeek" />
+		<HelpDefinition id="Help_window_barracks_week_0" type="UI" icon="Star"  image="HelpWindowBarracksWeek" />  
+		<HelpDefinition id="Help_window_buff_adventure_0" type="Adventures" icon="Scenario"  image="HelpWindowBuffAdventure" />  
+		<HelpDefinition id="Help_window_buff_adventure_ui_0" type="UI" icon="Scenario"  image="HelpWindowBuffAdventureUI" /> 
+		<HelpDefinition id="Help_window_destroyable_mountains_0" type="UI" icon="Resources"  image="HelpWindowDestroyableMountains" />
+		<HelpDefinition id="Help_window_colony_tier_0" type="Colony" icon="Military"  image="HelpWindowColonyTier" />
+		<HelpDefinition id="Help_window_Path_Tracking_Tool_0" type="Colony" icon="Military"  image="HelpWindowGhostGarrison" />
+		<HelpDefinition id="Help_window_blocking_locking_0" type="Military" icon="Military"  image="HelpWindowBlockingLocking" />
+		<HelpDefinition id="Help_window_water_castle_0" type="Colony" icon="Military"  image="HelpWindowWaterCastle" />
+		<HelpDefinition id="Help_window_pvp_prog_0" type="Colony" icon="Military"  image="HelpWindowPvPProg" />
+		<HelpDefinition id="Help_window_rankings_0" type="Colony" icon="Military"  image="HelpWindowRankings" />
+		<HelpDefinition id="Help_window_advanced_options_0" type="UI" icon="Tool" image="HelpWindowAdvancedOptions" />
+		<HelpDefinition id="Help_window_elite_units_0" type="Military" icon="Military"  image="HelpWindowEliteUnits" />
+		<HelpDefinition id="Help_window_archipelago_0" type="Building" icon="IslandDeed"  image="HelpWindowArchipelago" pages="2" />
+		<HelpDefinition id="Help_window_starcoins_0" type="UI" icon="StarCoin"  image="HelpWindowStarCoins" />
+		<HelpDefinition id="Help_window_zonebuffs_0" type="UI" icon="ZoneBuff" image="HelpWindowZoneBuffs" />
+		<HelpDefinition id="Help_window_culturebuildings_0" type="Building" icon="Building" image="HelpWindowCultureBuildings" />
+		<HelpDefinition id="Help_window_publicbuildings_0" type="Building" icon="Building" image="HelpWindowPublicBuildings" />
+		<HelpDefinition id="Help_window_conditionalbuffs_0" type="Building" icon="ProductivityBuffLvl1" image="HelpWindowConditionalBuffs" />		
+		<HelpDefinition id="Help_window_excelsior_0" type="Building" icon="Crystal" image="HelpWindowExcelsior" />
+		<HelpDefinition id="Help_window_harbour_0" type="Building" icon="Building" image="HelpWindowHarbour" pages="1" /> 	
+		<HelpDefinition id="Help_window_ventures_0" type="Adventures" icon="Venture" image="HelpWindowVentures" />
+		
+		<HelpDefinition id="Help_window_attributes_0" type="Military" icon="Military" image="HelpWindowAttributes" pages="3" />
+		<HelpDefinition id="Help_window_combatant_types_0" type="Military" icon="Military" image="HelpWindowUnitTypes" />
+		<HelpDefinition id="Help_window_target_order_0" type="Military" icon="Military" image="HelpWindowTargetOrder" pages="3" />
+		<HelpDefinition id="Help_window_combat_details_0" type="Military" icon="Military" image="HelpWindowCombatDetails" pages="2" />
+		<HelpDefinition id="Help_window_camp_demolition_0" type="Military" icon="Military" image="HelpWindowCampDemolition" pages="1" />
+		
+		<HelpDefinition id="Help_window_fairytales_0" type="Adventures" icon="MagicBean" image="HelpWindowFairytales" pages="1" />
+		<HelpDefinition id="Help_window_campaigns_0" type="Adventures" icon="MapPart" image="HelpWindowCampaigns" pages="1" />
+		<HelpDefinition id="Help_window_adventure_types_0" type="Adventures" icon="MapPart" image="HelpWindowAdventureTypes" pages="1" />
+		<HelpDefinition id="Help_window_missions_0" type="Adventures" icon="Mission" image="HelpWindowMissions" pages="1" />
+	</HelpDefinitions>
+</Root>

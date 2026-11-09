@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	 <quest name="AdvDefeatAllDarkCastles" type="Story" icon="Military" npc="quest_character_mentor03.png" specialType="firstQuestlastQuest" >
+		<triggers>
+      <trigger type="Building" name="Dark_Castle_01" condition="l" amount="1"/>
+		  </triggers>
+      <rewards/>
+		  <postrequisits />
+    </quest>
+</Root>

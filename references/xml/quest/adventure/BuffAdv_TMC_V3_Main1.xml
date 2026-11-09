@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+      
+	 <!--  A Maze: Main Quest is to liberate + excavate northern stronghold (Sub1) and defeat map boss (Sub2)	-->
+   <quest name="BuffAdv_TMC_V3_Main1" specialType="firstQuestlastQuest" icon="Military" npc="quest_character_sonya_solemoon.png">
+   		<preeffects>		
+			<applyzonebuff name="GeneralSpeedBuff_TMC_A">
+				<conditions>
+					<checkgenericvalue name="MountainClan_DispelledDebuffA" max="0"/>
+				</conditions>
+			</applyzonebuff>
+			<applyzonebuff name="EffectBuff_TMC_B">
+				<conditions>
+					<checkgenericvalue name="MountainClan_DispelledDebuffB" max="0"/>
+				</conditions>
+			</applyzonebuff>
+			<applyzonebuff name="EffectBuff_TMC_C">
+				<conditions>
+					<checkgenericvalue name="MountainClan_DispelledDebuffC" max="0"/>
+				</conditions>
+			</applyzonebuff>
+			<applyzonebuff name="EffectBuff_TMC_D">
+				<conditions>
+					<checkgenericvalue name="MountainClan_DispelledDebuffD" max="0"/>
+				</conditions>
+			</applyzonebuff>	
+   		</preeffects>
+		<triggers>
+			<questcomplete item="BuffAdv_TMC_V3_Sub1"/> 
+			<questcomplete item="BuffAdv_TMC_V3_Sub2"/> 
+		</triggers>
+		<rewards>
+		</rewards>
+		<postrequisits />
+    </quest>
+	
+	 <!--  Wriggle through: liberate + excavate northern stronghold  -->
+	<quest name="BuffAdv_TMC_V3_Sub1" type="Story" icon="Military" connectedToQuest="BuffAdv_TMC_V3_Main1" npc="mountain_clan_covered.png">
+		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V3_Main1"/>
+		</startcondition>
+		  <triggers>
+		  	<onmap max="0" item="tmc_buffad_stronghold_ruins_wildlife_north" locaExtension="DefeatTMCStrongholdRuinsNorth"/>		
+			<onmap min="1" item="tmc_buffad_stronghold_ruins_north_excavated" locaExtension="ExcavateTMCRuinsNorth"/>				
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+				<exploresector id="9"/>	
+        </posteffects>
+   </quest>
+	
+	 <!--  Misty Goal: follow the path and defeat map boss  -->
+	<quest name="BuffAdv_TMC_V3_Sub2" type="Story" icon="Military" connectedToQuest="BuffAdv_TMC_V3_Main1" npc="mountain_clan_covered.png">
+		<startcondition>
+		   <questcomplete item="BuffAdv_TMC_V3_Sub1"/>
+		</startcondition>
+		  <triggers>
+			<onmap max="0" item="tmc_buffad_v3_wildlife_boss" locaExtension="DefeatThreatfulWildlifeBoss"/>	  <!--RECHECK boss naming"/-->	
+		  </triggers>
+		<rewards>
+		</rewards>
+		<posteffects>
+        </posteffects>
+   </quest>
+     
+	 <!--  The ogreish Truth: liberate + excavate the other 3 strongholds  --> 
+     <quest name="BuffAdv_TMC_V3_Side1" type="Side" icon="Military" npc="quest_character_sonya_solemoon.png">
+     	<startcondition>
+		   <questrunning item="BuffAdv_TMC_V3_Main1"/>
+		</startcondition>
+		<preeffects>
+   		</preeffects>
+		<triggers>
+			<questcomplete item="BuffAdv_TMC_V3_SideSub1"/> 
+			<questcomplete item="BuffAdv_TMC_V3_SideSub2"/> 
+			<questcomplete item="BuffAdv_TMC_V3_SideSub3"/> 
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="30000"/>
+		</rewards>
+		<posteffects>
+        </posteffects>
+   </quest>
+   
+    <!--  Kids in the Mines: liberate + excavate western stronghold  -->
+   <quest name="BuffAdv_TMC_V3_SideSub1" type="Side" icon="Military" connectedToQuest="BuffAdv_TMC_V3_Side1" npc="mountain_clan_covered.png">
+   		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V3_Side1"/>
+		</startcondition>
+		  <triggers>
+		  	<onmap max="0" item="tmc_buffad_stronghold_ruins_wildlife_west" locaExtension="DefeatTMCStrongholdRuinsWildlife"/>		
+			<onmap min="1" item="tmc_buffad_stronghold_ruins_west_excavated" locaExtension="ExcavateTMCRuinsWest"/>	
+		  </triggers>
+		<rewards>
+		</rewards>
+		<posteffects>
+			<reward type="Buff" item="GeneralSpeedBuff_Obsidian" amount="1"/>
+			<reward type="Buff" item="AddResource" name="ObsidianOre" amount="20" />
+        </posteffects>
+   </quest>
+
+     <!--  People Hanging: liberate + excavate north eastern stronghold  -->
+      <quest name="BuffAdv_TMC_V3_SideSub2" type="Side" icon="Military" connectedToQuest="BuffAdv_TMC_V3_Side1" npc="mountain_clan_covered.png">
+      	<startcondition>
+		   <questrunning item="BuffAdv_TMC_V3_Side1"/>
+		</startcondition>
+		  <triggers>
+		  	<onmap max="0" item="tmc_buffad_stronghold_ruins_wildlife_east" locaExtension="DefeatTMCStrongholdRuinsWildlife"/>		
+			<onmap min="1" item="tmc_buffad_stronghold_ruins_east_excavated" locaExtension="ExcavateTMCRuinsEast"/>	
+		  </triggers>
+		<rewards>
+		</rewards>
+		<posteffects>
+			<reward type="Buff" item="BattleBuffKill_random_unit_type_limited" amount="1"/>
+			<reward type="Buff" item="AddResource" name="ObsidianOre" amount="20" />
+        </posteffects>
+   </quest>
+   
+   <!--  Cooking Humans: liberate + excavate eastern stronghold  -->
+      <quest name="BuffAdv_TMC_V3_SideSub3" type="Side" icon="Military" connectedToQuest="BuffAdv_TMC_V3_Side1" npc="mountain_clan_covered.png">
+      	<startcondition>
+		   <questrunning item="BuffAdv_TMC_V3_Side1"/>
+		</startcondition>
+		  <triggers>
+		  	<onmap max="0" item="tmc_buffad_stronghold_ruins_wildlife_northeast" locaExtension="DefeatTMCStrongholdRuinsWildlife"/>		
+			<onmap min="1" item="tmc_buffad_stronghold_ruins_northeast_excavated" locaExtension="ExcavateTMCRuinsNortheast"/>	
+		  </triggers>
+		<rewards>
+		</rewards>
+		<posteffects>			
+			<reward type="Buff" item="ProductivityBuffLvl12" amount="1"/>
+			<reward type="Buff" item="AddResource" name="ObsidianOre" amount="20" />
+        </posteffects>
+   </quest>
+   
+     <!-- Invisible Control Quests (Gate Buff rewards + avatar messages) -->
+   <quest name="BuffAdv_TMC_V3_SubX1" showQuestWindow="false" showRewardWindow="false">
+   		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V3_Main1"/>
+		</startcondition>
+		  <triggers>
+		  	<onmap max="0" item="tmc_buffad_gatebuffX_wildlife_1" locaExtension="RepairNorthernBridge"/>				
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+		<reward type="Buff" item="BattleBuffDestroy_TMC_gatebuffX" amount="1"/>    
+		<avatarmessage action="buffReceived" name="buffReceived" item="buff_robust_shovel"/>              
+        </posteffects>
+   </quest>
+   
+   <quest name="BuffAdv_TMC_V3_SubX2" showQuestWindow="false" showRewardWindow="false">
+      	<startcondition>
+		   <questrunning item="BuffAdv_TMC_V3_Main1"/>
+		</startcondition>
+		  <triggers>
+		  	<onmap max="0" item="tmc_buffad_gatebuffX_wildlife_2" locaExtension="RepairNorthernBridge"/>				
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+		<reward type="Buff" item="BattleBuffDestroy_TMC_gatebuffX" amount="1"/>    
+		<avatarmessage action="buffReceived" name="buffReceived" item="buff_robust_shovel"/>              
+        </posteffects>
+   </quest>
+
+   <quest name="BuffAdv_TMC_V3_SubX3" showQuestWindow="false" showRewardWindow="false">
+   		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V3_Main1"/>
+		</startcondition>
+		  <triggers>
+		  	<onmap max="0" item="tmc_buffad_stronghold_west_sector_unlock" locaExtension="RepairNorthernBridge"/>				
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+		<reward type="Buff" item="BattleBuffDestroy_TMC_gatebuffX" amount="1"/>    
+		<avatarmessage action="buffReceived" name="buffReceived" item="buff_robust_shovel"/>              
+        </posteffects>
+   </quest>
+
+   <quest name="BuffAdv_TMC_V3_SubY1" showQuestWindow="false" showRewardWindow="false">
+   		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V3_Main1"/>
+		</startcondition>
+		  <triggers>
+		  	<onmap max="0" item="tmc_buffad_gatebuffY_wildlife_1" locaExtension="RepairNorthernBridge"/>				
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+		<reward type="Buff" item="BattleBuffDestroy_TMC_gatebuffY" amount="1"/>    
+		<avatarmessage action="buffReceived" name="buffReceived" item="buff_mountain_dynamite"/>              
+        </posteffects>
+   </quest>
+
+   <quest name="BuffAdv_TMC_V3_SubY2" showQuestWindow="false" showRewardWindow="false">
+   		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V3_Main1"/>
+		</startcondition>
+		  <triggers>
+		  	<onmap max="0" item="tmc_buffad_gatebuffY_wildlife_2" locaExtension="RepairNorthernBridge"/>				
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+		<reward type="Buff" item="BattleBuffDestroy_TMC_gatebuffY" amount="1"/>    
+		<avatarmessage action="buffReceived" name="buffReceived" item="buff_mountain_dynamite"/>              
+        </posteffects>
+   </quest>
+
+   <quest name="BuffAdv_TMC_V3_SubY3" showQuestWindow="false" showRewardWindow="false">
+   		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V3_Main1"/>
+		</startcondition>
+		  <triggers>
+		  	<onmap max="0" item="tmc_buffad_gatebuffY_wildlife_3" locaExtension="RepairNorthernBridge"/>				
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+		<reward type="Buff" item="BattleBuffDestroy_TMC_gatebuffY" amount="1"/>    
+		<avatarmessage action="buffReceived" name="buffReceived" item="buff_mountain_dynamite"/>              
+        </posteffects>
+   </quest>   
+	
+	<quest name="BuffAdv_TMC_V3_SubY4" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>
+		   <questrunning item="BuffAdv_TMC_V3_Main1"/>
+		</startcondition>
+		  <triggers>
+		  	<onmap max="0" item="tmc_buffad_stronghold_ruins_wildlife_north" locaExtension="RepairNorthernBridge"/>				
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+			<reward type="Buff" item="BattleBuffDestroy_TMC_gatebuffY" amount="1"/>    
+			<avatarmessage action="buffReceived" name="buffReceived" item="buff_mountain_dynamite"/>              
+        </posteffects>
+   </quest>   
+   
+    <!-- Invisible Control Quests (Exchange gates after unlocking north sector (sector 8)) -->
+ 
+   <quest name="BuffAdv_TMC_V3_SubStart" showQuestWindow="false" showRewardWindow="false">
+   		<startcondition>
+		   <questcomplete item="BuffAdv_TMC_V3_SubY4"/>
+		</startcondition>
+		  <triggers>
+				<sectorexplored id="8"/>		
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+					<startquest name="BuffAdv_TMC_V3_SubA1"/>
+					<startquest name="BuffAdv_TMC_V3_SubA2"/>
+					<startquest name="BuffAdv_TMC_V3_SubB1"/>
+					<startquest name="BuffAdv_TMC_V3_SubB2"/>
+					<startquest name="BuffAdv_TMC_V3_SubB3"/>
+					<startquest name="BuffAdv_TMC_V3_SubC1"/>
+					<startquest name="BuffAdv_TMC_V3_SubC2"/>
+					<startquest name="BuffAdv_TMC_V3_SubC3"/>
+        </posteffects>
+   </quest>   
+
+ 
+   	<quest name="BuffAdv_TMC_V3_SubA1" showQuestWindow="false" showRewardWindow="false">
+		  <triggers>
+		  	<onmap min="1" item="tmc_buffad_v3_gateA_1"/>				
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+			<spawnbuilding x="13" y="76" name="tmc_buffad_v3_gateA_1_deco" mode="free" action="ignoreBlocking,replace,spawnInstant"/>
+        </posteffects>
+   </quest>   
+
+    <quest name="BuffAdv_TMC_V3_SubA2" showQuestWindow="false" showRewardWindow="false">
+		  <triggers>
+		  	<onmap min="1" item="tmc_buffad_v3_gateA_2"/>				
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+			<spawnbuilding x="18" y="79" name="tmc_buffad_v3_gateA_2_deco" mode="free" action="ignoreBlocking,replace,spawnInstant"/>
+        </posteffects>
+   </quest>   
+   
+   <quest name="BuffAdv_TMC_V3_SubB1" showQuestWindow="false" showRewardWindow="false">
+		  <triggers>
+		  	<onmap min="1" item="tmc_buffad_v3_gateB_1"/>				
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+			<spawnbuilding x="24" y="77" name="tmc_buffad_v3_gateB_1_deco" mode="free" action="ignoreBlocking,replace,spawnInstant"/>
+        </posteffects>
+   </quest>   
+   
+      <quest name="BuffAdv_TMC_V3_SubB2" showQuestWindow="false" showRewardWindow="false">
+		  <triggers>
+		  	<onmap min="1" item="tmc_buffad_v3_gateB_2"/>				
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+			<spawnbuilding x="13" y="63" name="tmc_buffad_v3_gateB_2_deco" mode="free" action="ignoreBlocking,replace,spawnInstant"/>
+        </posteffects>
+   </quest>   
+   
+      <quest name="BuffAdv_TMC_V3_SubB3" showQuestWindow="false" showRewardWindow="false">
+		  <triggers>
+		  	<onmap min="1" item="tmc_buffad_v3_gateB_3"/>				
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+			<spawnbuilding x="23" y="55" name="tmc_buffad_v3_gateB_3_deco" mode="free" action="ignoreBlocking,replace,spawnInstant"/>
+        </posteffects>
+   </quest>   
+ 
+    <quest name="BuffAdv_TMC_V3_SubC1" showQuestWindow="false" showRewardWindow="false">
+		  <triggers>
+		  	<onmap min="1" item="tmc_buffad_v3_gateC_1"/>				
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+			<spawnbuilding x="10" y="75" name="tmc_buffad_v3_gateC_1_deco" mode="free" action="ignoreBlocking,replace,spawnInstant"/>
+        </posteffects>
+   </quest>   
+   
+   <quest name="BuffAdv_TMC_V3_SubC2" showQuestWindow="false" showRewardWindow="false">
+		  <triggers>
+		  	<onmap min="1" item="tmc_buffad_v3_gateC_2"/>				
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+			<spawnbuilding x="12" y="53" name="tmc_buffad_v3_gateC_2_deco" mode="free" action="ignoreBlocking,replace,spawnInstant"/>
+        </posteffects>
+   </quest>   
+   
+   <quest name="BuffAdv_TMC_V3_SubC3" showQuestWindow="false" showRewardWindow="false">
+		  <triggers>
+		  	<onmap min="1" item="tmc_buffad_v3_gateC_3"/>				
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+			<spawnbuilding x="16" y="58" name="tmc_buffad_v3_gateC_3_deco" mode="free" action="ignoreBlocking,replace,spawnInstant"/>
+        </posteffects>
+   </quest>      
+
+   <!-- Achievement Quest -->
+<!--    
+   <quest name="BuffAdv_TMC_V3_SideQuestsAchievement" showQuestWindow="false" showRewardWindow="false" notifyHomeZone="true">
+		  <triggers>
+		  	<triggers>
+			<questcomplete item="BuffAdv_TMC_V3_SideSub1"/> 
+			<questcomplete item="BuffAdv_TMC_V3_SideSub2"/> 
+			<questcomplete item="BuffAdv_TMC_V3_SideSub3"/> 
+		</triggers>
+		  </triggers>
+		<rewards></rewards>
+		<posteffects>
+        </posteffects>
+   </quest>
+-->   
+</Root>
+
+    
+    
+      
+      
+      
+      
+
+

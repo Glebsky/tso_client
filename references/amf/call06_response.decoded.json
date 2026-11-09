@@ -1,0 +1,35 @@
+{
+  "amf_version": 3,
+  "headers": 0,
+  "bodies": [
+    {
+      "target": "/6/onResult",
+      "response": "",
+      "declared_len": 4294967295,
+      "marker": "0x11",
+      "value": {
+        "__class": "flex.messaging.messages.AcknowledgeMessage",
+        "body": {
+          "__class": "defaultGame.Communication.VO.dServerResponse",
+          "type": 4014,
+          "zoneID": 1601416,
+          "data": {
+            "__class": "defaultGame.Communication.VO.dServerActionResult",
+            "clientTime": 0.0,
+            "errorCode": 0,
+            "data": null
+          }
+        },
+        "clientId": "3bc2ad25-8bb9-4bcb-92b8-795ab989f311",
+        "correlationId": "a1e15ae9-cf10-4996-96a3-a6084cf0773e",
+        "destination": null,
+        "headers": {
+          "__class": "Object"
+        },
+        "messageId": "6fd760aa-e724-4ec8-af1b-41e00a2d85c3",
+        "timeToLive": 0.0,
+        "timestamp": 1787943113339.0
+      }
+    }
+  ]
+}

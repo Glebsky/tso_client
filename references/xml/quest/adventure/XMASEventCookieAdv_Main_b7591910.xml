@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+
+
+	 <quest name="XMASEventCookieAdv_Main" specialType="firstQuestlastQuest" icon="ChristmasResource" npc="quest_character_fakesanta.png">
+		<triggers>
+			<questcomplete item="XMASEventCookieAdv_Buff" />
+			<questcomplete item="XMASEventCookieAdv_Military" />			
+		</triggers>
+		<rewards>
+			<reward type="XP" amount="250"/>        
+		</rewards>
+    </quest>
+
+	<quest name="XMASEventCookieAdv_Buff" type="Story" connectedToQuest="XMASEventCookieAdv_Main" cancelable="false" icon="ChristmasResource" npc="quest_character_santaclaus.png" showQuestWindow="true" showRewardWindow="true" >
+		<startcondition>	
+		</startcondition>
+		<triggers>
+			<buildingdestroyed min="4" item="xmas_cookie_buffbuilding_1,xmas_cookie_buffbuilding_2,xmas_cookie_buffbuilding_3,xmas_cookie_buffbuilding_4,xmas_cookie_buffbuilding_5,xmas_cookie_buffbuilding_6,xmas_cookie_buffbuilding_7" locaExtension="DefeatXmasEvildoers" />		
+		</triggers>
+		<posteffects>
+				<startquest name="XMASEventCookieAdv_Military"/>		
+				<spawnbuilding name="xmas_spawn_camp_1" x="22" y="22" units="EliteWildlifeMilitia|20,EliteWildlifeCavalry|20" action="ignoreBlocking,spawnInstant,replace" mode="enemy"/>
+				<spawnbuilding name="xmas_spawn_camp_2" x="26" y="20" units="EliteWildlifeRecruit|30,EliteWildlifeLongbowman|10" action="ignoreBlocking,spawnInstant,replace" mode="enemy"/>
+				<spawnbuilding name="xmas_spawn_camp_boss" x="23" y="15" units="EliteWildlifeRecruit|10,EliteWildlifeAir|10,ChristmasBossTwin1|1" action="ignoreBlocking,spawnInstant,replace" mode="enemy"/>
+        </posteffects>		
+	</quest>
+
+	<quest name="XMASEventCookieAdv_Military" type="Story" connectedToQuest="XMASEventCookieAdv_Main" cancelable="false" icon="Military" npc="quest_character_fakesanta.png" showQuestWindow="true" showRewardWindow="true" >
+		<triggers>
+			<buildingdestroyed min="1" item="xmas_spawn_camp_boss" locaExtension="DefeatXmasEvildoers2" />		
+		</triggers>
+	</quest>	
+	
+	<!-- Despawn Helper quests -->
+	
+    <quest name="XMASEventCookieAdv_Helper_1" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>		
+		</startcondition>
+		  <triggers>
+			<buildingdestroyed min="1" item="xmas_cookie_buffbuilding_1" />				
+		  </triggers>
+		<posteffects>
+			<removebuilding x="33" y="37" name="GingerbreadDeco6"/>
+			
+			<removebuilding x="35" y="37" name="GingerbreadDeco5" action="applyDestroyEffects"/>
+			<removebuilding x="34" y="37" name="flowerbed_red" action="applyDestroyEffects"/>
+			<removebuilding x="36" y="35" name="GingerbreadDeco1" action="applyDestroyEffects"/>
+			<removebuilding x="33" y="34" name="TheFrozenManor" action="applyDestroyEffects"/>
+			<removebuilding x="32" y="37" name="lanternQuadGold" action="applyDestroyEffects"/>
+			<removebuilding x="34" y="32" name="GingerbreadDeco3" action="applyDestroyEffects"/>
+			<removebuilding x="35" y="32" name="lanternQuadGold" action="applyDestroyEffects"/>
+			<removebuilding x="34" y="36" name="lanternQuadGold" action="applyDestroyEffects"/>			
+			<removebuilding x="36" y="35" name="GingerbreadDeco1" action="applyDestroyEffects"/>
+			<removebuilding x="36" y="32" name="GingerbreadDeco4" action="applyDestroyEffects"/>
+			
+			<removebuilding x="35" y="25" name="GingerbreadDeco1" action="applyDestroyEffects"/>
+			<removebuilding x="38" y="25" name="GingerbreadDeco3" action="applyDestroyEffects"/>
+			<removebuilding x="38" y="22" name="GingerbreadStorage" action="applyDestroyEffects"/>
+			<removebuilding x="39" y="24" name="lanternQuadGold" action="applyDestroyEffects"/>
+			<removebuilding x="36" y="25" name="lanternQuadGold" action="applyDestroyEffects"/>			
+			<removebuilding x="41" y="25" name="snowman" action="applyDestroyEffects"/>
+			<removebuilding x="40" y="26" name="ChristmasTreeSmall" action="applyDestroyEffects"/>			
+			<removebuilding x="41" y="41" name="animated_christmastree" action="applyDestroyEffects"/>
+			<removebuilding x="25" y="46" name="ChristmasTreeSmall" action="applyDestroyEffects"/>		
+			
+			<removebuilding x="26" y="39" name="animated_christmastree" action="applyDestroyEffects"/>
+			<removebuilding x="24" y="38" name="animated_christmastree" action="applyDestroyEffects"/>				
+
+			<removebuilding x="28" y="44" name="GingerbreadDeco6" action="applyDestroyEffects"/>
+			<removebuilding x="27" y="42" name="GingerbreadDeco5" action="applyDestroyEffects"/>
+			<removebuilding x="26" y="48" name="lanternQuadGold" action="applyDestroyEffects"/>			
+			<removebuilding x="28" y="52" name="lanternQuadGold" action="applyDestroyEffects"/>					
+			<removebuilding x="26" y="40" name="lanternQuadGold" action="applyDestroyEffects"/>
+			<removebuilding x="25" y="43" name="GingerbreadDeco1" action="applyDestroyEffects"/>
+			<removebuilding x="26" y="45" name="GingerbreadDeco2" action="applyDestroyEffects"/>
+			<removebuilding x="25" y="40" name="GingerbreadDeco5" action="applyDestroyEffects"/>
+			<removebuilding x="25" y="49" name="GingerbreadDeco4" action="applyDestroyEffects"/>
+			<removebuilding x="26" y="52" name="GingerbreadDeco6" action="applyDestroyEffects"/>
+			<removebuilding x="26" y="55" name="GingerbreadDeco5" action="applyDestroyEffects"/>
+			<removebuilding x="28" y="53" name="GingerbreadDeco5" action="applyDestroyEffects"/>
+
+			<removebuilding x="24" y="39" name="lanternQuadGold" action="applyDestroyEffects"/>		
+			<removebuilding x="32" y="37" name="lanternQuadGold" action="applyDestroyEffects"/>			
+			<removebuilding x="35" y="32" name="lanternQuadGold" action="applyDestroyEffects"/>
+			<removebuilding x="36" y="35" name="GingerbreadDeco1" action="applyDestroyEffects"/>
+			<removebuilding x="36" y="32" name="GingerbreadDeco4" action="applyDestroyEffects"/>
+			<removebuilding x="25" y="57" name="s_ChristmasTreeSmall_birthday" action="applyDestroyEffects"/>				
+
+			<spawnbuilding name="xmas_buffhouse_1_decayed_deco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="39" y="23"/>
+           	<spawnbuilding name="xmas_buffhouse_2_decayed_deco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="27" y="49"/>
+           	<spawnbuilding name="xmas_buffhouse_3_decayed_deco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="35" y="34"/>
+			
+        </posteffects>
+   </quest>
+   
+  <quest name="XMASEventCookieAdv_Helper_2" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>		
+		</startcondition>
+		  <triggers>
+			<buildingdestroyed min="1" item="xmas_cookie_buffbuilding_2" />				
+		  </triggers>
+		<posteffects>
+			<removebuilding x="20" y="41" name="GingerbreadDeco2" action="applyDestroyEffects"/>
+			<removebuilding x="22" y="43" name="GingerbreadDeco6" action="applyDestroyEffects"/>
+			<removebuilding x="23" y="41" name="GingerbreadDeco4" action="applyDestroyEffects"/>
+			<removebuilding x="23" y="38" name="TheFrozenManor" action="applyDestroyEffects"/>
+			<removebuilding x="20" y="46" name="GingerbreadDeco5" action="applyDestroyEffects"/>
+			<removebuilding x="22" y="48" name="GingerbreadDeco6" action="applyDestroyEffects"/>
+			<removebuilding x="20" y="51" name="TheFrozenManor" action="applyDestroyEffects"/>
+			<removebuilding x="21" y="44" name="snowman" action="applyDestroyEffects"/>
+			<removebuilding x="23" y="54" name="GingerbreadResidence" action="applyDestroyEffects"/>
+			<removebuilding x="21" y="53" name="GingerbreadDeco5" action="applyDestroyEffects"/>			
+			<removebuilding x="21" y="43" name="lanternQuadGold" action="applyDestroyEffects"/>
+			<removebuilding x="21" y="48" name="lanternQuadGold" action="applyDestroyEffects"/>
+			<removebuilding x="23" y="53" name="lanternQuadGold" action="applyDestroyEffects"/>
+			<removebuilding x="20" y="46" name="GingerbreadDeco5" action="applyDestroyEffects"/>
+			<removebuilding x="22" y="51" name="GingerbreadDeco6" action="applyDestroyEffects"/>					
+			<removebuilding x="19" y="49" name="ChristmasTreeBig" action="applyDestroyEffects"/>	
+			<removebuilding x="21" y="39" name="animated_christmastree" action="applyDestroyEffects"/>					
+		
+			<removebuilding x="13" y="40" name="GingerbreadDeco5" action="applyDestroyEffects"/>
+			<removebuilding x="12" y="35" name="GingerbreadDeco5" action="applyDestroyEffects"/>			
+			<removebuilding x="14" y="41" name="lanternQuadGold" action="applyDestroyEffects"/>
+			<removebuilding x="11" y="37" name="lanternQuadGold" action="applyDestroyEffects"/>
+			<removebuilding x="9" y="30" name="lanternQuadGold" action="applyDestroyEffects"/>		
+			<removebuilding x="23" y="43" name="Xmas_Island_Decoration" action="applyDestroyEffects"/>			
+					
+           	<spawnbuilding name="xmas_buffhouse_3_decayed_deco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="17" y="35"/>
+           	<spawnbuilding name="xmas_buffhouse_1_decayed_deco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="15" y="40"/>
+           	<spawnbuilding name="xmas_buffhouse_2_decayed_deco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="8" y="28"/>		
+					
+			
+        </posteffects>
+   </quest>  
+
+  <quest name="XMASEventCookieAdv_Helper_3" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>		
+		</startcondition>
+		  <triggers>
+			<buildingdestroyed min="1" item="xmas_cookie_buffbuilding_3" />				
+		  </triggers>
+		<posteffects>
+
+			<removebuilding x="23" y="26" name="lanternQuadGold" action="applyDestroyEffects"/>
+			<removebuilding x="23" y="25" name="lanternQuadGold" action="applyDestroyEffects"/>
+			<removebuilding x="24" y="21" name="lanternQuadGold" action="applyDestroyEffects"/>	
+			
+           	<spawnbuilding name="xmas_buffhouse_2_decayed_deco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="20" y="16"/>	
+			
+        </posteffects>
+   </quest>     
+
+  <quest name="XMASEventCookieAdv_Helper_4" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>		
+		</startcondition>
+		  <triggers>
+			<buildingdestroyed min="1" item="xmas_cookie_buffbuilding_4" />				
+		  </triggers>
+		<posteffects>
+		
+			<removebuilding x="18" y="82" name="flowerbed_red" action="applyDestroyEffects"/>
+			<removebuilding x="20" y="86" name="GingerbreadResidence" action="applyDestroyEffects"/>
+			<removebuilding x="21" y="84" name="GingerbreadDeco4" action="applyDestroyEffects"/>
+			<removebuilding x="21" y="80" name="GingerbreadDeco6" action="applyDestroyEffects"/>	
+			<removebuilding x="22" y="82" name="lanternQuadGold" action="applyDestroyEffects"/>			
+			<removebuilding x="22" y="79" name="ChristmasTreeBig" action="applyDestroyEffects"/>			
+	
+			<removebuilding x="23" y="73" name="Xmas_Island_Decoration" action="applyDestroyEffects"/>			
+			<removebuilding x="22" y="75" name="GingerbreadResidence" action="applyDestroyEffects"/>	
+			<removebuilding x="19" y="75" name="landscape_deco_wooden_bridge_01" action="applyDestroyEffects"/>					
+			
+           	<spawnbuilding name="xmas_buffhouse_1_decayed_deco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="20" y="82"/>
+			
+        </posteffects>
+   </quest>  
+   
+  <quest name="XMASEventCookieAdv_Helper_5" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>		
+		</startcondition>
+		  <triggers>
+			<buildingdestroyed min="1" item="xmas_cookie_buffbuilding_5" />				
+		  </triggers>
+		<posteffects>
+		
+			<removebuilding x="23" y="60" name="lanternQuadGold" action="applyDestroyEffects"/>
+			<removebuilding x="24" y="66" name="lanternQuadGold" action="applyDestroyEffects"/>
+			<removebuilding x="23" y="67" name="lanternQuadGold" action="applyDestroyEffects"/>	
+			
+			<removebuilding x="22" y="60" name="s_ChristmasTreeSmall_birthday" action="applyDestroyEffects"/>
+			<removebuilding x="23" y="57" name="Xmas_Island_Decoration" action="applyDestroyEffects"/>
+			<removebuilding x="24" y="63" name="GingerbreadDeco3" action="applyDestroyEffects"/>
+			<removebuilding x="22" y="67" name="GingerbreadDeco5" action="applyDestroyEffects"/>
+			<removebuilding x="25" y="69" name="GingerbreadResidence" action="applyDestroyEffects"/>		
+			<removebuilding x="25" y="73" name="snowman" action="applyDestroyEffects"/>			
+			<removebuilding x="25" y="79" name="ChristmasTreeBig" action="applyDestroyEffects"/>	
+			<removebuilding x="17" y="57" name="ChristmasTreeBig" action="applyDestroyEffects"/>	
+			<removebuilding x="21" y="57" name="animated_christmastree" action="applyDestroyEffects"/>				
+
+           	<spawnbuilding name="xmas_buffhouse_1_decayed_deco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="22" y="58"/>
+           	<spawnbuilding name="xmas_buffhouse_2_decayed_deco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="29" y="72"/>
+           	<spawnbuilding name="xmas_buffhouse_3_decayed_deco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="25" y="66"/>			
+			
+        </posteffects>
+   </quest>  
+ 
+  <quest name="XMASEventCookieAdv_Helper_6" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>		
+		</startcondition>
+		  <triggers>
+			<buildingdestroyed min="1" item="xmas_cookie_buffbuilding_6" />				
+		  </triggers>
+		<posteffects>
+		
+			<removebuilding x="15" y="78" name="ChristmasTreeBig" action="applyDestroyEffects"/>
+			<removebuilding x="8" y="93" name="tmc_repaired_mountain_bridge_west" action="applyDestroyEffects"/>
+			<removebuilding x="6" y="91" name="ChristmasTreeSmall" action="applyDestroyEffects"/>
+			<removebuilding x="6" y="87" name="Well_03" action="applyDestroyEffects"/>
+			<removebuilding x="7" y="85" name="GingerbreadDeco5" action="applyDestroyEffects"/>
+			<removebuilding x="5" y="85" name="GingerbreadDeco4" action="applyDestroyEffects"/>			
+			<removebuilding x="6" y="83" name="ChristmasTreeBig" action="applyDestroyEffects"/>
+			
+           	<spawnbuilding name="xmas_buffhouse_1_decayed_deco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="8" y="88"/>
+			
+        </posteffects>
+   </quest>  
+ 
+   <quest name="XMASEventCookieAdv_Helper_7" showQuestWindow="false" showRewardWindow="false">
+		<startcondition>		
+		</startcondition>
+		  <triggers>
+			<buildingdestroyed min="1" item="xmas_cookie_buffbuilding_7" />				
+		  </triggers>
+		<posteffects>
+		
+			<removebuilding x="29" y="92" name="GingerbreadDeco2" action="applyDestroyEffects"/>
+			<removebuilding x="28" y="90" name="GingerbreadDeco6" action="applyDestroyEffects"/>
+			<removebuilding x="28" y="86" name="GingerbreadDeco5" action="applyDestroyEffects"/>
+			<removebuilding x="29" y="84" name="GingerbreadResidence" action="applyDestroyEffects"/>
+			<removebuilding x="28" y="82" name="GingerbreadDeco3" action="applyDestroyEffects"/>
+			<removebuilding x="30" y="86" name="snowman" action="applyDestroyEffects"/>		
+			<removebuilding x="24" y="96" name="Pirate-Ship_BIG" action="applyDestroyEffects"/>					
+			
+			<removebuilding x="29" y="90" name="lanternQuadGold" action="applyDestroyEffects"/>
+			<removebuilding x="26" y="83" name="lanternQuadGold" action="applyDestroyEffects"/>
+			
+
+           	<spawnbuilding name="xmas_buffhouse_2_decayed_deco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="27" y="92"/>
+			<spawnbuilding name="xmas_buffhouse_3_decayed_deco" mode="free" action="spawnInstant,ignoreBlocking,replace" x="31" y="90"/>
+			
+        </posteffects>
+   </quest>  
+ 
+</Root>

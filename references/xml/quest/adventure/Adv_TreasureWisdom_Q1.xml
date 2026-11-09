@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+   
+   <quest name="Adv_TreasureWisdom_Q1" type="Story" icon="Military" npc="king_shari.png" specialType="firstQuest" >
+		  <triggers>
+         <trigger type="Building" name="OrientalBanditCamp_leader" condition="l" amount="1" locaExtension="defeatAll" /> 
+  	  </triggers>
+   </quest>
+   
+   <quest name="Adv_TreasureWisdom_Q2" type="Story" icon="Military" npc="king_shari.png" >
+      <startcondition>
+		     <questcomplete item="Adv_TreasureWisdom_Q1"/>
+		  </startcondition>
+		  <triggers>
+         <trigger type="Building" name="OrientalTomb_leader" condition="l" amount="1" locaExtension="TreasureOfWisdom" />
+  	  </triggers>
+   </quest>
+   
+   <quest name="Adv_TreasureWisdom_Q3" type="Story" icon="Military" npc="king_shari.png" specialType="lastQuest">
+      <startcondition>
+		     <questcomplete item="Adv_TreasureWisdom_Q2"/>
+		  </startcondition>
+		  <triggers>
+         <trigger type="Building" name="OrientalDefenseSystem1_leader" condition="l" amount="1" locaExtension="TreasureOfWisdom" /> 
+  	     <trigger type="Building" name="OrientalDefenseSystem2_leader" condition="l" amount="1" locaExtension="TreasureOfWisdom" /> 
+      </triggers>
+   </quest>
+  
+</Root>
+
+    
+    
+      
+      
+      
+      
+
+

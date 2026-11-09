@@ -1,0 +1,64 @@
+{
+    "packages": [
+        {
+            "name": "sabre/amf",
+            "version": "1.5.0",
+            "version_normalized": "1.5.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/evert/SabreAMF.git",
+                "reference": "c2392daff096c50725cbcc5eb426f11c469d163a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/evert/SabreAMF/zipball/c2392daff096c50725cbcc5eb426f11c469d163a",
+                "reference": "c2392daff096c50725cbcc5eb426f11c469d163a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.1"
+            },
+            "require-dev": {
+                "phing/phing": "*",
+                "phpunit/phpunit": "*"
+            },
+            "time": "2014-04-10T08:42:56+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "SabreAMF": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Evert Pot",
+                    "email": "evert@rooftopsolutions.nl",
+                    "homepage": "http://evertpot.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "SabreAMF is a Flash Remoting server and client for PHP",
+            "homepage": "http://code.google.com/p/sabreamf/",
+            "keywords": [
+                "AMF0",
+                "AMF3",
+                "ActionScript",
+                "Remoting",
+                "amf",
+                "flash"
+            ],
+            "support": {
+                "issues": "https://github.com/evert/SabreAMF/issues",
+                "source": "https://github.com/fruux/sabre-vobject"
+            },
+            "install-path": "../sabre/amf"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}

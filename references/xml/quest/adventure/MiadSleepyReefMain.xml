@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Root>
+
+   <quest name="MiadSleepyReefMain" type="Story" specialType="firstQuestlastQuest" icon="Military" npc="quest_character_mentor03.png" showQuestWindow="false">
+	   	<preeffects>
+        </preeffects>
+	   	<triggers>
+	   		<questcomplete item="MiadSleepyReefQ1"/>
+	   		<questcomplete item="MiadSleepyReefQ2"/>
+	   		<questcomplete item="MiadSleepyReefQ3"/>
+         	<questcomplete item="MiadSleepyReefQ4"/>
+         	<questcomplete item="MiadSleepyReefQ5"/>
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="200"/>        
+      </rewards>
+    </quest> 
+   
+   <quest name="MiadSleepyReefQ1" type="Story" icon="Military" connectedToQuest="MiadSleepyReefMain" npc="quest_character_mentor03.png" >
+		  <startcondition>
+		   <questactive item="MiadSleepyReefMain"/>
+		</startcondition>
+		  <triggers>
+         <trigger type="Building" name="tent_traitors_00" condition="l" amount="1" locaExtension="sr1" />
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="50"/>        
+      </rewards>
+      <postrequisits>
+         <postrequisite startQuest="MiadSleepyReefQ2" />
+       </postrequisits> 
+   </quest>
+  
+	 <quest name="MiadSleepyReefQ2" type="Story" icon="Military" connectedToQuest="MiadSleepyReefMain" npc="quest_character_mentor03.png" >
+	  	<triggers>
+         <trigger type="Building" name="tent_traitors_01" condition="l" amount="3" locaExtension="sr2" />
+  	   </triggers>
+      <rewards>
+         <reward type="XP" amount="50"/>        
+      </rewards>
+		  <postrequisits>
+         <postrequisite startQuest="MiadSleepyReefQ3" /> 
+      </postrequisits>       
+    </quest>
+    
+	 <quest name="MiadSleepyReefQ3" type="Story" icon="Military" connectedToQuest="MiadSleepyReefMain" npc="quest_character_mentor03.png" >
+	  	<triggers>
+         <trigger type="Building" name="tent_traitors_01" condition="l" amount="1" locaExtension="sr3" />
+  	   </triggers>
+      <rewards>
+         <reward type="XP" amount="100"/>        
+      </rewards>
+		  <postrequisits>
+         <postrequisite startQuest="MiadSleepyReefQ4" />
+         <postrequisite startQuest="MiadSleepyReefQ5" /> 
+      </postrequisits>       
+    </quest>
+      
+   <quest name="MiadSleepyReefQ4" type="Story" icon="Military" connectedToQuest="MiadSleepyReefMain" npc="quest_character_mentor03.png" >
+		  <triggers>
+         <trigger type="Building" name="a_trees_01" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="sr4" />
+         <trigger type="Building" name="a_trees_02" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="sr4" />
+         <trigger type="Building" name="a_trees_02" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="sr4" />
+         <trigger type="Building" name="a_trees_02" condition="selected" onComplete="destroySelectedBuilding" amount="1" locaExtension="sr4"/>
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="50"/>        
+      </rewards>
+      <postrequisits>
+       </postrequisits> 
+    </quest>
+    
+   <quest name="MiadSleepyReefQ5" type="Story" icon="Military" connectedToQuest="MiadSleepyReefMain" npc="quest_character_mentor03.png" >
+	   	<triggers>
+         <trigger type="Building" name="tent_traitors_02" condition="l" amount="1" locaExtension="sr5" />
+  	  </triggers>
+      <rewards>
+         <reward type="XP" amount="140"/>        
+      </rewards>
+		  <postrequisits/>     
+    </quest> 
+
+</Root>
+
+    
+    
+      
+      
+      
+      
+
+

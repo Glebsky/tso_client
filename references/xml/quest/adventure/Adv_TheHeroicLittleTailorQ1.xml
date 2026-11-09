@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	 <quest name="Adv_TheHeroicLittleTailorQ1" type="Story" icon="Military" npc="quest_character_tailor.png" specialType="firstQuest" >
+		<triggers>
+      <trigger type="Building" name="cave_wildlife_leader" condition="l" amount="4" locaExtension="er1_a3_q1"/>
+		  </triggers>
+      <rewards/>
+		<postrequisits>
+         <postrequisite startQuest="Adv_TheHeroicLittleTailorQ2" /> 
+		</postrequisits>
+    </quest>
+	<quest name="Adv_TheHeroicLittleTailorQ2" type="Story" icon="Military" npc="quest_character_tailor.png">
+		<triggers>
+      <trigger type="Building" name="cave_wildlife_leader" condition="l" amount="3" locaExtension="er1_a3_q2"/>
+		  </triggers>
+      <rewards/>
+		<postrequisits>
+         <postrequisite startQuest="Adv_TheHeroicLittleTailorQ3" /> 
+		</postrequisits>    </quest>
+	<quest name="Adv_TheHeroicLittleTailorQ3" type="Story" icon="Military" npc="quest_character_tailor.png">
+		<triggers>
+      <trigger type="Building" name="cave_wildlife_leader" condition="l" amount="1" locaExtension="er1_a3_q3"/>
+		  </triggers>
+      <rewards/>
+		<postrequisits>
+         <postrequisite startQuest="Adv_TheHeroicLittleTailorQ4" /> 
+		</postrequisits>
+    </quest>
+	<quest name="Adv_TheHeroicLittleTailorQ4" type="Story" icon="Military" npc="quest_character_tailor.png">
+		<triggers>
+      <trigger type="Building" name="WitchTower" condition="l" amount="1" locaExtension="er1_a3_q4"/>
+		  </triggers>
+      <rewards/>
+		<postrequisits>
+         <postrequisite startQuest="Adv_TheHeroicLittleTailorQ5" /> 
+		</postrequisits>
+    </quest>
+	<quest name="Adv_TheHeroicLittleTailorQ5" type="Story" icon="Military" npc="quest_character_tailor.png">
+		<triggers>
+      <trigger type="Building" name="Banditsleader_Dark" condition="l" amount="1" locaExtension="er1_a3_q5"/>
+		  </triggers>
+      <rewards/>
+		<postrequisits>
+         <postrequisite startQuest="Adv_TheHeroicLittleTailorQ6" /> 
+		</postrequisits>
+    </quest>
+	 <quest name="Adv_TheHeroicLittleTailorQ6" type="Story" icon="Military" npc="quest_character_tailor.png" specialType="lastQuest" >
+		<triggers>
+      <trigger type="Building" name="Dark_Castle_01" condition="l" amount="1" locaExtension="er1_a3_q6"/>
+		  </triggers>
+      <rewards/>
+    </quest>	
+	
+  		<!-- Twin Town One time only quest -->
+	<quest name="TwinTown_TheHeroicLittleTailor_Tracks_Helper" showQuestWindow="false" showRewardWindow="false" >	
+		<startcondition>
+			<checkgenericvalue name="TwinTown_Home_Chapter1_Main2_Sub_11_QGV" min="1" max="1"/>			
+		</startcondition>	
+		<triggers>				
+		</triggers>
+		<posteffects>		
+			<spawnbuilding name="Tracks" x="30" y="88" mode="enemy" action="ignoreBlocking,spawnInstant"/>			
+			<spawnbuilding name="Tracks" x="27" y="60" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="16" y="71" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="15" y="92" mode="enemy" action="ignoreBlocking,spawnInstant"/>		
+			<spawnbuilding name="Tracks" x="14" y="123" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="5" y="102" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="3" y="74" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="10" y="70" mode="enemy" action="ignoreBlocking,spawnInstant"/>
+			<spawnbuilding name="Tracks" x="2" y="42" mode="enemy" action="ignoreBlocking,spawnInstant"/>
+			<spawnbuilding name="Tracks" x="15" y="54" mode="enemy" action="ignoreBlocking,spawnInstant"/>
+			<spawnbuilding name="Tracks" x="22" y="34" mode="enemy" action="ignoreBlocking,spawnInstant"/>
+			<spawnbuilding name="Tracks" x="26" y="37" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="33" y="48" mode="enemy" action="ignoreBlocking,spawnInstant"/>
+			<spawnbuilding name="Tracks" x="33" y="20" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="25" y="7" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="46" y="54" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="37" y="6" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="61" y="41" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="62" y="24" mode="enemy" action="ignoreBlocking,spawnInstant"/>	
+			<spawnbuilding name="Tracks" x="50" y="6" mode="enemy" action="ignoreBlocking,spawnInstant"/>				
+			<startquest name="TwinTown_TheHeroicLittleTailor_Tracks"/>				
+		</posteffects>		
+    </quest>	
+	
+   <quest name="TwinTown_TheHeroicLittleTailor_Tracks" type="Story" icon="QuestShort" npc="quest_character_sonya_solemoon.png" notifyHomeZone="true" >	
+		<triggers>
+			<buildingdestroyed min="15" item="Tracks" locaExtension="TwinTown_Tracks"/>				
+		</triggers>
+		<posteffects>		
+		</posteffects>		
+    </quest>		
+	
+</Root>
